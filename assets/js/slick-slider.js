@@ -1,5 +1,28 @@
 jQuery(document).ready(function ($) {
 
+	function addProgressBarsToNav() {
+		// Select the #portfolioSliderNav element
+		var $nav = $("#portfolioSliderNav");
+
+		// Get the number of items in the navigation slider
+		var itemCount = $nav.find(".slick-slide").length;
+
+		// Create and append progress bars for each item
+		for (var i = 0; i < itemCount; i++) {
+			$nav.find(".slick-slide").eq(i).append("<div class='progress-bar'></div>");
+		}
+	}
+
+	// Update the progress bars as you navigate through the slides
+	$("#portfolioSlider").on("init reInit afterChange", function (event, slick, currentSlide, nextSlide) {
+		// Calculate the progress for the active slide
+		var progressBar = (currentSlide / (slick.slideCount - 1)) * 100;
+
+		// Update the corresponding progress bar
+		$("#portfolioSliderNav .slick-slide .progress-bar").eq(currentSlide).css("height", progressBar + "%");
+	});
+
+
 	$("#portfolioSlider").slick({
 		infinite: true,
 		arrows: false,
@@ -49,4 +72,5 @@ jQuery(document).ready(function ($) {
 		],
 	});
 
+	addProgressBarsToNav();
 });
