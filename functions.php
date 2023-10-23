@@ -26,3 +26,4 @@ add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
 // Include your custom functions file from the "inc" folder
 require_once get_template_directory() . '/inc/allow-svg.php';
+require_once get_template_directory() . '/inc/enqueue-style-script.php';
