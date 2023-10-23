@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
 
 	function addProgressBarsToNav() {
+		console.log('Select the #portfolioSliderNav element');
 		// Select the #portfolioSliderNav element
 		var $nav = $("#portfolioSliderNav");
 
@@ -15,7 +16,7 @@ jQuery(document).ready(function ($) {
 
 	// Update the progress bars as you navigate through the slides
 	$("#portfolioSlider").on("init reInit afterChange", function (event, slick, currentSlide, nextSlide) {
-		// Calculate the progress for the active slide
+		console.log('Calculate the progress for the active slide');
 		var progressBar = (currentSlide / (slick.slideCount - 1)) * 100;
 
 		// Update the corresponding progress bar
