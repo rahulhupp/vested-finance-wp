@@ -51,13 +51,14 @@ jQuery(document).ready(function ($) {
 
 	$("#linkedinSlider").slick({
 		infinite: true,
-		arrows: false,
 		dots: false,
 		autoplay: true,
 		autoplaySpeed: 3000,
 		speed: 600,
 		slidesToShow: 4,
 		slidesToScroll: 1,
+		prevArrow: $('#linkedinSliderPrev'),
+      	nextArrow: $('#linkedinSliderNext'),
 		responsive: [
 			{
 				breakpoint: 992,

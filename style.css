@@ -11,6 +11,11 @@ Template: astra
 */
 
 
-body {
-    background-color: red;
+
+#linkedinSlider .slick-slide {
+	margin: 0 6px;
+}
+
+#linkedinSlider .slick-list {
+	margin: 0 -6px;
 }
