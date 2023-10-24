@@ -9,6 +9,10 @@
     
         // Enqueue your custom JavaScript file
         wp_enqueue_script('custom-slick-slider', get_stylesheet_directory_uri() . '/assets/js/slick-slider.js', array('jquery'), '1.0.0', true);
+    
+        
+        wp_enqueue_style('header-style', get_stylesheet_directory_uri() . '/assets/css/header.css', false, '', '');
+        wp_enqueue_script('header-js', get_stylesheet_directory_uri() . '/assets/js/header.js');
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');

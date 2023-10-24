@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
 		arrows: false,
 		dots: false,
 		autoplay: true,
-		autoplaySpeed: 6000,
+		autoplaySpeed: 3000,
 		speed: 600,
 		slidesToShow: 4,
 		slidesToScroll: 1,
