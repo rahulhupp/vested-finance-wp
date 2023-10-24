@@ -340,21 +340,20 @@ body.mega-menu-open .site-content:before {
 	}
 
 	header .inner-header .site-primary-header-wrap .logo-menu .main-menu {
-		position: fixed;
-		right: 0;
-		background: #fff;
-		width: 100%;
-		max-width: 375px;
-		z-index: 9;
-		display: block;
-		top: 127px;
-		bottom: 0;
-		transition: 0.3s all;
-		padding: 24px 0 24px 24px;
-		height: calc(100vh - 127px);
-		transform: translateX(100%);
-	}
-
+        position: fixed;
+        right: 0;
+        background: #fff;
+        width: 100%;
+        z-index: 9;
+        display: block;
+        top: 87.48px;
+        bottom: 0;
+        transition: 0.3s all;
+        padding: 0 0 24px 24px;
+        height: calc(100vh - 87.48px);
+        transform: translateX(100%);
+    }
+	
 	.menu-open header .inner-header .site-primary-header-wrap .logo-menu .main-menu {
 		transform: translateX(0);
 	}
