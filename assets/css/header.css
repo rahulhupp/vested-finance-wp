@@ -330,7 +330,7 @@ body.mega-menu-open .site-content:before {
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary {
 		background: transparent;
 		display: block;
-		height: calc(100vh - 266px);
+		height: calc(100vh - 203px);
 		overflow: auto;
 		padding-right: 24px;
 	}
@@ -353,7 +353,7 @@ body.mega-menu-open .site-content:before {
         height: calc(100vh - 87.48px);
         transform: translateX(100%);
     }
-	
+
 	.menu-open header .inner-header .site-primary-header-wrap .logo-menu .main-menu {
 		transform: translateX(0);
 	}
