@@ -1,29 +1,5 @@
 jQuery(document).ready(function ($) {
 
-	function addProgressBarsToNav() {
-		console.log('Select the #portfolioSliderNav element');
-		// Select the #portfolioSliderNav element
-		var $nav = $("#portfolioSliderNav");
-
-		// Get the number of items in the navigation slider
-		var itemCount = $nav.find(".slick-slide").length;
-
-		// Create and append progress bars for each item
-		for (var i = 0; i < itemCount; i++) {
-			$nav.find(".slick-slide").eq(i).append("<div class='progress-bar'></div>");
-		}
-	}
-
-	// Update the progress bars as you navigate through the slides
-	$("#portfolioSlider").on("init reInit afterChange", function (event, slick, currentSlide, nextSlide) {
-		console.log('Calculate the progress for the active slide');
-		var progressBar = (currentSlide / (slick.slideCount - 1)) * 100;
-
-		// Update the corresponding progress bar
-		$("#portfolioSliderNav .slick-slide .progress-bar").eq(currentSlide).css("height", progressBar + "%");
-	});
-
-
 	$("#portfolioSlider").slick({
 		infinite: true,
 		arrows: false,
@@ -73,5 +49,37 @@ jQuery(document).ready(function ($) {
 		],
 	});
 
-	addProgressBarsToNav();
+	$("#linkedinSlider").slick({
+		infinite: true,
+		arrows: false,
+		dots: false,
+		autoplay: true,
+		autoplaySpeed: 6000,
+		speed: 600,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 601,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+		],
+	});
 });
