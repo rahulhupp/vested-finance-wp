@@ -10,7 +10,17 @@ Text Domain: astra-child
 Template: astra
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+.site-content .ast-container {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #linkedinSlider .slick-slide {
 	margin: 0 6px;
