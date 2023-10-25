@@ -240,6 +240,10 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
 	color: #002852;
 }
 
+header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item ul.mega-sub-menu li ul li .content a:hover b {
+    color: #002852;
+}
+
 header .inner-header .site-primary-header-wrap .logo-menu .mobile {
 	display: none;
 }

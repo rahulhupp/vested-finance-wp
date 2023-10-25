@@ -1,0 +1,213 @@
+<?php
+/*
+Template name: Page - Pricing
+*/
+get_header(); ?>
+<div id="content" role="main" class="pricing-page">
+
+<div class="pricing-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="sticky-tab">
+        <?php if( have_rows('pricing_tab') ): ?>
+            <ul id="tabs-nav" class="pricing-tabs">
+            <?php $index = 0; while( have_rows('pricing_tab') ): the_row(); 
+                ?>
+                <li>
+                    <a href="#tab<?php echo $index + 1; ?>"><?php the_sub_field('tab_title'); ?></a>
+                </li>
+            <?php $index++; endwhile; ?>
+            </ul>
+        <?php endif; ?>
+      </div>
+      <div class="sticky-plan">
+        <div class="plan first">
+          <h3><?php the_field('basic_plan_heading'); ?></h3>
+          <span><?php the_field('basic_plan_price'); ?></span>
+        </div>
+        <div class="plan second">
+          <h3><?php the_field('premium_plan_heading'); ?></h3>
+          <span><?php the_field('premium_plan_price'); ?></span>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+<section class="pricing-info">
+    <div class="container">
+        <div class="row">
+            <div class="content">
+                <h2><?php the_field('pricing_info_title'); ?></h2>
+                <?php the_field('pricing_info_content'); ?>
+            </div>
+            <div class="mobile-tab">
+                <p id="basic_show_btn" class="active">Basic</p>
+                <p id="premium_show_btn">Premium</p>
+            </div>
+            <div class="plan-box">
+                <div class="box basic-plan">
+                    <h2><?php the_field('basic_plan_heading'); ?></h2>
+                    <span><?php the_field('basic_plan_price'); ?></span>
+                    <div class="basic-plan-selection">
+                        <label for="pay-once">Pay Once</label>
+                    </div>
+                    <a href="<?php the_field('basic_plan_button_link'); ?>"><?php the_field('basic_plan_button_label'); ?></a>
+                </div>
+                <div class="box premium-plan">
+                    <div class="recommended">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/star.svg" />
+                        <?php the_field('recommended_label'); ?>
+                    </div>
+                    <h2><?php the_field('premium_plan_heading'); ?></h2>
+                    <span><?php the_field('premium_plan_price'); ?></span>
+                    <div class="plan-selection">
+                        <div class="single-plan-button">
+                            <input type="radio" name="plan-selection" id="annual-plan" value="" checked>
+                            <label for="annual-plan">Annual</label>
+                            <div class="save">Save 10%</div>
+                        </div>
+                        <div class="single-plan-button">
+                            <input type="radio" name="plan-selection" id="quarterly-plan" value="" >
+                            <label for="quarterly-plan">Quarterly</label>
+                        </div>
+                    </div>
+                    <a href="<?php the_field('premium_plan_button_link'); ?>"><?php the_field('premium_plan_button_label'); ?></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-table">
+  <div class="container">
+    <?php if( have_rows('pricing_tab') ): ?>
+        <ul id="tabs-nav" class="pricing-tabs">
+        <?php $index = 0; while( have_rows('pricing_tab') ): the_row(); 
+            ?>
+            <li>
+                <a href="#tab<?php echo $index + 1; ?>"><?php the_sub_field('tab_title'); ?></a>
+            </li>
+        <?php $index++; endwhile; ?>
+        </ul>
+    <?php endif; ?>
+    <div id="tabs-content" class="pricing-tabs-content">
+      <?php if (have_rows('pricing_tab')) : ?>
+        <?php $index = 0; // Initialize the index counter ?>
+        <?php while (have_rows('pricing_tab')) : the_row(); ?>
+          <div id="tab<?php echo $index + 1; ?>" class="tab-content pricing-tab-content">
+            <div class="head-part">
+              <div class="inner">
+                <div class="stock">
+                  <img src="<?php the_sub_field('stock_icon'); ?>">     
+                  <strong><?php the_sub_field('tab_title'); ?></strong> 
+                </div>
+                <div class="currency">
+                  <img src="<?php the_sub_field('currency_icon'); ?>">   
+                  <span><?php the_sub_field('currency_text'); ?></span>
+                </div>
+              </div>
+              <div class="empty-space">
+                <div class="empty first"></div>
+                <div class="empty second"></div>
+              </div>
+            </div>
+            
+            <?php while (have_rows('pricing_list')) : the_row(); ?>
+              <div class="item">
+                <div class="heading">
+                  <div class="icon">
+                    <img src="<?php the_sub_field('icon'); ?>">
+                  </div>
+                  <div class="inside">
+                    <h3><?php the_sub_field('heading'); ?></h3>
+                    <?php $tooltipContent = get_sub_field('tooltip'); ?>
+                    <?php 
+                      if ($tooltipContent) {
+                        ?>
+                        <div class="tooltip">
+                          <img class="info-icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info.png" />
+                          <div class="overlay"></div>
+                          <div class="tooltip-content">
+                           <div class="line"></div>
+                            <?php the_sub_field('tooltip'); ?>
+                            <button class="ok-btn">Okay, got it</button>
+                          </div>
+                        </div>
+                        <?php
+                      }
+                    ?>                    
+                  </div>
+                </div>
+                <div class="price-detail">
+                  <div class="info first">
+                    <?php $firstHeading = get_sub_field('first_heading'); ?>
+                    <?php 
+                      if ($firstHeading == 'check') {
+                        ?>
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                        <?php
+                      }
+                      else {
+                        ?>
+                        <p><?php the_sub_field('first_heading'); ?></p>
+                        <?php
+                      }
+                    ?>
+                    
+                    <span><?php the_sub_field('first_sub_heading'); ?></span>
+                  </div>
+                  <div class="info second">
+                  <?php $secondHeading = get_sub_field('second_heading'); ?>
+                    <?php 
+                        if ($secondHeading == 'check') {
+                          ?>
+                          <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                          <?php
+                        }
+                        else {
+                          ?>
+                          <p><?php the_sub_field('second_heading'); ?></p>
+                          <?php
+                        }
+                      ?>
+                    <span><?php the_sub_field('second_sub_heading'); ?></span>
+                  </div>
+                </div>
+              </div>
+            <?php endwhile; ?>
+          </div>
+        <?php $index++; // Increment the index counter ?>  
+        <?php endwhile; ?>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+
+<?php if (have_rows('faq_list')) : ?>
+  <section class="pricing_page_faqs">
+      <div class="container">
+          <h2 class="section_title"><span><?php the_field('faqs_heading'); ?></span></h2>
+
+          <div class="pricing_page_faq_wrap">
+              <?php while (have_rows('faq_list')) : the_row(); ?>
+                  <div class="single_faq">
+                      <div class="faq_que">
+                          <h3>
+                              <?php the_sub_field('faq_question') ?>
+                          </h3>
+                      </div>
+                      <div class="faq_content">
+                          <?php the_sub_field('faq_answer') ?>
+                      </div>
+                  </div>
+              <?php endwhile; ?>
+          </div>
+      </div>
+  </section>
+<?php endif; ?>
+
+</div>
+
+
+<?php get_footer(); ?>
