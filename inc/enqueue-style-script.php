@@ -13,6 +13,9 @@
         
         wp_enqueue_style('header-style', get_stylesheet_directory_uri() . '/assets/css/header.css', false, '', '');
         wp_enqueue_script('header-js', get_stylesheet_directory_uri() . '/assets/js/header.js');
+        wp_enqueue_style('pricing-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-pricing.css', false, '', '');
+        wp_enqueue_script('pricing-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-pricing.js');
+
         if ( is_page_template( 'page-home-page.php') ) {
             wp_enqueue_style('home-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-page.css', false, '', '');
             wp_enqueue_script('home-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-page.js');
@@ -42,10 +45,6 @@
             wp_enqueue_style('us-stock-global-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-us-stocks-global.css', false, '', '');
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
             wp_enqueue_script('us-stock-global-page-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-us-stocks-global.js');
-        }
-        if (is_page_template('page-pricing.php')) {
-            wp_enqueue_style('pricing-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-pricing.css', false, '', '');
-            wp_enqueue_script('pricing-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-pricing.js');
         }
     }
 
