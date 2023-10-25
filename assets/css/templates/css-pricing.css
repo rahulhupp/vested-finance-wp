@@ -474,7 +474,7 @@
     content: "";
     position: absolute;
     right: 16px;
-    background-image: url(../../assets/images/chevron-down.png);
+    background-image: url('../../images/chevron-down.png');
     background-size: 20px;
     width: 20px;
     height: 20px;
