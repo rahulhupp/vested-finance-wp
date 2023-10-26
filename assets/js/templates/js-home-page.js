@@ -1,21 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-	var slider = document.getElementById("investment_range");
-
-	slider.addEventListener("input", function () {
-		var minValue = 10000;
-		var maxValue = 1000000;
-		var x = parseFloat(slider.value); // Parse the slider value to a floating-point number
-		var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-		var color =
-			"linear-gradient(90deg, rgba(12, 199, 134, 1)" +
-			newValue +
-			"%, rgba(217, 228, 238, 1)" +
-			newValue +
-			"%)";
-		slider.style.background = color;
-	});
-});
-
 jQuery(document).ready(function ($) {
 	$(".portfolio_slider").slick({
 		infinite: true,
