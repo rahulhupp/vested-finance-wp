@@ -200,6 +200,7 @@ header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primar
     height: 100%;
     background: rgba(255, 255, 255, 0.8);
     z-index: -1;
+	pointer-events: none;
 }
 
 header .inner-header .site-primary-header-wrap .right-button .account-menu ul {

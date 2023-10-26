@@ -57,7 +57,7 @@ get_header(); ?>
                 </div>
                 <div class="box premium-plan">
                     <div class="recommended">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/star.svg" />
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/star.svg" />
                         <?php the_field('recommended_label'); ?>
                     </div>
                     <h2><?php the_field('premium_plan_heading'); ?></h2>
@@ -129,7 +129,7 @@ get_header(); ?>
                         if ($tooltipContent) {
                           ?>
                           <div class="tooltip">
-                            <img class="info-icon" src="<?php echo get_template_directory_uri() ?>/assets/images/info.png" />
+                            <img class="info-icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info.png" />
                             <div class="overlay"></div>
                             <div class="tooltip-content">
                             <div class="line"></div>
@@ -152,7 +152,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeading == 'check') {
                             ?>
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
                             <?php
                           }
                           else {
@@ -172,7 +172,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeading == 'check') {
                               ?>
-                              <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
                               <?php
                             }
                             else {
@@ -193,7 +193,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeadingQuarterly == 'check') {
                             ?>
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
                             <?php
                           }
                           else {
@@ -213,7 +213,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeadingQuarterly == 'check') {
                               ?>
-                              <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
                               <?php
                             }
                             else {
