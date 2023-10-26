@@ -10,7 +10,7 @@ get_header(); ?>
     <div class="row">
       <div class="sticky-tab">
         <?php if( have_rows('pricing_tab') ): ?>
-            <ul id="tabs-nav" class="pricing-tabs">
+            <ul class="pricing-tabs">
             <?php $index = 0; while( have_rows('pricing_tab') ): the_row(); 
                 ?>
                 <li>
@@ -27,7 +27,8 @@ get_header(); ?>
         </div>
         <div class="plan second">
           <h3><?php the_field('premium_plan_heading'); ?></h3>
-          <span><?php the_field('premium_plan_price'); ?></span>
+          <span class="annual"><?php the_field('premium_plan_price'); ?></span>
+          <span class="quarterly"><?php the_field('premium_plan_price_quarterly'); ?></span>
         </div>
       </div>
     </div>
@@ -56,11 +57,12 @@ get_header(); ?>
                 </div>
                 <div class="box premium-plan">
                     <div class="recommended">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/star.svg" />
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/star.svg" />
                         <?php the_field('recommended_label'); ?>
                     </div>
                     <h2><?php the_field('premium_plan_heading'); ?></h2>
-                    <span><?php the_field('premium_plan_price'); ?></span>
+                    <span class="annual"><?php the_field('premium_plan_price'); ?></span>
+                    <span class="quarterly"><?php the_field('premium_plan_price_quarterly'); ?></span>
                     <div class="plan-selection">
                         <div class="single-plan-button">
                             <input type="radio" name="plan-selection" id="annual-plan" value="" checked>
@@ -100,7 +102,7 @@ get_header(); ?>
               <div class="inner">
                 <div class="stock">
                   <img src="<?php the_sub_field('stock_icon'); ?>">     
-                  <strong><?php the_sub_field('tab_title'); ?></strong> 
+                  <strong><?php the_sub_field('stock_title'); ?></strong> 
                 </div>
                 <div class="currency">
                   <img src="<?php the_sub_field('currency_icon'); ?>">   
@@ -116,62 +118,113 @@ get_header(); ?>
             <?php while (have_rows('pricing_list')) : the_row(); ?>
               <div class="item">
                 <div class="heading">
-                  <div class="icon">
-                    <img src="<?php the_sub_field('icon'); ?>">
-                  </div>
-                  <div class="inside">
-                    <h3><?php the_sub_field('heading'); ?></h3>
-                    <?php $tooltipContent = get_sub_field('tooltip'); ?>
-                    <?php 
-                      if ($tooltipContent) {
-                        ?>
-                        <div class="tooltip">
-                          <img class="info-icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info.png" />
-                          <div class="overlay"></div>
-                          <div class="tooltip-content">
-                           <div class="line"></div>
-                            <?php the_sub_field('tooltip'); ?>
-                            <button class="ok-btn">Okay, got it</button>
+                  <div class="inner">
+                    <div class="icon">
+                      <img src="<?php the_sub_field('icon'); ?>">
+                    </div>
+                    <div class="inside">
+                      <h3><?php the_sub_field('heading'); ?></h3>
+                      <?php $tooltipContent = get_sub_field('tooltip'); ?>
+                      <?php 
+                        if ($tooltipContent) {
+                          ?>
+                          <div class="tooltip">
+                            <img class="info-icon" src="<?php echo get_template_directory_uri() ?>/assets/images/info.png" />
+                            <div class="overlay"></div>
+                            <div class="tooltip-content">
+                            <div class="line"></div>
+                              <?php the_sub_field('tooltip'); ?>
+                              <button class="ok-btn">Okay, got it</button>
+                            </div>
                           </div>
-                        </div>
-                        <?php
-                      }
-                    ?>                    
+                          <?php
+                        }
+                      ?>                    
+                    </div>
                   </div>
                 </div>
                 <div class="price-detail">
-                  <div class="info first">
-                    <?php $firstHeading = get_sub_field('first_heading'); ?>
-                    <?php 
-                      if ($firstHeading == 'check') {
+                  <!-- Annual -->
+                  <div class="info first annual">
+                    <div class="inner">
+                      <div>
+                        <?php $firstHeading = get_sub_field('first_heading'); ?>
+                        <?php 
+                          if ($firstHeading == 'check') {
+                            ?>
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                            <?php
+                          }
+                          else {
+                            ?>
+                            <p><?php the_sub_field('first_heading'); ?></p>
+                            <?php
+                          }
                         ?>
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
-                        <?php
-                      }
-                      else {
-                        ?>
-                        <p><?php the_sub_field('first_heading'); ?></p>
-                        <?php
-                      }
-                    ?>
-                    
-                    <span><?php the_sub_field('first_sub_heading'); ?></span>
+                        <span><?php the_sub_field('first_sub_heading'); ?></span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="info second">
-                  <?php $secondHeading = get_sub_field('second_heading'); ?>
-                    <?php 
-                        if ($secondHeading == 'check') {
+                  <div class="info second annual">
+                    <div class="inner">
+                      <div>
+                        <?php $secondHeading = get_sub_field('second_heading'); ?>
+                        <?php 
+                            if ($secondHeading == 'check') {
+                              ?>
+                              <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                              <?php
+                            }
+                            else {
+                              ?>
+                              <p><?php the_sub_field('second_heading'); ?></p>
+                              <?php
+                            }
                           ?>
-                          <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
-                          <?php
-                        }
-                        else {
+                        <span><?php the_sub_field('second_sub_heading'); ?></span>
+                      </div>      
+                    </div>
+                  </div>
+                  <!-- Quarterly -->
+                  <div class="info first quarterly">
+                    <div class="inner">
+                      <div>
+                        <?php $firstHeadingQuarterly = get_sub_field('first_heading_quarterly'); ?>
+                        <?php 
+                          if ($firstHeadingQuarterly == 'check') {
+                            ?>
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                            <?php
+                          }
+                          else {
+                            ?>
+                            <p><?php the_sub_field('first_heading_quarterly'); ?></p>
+                            <?php
+                          }
+                        ?>
+                        <span><?php the_sub_field('first_sub_heading_quarterly'); ?></span>
+                      </div>
+                    </div>  
+                  </div>
+                  <div class="info second quarterly">
+                    <div class="inner">
+                      <div>
+                        <?php $secondHeadingQuarterly = get_sub_field('second_heading_quarterly'); ?>
+                        <?php 
+                            if ($secondHeadingQuarterly == 'check') {
+                              ?>
+                              <img src="<?php echo get_template_directory_uri() ?>/assets/images/checkmark.png" />
+                              <?php
+                            }
+                            else {
+                              ?>
+                              <p><?php the_sub_field('second_heading_quarterly'); ?></p>
+                              <?php
+                            }
                           ?>
-                          <p><?php the_sub_field('second_heading'); ?></p>
-                          <?php
-                        }
-                      ?>
-                    <span><?php the_sub_field('second_sub_heading'); ?></span>
+                        <span><?php the_sub_field('second_sub_heading_quarterly'); ?></span>
+                      </div>      
+                    </div>
                   </div>
                 </div>
               </div>

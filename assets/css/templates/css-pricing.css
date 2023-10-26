@@ -80,6 +80,9 @@
     display: block;
     margin: 6px 0 16px;
 }
+.pricing-info .plan-box .box span.quarterly {
+    display: none;
+}
 .pricing-info .plan-box .box span sub {
     font-size: 18px;
 }
@@ -331,6 +334,7 @@
 .pricing-table .pricing-tabs-content .item .heading .tooltip {
     display: inline;
     position: relative;
+    margin-left: 5px;
 }
 .pricing-table .pricing-tabs-content .item .tooltip-content {
     border-radius: 6px;
@@ -361,6 +365,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
+    max-height: 350px;
+    overflow: auto;
 }
 .pricing-table .pricing-tabs-content .item .tooltip-content button.ok-btn {
     border-radius: 30px;
@@ -390,6 +396,11 @@
     flex-wrap: wrap;
     padding: 27px 15px;
     background: #f2f8ff;
+    align-items: center;
+}
+.pricing-table .pricing-tabs-content .item .heading .inner {
+    display: inline-flex;
+    width: 100%;
 }
 .pricing-table .pricing-tabs-content .item .heading .icon {
     width: 40px;
@@ -406,6 +417,15 @@
     padding: 27px;
     text-align: center;
     line-height: normal;
+}
+.pricing-table .pricing-tabs-content .item .price-detail .info .inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.pricing-table .pricing-tabs-content .item .price-detail .info.quarterly {
+    display: none;
 }
 .pricing-table .pricing-tabs-content .item .price-detail .info.second {
     background: #fff;
@@ -463,9 +483,10 @@
     border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 .pricing_page_faqs .pricing_page_faq_wrap .faq_que {
-    padding: 28px 16px;
+    padding: 16px;
     position: relative;
     cursor: pointer;
+    margin: 12px 0;
 }
 .pricing_page_faqs .pricing_page_faq_wrap .faq_que.active:before {
     transform: rotate(-180deg);
@@ -474,7 +495,7 @@
     content: "";
     position: absolute;
     right: 16px;
-    background-image: url('../../images/chevron-down.png');
+    background-image: url(../../assets/images/chevron-down.png);
     background-size: 20px;
     width: 20px;
     height: 20px;
@@ -568,6 +589,9 @@
     font-size: 24px;
     font-weight: 700;
     line-height: 24px;
+}
+.pricing-sticky .sticky-plan .plan span.quarterly {
+    display: none;
 }
 .pricing-sticky .sticky-plan .plan:last-child {
     padding-left: 130px;
@@ -677,15 +701,12 @@
         margin-left: 0;
         padding-top: 66px;
     }
-    .pricing-table .pricing-tabs-content .head-part .inner {
-        width: 50%;
-    }
     .pricing-table .pricing-tabs-content .head-part .empty-space {
-        width: 50%;
+        width: 40%;
     }
-    .pricing-table .pricing-tabs-content .item .heading {
-        width: 50%;
-        padding: 17px;
+    .pricing-table .pricing-tabs-content .head-part .inner {
+        width: 60%;
+        padding-right: 26px;
     }
     .pricing-table .pricing-tabs-content .item .price-detail {
         width: 50%;
@@ -725,9 +746,10 @@
     .page-template-page-pricing .pricing-sticky .container {
         padding: 0 14px;
     }
-}
-
-@media only screen and (max-width: 767px) {
+    .pricing-table .pricing-tabs-content .item:before {
+        left: -60px;
+        width: calc(100% + 60px);
+    }
     .pricing-table .pricing-tabs-content .head-part .empty.first {
         background: #fff;
     }
@@ -748,10 +770,16 @@
     }
     .pricing-table .pricing-tabs-content .item .heading {
         width: 60%;
-        padding-left: 20px;
+        padding: 17px 17px 17px 20px;
     }
     .pricing-table .pricing-tabs-content .item .price-detail {
         width: 40%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body.tooltip-open {
+        overflow: hidden;
     }
     .pricing-table .pricing-tabs-content {
         padding: 10px;
@@ -759,8 +787,11 @@
     .page-template-page-pricing .pricing-table .container {
         padding: 0;
     }
+    .pricing-table .pricing-tabs-content .head-part .inner .stock img {
+        max-width: 21px;
+    }
     .pricing-table .pricing-tabs-content .head-part .inner .stock strong {
-        padding-left: 34px;
+        padding-left: 31px;
     }
     .pricing-table .pricing-tabs-content .head-part .inner .stock {
         margin-right: 9px;
@@ -768,8 +799,12 @@
     .pricing-table .pricing-tabs-content .head-part .inner .stock img {
         left: 0;
     }
+    .pricing-table .pricing-tabs-content .item .heading {
+        padding: 17px 5px 17px 17px;
+    }
     .pricing-table .pricing-tabs-content .item .heading .icon {
-        width: 28px;
+        width: 24px;
+        padding-right: 10px;
     }
     .pricing-table .pricing-tabs-content .item .heading .inside {
         width: calc(100% - 30px);
@@ -777,22 +812,12 @@
     .pricing-table .pricing-tabs-content .item .heading img.info-icon {
         max-width: 13px;
     }
-    .pricing-table .pricing-tabs-content .head-part .empty-space {
-        width: 40%;
-    }
-    .pricing-table .pricing-tabs-content .head-part .inner {
-        width: 60%;
-        padding-right: 26px;
-    }
     .pricing-table .pricing-tabs {
         padding: 20px 16px 0;
     }
     .pricing_page_faqs h2 {
         padding: 0 0 40px;
         font-size: 22px;
-    }
-    .pricing_page_faqs .pricing_page_faq_wrap .faq_que {
-        padding: 16px;
     }
     .pricing_page_faqs .pricing_page_faq_wrap .faq_que h3 {
         font-size: 14px;
@@ -841,5 +866,26 @@
     .pricing-table .pricing-tabs-content .item .heading .tooltip.active .overlay {
         opacity: 1;
         visibility: visible;
+    }
+    .pricing-table .pricing-tabs-content .item:before {
+        left: -10px;
+        width: calc(100% + 10px);
+    }
+    .pricing-table .pricing-tabs-content .head-part .inner .currency {
+        padding: 6px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pricing-table .pricing-tabs-content .head-part .inner .stock strong {
+        font-size: 14px;
+    }
+    .pricing-table .pricing-tabs-content .head-part .inner {
+        padding-right: 10px;
+    }
+}
+@media only screen and (max-width: 345px) {
+    .pricing-sticky .sticky-tab ul {
+        justify-content: unset;
     }
 }
