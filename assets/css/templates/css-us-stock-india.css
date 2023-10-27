@@ -127,7 +127,7 @@
 
 .stock-info .stock-row .stock-content ul li:before {
 	content: "";
-	background-image: url(../../../assets/img/check.png);
+	background-image: url(../../images/check.png);
 	width: 26px;
 	height: 26px;
 	display: inline-flex;
@@ -831,6 +831,16 @@ div#tab2 .inner .image {
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
+	background-repeat: no-repeat;
+	background-size: auto 16px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-color: #fff;
+	max-width: 100%;
+	width: 100%;
+	vertical-align: middle;
+	transition: color .3s, border .3s, background .3s, opacity .3s;
+	outline: none;
 }
 
 .calculator .calc_form label {
@@ -1340,7 +1350,7 @@ div#tab2 .inner .image {
     position: absolute;
     top: 0;
     right: 0px;
-    background-image: url(../../../assets/images/chevron-down.png);
+    background-image: url(../../images/chevron-down.png);
     background-size: 20px;
     width: 20px;
     height: 20px;

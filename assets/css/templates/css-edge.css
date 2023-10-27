@@ -2,8 +2,14 @@
 	display: none;
 }
 
+.page-template-page-edge .site-content .ast-container {
+    max-width: 100%;
+    padding: 0;
+}
+
 .page-template-page-edge .container {
-	max-width: 1230px;
+	max-width: 1240px;
+	padding: 0 24px;
 }
 
 .banner_wrapper {
@@ -96,7 +102,7 @@
 	position: absolute;
 	width: 26px;
 	height: 26px;
-	background: url(../../img/check.png);
+	background: url(../../images/check.png);
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -993,7 +999,7 @@ input#investment_range:before {
 }
 
 #investment_range::-webkit-slider-thumb {
-	background: url(../../img/slider-thumb.png);
+	background: url(../../images/slider-thumb.png);
 	border-radius: 0;
 	height: 29px;
 	width: 29px;
@@ -1003,7 +1009,7 @@ input#investment_range:before {
 }
 
 #investment_range::-moz-range-thumb {
-	background: url(../../img/slider-thumb.png);
+	background: url(../../images/slider-thumb.png);
 	border-radius: 0;
 	height: 29px;
 	width: 29px;
@@ -1063,7 +1069,7 @@ input#investment_range:before {
 	position: absolute;
 	width: 1349px;
 	height: 364px;
-	background: url(../../img/edge-shape-bg.png);
+	background: url(../../images/edge-shape-bg.png);
 	left: 50%;
 	top: 50%;
 	z-index: -1;
@@ -1255,7 +1261,7 @@ input#investment_range:before {
     position: absolute;
     top: 0;
     right: 0px;
-    background-image: url(../../../assets/images/chevron-down.png);
+    background-image: url(../../images/chevron-down.png);
     background-size: 20px;
     width: 20px;
     height: 20px;
@@ -2546,7 +2552,7 @@ input#investment_range:before {
 		width: 307px;
 		height: 113px;
 		max-width: 100%;
-		background: url(../../img/shape-top-mobile.png);
+		background: url(../../images/shape-top-mobile.png);
 		top: 17px;
 	}
 

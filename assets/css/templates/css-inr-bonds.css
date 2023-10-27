@@ -79,7 +79,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background: url(../../img/check.png);
+  background: url(../../images/check.png);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -574,7 +574,7 @@
   position: absolute;
   width: 1349px;
   height: 364px;
-  background: url(../../img/edge-shape-bg.png);
+  background: url(../../images/edge-shape-bg.png);
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -1088,6 +1088,16 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  max-width: 100%;
+  width: 100%;
+  vertical-align: middle;
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+  outline: none;
 }
 
 .bond_select_col .field_group label {
@@ -2003,7 +2013,7 @@
   .vested_edge_list:after {
     width: 375;
     height: 481px;
-    background: url(../../img/edge-shape-bg-mobile.png);
+    background: url(../../images/edge-shape-bg-mobile.png);
     top: 10px;
     transform: none;
     left: 0;
