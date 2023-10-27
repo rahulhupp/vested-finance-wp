@@ -33,11 +33,13 @@ function add_custom_js_to_pages() {
         echo '<script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
                 var imgElement = document.querySelector(\'img[alt="Seraphinite Accelerator"]\');
-                var spanElement = imgElement.nextElementSibling;
+                if (imgElement) {
+                    var spanElement = imgElement.nextElementSibling;
 
-                if (imgElement && spanElement) {
-                    imgElement.style.display = "none";
-                    spanElement.style.display = "none";
+                    if (imgElement && spanElement) {
+                        imgElement.style.display = "none";
+                        spanElement.style.display = "none";
+                    }
                 }
             });
         </script>';
