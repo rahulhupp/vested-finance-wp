@@ -766,8 +766,18 @@
 .calculator .submit_btn input[type="submit"] {
   width: 100%;
   margin: 0;
+  background: #00c9a7;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 0;
+  text-transform: capitalize;
+  line-height: 2.4em;
+  min-height: 2.5em;
+  transition: 0.3s all;
 }
-
+.calculator .submit_btn input[type="submit"]:hover {
+    background: #37ae87;
+}
 .calculator .submit_btn {
   margin-top: 32px;
 }

@@ -45,3 +45,18 @@ function add_custom_js_to_pages() {
 }
 
 add_action('wp_footer', 'add_custom_js_to_pages');
+
+function monthsToYearsAndMonths($months) {
+    $years = floor($months / 12);
+    $remainingMonths = $months % 12;
+
+    if ($years > 0 && $remainingMonths > 0) {
+        return $years . ' years ' . $remainingMonths . ' months';
+    } elseif ($years > 0) {
+        return $years . ' years';
+    } elseif ($remainingMonths > 0) {
+        return $remainingMonths . ' months';
+    } else {
+        return '0 months';
+    }
+}
