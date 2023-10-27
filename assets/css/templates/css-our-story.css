@@ -1,4 +1,5 @@
-.page-template-page-our-story-php .site-content .ast-container {
+.page-template-page-our-story-php .site-content .ast-container,
+.page-template-page-our-story .site-content .ast-container {
     max-width: 100%;
     padding: 0;
     display: block;
