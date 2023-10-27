@@ -645,6 +645,16 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  max-width: 100%;
+  width: 100%;
+  vertical-align: middle;
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+  outline: none;
 }
 
 .calculator .calc_form label {
@@ -903,6 +913,8 @@
   border-radius: 6px;
   border: 1px solid #146045;
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
 }
 
 .calculator .cta_btn a i {

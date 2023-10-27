@@ -214,6 +214,7 @@
 	padding-bottom: 14px;
 	font-weight: 500;
 	font-family: "Inter", sans-serif;
+	outline: none;
 }
 
 .tab-section .head ul#tabs-nav li.active a {
@@ -745,6 +746,7 @@ div#tab2 .inner .image {
 .stocks_slider_sec {
 	padding: 48px 0;
 	background: #eef5fc;
+	margin-top: 50px;
 }
 
 .stocks_slider_sec ol li {
@@ -1334,13 +1336,18 @@ div#tab2 .inner .image {
 }
 
 .faq_que:after {
-	content: "\f078";
-	font-family: "FontAwesome";
-	position: absolute;
-	top: 0;
-	right: 0px;
-	color: #212529;
-	transition: transform 0.3s;
+	content: "";
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background-image: url(../../../assets/images/chevron-down.png);
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    margin-top: 3px;
+    transition: 0.3s all;
+    background-repeat: no-repeat;
 }
 
 .single_faq {
