@@ -1,0 +1,410 @@
+.page-template-page-our-story-php .site-content .ast-container {
+    max-width: 100%;
+    padding: 0;
+    display: block;
+}
+.page-template-page-our-story .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.our-story-banner {
+    position: relative;
+}
+.our-story-banner .image img {
+    width: 100%;
+}
+.our-story-banner .image img.mobile {
+    display: none;
+}
+.our-story-banner .content {
+    position: absolute;
+    left: 0;
+    max-width: 1240px;
+    top: 0;
+    width: 100%;
+    right: 0;
+    margin: auto;
+    padding: 24px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+.our-story-banner .content .inner {
+    max-width: 673px;
+}
+.our-story-banner .content span {
+    color: #FFF;
+    
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.64px;
+    text-transform: uppercase;
+    margin: 0 0 19px 0;
+    display: block;
+}
+.our-story-banner .content h2 {
+    color: #FFF;
+    
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 110%;
+}
+
+.our-story-info {
+    padding: 71px 0 0 0;
+}
+.our-story-info .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.our-story-info .left-part {
+    width: 31.5%;
+}
+.our-story-info .left-part h2 {
+    color: #212529;
+    
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 110%;
+    position: relative;
+    margin-bottom: 44px;
+    padding-bottom: 44px;
+}
+.our-story-info .left-part h2:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-bottom: 3px solid #000;
+    right: 0;
+    width: 31px;
+}
+.our-story-info .left-part p {
+    color: #505A64;
+    
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 120%;
+    margin: 0;
+    max-width: 311px;
+}
+.our-story-info .right-part {
+    width: 68.5%;
+    padding-left: 98px;
+}
+.our-story-info .right-part p {
+    color: #212529;
+    text-align: justify;
+    
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: -0.36px;
+}
+
+.page-template-page-our-story .leadership .container {
+    max-width: 1030px;
+}
+.leadership-modal-open {
+    overflow: hidden;
+}
+.leadership {
+    padding-top: 184px;
+}
+.leadership h2 {
+    text-align: center;
+    color: #212529;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%;
+    
+    margin: 0 0 13px 0;
+}
+.leadership ul.list {
+    padding: 0;
+    margin: 0 0 0 -27px;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.leadership ul.list li {
+    width: 33.33%;
+    padding-left: 27px;
+}
+.leadership ul.list li:nth-child(n+4) {
+    margin-top: 37px;
+}
+.leadership ul.list li .content {
+    padding: 20px 0 0 0;
+}
+.leadership ul.list li img.leader-image {
+    width: 100%;
+}
+.leadership ul.list li .content h3 {
+    color: #505A64;
+    
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+    margin: 0 0 2px 0;
+}
+.leadership ul.list li .content span {
+    color: #505A64;
+    
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+.leadership ul.list li .content .bio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 17px;
+}
+.leadership ul.list li .content .bio .label {
+    display: flex;
+    align-items: center;
+}
+.leadership ul.list li .content .bio .label {
+    display: flex;
+    align-items: center;
+    color: #505A64;
+    
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 120%;
+}
+.leadership ul.list li .content .bio img.info {
+    margin-left: 6px;
+    cursor: pointer;
+}
+.leadership ul.list li a {
+    display: inline-block;
+}
+.leadership ul.list li.open .modal {
+    opacity: 1;
+    visibility: visible;
+}
+.leadership ul.list li .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all;
+    z-index: 99;
+}
+.leadership ul.list li .modal .modal-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.8);
+    cursor: pointer;
+}
+.leadership ul.list li .modal .modal-content {
+    border-radius: 5px;
+    border: 2px solid #F1F1F1;
+    background: #FFF;
+    box-shadow: 0px 4px 94px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 748px;
+    margin: 0 auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding: 20px 0 43px 20px;
+}
+.leadership ul.list li .modal .modal-content .head-part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    background: #fff;
+}
+.leadership ul.list li .modal .modal-content .head-part h3 {
+    margin: 0;
+    color: #505A64;
+    
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 120%;
+}
+.leadership ul.list li .modal .modal-content .head-part img.close {
+    cursor: pointer;
+}
+.leadership ul.list li .modal .modal-content h4 {
+    color: #505A64;
+    
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 48px 0 20px 0;
+}
+.leadership ul.list li .modal .modal-content p {
+    color: #505A64;
+    
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin: 0;
+}
+.leadership ul.list li .content .bio .social img.linkedin {
+    max-width: 32px;
+}
+.leadership ul.list li .modal .modal-content .content-area {
+    max-height: calc(100vh - 135px);
+    overflow: auto;
+    padding-right: 20px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .our-story-banner .content h2 {
+        font-size: 28px;
+    }
+    .our-story-banner .content span {
+        font-size: 14px;
+        margin: 0 0 15px 0;
+    }
+    .our-story-banner .content .inner {
+        max-width: 525px;
+    }
+    .our-story-info .left-part h2 {
+        font-size: 28px;
+        margin-bottom: 26px;
+        padding-bottom: 26px;
+    }
+    .leadership {
+        padding-top: 100px;
+    }
+    .leadership h2 {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .our-story-info .left-part p {
+        font-size: 16px;
+    }
+    .our-story-info .right-part p {
+        font-size: 16px;
+    }
+    .leadership ul.list li .content h3 {
+        font-size: 20px;
+    }
+    .leadership ul.list li .content span {
+        font-size: 14px;
+    }
+    .leadership ul.list li .content .bio .label {
+        font-size: 16px;
+    }
+    .leadership ul.list li .content .bio img.info {
+        max-width: 16px;
+    }
+    .leadership ul.list {
+        margin: 0 0 0 -15px;
+    }
+    .leadership ul.list li {
+        padding-left: 15px;
+    }
+    .our-story-info .right-part {
+        padding-left: 50px;
+    }
+    .leadership ul.list li .modal .modal-content .head-part h3 {
+        font-size: 18px;
+    }
+    .leadership ul.list li .modal .modal-content h4 {
+        font-size: 18px;
+    }
+    .leadership ul.list li .modal .modal-content p {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .page-template-page-our-story .container {
+        padding: 0 16px;
+    }
+    .our-story-banner .content .inner {
+        max-width: 274px;
+    }
+    .our-story-banner .content h2 {
+        font-size: 22px;
+    }
+    .our-story-info {
+        padding: 48px 0 0 0;
+    }
+    .our-story-info .left-part {
+        width: 100%;
+    }
+    .our-story-info .left-part p {
+        font-size: 14px;
+    }
+    .our-story-info .right-part {
+        padding-left: 0;
+        width: 100%;
+        padding-top: 69px;
+    }
+    .our-story-info .left-part p {
+        font-size: 16px;
+    }
+    .our-story-info .right-part p {
+        font-size: 16px;
+    }
+    .leadership {
+        padding-top: 74px;
+    }
+    .leadership h2 {
+        font-size: 22px;
+        text-align: left;
+    }
+    .leadership ul.list li .content h3 {
+        font-size: 14px;
+    }
+    .leadership ul.list {
+        margin: 0 0 0 -8px;
+    }
+    .leadership ul.list li {
+        width: 50%;
+        padding-left: 8px;
+    }
+    .leadership ul.list li .content .bio .social img.linkedin {
+        max-width: 28px;
+    }
+    .leadership ul.list li:nth-child(n+3) {
+        margin-top: 27px;
+    }
+    .leadership ul.list li .content span {
+        min-height: 42px;
+        display: block;
+    }
+    .leadership ul.list li .modal .modal-content {
+        max-width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .our-story-banner .image img.desktop {
+        display: none;
+    }
+    .our-story-banner .image img.mobile {
+        display: block;
+    }
+    .our-story-banner .content {
+        display: block;
+        padding: 50px 24px 0;
+    }
+}

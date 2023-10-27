@@ -47,6 +47,10 @@
             wp_enqueue_style('pricing-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-pricing.css', false, '', '');
             wp_enqueue_script('pricing-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-pricing.js');
         }
+        if (is_page_template('templates/page-our-story.php')) {
+            wp_enqueue_style('our-story-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-our-story.css', false, '', '');
+            wp_enqueue_script('our-story-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-our-story.js');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');

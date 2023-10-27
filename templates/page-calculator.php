@@ -435,7 +435,7 @@ get_header(); ?>
                     async function getData() {
                         try {
                             console.log('getdata');
-                            connection = new JsStore.Connection(new Worker('<?php echo get_template_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
+                            connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
                             var dbName ='stocks_list';
                             var tblstocks = {
                                 name: 'stocks',
@@ -512,7 +512,7 @@ get_header(); ?>
     function usstockapi() {
         ?>
         <script>
-            var connection = new JsStore.Connection(new Worker('<?php echo get_template_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
+            var connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
             var dbName ='stocks_list';
             var tblstocks = {
                 name: 'stocks',
