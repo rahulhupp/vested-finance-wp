@@ -703,6 +703,8 @@ input#investment_range {
 	width: 100%;
 	position: relative;
 	margin: 0;
+	outline: none;
+	border: none;
 }
 
 input#investment_range:after {
@@ -998,6 +1000,12 @@ input#investment_range:before {
 	-webkit-appearance: none;
 }
 
+
+.fd_calc_form input[type=range]::-webkit-slider-runnable-track {
+    box-shadow: none;
+    outline: none;
+}
+
 #investment_range::-webkit-slider-thumb {
 	background: url(../../images/slider-thumb.png);
 	border-radius: 0;
@@ -1006,6 +1014,8 @@ input#investment_range:before {
 	border-radius: 50%;
 	-webkit-appearance: none;
 	cursor: pointer;
+	border: none;
+	margin-top: -10px;
 }
 
 #investment_range::-moz-range-thumb {

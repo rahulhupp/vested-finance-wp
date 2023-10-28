@@ -252,7 +252,19 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 120%;
-    margin: 48px 0 20px 0;
+    margin: 48px 0 10px 0;
+    position: relative;
+    padding-bottom: 10px;
+}
+.leadership ul.list li .modal .modal-content h4:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid #F1F1F1;
+    width: 100%;
+    max-width: 301px;
 }
 .leadership ul.list li .modal .modal-content p {
     color: #505A64;
@@ -294,6 +306,10 @@
     }
     .leadership ul.list li img.linkedin {
         max-width: 32px;
+    }
+    .leadership ul.list li .content span {
+        min-height: 48px;
+        display: block;
     }
 }
 
@@ -401,7 +417,6 @@
     }
     .leadership ul.list li .content span {
         min-height: 42px;
-        display: block;
     }
     .leadership ul.list li .modal .modal-content {
         max-width: 90%;

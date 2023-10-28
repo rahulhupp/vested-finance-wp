@@ -16,7 +16,6 @@
 .pricing-info .row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
 }
 .pricing-info .content {
     width: 45%;
@@ -471,6 +470,9 @@
 
 .pricing_page_faqs {
     padding: 170px 0;
+}
+.page-template-page-pricing .pricing_page_faqs .container {
+    max-width: 878px;
 }
 .pricing_page_faqs h2 {
     color: #002852;
