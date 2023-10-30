@@ -37,7 +37,7 @@
 }
 .our-story-banner .content span {
     color: #FFF;
-    font-family: "Inter", sans-serif;
+    
     font-size: 16px;
     font-weight: 500;
     line-height: 110%;
@@ -48,7 +48,7 @@
 }
 .our-story-banner .content h2 {
     color: #FFF;
-    font-family: "Inter", sans-serif;
+    
     font-size: 38px;
     font-weight: 800;
     line-height: 110%;
@@ -66,7 +66,7 @@
 }
 .our-story-info .left-part h2 {
     color: #212529;
-    font-family: "Inter", sans-serif;
+    
     font-size: 38px;
     font-weight: 800;
     line-height: 110%;
@@ -85,7 +85,7 @@
 }
 .our-story-info .left-part p {
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 20px;
     font-style: italic;
     font-weight: 400;
@@ -100,7 +100,7 @@
 .our-story-info .right-part p {
     color: #212529;
     text-align: justify;
-    font-family: "Inter", sans-serif;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -126,7 +126,7 @@
     font-style: normal;
     font-weight: 800;
     line-height: 110%;
-    font-family: "Inter", sans-serif;
+    
     margin: 0 0 28px 0;
 }
 .leadership ul.list {
@@ -151,7 +151,7 @@
 }
 .leadership ul.list li .content h3 {
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 25px;
     font-style: normal;
     font-weight: 800;
@@ -160,7 +160,7 @@
 }
 .leadership ul.list li .content span {
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -178,7 +178,7 @@
     display: flex;
     align-items: center;
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 18px;
     font-weight: 400;
     line-height: 120%;
@@ -238,7 +238,7 @@
 .leadership ul.list li .modal .modal-content .head-part h3 {
     margin: 0;
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 25px;
     font-weight: 700;
     line-height: 120%;
@@ -248,7 +248,7 @@
 }
 .leadership ul.list li .modal .modal-content h4 {
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 20px;
     font-weight: 700;
     line-height: 120%;
@@ -268,7 +268,7 @@
 }
 .leadership ul.list li .modal .modal-content p {
     color: #505A64;
-    font-family: "Inter", sans-serif;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

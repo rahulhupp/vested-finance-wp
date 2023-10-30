@@ -13,7 +13,7 @@
 	padding: 16px;
 	border-radius: 5px;
 	border: 1px solid #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -40,7 +40,7 @@
 	border-radius: 5px;
 	background: #002852;
 	color: #fff;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 700;
@@ -84,7 +84,7 @@
 	color: #212529;
 	line-height: 120%;
 	letter-spacing: -0.64px;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stock-info .stock-row .stock-content span small {
@@ -109,7 +109,7 @@
 	line-height: 120%;
 	font-weight: 800;
 	margin: 15px 0;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stock-info .stock-row .stock-content ul {
@@ -125,7 +125,7 @@
 	margin: 0 0 16px 0;
 	position: relative;
 	padding-left: 30px;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stock-info .stock-row .stock-content ul li:before {
@@ -145,7 +145,7 @@
 	letter-spacing: -0.32px;
 	color: #505a64;
 	line-height: 130%;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stock-info .stock-row .stock-content b a {
@@ -194,7 +194,7 @@
 	font-size: 38px;
 	line-height: 120%;
 	font-weight: 800;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .tab-section .head ul#tabs-nav {
@@ -216,7 +216,7 @@
 	position: relative;
 	padding-bottom: 14px;
 	font-weight: 500;
-	font-family: "Inter", sans-serif;
+	
 	outline: none;
 }
 
@@ -290,7 +290,7 @@
 	font-weight: 800;
 	line-height: 120%;
 	margin: 0 0 16px 0;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .explore-stock .head p {
@@ -300,7 +300,7 @@
 	font-weight: 500;
 	line-height: 120%;
 	margin: 0;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .explore-stock form {
@@ -323,7 +323,7 @@
 	font-weight: 500;
 	font-size: 16px;
 	margin: 0 0 25px 0;
-	font-family: "Inter", sans-serif;
+	
 	max-width: 100%;
     width: 100%;
     outline: none;
@@ -391,7 +391,7 @@
 	font-weight: 400;
 	line-height: 130%;
 	width: 100%;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .explore-stock .explore-image ul li .explore-icon {
@@ -436,7 +436,7 @@
 .build-foundation .head h2 {
 	text-align: center;
 	color: #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 38px;
 	font-weight: 800;
 	line-height: 120%;
@@ -449,7 +449,7 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 120%;
-	font-family: "Inter", sans-serif;
+	
 }
 
 .build-foundation .foundation-list {
@@ -485,7 +485,7 @@
 
 .build-foundation .foundation-list ul li .top strong {
 	color: #505a64;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 130%;
@@ -506,7 +506,7 @@
 .build-foundation .foundation-list ul li .middle .left strong {
 	display: block;
 	color: #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 10px;
 	font-style: normal;
 	font-weight: 600;
@@ -527,7 +527,7 @@
 .build-foundation .foundation-list ul li .middle .right .per-value span.green {
 	color: #0cc786;
 	text-align: right;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 700;
@@ -537,7 +537,7 @@
 .build-foundation .foundation-list ul li .middle .right span.past-year {
 	color: #002852;
 	text-align: right;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 7px;
 	font-style: normal;
 	font-weight: 600;
@@ -578,7 +578,7 @@
 
 .build-foundation .foundation-list ul li.box .content strong {
 	color: #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 700;
@@ -614,7 +614,7 @@
 
 .post-type-list h2 {
 	color: #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 38px;
 	font-style: normal;
 	font-weight: 700;
@@ -634,7 +634,7 @@
 
 .post-listing .head .left-part h3 {
 	color: #002852;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 26px;
 	font-style: normal;
 	font-weight: 600;
@@ -647,7 +647,7 @@
 
 .post-listing .head .left-part a {
 	color: #002852;
-	font-family: Inter;
+	
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -667,7 +667,7 @@
 
 .post-listing .head .short-content p {
 	color: rgba(33, 37, 41, 0.8);
-	font-family: Inter;
+	
 	font-size: 16px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -704,7 +704,7 @@
 	overflow: hidden;
 	color: #212529;
 	text-overflow: ellipsis;
-	font-family: Inter;
+	
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -750,11 +750,11 @@ div#tab2 .inner .image {
 }
 
 .stocks_slider_content .single_portfolio_slider_content h3 {
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stocks_slider_content .single_portfolio_slider_content .single_slider_desc {
-	font-family: "Inter", sans-serif;
+	
 }
 
 .stocks_slider_sec {
@@ -808,7 +808,7 @@ div#tab2 .inner .image {
 
 .calculator .main_heading {
 	color: #002852;
-	font-family: Inter;
+	
 	font-size: 38px;
 	font-style: normal;
 	font-weight: 600;
@@ -820,7 +820,7 @@ div#tab2 .inner .image {
 .calculator .sub_heading {
 	margin-bottom: 32px;
 	color: rgba(33, 37, 41, 0.6);
-	font-family: Inter;
+	
 	font-size: 16px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1043,7 +1043,7 @@ div#tab2 .inner .image {
 
 .calculator .list h4 {
 	color: #002852;
-	font-family: Inter;
+	
 	font-size: 22px;
 	font-style: normal;
 	font-weight: 500;
@@ -1210,7 +1210,7 @@ div#tab2 .inner .image {
 .sub_heading {
 	color: #505a64;
 	text-align: center;
-	font-family: Inter;
+	
 	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 500;
@@ -1252,7 +1252,7 @@ div#tab2 .inner .image {
 .section_title {
 	color: #002852;
 	text-align: center;
-	font-family: Inter;
+	
 	font-size: 38px;
 	font-style: normal;
 	font-weight: 700;
@@ -1319,7 +1319,7 @@ div#tab2 .inner .image {
 
 .slider_index {
 	color: #212529;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
@@ -1368,12 +1368,13 @@ div#tab2 .inner .image {
 
 .faq_que h4 {
 	color: #212529;
-	font-family: Inter;
+	
 	font-size: 22px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	margin-bottom: 0;
+	padding-right: 30px;
 }
 
 .faq_que {
@@ -1408,7 +1409,7 @@ div#tab2 .inner .image {
 .faq_content p {
 	margin-bottom: 0;
 	color: #1e2022;
-	font-family: Inter;
+	
 	font-size: 22px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1431,7 +1432,7 @@ div#tab2 .inner .image {
 
 .img_source {
 	color: rgba(255, 255, 255, 0.8);
-	font-family: "Inter", sans-serif;
+	
 	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1612,7 +1613,7 @@ div#tab2 .inner .image {
 .investor_subtitle {
 	color: rgba(33, 37, 41, 0.6);
 	text-align: center;
-	font-family: "Inter", sans-serif;
+	
 	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1673,7 +1674,7 @@ div#tab2 .inner .image {
 
 .invesetor_name {
 	color: rgba(33, 37, 41, 0.7);
-	font-family: Inter;
+	
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 700;
@@ -1685,7 +1686,7 @@ div#tab2 .inner .image {
 
 .investor_designation {
 	color: rgba(33, 37, 41, 0.7);
-	font-family: Inter;
+	
 	font-size: 10px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1747,7 +1748,7 @@ div#tab2 .inner .image {
 
 .investor_review p {
 	color: rgba(33, 37, 41, 0.7);
-	font-family: Inter;
+	
 	font-size: 12px !important;
 	font-style: normal;
 	font-weight: 400;
