@@ -4,90 +4,32 @@ document.addEventListener("DOMContentLoaded", function () {
 function sliderSlide() {
   var slider = document.getElementById("unit_range");
   var sliderVal = document.getElementById("units");
-  if (slider) {
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-    slider.style.background = color;
-    var minValue = 1;
-    var maxValue = 100;
-    var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-      newValue +
-      "%, rgba(229, 231, 235, 1)" +
-      newValue +
-      "%)";
-    slider.style.background = color;
-    if (newValue > 40 && newValue <= 85) {
-      slider.classList.add("ahead");
-    } else if (newValue > 85) {
-      slider.classList.remove("ahead");
-      slider.classList.add("end");
-    } else {
-      slider.classList.remove("ahead");
-      slider.classList.remove("end");
-    }
+  var color =
+    "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
+  slider.style.background = color;
+  var minValue = 1;
+  var maxValue = 1000;
+  var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
+  var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
+  var color =
+    "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
+    newValue +
+    "%, rgba(229, 231, 235, 1)" +
+    newValue +
+    "%)";
+  slider.style.background = color;
+  if (newValue > 40 && newValue <= 85) {
+    slider.classList.add("ahead");
+  } else if (newValue > 85) {
+    slider.classList.remove("ahead");
+    slider.classList.add("end");
+  } else {
+    slider.classList.remove("ahead");
+    slider.classList.remove("end");
   }
 }
 
 jQuery(document).ready(function ($) {
-  $("#units").on("input change", function () {
-    var latestAmt = $("#units").val();
-    $("#unit_range").val(latestAmt);
-    var slider = document.getElementById("unit_range");
-    var sliderVal = document.getElementById("units");
-    slider.style.background = color;
-    var minValue = 1;
-    var maxValue = 100;
-    var x = parseFloat(latestAmt);
-    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-      newValue +
-      "%, rgba(229, 231, 235, 1)" +
-      newValue +
-      "%)";
-    slider.style.background = color;
-    if (newValue > 40 && newValue <= 85) {
-      slider.classList.add("ahead");
-    } else if (newValue > 85) {
-      slider.classList.remove("ahead");
-      slider.classList.add("end");
-    } else {
-      slider.classList.remove("ahead");
-      slider.classList.remove("end");
-    }
-  });
-  
-  $("#unit_range").on("input change", function () {
-    var slider = document.getElementById("unit_range");
-    var sliderVal = document.getElementById("units");
-    $("#units").val(slider.value);
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-    slider.style.background = color;
-    var minValue = 1;
-    var maxValue = 100;
-    var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-      newValue +
-      "%, rgba(229, 231, 235, 1)" +
-      newValue +
-      "%)";
-    slider.style.background = color;
-    if (newValue > 40 && newValue <= 85) {
-      slider.classList.add("ahead");
-    } else if (newValue > 85) {
-      slider.classList.remove("ahead");
-      slider.classList.add("end");
-    } else {
-      slider.classList.remove("ahead");
-      slider.classList.remove("end");
-    }
-  });
   $(".bond_portfolio_slider").each(function () {
     var $tabContainer = $(this).closest(".tab");
     var $singleSlides = $tabContainer.find(".single_portfolio_slide");
@@ -198,16 +140,15 @@ jQuery(document).ready(function ($) {
     infinite: true,
     arrows: false,
     dots: false,
-    autoplay: true,
-    autoplaySpeed: 6000, 
-    speed: 600,
+    autoplay: false,
+    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
     vertical: true,
     verticalSwiping: true,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 767,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -223,15 +164,14 @@ jQuery(document).ready(function ($) {
     infinite: true,
     arrows: false,
     dots: false,
-    autoplay: true,
-    autoplaySpeed: 6000, 
-    speed: 600,
+    autoplay: false,
+    speed: 800,
     slidesToShow: 3,
     slidesToScroll: 1,
     vertical: true,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 767,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -363,4 +303,114 @@ jQuery(document).ready(function ($) {
     var val = parseInt($input.val());
     $input.val(val + 1).change();
   });
+});
+
+function restrictAlphabets(e) {
+  var x = e.which || e.keycode;
+  if ((x >= 48 && x <= 57))
+      return true;
+  else
+      return false;
+}
+
+jQuery(document).ready(function($){
+  $("#units").on("input change", function (event) {
+    var latestAmt = $("#units").val();
+    $("#unit_range").val(latestAmt);
+
+    var investmentAmount = $('#investment_amount').attr('newPrice');
+    var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
+    var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
+    var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
+    // var selectedBonds = totalCashFlow * minimumQuantity;
+
+    var slider = document.getElementById("unit_range");
+    var sliderVal = document.getElementById("units");
+    slider.style.background = color;
+    var minValue = 1;
+    var maxValue = 1000;
+    var x = parseFloat(latestAmt);
+    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
+    var color =
+      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
+      newValue +
+      "%, rgba(229, 231, 235, 1)" +
+      newValue +
+      "%)";
+    slider.style.background = color;
+    if (newValue > 40 && newValue <= 85) {
+      slider.classList.add("ahead");
+    } else if (newValue > 85) {
+      slider.classList.remove("ahead");
+      slider.classList.add("end");
+    } else {
+      slider.classList.remove("ahead");
+      slider.classList.remove("end");
+    }
+
+    var newinvestmentAmount = investmentAmount * newValue;
+    var newbankFixedDeposit = bankFixedDeposit * newValue;
+    var newselectedBonds = totalCashFlow * newValue;
+    var extraAmount = newselectedBonds - newbankFixedDeposit;
+
+    document.querySelector('.qty_btn').setAttribute("input_value", newValue);
+    document.getElementById('investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('result_note_investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('bank_fixed_deposit').textContent = newbankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('selected_bond').textContent = newselectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+
+  });
+  
+  $("#unit_range").on("input change", function () {
+    
+    var slider = document.getElementById("unit_range");
+    var sliderVal = document.getElementById("units");
+    $("#units").val(slider.value);
+
+    var investmentAmount = $('#investment_amount').attr('newPrice');
+    var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
+    var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
+    var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
+    // var selectedBonds = totalCashFlow * minimumQuantity;
+
+    var color =
+      "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
+    slider.style.background = color;
+    var minValue = 1;
+    var maxValue = 1000;
+    var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
+    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
+    console.log ('newValue', newValue);
+    var color =
+      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
+      newValue +
+      "%, rgba(229, 231, 235, 1)" +
+      newValue +
+      "%)";
+    slider.style.background = color;
+    if (newValue > 40 && newValue <= 85) {
+      slider.classList.add("ahead");
+    } else if (newValue > 85) {
+      slider.classList.remove("ahead");
+      slider.classList.add("end");
+    } else {
+      slider.classList.remove("ahead");
+      slider.classList.remove("end");
+    }
+    
+    var newinvestmentAmount = investmentAmount * newValue;
+    var newbankFixedDeposit = bankFixedDeposit * newValue;
+    var newselectedBonds = totalCashFlow * newValue;
+    var extraAmount = newselectedBonds - newbankFixedDeposit;
+
+    document.querySelector('.qty_btn').setAttribute("input_value", newValue);
+    document.getElementById('investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('result_note_investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('bank_fixed_deposit').textContent = newbankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('selected_bond').textContent = newselectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+
+  });
+
 });
