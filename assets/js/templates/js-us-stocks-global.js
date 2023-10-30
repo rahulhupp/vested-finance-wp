@@ -372,6 +372,40 @@ jQuery(document).ready(function ($) {
     $('.banner_popup_overlay').hide();
     $('html').removeClass('disclosure-popup-open');
   });
+
+  $(".investors_slider").slick({
+		infinite: true,
+		arrows: false,
+		dots: false,
+		autoplay: false,
+		speed: 800,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 601,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+		],
+	});
+
   $(".investor_prev").click(function () {
     $(".investors_slider").slick("slickPrev");
     });

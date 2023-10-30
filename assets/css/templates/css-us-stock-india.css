@@ -746,7 +746,6 @@ div#tab2 .inner .image {
 .stocks_slider_sec {
 	padding: 48px 0;
 	background: #eef5fc;
-	margin-top: 50px;
 }
 
 .stocks_slider_sec ol li {
@@ -786,6 +785,7 @@ div#tab2 .inner .image {
 	border-radius: 8px;
 	border: 1px solid #b6c9db;
 	overflow: hidden;
+	justify-content: space-between;
 }
 
 .calculator {
@@ -951,7 +951,22 @@ div#tab2 .inner .image {
 
 .calculator .submit_btn input[type="submit"] {
 	width: 100%;
-	margin: 0;
+    margin: 0;
+    background: #00c9a7;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 0;
+    border-radius: 0.25rem;
+    line-height: 2.4em;
+    min-height: 2.5em;
+    transition: 0.3s all;
+}
+
+.calculator .submit_btn input[type="submit"]:hover {
+    box-shadow: 0 4px 11px rgba(255,255,255,.35);
+    transform: translateY(-3px);
+	background: #37ae87;
 }
 
 .calculator .submit_btn {
@@ -1096,7 +1111,7 @@ div#tab2 .inner .image {
 	font-style: normal;
 	font-weight: 600;
 	line-height: normal;
-	display: inline-block;
+	display: inline-flex;
 	padding: 12px 14px 12px 18px;
 	border-radius: 6px;
 	border: 1px solid #146045;
@@ -1109,6 +1124,8 @@ div#tab2 .inner .image {
 	display: inline-flex;
 	align-items: center;
 	margin-left: 2px;
+	background-image: url('../../images/green-chevron-down.png');
+    background-size: 24px;
 }
 
 .calculator .cta_btn a:hover {
