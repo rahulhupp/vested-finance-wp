@@ -4,28 +4,30 @@ document.addEventListener("DOMContentLoaded", function () {
 function sliderSlide() {
   var slider = document.getElementById("unit_range");
   var sliderVal = document.getElementById("units");
-  var color =
-    "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-  slider.style.background = color;
-  var minValue = 1;
-  var maxValue = 100;
-  var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-  var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-  var color =
-    "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-    newValue +
-    "%, rgba(229, 231, 235, 1)" +
-    newValue +
-    "%)";
-  slider.style.background = color;
-  if (newValue > 40 && newValue <= 85) {
-    slider.classList.add("ahead");
-  } else if (newValue > 85) {
-    slider.classList.remove("ahead");
-    slider.classList.add("end");
-  } else {
-    slider.classList.remove("ahead");
-    slider.classList.remove("end");
+  if (slider) {
+    var color =
+      "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
+    slider.style.background = color;
+    var minValue = 1;
+    var maxValue = 100;
+    var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
+    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
+    var color =
+      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
+      newValue +
+      "%, rgba(229, 231, 235, 1)" +
+      newValue +
+      "%)";
+    slider.style.background = color;
+    if (newValue > 40 && newValue <= 85) {
+      slider.classList.add("ahead");
+    } else if (newValue > 85) {
+      slider.classList.remove("ahead");
+      slider.classList.add("end");
+    } else {
+      slider.classList.remove("ahead");
+      slider.classList.remove("end");
+    }
   }
 }
 
