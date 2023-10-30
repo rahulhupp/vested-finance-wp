@@ -1,8 +1,12 @@
 .page-template-page-us-stock-global .breadcrumb_wrap {
   display: none;
 }
+.page-template-page-us-stock-global .site-content .ast-container {
+  max-width: 100%;
+}
 .page-template-page-us-stock-global .container {
-  max-width: 1200px;
+  max-width: 1240px;
+  padding: 0 24px;
 }
 .page-template-page-us-stock-global .btn_light {
   padding: 16px;
@@ -193,6 +197,17 @@
 	font-size: 16px;
 	margin: 0 0 25px 0;
 	font-family: "Inter", sans-serif;
+  max-width: 100%;
+  width: 100%;
+  outline: none;
+}
+.explore-stock form input:focus {
+  border: 1px solid #a9bdd0;
+    box-shadow: 0 0 5px #ccc;
+    opacity: 1 !important;
+    outline: 0;
+    color: #333;
+    background-color: #fff;
 }
 
 .explore-stock form img {
@@ -601,6 +616,7 @@
   border-radius: 8px;
   border: 1px solid #b6c9db;
   overflow: hidden;
+  justify-content: space-between;
 }
 
 .calculator {
@@ -938,6 +954,10 @@
 	margin-left: 2px;
 	background-image: url('../../images/green-chevron-down.png');
   background-size: 24px;
+  transform: rotate(-90deg);
+}
+.calculator .cta_btn a:hover i {
+  filter: brightness(0) invert(1);
 }
 
 .calculator .cta_btn a:hover {

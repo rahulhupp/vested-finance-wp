@@ -490,10 +490,12 @@
 .bond_next i {
   background-image: url(../../images/chevron-down.png);
   background-size: 24px;
+  transform: translate(-50%, -50%) rotate(-90deg);
 }
 .bond_prev i {
   background-image: url(../../images/chevron-down.png);
   background-size: 24px;
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 .bond_next i,
 .bond_prev i {
@@ -507,7 +509,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .bond_next {
