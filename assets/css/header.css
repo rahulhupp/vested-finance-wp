@@ -350,7 +350,7 @@ body.mega-menu-open .site-content:before {
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary {
 		background: transparent;
 		display: block;
-		height: calc(100vh - 253px);
+		height: calc(100vh - 300px);
 		overflow: auto;
 		padding-right: 24px;
 	}
@@ -393,13 +393,13 @@ body.mega-menu-open .site-content:before {
 	header .inner-header .site-primary-header-wrap .logo-menu .mobile {
 		border-top: 1px solid #E8E8E8;
 		background: #FFF;
-		box-shadow: 0px -2px 12px 0px rgba(0, 0, 0, 0.07);
+		box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.07);
 		padding: 24px;
 		flex-direction: row-reverse;
 		position: absolute;
 		left: 0;
 		right: 0;
-		bottom: 50px;
+		bottom: 97px;
 		display: flex;
 	}
 
