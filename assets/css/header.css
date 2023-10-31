@@ -21,7 +21,7 @@ header .inner-header .site-primary-header-wrap {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 26px 24px;
+	padding: 14px 24px;
 	min-height: unset;
 }
 
@@ -91,7 +91,7 @@ header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primar
 	box-shadow: 0px 35px 45px 0px rgba(0, 0, 0, 0.10);
 	border-radius: 0 0 10px 10px;
 	left: unset;
-	margin-top: 32px;
+	margin-top: 24px;
 }
 
 header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li {
@@ -350,7 +350,7 @@ body.mega-menu-open .site-content:before {
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary {
 		background: transparent;
 		display: block;
-		height: calc(100vh - 273px);
+		height: calc(100vh - 285px);
 		overflow: auto;
 		padding-right: 24px;
 	}
