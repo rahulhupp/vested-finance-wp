@@ -5,7 +5,9 @@
 .ast-header-break-point #ast-mobile-header {
 	display: none;
 }
-
+header {
+    border-bottom: 1px solid #E0E8F1;
+}
 header .inner-header .main-header-bar {
 	border-bottom: none;
 }
@@ -286,6 +288,9 @@ body.mega-menu-open .site-content:before {
 	body.mega-menu-open .site-content:before {
 		position: unset;
 	}
+	header {
+	    border-bottom: none;
+	}
 
 	header .inner-header .site-primary-header-wrap .logo-menu .logo img.custom-logo {
 		max-width: 108px;
@@ -364,7 +369,7 @@ body.mega-menu-open .site-content:before {
         top: 87.48px;
         bottom: 0;
         transition: 0.3s all;
-        padding: 0 0 24px 24px;
+        padding: 0 0 97px 24px;
         height: calc(100vh - 87.48px);
         transform: translateX(100%);
     }

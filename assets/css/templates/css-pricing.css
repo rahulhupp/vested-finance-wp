@@ -452,12 +452,10 @@
 .pricing-table .pricing-tabs-content .item .price-detail .info p {
     color: #1F2937;
     text-align: center;
-    
     font-size: 18px;
     font-weight: 500;
     line-height: 120%;
     margin: 0 0 12px 0;
-    word-break: break-all;
 }
 .pricing-table .pricing-tabs-content .item .price-detail .info span {
     color: #6B7280;
