@@ -350,7 +350,7 @@ body.mega-menu-open .site-content:before {
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary {
 		background: transparent;
 		display: block;
-		height: calc(100vh - 203px);
+		height: calc(100vh - 253px);
 		overflow: auto;
 		padding-right: 24px;
 	}
