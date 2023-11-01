@@ -380,7 +380,8 @@
         padding-top: 62px;
     }
     .our-story-info .left-part p {
-        font-size: 16px;
+        font-size: 14px;
+        max-width: 218px;
     }
     .our-story-info .right-part p {
         font-size: 14px;
@@ -417,9 +418,13 @@
     }
     .leadership ul.list li .content span {
         min-height: 42px;
+        font-size: 12px;
     }
     .leadership ul.list li .modal .modal-content {
         max-width: 90%;
+    }
+    .leadership ul.list li .content .bio .label {
+        font-size: 14px;
     }
 }
 
