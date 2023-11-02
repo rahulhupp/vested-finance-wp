@@ -266,6 +266,7 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	word-break: break-all;
 }
 
 .explore-stock .explore-image ul li .explore-icon {
