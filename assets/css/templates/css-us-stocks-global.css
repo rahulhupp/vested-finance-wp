@@ -10,9 +10,7 @@
 	padding: 16px;
 	border-radius: 5px;
 	border: 1px solid #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	color: #002852;
@@ -37,9 +35,7 @@
 	border-radius: 5px;
 	background: #002852;
 	color: #fff;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
 	border: 1px solid #002852;
@@ -81,7 +77,6 @@
 	color: #212529;
 	line-height: 120%;
 	letter-spacing: -0.64px;
-	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content span small {
@@ -106,7 +101,6 @@
 	line-height: 120%;
 	font-weight: 300;
 	margin: 15px 0;
-	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content ul {
@@ -122,7 +116,6 @@
 	margin: 0 0 16px 0;
 	position: relative;
 	padding-left: 30px;
-	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content ul li:before {
@@ -142,7 +135,6 @@
 	letter-spacing: -0.32px;
 	color: #505a64;
 	line-height: 130%;
-	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content b a {
@@ -182,7 +174,6 @@
 	font-weight: 800;
 	line-height: 120%;
 	margin: 0 0 16px 0;
-	font-family: "Inter", sans-serif;
 }
 
 .explore-stock .head p {
@@ -192,7 +183,6 @@
 	font-weight: 500;
 	line-height: 120%;
 	margin: 0;
-	font-family: "Inter", sans-serif;
 }
 
 .explore-stock form {
@@ -216,7 +206,6 @@
 	font-weight: 500;
 	font-size: 16px;
 	margin: 0 0 25px 0;
-	font-family: "Inter", sans-serif;
 }
 
 .explore-stock form img {
@@ -269,11 +258,9 @@
 	color: #505a64;
 	text-align: center;
 	font-size: 14px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 	width: 100%;
-	font-family: "Inter", sans-serif;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
@@ -326,7 +313,6 @@
 .build-foundation .head h2 {
 	text-align: center;
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 38px;
 	font-weight: 800;
 	line-height: 120%;
@@ -339,7 +325,6 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 120%;
-	font-family: "Inter", sans-serif;
 }
 
 .build-foundation .foundation-list {
@@ -375,7 +360,6 @@
 
 .build-foundation .foundation-list ul li .top strong {
 	color: #505a64;
-	font-family: "Inter", sans-serif;
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 130%;
@@ -392,9 +376,7 @@
 .build-foundation .foundation-list ul li .middle .left strong {
 	display: block;
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 10px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	text-transform: uppercase;
@@ -413,9 +395,7 @@
 .build-foundation .foundation-list ul li .middle .right .per-value span.green {
 	color: #0cc786;
 	text-align: right;
-	font-family: "Inter", sans-serif;
 	font-size: 12px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 130%;
 }
@@ -423,9 +403,7 @@
 .build-foundation .foundation-list ul li .middle .right span.past-year {
 	color: #002852;
 	text-align: right;
-	font-family: "Inter", sans-serif;
 	font-size: 7px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	text-transform: uppercase;
@@ -460,9 +438,7 @@
 
 .build-foundation .foundation-list ul li.box .content strong {
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 15px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 130%;
 	margin: 0 0 11px 0;
@@ -497,9 +473,7 @@
 
 .post-type-list h2 {
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 38px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 	letter-spacing: -1.52px;
@@ -517,9 +491,7 @@
 
 .post-listing .head .left-part h3 {
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 26px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 120%;
 	letter-spacing: -1.04px;
@@ -530,9 +502,7 @@
 
 .post-listing .head .left-part a {
 	color: #002852;
-	font-family: Inter;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: 120%;
 	letter-spacing: -0.72px;
@@ -550,9 +520,7 @@
 
 .post-listing .head .short-content p {
 	color: rgba(33, 37, 41, 0.8);
-	font-family: Inter;
 	font-size: 16px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	margin: 0 0 24px 0;
@@ -587,9 +555,7 @@
 	overflow: hidden;
 	color: #212529;
 	text-overflow: ellipsis;
-	font-family: Inter;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: 140%;
 	margin-top: 18px;
@@ -622,14 +588,6 @@
 	margin-top: 54px;
 }
 
-.stocks_slider_content .single_portfolio_slider_content h3 {
-	font-family: "Inter", sans-serif;
-}
-
-.stocks_slider_content .single_portfolio_slider_content .single_slider_desc {
-	font-family: "Inter", sans-serif;
-}
-
 .stocks_slider_sec {
 	padding: 48px 0;
 	background: #eef5fc;
@@ -637,9 +595,7 @@
 
 .stocks_slider_sec ol li {
 	color: rgba(33, 37, 41, 0.7);
-	font-family: "Inter", sans-serif;
 	font-size: 16px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	margin-bottom: 8px;
@@ -659,9 +615,7 @@
 .sub_heading {
 	color: #505a64;
 	text-align: center;
-	font-family: Inter;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 500;
 	line-height: 120%;
 	margin-top: 10px;
@@ -704,9 +658,7 @@
 .section_title {
 	color: #002852;
 	text-align: center;
-	font-family: Inter;
 	font-size: 38px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 }
@@ -770,9 +722,7 @@
 
 .slider_index {
 	color: #212529;
-	font-family: "Inter", sans-serif;
 	font-size: 16px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 	opacity: 0.4;
@@ -780,9 +730,7 @@
 
 .portfolio_slider_inner_content h3 {
 	color: #212529;
-	font-family: "Inter", sans-serif;
 	font-size: 22px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 100%;
 	letter-spacing: -0.44px;
@@ -792,9 +740,7 @@
 .single_slider_desc {
 	margin: 0;
 	color: rgba(33, 37, 41, 0.2);
-	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	letter-spacing: -0.36px;
@@ -823,10 +769,8 @@
 
 .faq_que h4 {
 	color: #212529;
-	font-family: Inter;
 	font-size: 22px;
-	font-style: normal;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: normal;
 	margin-bottom: 0;
 }
@@ -858,9 +802,7 @@
 .faq_content p {
 	margin-bottom: 0;
 	color: #1e2022;
-	font-family: Inter;
-	font-size: 22px !important;
-	font-style: normal;
+	font-size: 22px;
 	font-weight: 400;
 	line-height: 130%;
 }
@@ -901,10 +843,8 @@
 }
 
 .why_invest_content h3 {
-	font-family: "Inter", sans-serif;
 	color: #fff;
 	font-size: 28px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 140%;
 }
@@ -915,9 +855,7 @@
 
 .img_source {
 	color: rgba(255, 255, 255, 0.8);
-	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 140%;
 	margin-bottom: 0;
@@ -948,9 +886,7 @@
 .diclosure {
 	margin-bottom: 0;
 	color: rgba(33, 37, 41, 0.7);
-	font-family: "Inter", sans-serif;
 	font-size: 16px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	text-align: center;
@@ -981,9 +917,7 @@
 .banner_popup p {
 	color: #000;
 	text-align: center;
-	font-family: "Inter", sans-serif;
 	font-size: 16px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	margin: 15 18px 6px;
@@ -1041,9 +975,7 @@
 
 .total_value p {
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 14px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 110%;
 	margin-bottom: 7px;
@@ -1052,9 +984,7 @@
 
 .total_value h4 {
 	color: #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	/* 19.8px */
