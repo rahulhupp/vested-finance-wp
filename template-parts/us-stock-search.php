@@ -8,7 +8,7 @@
         <form>
             <div class="field">
                 <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="inputChange()">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/search-icon.png">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.png">
                 <div class="clear_icon" onclick="inputClear()"><i class="fa fa-times"></i></div>
             </div>
         </form>
@@ -19,7 +19,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AAPL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/apple.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.png" />
                             </div>
                             <span>Apple</span>
                         </div>
@@ -29,7 +29,7 @@
                     <a href="https://app.vestedfinance.com/stocks/GOOGL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/google.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.png" />
                             </div>
                             <span>Google</span>
                         </div>
@@ -39,7 +39,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AGPXX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/invesco.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.png" />
                             </div>
                             <span>Invesco</span>
                         </div>
@@ -49,7 +49,7 @@
                     <a href="https://app.vestedfinance.com/stocks/MSFT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/microsoft.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.png" />
                             </div>
                             <span>Microsoft</span>
                         </div>
@@ -59,7 +59,7 @@
                     <a href="https://app.vestedfinance.com/stocks/TSLA" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/tesla.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.png" />
                             </div>
                             <span>Tesla</span>
                         </div>
@@ -69,7 +69,7 @@
                     <a href="https://app.vestedfinance.com/stocks/META" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/meta.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.png" />
                             </div>
                             <span>Meta</span>
                         </div>
@@ -79,7 +79,7 @@
                     <a href="https://app.vestedfinance.com/stocks/NFLX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/netflix.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.png" />
                             </div>
                             <span>Netflix</span>
                         </div>
@@ -89,7 +89,7 @@
                     <a href="https://app.vestedfinance.com/stocks/BWX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/spdr.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.png" />
                             </div>
                             <span>SPDR</span>
                         </div>
@@ -99,7 +99,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AMZN" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/amazon.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.png" />
                             </div>
                             <span>Amazon</span>
                         </div>
@@ -109,7 +109,7 @@
                     <a href="https://app.vestedfinance.com/stocks/SPOT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/spotify.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.png" />
                             </div>
                             <span>Spotify</span>
                         </div>
