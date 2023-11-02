@@ -311,36 +311,26 @@ get_header(); ?>
                     <div class="bond_select_col">
                         <div class="field_group">
                             <label for="bond">Select a bond</label>
-                            <?php /*
-                                if (is_array($response) && !is_wp_error($response)) {
-                                    $data = json_decode(wp_remote_retrieve_body($response), true);
-                                    if (isset($data['bonds']) && is_array($data['bonds'])) {
-                                        echo '<select name="bond" id="bond_selector">';
-                                        foreach ($data['bonds'] as $bond) {
-                                            if ($bond['bondCategory'] == "CORPORATE") {
-                                                ?>
-                                                    <option id="<?php echo esc_html($bond['offeringId']); ?>" value="<?php echo esc_html($bond['issuerName']); ?>"><?php echo esc_html($bond['issuerName']); ?></option>
-                                                <?php
-                                            }
-                                        }
-                                        echo '</select>';
-                                    }
-                                }
-                            */ ?>
-                            <select name="bond" id="bond_selector"></select>
+                            <select name="bond" id="bond_selector">
+                                <option value='' selected disabled>Please Select</option>
+                            </select>
+                            <div class="yield">
+                                <label>Yield</label>
+                                <span id="yield_price">7.28</span>
+                            </div>
                         </div>
-                        <div class="field_group">
+                        <div class="field_group number_units blur">
                             <div class="unit_field">
                                 <p class="mobile_hide">Number of units</p>
                                 <p class="desktop_hide">Select number of units</p>
-                                <div class="qty_btn">
+                                <div class="qty_btn" input_value="0">
                                     <div class="plus_qty desktop_hide">+</div>
-                                    <input type="text" id="units" value="10">
+                                    <input type="text" id="units" value="0" min="0" max="1000" onkeypress='return restrictAlphabets(event)'>
                                     <div class="minus_qty desktop_hide">-</div>
                                 </div>
                             </div>
                             <div class="range mobile_hide">
-                                <input type="range" min="1" max="100" id="unit_range" value="10">
+                                <input type="range" min="0" max="1000" id="unit_range" value="1">
                                 <div class="ticks">
                                     <span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span>
                                 </div>
@@ -348,13 +338,13 @@ get_header(); ?>
                         </div>
                     </div>
 
-                    <div class="bond_result_col">
+                    <div class="bond_result_col blur">
 
                         <div class="bond_result_wrap">
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Investment amount</p>
-                                    <h3 id="bond_invest_amt">₹ 1,00,000</h3>
+                                    <h3 id="bond_invest_amt">₹ <div newPrice="0" id="investment_amount">0.00</div></h3>
                                 </div>
                                 <div class="progressed">
                                     <div class="bong_progress" id="invest_amt_progress"></div>
@@ -363,7 +353,7 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Bank Fixed Deposit</p>
-                                    <h3 id="bond_invest_amt">₹ 1,40,255.17</h3>
+                                    <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div></h3>
                                     <span id="fd_bond_return">(6% Returns)</span>
                                 </div>
                                 <div class="progressed">
@@ -373,8 +363,8 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Selected Bonds</p>
-                                    <h3 id="bond_invest_amt">₹ 2,10,135.72</h3>
-                                    <span id="fd_bond_return">(12% Returns)</span>
+                                    <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div></h3>
+                                    <span id="fd_bond_return">(<span id="yield_returns">12</span>% Returns)</span>
                                 </div>
                                 <div class="progressed">
                                     <div class="bong_progress" id="invest_amt_progress"></div>
@@ -382,7 +372,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="result_note">
-                            <h3>₹1,00,000 invested would earn you <span>₹60,000 extra</span> in 5 years</h3>
+                            <h3>₹<div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div></h3>
                         </div>
 
                     </div>
@@ -580,8 +570,8 @@ get_header(); ?>
             // Populate the dropdown with data
             data.bonds.forEach(item => {
                 const option = document.createElement("option");
-                option.value = item.issuerName; // Set the value for the option
-                option.text = item.issuerName; // Set the text to display in the dropdown
+                option.value = item.name; // Set the value for the option
+                option.text = item.name; // Set the text to display in the dropdown
                 option.setAttribute("id", item.offeringId);
                 apiDataDropdown.appendChild(option);
             });
@@ -595,7 +585,7 @@ get_header(); ?>
         bondSelector.addEventListener('change', () => {
             const selectedOptionId = bondSelector.options[bondSelector.selectedIndex].id;
             const apiOfferingId = `https://yield-api-test.vestedfinance.com/bond-details?offeringId=${selectedOptionId}`;
-            console.log ('selectedOptionId', selectedOptionId);
+            
             fetch(apiOfferingId)
             .then(response => {
                 // Check if the response status is in the 200-299 range (indicating success)
@@ -608,12 +598,59 @@ get_header(); ?>
             })
             .then(data => {
                 // Do something with the data received from the API
+                let sumCashFlow = 0;
+
+                data.bondDetails.cashflows.forEach(item => {
+                    sumCashFlow = sumCashFlow + item.amount;
+                });
+
+                console.log ('data', data);
+
                 const fristCashFlowPrice = data.bondDetails.cashflows[0].amount;
                 const faceValue = data.bondDetails.faceValue;
                 const newPrice = data.bondDetails.newPrice;
                 const totalreturns = parseFloat(fristCashFlowPrice + (faceValue - newPrice)).toLocaleString();
-                console.log(data);
-                console.log('totalreturns', totalreturns);
+                const minimumQuantity = data.bondDetails.minimumQty;
+                const yieldPrice = data.bondDetails.yield;
+                const investmentAmount = minimumQuantity * data.bondDetails.newPrice;
+                const periodInYears = data.bondDetails.maturityInMonths/12;
+                const bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
+                const selectedBonds = sumCashFlow * minimumQuantity;
+                const extraAmount = selectedBonds - bankFixedDeposit;
+                const periodInYearMonths = data.bondDetails.maturityInMonths;
+                const years = Math.floor(periodInYearMonths / 12);
+                const months = periodInYearMonths % 12;
+
+                // const bankFixedDeposit (Math.pow(initialPortfolioPrice, Periods) -1) * 100;
+                
+                document.getElementById('units').value = minimumQuantity;
+                document.getElementById('unit_range').value = minimumQuantity;
+                document.getElementById('yield_price').textContent = yieldPrice.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('bank_fixed_deposit').textContent = bankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('selected_bond').textContent = selectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('yield_returns').textContent = yieldPrice.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('investment_amount').textContent = investmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('result_note_investment_amount').textContent = investmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+                document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+
+                document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
+                document.getElementById('investment_amount').setAttribute("newPrice", newPrice);
+                document.getElementById('bank_fixed_deposit').setAttribute("maturity_months", periodInYears);
+                document.getElementById('selected_bond').setAttribute("sum_cash_flow", sumCashFlow);
+                document.querySelector('.return_calc_wrap .yield').classList.add('show');
+                document.querySelector('.bond_result_col').classList.remove('blur');
+                document.querySelector('.number_units').classList.remove('blur');
+
+                if (months <= 0) {
+                    document.getElementById('maturity_in_months').textContent = years + ' Years ';
+                }
+                else {
+                    document.getElementById('maturity_in_months').textContent = years + ' years ' + months + ' months ' ;
+                }
+
+                var slider = document.getElementById("unit_range");
+                var color = "linear-gradient(90deg, rgba(0, 40, 52, 1)" + minimumQuantity + "%, rgba(229, 231, 235, 1)" + minimumQuantity + "%)";
+                slider.style.background = color;
                 
             })
             .catch(error => {
@@ -622,6 +659,5 @@ get_header(); ?>
             });
         });
 });
-
 </script>
 <?php get_footer(); ?>

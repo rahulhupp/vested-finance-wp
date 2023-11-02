@@ -1,8 +1,13 @@
+.page-template-page-inr-bonds .site-content .ast-container {
+  max-width: 100%;
+  padding: 0;
+}
 .breadcrumb_wrap {
   display: none;
 }
 .inr-bonds-page .container {
-  max-width: 1230px;
+  max-width: 1240px;
+  padding: 0 24px;
 }
 .bonds_banner_wrap {
   display: flex;
@@ -27,7 +32,7 @@
 
 .sub_heading h3 {
   color: #212529;
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -49,16 +54,18 @@
 
 .bonds_banner_content h1 {
   color: #002852;
-  font-family: Inter;
+  
   font-size: 48px;
   font-style: normal;
   font-weight: 800;
   line-height: 110%;
+  margin-bottom: 0.5em;
 }
 
 .banner_list {
   margin-top: 16px;
   margin-bottom: 0;
+  margin-left: 0;
 }
 
 .banner_list li {
@@ -66,12 +73,13 @@
   padding-left: 34px;
   position: relative;
   color: #505a64;
-  font-family: Inter;
+  
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 130%; /* 23.4px */
   letter-spacing: -0.36px;
+  margin-bottom: 0.6em;
 }
 
 .banner_list li:before {
@@ -79,7 +87,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background: url(../../img/check.png);
+  background: url(../../images/check.png);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -98,7 +106,7 @@
   border-radius: 5px;
   background: #002852;
   color: #fff;
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -112,7 +120,7 @@
   padding: 16px;
   border-radius: 5px;
   border: 1px solid #002852;
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -152,7 +160,7 @@
 .section_title {
   color: #002852;
   text-align: center;
-  font-family: "Inter", sans-serif;
+  
   font-size: 38px;
   font-style: normal;
   font-weight: 300;
@@ -206,7 +214,7 @@
   margin-left: 18px;
   width: calc(100% - 70px);
   color: rgba(33, 37, 41, 0.6);
-  font-family: Inter;
+  
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -268,7 +276,7 @@
   margin-left: 18px;
   width: calc(100% - 80px);
   color: #fff;
-  font-family: Inter;
+  
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -337,7 +345,7 @@
 }
 
 .tab-menu ul li a {
-  font-family: Inter;
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -400,7 +408,7 @@
 
 .slide_info h4 {
   color: #002852;
-  font-family: Inter;
+  
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -412,7 +420,7 @@
 .slide_info p {
   color: #8c8c8c;
   margin-bottom: 0;
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -436,7 +444,7 @@
 .info_title {
   color: #8c8c8c;
   margin-bottom: 0;
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -447,7 +455,7 @@
 .info_desc {
   color: #262626;
   margin-bottom: 0;
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -574,7 +582,7 @@
   position: absolute;
   width: 1349px;
   height: 364px;
-  background: url(../../img/edge-shape-bg.png);
+  background: url(../../images/edge-shape-bg.png);
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -591,7 +599,7 @@
   margin-top: 13px;
   color: #fff;
   text-align: center;
-  font-family: Inter;
+  
   font-size: 20px !important;
   font-style: normal;
   font-weight: 600;
@@ -666,7 +674,7 @@
 
 .steps_slides .slider_index {
   color: #212529;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -719,7 +727,7 @@
 .single_wisely_content h3 {
   color: #002852;
   text-align: center;
-  font-family: Inter;
+  
   font-size: 30px;
   font-style: normal;
   font-weight: 600;
@@ -731,7 +739,7 @@
 .single_wisely_content p {
   color: rgba(33, 37, 41, 0.6);
   text-align: center;
-  font-family: Inter;
+  
   font-size: 18px !important;
   font-style: normal;
   font-weight: 400;
@@ -754,12 +762,13 @@
 
 .faq_que h4 {
   color: #212529;
-  font-family: Inter;
+  
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-bottom: 0;
+  padding-right: 30px;
 }
 
 .faq_que {
@@ -768,13 +777,18 @@
 }
 
 .faq_que:after {
-  content: "\f078";
-  font-family: "FontAwesome";
+  content: "";
   position: absolute;
   top: 0;
   right: 0px;
-  color: #212529;
-  transition: transform 0.3s;
+  background-image: url(../../images/chevron-down.png);
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  margin-top: 3px;
+  transition: 0.3s all;
+  background-repeat: no-repeat;
 }
 
 .single_faq {
@@ -789,7 +803,7 @@
 .faq_content p {
   margin-bottom: 0;
   color: #1e2022;
-  font-family: Inter;
+  
   font-size: 22px !important;
   font-style: normal;
   font-weight: 400;
@@ -889,7 +903,7 @@
 
 .module_date span {
   color: rgba(33, 37, 41, 0.5);
-  font-family: Inter;
+  
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -931,7 +945,7 @@
 .reading_time h5 {
   margin-bottom: 0;
   color: #0cc786;
-  font-family: Inter;
+  
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -971,8 +985,18 @@
   margin-left: 30px;
 }
 
+.bond_result_col.blur {
+  filter: blur(4px);
+  pointer-events: none;
+}
+
 .bond_select_col {
   width: 400px;
+}
+
+.bond_select_col .blur {
+  filter: blur(4px);
+  pointer-events: none;
 }
 
 .return_calc_wrap {
@@ -995,7 +1019,7 @@
 
 .bond_result_single .left_part p {
   color: #212529;
-  font-family: Inter;
+  
   font-size: 16px !important;
   font-style: normal;
   font-weight: 400;
@@ -1006,13 +1030,17 @@
 
 .bond_result_single .left_part h3 {
   color: #212529;
-  font-family: Inter;
+  
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 130%; /* 23.4px */
   letter-spacing: -0.36px;
   margin-bottom: 0;
+}
+
+.bond_result_single .left_part h3 >div {
+  display: inline-block;
 }
 
 .bong_progress {
@@ -1042,7 +1070,7 @@
 
 .left_part span {
   color: #212529;
-  font-family: Inter;
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -1058,14 +1086,18 @@
 
 .result_note h3 {
   color: #fff;
-  font-family: Inter;
+  
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 33.6px */
   letter-spacing: -0.48px;
   margin: 0 auto;
-  padding: 21.5px 86px;
+  padding: 21.5px 56px;
+}
+
+.result_note h3 div {
+  display: inline-block;
 }
 
 .result_note h3 span {
@@ -1088,6 +1120,16 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  max-width: 100%;
+  width: 100%;
+  vertical-align: middle;
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+  outline: none;
 }
 
 .bond_select_col .field_group label {
@@ -1114,6 +1156,14 @@
   margin: 0;
   max-width: 382px;
   cursor: pointer;
+}
+
+input[type="range" i]::-webkit-slider-runnable-track {
+  box-shadow: none;
+}
+
+#unit_range:focus {
+  border: none;
 }
 
 .tick {
@@ -1160,7 +1210,7 @@
 .unit_field p {
   margin-bottom: 0;
   color: #374151;
-  font-family: Inter;
+  
   font-size: 14px !important;
   font-style: normal;
   font-weight: 500;
@@ -1183,6 +1233,14 @@
   line-height: normal;
 }
 
+.unit_field input[type="text"]:focus {
+  box-shadow: 0 0 5px #ccc;
+}
+
+.unit_field input[type="text"]:focus:focus-visible {
+  outline: none;
+}
+
 .unit_field {
   display: flex;
   align-items: center;
@@ -1191,6 +1249,25 @@
 }
 .returns_calc {
   margin-bottom: 100px;
+}
+
+.return_calc_wrap .yield {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.return_calc_wrap .yield.show {
+  display: flex;
+}
+.return_calc_wrap .yield label {
+  margin: 0;
+  color: #374151;
+  
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  width: calc(100% - 84px);
 }
 
 @media (max-width: 1060px) and (min-width: 1025px) {
@@ -1816,7 +1893,7 @@
   .result_note h3 {
     padding: 0;
     color: #212529;
-    font-family: Inter;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1854,7 +1931,7 @@
   .result_note h3 {
     padding: 0;
     color: #212529;
-    font-family: Inter;
+    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1891,7 +1968,7 @@
   .bond_select_col .field_group label {
     margin-bottom: 9px;
     color: #8c8c8c;
-    font-family: Inter;
+    
     font-weight: 500;
   }
 
@@ -1899,7 +1976,7 @@
     height: 39px;
     padding: 7px 13px;
     font-size: 14px;
-    font-family: Inter;
+    
   }
   .qty_btn {
     width: 186px;
@@ -1921,7 +1998,7 @@
     padding: 0;
     text-align: center;
     color: #002852;
-    font-family: Inter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -1961,7 +2038,7 @@
   .unit_field p {
     margin-bottom: 9px;
     color: #8c8c8c;
-    font-family: Inter;
+    
     font-size: 14px !important;
     font-style: normal;
     font-weight: 500;
@@ -1975,7 +2052,7 @@
 
   .bond_result_single:first-child .left_part h3#bond_invest_amt {
     color: #212529;
-    font-family: Inter;
+    
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -2003,7 +2080,7 @@
   .vested_edge_list:after {
     width: 375;
     height: 481px;
-    background: url(../../img/edge-shape-bg-mobile.png);
+    background: url(../../images/edge-shape-bg-mobile.png);
     top: 10px;
     transform: none;
     left: 0;
