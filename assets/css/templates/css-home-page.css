@@ -16,6 +16,7 @@
 .banner_content h1 {
 	color: #002852;
 	text-align: center;
+	font-family: "Inter", sans-serif;
 	font-size: 48px;
 	font-style: normal;
 	font-weight: 800;
@@ -26,7 +27,8 @@
 .banner_content p {
 	color: #505a64;
 	text-align: center;
-	font-size: 18px;
+	font-family: "Inter", sans-serif;
+	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
@@ -49,6 +51,7 @@
 	border-radius: 5px;
 	background: #002852;
 	color: #fff;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 700;
@@ -62,6 +65,7 @@
 	padding: 16px;
 	border-radius: 5px;
 	border: 1px solid #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -96,6 +100,7 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	font-family: "Inter", sans-serif;
 }
 
 .home_banner {
@@ -107,7 +112,7 @@
 	position: absolute;
 	width: 289px;
 	height: 415px;
-	background: url('../../images/banner_shape_left.png');
+	background: url(../../img/banner_shape_left.png);
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -118,7 +123,7 @@
 	position: absolute;
 	width: 299px;
 	height: 436px;
-	background: url('../../images/banner_shape_right.png');
+	background: url(../../img/banner_shape_right.png);
 	right: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -136,6 +141,7 @@
 .counter_amt h3 {
 	color: #fff;
 	text-align: center;
+	font-family: "Inter", sans-serif;
 	font-size: 48px;
 	font-style: normal;
 	font-weight: 500;
@@ -146,6 +152,7 @@
 .counter_title {
 	color: rgba(255, 255, 255, 0.6);
 	text-align: center;
+	font-family: Inter;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
@@ -157,8 +164,9 @@
 
 .counter_title sup {
 	position: absolute;
-	top: -10px;
-	right: -12px;
+	top: -5px;
+	right: -10px;
+	font-size: 10px;
 }
 
 .single_counter {
@@ -199,6 +207,7 @@
 .section_title {
 	color: #002852;
 	text-align: center;
+	font-family: "Inter", sans-serif;
 	font-size: 38px;
 	font-style: normal;
 	font-weight: 300;
@@ -213,6 +222,7 @@
 .section_title sup {
 	color: #002852;
 	text-align: center;
+	font-family: Inter;
 	font-size: 10px;
 	font-style: normal;
 	font-weight: 400;
@@ -265,6 +275,7 @@
 
 .single_easy-access h4 {
 	color: #505a64;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
@@ -293,6 +304,7 @@
 
 .link_light {
 	color: #212529;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 600;
@@ -362,6 +374,7 @@
 
 .single_edge h4 {
 	color: rgba(255, 255, 255, 0.5);
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
@@ -422,13 +435,13 @@
 }
 
 .single_portfolio_slider {
-	background-color: transparent;
-	border: none;
-	padding: 10px;
+	background-color: transparent !important;
+	border: none !important;
+	padding: 10px !important;
 }
 
 .portfolio_slider {
-	width: 320px;
+	width: 320px !important;
 }
 
 .portfolio_slider_content {
@@ -454,6 +467,7 @@
 
 .slider_index {
 	color: #212529;
+	font-family: "Inter", sans-serif;
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
@@ -463,6 +477,7 @@
 
 .portfolio_slider_inner_content h3 {
 	color: #212529;
+	font-family: "Inter", sans-serif;
 	font-size: 22px;
 	font-style: normal;
 	font-weight: 600;
@@ -474,7 +489,8 @@
 .single_slider_desc {
 	margin: 0;
 	color: rgba(33, 37, 41, 0.6);
-	font-size: 18px;
+	font-family: "Inter", sans-serif;
+	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
@@ -482,9 +498,9 @@
 }
 
 .single_portfolio_slider_content {
-	display: flex;
-	padding: 0;
-	background: transparent;
+	display: flex !important;
+	padding: 0 !important;
+	background: transparent !important;
 }
 
 .portfolio_slider_content_inner {
@@ -503,195 +519,11 @@
 	max-width: 1230px;
 }
 
-.investors_sec .container {
-	max-width: 1230px;
-}
-
-.investors_slider_wrap,
-.investor_desclaimer {
-	padding: 0 24px;
-}
-
-.investor_desclaimer {
-	user-select: none;
-}
-
 .portfolio_slider_wrap {
 	margin-top: 36px;
 }
 
-.investors_sec {
-	padding-top: 12px;
-	padding-bottom: 37px;
-}
 
-.investor_subtitle {
-	color: rgba(33, 37, 41, 0.6);
-	text-align: center;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 130%;
-}
-
-.investor_subtitle span {
-	background: #0cc786;
-	color: #fff;
-	font-weight: 700;
-	transform: skew(-15deg);
-	display: inline-block;
-	padding: 0 4px;
-}
-
-.single_investor_slide {
-	background-color: transparent;
-	padding: 0;
-	height: auto;
-	margin: 0 0.25rem;
-}
-
-.investor_slide_inner {
-	padding: 34px 18px 44px;
-	background: #f9f9f9;
-	border-radius: 10px;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	min-height: 386px;
-}
-
-.investor_details {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	min-height: 80px;
-}
-
-.investor_info {
-	display: flex;
-	width: calc(100% - 41px);
-}
-
-.investor_img {
-	width: 52px;
-	height: 52px;
-	overflow: hidden;
-	border-radius: 5px;
-	margin-right: 10px;
-}
-
-.investor_img img {
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-}
-
-.invesetor_name {
-	color: rgba(33, 37, 41, 0.7);
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 130%;
-	letter-spacing: -0.28px;
-	margin-top: 1px;
-	margin-bottom: 3px;
-}
-
-.invesetor_name a {
-	color: rgba(33, 37, 41, 0.7);
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 130%;
-	letter-spacing: -0.28px;
-	margin-top: 1px;
-	margin-bottom: 3px;
-	transition: 0.3s all;
-}
-
-.invesetor_name a:hover {
-	color: #002852;
-}
-
-.investor_designation {
-	color: rgba(33, 37, 41, 0.7);
-	font-size: 10px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 130%;
-	letter-spacing: -0.2px;
-	margin-bottom: 0;
-}
-
-.investor_detail {
-	width: calc(100% - 62px);
-}
-
-.platform_icon {
-	width: 28px;
-	height: 28px;
-	overflow: hidden;
-}
-
-.investor_slider_nav {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 32px;
-}
-
-.investors_slider {
-	margin-top: 50px;
-	margin-bottom: 40px;
-}
-
-.investor_prev {
-	border-radius: 30px;
-	border: 1.7px solid rgba(0, 40, 82, 0.6);
-	background: rgba(255, 255, 255, 0);
-	width: 85px;
-	height: 45px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	margin-right: 12px;
-}
-
-.investor_next {
-	border-radius: 30px;
-	border: 1.7px solid rgba(0, 40, 82, 0.6);
-	background: rgba(255, 255, 255, 0);
-	width: 85px;
-	height: 45px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-}
-
-.investor_review {
-	margin-top: 23px;
-}
-
-.investor_review p {
-	color: rgba(33, 37, 41, 0.7);
-	font-size: 12px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 130%;
-	letter-spacing: -0.24px;
-	margin-bottom: 0;
-}
-
-.investor_desclaimer p {
-	color: rgba(33, 37, 41, 0.7);
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	margin-bottom: 0;
-}
 
 .invest_wisely_wrap {
 	display: flex;
@@ -765,6 +597,7 @@ section.invest_wisely_sec .container {
 .single_wisely_content h3 {
 	color: #002852;
 	text-align: center;
+	font-family: Inter;
 	font-size: 30px;
 	font-style: normal;
 	font-weight: 600;
@@ -776,7 +609,8 @@ section.invest_wisely_sec .container {
 .single_wisely_content p {
 	color: rgba(33, 37, 41, 0.6);
 	text-align: center;
-	font-size: 18px;
+	font-family: Inter;
+	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
@@ -797,8 +631,9 @@ section.invest_wisely_sec .container {
 	margin-bottom: 0;
 }
 
-.faq_que h4 {
+.faq_que h3 {
 	color: #212529;
+	font-family: Inter;
 	font-size: 22px;
 	font-style: normal;
 	font-weight: 500;
@@ -813,18 +648,13 @@ section.invest_wisely_sec .container {
 }
 
 .faq_que:after {
-	content: "";
-    position: absolute;
-    top: 0;
-    right: 0px;
-    background-image: url(../../images/chevron-down.png);
-    background-size: 20px;
-    width: 20px;
-    height: 20px;
-    background-position: center;
-    margin-top: 3px;
-    transition: 0.3s all;
-    background-repeat: no-repeat;
+	content: "\f078";
+	font-family: "FontAwesome";
+	position: absolute;
+	top: 0;
+	right: 0px;
+	color: #212529;
+	transition: transform 0.3s;
 }
 
 .single_faq {
@@ -839,7 +669,8 @@ section.invest_wisely_sec .container {
 .faq_content p {
 	margin-bottom: 0;
 	color: #1e2022;
-	font-size: 22px;
+	font-family: Inter;
+	font-size: 22px !important;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
@@ -865,11 +696,7 @@ section.invest_wisely_sec .container {
 	display: none;
 }
 
-@media (max-width: 1220px) {
-	.investor_slide_inner {
-		min-height: 380px;
-	}
-}
+
 
 @media (max-width: 1200px) {
 	.counters_wrap {
@@ -1083,7 +910,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_wisely_content p {
-		font-size: 16px;
+		font-size: 16px !important;
 		margin-bottom: 30px;
 	}
 
@@ -1095,7 +922,7 @@ section.invest_wisely_sec .container {
 		padding: 0 40px;
 	}
 
-	.faq_que h4 {
+	.faq_que h3 {
 		font-size: 20px;
 	}
 
@@ -1104,7 +931,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.faq_content p {
-		font-size: 18px;
+		font-size: 18px !important;
 	}
 
 	.home_page_faqs {
@@ -1115,7 +942,7 @@ section.invest_wisely_sec .container {
 		padding: 0 2px;
 	}
 
-	.faq_que h4 {
+	.faq_que h3 {
 		font-size: 14px;
 	}
 
@@ -1124,15 +951,10 @@ section.invest_wisely_sec .container {
 	}
 
 	.faq_content p {
-		font-size: 12px;
+		font-size: 12px !important;
 	}
 }
 
-@media (max-width: 850px) {
-	.investor_slide_inner {
-		min-height: 400px;
-	}
-}
 
 @media (max-width: 767px) {
 	.mobile_hide {
@@ -1148,20 +970,34 @@ section.invest_wisely_sec .container {
 	}
 
 	.banner_content {
-		padding-top: 210px;
-		padding-bottom: 75px;
+		padding-top: 47px;
+		padding-bottom: 273px;
 	}
 
 	.home_banner:before {
 		left: 0;
-		background: url('../../images//home_banner_mobile.png');
-		top: 0;
+		background: url(../../img/home_banner_mobile.png);
+		top: auto;
+		bottom: 31px;
 		width: 100%;
 		height: 204px;
 		transform: none;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
+	}
+
+	.banner_content h1 {
+		font-size: 32px;
+		line-height: 35.2px;
+	}
+
+	.banner_content p {
+		display: none;
+	}
+
+	.banner_buttons {
+		margin-top: 60px;
 	}
 
 	.counter_section {
@@ -1173,11 +1009,12 @@ section.invest_wisely_sec .container {
 	}
 
 	.counter_amt h3 {
-		font-size: 30px;
+		font-size: 32px;
 	}
 
 	.counter_title sup {
-		right: -5px;
+		right: -7px;
+		top: -4px;
 	}
 
 	.counter_title {
@@ -1197,8 +1034,9 @@ section.invest_wisely_sec .container {
 	}
 
 	.section_title {
-		font-size: 22px;
+		font-size: 22px !important;
 		margin-bottom: 19px;
+		line-height: 24.2px;
 	}
 
 	.section_title br {
@@ -1207,6 +1045,12 @@ section.invest_wisely_sec .container {
 
 	.multi_asset_img {
 		padding: 0;
+	}
+
+	.easy_access_btns {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.easy_access_content {
@@ -1253,8 +1097,9 @@ section.invest_wisely_sec .container {
 	}
 
 	.link_light {
-		font-size: 10px;
-		margin-left: 12px;
+		font-size: 14px;
+		margin-left: 23px;
+		width: calc(100% - 160px);
 	}
 
 	.edge_content {
@@ -1285,6 +1130,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_edge h4 {
+		font-family: Inter;
 		font-size: 14px;
 		font-style: normal;
 		font-weight: 400;
@@ -1303,11 +1149,20 @@ section.invest_wisely_sec .container {
 
 	.edge_btns .btn_light {
 		padding: 11px 16px;
-		font-size: 12px;
+		font-size: 14px;
+		font-weight: 700;
+	}
+
+	.edge_btns {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.edge_btns .link_dark {
-		font-size: 10px;
+		font-size: 14px;
+		margin-left: 23px;
+		width: calc(100% - 160px);
 	}
 
 	.link_dark {
@@ -1340,19 +1195,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_slider_desc {
-		font-size: 12px;
-	}
-
-	.investors_slider {
-		margin-top: 30px;
-	}
-
-	.investor_subtitle {
-		font-size: 14px;
-	}
-
-	.investor_desclaimer p {
-		font-size: 8px;
+		font-size: 12px !important;
 	}
 
 	.invest_wisely_sec {
@@ -1360,13 +1203,13 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_wisely_img {
-		width: 100%;
-		height: 154px;
-		padding: 11px 48px;
+		width: 100% !important;
+		height: 154px !important;
+		padding: 11px 48px !important;
 	}
 
 	.single_wisely_content {
-		width: 100%;
+		width: 100% !important;
 	}
 
 	.single_wisely_list .single_wisely_img img {
@@ -1375,7 +1218,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_wisely_content {
-		padding: 28px 24px;
+		padding: 28px 24px !important;
 	}
 
 	.single_wisely_list:not(:first-child) {
@@ -1393,7 +1236,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_wisely_content p {
-		font-size: 14px;
+		font-size: 14px !important;
 	}
 
 	.single_wisely_list:nth-child(1) {
@@ -1401,7 +1244,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_wisely_list:nth-child(2) .single_wisely_img {
-		padding-bottom: 0;
+		padding-bottom: 0 !important;
 	}
 
 	.progressBar {
@@ -1427,7 +1270,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.single_slider_desc {
-		font-size: 12px;
+		font-size: 12px !important;
 	}
 
 	.single_portfolio_slider_content:not(:last-child) {
@@ -1435,7 +1278,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.slick-dots li {
-		width: 30%;
+		width: 30% !important;
 	}
 
 	.slick-dots li button {
@@ -1453,20 +1296,11 @@ section.invest_wisely_sec .container {
 
 	.slick-dots li {
 		background: #e8eef4;
-		height: 3px;
+		height: 3px !important;
 	}
 
 	.slick-dots li .inProgress {
-		height: 3px;
-	}
-
-	.investor_slide_inner {
-		min-height: 360px;
-	}
-
-	.investors_slider_wrap,
-	.investor_desclaimer {
-		padding: 0;
+		height: 3px !important;
 	}
 
 	.watch_time {
@@ -1494,21 +1328,9 @@ section.invest_wisely_sec .container {
 	.portfolio_slider_content ul.slick-dots button {
 		display: none;
 	}
-
-	.investors_sec {
-		padding-top: 45px;
-	}
 }
 
 @media (max-width: 600px) {
-	.investor_slide_inner {
-		min-height: 350px;
-	}
-
-	.investors_slider_wrap {
-		padding: 0;
-	}
-
 	.banner_buttons .btn {
 		width: 50%;
 	}
@@ -1522,10 +1344,6 @@ section.invest_wisely_sec .container {
 	.btn_light {
 		padding: 12px;
 	}
-
-	/* .investors_slider_wrap, .investor_desclaimer {
-  padding: 0 37px;
-} */
 }
 
 @media (max-width: 360px) {

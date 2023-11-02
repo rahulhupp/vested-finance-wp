@@ -138,7 +138,7 @@ get_header(); ?>
                             <?php endwhile; ?>
                         </div>
                         <div class="easy_access_btns">
-                            <a href="<?php the_field('inr_bond_button_one_url'); ?>" class="btn_dark"><?php the_field('easy_access_button_one_text'); ?></a>
+                            <a href="<?php the_field('inr_bond_button_one_url'); ?>" class="btn_dark"><?php the_field('inr_bond_button_text'); ?></a>
                             <a href="<?php the_field('inr_bond_button_two_url'); ?>" class="link_light"><?php the_field('inr_bond_button_two_text'); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
@@ -188,66 +188,9 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    <?php if (have_rows('investors_reviews')) : ?>
-        <section class="investors_sec">
-            <div class="container">
-                <h2 class="section_title"><span><?php the_field('investors_heading'); ?></span></h2>
-                <p class="investor_subtitle"><?php the_field('investors_sub_heading'); ?></p>
-                <div class="investors_slider_wrap">
-                    <div class="investors_slider">
-                        <?php while (have_rows('investors_reviews')) : the_row(); ?>
-                            <div class="single_investor_slide">
-                                <div class="investor_slide_inner">
-                                    <div class="investor_details">
-                                        <div class="investor_info">
-                                            <div class="investor_img">
-                                                <img src="<?php the_sub_field('investor_image') ?>" alt="<?php the_sub_field('investor_name') ?>">
-                                            </div>
-                                            <div class="investor_detail">
-                                                <h4 class="invesetor_name">
-                                                    <a href="<?php the_sub_field('review_platform_link') ?>" target="_blank">
-                                                        <?php the_sub_field('investor_name') ?>
-                                                    </a>
-                                                </h4>
-                                                <p class="investor_designation">
-                                                    <?php the_sub_field('investor_designation') ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="platform_icon">
-                                            <a href="<?php the_sub_field('review_platform_link') ?>" target="_blank">
-                                                <img src="<?php the_sub_field('review_platform_icon') ?>" alt="Review Platform">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="investor_review">
-                                        <?php the_sub_field('investor_review') ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
-                    </div>
-                    <div class="investor_slider_nav">
-                        <div class="investor_prev">
-                            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M27.1035 10.0566H1.74131M1.74131 10.0566L10.9639 0.833984M1.74131 10.0566L10.9639 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
-                            </svg>
-                        </div>
-                        <div class="investor_next">
-                            <svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.283203 10.0566H25.6454M25.6454 10.0566L16.4228 0.833984M25.6454 10.0566L16.4228 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+    
+    <?php get_template_part('template-parts/investors-slider'); ?>
 
-                <div class="investor_desclaimer">
-                    <?php the_field('investors_disclaimer'); ?>
-                </div>
-            </div>
-
-        </section>
-    <?php endif; ?>
     <?php if (have_rows('learning_list')) : ?>
         <section class="invest_wisely_sec">
             <div class="container">
@@ -278,9 +221,9 @@ get_header(); ?>
                     <?php while (have_rows('faq_list')) : the_row(); ?>
                         <div class="single_faq">
                             <div class="faq_que">
-                                <h4>
+                                <h3>
                                     <?php the_sub_field('faq_question') ?>
-                                </h4>
+                                </h3>
                             </div>
                             <div class="faq_content">
                                 <?php the_sub_field('faq_answer') ?>
