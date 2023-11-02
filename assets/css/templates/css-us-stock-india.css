@@ -120,7 +120,7 @@
 
 .stock-info .stock-row .stock-content ul li:before {
 	content: "";
-	background-image: url(../../assets/images/check.png);
+	background-image: url(../../../assets/images/check.png);
 	width: 26px;
 	height: 26px;
 	display: inline-flex;
