@@ -928,6 +928,10 @@ input#investment_range:before {
 	-webkit-appearance: none;
 }
 
+input[type=range]::-webkit-slider-runnable-track {
+    box-shadow: none;
+}
+
 #investment_range::-webkit-slider-thumb {
 	background: url(../../images/slider-thumb.png);
 	border-radius: 0;
@@ -936,6 +940,8 @@ input#investment_range:before {
 	border-radius: 50%;
 	-webkit-appearance: none;
 	cursor: pointer;
+	border: none;
+    margin-top: -11px;
 }
 
 #investment_range::-moz-range-thumb {
@@ -946,6 +952,8 @@ input#investment_range:before {
 	border-radius: 50%;
 	-webkit-appearance: none;
 	cursor: pointer;
+	border: none;
+    margin-top: -11px;
 }
 
 .fd_calc_sec {
