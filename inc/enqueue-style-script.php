@@ -1,6 +1,8 @@
 <?php
     function enqueue_custom_assets() {
 
+        wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
+
         wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0', 'all');
 
         // Enqueue the Slick Carousel CSS files from the CDN
