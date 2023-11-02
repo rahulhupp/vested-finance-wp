@@ -7,7 +7,7 @@ function sliderSlide() {
 	var color =
 		"linear-gradient(90deg, rgb(12, 199, 134) 10%, rgb(217, 228, 238) 10%)";
 	slider.style.background = color;
-	var minValue = 10000;
+	var minValue = 20000;
 	var maxValue = 5000000;
 	var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
 	var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
@@ -289,7 +289,7 @@ jQuery(document).ready(function ($) {
 		var slider = document.getElementById("investment_range");
 		var sliderVal = document.getElementById("investment_amt");
 		slider.style.background = color;
-		var minValue = 10000;
+		var minValue = 20000;
 		var maxValue = 5000000;
 		var x = parseFloat(latestAmt); // Parse the slider value to a floating-point
 		var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
@@ -319,7 +319,7 @@ jQuery(document).ready(function ($) {
 		var slider = document.getElementById("investment_range");
 		var sliderVal = document.getElementById("investment_amt");
 		slider.style.background = color;
-		var minValue = 10000;
+		var minValue = 20000;
 		var maxValue = 5000000;
 		var x = parseFloat(latestAmt); // Parse the slider value to a floating-point
 		var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
@@ -343,58 +343,4 @@ jQuery(document).ready(function ($) {
 
 	fdcalc();
 
-	$(".investors_slider").slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		autoplay: true,
-        autoplaySpeed: 6000, 
-		speed: 600,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		responsive: [
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1,
-				},
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1,
-				},
-			},
-			{
-				breakpoint: 601,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-				},
-			},
-		],
-	});
-
-	$(".investor_prev").click(function () {
-		$(".investors_slider").slick("slickPrev");
-	});
-
-	$(".investor_next").click(function () {
-		$(".investors_slider").slick("slickNext");
-	});
-	$(".investor_prev").addClass("slick-disabled");
-	$(".investors_slider").on("afterChange", function () {
-		if ($(".slick-prev").hasClass("slick-disabled")) {
-			$(".investor_prev").addClass("slick-disabled");
-		} else {
-			$(".investor_prev").removeClass("slick-disabled");
-		}
-		if ($(".slick-next").hasClass("slick-disabled")) {
-			$(".investor_next").addClass("slick-disabled");
-		} else {
-			$(".investor_next").removeClass("slick-disabled");
-		}
-	});
 });

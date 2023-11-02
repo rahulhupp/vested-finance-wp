@@ -88,7 +88,7 @@ get_header(); ?>
                                         ?>
                                         <div class="offer_label">
                                             <div class="image_label">
-                                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/balance.png" />
+                                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/balance.png" />
                                                 <span><?php the_sub_field('offer_label') ?></span>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@ get_header(); ?>
                             <form class="fd_calc_form" onsubmit="return false;">
                                 <div class="fd_calc_slide">
                                     <input type="text" id="investment_amt" value="50000">
-                                    <input type="range" id="investment_range" value="50000" min="10000" max="5000000" oninput="investment_amt.value = '₹' + investment_range.value">
+                                    <input type="range" id="investment_range" value="50000" min="20000" max="5000000" oninput="investment_amt.value = '₹' + investment_range.value">
                                 </div>
                                 <div class="fd_plan_select">
                                     <h4>Select Plan</h4>
