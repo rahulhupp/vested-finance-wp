@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="platform_icon">
                                         <a href="<?php the_sub_field('investor_link') ?>" target="_blank">
-                                            <img src="https://vested-wordpress-media-staging.s3.amazonaws.com/vestedfinance/wp-content/uploads/2023/10/04110743/platform.png" alt="Review Platform">
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.png" alt="Review Platform">
                                         </a>
                                     </div>
                                 </div>
