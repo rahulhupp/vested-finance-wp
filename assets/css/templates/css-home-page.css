@@ -16,9 +16,7 @@
 .banner_content h1 {
 	color: #002852;
 	text-align: center;
-	font-family: "Inter", sans-serif;
 	font-size: 48px;
-	font-style: normal;
 	font-weight: 800;
 	line-height: 120%;
 	margin-bottom: 13px;
@@ -27,9 +25,7 @@
 .banner_content p {
 	color: #505a64;
 	text-align: center;
-	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 	margin-bottom: 40px;
@@ -51,9 +47,7 @@
 	border-radius: 5px;
 	background: #002852;
 	color: #fff;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
 	border: 1px solid #002852;
@@ -65,9 +59,7 @@
 	padding: 16px;
 	border-radius: 5px;
 	border: 1px solid #002852;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	color: #002852;
@@ -97,10 +89,8 @@
 	color: #505a64;
 	text-align: center;
 	font-size: 14px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
-	font-family: "Inter", sans-serif;
 }
 
 .home_banner {
@@ -141,9 +131,7 @@
 .counter_amt h3 {
 	color: #fff;
 	text-align: center;
-	font-family: "Inter", sans-serif;
 	font-size: 48px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	margin: 0;
@@ -152,9 +140,7 @@
 .counter_title {
 	color: rgba(255, 255, 255, 0.6);
 	text-align: center;
-	font-family: Inter;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 110%;
 	margin-top: 12px;
@@ -207,9 +193,7 @@
 .section_title {
 	color: #002852;
 	text-align: center;
-	font-family: "Inter", sans-serif;
 	font-size: 38px;
-	font-style: normal;
 	font-weight: 300;
 	line-height: 120%;
 	margin-bottom: 31px;
@@ -222,9 +206,7 @@
 .section_title sup {
 	color: #002852;
 	text-align: center;
-	font-family: Inter;
 	font-size: 10px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 110%;
 	letter-spacing: -0.2px;
@@ -275,9 +257,7 @@
 
 .single_easy-access h4 {
 	color: #505a64;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 	margin: 0;
@@ -304,9 +284,7 @@
 
 .link_light {
 	color: #212529;
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: normal;
 	text-decoration-line: underline;
@@ -374,9 +352,7 @@
 
 .single_edge h4 {
 	color: rgba(255, 255, 255, 0.5);
-	font-family: "Inter", sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 	margin: 0;
@@ -403,7 +379,6 @@
 .link_dark {
 	color: #fff;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: normal;
 	text-decoration-line: underline;
@@ -467,9 +442,7 @@
 
 .slider_index {
 	color: #212529;
-	font-family: "Inter", sans-serif;
 	font-size: 16px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 	opacity: 0.4;
@@ -477,9 +450,7 @@
 
 .portfolio_slider_inner_content h3 {
 	color: #212529;
-	font-family: "Inter", sans-serif;
 	font-size: 22px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 100%;
 	letter-spacing: -0.44px;
@@ -489,9 +460,7 @@
 .single_slider_desc {
 	margin: 0;
 	color: rgba(33, 37, 41, 0.6);
-	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	letter-spacing: -0.36px;
@@ -597,9 +566,7 @@ section.invest_wisely_sec .container {
 .single_wisely_content h3 {
 	color: #002852;
 	text-align: center;
-	font-family: Inter;
 	font-size: 30px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 120%;
 	letter-spacing: -1.2px;
@@ -609,9 +576,7 @@ section.invest_wisely_sec .container {
 .single_wisely_content p {
 	color: rgba(33, 37, 41, 0.6);
 	text-align: center;
-	font-family: Inter;
 	font-size: 18px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	letter-spacing: -0.36px;
@@ -633,9 +598,7 @@ section.invest_wisely_sec .container {
 
 .faq_que h3 {
 	color: #212529;
-	font-family: Inter;
 	font-size: 22px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	margin-bottom: 0;
@@ -669,9 +632,7 @@ section.invest_wisely_sec .container {
 .faq_content p {
 	margin-bottom: 0;
 	color: #1e2022;
-	font-family: Inter;
 	font-size: 22px !important;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 }

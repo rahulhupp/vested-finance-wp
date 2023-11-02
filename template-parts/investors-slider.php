@@ -256,6 +256,14 @@
 		margin-bottom: 0;
 	}
 
+	.investors_slider .slick-list {
+		margin: 0 -6px;
+	}
+
+	.investors_slider .slick-list .single_investor_slide {
+		margin: 0 6px;
+	}
+
 	@media (max-width: 1220px) {
 		.investor_slide_inner {
 			min-height: 380px;

@@ -1638,11 +1638,3 @@
 .skeleton_main h3 {
 	margin-bottom: 10px;
 }
-
-.investors_slider .slick-list {
-	margin: 0 -6px;
-}
-
-.investors_slider .slick-list .single_investor_slide {
-	margin: 0 6px;
-}
