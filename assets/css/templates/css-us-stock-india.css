@@ -69,9 +69,6 @@
 
 .stock-info .stock-row .stock-content p {
 	margin: 0;
-}
-
-.stock-info .stock-row .stock-content span {
 	font-size: 16px;
 	text-transform: capitalize;
 	color: #212529;
@@ -79,7 +76,7 @@
 	letter-spacing: -0.64px;
 }
 
-.stock-info .stock-row .stock-content span small {
+.stock-info .stock-row .stock-content p small {
 	width: 28px;
 	height: 28px;
 	background: #3e68d0;
@@ -1380,12 +1377,12 @@ div#tab2 .inner .image {
 		padding: 30px 0 0 0;
 	}
 
-	.stock-info .stock-row .stock-content span {
+	.stock-info .stock-row .stock-content p {
 		font-size: 12px;
 		font-weight: 500;
 	}
 
-	.stock-info .stock-row .stock-content span small {
+	.stock-info .stock-row .stock-content p small {
 		background: #754fe1;
 	}
 
