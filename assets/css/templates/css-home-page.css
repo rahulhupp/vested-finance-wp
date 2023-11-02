@@ -112,7 +112,7 @@
 	position: absolute;
 	width: 289px;
 	height: 415px;
-	background: url(../../img/banner_shape_left.png);
+	background: url(../../images/banner_shape_left.png);
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -123,7 +123,7 @@
 	position: absolute;
 	width: 299px;
 	height: 436px;
-	background: url(../../img/banner_shape_right.png);
+	background: url(../../images/banner_shape_right.png);
 	right: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -976,7 +976,7 @@ section.invest_wisely_sec .container {
 
 	.home_banner:before {
 		left: 0;
-		background: url(../../img/home_banner_mobile.png);
+		background: url(../../images/home_banner_mobile.png);
 		top: auto;
 		bottom: 31px;
 		width: 100%;
