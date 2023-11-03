@@ -95,6 +95,7 @@
 
 .home_banner {
 	position: relative;
+	overflow: hidden;
 }
 
 .home_banner:before {
@@ -366,10 +367,13 @@
 
 .edge_btns {
 	margin-top: 64px;
+	display: flex;
+    align-items: center;
 }
 
 .edge_btns .btn_light {
 	padding: 16px 22px;
+	min-width: 172px;
 }
 
 .edge_btns .link_dark {
