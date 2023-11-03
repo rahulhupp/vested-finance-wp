@@ -613,11 +613,9 @@
 	list-style: decimal-leading-zero;
 }
 
-
 .result_inner_col {
 	padding: 36px 36px 28px 36px;
 }
-
 
 .sub_heading {
 	color: #505a64;
@@ -635,8 +633,9 @@
 	margin-top: 66px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	flex-wrap: wrap;
+	gap: 16px;
 }
 
 .single_partner_block {
