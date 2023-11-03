@@ -4,7 +4,7 @@ footer {
 }
 
 footer .container {
-  max-width: 1240px;
+  max-width: 1240px !important;
   padding: 0 24px !important;
 }
 
@@ -62,7 +62,7 @@ footer .container {
 
 .app_wrap {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .single_app:last-child {
