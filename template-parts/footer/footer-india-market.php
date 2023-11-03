@@ -152,7 +152,6 @@
                                     <?php the_sub_field('disclosure_content_in'); ?>
 
                                 </div>
-                                <span class="read_more_link">Read more</span>
 
                             </div>
                         <?php endwhile; ?>
