@@ -20,4 +20,4 @@ jQuery(document).ready(function($){
       $('.read_more_link').show();
       disclosure.slideUp();
   });
-})
+});
