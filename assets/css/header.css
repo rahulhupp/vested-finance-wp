@@ -595,3 +595,7 @@ body.mega-menu-open .site-content:before {
         padding-bottom: 0;
     }
 }
+
+section {
+    overflow: hidden;
+}
