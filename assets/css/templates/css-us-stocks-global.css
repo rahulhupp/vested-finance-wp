@@ -208,6 +208,12 @@
 	margin: 0 0 25px 0;
 }
 
+.explore-stock form input:focus, .explore-stock form input:focus-visible {
+    border: 1px solid #a9bdd0;
+    box-shadow: 0 0 5px #ccc;
+    outline: none;
+}
+
 .explore-stock form img {
 	position: absolute;
 	left: 14px;
@@ -771,7 +777,7 @@
 .faq_que h4 {
 	color: #212529;
 	font-size: 22px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: normal;
 	margin-bottom: 0;
 }
@@ -1510,6 +1516,24 @@
 
 	.stock-info .stock-row .stock-content .bottom .buttons {
 		justify-content: center;
+	}
+	.explore-stock form input:focus, .explore-stock form input:focus-visible {
+		border: 1px solid #a9bdd0;
+		box-shadow: 0 0 5px #ccc;
+		outline: none;
+	}
+	
+	.explore-stock .head h2 {
+		font-size: 22px;
+	}
+	
+	.build-foundation .head h2 {
+		font-size: 22px;
+	}
+	
+	.build-foundation .head span {
+		font-size: 14px;
+		line-height: 18.2px;
 	}
 }
 
