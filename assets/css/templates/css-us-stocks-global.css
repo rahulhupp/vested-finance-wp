@@ -1535,6 +1535,9 @@
 		font-size: 14px;
 		line-height: 18.2px;
 	}
+	.single_portfolio_slider img {
+		margin: auto;
+	}
 }
 
 
