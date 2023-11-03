@@ -1003,6 +1003,10 @@
 	margin-top: 50px;
 }
 
+.desktop_hide {
+	display: none;
+}
+
 @media (min-width: 768px) and (max-width: 993px) {
 	.stocks_slider_content .single_portfolio_slider_content {
 		width: 100% !important;
@@ -1241,12 +1245,15 @@
 }
 
 @media (max-width: 767px) {
-	.progressBar {
+	.mobile_hide {
 		display: none;
 	}
 
-	.stocks_slider_content .progressBar {
+	.desktop_hide {
 		display: block;
+	}
+	.progressBar {
+		display: none;
 	}
 
 	.portfolio_slider_content {
