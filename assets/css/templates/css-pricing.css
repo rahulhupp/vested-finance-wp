@@ -133,7 +133,7 @@
     background: #F2F8FF;
     display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 3px;
     border: 1px solid #DAEAFE;
     margin-bottom: 24px;
 }
@@ -168,7 +168,7 @@
     margin-bottom: 24px;
 }
 .pricing-info .plan-box .box .basic-plan-selection label {
-    padding: 10px 8px;
+    padding: 9px 14px;
     border-radius: 5px;
     border: 1px solid #DAEAFE;
     background: #F2F8FF;
@@ -368,7 +368,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-    max-height: 350px;
     overflow: auto;
 }
 .pricing-table .pricing-tabs-content .item .tooltip-content button.ok-btn {
@@ -695,7 +694,7 @@
         margin: 9px 0 16px;
     }
     .pricing-info .plan-box .box .basic-plan-selection label {
-        padding: 10px 30px;
+        padding: 9.5px 30px;
         line-height: normal;
     }
     .pricing-info .plan-box .box.basic-plan {
@@ -862,7 +861,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        z-index: 2;
+        z-index: 99;
         background: rgba(255, 255, 255, 0.70);
         opacity: 0;
         visibility: hidden;
@@ -877,6 +876,23 @@
     }
     .pricing-table .pricing-tabs-content .head-part .inner .currency {
         padding: 6px;
+    }
+    .pricing-info .plan-box .plan-selection label {
+        padding: 10px 6px;
+        height: 38px;
+    }
+    .pricing-info .plan-box .plan-selection {
+        padding: 4px 10px;
+    }
+    .pricing-table .pricing-tabs-content .item .tooltip-content {
+        padding: 24px 24px 52px 24px;
+    }
+    .pricing-table .pricing-tabs-content .item .tooltip-content h4 {
+        font-size: 16px;
+    }
+    .pricing-table .pricing-tabs-content .item .tooltip-content p {
+        max-height: 350px;
+        font-size: 14px;
     }
 }
 
