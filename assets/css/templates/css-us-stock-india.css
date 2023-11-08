@@ -127,7 +127,7 @@
 
 .stock-info .stock-row .stock-content ul li:before {
 	content: "";
-	background-image: url(../../../assets/img/check.png);
+	background-image: url(../../../assets/images/check.png);
 	width: 26px;
 	height: 26px;
 	display: inline-flex;
@@ -214,6 +214,8 @@
 	padding-bottom: 14px;
 	font-weight: 500;
 	font-family: "Inter", sans-serif;
+	transition: unset;
+	outline: none;
 }
 
 .tab-section .head ul#tabs-nav li.active a {
@@ -297,6 +299,13 @@
 	font-size: 16px;
 	margin: 0 0 25px 0;
 	font-family: "Inter", sans-serif;
+	width: 100%;
+	outline: none;
+}
+
+.explore-stock form input:focus {
+    border: 1px solid #a9bdd0;
+    box-shadow: 0 0 5px #ccc;
 }
 
 .explore-stock form img {
@@ -1418,6 +1427,24 @@
 	.build-foundation .foundation-list ul li {
 		min-height: 255px;
 	}
+	.tab-section .head h2 {
+	    font-size: 28px;
+	}
+	.explore-stock .head h2 {
+	    font-size: 28px;
+	}
+	.build-foundation .head h2 {
+	    font-size: 28px;
+	}
+	.section_title {
+	    font-size: 28px;
+	}
+	.post-type-list h2 {
+	    font-size: 28px;
+	}
+	.home_page_faqs .section_title {
+	    font-size: 28px;
+	}
 }
 
 @media (max-width: 767px) {
@@ -1619,6 +1646,7 @@
 	.tab-section .head ul#tabs-nav {
 		justify-content: flex-start;
 		margin-top: 0;
+		margin-left: 0;
 	}
 
 	.tab-section .head ul#tabs-nav li a {
@@ -1789,6 +1817,22 @@
 		min-height: 215px;
 	}
 
+	.tab-section .head h2 {
+	    font-size: 22px;
+	}
+	.explore-stock .head h2 {
+	    font-size: 22px;
+	}
+	.build-foundation .head h2 {
+	    font-size: 22px;
+	}
+	.section_title {
+	    font-size: 22px;
+	}
+	.post-type-list h2 {
+	    font-size: 22px;
+	}
+
 	.home_page_faqs .section_title {
 		font-size: 22px;
 	}
@@ -1879,6 +1923,9 @@
 
 	.stocks_slider_sec .section_title br {
 		display: none;
+	}
+	.tab-section .tabs .main-tabs .tab-content .inner .image img {
+		width: 100%;
 	}
 }
 
