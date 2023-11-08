@@ -406,6 +406,7 @@ footer .container {
   font-size: 10px;
   line-height: 14px;
   text-decoration: underline;
+  font-weight: 600;
 }
 
 @media (max-width: 1200px) and (min-width: 768px) {
@@ -720,13 +721,13 @@ footer .container {
     display: inline-block;
   }
 
-  .single_app {
+  /* .single_app {
     width: 49%;
   }
   .single_app a,
   .single_app a img {
     width: 100%;
-  }
+  } */
   .read_more_content {
     display: none;
   }
