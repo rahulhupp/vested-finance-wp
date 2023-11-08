@@ -9,16 +9,16 @@ get_header(); ?>
         <div class="container">
             <div class="stock-row">
                 <div class="stock-content">
-                    <?php the_field('stock_content'); ?>
+                    <?php the_field('stock_content_global'); ?>
                     <div class="bottom">
                         <div class="buttons">
-                            <a class="btn_dark" href="<?php the_field('start_investing_link'); ?>"><?php the_field('start_investing_label'); ?></a>
+                            <a class="btn_dark" href="<?php the_field('start_investing_link_global'); ?>"><?php the_field('start_investing_label_global'); ?></a>
                             <!-- <a class="btn_light" href="#"><i class="fa fa-play" aria-hidden="true"></i><?php the_field('watch_video_label'); ?></a> -->
                         </div>
                     </div>
                 </div>
                 <div class="stock-image">
-                    <img src="<?php the_field('stock_image'); ?>" />
+                    <img src="<?php the_field('stock_image_global'); ?>" />
                 </div>
             </div>
         </div>
@@ -34,21 +34,21 @@ get_header(); ?>
     <section class="why_invest">
         <div class="container">
             <div class="why_invest_block">
-                <h2 class="section_title align_left light"><span><?php the_field('why_inveset_heading'); ?></span></h2>
+                <h2 class="section_title align_left light"><span><?php the_field('why_inveset_heading_global'); ?></span></h2>
 
                 <div class="why_invest_wrap">
                     <div class="why_invest_content">
 
-                        <h3><?php the_field('why_inveset_text'); ?></h3>
+                        <h3><?php the_field('why_inveset_text_global'); ?></h3>
 
                     </div>
                     <div class="why_invest_img">
-                        <img src="<?php the_field('why_inveset_img'); ?>" alt="Why Invest">
-                        <p class="img_source"><?php the_field('why_inveset_img_source'); ?></p>
+                        <img src="<?php the_field('why_inveset_image_global'); ?>" alt="Why Invest">
+                        <p class="img_source"><?php the_field('why_inveset_img_source_global'); ?></p>
                     </div>
                 </div>
             </div>
-            <p class="diclosure"><?php the_field('why_inveset_disclosure'); ?></p>
+            <p class="diclosure"><?php the_field('why_inveset_disclosure_global'); ?></p>
         </div>
     </section>
 
@@ -56,26 +56,26 @@ get_header(); ?>
 
     <?php get_template_part('template-parts/us-stock-vests'); ?>
     
-    <?php if (have_rows('stocks_slider')) : ?>
+    <?php if (have_rows('stocks_slider_global')) : ?>
         <section class="stocks_slider_sec">
             <div class="container">
                 <div class="stocks_slider_wrap">
                     <div class="stocks_slider_inner">
                         <h2 class="section_title align_left">
-                            <span><?php the_field('stocks_slider_heading'); ?></span>
+                            <span><?php the_field('stocks_slider_heading_global'); ?></span>
                         </h2>
                         <div class="stocks_slider_content">
 
-                            <?php while (have_rows('stocks_slider')) : the_row(); ?>
+                            <?php while (have_rows('stocks_slider_global')) : the_row(); ?>
                                 <div class="single_portfolio_slider_content">
                                     <div class="portfolio_slider_content_inner">
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
                                         <div class="portfolio_slider_inner_content">
                                             <span class="slider_index">0<?php echo get_row_index(); ?></span>
-                                            <h3><?php the_sub_field('stocks_slider_slider_title') ?></h3>
+                                            <h3><?php the_sub_field('stocks_slider_slider_title_global') ?></h3>
                                             <p class="single_slider_desc">
-                                                <?php the_sub_field('stocks_slider_slider_description') ?>
+                                                <?php the_sub_field('stocks_slider_slider_description_global') ?>
                                             </p>
                                         </div>
                                     </div>
@@ -84,36 +84,36 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="us_stocks_slider stock-single-item">
-                        <?php while (have_rows('stocks_slider')) : the_row(); ?>
+                        <?php while (have_rows('stocks_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('stocks_slider_image') ?>" alt="Portfolio" />
+                                <img src="<?php the_sub_field('stocks_slider_image_global') ?>" alt="Portfolio" />
                             </div>
                         <?php endwhile; ?>
                     </div>
 
                 </div>
-                <?php the_field('slider_disclaimer'); ?>
+                <?php the_field('slider_disclaimer_global'); ?>
             </div>
         </section>
     <?php endif; ?>
 
     <?php get_template_part('template-parts/returns-calculator'); ?>
     
-    <?php if (have_rows('portfolio_slider')) : ?>
+    <?php if (have_rows('portfolio_slider_global')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
                 <h2 class="section_title">
-                    <span><?php the_field('portfolio_heading'); ?></span>
+                    <span><?php the_field('portfolio_heading_global'); ?></span>
                 </h2>
                 <div class="portfolio_slider_wrap">
                     <div class="portfolio_slider slider single-item">
-                        <?php while (have_rows('portfolio_slider')) : the_row(); ?>
+                        <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                                <img src="<?php the_sub_field('slider_image_global') ?>" alt="Portfolio" />
                             </div>
                         <?php endwhile; ?>
                     </div>
-                    <?php if (have_rows('portfolio_slider')) : ?>
+                    <?php if (have_rows('portfolio_slider_global')) : ?>
                         <div class="portfolio_slider_content">
                             <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                                 <div class="single_portfolio_slider_content">
@@ -122,9 +122,9 @@ get_header(); ?>
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
                                         <div class="portfolio_slider_inner_content">
                                             <span class="slider_index">0<?php echo get_row_index(); ?></span>
-                                            <h3><?php the_sub_field('slider_title') ?></h3>
+                                            <h3><?php the_sub_field('slider_title_global') ?></h3>
                                             <p class="single_slider_desc">
-                                                <?php the_sub_field('slider_description') ?>
+                                                <?php the_sub_field('slider_description_global') ?>
                                             </p>
                                         </div>
                                     </div>
@@ -240,21 +240,21 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    <?php if (have_rows('faq_list')) : ?>
+    <?php if (have_rows('faq_list_global')) : ?>
         <section class="home_page_faqs">
             <div class="container">
-                <h2 class="section_title"><span><?php the_field('faqs_heading'); ?></span></h2>
+                <h2 class="section_title"><span><?php the_field('faqs_heading_global'); ?></span></h2>
 
                 <div class="home_page_faq_wrap">
-                    <?php while (have_rows('faq_list')) : the_row(); ?>
+                    <?php while (have_rows('faq_list_global')) : the_row(); ?>
                         <div class="single_faq">
                             <div class="faq_que">
                                 <h4>
-                                    <?php the_sub_field('faq_question') ?>
+                                    <?php the_sub_field('faq_question_global') ?>
                                 </h4>
                             </div>
                             <div class="faq_content">
-                                <?php the_sub_field('faq_answer') ?>
+                                <?php the_sub_field('faq_answer_global') ?>
                             </div>
                         </div>
                     <?php endwhile; ?>
