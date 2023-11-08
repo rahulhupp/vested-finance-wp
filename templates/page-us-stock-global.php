@@ -59,21 +59,15 @@ get_header(); ?>
     <?php if (have_rows('stocks_slider')) : ?>
         <section class="stocks_slider_sec">
             <div class="container">
-                <h2 class="section_title desktop_hide">
-                    <span><?php the_field('stocks_slider_heading'); ?></span>
-                </h2>
                 <div class="stocks_slider_wrap">
-                        
                     <div class="stocks_slider_inner">
-                        <h2 class="section_title align_left mobile_hide">
+                        <h2 class="section_title align_left">
                             <span><?php the_field('stocks_slider_heading'); ?></span>
                         </h2>
                         <div class="stocks_slider_content">
 
-                            <?php $currentIndexNo = 0; while (have_rows('stocks_slider')) : the_row();
-                            
-                            ?>
-                                <div class="single_portfolio_slider_content" data-curent-slide="<?php echo $currentIndexNo; ?>">
+                            <?php while (have_rows('stocks_slider')) : the_row(); ?>
+                                <div class="single_portfolio_slider_content">
                                     <div class="portfolio_slider_content_inner">
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
@@ -86,7 +80,7 @@ get_header(); ?>
                                         </div>
                                     </div>
                                 </div>
-                            <?php $currentIndexNo++; endwhile; ?>
+                            <?php endwhile; ?>
                         </div>
                     </div>
                     <div class="us_stocks_slider stock-single-item">

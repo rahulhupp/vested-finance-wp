@@ -10,7 +10,9 @@
 	padding: 16px;
 	border-radius: 5px;
 	border: 1px solid #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
+	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	color: #002852;
@@ -35,7 +37,9 @@
 	border-radius: 5px;
 	background: #002852;
 	color: #fff;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
 	border: 1px solid #002852;
@@ -69,14 +73,18 @@
 
 .stock-info .stock-row .stock-content p {
 	margin: 0;
+}
+
+.stock-info .stock-row .stock-content span {
 	font-size: 16px;
 	text-transform: capitalize;
 	color: #212529;
 	line-height: 120%;
 	letter-spacing: -0.64px;
+	font-family: "Inter", sans-serif;
 }
 
-.stock-info .stock-row .stock-content p small {
+.stock-info .stock-row .stock-content span small {
 	width: 28px;
 	height: 28px;
 	background: #3e68d0;
@@ -98,6 +106,7 @@
 	line-height: 120%;
 	font-weight: 800;
 	margin: 15px 0;
+	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content ul {
@@ -113,11 +122,12 @@
 	margin: 0 0 16px 0;
 	position: relative;
 	padding-left: 30px;
+	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content ul li:before {
 	content: "";
-	background-image: url(../../../assets/images/check.png);
+	background-image: url(../../../assets/img/check.png);
 	width: 26px;
 	height: 26px;
 	display: inline-flex;
@@ -132,6 +142,7 @@
 	letter-spacing: -0.32px;
 	color: #505a64;
 	line-height: 130%;
+	font-family: "Inter", sans-serif;
 }
 
 .stock-info .stock-row .stock-content b a {
@@ -180,6 +191,7 @@
 	font-size: 38px;
 	line-height: 120%;
 	font-weight: 800;
+	font-family: "Inter", sans-serif;
 }
 
 .tab-section .head ul#tabs-nav {
@@ -201,6 +213,7 @@
 	position: relative;
 	padding-bottom: 14px;
 	font-weight: 500;
+	font-family: "Inter", sans-serif;
 }
 
 .tab-section .head ul#tabs-nav li.active a {
@@ -229,34 +242,12 @@
 			rgba(73, 125, 249, 0) 99.22%);
 }
 
-.tab-section .tabs .main-tabs .tab-content .inner {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 55px 120px;
-}
-
-.tab-section .tabs .main-tabs .tab-content .inner .content {
-	width: 50%;
-	padding-right: 15px;
-}
-
 .tab-section .tabs .main-tabs .tab-content .inner .content p {
 	color: #fff;
 	font-size: 24px !important;
+	font-style: normal;
 	font-weight: 400;
-	line-height: 140%;
-}
-
-.tab-section .tabs .main-tabs .tab-content .inner .content p b {
-	font-weight: 700;
-}
-
-.tab-section .tabs .main-tabs .tab-content .inner .image {
-	width: 50%;
-}
-
-.tab-section .tabs .main-tabs .tab-content .inner .image img {
-	width: 100%;
+	line-height: 31.2px;
 }
 
 .explore-stock {
@@ -272,6 +263,7 @@
 	font-weight: 800;
 	line-height: 120%;
 	margin: 0 0 16px 0;
+	font-family: "Inter", sans-serif;
 }
 
 .explore-stock .head p {
@@ -281,6 +273,7 @@
 	font-weight: 500;
 	line-height: 120%;
 	margin: 0;
+	font-family: "Inter", sans-serif;
 }
 
 .explore-stock form {
@@ -299,11 +292,11 @@
 	background: #fff;
 	box-shadow: none;
 	padding: 8px 14px 8px 50px;
-	width: 100%;
 	height: auto;
 	font-weight: 500;
 	font-size: 16px;
 	margin: 0 0 25px 0;
+	font-family: "Inter", sans-serif;
 }
 
 .explore-stock form img {
@@ -356,9 +349,11 @@
 	color: #505a64;
 	text-align: center;
 	font-size: 14px;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 	width: 100%;
+	font-family: "Inter", sans-serif;
 	display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -411,6 +406,7 @@
 .build-foundation .head h2 {
 	text-align: center;
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 38px;
 	font-weight: 800;
 	line-height: 120%;
@@ -423,6 +419,7 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 120%;
+	font-family: "Inter", sans-serif;
 }
 
 .build-foundation .foundation-list {
@@ -458,6 +455,7 @@
 
 .build-foundation .foundation-list ul li .top strong {
 	color: #505a64;
+	font-family: "Inter", sans-serif;
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 130%;
@@ -478,7 +476,9 @@
 .build-foundation .foundation-list ul li .middle .left strong {
 	display: block;
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 10px;
+	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	text-transform: uppercase;
@@ -497,7 +497,9 @@
 .build-foundation .foundation-list ul li .middle .right .per-value span.green {
 	color: #0cc786;
 	text-align: right;
+	font-family: "Inter", sans-serif;
 	font-size: 12px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 130%;
 }
@@ -505,7 +507,9 @@
 .build-foundation .foundation-list ul li .middle .right span.past-year {
 	color: #002852;
 	text-align: right;
+	font-family: "Inter", sans-serif;
 	font-size: 7px;
+	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	text-transform: uppercase;
@@ -544,7 +548,9 @@
 
 .build-foundation .foundation-list ul li.box .content strong {
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 15px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 130%;
 	margin: 0 0 11px 0;
@@ -579,7 +585,9 @@
 
 .post-type-list h2 {
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 38px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 	letter-spacing: -1.52px;
@@ -597,7 +605,9 @@
 
 .post-listing .head .left-part h3 {
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 26px;
+	font-style: normal;
 	font-weight: 600;
 	line-height: 120%;
 	letter-spacing: -1.04px;
@@ -608,7 +618,9 @@
 
 .post-listing .head .left-part a {
 	color: #002852;
+	font-family: Inter;
 	font-size: 18px;
+	font-style: normal;
 	font-weight: 500;
 	line-height: 120%;
 	letter-spacing: -0.72px;
@@ -626,7 +638,9 @@
 
 .post-listing .head .short-content p {
 	color: rgba(33, 37, 41, 0.8);
+	font-family: Inter;
 	font-size: 16px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	margin: 0 0 24px 0;
@@ -661,22 +675,15 @@
 	overflow: hidden;
 	color: #212529;
 	text-overflow: ellipsis;
+	font-family: Inter;
 	font-size: 18px;
+	font-style: normal;
 	font-weight: 500;
 	line-height: 140%;
 	margin-top: 18px;
 	margin-bottom: 0;
 }
 
-div#tab2 .inner .content {
-	width: 40%;
-}
-
-div#tab2 .inner .image {
-	width: 60%;
-	position: relative;
-	left: -100px;
-}
 
 /* us stocks slider */
 .stocks_slider_wrap {
@@ -704,6 +711,14 @@ div#tab2 .inner .image {
 	margin-top: 54px;
 }
 
+.stocks_slider_content .single_portfolio_slider_content h3 {
+	font-family: "Inter", sans-serif;
+}
+
+.stocks_slider_content .single_portfolio_slider_content .single_slider_desc {
+	font-family: "Inter", sans-serif;
+}
+
 .stocks_slider_sec {
 	padding: 48px 0;
 	background: #eef5fc;
@@ -711,7 +726,9 @@ div#tab2 .inner .image {
 
 .stocks_slider_sec ol li {
 	color: rgba(33, 37, 41, 0.7);
+	font-family: "Inter", sans-serif;
 	font-size: 16px;
+	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	margin-bottom: 8px;
@@ -729,7 +746,9 @@ div#tab2 .inner .image {
 .sub_heading {
 	color: #505a64;
 	text-align: center;
+	font-family: Inter;
 	font-size: 18px !important;
+	font-style: normal;
 	font-weight: 500;
 	line-height: 120%;
 	margin-top: 10px;
@@ -769,7 +788,9 @@ div#tab2 .inner .image {
 .section_title {
 	color: #002852;
 	text-align: center;
+	font-family: Inter;
 	font-size: 38px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 }
@@ -834,7 +855,9 @@ div#tab2 .inner .image {
 
 .slider_index {
 	color: #212529;
+	font-family: "Inter", sans-serif;
 	font-size: 16px;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 120%;
 	opacity: 0.4;
@@ -842,7 +865,9 @@ div#tab2 .inner .image {
 
 .portfolio_slider_inner_content h3 {
 	color: #212529;
+	font-family: "Inter", sans-serif;
 	font-size: 22px;
+	font-style: normal;
 	font-weight: 600;
 	line-height: 100%;
 	letter-spacing: -0.44px;
@@ -852,7 +877,9 @@ div#tab2 .inner .image {
 .single_slider_desc {
 	margin: 0;
 	color: rgba(33, 37, 41, 0.2);
+	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 120%;
 	letter-spacing: -0.36px;
@@ -877,7 +904,9 @@ div#tab2 .inner .image {
 
 .faq_que h4 {
 	color: #212529;
+	font-family: Inter;
 	font-size: 22px;
+	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
 	margin-bottom: 0;
@@ -910,7 +939,9 @@ div#tab2 .inner .image {
 .faq_content p {
 	margin-bottom: 0;
 	color: #1e2022;
+	font-family: Inter;
 	font-size: 22px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
 }
@@ -931,7 +962,9 @@ div#tab2 .inner .image {
 
 .img_source {
 	color: rgba(255, 255, 255, 0.8);
+	font-family: "Inter", sans-serif;
 	font-size: 18px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 140%;
 	margin-bottom: 0;
@@ -949,7 +982,9 @@ div#tab2 .inner .image {
 	margin-top: 20px;
 	margin-bottom: 0;
 	color: rgba(33, 37, 41, 0.7);
+	font-family: "Inter", sans-serif;
 	font-size: 16px;
+	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 }
@@ -978,7 +1013,9 @@ div#tab2 .inner .image {
 .banner_popup p {
 	color: #000;
 	text-align: center;
+	font-family: "Inter", sans-serif;
 	font-size: 16px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	margin: 15 18px 6px;
@@ -1035,7 +1072,9 @@ div#tab2 .inner .image {
 
 .total_value p {
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 14px !important;
+	font-style: normal;
 	font-weight: 400;
 	line-height: 110%;
 	margin-bottom: 7px;
@@ -1044,7 +1083,9 @@ div#tab2 .inner .image {
 
 .total_value h4 {
 	color: #002852;
+	font-family: "Inter", sans-serif;
 	font-size: 18px;
+	font-style: normal;
 	font-weight: 600;
 	line-height: 110%;
 	/* 19.8px */
@@ -1060,6 +1101,85 @@ div#tab2 .inner .image {
 	margin-top: 50px;
 }
 
+
+@media (min-width: 1024px) {
+
+	.tab-section .tabs .main-tabs .tab-content .inner {
+		position: relative;
+		min-height: 445px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab1 .inner {
+		padding-left: 120px;
+		padding-top: 62px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab2 .inner {
+		padding-left: 160px;
+		padding-top: 60px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab3 .inner {
+		padding-left: 160px;
+		padding-top: 58px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab1 .inner .content {
+		max-width: 360px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab2 .inner .content {
+		max-width: 340px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab3 .inner .content {
+		max-width: 356px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content .inner .content p b {
+		font-weight: 700;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content .inner .image {
+		position: absolute;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab1 .inner .image {
+		right: 88px;
+		top: 6px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab2 .inner .image {
+		top: 50px;
+		right: 133px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab3 .inner .image {
+		top: 60px;
+		right: 110px;
+	}
+
+}
+
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+	.tab-section .tabs .main-tabs .tab-content#tab1 .inner {
+		padding-left: 60px;
+	}
+	.tab-section .tabs .main-tabs .tab-content#tab2 .inner {
+		padding-left: 60px;
+	}
+	.tab-section .tabs .main-tabs .tab-content#tab3 .inner {
+		padding-left: 60px;
+	}
+	.tab-section .tabs .main-tabs .tab-content#tab2 .inner .image {
+		right: 40px;
+	}
+	.tab-section .tabs .main-tabs .tab-content#tab3 .inner .image {
+		right: 40px;
+		max-width: 500px;
+	}
+}
 
 
 @media (min-width: 768px) and (max-width: 993px) {
@@ -1083,10 +1203,6 @@ div#tab2 .inner .image {
 @media (max-width: 1100px) {
 	.home_page_faq_wrap {
 		padding: 0 90px;
-	}
-
-	div#tab2 .inner .image {
-		left: -60px;
 	}
 
 	.explore-stock a.btn_dark {
@@ -1142,6 +1258,27 @@ div#tab2 .inner .image {
 
 	.stocks_slider_sec ol {
 		padding-left: 20px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.tab-section .head {
+		padding: 39px 40px 14px;
+	}
+
+	.tab-section .head ul#tabs-nav li {
+		margin: 0 23px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content .inner {
+		padding: 40px 80px;
+	}
+
+	.tab-section {
+		padding: 100px 0 0 0;
+	}
+	.tab-section .tabs .main-tabs .tab-content .inner .image {
+		text-align: center;
 	}
 }
 
@@ -1219,26 +1356,6 @@ div#tab2 .inner .image {
 
 	.faq_content p {
 		font-size: 12px !important;
-	}
-
-	.tab-section .head {
-		padding: 39px 80px 14px;
-	}
-
-	.tab-section .head ul#tabs-nav li {
-		margin: 0 23px;
-	}
-
-	.tab-section .tabs .main-tabs .tab-content .inner {
-		padding: 40px 80px;
-	}
-
-	div#tab2 .inner .image {
-		left: 0;
-	}
-
-	.tab-section {
-		padding: 100px 0 0 0;
 	}
 
 	.explore-stock .explore-image ul li {
@@ -1377,12 +1494,12 @@ div#tab2 .inner .image {
 		padding: 30px 0 0 0;
 	}
 
-	.stock-info .stock-row .stock-content p {
+	.stock-info .stock-row .stock-content span {
 		font-size: 12px;
 		font-weight: 500;
 	}
 
-	.stock-info .stock-row .stock-content p small {
+	.stock-info .stock-row .stock-content span small {
 		background: #754fe1;
 	}
 
@@ -1482,10 +1599,21 @@ div#tab2 .inner .image {
 	.tab-section .tabs .main-tabs .tab-content .inner .image {
 		width: 100%;
 		margin-top: 40px;
+		text-align: center;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content#tab1 .inner .image img {
+		max-width: 300px;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content .inner .image img {
+		width: auto;
+		margin: auto;
 	}
 
 	.tab-section .tabs .main-tabs .tab-content .inner .content p {
 		font-size: 14px !important;
+		line-height: 19.6px;
 	}
 
 	.tab-section .head ul#tabs-nav {
@@ -1529,14 +1657,6 @@ div#tab2 .inner .image {
 
 	#mob-tabs li.active a {
 		border: 1px solid rgba(212, 225, 245, 1);
-	}
-
-	div#tab2 .inner .content {
-		width: 100%;
-	}
-
-	div#tab2 .inner .image {
-		width: 100%;
 	}
 
 	.nav_tabs_container {

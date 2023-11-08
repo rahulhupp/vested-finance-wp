@@ -47,6 +47,7 @@ jQuery(document).ready(function ($) {
 		],
 	});
 
+	//stocks slider
 	$(".us_stocks_slider").slick({
 		infinite: true,
 		arrows: false,
@@ -56,7 +57,7 @@ jQuery(document).ready(function ($) {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		vertical: true,
-		verticalSwiping: false,
+		verticalSwiping: true,
 		responsive: [
 			{
 				breakpoint: 767,
@@ -87,7 +88,7 @@ jQuery(document).ready(function ($) {
 						slidesToScroll: 1,
 						asNavFor: ".us_stocks_slider",
 						vertical: false,
-						dots: true,
+						dots: false,
 						speed: 800,
 					},
 				},
