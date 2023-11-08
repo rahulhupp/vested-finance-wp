@@ -90,7 +90,7 @@
                                             <?php if (have_rows('popular_category_list_us', 'option')) : ?>
                                                 <div class="tab_links_wrap">
                                                     <?php while (have_rows('popular_category_list_us', 'option')) : the_row(); ?>
-                                                        <a href="<?php the_sub_field('popular_url_us'); ?>" class="single_tab_link"><?php the_sub_field('popular_name_us'); ?></a>
+                                                        <a href="<?php the_sub_field('popular_url_us'); ?>" class="single_tab_link" target="_blank"><?php the_sub_field('popular_name_us'); ?></a>
                                                     <?php endwhile; ?>
                                                 </div>
                                             <?php endif; ?>
@@ -150,7 +150,6 @@
 
                                 <div class="disclosure_content">
                                     <?php the_sub_field('disclosure_content_us'); ?>
-
                                 </div>
 
                             </div>
