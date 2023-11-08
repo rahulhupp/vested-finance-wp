@@ -429,6 +429,7 @@
 	font-weight: 500;
 	line-height: 120%;
 	font-family: "Inter", sans-serif;
+	display: block;
 }
 
 .build-foundation .foundation-list {
@@ -911,6 +912,8 @@
 	margin-bottom: 0;
 }
 
+
+
 .faq_que h4 {
 	color: #212529;
 	font-family: Inter;
@@ -1293,7 +1296,7 @@
 
 @media (max-width: 992px) {
 	.portfolio_slider_sec {
-		padding: 40px 0 72px;
+		padding: 40px 0 62px;
 	}
 
 	.portfolio_slider_content {
@@ -1319,10 +1322,6 @@
 
 	.faq_content p {
 		font-size: 18px !important;
-	}
-
-	.home_page_faqs {
-		padding-top: 17px !important;
 	}
 
 	.home_page_faq_wrap {
@@ -1388,7 +1387,7 @@
 	}
 
 	.build-foundation .foundation-list ul li {
-		padding: 0 0 0 20px !important;
+		padding: 0 0 0 30px !important;
 		background: transparent;
 	}
 
@@ -1401,7 +1400,7 @@
 	}
 
 	.foundation-list .slick-list {
-		padding: 0 20% 0 0;
+		padding: 0 30% 0 0;
 	}
 
 	.build-foundation .bottom-content p {
@@ -1570,11 +1569,11 @@
 	}
 
 	.tab-section {
-		padding: 50px 0;
+		padding: 50px 0 16px;
 	}
 
 	.tab-section .head {
-		padding: 37px 27px;
+		padding: 37px 27px 24px;
 	}
 
 	.tab-section .head h2 {
@@ -1615,7 +1614,7 @@
 	}
 
 	.tab-section .tabs .main-tabs .tab-content .inner {
-		padding: 27px;
+		padding: 27px 27px 76px 27px;
 	}
 
 	.tab-section .tabs .main-tabs .tab-content .inner .content {
@@ -1691,7 +1690,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-top: 40px;
+		margin-top: 47px;
 	}
 
 	.explore-stock a.btn_dark {
@@ -1764,6 +1763,7 @@
 
 	.post-type-list {
 		padding-bottom: 105px;
+		padding-top: 45px;	
 	}
 
 	.sub_heading {
@@ -1830,11 +1830,18 @@
 	    font-size: 22px;
 	}
 	.post-type-list h2 {
-	    font-size: 22px;
+		font-size: 22px;
+		margin-bottom: 54px;
 	}
 
 	.home_page_faqs .section_title {
 		font-size: 22px;
+		padding: 0 0 37px 0;
+	}
+
+	.single_faq {
+	    padding: 16px 16px 28px 16px;
+	    margin-bottom: 12px;
 	}
 
 	.banner_popup {
@@ -1870,6 +1877,41 @@
 	}
 	.stock-info .stock-row .stock-content .bottom .buttons {
 		justify-content: center;
+	}
+	.build-foundation .btn {
+	    margin-bottom: 50px;
+	}
+	.explore-stock {
+	    padding: 56px 0 75px;
+	}
+	.explore-stock form {
+	    margin: 29px auto 0;
+	}
+	.explore-stock .bottom-content {
+	    margin-top: 48px;
+	}
+	.build-foundation .btn {
+		margin-top: 57px;
+		margin-bottom: 48px;
+	}
+	.stocks_slider_sec h2.section_title {
+	    max-width: 310px;
+	    margin: 0 auto;
+	}
+	.stocks_slider_sec {
+	    padding: 31px 0 35px;
+	}
+	.portfolio_slider_inner_content {
+	    margin-left: 5px;
+	}
+	.post-listing:last-child .head .short-content p {
+	    margin-bottom: 0;
+	}
+	.partners h2.section_title {
+	    margin-bottom: 19px;
+	}
+	.partners p.sub_heading {
+	    font-weight: 400;
 	}
 }
 

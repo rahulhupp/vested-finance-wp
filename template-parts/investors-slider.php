@@ -63,6 +63,9 @@
 	.investors_sec .container {
 		max-width: 1230px;
 	}
+	.investors_sec h2.section_title {
+	    margin: 0 0 10px 0;
+	}
 
 	.investors_slider_wrap,
 	.investor_desclaimer {
@@ -279,7 +282,7 @@
 
 	@media (max-width: 767px) {
 		.investors_slider {
-			margin-top: 30px;
+			margin-top: 38px;
 		}
 
 		.investor_subtitle {
@@ -299,6 +302,12 @@
 		.investors_slider_wrap,
 		.investor_desclaimer {
 			padding: 0;
+		}
+		.investors_slider_wrap {
+			padding: 0 24px;
+		}
+		.investor_slider_nav {
+		    margin-bottom: 37px;
 		}
 	}
 

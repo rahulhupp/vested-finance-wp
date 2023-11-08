@@ -2,7 +2,7 @@
     <div class="container">
         <div class="head">
             <h2>Explore any US Stock</h2>
-            <p class="mobile_hide">Discover the world of 5,000+ US Stocks and ETFs</p>
+            <p>Discover the world of 5,000+ US Stocks and ETFs</p>
             <!-- <p class="desktop_hide">Issued by top rated companies with high <br>CRISIL ratings</p> -->
         </div>
         <form>
