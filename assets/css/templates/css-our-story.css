@@ -114,6 +114,7 @@
 }
 .leadership-modal-open {
     overflow: hidden;
+    max-width: calc(100% - 15px);
 }
 .leadership {
     padding-top: 158px;

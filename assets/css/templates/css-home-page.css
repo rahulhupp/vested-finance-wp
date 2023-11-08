@@ -292,6 +292,10 @@
 	margin-left: 20px;
 }
 
+.link_light:hover {
+    color: #000;
+}
+
 .link_light i {
 	margin-left: 6px;
 }
@@ -330,6 +334,10 @@
 
 .edge_content .section_title {
 	margin-bottom: 20px;
+}
+
+.edge_content .section_title span {
+    display: block;
 }
 
 .edge_icon {
@@ -374,6 +382,7 @@
 .edge_btns .btn_light {
 	padding: 16px 22px;
 	min-width: 172px;
+	text-align: center;
 }
 
 .edge_btns .link_dark {
@@ -1064,7 +1073,7 @@ section.invest_wisely_sec .container {
 	.link_light {
 		font-size: 14px;
 		margin-left: 23px;
-		width: calc(100% - 160px);
+		width: calc(100% - 185px);
 	}
 
 	.edge_content {
@@ -1116,6 +1125,7 @@ section.invest_wisely_sec .container {
 		padding: 11px 16px;
 		font-size: 14px;
 		font-weight: 700;
+		min-width: unset;
 	}
 
 	.edge_btns {
@@ -1126,8 +1136,8 @@ section.invest_wisely_sec .container {
 
 	.edge_btns .link_dark {
 		font-size: 14px;
-		margin-left: 23px;
-		width: calc(100% - 160px);
+		margin-left: 13px;
+		width: calc(100% - 150px);
 	}
 
 	.link_dark {
@@ -1293,6 +1303,11 @@ section.invest_wisely_sec .container {
 	.portfolio_slider_content ul.slick-dots button {
 		display: none;
 	}
+	.invest_wisely_sec .section_title {
+	    max-width: 260px;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
 }
 
 @media (max-width: 600px) {
@@ -1316,7 +1331,9 @@ section.invest_wisely_sec .container {
 		font-size: 12px;
 		padding: 11px 10px;
 	}
-
+	.link_light {
+	    width: calc(100% - 145px);
+	}
 	.counter_amt h3 {
 		font-size: 24px;
 	}
@@ -1329,10 +1346,5 @@ section.invest_wisely_sec .container {
 	.edge_btns .btn_light {
 		padding: 11px 10px;
 		font-size: 12px;
-	}
-
-	.edge_btns .link_dark {
-		font-size: 8px;
-		margin-left: 4px;
 	}
 }
