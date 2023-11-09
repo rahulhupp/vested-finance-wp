@@ -114,7 +114,7 @@
                                             if ($other_link) :
                                                 $other_link_url = $other_link['url'];
                                                 $other_link_title = $other_link['title'];
-                                                $other_link_target = $other_link['target'] ? $footer_link['target'] : '_self';
+                                                $other_link_target = $other_link['target'] ? $other_link['target'] : '_self';
                                             ?>
                                                 <a href="<?php echo $other_link_url; ?>" target="<?php echo $other_link_target; ?>"><?php echo $other_link_title; ?></a>
                                             <?php endif; ?>
