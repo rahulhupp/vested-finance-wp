@@ -63,6 +63,7 @@
 .banner_list {
   margin-top: 16px;
   margin-bottom: 0;
+  margin-left: 0;
 }
 
 .banner_list li {
@@ -319,6 +320,7 @@
   background: rgba(0, 40, 82, 0.1);
   padding: 5px;
   margin-bottom: 11px;
+  margin-left: 0;
 }
 
 .tab-menu ul li {
@@ -1285,6 +1287,10 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 .no_post_msg {
   text-align: center;
+}
+
+.banner_list li:not(:first-child) {
+  margin-top: 16px;
 }
 
 @media (min-width: 993px) {
