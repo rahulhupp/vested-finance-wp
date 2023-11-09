@@ -362,9 +362,9 @@ get_header(); ?>
                         wp_reset_postdata(); // Reset the post data 
                         ?>
                     </div>
-                <?php else :
-                    echo 'No posts found.';
-                endif;
+                <?php else : ?>
+                    <p class="no_post_msg">No Post Found !!!</p>
+                <?php endif;
                 ?>
             </div>
         </div>

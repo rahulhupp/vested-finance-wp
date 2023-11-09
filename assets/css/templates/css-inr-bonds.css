@@ -1,3 +1,8 @@
+.page-template.page-template-page-inr-bonds .site-content .ast-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
 .breadcrumb_wrap {
   display: none;
 }
@@ -27,7 +32,6 @@
 
 .sub_heading h3 {
   color: #212529;
-  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -49,7 +53,6 @@
 
 .bonds_banner_content h1 {
   color: #002852;
-  font-family: Inter;
   font-size: 48px;
   font-style: normal;
   font-weight: 800;
@@ -67,7 +70,6 @@
   padding-left: 34px;
   position: relative;
   color: #505a64;
-  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -80,7 +82,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background: url(../../img/check.png);
+  background: url(../../images/check.png);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -99,7 +101,6 @@
   border-radius: 5px;
   background: #002852;
   color: #fff;
-  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -113,7 +114,6 @@
   padding: 16px;
   border-radius: 5px;
   border: 1px solid #002852;
-  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -126,7 +126,6 @@
 
 .btn_link {
   color: #212529;
-  font-family: Poppins;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -153,7 +152,6 @@
 .section_title {
   color: #002852;
   text-align: center;
-  font-family: "Inter", sans-serif;
   font-size: 38px;
   font-style: normal;
   font-weight: 300;
@@ -207,7 +205,6 @@
   margin-left: 18px;
   width: calc(100% - 70px);
   color: rgba(33, 37, 41, 0.6);
-  font-family: Inter;
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -269,7 +266,6 @@
   margin-left: 18px;
   width: calc(100% - 80px);
   color: #fff;
-  font-family: Inter;
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -338,7 +334,6 @@
 }
 
 .tab-menu ul li a {
-  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -420,7 +415,6 @@
 
 .slide_info h4 {
   color: #002852;
-  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -436,7 +430,6 @@
 .slide_info p {
   color: #8c8c8c;
   margin-bottom: 0;
-  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -460,7 +453,7 @@
 .info_title {
   color: #8c8c8c;
   margin-bottom: 0;
-  font-family: Inter;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -471,7 +464,6 @@
 .info_desc {
   color: #262626;
   margin-bottom: 0;
-  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -584,7 +576,7 @@
 .tab .btn_link {
   margin-left: 71px;
   color: #002852;
-  font-family: Inter;
+
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -616,7 +608,7 @@
   position: absolute;
   width: 1349px;
   height: 364px;
-  background: url(../../img/edge-shape-bg.png);
+  background: url(../../images/edge-shape-bg.png);
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -633,7 +625,7 @@
   margin-top: 13px;
   color: #fff;
   text-align: center;
-  font-family: Inter;
+
   font-size: 20px !important;
   font-style: normal;
   font-weight: 600;
@@ -708,7 +700,7 @@
 
 .steps_slides .slider_index {
   color: #212529;
-  font-family: "Inter", sans-serif;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -718,7 +710,7 @@
 
 .steps_slides .portfolio_slider_inner_content h3 {
   color: #212529;
-  font-family: Poppins;
+
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
@@ -730,7 +722,7 @@
 .steps_slides .single_slider_desc {
   margin: 0;
   color: rgba(33, 37, 41, 0.6);
-  font-family: Poppins;
+
   font-size: 18px !important;
   font-style: normal;
   font-weight: 400;
@@ -740,6 +732,10 @@
 
 .invest_wisely_sec {
   padding-bottom: 108px;
+}
+
+.invest_module_sec {
+  display: none;
 }
 
 .single_wisely_list:not(:first-child) .single_wisely_img {
@@ -761,7 +757,7 @@
 .single_wisely_content h3 {
   color: #002852;
   text-align: center;
-  font-family: Inter;
+
   font-size: 30px;
   font-style: normal;
   font-weight: 600;
@@ -773,7 +769,7 @@
 .single_wisely_content p {
   color: rgba(33, 37, 41, 0.6);
   text-align: center;
-  font-family: Inter;
+
   font-size: 18px !important;
   font-style: normal;
   font-weight: 400;
@@ -796,7 +792,7 @@
 
 .faq_que h4 {
   color: #212529;
-  font-family: Inter;
+
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
@@ -831,7 +827,7 @@
 .faq_content p {
   margin-bottom: 0;
   color: #1e2022;
-  font-family: Inter;
+
   font-size: 22px !important;
   font-style: normal;
   font-weight: 400;
@@ -847,7 +843,7 @@
 }
 
 .home_page_faqs {
-  padding-bottom: 269px;
+  padding-bottom: 150px;
 }
 
 .desktop_hide {
@@ -929,9 +925,10 @@
   padding: 0 10px 0 21px;
 }
 
-.module_date, .module_date span {
+.module_date,
+.module_date span {
   color: rgba(33, 37, 41, 0.5);
-  font-family: Inter;
+
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -941,7 +938,6 @@
 
 .single_module_content h4 {
   color: #002852;
-  font-family: Inter !important;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -973,7 +969,7 @@
 .reading_time h5 {
   margin-bottom: 0;
   color: #0cc786;
-  font-family: Inter;
+
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -999,7 +995,6 @@
   width: calc(100% - 32px);
   margin-left: 8px;
   color: rgba(33, 37, 41, 0.6);
-  font-family: Inter !important;
   font-size: 12px !important;
   font-style: normal;
   font-weight: 400;
@@ -1047,7 +1042,7 @@
 
 .bond_result_single .left_part p {
   color: #212529;
-  font-family: Inter;
+
   font-size: 16px !important;
   font-style: normal;
   font-weight: 400;
@@ -1058,7 +1053,7 @@
 
 .bond_result_single .left_part h3 {
   color: #212529;
-  font-family: Inter;
+
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -1067,7 +1062,7 @@
   margin-bottom: 0;
 }
 
-.bond_result_single .left_part h3 >div {
+.bond_result_single .left_part h3 > div {
   display: inline-block;
 }
 
@@ -1075,7 +1070,7 @@
   width: 100%;
   height: 100%;
   background: #002852;
-  transition: all .3s;;
+  transition: all 0.3s;
 }
 
 .left_part {
@@ -1102,7 +1097,7 @@
 
 .left_part span {
   color: #212529;
-  font-family: Inter;
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -1118,7 +1113,7 @@
 
 .result_note h3 {
   color: #fff;
-  font-family: Inter;
+
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -1146,17 +1141,27 @@
   background-position: calc(100% - 14px);
   cursor: pointer;
   color: #002852;
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background-color: #fff;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  box-shadow: none !important;
 }
 
 .bond_select_col .field_group label {
   color: #464646;
-  font-family: Poppins;
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -1178,13 +1183,14 @@
   margin: 0;
   max-width: 382px;
   cursor: pointer;
+  border: none;
 }
 
 .tick {
   width: 1px;
   height: 4px;
   display: inline-block;
-  background: #9CA3AF;
+  background: #9ca3af;
 }
 
 .ticks {
@@ -1195,7 +1201,8 @@
   margin: 9px auto 0;
 }
 
-.tick:first-child, .tick:last-child {
+.tick:first-child,
+.tick:last-child {
   height: 8px;
 }
 
@@ -1224,7 +1231,7 @@
 .unit_field p {
   margin-bottom: 0;
   color: #374151;
-  font-family: Inter;
+
   font-size: 14px !important;
   font-style: normal;
   font-weight: 500;
@@ -1240,7 +1247,7 @@
   margin-bottom: 0;
   padding: 8px 14px;
   color: #002852;
-  font-family: Poppins;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -1269,11 +1276,15 @@
 .return_calc_wrap .yield label {
   margin: 0;
   color: #374151;
-  font-family: Inter;
+
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   width: calc(100% - 84px);
+}
+
+.no_post_msg {
+  text-align: center;
 }
 
 @media (min-width: 993px) {
@@ -1919,7 +1930,7 @@
   .result_note h3 {
     padding: 0;
     color: #212529;
-    font-family: Inter;
+
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1957,7 +1968,7 @@
   .result_note h3 {
     padding: 0;
     color: #212529;
-    font-family: Inter;
+
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1994,7 +2005,7 @@
   .bond_select_col .field_group label {
     margin-bottom: 9px;
     color: #8c8c8c;
-    font-family: Inter;
+
     font-weight: 500;
   }
 
@@ -2002,7 +2013,6 @@
     height: 39px;
     padding: 7px 13px;
     font-size: 14px;
-    font-family: Inter;
   }
   .qty_btn {
     width: 186px;
@@ -2024,7 +2034,7 @@
     padding: 0;
     text-align: center;
     color: #002852;
-    font-family: Inter;
+
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -2064,7 +2074,7 @@
   .unit_field p {
     margin-bottom: 9px;
     color: #8c8c8c;
-    font-family: Inter;
+
     font-size: 14px !important;
     font-style: normal;
     font-weight: 500;
@@ -2078,7 +2088,7 @@
 
   .bond_result_single:first-child .left_part h3#bond_invest_amt {
     color: #212529;
-    font-family: Inter;
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -2106,7 +2116,7 @@
   .vested_edge_list:after {
     width: 375;
     height: 481px;
-    background: url(../../img/edge-shape-bg-mobile.png);
+    background: url(../../images/edge-shape-bg-mobile.png);
     top: 10px;
     transform: none;
     left: 0;
@@ -2134,27 +2144,29 @@
   .author_info {
     margin-top: 20px;
   }
-  .bond_next, .bond_prev {
+  .bond_next,
+  .bond_prev {
     width: 33px;
     height: 33px;
-}
+  }
 
-.bond_next i, .bond_prev i {
+  .bond_next i,
+  .bond_prev i {
     font-size: 16px;
     width: 16px;
     height: 16px;
-}
+  }
 
-.bond_next {
+  .bond_next {
     right: -30px;
-}
+  }
 
-.bond_prev {
+  .bond_prev {
     left: -30px;
-}
-.single_portfolio_slide {
-  min-height: 363px !important;
-}
+  }
+  .single_portfolio_slide {
+    min-height: 363px !important;
+  }
 }
 
 .single_portfolio_slide .btn_dark i {
