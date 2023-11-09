@@ -115,7 +115,7 @@ get_header(); ?>
                     </div>
                     <?php if (have_rows('portfolio_slider_global')) : ?>
                         <div class="portfolio_slider_content">
-                            <?php while (have_rows('portfolio_slider')) : the_row(); ?>
+                            <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
                                 <div class="single_portfolio_slider_content">
                                     <div class="portfolio_slider_content_inner">
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
