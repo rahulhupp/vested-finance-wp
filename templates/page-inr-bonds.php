@@ -123,177 +123,22 @@ get_header(); ?>
                     </div><!--end of tab-menu-->
                     <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
                         <a href="#" class="btn_link">What are corporate bonds?</a>
-                        <div class="bond_slider_wrap">
-                            <div class="bond_portfolio_slider">
-                                <?php
-                                    // Replace this with the actual API endpoint URL
-                                    $api_url = "https://yield-api-test.vestedfinance.com/bonds";
-
-                                    // Fetch data from the API
-                                    $response = wp_remote_get($api_url);
-
-                                    if (is_array($response) && !is_wp_error($response)) {
-                                        $data = json_decode(wp_remote_retrieve_body($response), true);
-                                        // Check if data.bonds is an array
-                                        if (isset($data['bonds']) && is_array($data['bonds'])) {
-                                            foreach ($data['bonds'] as $bond) {
-                                                if ($bond['bondCategory'] == "CORPORATE") {
-                                                    ?>
-                                                    <div class="single_portfolio_slide">
-                                                        <div class="slide_icon_wrap">
-                                                            <div class="slide_cion">
-                                                                <img src="<?php echo esc_url($bond['logo']); ?>" />
-                                                            </div>
-                                                            <div class="slide_certi">
-                                                                <img src="http://vested-wordpress-media-staging.s3.amazonaws.com/vestedfinance/wp-content/uploads/2023/09/21054133/certificate.png" alt="Certificate">
-                                                            </div>
-                                                        </div>
-                                                        <div class="slide_info">
-                                                            <h4><?php echo esc_html($bond['name']); ?></h4>
-                                                            <p><?php echo esc_html($bond['issuerName']); ?></p>
-                                                        </div>
-                                                        <div class="slide_investment_info">
-
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Min investment</p>
-                                                                <p class="info_desc">₹ <?php echo esc_html($bond['minimumInvestment']); ?></p>
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Yield</p>
-                                                                <p class="info_desc"><?php echo esc_html($bond['yield']); ?> %</p>
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Matures in</p>
-                                                                <p class="info_desc">
-                                                                    <?php 
-                                                                        $result = monthsToYearsAndMonths($bond['maturityInMonths']);
-                                                                        echo $result;
-                                                                    ?>
-                                                                </p>
-                                                                <!-- 3 years 10 months  -->
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Payment Frequency</p>
-                                                                <p class="info_desc"><?php echo esc_html($bond['interestPayFreq']); ?></p>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="slider_button">
-                                                            <a href="#" class="btn_dark" tabindex="0">Explore Now <i class="fa fa-chevron-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <?php
-                                                }
-                                            }
-                                        } else {
-                                            echo "No bond data available.";
-                                        }
-                                    } else {
-                                        echo "Error fetching data from the API.";
-                                    }
-                                ?>
-                            </div>
-                            <!-- <div class="bond_portfolio_slider_nav">
-                                <div class="bond_prev">
-                                    <i class="fa fa-caret-left"></i>
-                                </div>
-                                <div class="bond_next">
-                                    <i class="fa fa-caret-right"></i>
-                                </div>
-                            </div> -->
+                        <div class="bond_slider_wrap" id="corporateBondSlider">
+                            <!-- Placeholder for corporate bond data -->
                         </div>
                     </div>
-                    
+
                     <div class="tab" data-id="tabgovt" id="tabgovt">
                         <a href="#" class="btn_link">What are gsecs?</a>
-                        <div class="bond_slider_wrap">
-                            <div class="bond_portfolio_slider">
-                                <?php
-                                    // Replace this with the actual API endpoint URL
-                                    $api_url = "https://yield-api-test.vestedfinance.com/bonds";
-
-                                    // Fetch data from the API
-                                    $response = wp_remote_get($api_url);
-
-                                    if (is_array($response) && !is_wp_error($response)) {
-                                        $data = json_decode(wp_remote_retrieve_body($response), true);
-                                        // Check if data.bonds is an array
-                                        if (isset($data['bonds']) && is_array($data['bonds'])) {
-                                            foreach ($data['bonds'] as $bond) {
-                                                if ($bond['bondCategory'] == "GOVT") {
-                                                    ?>
-                                                    <div class="single_portfolio_slide">
-                                                        <div class="slide_icon_wrap">
-                                                            <div class="slide_cion">
-                                                                <img src="<?php echo esc_url($bond['logo']); ?>" />
-                                                            </div>
-                                                            <div class="slide_certi">
-                                                                <img src="http://vested-wordpress-media-staging.s3.amazonaws.com/vestedfinance/wp-content/uploads/2023/09/21054133/certificate.png" alt="Certificate">
-                                                            </div>
-                                                        </div>
-                                                        <div class="slide_info">
-                                                            <h4><?php echo esc_html($bond['name']); ?></h4>
-                                                            <p><?php echo esc_html($bond['issuerName']); ?></p>
-                                                        </div>
-                                                        <div class="slide_investment_info">
-
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Min investment</p>
-                                                                <p class="info_desc">₹ <?php echo esc_html($bond['minimumInvestment']); ?></p>
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Yield</p>
-                                                                <p class="info_desc"><?php echo esc_html($bond['yield']); ?> %</p>
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Matures in</p>
-                                                                <p class="info_desc">
-                                                                    <?php 
-                                                                        $result = monthsToYearsAndMonths($bond['maturityInMonths']);
-                                                                        echo $result;
-                                                                    ?>
-                                                                </p>
-                                                                <!-- 3 years 10 months  -->
-                                                            </div>
-                                                            <div class="single_slide_info">
-                                                                <p class="info_title">Payment Frequency</p>
-                                                                <p class="info_desc"><?php echo esc_html($bond['interestPayFreq']); ?></p>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="slider_button">
-                                                            <a href="#" class="btn_dark" tabindex="0">Explore Now <i class="fa fa-chevron-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <?php
-                                                }
-                                            }
-                                        } else {
-                                            echo "No bond data available.";
-                                        }
-                                    } else {
-                                        echo "Error fetching data from the API.";
-                                    }
-                                ?>
-                            </div>
-                            <!-- <div class="bond_portfolio_slider_nav">
-                                <div class="bond_prev">
-                                    <i class="fa fa-caret-left"></i>
-                                </div>
-                                <div class="bond_next">
-                                    <i class="fa fa-caret-right"></i>
-                                </div>
-                            </div> -->
+                        <div class="bond_slider_wrap" id="govtBondSlider">
+                            <!-- Placeholder for government bond data -->
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
     <?php endif; ?>
+
     <section class="returns_calc">
         <div class="container">
             <div class="returns-cal_wrap">
@@ -301,13 +146,6 @@ get_header(); ?>
                 <h2 class="section_title align_left desktop_hide"><span>Your returns compared to a Fixed Deposit</span></h2>
 
                 <div class="return_calc_wrap">
-                    <?php
-                        // Replace this with the actual API endpoint URL
-                        $api_url = "https://yield-api-test.vestedfinance.com/bonds";
-                        // Fetch data from the API
-                        $response = wp_remote_get($api_url);
-                    ?>                
-
                     <div class="bond_select_col">
                         <div class="field_group">
                             <label for="bond">Select a bond</label>
@@ -344,7 +182,8 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Investment amount</p>
-                                    <h3 id="bond_invest_amt">₹ <div newPrice="0" id="investment_amount">0.00</div></h3>
+                                    <h3 id="bond_invest_amt">₹ <div newPrice="0" id="investment_amount">0.00</div>
+                                    </h3>
                                 </div>
                                 <div class="progressed">
                                     <div class="bong_progress" id="invest_amt_progress"></div>
@@ -353,26 +192,29 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Bank Fixed Deposit</p>
-                                    <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div></h3>
+                                    <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div>
+                                    </h3>
                                     <span id="fd_bond_return">(6% Returns)</span>
                                 </div>
                                 <div class="progressed">
-                                    <div class="bong_progress" id="invest_amt_progress"></div>
+                                    <div class="bong_progress" id="bond_amt_progress"></div>
                                 </div>
                             </div>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Selected Bonds</p>
-                                    <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div></h3>
+                                    <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div>
+                                    </h3>
                                     <span id="fd_bond_return">(<span id="yield_returns">12</span>% Returns)</span>
                                 </div>
                                 <div class="progressed">
-                                    <div class="bong_progress" id="invest_amt_progress"></div>
+                                    <div class="bong_progress" id="selected_bond_progress"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="result_note">
-                            <h3>₹<div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div></h3>
+                            <h3>₹<div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div>
+                            </h3>
                         </div>
 
                     </div>
@@ -551,113 +393,405 @@ get_header(); ?>
     <?php endif; ?>
 </div>
 <script>
-    
-
-    document.addEventListener("DOMContentLoaded", function () {
-    // The URL of the API you want to call
-    const apiUrl = "https://yield-api-test.vestedfinance.com/bonds"; // Replace with your API endpoint
-    // Select the <select> element
-    const apiDataDropdown = document.getElementById("bond_selector");
-    // Make an API request using the Fetch API
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json(); // Parse the response as JSON
-        })
-        .then(data => {
-            // Populate the dropdown with data
-            data.bonds.forEach(item => {
-                const option = document.createElement("option");
-                option.value = item.name; // Set the value for the option
-                option.text = item.name; // Set the text to display in the dropdown
-                option.setAttribute("id", item.offeringId);
-                apiDataDropdown.appendChild(option);
+    document.addEventListener("DOMContentLoaded", function() {
+        const corporateApiUrl = "https://yield-api-test.vestedfinance.com/bonds";
+        const corporateContainerId = "corporateBondSlider";
+        const govtContainerId = "govtBondSlider";
+        const apiDataDropdown = document.getElementById("bond_selector");
+        // Make an API request using the Fetch API
+        fetch(corporateApiUrl, {
+                headers: {
+                    'User-Agent': 'Vested_M#8Dfz$B-8W6'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json(); // Parse the response as JSON
+            })
+            .then(data => {
+                // Populate the dropdown with data
+                data.bonds.forEach(item => {
+                    const option = document.createElement("option");
+                    option.value = item.name; // Set the value for the option
+                    option.text = item.name; // Set the text to display in the dropdown
+                    option.setAttribute("id", item.offeringId);
+                    option.setAttribute("minValue", item.minimumQty);
+                    apiDataDropdown.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                apiDataDropdown.innerHTML = "<option value='' selected>Failed to fetch data</option>";
             });
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-            apiDataDropdown.innerHTML = "<option value='' selected>Failed to fetch data</option>";
-        });
 
         const bondSelector = document.getElementById('bond_selector');
         bondSelector.addEventListener('change', () => {
             const selectedOptionId = bondSelector.options[bondSelector.selectedIndex].id;
+            const selectedOptionMinVal = bondSelector.options[bondSelector.selectedIndex].getAttribute("minValue");
             const apiOfferingId = `https://yield-api-test.vestedfinance.com/bond-details?offeringId=${selectedOptionId}`;
-            
-            fetch(apiOfferingId)
-            .then(response => {
-                // Check if the response status is in the 200-299 range (indicating success)
-                if (response.ok) {
-                // Parse the response JSON data
-                return response.json();
-                } else {
-                throw new Error(`HTTP Error: ${response.status}`);
-                }
-            })
-            .then(data => {
-                // Do something with the data received from the API
-                let sumCashFlow = 0;
+            fetch(apiOfferingId, {
+                    headers: {
+                        'User-Agent': 'Vested_M#8Dfz$B-8W6'
+                    }
+                })
+                .then(response => {
+                    // Check if the response status is in the 200-299 range (indicating success)
+                    if (response.ok) {
+                        // Parse the response JSON data
+                        return response.json();
+                    } else {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+                })
+                .then(data => {
+                    // Do something with the data received from the API
+                    document.getElementById('units').min = selectedOptionMinVal;
+                    document.getElementById('unit_range').min = selectedOptionMinVal;
 
-                data.bondDetails.cashflows.forEach(item => {
-                    sumCashFlow = sumCashFlow + item.amount;
+                    function handleResult() {
+                        if (document.getElementById('units').value < 0 || document.getElementById('units').value == '') {
+                            document.getElementById('units').value = selectedOptionMinVal;
+                            document.getElementById('unit_range').value = selectedOptionMinVal;
+                            document.querySelector('.bond_result_col').classList.add('blur');
+                            document.querySelector('.number_units').classList.add('blur');
+                            document.querySelector('.return_calc_wrap .yield').classList.remove('show');
+                        } else {
+                            document.querySelector('.bond_result_col').classList.remove('blur');
+                            document.querySelector('.number_units').classList.remove('blur');
+                            document.querySelector('.return_calc_wrap .yield').classList.add('show');
+                        }
+                    }
+
+                    function updateMinVal() {
+                        if (document.getElementById('units').value < selectedOptionMinVal) {
+                            document.getElementById('units').value = selectedOptionMinVal;
+                            document.getElementById('unit_range').value = selectedOptionMinVal;
+                            document.getElementById('unit_range').min = selectedOptionMinVal
+                            document.getElementById('unit_range').style.background = 'linear-gradient(90deg, rgba(0, 40, 52, 1) 0%, rgba(229, 231, 235, 1) 0%)';
+                            document.querySelector('.bond_result_col').classList.add('blur');
+                            console.log(document.getElementById('unit_range').value);
+                        }
+                    }
+
+                    document.getElementById('units').addEventListener('change', handleResult);
+                    document.getElementById('units').addEventListener('change', updateMinVal);
+                    document.getElementById('units').addEventListener('input', handleResult);
+                    let sumCashFlow = 0;
+
+                    data.bondDetails.cashflows.forEach(item => {
+                        sumCashFlow = sumCashFlow + item.amount;
+                    });
+
+                    // console.log('data', data);
+
+                    const fristCashFlowPrice = data.bondDetails.cashflows[0].amount;
+                    const faceValue = data.bondDetails.faceValue;
+                    const newPrice = data.bondDetails.newPrice;
+                    const totalreturns = parseFloat(fristCashFlowPrice + (faceValue - newPrice)).toLocaleString();
+                    const minimumQuantity = data.bondDetails.minimumQty;
+                    const yieldPrice = data.bondDetails.yield;
+                    const investmentAmount = minimumQuantity * data.bondDetails.newPrice;
+                    const periodInYears = data.bondDetails.maturityInMonths / 12;
+                    const bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
+                    const selectedBonds = sumCashFlow * minimumQuantity;
+                    const extraAmount = selectedBonds - bankFixedDeposit;
+                    const periodInYearMonths = data.bondDetails.maturityInMonths;
+                    const years = Math.floor(periodInYearMonths / 12);
+                    const months = periodInYearMonths % 12;
+                    const maxValue = 1000;
+                    const unitVal = document.getElementById('units');
+                    // unitVal.setAttribute("min", data.bondDetails.minimumQty);
+
+                    // const bankFixedDeposit (Math.pow(initialPortfolioPrice, Periods) -1) * 100;
+                    document.getElementById('units').value = minimumQuantity;
+                    document.getElementById('unit_range').value = minimumQuantity;
+                    document.getElementById('yield_price').textContent = yieldPrice.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('bank_fixed_deposit').textContent = bankFixedDeposit.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('selected_bond').textContent = selectedBonds.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('yield_returns').textContent = yieldPrice.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('investment_amount').textContent = investmentAmount.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('result_note_investment_amount').textContent = investmentAmount.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+
+                    document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
+                    document.getElementById('investment_amount').setAttribute("newPrice", newPrice);
+                    document.getElementById('bank_fixed_deposit').setAttribute("maturity_months", periodInYears);
+                    document.getElementById('selected_bond').setAttribute("sum_cash_flow", sumCashFlow);
+                    document.querySelector('.return_calc_wrap .yield').classList.add('show');
+                    document.querySelector('.bond_result_col').classList.remove('blur');
+                    document.querySelector('.number_units').classList.remove('blur');
+
+                    const fdAmt = parseFloat(document.getElementById('bank_fixed_deposit').innerText.replace(/,/g, ''));
+                    const investedVal = parseFloat(document.getElementById('investment_amount').innerText.replace(/,/g, ''));
+                    const selectedBondVal = parseFloat(document.getElementById('selected_bond').innerText.replace(/,/g, ''));
+                    const investProgress = document.getElementById('invest_amt_progress');
+                    const fdProgress = document.getElementById('bond_amt_progress');
+                    const bondProgress = document.getElementById('selected_bond_progress');
+
+                    const maxVal = Math.max(fdAmt, investedVal, selectedBondVal);
+
+                    const fdAmtPercent = (fdAmt / maxVal) * 100;
+                    const investedValPercent = (investedVal / maxVal) * 100;
+                    const selectedBondValPercent = (selectedBondVal / maxVal) * 100;
+
+
+                    investProgress.style.width = investedValPercent + '%';
+                    fdProgress.style.width = fdAmtPercent + '%';
+                    bondProgress.style.width = selectedBondValPercent + '%';
+
+
+
+
+                    if (months <= 0) {
+                        document.getElementById('maturity_in_months').textContent = years + ' Years ';
+                    } else {
+                        document.getElementById('maturity_in_months').textContent = years + ' years ' + months + ' months ';
+                    }
+
+                    var slider = document.getElementById("unit_range");
+                    var newVal = ((minimumQuantity - 1) / (maxValue - 1)) * 99 + 1;
+                    var color = "linear-gradient(90deg, rgba(0, 40, 52, 1) 0%, rgba(229, 231, 235, 1) 0%)";
+                    slider.style.background = color;
+
+
+
+
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch request
+                    console.error(`Error: ${error.message}`);
                 });
-
-                console.log ('data', data);
-
-                const fristCashFlowPrice = data.bondDetails.cashflows[0].amount;
-                const faceValue = data.bondDetails.faceValue;
-                const newPrice = data.bondDetails.newPrice;
-                const totalreturns = parseFloat(fristCashFlowPrice + (faceValue - newPrice)).toLocaleString();
-                const minimumQuantity = data.bondDetails.minimumQty;
-                const yieldPrice = data.bondDetails.yield;
-                const investmentAmount = minimumQuantity * data.bondDetails.newPrice;
-                const periodInYears = data.bondDetails.maturityInMonths/12;
-                const bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-                const selectedBonds = sumCashFlow * minimumQuantity;
-                const extraAmount = selectedBonds - bankFixedDeposit;
-                const periodInYearMonths = data.bondDetails.maturityInMonths;
-                const years = Math.floor(periodInYearMonths / 12);
-                const months = periodInYearMonths % 12;
-
-                // const bankFixedDeposit (Math.pow(initialPortfolioPrice, Periods) -1) * 100;
-                
-                document.getElementById('units').value = minimumQuantity;
-                document.getElementById('unit_range').value = minimumQuantity;
-                document.getElementById('yield_price').textContent = yieldPrice.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('bank_fixed_deposit').textContent = bankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('selected_bond').textContent = selectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('yield_returns').textContent = yieldPrice.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('investment_amount').textContent = investmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('result_note_investment_amount').textContent = investmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-                document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-
-                document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
-                document.getElementById('investment_amount').setAttribute("newPrice", newPrice);
-                document.getElementById('bank_fixed_deposit').setAttribute("maturity_months", periodInYears);
-                document.getElementById('selected_bond').setAttribute("sum_cash_flow", sumCashFlow);
-                document.querySelector('.return_calc_wrap .yield').classList.add('show');
-                document.querySelector('.bond_result_col').classList.remove('blur');
-                document.querySelector('.number_units').classList.remove('blur');
-
-                if (months <= 0) {
-                    document.getElementById('maturity_in_months').textContent = years + ' Years ';
-                }
-                else {
-                    document.getElementById('maturity_in_months').textContent = years + ' years ' + months + ' months ' ;
-                }
-
-                var slider = document.getElementById("unit_range");
-                var color = "linear-gradient(90deg, rgba(0, 40, 52, 1)" + minimumQuantity + "%, rgba(229, 231, 235, 1)" + minimumQuantity + "%)";
-                slider.style.background = color;
-                
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the fetch request
-                console.error(`Error: ${error.message}`);
-            });
         });
-});
+
+        /* api call function to get data for bonds tab section */
+        function monthsToYearsAndMonth(months) {
+            const years = Math.floor(months / 12);
+            const remainingMonths = months % 12;
+
+            if (years > 0 && remainingMonths > 0) {
+                return `${years} years ${remainingMonths} months`;
+            } else if (years > 0) {
+                return `${years} years`;
+            } else if (remainingMonths > 0) {
+                return `${remainingMonths} months`;
+            } else {
+                return '0 months';
+            }
+        }
+
+        function createBondElements(bondData) {
+            const bondDiv = document.createElement('div');
+            bondDiv.className = 'single_portfolio_slide';
+
+            // Create and append elements with bond data
+            const slideIconWrap = document.createElement('div');
+            slideIconWrap.className = 'slide_icon_wrap';
+
+            const slideCion = document.createElement('div');
+            slideCion.className = 'slide_cion';
+
+            const img = document.createElement('img');
+            img.src = bondData.logo;
+            slideCion.appendChild(img);
+            slideIconWrap.appendChild(slideCion);
+
+            const ratingColorCode = bondData.ratingColorCode.split(',');
+            const background_color = ratingColorCode[0].trim();
+            const text_color = ratingColorCode[1].trim();
+
+            const slideCerti = document.createElement('div');
+            slideCerti.className = 'slide_certi';
+            // slideCerti.style.backgroundColor = background_color;
+            const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgElement.setAttribute("width", "100");
+            svgElement.setAttribute("height", "29");
+
+
+            const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathElement.setAttribute("d", "M102.5 4C102.5 1.79086 100.709 0 98.5 0L17.7252 0C16.3604 0 15.0897 0.695884 14.3547 1.84589L0.93322 22.8459C-0.768471 25.5084 1.14376 29 4.30365 29H98.5C100.709 29 102.5 27.2091 102.5 25V4Z");
+            pathElement.setAttribute("fill", background_color);
+
+
+            svgElement.appendChild(pathElement);
+
+
+            slideCerti.appendChild(svgElement);
+
+
+
+            const sliderRating = document.createElement('p');
+            sliderRating.className = 'slider_rating';
+            sliderRating.style.color = text_color;
+            sliderRating.textContent = bondData.rating;
+
+            slideCerti.appendChild(sliderRating);
+            slideIconWrap.appendChild(slideCerti);
+            bondDiv.appendChild(slideIconWrap);
+
+            const slideInfo = document.createElement('div');
+            slideInfo.className = 'slide_info';
+
+            const h4 = document.createElement('h4');
+            h4.textContent = bondData.name;
+
+            const p = document.createElement('p');
+            p.textContent = bondData.issuerName;
+
+            const investVal = document.createElement('p');
+            investVal.className = 'info_title';
+            investVal.textContent = bondData.minimumInvestment;
+
+            slideInfo.appendChild(h4);
+            slideInfo.appendChild(p);
+            bondDiv.appendChild(slideInfo);
+
+            const slideInvestmentInfo = document.createElement('div');
+            slideInvestmentInfo.className = 'slide_investment_info';
+
+            // Create and append individual investment info elements
+            function createInvestmentInfo(title, data) {
+                const singleSlideInfo = document.createElement('div');
+                singleSlideInfo.className = 'single_slide_info';
+
+                const infoTitle = document.createElement('p');
+                infoTitle.className = 'info_title';
+                infoTitle.textContent = title;
+
+                const infoDesc = document.createElement('p');
+                infoDesc.className = 'info_desc';
+                infoDesc.textContent = data;
+
+                singleSlideInfo.appendChild(infoTitle);
+                singleSlideInfo.appendChild(infoDesc);
+                slideInvestmentInfo.appendChild(singleSlideInfo);
+            }
+
+            createInvestmentInfo('Min investment', `₹ ${bondData.minimumInvestment}`);
+            createInvestmentInfo('Yield', `${bondData.yield} %`);
+            const maturityInMonths = bondData.maturityInMonths;
+            const convertedMaturity = monthsToYearsAndMonth(maturityInMonths);
+
+            createInvestmentInfo('Matures in', convertedMaturity);
+
+            createInvestmentInfo('Payment Frequency', bondData.interestPayFreq);
+
+            bondDiv.appendChild(slideInvestmentInfo);
+
+            const sliderButton = document.createElement('div');
+            sliderButton.className = 'slider_button';
+
+            const exploreLink = document.createElement('a');
+            exploreLink.href = '#';
+            exploreLink.className = 'btn_dark';
+            exploreLink.tabIndex = 0;
+            exploreLink.textContent = 'Explore Now';
+
+            const icon = document.createElement('i');
+            icon.className = 'fa fa-chevron-right';
+
+            exploreLink.appendChild(icon);
+            sliderButton.appendChild(exploreLink);
+            bondDiv.appendChild(sliderButton);
+
+            return bondDiv;
+        }
+
+        function fetchDataAndDisplay(apiUrl, containerId) {
+            fetch(apiUrl, {
+                    headers: {
+                        'User-Agent': 'Vested_M#8Dfz$B-8W6'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const bondContainer = document.getElementById(containerId);
+
+                    const bondsForCategory = data.bonds.filter(bond => {
+                        if (containerId === "govtBondSlider") {
+                            return bond.bondCategory === "GOVT";
+                        } else if (containerId === "corporateBondSlider") {
+                            return bond.bondCategory === "CORPORATE";
+                        }
+                        return false;
+                    });
+
+                    if (bondsForCategory.length > 0) {
+                        const bondPortfolioSlider = document.createElement('div');
+                        bondPortfolioSlider.className = 'bond_portfolio_slider';
+
+                        bondsForCategory.forEach(bond => {
+                            const bondDiv = createBondElements(bond);
+                            bondPortfolioSlider.appendChild(bondDiv);
+                        });
+
+                        bondContainer.appendChild(bondPortfolioSlider);
+
+                        jQuery(`#${containerId} .bond_portfolio_slider`).slick({
+                            infinite: false,
+                            arrows: true,
+                            dots: false,
+                            autoplay: false,
+                            speed: 800,
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            centerMode: false,
+                            nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+                            prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+                            responsive: [{
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                },
+                            }],
+                        });
+
+                        const singleSlides = bondContainer.querySelectorAll('.single_portfolio_slide');
+                        if (singleSlides.length < 3) {
+                            bondPortfolioSlider.classList.add('slide_wo_shadow');
+                        } else {
+                            bondPortfolioSlider.classList.remove('slide_wo_shadow');
+                        }
+                    } else {
+                        const noDataMessage = document.createElement('p');
+                        noDataMessage.className = 'no-data-message';
+                        noDataMessage.textContent = 'No bonds available.';
+                        bondContainer.appendChild(noDataMessage);
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+
+        fetchDataAndDisplay(corporateApiUrl, corporateContainerId);
+        fetchDataAndDisplay(corporateApiUrl, govtContainerId);
+    });
 </script>
+
 <?php get_footer(); ?>
