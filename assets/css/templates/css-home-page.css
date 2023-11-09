@@ -385,10 +385,6 @@
 	text-align: center;
 }
 
-.edge_btns .link_dark {
-	font-size: 17px;
-}
-
 .link_dark {
 	color: #fff;
 	font-size: 18px;
@@ -853,7 +849,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.link_dark {
-		font-size: 15px;
+		font-size: 16px;
 		margin-left: 10px;
 	}
 
