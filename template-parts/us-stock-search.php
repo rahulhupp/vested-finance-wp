@@ -226,7 +226,7 @@
         let timeout;
 
         // Debounces makeAPICall method
-        debounceFunction(makeAPICall, 1000)
+        debounceFunction(makeAPICall, 500)
 
         if(inputValue.length > 0) {
             inputClearbtn.style.display = 'flex';
