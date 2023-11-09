@@ -1,13 +1,8 @@
-.page-template-page-inr-bonds .site-content .ast-container {
-  max-width: 100%;
-  padding: 0;
-}
 .breadcrumb_wrap {
   display: none;
 }
 .inr-bonds-page .container {
-  max-width: 1240px;
-  padding: 0 24px;
+  max-width: 1230px;
 }
 .bonds_banner_wrap {
   display: flex;
@@ -32,7 +27,7 @@
 
 .sub_heading h3 {
   color: #212529;
-  
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -54,18 +49,17 @@
 
 .bonds_banner_content h1 {
   color: #002852;
-  
+  font-family: Inter;
   font-size: 48px;
   font-style: normal;
   font-weight: 800;
   line-height: 110%;
-  margin-bottom: 0.5em;
+  margin-bottom: 16px;
 }
 
 .banner_list {
   margin-top: 16px;
   margin-bottom: 0;
-  margin-left: 0;
 }
 
 .banner_list li {
@@ -73,13 +67,12 @@
   padding-left: 34px;
   position: relative;
   color: #505a64;
-  
+  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 130%; /* 23.4px */
   letter-spacing: -0.36px;
-  margin-bottom: 0.6em;
 }
 
 .banner_list li:before {
@@ -87,7 +80,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background: url(../../images/check.png);
+  background: url(../../img/check.png);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -106,7 +99,7 @@
   border-radius: 5px;
   background: #002852;
   color: #fff;
-  
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -120,7 +113,7 @@
   padding: 16px;
   border-radius: 5px;
   border: 1px solid #002852;
-  
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -160,7 +153,7 @@
 .section_title {
   color: #002852;
   text-align: center;
-  
+  font-family: "Inter", sans-serif;
   font-size: 38px;
   font-style: normal;
   font-weight: 300;
@@ -214,7 +207,7 @@
   margin-left: 18px;
   width: calc(100% - 70px);
   color: rgba(33, 37, 41, 0.6);
-  
+  font-family: Inter;
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -276,7 +269,7 @@
   margin-left: 18px;
   width: calc(100% - 80px);
   color: #fff;
-  
+  font-family: Inter;
   font-size: 18px !important;
   font-style: normal;
   font-weight: 500;
@@ -345,7 +338,7 @@
 }
 
 .tab-menu ul li a {
-  
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -371,6 +364,8 @@
   margin: 0 10px !important;
   border-radius: 6px;
   box-shadow: 0px 8px 40px 0px rgba(0, 40, 82, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 
 .slide_icon_wrap {
@@ -402,25 +397,46 @@
 }
 
 .slide_certi {
-  width: 60px;
-  height: 60px;
+  border-radius: 0 0 0 6px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  z-index: 1;
+}
+
+.slide_certi svg {
+  right: -40px;
+  position: absolute;
+  top: 0;
+}
+
+.slider_rating {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  transform: translateX(-50%);
 }
 
 .slide_info h4 {
   color: #002852;
-  
+  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 28px; /* 140% */
+  line-height: 28px;
   letter-spacing: -0.1px;
   margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .slide_info p {
   color: #8c8c8c;
   margin-bottom: 0;
-  
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -444,7 +460,7 @@
 .info_title {
   color: #8c8c8c;
   margin-bottom: 0;
-  
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -455,7 +471,7 @@
 .info_desc {
   color: #262626;
   margin-bottom: 0;
-  
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -468,6 +484,17 @@
 
 .slider_button {
   margin-top: 24px;
+  position: absolute;
+  bottom: 24px;
+}
+
+.slider_button .btn_dark {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .bond_portfolio_slider .slick-track {
@@ -556,6 +583,13 @@
 
 .tab .btn_link {
   margin-left: 71px;
+  color: #002852;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration-line: underline;
 }
 
 .vested_edge_list {
@@ -582,7 +616,7 @@
   position: absolute;
   width: 1349px;
   height: 364px;
-  background: url(../../images/edge-shape-bg.png);
+  background: url(../../img/edge-shape-bg.png);
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -599,7 +633,7 @@
   margin-top: 13px;
   color: #fff;
   text-align: center;
-  
+  font-family: Inter;
   font-size: 20px !important;
   font-style: normal;
   font-weight: 600;
@@ -674,7 +708,7 @@
 
 .steps_slides .slider_index {
   color: #212529;
-  
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -705,7 +739,7 @@
 }
 
 .invest_wisely_sec {
-  padding-bottom: 202px;
+  padding-bottom: 108px;
 }
 
 .single_wisely_list:not(:first-child) .single_wisely_img {
@@ -727,7 +761,7 @@
 .single_wisely_content h3 {
   color: #002852;
   text-align: center;
-  
+  font-family: Inter;
   font-size: 30px;
   font-style: normal;
   font-weight: 600;
@@ -739,7 +773,7 @@
 .single_wisely_content p {
   color: rgba(33, 37, 41, 0.6);
   text-align: center;
-  
+  font-family: Inter;
   font-size: 18px !important;
   font-style: normal;
   font-weight: 400;
@@ -762,13 +796,12 @@
 
 .faq_que h4 {
   color: #212529;
-  
+  font-family: Inter;
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-bottom: 0;
-  padding-right: 30px;
 }
 
 .faq_que {
@@ -777,18 +810,13 @@
 }
 
 .faq_que:after {
-  content: "";
+  content: "\f078";
+  font-family: "FontAwesome";
   position: absolute;
   top: 0;
   right: 0px;
-  background-image: url(../../images/chevron-down.png);
-  background-size: 20px;
-  width: 20px;
-  height: 20px;
-  background-position: center;
-  margin-top: 3px;
-  transition: 0.3s all;
-  background-repeat: no-repeat;
+  color: #212529;
+  transition: transform 0.3s;
 }
 
 .single_faq {
@@ -803,7 +831,7 @@
 .faq_content p {
   margin-bottom: 0;
   color: #1e2022;
-  
+  font-family: Inter;
   font-size: 22px !important;
   font-style: normal;
   font-weight: 400;
@@ -901,9 +929,9 @@
   padding: 0 10px 0 21px;
 }
 
-.module_date span {
+.module_date, .module_date span {
   color: rgba(33, 37, 41, 0.5);
-  
+  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -945,7 +973,7 @@
 .reading_time h5 {
   margin-bottom: 0;
   color: #0cc786;
-  
+  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -1019,7 +1047,7 @@
 
 .bond_result_single .left_part p {
   color: #212529;
-  
+  font-family: Inter;
   font-size: 16px !important;
   font-style: normal;
   font-weight: 400;
@@ -1030,7 +1058,7 @@
 
 .bond_result_single .left_part h3 {
   color: #212529;
-  
+  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -1044,10 +1072,10 @@
 }
 
 .bong_progress {
-  width: 200px;
-  height: 19px;
-  border-radius: 32px;
+  width: 100%;
+  height: 100%;
   background: #002852;
+  transition: all .3s;;
 }
 
 .left_part {
@@ -1056,6 +1084,10 @@
 
 .progressed {
   width: calc(100% - 206px);
+  overflow: hidden;
+  height: 19px;
+  border-radius: 32px;
+  background: #b2cce7;
 }
 
 .bond_result_single {
@@ -1070,7 +1102,7 @@
 
 .left_part span {
   color: #212529;
-  
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -1080,13 +1112,13 @@
 
 .result_note {
   background: #002852;
-  padding: 10px;
+  padding: 20px;
   border-radius: 0 0 0 6px;
 }
 
 .result_note h3 {
   color: #fff;
-  
+  font-family: Inter;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -1120,16 +1152,6 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px;
-  background-repeat: no-repeat;
-  background-size: auto 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #fff;
-  max-width: 100%;
-  width: 100%;
-  vertical-align: middle;
-  transition: color .3s, border .3s, background .3s, opacity .3s;
-  outline: none;
 }
 
 .bond_select_col .field_group label {
@@ -1156,14 +1178,6 @@
   margin: 0;
   max-width: 382px;
   cursor: pointer;
-}
-
-input[type="range" i]::-webkit-slider-runnable-track {
-  box-shadow: none;
-}
-
-#unit_range:focus {
-  border: none;
 }
 
 .tick {
@@ -1210,7 +1224,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
 .unit_field p {
   margin-bottom: 0;
   color: #374151;
-  
+  font-family: Inter;
   font-size: 14px !important;
   font-style: normal;
   font-weight: 500;
@@ -1231,14 +1245,6 @@ input[type="range" i]::-webkit-slider-runnable-track {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-}
-
-.unit_field input[type="text"]:focus {
-  box-shadow: 0 0 5px #ccc;
-}
-
-.unit_field input[type="text"]:focus:focus-visible {
-  outline: none;
 }
 
 .unit_field {
@@ -1263,14 +1269,20 @@ input[type="range" i]::-webkit-slider-runnable-track {
 .return_calc_wrap .yield label {
   margin: 0;
   color: #374151;
-  
+  font-family: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   width: calc(100% - 84px);
 }
 
-@media (max-width: 1060px) and (min-width: 1025px) {
+@media (min-width: 993px) {
+  .single_portfolio_slide {
+    min-height: 439px !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 1025px) {
   .bond_select_col {
     width: 50%;
   }
@@ -1372,6 +1384,9 @@ input[type="range" i]::-webkit-slider-runnable-track {
     padding-right: 0;
     width: 540px;
     margin-left: 20px;
+  }
+  .bond_select_col {
+    width: calc(100% - 560px);
   }
 }
 @media (max-width: 992px) {
@@ -1547,6 +1562,15 @@ input[type="range" i]::-webkit-slider-runnable-track {
     margin-left: 0;
     margin-top: 40px;
   }
+  .single_portfolio_slide {
+    min-height: 430px !important;
+  }
+  #unit_range {
+    max-width: 100%;
+  }
+  .ticks {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1568,6 +1592,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
 
   .bonds_banner_content h1 {
     font-size: 32px !important;
+    margin-bottom: 22px;
   }
 
   .banner_list li {
@@ -1584,6 +1609,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
 
   .bonds_banner_img {
     width: 100%;
+    text-align: center;
   }
   .mobile_hide {
     display: none;
@@ -1675,7 +1701,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   }
 
   .explore_bonds_buttons .btn_link {
-    width: 33%;
+    width: 28%;
   }
   .btn_link {
     font-size: 12px;
@@ -1893,7 +1919,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .result_note h3 {
     padding: 0;
     color: #212529;
-    
+    font-family: Inter;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1931,7 +1957,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .result_note h3 {
     padding: 0;
     color: #212529;
-    
+    font-family: Inter;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1968,7 +1994,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .bond_select_col .field_group label {
     margin-bottom: 9px;
     color: #8c8c8c;
-    
+    font-family: Inter;
     font-weight: 500;
   }
 
@@ -1976,7 +2002,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
     height: 39px;
     padding: 7px 13px;
     font-size: 14px;
-    
+    font-family: Inter;
   }
   .qty_btn {
     width: 186px;
@@ -1998,7 +2024,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
     padding: 0;
     text-align: center;
     color: #002852;
-    
+    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -2038,7 +2064,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .unit_field p {
     margin-bottom: 9px;
     color: #8c8c8c;
-    
+    font-family: Inter;
     font-size: 14px !important;
     font-style: normal;
     font-weight: 500;
@@ -2052,7 +2078,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
 
   .bond_result_single:first-child .left_part h3#bond_invest_amt {
     color: #212529;
-    
+    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -2080,7 +2106,7 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .vested_edge_list:after {
     width: 375;
     height: 481px;
-    background: url(../../images/edge-shape-bg-mobile.png);
+    background: url(../../img/edge-shape-bg-mobile.png);
     top: 10px;
     transform: none;
     left: 0;
@@ -2108,6 +2134,27 @@ input[type="range" i]::-webkit-slider-runnable-track {
   .author_info {
     margin-top: 20px;
   }
+  .bond_next, .bond_prev {
+    width: 33px;
+    height: 33px;
+}
+
+.bond_next i, .bond_prev i {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.bond_next {
+    right: -30px;
+}
+
+.bond_prev {
+    left: -30px;
+}
+.single_portfolio_slide {
+  min-height: 363px !important;
+}
 }
 
 .single_portfolio_slide .btn_dark i {
@@ -2140,4 +2187,12 @@ input[type="range" i]::-webkit-slider-runnable-track {
 
 .bond_portfolio_slider.slide_wo_shadow .slick-list {
   box-shadow: none !important;
+}
+.no-data-message {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+.bond_portfolio_slider.slide_wo_shadow .slick-track {
+  margin-left: 0;
 }

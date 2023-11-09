@@ -7,7 +7,7 @@ function sliderSlide() {
   var color =
     "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
   slider.style.background = color;
-  var minValue = 1;
+  var minValue = slider.getAttribute('min');
   var maxValue = 1000;
   var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
   var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
@@ -30,54 +30,160 @@ function sliderSlide() {
 }
 
 jQuery(document).ready(function ($) {
-  $(".portfolio_slider").slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		autoplay: true,
-		autoplaySpeed: 6000, 
-		speed: 600,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: true,
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					asNavFor: ".portfolio_slider_content",
-					vertical: false,
-					verticalSwiping: false,
-				},
-			},
-		],
-	});
+  $(".bond_portfolio_slider").each(function () {
+    var $tabContainer = $(this).closest(".tab");
+    var $singleSlides = $tabContainer.find(".single_portfolio_slide");
 
-	$(".portfolio_slider_content").slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		autoplay: true,
-		autoplaySpeed: 6000, 
-		speed: 600,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		vertical: true,
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					asNavFor: ".portfolio_slider",
-					vertical: false,
-					dots: true,
-				},
-			},
-		],
-	});
+    if ($singleSlides.length < 3) {
+      $(this).addClass("slide_wo_shadow");
+    } else {
+      $(this).removeClass("slide_wo_shadow");
+    }
+  });
+
+  var activeTab = null;
+
+  // Initialize Slick slider for the active tab
+  function initializeSlickSlider(tabId) {
+    $("#" + tabId + " .bond_portfolio_slider").slick({
+      infinite: false,
+      arrows: true,
+      dots: false,
+      autoplay: false,
+      speed: 800,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      centerMode: false,
+      nextArrow:
+        '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+      prevArrow:
+        '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    });
+  }
+
+  // Function to handle tab click
+  function handleTabClick(clickedTab) {
+    $(".tab").removeClass("tab-active");
+    $(".tab[data-id='" + clickedTab.attr("data-id") + "']").addClass(
+      "tab-active"
+    );
+    $(".tab-a").removeClass("active-a");
+    clickedTab.addClass("active-a");
+
+    if (activeTab !== null) {
+      $("#" + activeTab + " .bond_portfolio_slider").slick("unslick");
+    }
+
+    var tabId = clickedTab.data("id");
+    activeTab = tabId;
+
+    initializeSlickSlider(tabId);
+  }
+
+  $(".tab-a").click(function () {
+    handleTabClick($(this));
+  });
+
+  initializeSlickSlider($(".tab-a.active-a").data("id"));
+
+  $(".tab-active .bond_slider_wrap .bond_portfolio_slider").slick({
+    infinite: true,
+    arrows: true,
+    dots: false,
+    autoplay: false,
+    speed: 800,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    centerMode: false,
+    nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+    prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  });
+
+  $(".bond_prev").click(function () {
+    $(".bond_portfolio_slider").slick("slickPrev");
+  });
+
+  $(".bond_next").click(function () {
+    $(".bond_portfolio_slider").slick("slickNext");
+  });
+  $(".bond_prev").addClass("slick-disabled");
+  $(".bond_portfolio_slider").on("afterChange", function () {
+    if ($(".slick-prev").hasClass("slick-disabled")) {
+      $(".bond_prev").addClass("slick-disabled");
+    } else {
+      $(".bond_prev").removeClass("slick-disabled");
+    }
+    if ($(".slick-next").hasClass("slick-disabled")) {
+      $(".bond_next").addClass("slick-disabled");
+    } else {
+      $(".bond_next").removeClass("slick-disabled");
+    }
+  });
+
+  $(".portfolio_slider").slick({
+    infinite: true,
+    arrows: false,
+    dots: false,
+    autoplay: false,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    verticalSwiping: true,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          asNavFor: ".portfolio_slider_content",
+          vertical: false,
+          verticalSwiping: false,
+        },
+      },
+    ],
+  });
+
+  $(".portfolio_slider_content").slick({
+    infinite: true,
+    arrows: false,
+    dots: false,
+    autoplay: false,
+    speed: 800,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    vertical: true,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          asNavFor: ".portfolio_slider",
+          vertical: false,
+          dots: true,
+        },
+      },
+    ],
+  });
 
   var percentTime;
   var tick;
@@ -174,112 +280,6 @@ jQuery(document).ready(function ($) {
       j.preventDefault();
     });
   });
-  
-  $(".bond_portfolio_slider").each(function () {
-    var $tabContainer = $(this).closest(".tab");
-    var $singleSlides = $tabContainer.find(".single_portfolio_slide");
-
-    if ($singleSlides.length < 3) {
-      $(this).addClass("slide_wo_shadow");
-    } else {
-      $(this).removeClass("slide_wo_shadow");
-    }
-  });
-
-  var activeTab = null;
-
-  // Initialize Slick slider for the active tab
-  function initializeSlickSlider(tabId) {
-    $("#" + tabId + " .bond_portfolio_slider").slick({
-      infinite: false,
-      arrows: true,
-      dots: false,
-      autoplay: false,
-      speed: 800,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      nextArrow:
-        '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-      prevArrow:
-        '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-      responsive: [
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    });
-  }
-
-  // Function to handle tab click
-  function handleTabClick(clickedTab) {
-    $(".tab").removeClass("tab-active");
-    $(".tab[data-id='" + clickedTab.attr("data-id") + "']").addClass(
-      "tab-active"
-    );
-    $(".tab-a").removeClass("active-a");
-    clickedTab.addClass("active-a");
-
-    if (activeTab !== null) {
-      $("#" + activeTab + " .bond_portfolio_slider").slick("unslick");
-    }
-
-    var tabId = clickedTab.data("id");
-    activeTab = tabId;
-
-    initializeSlickSlider(tabId);
-  }
-
-  $(".tab-a").click(function () {
-    handleTabClick($(this));
-  });
-
-  initializeSlickSlider($(".tab-a.active-a").data("id"));
-
-  $(".tab-active .bond_slider_wrap .bond_portfolio_slider").slick({
-    infinite: true,
-    arrows: true,
-    dots: false,
-    autoplay: false,
-    speed: 800,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-    prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-    responsive: [
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
-
-  $(".bond_prev").click(function () {
-    $(".bond_portfolio_slider").slick("slickPrev");
-  });
-
-  $(".bond_next").click(function () {
-    $(".bond_portfolio_slider").slick("slickNext");
-  });
-  $(".bond_prev").addClass("slick-disabled");
-  $(".bond_portfolio_slider").on("afterChange", function () {
-    if ($(".slick-prev").hasClass("slick-disabled")) {
-      $(".bond_prev").addClass("slick-disabled");
-    } else {
-      $(".bond_prev").removeClass("slick-disabled");
-    }
-    if ($(".slick-next").hasClass("slick-disabled")) {
-      $(".bond_next").addClass("slick-disabled");
-    } else {
-      $(".bond_next").removeClass("slick-disabled");
-    }
-  });
 
   if ($(window).width() <= 767) {
     $(".module_chapter_list").slick({
@@ -329,7 +329,7 @@ jQuery(document).ready(function($){
     var slider = document.getElementById("unit_range");
     var sliderVal = document.getElementById("units");
     slider.style.background = color;
-    var minValue = 1;
+    var minValue = slider.getAttribute('min');
     var maxValue = 1000;
     var x = parseFloat(latestAmt);
     var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
@@ -369,6 +369,7 @@ jQuery(document).ready(function($){
     var slider = document.getElementById("unit_range");
     var sliderVal = document.getElementById("units");
     $("#units").val(slider.value);
+    
 
     var investmentAmount = $('#investment_amount').attr('newPrice');
     var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
@@ -379,11 +380,10 @@ jQuery(document).ready(function($){
     var color =
       "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
     slider.style.background = color;
-    var minValue = 1;
+    var minValue = slider.getAttribute('min');
     var maxValue = 1000;
     var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
     var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    console.log ('newValue', newValue);
     var color =
       "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
       newValue +
