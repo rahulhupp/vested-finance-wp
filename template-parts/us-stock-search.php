@@ -119,7 +119,7 @@
             <a class="btn_dark" href="https://app.vestedfinance.com/us-stocks-etfs">Explore ALL US Stocks</a>
         </div>
         <div class="bottom-content">
-            <p>Disclosure: This list is representative of stocks<br />available but is not intended to recommend any investment.</p>
+            <p>Disclosure: This list is representative of stocks available on Vested<br />but is not intended to recommend any investment.</p>
         </div>
     </div>
 </section>
@@ -205,16 +205,28 @@
         var results = await connection.select({ from: 'stocks' });
     }
 
-    function inputChange() {
+    // Debounce function: Input as function which needs to be debounced and delay is the debounced time in milliseconds
+    var  timerId;
+    var  debounceFunction  =  function (func, delay) {
+        // Cancels the setTimeout method execution
+        clearTimeout(timerId)
+
+        // Executes the func after delay time.
+        timerId  =  setTimeout(func, delay)
+    }
+
+    // This represents a very heavy method. Which takes a lot of time to execute
+    function  makeAPICall() {
         var inputValue = document.getElementById("searchInput").value;
+        fetchResult(inputValue);
+    }
+
+    function inputChange() {
         var inputClearbtn = document.querySelector('.clear_icon');
         let timeout;
-        if(timeout) {
-            clearTimeout(timeout);
-        }
-        timeout = setTimeout(() => {
-            fetchResult(inputValue);
-        }, 500);
+
+        // Debounces makeAPICall method
+        debounceFunction(makeAPICall, 1000)
 
         if(inputValue.length > 0) {
             inputClearbtn.style.display = 'flex';
