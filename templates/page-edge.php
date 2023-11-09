@@ -124,8 +124,7 @@ get_header(); ?>
     <section class="fd_calc_sec">
         <div class="container">
             <div class="fd_calc_content">
-                <h2 class="section_title align_left mobile_hide"><span><?php the_field('interest_calc_heading'); ?></span></h2>
-                <h2 class="section_title align_left desktop_hide"><span>Calculate your returns</span></h2>
+                <h2 class="section_title align_left"><span><?php the_field('interest_calc_heading'); ?></span></h2>
                 <div class="fd_calc_wrap">
                     <div class="fd_calc_col">
                         <div class="fd_calc">
