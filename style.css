@@ -31,3 +31,7 @@ Template: astra
 #linkedinSlider .slick-list {
 	margin: 0 -6px;
 }
+
+.page-template-page-us-stock-global .mega-optional_menu, html[lang="en"] .page-template-page-pricing .mega-optional_menu {
+    display: none !important;
+}
