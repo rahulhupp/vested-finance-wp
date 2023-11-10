@@ -1,0 +1,202 @@
+
+.show_msg_wrap {
+  display: none;
+}
+.newsletter-section {
+  padding: 100px 0;
+}
+.newsletter-section .inner-row {
+  display: flex;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #1F343F 0%, #002852 100%);
+  padding: 36px 0 50px 100px; 
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.newsletter-section .content h2 {
+  font-size: 30px !important;
+  font-weight: 600;
+  line-height: normal;
+  color: #fff;
+  display: block;
+  margin: 0 0 4px 0;
+}
+.newsletter-section .content form {
+  width: 100%;
+  max-width: 428px;
+}
+.newsletter-section .newsletter-image {
+  width: 53%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.newsletter-section .newsletter-image:before {
+  content: "";
+  background-image: url(../../images/subscriber-logo-bg.png);
+  position: absolute;
+  top: -36px;
+  bottom: -50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  right: 46px;
+  width: 108%;
+}
+.newsletter-section .newsletter-image img {
+  max-width: 243px;
+  margin: 0 auto 0 14%;
+  position: relative;
+}
+.newsletter-section .newsletter-image img.mobile {
+  display: none;
+}
+.newsletter-section .content {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 53%);
+}
+.newsletter-section .content p {
+  font-family: "Inter", sans-serif;
+  font-size: 20px !important;
+  font-weight: 400;
+  line-height: normal;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 20px 0;
+}
+.newsletter-section .content form {
+  margin: 0;
+  position: relative;
+}
+.newsletter-section .content input {
+  margin: 0;
+}
+.newsletter-section .content input#newslater {
+  background: #fff;
+  padding: 4px 145px 4px 18px;
+  color: #0A2B4B;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  width: 100% !important;
+  height: 47px !important;
+  border: none;
+  border-radius: 100px !important;
+}
+.newsletter-section .content input#newslater:focus {
+  outline: none;
+}
+.newsletter-section .content input#newslater::placeholder {
+  color: #0A2B4B;
+}
+.newsletter-section .content input#submit {
+  position: absolute;
+  right: 4px;
+  border-radius: 100px !important;
+  background: #143044 !important;
+  padding: 5px 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: 600;
+  margin: 0;
+  width: 130px !important;
+  height: 39px !important;
+  top: 4px;
+  transform: unset;
+  line-height: normal;
+}
+.newsletter-section.category {
+  padding: 69px 0;
+}
+
+@media (max-width: 991px) {
+  .newsletter-section .inner-row {
+      padding: 36px 0 50px 50px;
+  }
+  .newsletter-section .content h2 {
+      font-size: 24px !important;
+  }
+  .newsletter-section .content p {
+      font-size: 16px !important;
+  }
+  .newsletter-section .newsletter-image {
+      position: unset;
+      width: auto;
+  }
+  .newsletter-section .newsletter-image:before {
+      background-image: url(../../images/mobile-subscriber-logo-bg.png);
+      background-size: contain;
+      background-position: top right;
+      right: 0;
+      top: 0;
+      bottom: 0;
+  }
+  .newsletter-section .newsletter-image img {
+      max-width: 44px;
+      margin: 0;
+      position: absolute;
+      top: 55px;
+      right: 75px;
+  }
+  .newsletter-section .newsletter-image img.desktop {
+      display: none;
+  }
+  .newsletter-section .newsletter-image img.mobile {
+      display: block;
+  }
+}
+
+@media (max-width: 1199px) {
+  .newsletter-section {
+    padding: 50px 0;
+  }
+}
+@media (max-width: 767px) {
+  .newsletter-section {
+      padding: 5px 0 58px;
+  }
+  .newsletter-section .inner-row {
+      padding: 23px 0 24px 21px;
+  }
+  .newsletter-section .content h2 {
+      font-size: 14px !important;
+      max-width: 200px;
+  }
+  .newsletter-section .content p {
+      font-size: 14px !important;
+      max-width: 200px;
+  }
+  .newsletter-section .content {
+      width: 100%;
+  }
+  .newsletter-section .content .newsletter-form {
+      padding-right: 21px;
+  }
+  .newsletter-section .newsletter-image img {
+      top: 40px;
+      right: 50px;
+  }
+  .newsletter-section .content input#newslater {
+      font-size: 14px;
+      height: 37px !important;
+      padding: 4px 90px 4px 18px;
+  }
+  .newsletter-section .content input#submit {
+      font-size: 10px !important;
+      height: 29px !important;
+      line-height: 19px;
+      width: 75px !important;
+  }
+  .newsletter-section .content form {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .newsletter-section .content p {
+      font-size: 12px !important;
+      max-width: 160px;
+  }
+}
