@@ -1,3 +1,6 @@
+.page-template-page-blog a {
+  outline: none !important;
+}
 .page-template-page-blog .container {
   max-width: 1170px;
 }
