@@ -875,6 +875,8 @@
 
 .spot-light .inner-row .single-blog img {
   width: 100%;
+  height: 321px;
+  object-fit: cover;
 }
 
 .spot-light .inner-row .single-blog .content {
@@ -1066,6 +1068,10 @@
     margin: 0;
     width: 25%;
     padding-left: 32px;
+}
+.vested-edge-blog .inner-row ul li .featured-image img {
+  height: 197px;
+  object-fit: cover;
 }
 .vested-edge-blog .inner-row ul li a {
     color: #212529;
@@ -1299,9 +1305,15 @@
   .spot-light .inner-row .blog-list ul li .content {
       width: calc(100% - 90px);
   }
+  .spot-light .inner-row .single-blog img {
+    height: 250px;
+  }
 }
 
 @media (max-width: 767px) {
+  .first-blog .inner-row .featured-article .title:before {
+      height: 1px;
+  }
   .blog-info .inner {
       padding: 74px 0 53px;
   }
@@ -1406,7 +1418,7 @@
   }
   .us-stock-list .head-part .left-part .line {
       width: calc(100% - 137px);
-      height: 1.5px;
+      height: 1px;
   }
   .us-stock-list .head-part .stock-label {
       font-size: 16px;
@@ -1472,7 +1484,7 @@
       padding-right: 11px;
   }
   .vested-shots-blog .head-part .heading .title:before {
-      height: 1.5px;
+      height: 1px;
   }
   .vested-shots-blog .head-part .heading span {
       font-size: 14px;
@@ -1549,7 +1561,7 @@
       padding-top: 35px;
   }
   .spot-light .head-part .heading .title:before {
-      height: 1.6px;
+      height: 1px;
   }
   .spot-light .head-part .heading h2 {
       font-size: 16px !important;
@@ -1620,7 +1632,7 @@
       margin-left: 6px;
   }
   .vested-edge-blog .head-part .vested-label:before {
-      height: 1.5px;
+      height: 1px;
   }
   .vested-edge-blog .head-part {
       padding-bottom: 28px;
@@ -1651,6 +1663,12 @@
   .vested-edge-blog .inner-row ul li .meta-info span:first-child:after {
       content: "|";
       margin: 0 5px;
+  }
+  .spot-light .inner-row .single-blog img {
+    height: auto;
+  }
+  .vested-edge-blog .inner-row ul li .featured-image img {
+      height: auto;
   }
 }
 
