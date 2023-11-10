@@ -445,7 +445,6 @@
   .main-category ul li {
       padding: 18px 15px;
       margin: 0 9.5px 10px;
-      min-height: 248px;
   }
   .sub-category-page .post-item .post-card {
       width: 50%;
@@ -469,7 +468,7 @@
 }
 @media (max-width: 575px) {
   .main-category ul .slick-list.draggable {
-    padding: 0 45.565vw 0 0 !important;
+    padding: 0 40.565vw 0 0 !important;
   }
   .main-category ul button {
       width: 30px;
@@ -495,5 +494,11 @@
   }
   .sub-category-page .post-item .post-card .featured-image img {
       height: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-category ul .slick-list.draggable {
+      padding: 0 30.565vw 0 0 !important;
   }
 }
