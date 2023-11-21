@@ -242,16 +242,15 @@
 				</div>
 			</section>
 			
-			<section class="us-stock-list">
+			<section class="parent-categroy us-stock-list">
 				<div class="container">
 					<div class="head-part">
 						<div class="left-part">
 							<div class="stock-label">                  
 								<?php the_field('us_stock_title', 'category_' . $category->term_id); ?>
 							</div>
-							<div class="line"></div>
-						</div>            
-						<a href="<?php the_field('view_all_link', 'category_' . $category->term_id); ?> "><?php the_field('view_all_text', 'category_' . $category->term_id); ?></a>                     
+						</div>          
+						<!-- <a href="<?php the_field('view_all_link', 'category_' . $category->term_id); ?> "><?php the_field('view_all_text', 'category_' . $category->term_id); ?></a>                      -->
 					</div>
 					<div class="inner-row">
 						<div class="blog-list">
@@ -276,9 +275,9 @@
 								<?php endwhile; ?>                   
 							</ul>
 						</div>
-						<div class="mobile-view-all-btn">
+						<!-- <div class="mobile-view-all-btn">
 							<a href="<?php the_field('view_all_link', 'category_' . $category->term_id); ?> "><?php the_field('view_all_text', 'category_' . $category->term_id); ?></a>   
-						</div>
+						</div> -->
 						<div class="subscriber-blog">
 							<div class="inner">
 								<h3><?php the_field('subscriber_heading', 'category_' . $category->term_id); ?></h3>
@@ -423,12 +422,12 @@
 				</div>
 			</section>
 
-			<section class="vested-edge-blog">
+			<section class="parent-category vested-edge-blog">
 				<div class="container">
 					<div class="head-part">
 						<div class="vested-label">
 							<div class="label">
-								<img src="<?php the_field('vested_edge_icon', 'category_' . $category->term_id); ?>" />
+								<!-- <img src="<?php the_field('vested_edge_icon', 'category_' . $category->term_id); ?>" /> -->
 								<h2><?php the_field('vested_edge_heading', 'category_' . $category->term_id); ?></h2>
 							</div>
 						</div>
@@ -524,4 +523,14 @@
 		});
 	});  
 </script>
+<script>
+	window.onload = function() {
+		// Get the input element by its ID
+		var myInput = document.querySelector('.search-field');
+
+		// Set the placeholder attribute
+		myInput.placeholder = 'Search all blogs';
+	};
+</script>
+
 <?php get_footer(); ?>

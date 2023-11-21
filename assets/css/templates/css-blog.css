@@ -387,11 +387,22 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 45px;
+  position: relative;
+}
+.us-stock-list .head-part:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #002852;
+  bottom: 0;
+  top: 50%;
+  z-index: -1;
 }
 .us-stock-list .head-part .left-part {
   display: flex;
   align-items: center;
-  width: calc(100% - 318.14px);
 }
 .us-stock-list .head-part .stock-label {
   padding: 15px 30px;
@@ -424,6 +435,10 @@
   display: flex;
   align-items: center;
 }
+.parent-categroy.us-stock-list .head-part .stock-label {
+  padding: 15px 30px 15px 0;
+  background: #fff;
+}
 .us-stock-list .head-part .stock-label span {
   width: 34px;
   height: 34px;
@@ -447,6 +462,7 @@
   line-height: 120%;
   letter-spacing: -0.88px;
   text-decoration-line: underline;
+  background: #fff;
 }
 .us-stock-list .inner-row {
   display: flex;
@@ -1116,6 +1132,63 @@
     text-transform: capitalize;
 }
 
+.parent-category.vested-edge-blog .inner-row ul {
+  margin: 0;
+}
+.parent-category.vested-edge-blog .label {
+  background: #fff;
+  padding: 15px 30px 15px 0;
+}
+.parent-category.vested-edge-blog .label h2 {
+  margin: 0;
+}
+.parent-category.vested-edge-blog .inner-row ul li {
+  width: calc(50% - 15px);
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #A2AFC3;
+  margin-right: 30px;
+  padding-bottom: 20px;
+}
+.parent-category.vested-edge-blog .inner-row ul li:nth-child(n+3) {
+  margin-top: 45px;
+}
+.parent-category.vested-edge-blog .inner-row ul li:nth-child(2n+2) {
+  margin-right: 0;
+}
+.parent-category.vested-edge-blog .inner-row ul li .featured-image {
+  width: 154px;
+  height: 154px;
+}
+.parent-category.vested-edge-blog .inner-row ul li .featured-image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.parent-category.vested-edge-blog .inner-row ul li .content {
+  width: calc(100% - 154px);
+  padding: 0 0 0 15px;
+}
+.parent-category.vested-edge-blog .inner-row ul li .content a {
+  letter-spacing: -0.72px;
+  line-height: 120%;
+}
+.parent-category.vested-edge-blog .inner-row ul li .content p {
+  letter-spacing: -0.64px;
+}
+.parent-category.vested-edge-blog .inner-row ul li .meta-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+.parent-category.vested-edge-blog .inner-row ul li .meta-info span {
+  margin: 0;
+}
+.parent-category.vested-edge-blog .inner-row ul li .meta-info span:first-child:after {
+  content: "|";
+  margin: 0 4px;
+}
+
 @media (max-width: 1199px) {
   .blog-info {
       margin-bottom: 54px;
@@ -1143,9 +1216,6 @@
   }
   .us-stock-list .head-part a {
       font-size: 18px;
-  }
-  .us-stock-list .head-part .left-part {
-      width: calc(100% - 262.14px);
   }
   .us-stock-list .head-part .left-part .line {
       width: calc(100% - 202.75px);
@@ -1211,6 +1281,9 @@
   .us-stock-list .head-part .stock-label {
       font-size: 20px;
       padding: 10px 20px;
+  }
+  .parent-categroy.us-stock-list .head-part .stock-label {
+    padding: 10px 20px 10px 0;
   }
   .us-stock-list .head-part .left-part .line {
       width: calc(100% - 172.75px);
@@ -1278,6 +1351,9 @@
   .vested-edge-blog .head-part .label {
       padding: 10px 20px;
   }
+  .parent-category.vested-edge-blog .label {
+    padding: 10px 20px 10px 0;
+  }
   .spot-light .inner-row .blog-list {
       padding-left: 21px;
   }
@@ -1307,6 +1383,13 @@
   }
   .spot-light .inner-row .single-blog img {
     height: 250px;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li .featured-image {
+    width: 104px;
+    height: 104px;
+  } 
+  .parent-category.vested-edge-blog .inner-row ul li .content {
+      width: calc(100% - 104px);
   }
 }
 
@@ -1429,6 +1512,9 @@
       font-size: 12px;
       margin-right: 6px;
   }
+  .us-stock-list .head-part:before {
+    height: 1px;
+}
   .us-stock-list .head-part {
       margin-bottom: 28px;
   }
@@ -1614,6 +1700,10 @@
   }
   .spot-light .inner-row .blog-list ul li .content a {
       font-size: 16px;
+      min-height: unset;
+      display: block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
   }
   .spot-light .inner-row .blog-list ul li .content p {
       font-size: 14px !important;
@@ -1667,8 +1757,44 @@
   .spot-light .inner-row .single-blog img {
     height: auto;
   }
+  .parent-category.vested-edge-blog .inner-row ul li .content a {
+      white-space: nowrap;
+  }
+  .parent-category.vested-edge-blog .label h2 {
+    margin: 0;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li .content a {
+      letter-spacing: -0.64px;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li .content p {
+      letter-spacing: -0.56px;
+  }
   .vested-edge-blog .inner-row ul li .featured-image img {
       height: auto;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li {
+      width: 100%;
+      margin-right: 0;
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li .featured-image {
+      width: 123px;
+      height: 123px;
+      order: 2;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li .content {
+      width: calc(100% - 123px);
+      padding: 0 10px 0 0;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li:nth-child(n+3) {
+      margin-top: 0;
+  }
+  .parent-category.vested-edge-blog .inner-row ul li:last-child {
+      margin-bottom: 35px;
+  }
+  .parent-categroy.us-stock-list .inner-row .blog-list ul li:last-child {
+      margin-bottom: 0;
   }
 }
 

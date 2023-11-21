@@ -158,6 +158,7 @@ header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primar
 header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul li .content {
 	width: calc(100% - 34px);
 	padding-left: 16px;
+	position: relative;
 }
 
 header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul li .content a:before {

@@ -14,10 +14,19 @@ get_header(); ?>
                     <div class="btn">
                         <a href="<?php the_field('banner_button_1_url'); ?>" class="btn_dark"><?php the_field('banner_button_1_text'); ?></a>
                     </div>
-                    <div class="btn">
-                        <a href="<?php the_field('banner_video_button_url'); ?>" class="btn_light"><i class="fa fa-play" aria-hidden="true"></i> <?php the_field('banner_video_button_text'); ?></a>
-                        <span class="watch_time"><?php the_field('banner_video_watch_time'); ?> seconds watch</span>
-                    </div>
+                    <?php $button_text = get_field('banner_video_button_text'); ?>
+                    <?php 
+                    if (!empty($button_text)) {
+                        
+                        ?>
+                        <div class="btn">
+                            <a href="<?php the_field('banner_video_button_url'); ?>" class="btn_light"><i class="fa fa-play" aria-hidden="true"></i> <?php echo $button_text; ?></a>
+                            <span class="watch_time"><?php the_field('banner_video_watch_time'); ?> seconds watch</span>
+                        </div>
+                        <?php
+                    } 
+                    ?>
+                    
 
                 </div>
             </div>

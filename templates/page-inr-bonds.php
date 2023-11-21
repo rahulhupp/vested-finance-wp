@@ -26,9 +26,16 @@ get_header(); ?>
                         <div class="btn">
                             <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark"><?php the_field('banner_button_one_text'); ?></a>
                         </div>
-                        <div class="btn">
-                            <a href="<?php the_field('banner_button_two_url'); ?>" class="btn_link"><?php the_field('banner_button_two_text'); ?></a>
-                        </div>
+                        <?php $button_text = get_field('banner_button_two_text'); ?>
+                        <?php 
+                        if (!empty($button_text)) {
+                            ?>
+                            <div class="btn">
+                                <a href="<?php the_field('banner_button_two_url'); ?>" class="btn_link"><?php the_field('banner_button_two_text'); ?></a>
+                            </div>
+                            <?php
+                        } 
+                        ?>
                     </div>
                 </div>
                 <div class="bonds_banner_img">
@@ -74,7 +81,14 @@ get_header(); ?>
                     <?php endif; ?>
                     <div class="explore_bonds_buttons">
                         <a href="<?php the_field('explore_bonds_button_one_url'); ?>" class="btn_dark"><?php the_field('explore_bonds_button_one_text'); ?></a>
+                        <?php $button_text = get_field('explore_bonds_button_two_text'); ?>
+                        <?php 
+                        if (!empty($button_text)) {                            
+                            ?>
                         <a href="<?php the_field('explore_bonds_button_two_url'); ?>" class="btn_link"><?php the_field('explore_bonds_button_two_text'); ?></a>
+                        <?php
+                        } 
+                        ?>
                     </div>
                 </div>
             </div>
@@ -285,6 +299,7 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
+    <?php /*
     <section class="invest_wisely_sec">
         <div class="container">
             <h2 class="section_title"><span><?php the_field('invest_wisely_heading'); ?></span></h2>
@@ -369,6 +384,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    */ ?>
     <?php if (have_rows('faq_list')) : ?>
         <section class="home_page_faqs">
             <div class="container">

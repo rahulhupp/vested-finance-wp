@@ -10,7 +10,12 @@ Text Domain: astra-child
 Template: astra
 */
 
-
+.ast-separate-container {
+    background-color: #fff;
+}
+#ast-scroll-top {
+    display: none !important;
+}
 .site-content .ast-container {
     display: block;
 }

@@ -1015,6 +1015,8 @@ section.invest_wisely_sec .container {
 
 	.multi_asset_img {
 		padding: 0;
+		display: flex;
+		justify-content: center;
 	}
 
 	.easy_access_btns {
@@ -1038,6 +1040,7 @@ section.invest_wisely_sec .container {
 	.easy_access_wrap .section_title {
 		font-weight: 800;
 		margin-bottom: 26px;
+		text-align: center;
 	}
 
 	.easy_access_list {

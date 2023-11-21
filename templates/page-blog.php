@@ -130,7 +130,6 @@ get_header(); ?>
                 <div class="stock-label">                  
                     <?php the_field('us_stock_title'); ?>
                 </div>
-                <div class="line"></div>
             </div>            
             <a href="<?php the_field('view_all_link'); ?> "><?php the_field('view_all_text'); ?></a>                     
         </div>
@@ -353,4 +352,14 @@ get_header(); ?>
 </section>
 
 </div>
+
+<script>
+    window.onload = function() {
+        // Get the input element by its ID
+        var myInput = document.querySelector('.search-field');
+
+        // Set the placeholder attribute
+        myInput.placeholder = 'Search all blogs';
+    };
+</script>
 <?php get_footer(); ?>
