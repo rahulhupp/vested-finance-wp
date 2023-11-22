@@ -120,6 +120,17 @@ if( function_exists('acf_add_options_page') ) {
     
 }
 
+if (function_exists('acf_add_options_page')) {
+
+	acf_add_options_page(array(
+		'page_title' => 'Chapter CTA',
+		'menu_title' => 'Chapter CTA',
+		'menu_slug'  => 'chapter-cta',
+		'capability' => 'edit_posts',
+		'redirect'   => false
+	));
+}
+
 
 function calculate_reading_time($content)
 {
