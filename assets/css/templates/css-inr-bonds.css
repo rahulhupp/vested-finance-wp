@@ -346,6 +346,10 @@
   display: inline-block;
 }
 
+.tab-menu ul li a:focus {
+    outline: none;
+}
+
 .tab-menu ul li .tab-a.active-a {
   background: #fff;
   border-radius: 3px;
@@ -1155,6 +1159,7 @@
   max-width: 100%;
   background-color: #fff;
   -webkit-appearance: none;
+  outline: none;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -1249,11 +1254,15 @@ input[type="range"]::-webkit-slider-runnable-track {
   margin-bottom: 0;
   padding: 8px 14px;
   color: #002852;
-
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.unit_field input[type="text"]:focus-visible {
+    border: 1px solid #a9bdd0;
+    outline: none;
 }
 
 .unit_field {
