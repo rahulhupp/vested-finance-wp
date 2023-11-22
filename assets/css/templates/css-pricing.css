@@ -693,6 +693,7 @@
     .pricing-info .plan-box .box {
         padding: 24px 16px;
         text-align: center;
+        min-height: 291px;
     }
     .pricing-info .plan-box .box h2 {
         font-size: 14px;

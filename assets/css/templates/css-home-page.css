@@ -806,7 +806,7 @@ section.invest_wisely_sec .container {
 
 	.btn_dark {
 		font-size: 16px;
-		padding: 12px 17px;
+		padding: 12px 27px;
 	}
 
 	.easy_access_btns {
@@ -1310,10 +1310,6 @@ section.invest_wisely_sec .container {
 }
 
 @media (max-width: 600px) {
-	.banner_buttons .btn {
-		width: 50%;
-	}
-
 	.btn_light i {
 		margin-right: 6px;
 		font-size: 16px;
@@ -1335,11 +1331,6 @@ section.invest_wisely_sec .container {
 	}
 	.counter_amt h3 {
 		font-size: 24px;
-	}
-
-	.btn_dark {
-		font-size: 12px;
-		padding: 12px 10px;
 	}
 
 	.edge_btns .btn_light {
