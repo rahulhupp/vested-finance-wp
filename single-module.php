@@ -52,7 +52,7 @@ while (have_posts()) :
                         <h1 class="single_module_title"><?php the_title(); ?></h1>
                         <div class="single_module_meta">
                             <div class="module_single_meta_wrap">
-                              <!--   <div class="single_module_meta_item">
+                                <!--   <div class="single_module_meta_item">
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 15.75V14.25C12 13.4544 11.6839 12.6913 11.1213 12.1287C10.5587 11.5661 9.79565 11.25 9 11.25H4.5C3.70435 11.25 2.94129 11.5661 2.37868 12.1287C1.81607 12.6913 1.5 13.4544 1.5 14.25V15.75" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         <path d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -99,24 +99,24 @@ while (have_posts()) :
 
                             <div class="single_module_info_item last">
                                 <div class="social-share-block">
-                                <button class="sharing-icon">
-                                    <img src="<?php echo get_template_directory_uri();?>/assets/img/share-icon.png" alt="link"/>
-                                </button>                                
-                                <button class="share-btn"><img src="<?php echo get_template_directory_uri();?>/assets/img/share-icon.png" alt="Share Icon"/><span>Share</span></button>
+                                    <button class="sharing-icon">
+                                        <img src="<?php echo get_stylesheet_directory(); ?>/assets/images/share-icon.png" alt="link" />
+                                    </button>
+                                    <button class="share-btn"><img src="<?php echo get_stylesheet_directory(); ?>/assets/images/share-icon.png" alt="Share Icon" /><span>Share</span></button>
                                     <ul>
                                         <?php
                                         $current_page_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                                         ?>
-                                        
+
                                         <li>
                                             <a id="copyLink" href="">
-                                                <img src="<?php echo get_template_directory_uri();?>/assets/img/link.png" alt="link"/>
+                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/link.png" alt="link" />
                                                 <span>Copy link</span>
                                             </a>
                                         </li>
                                         <li class="share_whatsapp">
                                             <a href="javascript:void(0);" target="_blank">
-                                                <img src="<?php echo get_template_directory_uri();?>/assets/img/whatsapp.png" alt="whatsapp"/>
+                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/whatsapp.png" alt="whatsapp" />
                                                 <span>Share on Whatsapp</span>
                                             </a>
                                         </li>
@@ -135,7 +135,7 @@ while (have_posts()) :
                         </div>
                     </div>
                     <div class="single_module_content_wrapper">
-                         <!-- The Modal -->
+                        <!-- The Modal -->
                         <div id="modal" class="modal">
                             <span id="modal-close" class="modal-close">&times;</span>
                             <img id="modal-content" class="modal-content">
@@ -150,20 +150,20 @@ while (have_posts()) :
                             </div>
                             <div class="content">
                                 <div class="inner_content">
-                                <?php if (get_field('heading_notes')) : ?>
-                                    <div class="heading_note">
-                                        <?php the_field('heading_notes'); ?>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if (get_field('heading_notes')) : ?>
+                                        <div class="heading_note">
+                                            <?php the_field('heading_notes'); ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <?php the_content(); ?>
-                                <?php if (get_field('takeaways')) : ?>
-                                    <div class="takeways">
-                                        <h2>Key Takeaways </h2>
-                                        <?php the_field('takeaways'); ?>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if (get_field('takeaways')) : ?>
+                                        <div class="takeways">
+                                            <h2>Key Takeaways </h2>
+                                            <?php the_field('takeaways'); ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -183,20 +183,20 @@ while (have_posts()) :
 
                         <!-- <div class="single_module_navigation">
                             <?php
-                                if ($next_post) {
-                                    $module_categories = wp_get_post_terms($next_post->ID, 'modules');
-                                    if (!empty($module_categories)) {
-                                        $has_glossary_term = false;
-                                
-                                        foreach ($module_categories as $module_category) {
-                                            if ($module_category->slug === 'glossary') {
-                                                $has_glossary_term = true;
-                                                break; // Exit the loop if the "glossary" term is found
-                                            }
+                            if ($next_post) {
+                                $module_categories = wp_get_post_terms($next_post->ID, 'modules');
+                                if (!empty($module_categories)) {
+                                    $has_glossary_term = false;
+
+                                    foreach ($module_categories as $module_category) {
+                                        if ($module_category->slug === 'glossary') {
+                                            $has_glossary_term = true;
+                                            break; // Exit the loop if the "glossary" term is found
                                         }
-                                
-                                        if (!$has_glossary_term) {
-                                            ?>
+                                    }
+
+                                    if (!$has_glossary_term) {
+                            ?>
                                                 <a href="<?php echo get_permalink($next_post); ?>">
                                                     <span>Previous article</span>
                                                     <h6><?php echo get_the_title($next_post); ?></h6>
@@ -211,14 +211,14 @@ while (have_posts()) :
                                     $module_categories = wp_get_post_terms($previous_post->ID, 'modules');
                                     if (!empty($module_categories)) {
                                         $has_glossary_term = false;
-                                
+
                                         foreach ($module_categories as $module_category) {
                                             if ($module_category->slug === 'glossary') {
                                                 $has_glossary_term = true;
                                                 break; // Exit the loop if the "glossary" term is found
                                             }
                                         }
-                                
+
                                         if (!$has_glossary_term) {
                                             ?>
                                                 <a href="<?php echo get_permalink($previous_post); ?>">
@@ -229,7 +229,7 @@ while (have_posts()) :
                                         }
                                     }
                                 }
-                            ?>
+                                            ?>
                         </div> -->
 
 
@@ -344,7 +344,7 @@ while (have_posts()) :
             } else {
                 triggerElement.classList.remove('module_completed');
             }
-            
+
         });
         const tocElement = document.getElementById('ez-toc-container');
         const tocNav = document.querySelector('.ez-toc-list');
@@ -390,7 +390,7 @@ while (have_posts()) :
         headingsToProcess.forEach((heading) => {
             const spanElement = document.createElement('span');
 
-            let  headingText = heading.textContent.replace(/\s+/g, '_').replace(/[.\[\]{}()?;:\u00A0]/g, '');
+            let headingText = heading.textContent.replace(/\s+/g, '_').replace(/[.\[\]{}()?;:\u00A0]/g, '');
 
             headingText = headingText.replace(/_+$/, '');
 
@@ -432,7 +432,7 @@ while (have_posts()) :
             var dynamicContent = document.getElementById('main');
             var anchorTags = dynamicContent.querySelectorAll('a');
 
-            anchorTags.forEach(function (anchorTag) {
+            anchorTags.forEach(function(anchorTag) {
                 var href = anchorTag.getAttribute('href');
                 var isExternal = /^https?:\/\//.test(href) && !href.includes('vestedfinance.com/');
 
@@ -472,17 +472,17 @@ endwhile; ?>
     var modal = document.getElementById('modal');
 
     var modalClose = document.getElementById('modal-close');
-        modalClose.addEventListener('click', function() { 
-            modal.style.display = "none";
-            document.querySelector('html').classList.remove('open-image-modal');
-        });
-        modal.addEventListener('click', function() { 
-            modal.style.display = "none";
-            document.querySelector('html').classList.remove('open-image-modal');
-        });
+    modalClose.addEventListener('click', function() {
+        modal.style.display = "none";
+        document.querySelector('html').classList.remove('open-image-modal');
+    });
+    modal.addEventListener('click', function() {
+        modal.style.display = "none";
+        document.querySelector('html').classList.remove('open-image-modal');
+    });
 
     // global handler
-    document.addEventListener('click', function (e) { 
+    document.addEventListener('click', function(e) {
         if (e.target.className.indexOf('modal-target') !== -1) {
             var img = e.target;
             var modalImg = document.getElementById("modal-content");
@@ -509,11 +509,11 @@ endwhile; ?>
     // var currentURL = window.location.href;
     // console.log(currentURL);
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         var copyButton = document.getElementById("copyLink");
         var spanElement = document.querySelector("#copyLink span");
 
-        copyButton.addEventListener("click", function (event) {
+        copyButton.addEventListener("click", function(event) {
             event.preventDefault();
             // Get the current URL
             var currentURL = window.location.href;
@@ -545,27 +545,27 @@ endwhile; ?>
     // 
 
     const BlogData = {
-       title: '<?php the_title();?>',
-       url: '<?php the_permalink(); ?>',
+        title: '<?php the_title(); ?>',
+        url: '<?php the_permalink(); ?>',
     }
-   
-     const btn = document.querySelector('.sharing-icon');
-   
-     // Share must be triggered by "user activation"
-     btn.addEventListener('click', async () => {
-       try {
-         if(navigator.canShare 
-             && typeof navigator.canShare === 'function' 
-             && navigator.canShare(BlogData)){
-           let result = await navigator.share(BlogData);
-           document.getElementById("status").innerText = result || '';
-         } else {
-           document.getElementById("status").innerText = "Sharing selected data not supported.";
-         }
-       } catch(err) {
-         document.getElementById("status").innerText = "Share not complete";
-       }
-     });
+
+    const btn = document.querySelector('.sharing-icon');
+
+    // Share must be triggered by "user activation"
+    btn.addEventListener('click', async () => {
+        try {
+            if (navigator.canShare &&
+                typeof navigator.canShare === 'function' &&
+                navigator.canShare(BlogData)) {
+                let result = await navigator.share(BlogData);
+                document.getElementById("status").innerText = result || '';
+            } else {
+                document.getElementById("status").innerText = "Sharing selected data not supported.";
+            }
+        } catch (err) {
+            document.getElementById("status").innerText = "Share not complete";
+        }
+    });
 </script>
-<?php 
+<?php
 get_footer();

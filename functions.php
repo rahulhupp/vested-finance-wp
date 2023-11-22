@@ -140,7 +140,7 @@ function calculate_total_reading_time_for_term($term_id)
 		'post_type' => 'module',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'modules_category',
+				'taxonomy' => 'modules',
 				'field' => 'term_id',
 				'terms' => $term_id,
 			),
