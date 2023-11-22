@@ -240,6 +240,11 @@ div#is-ajax-search-result-4325 {
 .sub-category-page .post-item .post-card.display {
   display: block;
 }
+.sub-category-page .post-item .post-card .featured-image a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
 .sub-category-page .post-item .post-card .featured-image img {
   height: 154px;
   object-fit: cover;

@@ -1415,6 +1415,14 @@ input[type="range"]::-webkit-slider-runnable-track {
     margin-top: 80px;
   }
 
+  .returns_calc {
+      padding-top: 30px;
+  }
+
+  .return_calc_wrap {
+    margin-top: 27px;
+  }
+
   .bonds_banner_wrap {
     padding: 80px 20px;
   }

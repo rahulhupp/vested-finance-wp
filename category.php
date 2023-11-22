@@ -53,7 +53,7 @@
 									<?php endif; ?>
 								</div>
 								<div class="search">
-									<?php get_search_form(); ?>
+									<?php // get_search_form(); ?>
 									<?php echo do_shortcode('[ivory-search id="4325" title="Sub Category AJAX Search"]'); ?>
 								</div>
 							</header>
@@ -61,7 +61,9 @@
 								<?php while ($custom_query->have_posts()) :  $custom_query->the_post(); ?>
 									<div id="post-<?php the_ID(); ?>" class="post-card">
 										<div class="featured-image">
-											<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+											<a href="<?php the_permalink(); ?>">
+												<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+											</a>
 										</div>
 										<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 										<div class="meta-info">
@@ -174,7 +176,7 @@
 									$author_name = get_the_author($single_post->ID);
 									$publication_date = get_the_date('M j, Y', $single_post->ID);
 									$post_excerpt = get_the_excerpt($single_post);
-									echo $single_image;
+									echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
 									echo '<div class="content">';
 									echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
 									echo '<p>' . $post_excerpt . '</p>';
@@ -227,7 +229,9 @@
 								<li>
 									<?php if (has_post_thumbnail()) : ?>
 										<div class="featured-image">
-											<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+											<a href="<?php the_permalink(); ?>">
+												<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+											</a>
 										</div>
 									<?php endif; ?>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -325,8 +329,10 @@
 										?>
 										<li>
 											<div class="featured-image">
-												<?php if (has_post_thumbnail()) : ?>                                       
-													<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+												<?php if (has_post_thumbnail()) : ?> 
+													<a href="<?php the_permalink(); ?>">                                      
+														<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+													</a>
 												<?php endif; ?>
 											</div>
 											<div class="content">
@@ -374,7 +380,7 @@
 									$author_name = get_the_author($single_post->ID);
 									$publication_date = get_the_date('M j, Y', $single_post->ID);
 									$post_excerpt = get_the_excerpt($single_post);
-									echo $single_image;
+									echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
 									echo '<div class="content">';
 									echo '<div class="inner">';
 									echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
@@ -401,8 +407,10 @@
 											?>
 											<li>
 												<div class="featured-image">
-												<?php if (has_post_thumbnail()) : ?>                                       
-													<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+												<?php if (has_post_thumbnail()) : ?>      
+													<a href="<?php the_permalink(); ?>">                                 
+														<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+													</a>	
 												<?php endif; ?>
 												</div>
 												<div class="content">
@@ -446,8 +454,10 @@
 										?>
 										<li>
 											<div class="featured-image">
-											<?php if (has_post_thumbnail()) : ?>                                       
-												<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+											<?php if (has_post_thumbnail()) : ?>    
+												<a href="<?php the_permalink(); ?>">                                   
+													<?php the_post_thumbnail('full'); // You can specify the image size here ?>
+												</a>
 											<?php endif; ?>
 											</div>
 											<div class="content">
