@@ -32,7 +32,8 @@ get_header(); ?>
                 <?php endif; ?>
             </div>
             <div class="search">
-                <?php get_search_form(); ?>
+                <?php // get_search_form(); ?>
+                <?php echo do_shortcode('[ivory-search id="4323" title="AJAX Search Form"]'); ?>
             </div>
         </div>
     </div>
