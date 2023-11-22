@@ -54,7 +54,7 @@ get_header(); ?>
                         $author_name = get_the_author($single_post->ID);
                         $publication_date = get_the_date('M j, Y', $single_post->ID);
                         $post_excerpt = get_the_excerpt($single_post);
-                        echo $single_image;
+                        echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
                         echo '<div class="content">';
                         echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
                         echo '<p>' . $post_excerpt . '</p>';
@@ -107,7 +107,9 @@ get_header(); ?>
                     <li>
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="featured-image">
-                                <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                </a>
                             </div>
                         <?php endif; ?>
                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -205,8 +207,10 @@ get_header(); ?>
                             ?>
                             <li>
                                 <div class="featured-image">
-                                    <?php if (has_post_thumbnail()) : ?>                                       
-                                        <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                    <?php if (has_post_thumbnail()) : ?>   
+                                        <a href="<?php the_permalink(); ?>">                                    
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>    
                                     <?php endif; ?>
                                 </div>
                                 <div class="content">
@@ -254,7 +258,7 @@ get_header(); ?>
                         $author_name = get_the_author($single_post->ID);
                         $publication_date = get_the_date('M j, Y', $single_post->ID);
                         $post_excerpt = get_the_excerpt($single_post);
-                        echo $single_image;
+                        echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
                         echo '<div class="content">';
                         echo '<div class="inner">';
                         echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
@@ -281,8 +285,10 @@ get_header(); ?>
                                 ?>
                                 <li>
                                     <div class="featured-image">
-                                    <?php if (has_post_thumbnail()) : ?>                                       
-                                        <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                    <?php if (has_post_thumbnail()) : ?>    
+                                        <a href="<?php the_permalink(); ?>">                                   
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>
                                     <?php endif; ?>
                                     </div>
                                     <div class="content">
@@ -326,8 +332,10 @@ get_header(); ?>
                             ?>
                             <li>
                                 <div class="featured-image">
-                                <?php if (has_post_thumbnail()) : ?>                                       
-                                    <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                <?php if (has_post_thumbnail()) : ?>    
+                                    <a href="<?php the_permalink(); ?>">                                   
+                                        <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                    </a>
                                 <?php endif; ?>
                                 </div>
                                 <div class="content">
