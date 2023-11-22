@@ -1760,6 +1760,7 @@ section.glossary_sec {
 
 .search_box {
   position: relative;
+  margin-bottom: 10px;
 }
 
 .chapter_back_btn {
