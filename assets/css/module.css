@@ -1015,6 +1015,7 @@
   left: 0;
   bottom: 0;
   padding: 13.5px 0;
+  z-index: 1;
 }
 
 .chapter_cta_wrap {
@@ -1410,7 +1411,7 @@ body.single.single-module {
   .single_module_table_content {
     position: fixed;
     width: 100%;
-    top: 70px;
+    top: 0px;
     height: auto;
   }
 }
