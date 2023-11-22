@@ -54,6 +54,7 @@
 								</div>
 								<div class="search">
 									<?php get_search_form(); ?>
+									<?php echo do_shortcode('[ivory-search id="4325" title="Sub Category AJAX Search"]'); ?>
 								</div>
 							</header>
 							<div class="post-item">
@@ -151,7 +152,8 @@
 							<?php endif; ?>
 						</div>
 						<div class="search">
-							<?php get_search_form(); ?>
+							<?php // get_search_form(); ?>
+							<?php echo do_shortcode('[ivory-search id="4323" title="AJAX Search Form"]'); ?>
 						</div>
 					</div>
 				</div>

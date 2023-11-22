@@ -70,7 +70,7 @@
 }
 .pricing-info .plan-box .box h2 {
     color: #002852;
-    font-size: 18px;
+    font-size: 18px !important;
     font-weight: 500;
     line-height: 120%;
     
@@ -696,7 +696,7 @@
         min-height: 291px;
     }
     .pricing-info .plan-box .box h2 {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .pricing-info .plan-box .box span {
         font-size: 32px;

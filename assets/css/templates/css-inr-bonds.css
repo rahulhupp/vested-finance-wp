@@ -169,7 +169,7 @@
 }
 
 .explore_bonds_wrap {
-  padding: 0 18px 115px 15px;
+  padding: 0 18px 0 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1714,7 +1714,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     margin-top: 36px;
   }
   .explore_bonds_buttons .btn_dark {
-    width: 58%;
+    width: 100%;
   }
 
   .explore_bonds_buttons .btn_link {
@@ -1724,7 +1724,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     font-size: 12px;
   }
   .explore_bonds_wrap {
-    padding: 0 0 40px;
+    padding: 0;
   }
   .gold_bond_content {
     width: 100%;

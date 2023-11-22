@@ -94,6 +94,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    <?php /*
     <section class="gold_bonds">
         <div class="container">
             <div class="gold_bond_wrap">
@@ -124,6 +125,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    */ ?>
     <?php if (have_rows('portfolio_list')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
@@ -136,14 +138,14 @@ get_header(); ?>
                         </ul>
                     </div><!--end of tab-menu-->
                     <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
-                        <a href="#" class="btn_link">What are corporate bonds?</a>
+                        <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
                         <div class="bond_slider_wrap" id="corporateBondSlider">
                             <!-- Placeholder for corporate bond data -->
                         </div>
                     </div>
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
-                        <a href="#" class="btn_link">What are gsecs?</a>
+                        <!-- <a href="#" class="btn_link">What are gsecs?</a> -->
                         <div class="bond_slider_wrap" id="govtBondSlider">
                             <!-- Placeholder for government bond data -->
                         </div>
@@ -385,6 +387,7 @@ get_header(); ?>
         </div>
     </section>
     */ ?>
+    <?php /*
     <?php if (have_rows('faq_list')) : ?>
         <section class="home_page_faqs">
             <div class="container">
@@ -407,6 +410,7 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
+    */ ?>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
