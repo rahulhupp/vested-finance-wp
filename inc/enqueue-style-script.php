@@ -15,7 +15,9 @@
         // Enqueue your custom JavaScript file
         wp_enqueue_script('custom-slick-slider', get_stylesheet_directory_uri() . '/assets/js/slick-slider.js', array('jquery'), '1.0.0', true);
     
-        
+        wp_enqueue_style('newsletter-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-newsletter.css', false, '', '');
+        wp_enqueue_style('sub-category-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-sub-category.css', false, '', '');
+        wp_enqueue_style('blog-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-blog.css', false, '', '');
         wp_enqueue_style('header-style', get_stylesheet_directory_uri() . '/assets/css/header.css', false, '', '');
         wp_enqueue_style('footer-style', get_stylesheet_directory_uri() . '/assets/css/footer.css', false, '', '');
         wp_enqueue_style('module-style', get_stylesheet_directory_uri() . '/assets/css/module.css', false, '', '');

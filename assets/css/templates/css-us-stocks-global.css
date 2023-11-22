@@ -225,6 +225,10 @@
 	outline: none;
 }
 
+.explore-stock form input::placeholder {
+    color: #A9BDD0;
+}
+
 .explore-stock form input:focus {
     border: 1px solid #a9bdd0;
     box-shadow: 0 0 5px #ccc;
@@ -605,6 +609,11 @@
 	line-height: 140%;
 	margin-top: 18px;
 	margin-bottom: 0;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* us stocks slider */
@@ -624,6 +633,10 @@
 
 .stocks_slider_inner {
 	width: calc(100% - 320px);
+}
+
+.stocks_slider_inner h2.section_title {
+    font-weight: 800;
 }
 
 .stocks_slider_content {
@@ -1457,7 +1470,8 @@
 	}
 
 	.post-type-list .post-listing ul li {
-		padding: 0 !important;
+		padding-right: 24px;
+		padding-left: 0;
 		background: transparent;
 	}
 
@@ -1480,7 +1494,7 @@
 	}
 
 	.post-type-list ul li a img {
-		height: 111px;
+		height: 29.600vw;
 	}
 
 	.post-type-list ul li a h4 {
@@ -1586,9 +1600,6 @@
 
 	.stocks_slider_sec .section_title br {
 		display: none;
-	}
-	.stock-info .stock-row .stock-content .bottom .buttons {
-		justify-content: center;
 	}
 }
 

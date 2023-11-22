@@ -561,7 +561,7 @@
 }
 
 .single_plan:first-child .plans_list {
-    padding-bottom: 51px;
+    padding-bottom: 66px;
 }
 
 .plans_list li {
@@ -668,7 +668,7 @@ input#investment_range:after {
 	content: "₹50,00,000";
 	position: absolute;
 	right: 0;
-	top: 20px;
+	top: 35px;
 	color: #5f7a96;
 	font-size: 18px;
 	font-weight: 400;
@@ -681,7 +681,7 @@ input#investment_range:before {
 	content: "₹20,000";
 	position: absolute;
 	left: 0;
-	top: 20px;
+	top: 35px;
 	color: #5f7a96;
 	font-size: 18px;
 	font-weight: 400;
@@ -690,7 +690,7 @@ input#investment_range:before {
 }
 
 .fd_plan_select {
-	margin-top: 54px;
+	margin-top: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -2346,6 +2346,11 @@ input[type=range]::-webkit-slider-runnable-track {
 	input#investment_range:before,
 	input#investment_range:after {
 		font-size: 12px;
+		top: 20px;
+	}
+
+	.fd_plan_select {
+		margin-top: 38px;
 	}
 
 	.invest_wisely_sec {

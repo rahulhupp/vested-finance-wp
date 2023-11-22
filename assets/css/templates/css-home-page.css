@@ -385,10 +385,6 @@
 	text-align: center;
 }
 
-.edge_btns .link_dark {
-	font-size: 17px;
-}
-
 .link_dark {
 	color: #fff;
 	font-size: 18px;
@@ -810,7 +806,7 @@ section.invest_wisely_sec .container {
 
 	.btn_dark {
 		font-size: 16px;
-		padding: 12px 17px;
+		padding: 12px 27px;
 	}
 
 	.easy_access_btns {
@@ -853,7 +849,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.link_dark {
-		font-size: 15px;
+		font-size: 16px;
 		margin-left: 10px;
 	}
 
@@ -1019,6 +1015,8 @@ section.invest_wisely_sec .container {
 
 	.multi_asset_img {
 		padding: 0;
+		display: flex;
+		justify-content: center;
 	}
 
 	.easy_access_btns {
@@ -1042,6 +1040,7 @@ section.invest_wisely_sec .container {
 	.easy_access_wrap .section_title {
 		font-weight: 800;
 		margin-bottom: 26px;
+		text-align: center;
 	}
 
 	.easy_access_list {
@@ -1311,10 +1310,6 @@ section.invest_wisely_sec .container {
 }
 
 @media (max-width: 600px) {
-	.banner_buttons .btn {
-		width: 50%;
-	}
-
 	.btn_light i {
 		margin-right: 6px;
 		font-size: 16px;
@@ -1336,11 +1331,6 @@ section.invest_wisely_sec .container {
 	}
 	.counter_amt h3 {
 		font-size: 24px;
-	}
-
-	.btn_dark {
-		font-size: 12px;
-		padding: 12px 10px;
 	}
 
 	.edge_btns .btn_light {
