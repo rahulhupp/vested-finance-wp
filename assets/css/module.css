@@ -139,6 +139,23 @@
   margin-top: 30px;
 }
 
+.module_share_mobile {
+  margin-left: 8px;
+  display: none;
+}
+
+.module_share_mobile button.sharing-icon {
+  background: transparent;
+  border: 1px solid #002852;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 11px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .module_sharing_wrap {
   display: flex;
   align-items: center;
@@ -198,33 +215,54 @@
 }
 
 .module_share_wrap {
-  border: 1px solid #002852;
+  border: 1px solid #e5e9ee;
   background: #fff;
-  padding: 10px;
+  padding: 5px;
   border-radius: 6px;
   position: absolute;
   right: 0;
-  top: -120%;
+  top: -250%;
+  width: 224px;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.09);
   display: none;
+  left: -30px;
 }
 
-.module_share_wrap a {
-  margin: 0 5px;
-  display: flex;
-  width: 20px;
-  height: 20px;
-  align-items: center;
-  justify-content: center;
+.module_share_inner ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
-.module_share_inner {
-  width: 90px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.module_share_inner ul li {
+  padding-left: 8px;
+  padding-top: 12px;
+  margin-bottom: 0;
+}
+.module_share_inner ul li:last-child {
+  padding-bottom: 12px;
+}
+.module_share_inner ul li a {
+  outline: none;
+  cursor: pointer;
+}
+.module_share_inner ul li a img {
+  width: 16px;
+  margin-right: 8px;
+}
+.module_share_inner ul li a span {
+  display: unset;
+  font-size: 14px;
+  color: #3f3f46;
+  font-weight: 500;
+  transition: 0.3s all;
+  opacity: 1;
+}
+.module_share_inner ul li a:hover span {
+  color: #002852;
 }
 
-.module_share_wrap:after {
+/* .module_share_wrap:after {
   content: "";
   position: absolute;
   width: 10px;
@@ -236,7 +274,7 @@
   right: 8px;
   border-left: none;
   border-top: none;
-}
+} */
 
 /* Comment Box */
 
@@ -497,6 +535,12 @@
     width: 35px;
     height: 35px;
     right: 8px;
+  }
+  .module_share {
+    display: none;
+  }
+  .module_share_mobile {
+      display: block;
   }
 }
 
