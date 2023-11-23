@@ -282,6 +282,30 @@ get_header(); ?>
                 currentElement.find('span').text("Copy link");
             }, 1000);
         });
+
+        // 
+        const BlogData = {
+            title: '<?php the_title(); ?>',
+            url: '<?php the_permalink(); ?>',
+        }
+
+        const btn = document.querySelector('.sharing-icon');
+
+        // Share must be triggered by "user activation"
+        btn.addEventListener('click', async () => {
+            try {
+                if (navigator.canShare &&
+                    typeof navigator.canShare === 'function' &&
+                    navigator.canShare(BlogData)) {
+                    let result = await navigator.share(BlogData);
+                    document.getElementById("status").innerText = result || '';
+                } else {
+                    document.getElementById("status").innerText = "Sharing selected data not supported.";
+                }
+            } catch (err) {
+                document.getElementById("status").innerText = "Share not complete";
+            }
+        });
     </script>
 </div>
 <?php get_footer(); ?>
