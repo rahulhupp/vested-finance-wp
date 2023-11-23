@@ -1455,9 +1455,12 @@ body.single.single-module {
   .single_module_table_content {
     position: fixed;
     width: 100%;
-    top: 0px;
+    top: 88px;
     height: auto;
   }
+  .single_module_table_content.scrolledd {
+    top: 0;
+}
 }
 
 @media (max-width: 850px) {

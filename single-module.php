@@ -301,15 +301,24 @@ while (have_posts()) :
         const triggerElement = document.querySelector('.single_module_table_content');
 
         window.addEventListener('scroll', () => {
-            const rect = targetElement.getBoundingClientRect();
-            if (rect.top <= 0) {
+            var scrollPosition = window.scrollY;
+
+
+            if (scrollPosition > 20) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');
             }
 
+            // const rect = targetElement.getBoundingClientRect();
+            // if (rect.top <= 0) {
+            //     triggerElement.classList.add('scrolledd');
+            // } else {
+            //     triggerElement.classList.remove('scrolledd');
+            // }
+
             const scrollTop = window.scrollY;
-            const mainContent = document.querySelector('main');
+            const mainContent = document.querySelector('#main-content');
             const mainContentHeight = mainContent.clientHeight - window.innerHeight;
             const progress = (scrollTop / mainContentHeight) * 100;
 
@@ -410,12 +419,6 @@ while (have_posts()) :
         document.addEventListener("DOMContentLoaded", function() {
             var current_text = document.querySelector(".single_module_title").textContent;
 
-            document.querySelector(".share_twitter").addEventListener("click", function() {
-                ga('send', 'event', 'Social Sharing on Academy', 'Click', 'Twitter');
-                var current_page_url = window.location.href;
-                window.open('http://twitter.com/share?text=' + encodeURIComponent(current_text) + '&url=' + encodeURIComponent(current_page_url) + '&utm-medium=social&utm-source=Twitter&utm-campaign=Academy', "", "width=600,height=400");
-            });
-
             document.querySelector(".share_facebook").addEventListener("click", function() {
                 ga('send', 'event', 'Social Sharing on Academy', 'Click', 'Facebook');
                 var current_page_url = window.location.href;
@@ -430,7 +433,7 @@ while (have_posts()) :
         });
 
         function addAttributesToExternalLinks() {
-            var dynamicContent = document.getElementById('main');
+            var dynamicContent = document.getElementById('#main-content');
             var anchorTags = dynamicContent.querySelectorAll('a');
 
             anchorTags.forEach(function(anchorTag) {
@@ -445,8 +448,6 @@ while (have_posts()) :
         }
 
 
-        addAttributesToExternalLinks();
-
         if (document.querySelector('.takeways')) {
             var newLi = document.createElement('li');
             newLi.className = 'ez-toc-page-1 ez-toc-heading-level-2';
@@ -459,6 +460,7 @@ while (have_posts()) :
             var ul = document.querySelector('.ez-toc-list');
             ul.appendChild(newLi);
         }
+        addAttributesToExternalLinks();
     </script>
 <?php
 endwhile; ?>
