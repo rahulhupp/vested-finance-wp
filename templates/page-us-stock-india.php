@@ -257,7 +257,7 @@ get_header(); ?>
 
                     </div>
                     <div class="short-content">
-                        <p>Learn more with regular insights that dive into the US Stock Markets.</p>
+                        <p>Learn more with regular insights that dive into the US Stock Markets.</p> 
                     </div>
                 </div>
                 <ul>
