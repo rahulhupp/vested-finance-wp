@@ -51,7 +51,7 @@ get_header(); ?>
                         $single_title = esc_html($single_post->post_title);
                         $single_content = esc_html($single_post->post_title);
                         $post_content = apply_filters('the_content', $single_post->post_content);
-                        $author_name = get_the_author($single_post->ID);
+                        $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
                         $publication_date = get_the_date('M j, Y', $single_post->ID);
                         $post_excerpt = get_the_excerpt($single_post);
                         echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
@@ -255,7 +255,7 @@ get_header(); ?>
                         $single_title = esc_html($single_post->post_title);
                         $single_content = esc_html($single_post->post_title);
                         $post_content = apply_filters('the_content', $single_post->post_content);
-                        $author_name = get_the_author($single_post->ID);
+                        $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
                         $publication_date = get_the_date('M j, Y', $single_post->ID);
                         $post_excerpt = get_the_excerpt($single_post);
                         echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';

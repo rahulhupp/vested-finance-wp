@@ -527,34 +527,13 @@ get_header(); ?>
                     // const bankFixedDeposit (Math.pow(initialPortfolioPrice, Periods) -1) * 100;
                     document.getElementById('units').value = minimumQuantity;
                     document.getElementById('unit_range').value = minimumQuantity;
-                    document.getElementById('yield_price').textContent = yieldPrice.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('bank_fixed_deposit').textContent = bankFixedDeposit.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('selected_bond').textContent = selectedBonds.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('yield_returns').textContent = yieldPrice.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('investment_amount').textContent = investmentAmount.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('result_note_investment_amount').textContent = investmentAmount.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
+                    document.getElementById('yield_price').textContent = Math.round(yieldPrice);
+                    document.getElementById('bank_fixed_deposit').textContent = Math.round(bankFixedDeposit);
+                    document.getElementById('selected_bond').textContent = Math.round(selectedBonds);
+                    document.getElementById('yield_returns').textContent = Math.round(yieldPrice);
+                    document.getElementById('investment_amount').textContent = Math.round(investmentAmount);
+                    document.getElementById('result_note_investment_amount').textContent = Math.round(investmentAmount);
+                    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
 
                     document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
                     document.getElementById('investment_amount').setAttribute("newPrice", newPrice);

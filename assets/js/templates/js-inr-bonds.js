@@ -356,11 +356,11 @@ jQuery(document).ready(function($){
     var extraAmount = newselectedBonds - newbankFixedDeposit;
 
     document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-    document.getElementById('investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('result_note_investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('bank_fixed_deposit').textContent = newbankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('selected_bond').textContent = newselectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount);
+    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount);
+    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit);
+    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds);
+    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
 
   });
   
@@ -407,11 +407,11 @@ jQuery(document).ready(function($){
     var extraAmount = newselectedBonds - newbankFixedDeposit;
 
     document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-    document.getElementById('investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('result_note_investment_amount').textContent = newinvestmentAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('bank_fixed_deposit').textContent = newbankFixedDeposit.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('selected_bond').textContent = newselectedBonds.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
-    document.getElementById('extra_amount').textContent = extraAmount.toLocaleString(undefined, { minimumFractionDigits: 2,  maximumFractionDigits: 2 });
+    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount);
+    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount);
+    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit);
+    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds);
+    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
 
   });
 

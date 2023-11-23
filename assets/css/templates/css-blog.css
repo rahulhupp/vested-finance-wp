@@ -802,6 +802,9 @@ div.is-ajax-search-result div.is-show-more-results:hover {
   text-overflow: ellipsis;
   margin: 0;
 }
+.vested-shots-blog .post-list ul li .content p.read-more {
+    display: none;
+}
 .vested-shots-blog .post-list ul li:first-child .content .meta-info {
   display: flex;
   align-items: center;
