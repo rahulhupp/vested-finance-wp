@@ -284,28 +284,15 @@ get_header(); ?>
         });
 
 
-        // Class to encapsulate the share functionality
-    class ShareModule {
-        constructor(element) {
-            this.element = element;
-            this.btn = this.element.querySelector('.sharing-icon');
-
-            // Bind the click event to the handleShareClick method
-            this.btn.addEventListener('click', this.handleShareClick.bind(this));
+        const BlogData = {
+            title: '<?php the_title(); ?>',
+            url: '<?php the_permalink(); ?>',
         }
 
-        // Function to get blog data
-        getBlogData() {
-            return {
-                title: '<?php the_title(); ?>',
-                url: '<?php the_permalink(); ?>',
-            };
-        }
+        const btn = document.querySelector('.sharing-icon');
 
-        // Function to handle the share button click
-        async handleShareClick() {
-            const BlogData = this.getBlogData();
-
+        // Share must be triggered by "user activation"
+        btn.addEventListener('click', async () => {
             try {
                 if (navigator.canShare &&
                     typeof navigator.canShare === 'function' &&
@@ -318,12 +305,7 @@ get_header(); ?>
             } catch (err) {
                 document.getElementById("status").innerText = "Share not complete";
             }
-        }
-    }
-
-    // Initialize the ShareModule for each modules_item
-    const moduleItems = document.querySelectorAll('.modules_item');
-    moduleItems.forEach(item => new ShareModule(item));
+        });
     </script>
 </div>
 <?php get_footer(); ?>
