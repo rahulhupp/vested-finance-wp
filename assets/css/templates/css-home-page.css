@@ -1329,9 +1329,6 @@ section.invest_wisely_sec .container {
 		font-size: 12px;
 		padding: 11px 10px;
 	}
-	.link_light {
-	    width: calc(100% - 145px);
-	}
 	.counter_amt h3 {
 		font-size: 24px;
 	}
