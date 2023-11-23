@@ -88,7 +88,24 @@ get_header();
                                         </svg></div>
                                     <div class="module_share_wrap">
                                         <div class="module_share_inner">
-                                            <a href="javascript:void(0);"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+                                            <ul>
+                                                <li>
+                                                    <a class="copyLink">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.png" alt="link" />
+                                                        <input class="copyPostLink" type="hidden" value="<?php the_permalink(); ?>" />
+                                                        <span>Copy link</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="share_whatsapp" href="javascript:void(0);" data-title="<?php the_title(); ?>" data-url="<?php the_permalink(); ?>" target="_blank">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.png" alt="whatsapp" />
+                                                        <span>Share on Whatsapp</span>
+                                                    </a>
+                                                </li>
+                                            </ul> 
+                                        </div>
+                                        <!-- <div class="module_share_inner">
+                                            <a class="share_twitter" href="javascript:void(0);"  data-title="<?php echo $module_name; ?>" data-url="<?php echo $term_link; ?>"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
                                                     <style>
                                                         .s0 {
                                                             fill: #002852;
@@ -104,7 +121,7 @@ get_header();
                                                         </g>
                                                     </g>
                                                 </svg></a>
-                                            <a href="javascript:void(0)"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+                                            <a class="share_facebook" href="javascript:void(0)"  data-title="<?php echo $module_name; ?>" data-url="<?php echo $term_link; ?>"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
                                                     <style>
                                                         .s0 {
                                                             fill: #002852
@@ -122,7 +139,7 @@ get_header();
                                                         </g>
                                                     </g>
                                                 </svg></a>
-                                            <a href="javascript:void(0);"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+                                            <a class="share_whatsapp" href="javascript:void(0);"  data-title="<?php echo $module_name; ?>" data-url="<?php echo $term_link; ?>"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
                                                     <style>
                                                         .s0 {
                                                             fill: #002852
@@ -133,8 +150,9 @@ get_header();
                                                     <g id="SVGRepo_iconCarrier">
                                                         <path id="Layer" fill-rule="evenodd" class="s0" d="m18.8 10c-0.1 4.8-4 8.8-8.8 8.8-1.6-0.1-3.1-0.5-4.3-1.2l-3.8 1.1c-0.3 0.1-0.6 0-0.9-0.2-0.2-0.3-0.2-0.6-0.1-0.9l1.4-3.4c-0.7-1.2-1-2.7-1-4.2 0-4.8 3.9-8.8 8.7-8.8 4.8 0 8.8 4 8.8 8.8zm-14.8 3.7c0.1 0.3 0.1 0.5 0 0.8l-0.9 2.1 2.4-0.7c0.3-0.1 0.5 0 0.7 0.1 1.1 0.7 2.4 1.1 3.8 1.1 3.9 0 7.1-3.2 7.1-7.1 0-3.9-3.2-7.1-7.1-7.1-3.9 0-7.1 3.2-7.1 7.1 0 1.4 0.4 2.6 1.1 3.7zm8.8-1.9l1.4 0.8c0.2 0.2 0.4 0.4 0.4 0.7 0 0.2-0.1 0.5-0.3 0.7l-0.5 0.4c-0.5 0.4-1.1 0.6-1.9 0.4-0.9-0.2-2.4-0.8-3.9-2.3-1.4-1.4-2.1-2.9-2.4-3.9-0.3-0.9 0-1.8 0.7-2.3l0.2-0.3c0.2-0.1 0.5-0.2 0.7-0.2 0.3 0.1 0.5 0.3 0.6 0.5l0.9 1.6c0.2 0.4 0.1 0.8-0.2 1.1l-0.7 0.6c0.3 0.5 0.8 1.1 1.4 1.7 0.5 0.6 1.1 1 1.6 1.3l1.1-0.8c0.3-0.2 0.6-0.2 0.9 0z" />
                                                     </g>
-                                                </svg></a>
-                                        </div>
+                                                </svg>
+                                            </a>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <span class="read_time"><?php echo 'Read time: ' . $reading_time . ' minutes' ?></span>
@@ -253,6 +271,24 @@ get_header();
                         window.open('https://wa.me/?text=' + encodeURIComponent(title + " , " + url) + '&utm-medium=social&utm-source=WhatsApp&utm-campaign=Academy', "_blank");
                     });
                 });
+            });
+        </script>
+        <script>
+            jQuery(".copyLink").click(function () {
+                var currentElement = jQuery(this); // Store reference to the current element
+                var inputField = currentElement.find('.copyPostLink');
+                var inputValue = inputField.val();
+                var tempInput = jQuery('<input>');
+                tempInput.val(inputValue);
+                jQuery('body').append(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                tempInput.remove();
+                currentElement.find('span').text("Copied");
+                // Use the stored reference to the current element
+                setTimeout(function() {
+                    currentElement.find('span').text("Copy link");
+                }, 1000);
             });
         </script>
 </div>
