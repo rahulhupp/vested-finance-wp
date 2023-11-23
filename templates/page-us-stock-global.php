@@ -146,7 +146,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Under the Spotlight</h3>
-                        <a href="https://wordpress-staging.vestedfinance.com/vestedfinance/in/blog/">View All</a>
+                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
 
                     </div>
                     <div class="short-content">
@@ -178,7 +178,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Vested Shorts</h3>
-                        <a href="https://wordpress-staging.vestedfinance.com/vestedfinance/in/blog/">View All</a>
+                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
 
                     </div>
                     <div class="short-content">
@@ -210,7 +210,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Blogs</h3>
-                        <a href="https://wordpress-staging.vestedfinance.com/vestedfinance/in/blog/">View All</a>
+                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
 
                     </div>
                     <div class="short-content">
