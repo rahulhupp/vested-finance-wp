@@ -301,12 +301,21 @@ while (have_posts()) :
         const triggerElement = document.querySelector('.single_module_table_content');
 
         window.addEventListener('scroll', () => {
-            const rect = targetElement.getBoundingClientRect();
-            if (rect.top <= 0) {
+            var scrollPosition = window.scrollY;
+
+            
+            if (scrollPosition > 20) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');
             }
+
+            // const rect = targetElement.getBoundingClientRect();
+            // if (rect.top <= 0) {
+            //     triggerElement.classList.add('scrolledd');
+            // } else {
+            //     triggerElement.classList.remove('scrolledd');
+            // }
 
             const scrollTop = window.scrollY;
             const mainContent = document.querySelector('#main-content');
