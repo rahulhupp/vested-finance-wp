@@ -284,7 +284,18 @@ get_header(); ?>
         });
 
 
-        function getBlogData() {
+        // Class to encapsulate the share functionality
+    class ShareModule {
+        constructor(element) {
+            this.element = element;
+            this.btn = this.element.querySelector('.sharing-icon');
+
+            // Bind the click event to the handleShareClick method
+            this.btn.addEventListener('click', this.handleShareClick.bind(this));
+        }
+
+        // Function to get blog data
+        getBlogData() {
             return {
                 title: '<?php the_title(); ?>',
                 url: '<?php the_permalink(); ?>',
@@ -292,9 +303,8 @@ get_header(); ?>
         }
 
         // Function to handle the share button click
-        async function handleShareClick() {
-            const BlogData = getBlogData();
-            const btn = document.querySelector('.sharing-icon');
+        async handleShareClick() {
+            const BlogData = this.getBlogData();
 
             try {
                 if (navigator.canShare &&
@@ -309,10 +319,11 @@ get_header(); ?>
                 document.getElementById("status").innerText = "Share not complete";
             }
         }
+    }
 
-        // Add click event listener to the share button
-        const btn = document.querySelector('.sharing-icon');
-        btn.addEventListener('click', handleShareClick);
+    // Initialize the ShareModule for each modules_item
+    const moduleItems = document.querySelectorAll('.modules_item');
+    moduleItems.forEach(item => new ShareModule(item));
     </script>
 </div>
 <?php get_footer(); ?>
