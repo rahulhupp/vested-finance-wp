@@ -1136,6 +1136,10 @@
 .result_note h3 span {
   font-weight: 700;
   color: #0dc986;
+  display: inline-flex;
+}
+div#extra_amount {
+  margin: 0 4px;
 }
 #bond_selector {
   height: 52px;

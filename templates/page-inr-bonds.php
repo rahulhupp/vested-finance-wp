@@ -229,7 +229,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="result_note">
-                            <h3>₹<div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div>
+                            <h3>₹ <div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div>
                             </h3>
                         </div>
 
