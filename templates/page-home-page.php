@@ -135,7 +135,7 @@ get_header(); ?>
 
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('inr_bond_heading'); ?></h2>
-                        <img src="<?php the_field('inr_bond_image'); ?>" alt="Easy Access" class="desktop_hide">
+                        <img src="<?php the_field('inr_bond_image'); ?>" alt="Easy Access" class="mobile_easy_access_img desktop_hide">
                         <div class="easy_access_list">
                             <?php while (have_rows('inr_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">

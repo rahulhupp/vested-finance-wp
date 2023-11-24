@@ -459,6 +459,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
   }
 
   .category-btn,
@@ -526,12 +527,6 @@
 
   .module_btn {
     margin-top: 20px;
-    flex-wrap: wrap;
-  }
-
-  .module_btn span {
-    width: 100%;
-    margin-top: 10px;
   }
 
   .single_module_main {
@@ -1487,6 +1482,16 @@ body.single.single-module {
   .single_module_table_content.scrolledd {
     top: 0;
 }
+}
+
+@media (max-width: 991px) {
+  .module_btn {
+      flex-wrap: wrap;
+  }
+  .module_btn span {
+      margin-top: 10px;
+      width: 100%;
+  }
 }
 
 @media (max-width: 850px) {

@@ -11,6 +11,10 @@
 	max-width: 1200px;
 }
 
+.desktop_hide {
+	display: none;
+}
+
 .page-template-page-us-stock-global .btn_light {
 	padding: 16px;
 	border-radius: 5px;
@@ -571,6 +575,7 @@
 	font-weight: 400;
 	line-height: 120%;
 	margin: 0 0 24px 0;
+	width: calc(100% - 70px);
 }
 
 .post-type-list ul {
@@ -1334,6 +1339,12 @@
 }
 
 @media (max-width: 767px) {
+	.mobile_hide {
+		display: none;
+	}
+	.desktop_hide {
+		display: block;
+	}
 	.progressBar {
 		display: none;
 	}
@@ -1612,6 +1623,21 @@
 
 	.stocks_slider_sec h2.mobile.section_title { 
 		display: block;
+	}
+	.single_portfolio_slider img {
+		height: 352px;
+		object-fit: contain;
+		margin: 0 auto;
+	}
+	.stocks_slider_sec h2.section_title {
+		max-width: 310px;
+		margin: 0 auto;
+	}
+	.portfolio_slider_inner_content {
+		margin-left: 5px;
+	}
+	.stocks_slider_content .progressBar {
+		display: none;
 	}
 }
 

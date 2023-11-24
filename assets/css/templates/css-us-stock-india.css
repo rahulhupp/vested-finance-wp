@@ -663,6 +663,7 @@
 	font-weight: 400;
 	line-height: 120%;
 	margin: 0 0 24px 0;
+	width: calc(100% - 70px);
 }
 
 .post-type-list ul {
@@ -1917,6 +1918,9 @@
 	    max-width: 310px;
 	    margin: 0 auto;
 	}
+	.stocks_slider_sec h2.section_title br {
+		display: none;
+	}
 	.stocks_slider_sec {
 	    padding: 31px 0 35px;
 	}
@@ -1931,6 +1935,11 @@
 	}
 	.partners p.sub_heading {
 	    font-weight: 400;
+	}
+	.single_portfolio_slider img {
+		height: 352px;
+		object-fit: contain;
+		margin: 0 auto;
 	}
 }
 

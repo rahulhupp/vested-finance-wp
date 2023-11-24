@@ -1310,6 +1310,9 @@ section.invest_wisely_sec .container {
 	.inr_bond.easy_access .easy_access_content a.link_light {
 	    width: calc(100% - 195px);
 	}
+	.easy_access_content img.mobile_easy_access_img {
+		width: 100%;
+	}
 }
 
 @media (max-width: 600px) {

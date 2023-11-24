@@ -1545,7 +1545,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     padding: 0 0 70px;
   }
   .portfolio_slider_sec {
-    padding: 40px 0;
+    padding: 66px 0 40px;
   }
   .single_edge_list {
     max-width: calc(50% - 15px);
@@ -2186,6 +2186,9 @@ input[type="range"]::-webkit-slider-runnable-track {
   }
   .single_portfolio_slide {
     min-height: 363px !important;
+  }
+  .explore_bonds_content img.desktop_hide {
+      width: 100%;
   }
 }
 
