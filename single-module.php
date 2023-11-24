@@ -305,6 +305,14 @@ while (have_posts()) :
         window.addEventListener('scroll', () => {
             console.log('offsetHeight', offsetHeight);
             console.log('clientHeight', clientHeight);
+            var scrollPosition = window.scrollY;
+
+
+            if (scrollPosition > clientHeight) {
+                triggerElement.classList.add('scrolledd');
+            } else {
+                triggerElement.classList.remove('scrolledd');
+            }
             // const rect = targetElement.getBoundingClientRect();
             // if (rect.top <= 0) {
             //     triggerElement.classList.add('scrolledd');
