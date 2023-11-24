@@ -659,6 +659,11 @@
 	background: #eef5fc;
 }
 
+.stocks_slider_sec h2.mobile.section_title {
+    font-weight: 800;
+	display: none;
+}
+
 .stocks_slider_sec ol li {
 	color: rgba(33, 37, 41, 0.7);
 	font-family: "Inter", sans-serif;
@@ -1600,6 +1605,13 @@
 
 	.stocks_slider_sec .section_title br {
 		display: none;
+	}
+	.stocks_slider_inner h2.desktop.section_title {
+		display: none;
+	}
+
+	.stocks_slider_sec h2.mobile.section_title { 
+		display: block;
 	}
 }
 

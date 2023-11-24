@@ -379,12 +379,6 @@
     align-items: center;
 }
 
-.edge_btns .btn_light {
-	padding: 16px 22px;
-	min-width: 172px;
-	text-align: center;
-}
-
 .link_dark {
 	color: #fff;
 	font-size: 18px;
@@ -689,6 +683,12 @@ section.invest_wisely_sec .container {
 	.home_page_faq_wrap {
 		padding: 0 115px;
 	}
+	.edge_content {
+		width: 51%;
+	}
+	.edge_img {
+		width: 49%;
+	}
 }
 
 @media (max-width: 1100px) {
@@ -736,7 +736,7 @@ section.invest_wisely_sec .container {
 	}
 
 	.link_light {
-		margin-left: 15px;
+		margin-left: 10px;
 	}
 
 	.edge_wrapper {
@@ -806,7 +806,7 @@ section.invest_wisely_sec .container {
 
 	.btn_dark {
 		font-size: 16px;
-		padding: 12px 27px;
+		padding: 12px 16px;
 	}
 
 	.easy_access_btns {
@@ -1331,10 +1331,5 @@ section.invest_wisely_sec .container {
 	}
 	.counter_amt h3 {
 		font-size: 24px;
-	}
-
-	.edge_btns .btn_light {
-		padding: 11px 10px;
-		font-size: 12px;
 	}
 }

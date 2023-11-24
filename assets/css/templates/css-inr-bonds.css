@@ -1730,9 +1730,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   .explore_bonds_buttons {
     margin-top: 36px;
   }
-  .explore_bonds_buttons .btn_dark {
-    width: 100%;
-  }
 
   .explore_bonds_buttons .btn_link {
     width: 28%;

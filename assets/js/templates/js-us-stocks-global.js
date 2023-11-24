@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
 		verticalSwiping: true,
 		responsive: [
 			{
-				breakpoint: 767,
+				breakpoint: 768,
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
 		vertical: true,
 		responsive: [
 			{
-				breakpoint: 767,
+				breakpoint: 768,
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
@@ -60,7 +60,7 @@ jQuery(document).ready(function ($) {
 		verticalSwiping: true,
 		responsive: [
 			{
-				breakpoint: 767,
+				breakpoint: 768,
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
@@ -68,6 +68,7 @@ jQuery(document).ready(function ($) {
 					vertical: false,
 					verticalSwiping: false,
 					autoplay: false,
+					adaptiveHeight: true,
 				},
 			},
 		],

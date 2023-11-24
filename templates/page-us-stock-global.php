@@ -59,9 +59,12 @@ get_header(); ?>
     <?php if (have_rows('stocks_slider_global')) : ?>
         <section class="stocks_slider_sec">
             <div class="container">
+                <h2 class="mobile section_title align_left">
+                    <span><?php the_field('stocks_slider_heading_global'); ?></span>
+                </h2>
                 <div class="stocks_slider_wrap">
                     <div class="stocks_slider_inner">
-                        <h2 class="section_title align_left">
+                        <h2 class="desktop section_title align_left">
                             <span><?php the_field('stocks_slider_heading_global'); ?></span>
                         </h2>
                         <div class="stocks_slider_content">

@@ -542,6 +542,12 @@
   .module_share_mobile {
       display: block;
   }
+  .acadamy_banner_image_col img {
+      width: 100%;
+      max-height: 204px;
+      object-fit: contain;
+      object-position: center;
+  }
 }
 
 .single_module_main {
