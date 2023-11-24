@@ -168,6 +168,9 @@
   text-align: left;
 }
 
+.explore_bonds {
+  padding-bottom: 100px;
+}
 .explore_bonds_wrap {
   padding: 0 18px 0 15px;
   display: flex;
@@ -305,6 +308,7 @@
 
 .portfolio_slider_sec {
   padding: 101px 0 137px;
+  display: none;
 }
 
 .portfolio_slider_wrap {
@@ -1277,6 +1281,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 .returns_calc {
   margin-bottom: 100px;
+  display: none;
 }
 
 .return_calc_wrap .yield {
@@ -2193,6 +2198,9 @@ input[type="range"]::-webkit-slider-runnable-track {
   }
   .explore_bonds_content img.desktop_hide {
       width: 100%;
+  }
+  .explore_bonds {
+      padding-bottom: 70px;
   }
 }
 
