@@ -166,7 +166,7 @@ get_header(); ?>
                         <div class="field_group">
                             <label for="bond">Select a bond</label>
                             <select name="bond" id="bond_selector">
-                                <option value='' selected disabled>Please Select</option>
+                                <!-- <option value='' selected disabled>Please Select</option> -->
                             </select>
                             <div class="yield">
                                 <label>Yield</label>
@@ -440,6 +440,14 @@ get_header(); ?>
                     option.setAttribute("minValue", item.minimumQty);
                     apiDataDropdown.appendChild(option);
                 });
+                // on load select first option and trigger it
+                    var selectElement = document.getElementById("bond_selector");
+                    if (selectElement && selectElement.options.length > 0) {
+                        selectElement.options[0].selected = true;
+                        var event = new Event('change');
+                        selectElement.dispatchEvent(event);
+                    }
+                // on load select first option and trigger it
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
@@ -790,6 +798,7 @@ get_header(); ?>
 
         fetchDataAndDisplay(corporateApiUrl, corporateContainerId);
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
+         
     });
 </script>
 

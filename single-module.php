@@ -553,7 +553,7 @@ endwhile; ?>
     //     url: '<?php the_permalink(); ?>',
     // }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() { 
       const btn = document.querySelector('.sharing-icon');
 
       btn.addEventListener('click', function() {
