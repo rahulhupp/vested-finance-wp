@@ -299,28 +299,16 @@ while (have_posts()) :
     <script>
         const targetElement = document.querySelector('.single_module_post_content');
         const triggerElement = document.querySelector('.single_module_table_content');
-        const offsetHeight = document.getElementById('masthead').offsetHeight;
-        const clientHeight = document.getElementById('masthead').clientHeight;
 
         window.addEventListener('scroll', () => {
-            console.log('offsetHeight', offsetHeight);
-            console.log('clientHeight', clientHeight);
-            var scrollPosition = window.scrollY;
-
-
-            if (scrollPosition > clientHeight) {
+            const scrollTop = window.scrollY;
+            if (scrollTop > 20) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');
             }
-            // const rect = targetElement.getBoundingClientRect();
-            // if (rect.top <= 0) {
-            //     triggerElement.classList.add('scrolledd');
-            // } else {
-            //     triggerElement.classList.remove('scrolledd');
-            // }
 
-            const scrollTop = window.scrollY;
+            
             const mainContent = document.querySelector('#main-content');
             const mainContentHeight = mainContent.clientHeight - window.innerHeight;
             const progress = (scrollTop / mainContentHeight) * 100;
