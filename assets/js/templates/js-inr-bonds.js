@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  sliderSlide();
+  // sliderSlide();
 });
 function sliderSlide() {
   var slider = document.getElementById("unit_range");
@@ -150,7 +150,7 @@ jQuery(document).ready(function ($) {
     verticalSwiping: true,
     responsive: [
       {
-        breakpoint: 767,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -173,7 +173,7 @@ jQuery(document).ready(function ($) {
     vertical: true,
     responsive: [
       {
-        breakpoint: 767,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -331,6 +331,14 @@ jQuery(document).ready(function($){
     slider.style.background = color;
     var minValue = slider.getAttribute('min');
     var maxValue = 1000;
+    // var selectedValue = jQuery('#bond_selector').attr('minvalue');
+    // console.log ('test', selectedValue);
+    // console.log ('sd', minValue);
+    // if (maxValue <= minValue) {
+    //   console.log ('test', minValue);
+    //   jQuery(this).val(minValue);
+    // }
+    
     var x = parseFloat(latestAmt);
     var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
     var color =

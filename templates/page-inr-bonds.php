@@ -126,6 +126,7 @@ get_header(); ?>
         </div>
     </section>
     */ ?>
+    <?php /*
     <?php if (have_rows('portfolio_list')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
@@ -154,7 +155,8 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-
+    */ ?>
+    <?php /*
     <section class="returns_calc">
         <div class="container">
             <div class="returns-cal_wrap">
@@ -239,6 +241,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    */ ?>
     <section class="vested_edge_list">
         <div class="container">
             <div class="edge_list_row">
@@ -412,7 +415,7 @@ get_header(); ?>
     <?php endif; ?>
     */ ?>
 </div>
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         const corporateApiUrl = "https://yield-api-test.vestedfinance.com/bonds";
         const corporateContainerId = "corporateBondSlider";
@@ -800,6 +803,6 @@ get_header(); ?>
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
          
     });
-</script>
+</script> -->
 
 <?php get_footer(); ?>

@@ -308,7 +308,6 @@
 
 .portfolio_slider_sec {
   padding: 101px 0 137px;
-  display: none;
 }
 
 .portfolio_slider_wrap {
@@ -1281,7 +1280,6 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 .returns_calc {
   margin-bottom: 100px;
-  display: none;
 }
 
 .return_calc_wrap .yield {
