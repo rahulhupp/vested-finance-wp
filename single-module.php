@@ -297,16 +297,6 @@ while (have_posts()) :
     }
     ?>
     <script>
-
-        document.addEventListener('DOMContentLoaded', function() { 
-          const btn = document.querySelector('.sharing-icon');
-
-          btn.addEventListener('click', function() {
-            console.log('Button clicked!');
-            // Add your specific functionality here
-          });
-        });
-        
         const targetElement = document.querySelector('.single_module_post_content');
         const triggerElement = document.querySelector('.single_module_table_content');
 
@@ -510,7 +500,6 @@ endwhile; ?>
     var shareOverlay = document.querySelector(".social-overlay");
 
     shareButton.addEventListener("click", function() {
-        console.log ('test333');
         shareButton.classList.add("show");
         document.querySelector('html').classList.add('social-open');
     });
@@ -558,12 +547,28 @@ endwhile; ?>
     };
     // 
 
-    // const BlogData = {
-    //     title: '<?php the_title(); ?>',
-    //     url: '<?php the_permalink(); ?>',
-    // }
+    const BlogData = {
+        title: '<?php the_title(); ?>',
+        url: '<?php the_permalink(); ?>',
+    }
 
-    
+    const btn = document.querySelector('.sharing-icon');
+
+    // Share must be triggered by "user activation"
+    btn.addEventListener('click', async () => {
+        try {
+            if (navigator.canShare &&
+                typeof navigator.canShare === 'function' &&
+                navigator.canShare(BlogData)) {
+                let result = await navigator.share(BlogData);
+                document.getElementById("status").innerText = result || '';
+            } else {
+                document.getElementById("status").innerText = "Sharing selected data not supported.";
+            }
+        } catch (err) {
+            document.getElementById("status").innerText = "Share not complete";
+        }
+    });
 </script>
 <?php
 get_footer();
