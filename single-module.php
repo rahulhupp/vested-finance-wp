@@ -500,6 +500,7 @@ endwhile; ?>
     var shareOverlay = document.querySelector(".social-overlay");
 
     shareButton.addEventListener("click", function() {
+        console.log ('test333');
         shareButton.classList.add("show");
         document.querySelector('html').classList.add('social-open');
     });
@@ -556,18 +557,19 @@ endwhile; ?>
 
     // Share must be triggered by "user activation"
     btn.addEventListener('click', async () => {
-        try {
-            if (navigator.canShare &&
-                typeof navigator.canShare === 'function' &&
-                navigator.canShare(BlogData)) {
-                let result = await navigator.share(BlogData);
-                document.getElementById("status").innerText = result || '';
-            } else {
-                document.getElementById("status").innerText = "Sharing selected data not supported.";
-            }
-        } catch (err) {
-            document.getElementById("status").innerText = "Share not complete";
-        }
+        console.log ('test222');
+        // try {
+        //     if (navigator.canShare &&
+        //         typeof navigator.canShare === 'function' &&
+        //         navigator.canShare(BlogData)) {
+        //         let result = await navigator.share(BlogData);
+        //         document.getElementById("status").innerText = result || '';
+        //     } else {
+        //         document.getElementById("status").innerText = "Sharing selected data not supported.";
+        //     }
+        // } catch (err) {
+        //     document.getElementById("status").innerText = "Share not complete";
+        // }
     });
 </script>
 <?php
