@@ -553,13 +553,13 @@ endwhile; ?>
     //     url: '<?php the_permalink(); ?>',
     // }
 
-    const btn = document.querySelector('.sharing-icon');
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.querySelector('.sharing-icon');
 
-
-    btn.addEventListener('click', function() {
-      // Code to be executed when the button is clicked
-      console.log('Button clicked!');
-      // Add your specific functionality here
+      btn.addEventListener('click', function() {
+        console.log('Button clicked!');
+        // Add your specific functionality here
+      });
     });
 </script>
 <?php
