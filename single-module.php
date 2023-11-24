@@ -297,6 +297,16 @@ while (have_posts()) :
     }
     ?>
     <script>
+
+        document.addEventListener('DOMContentLoaded', function() { 
+          const btn = document.querySelector('.sharing-icon');
+
+          btn.addEventListener('click', function() {
+            console.log('Button clicked!');
+            // Add your specific functionality here
+          });
+        });
+        
         const targetElement = document.querySelector('.single_module_post_content');
         const triggerElement = document.querySelector('.single_module_table_content');
 
@@ -553,14 +563,7 @@ endwhile; ?>
     //     url: '<?php the_permalink(); ?>',
     // }
 
-    document.addEventListener('DOMContentLoaded', function() { 
-      const btn = document.querySelector('.sharing-icon');
-
-      btn.addEventListener('click', function() {
-        console.log('Button clicked!');
-        // Add your specific functionality here
-      });
-    });
+    
 </script>
 <?php
 get_footer();
