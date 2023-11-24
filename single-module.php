@@ -299,14 +299,18 @@ while (have_posts()) :
     <script>
         const targetElement = document.querySelector('.single_module_post_content');
         const triggerElement = document.querySelector('.single_module_table_content');
+        const offsetHeight = document.getElementById('masthead').offsetHeight;
+        const clientHeight = document.getElementById('masthead').clientHeight;
 
         window.addEventListener('scroll', () => {
-            const rect = targetElement.getBoundingClientRect();
-            if (rect.top <= 0) {
-                triggerElement.classList.add('scrolledd');
-            } else {
-                triggerElement.classList.remove('scrolledd');
-            }
+            console.log('offsetHeight', offsetHeight);
+            console.log('clientHeight', clientHeight);
+            // const rect = targetElement.getBoundingClientRect();
+            // if (rect.top <= 0) {
+            //     triggerElement.classList.add('scrolledd');
+            // } else {
+            //     triggerElement.classList.remove('scrolledd');
+            // }
 
             const scrollTop = window.scrollY;
             const mainContent = document.querySelector('#main-content');
