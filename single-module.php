@@ -309,7 +309,7 @@ while (have_posts()) :
             }
 
             const scrollTop = window.scrollY;
-            const mainContent = document.querySelector('main');
+            const mainContent = document.querySelector('#main-content');
             const mainContentHeight = mainContent.clientHeight - window.innerHeight;
             const progress = (scrollTop / mainContentHeight) * 100;
 
