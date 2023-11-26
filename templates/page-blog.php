@@ -195,8 +195,9 @@ get_header(); ?>
             <ul>
                 <?php
                     $args = array(
-                        'category_name' => 'p2p-lending/vested-shorts/', // Use the slug of the subcategory
-                        'posts_per_page' => -5, // Set the number of posts you want to display, -1 to show all
+                        'post_type'      => 'post',
+                        'posts_per_page' => 5,
+                        's'              => 'Vested Shorts:',
                     );
 
                     $custom_query = new WP_Query($args);
