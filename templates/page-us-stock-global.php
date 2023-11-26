@@ -200,18 +200,19 @@ get_header(); ?>
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 4,
+                        's'              => 'Vested Shorts:',
                     );
 
                     $custom_query = new WP_Query($args);
                     if ($custom_query->have_posts()) :
                         while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                             <li>
-                                <a href="<?php echo get_permalink() ?>">
+                                <a href="<?php echo get_permalink(); ?>">
                                     <?php the_post_thumbnail(); ?>
                                     <h4><?php the_title(); ?></h4>
                                 </a>
                             </li>
-                    <?php endwhile;
+                        <?php endwhile;
                         wp_reset_postdata();
                     endif; ?>
                 </ul>
