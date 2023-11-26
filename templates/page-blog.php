@@ -311,18 +311,18 @@ get_header(); ?>
     </div>
 </section>
 
-<section class="vested-edge-blog">
-    <div class="container">
-        <div class="head-part">
-            <div class="vested-label">
-                <div class="label">
-                    <img src="<?php the_field('vested_edge_icon'); ?>" />
-                    <h2><?php the_field('vested_edge_heading'); ?></h2>
+<?php if( have_rows('vested_edge_post') ): ?>
+    <section class="vested-edge-blog">
+        <div class="container">
+            <div class="head-part">
+                <div class="vested-label">
+                    <div class="label">
+                        <img src="<?php the_field('vested_edge_icon'); ?>" />
+                        <h2><?php the_field('vested_edge_heading'); ?></h2>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="inner-row">
-            <?php if( have_rows('vested_edge_post') ): ?>
+            <div class="inner-row">
                 <ul>
                     <?php while( have_rows('vested_edge_post') ): the_row(); ?>
                         <?php $post_object = get_sub_field('item'); ?>
@@ -352,10 +352,10 @@ get_header(); ?>
                         <?php endif; ?>
                     <?php endwhile; ?>
                 </ul>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="newsletter-section">
     <?php get_template_part('template-parts/newsletter'); ?>
