@@ -236,47 +236,25 @@ function custom_front_page_redirect() {
     $v = json_decode($details);
     $mycountry = $v->geoplugin_countryName;    
     $chtml = '';
-    if (is_page_template('templates/page-home-page.php') || $mycountry === 'India') {
-        $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
-        ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
-                var globalBanner = document.querySelector(".geolocation_banner");
-                if (globalBanner) {
-                    globalBanner.style.display = "flex";
-                }
-            });
-        </script>
-        <?php
-    }
-    else if (is_page_template('templates/page-home-page.php') || $mycountry === 'Global' ) {
-        $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url()."'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
-        ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
-                var globalBanner = document.querySelector(".geolocation_banner");
-                if (globalBanner) {
-                    globalBanner.style.display = "flex";
-                }
-            });
-        </script>
-        <?php
-    }
-    else if (is_page_template('templates/page-us-stock-global.php') || $mycountry === 'India' ) {
-        $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url()."'>Learn More</a></div>";
-        ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
-                var globalBanner = document.querySelector(".geolocation_banner");
-                if (globalBanner) {
-                    globalBanner.style.display = "flex";
-                }
-            });
-        </script>
-        <?php
+
+    if ($mycountry === 'India') {
+        if (is_page_template('templates/page-us-stock-global.php')) {
+            echo "Go back to India page";
+            exit;
+        }
+        if (is_page_template('templates/page-home-page.php')) {
+            echo "Show learn more";
+            exit;
+        }
+    } else {
+        if (is_page_template('templates/page-us-stock-global.php')) {
+            echo "Show learn more";
+            exit;
+        }
+        if (is_page_template('templates/page-home-page.php')) {
+            echo "Go back to Global page";
+            exit;
+        }
     }
 }
 
