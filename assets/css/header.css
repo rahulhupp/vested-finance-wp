@@ -700,11 +700,11 @@ body.mega-menu-open .site-content:before {
     .geolocation_banner .right {
         width: 95px;
     }
-    .geolocation_banner .right.learn-more {
-	    width: 120px;
+    .geolocation_banner .right.learn-more a {
+	    padding: 2px 8px;
 	}
     .geolocation_banner .left {
-        width: calc(100% - 120px);
+        width: calc(100% - 95px);
     }
     .geolocation_banner .right a img {
         width: 17px;
