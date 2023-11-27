@@ -1,6 +1,6 @@
 <?php
 /*
-Template name: Page - Pricing
+Template name: Page - Pricing India
 */
 get_header(); ?>
 <div id="content" role="main" class="pricing-page">
