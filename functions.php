@@ -251,7 +251,7 @@ function custom_front_page_redirect() {
         }
         if (is_page_template('templates/page-pricing-india.php')) {
             $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'>Learn more</a></div>";
-        }
+        } 
     } else {
         if (is_page_template('templates/page-us-stock-global.php')) {
             $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url()."'>Learn more</a></div>";
