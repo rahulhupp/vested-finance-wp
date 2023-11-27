@@ -698,8 +698,11 @@ body.mega-menu-open .site-content:before {
         font-size: 14px;
     }
     .geolocation_banner .right {
-        width: 120px;
+        width: 95px;
     }
+    .geolocation_banner .right.learn-more {
+	    width: 120px;
+	}
     .geolocation_banner .left {
         width: calc(100% - 120px);
     }
