@@ -234,19 +234,34 @@ function custom_front_page_redirect() {
     $url = 'http://www.geoplugin.net/json.gp?ip='.$myipd; 
     $details =  ip_details($url); 
     $v = json_decode($details);
-    $mycountry = $v->geoplugin_countryName;
+    $mycountry = $v->geoplugin_countryName;    
 
-    
-
-    // if (is_front_page()) {
-        if ($mycountry === 'India') {
-            echo "Indian popup";
-            // exit;
-        }
-        else {
-            echo "Global popup";
-        }
-    // }
+    if ($mycountry === 'India') {
+        ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var indiaBanner = document.querySelector(".geolocation_banner.india");
+                if (indiaBanner) {
+                    indiaBanner.style.display = "flex";
+                }
+            });
+        </script>
+        <?php
+        // exit;
+    }
+    else {
+        ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var globalBanner = document.querySelector(".geolocation_banner.global");
+                if (globalBanner) {
+                    console.log ('Global');
+                    globalBanner.style.display = "flex";
+                }
+            });
+        </script>
+        <?php
+    }
 }
 
 // Hook this function to the 'template_redirect' action
