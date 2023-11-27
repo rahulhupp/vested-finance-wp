@@ -239,19 +239,34 @@ function custom_front_page_redirect() {
 
     if ($mycountry === 'India') {
         if (is_page_template('templates/page-us-stock-global.php')) {
-            echo "Go back to India page";
+            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
+            // echo "Go back to India page";
         }
         if (is_page_template('templates/page-home-page.php')) {
-            echo "Show learn more";
+            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url()."'>Learn more</a></div>";
+            // echo "Show learn more";
         }
     } else {
         if (is_page_template('templates/page-us-stock-global.php')) {
-            echo "Show learn more";
+            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url()."'>Learn more</a></div>";
+            // echo "Show learn more";
         }
         if (is_page_template('templates/page-home-page.php')) {
-            echo "Go back to Global page";
+            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='".home_url()."'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
+            // echo "Go back to Global page";
         }
     }
+    ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
+            var globalBanner = document.querySelector(".geolocation_banner");
+            if (globalBanner) {
+                globalBanner.style.display = "flex";
+            }
+        });
+    </script>
+    <?php
 }
 
 // Hook this function to the 'template_redirect' action
