@@ -122,68 +122,68 @@ if( function_exists('acf_add_options_page') ) {
 
 if (function_exists('acf_add_options_page')) {
 
-	acf_add_options_page(array(
-		'page_title' => 'Chapter CTA',
-		'menu_title' => 'Chapter CTA',
-		'menu_slug'  => 'chapter-cta',
-		'capability' => 'edit_posts',
-		'redirect'   => false
-	));
+    acf_add_options_page(array(
+        'page_title' => 'Chapter CTA',
+        'menu_title' => 'Chapter CTA',
+        'menu_slug'  => 'chapter-cta',
+        'capability' => 'edit_posts',
+        'redirect'   => false
+    ));
 }
 
 
 function calculate_reading_time($content)
 {
 
-	$words_per_minute = 200;
+    $words_per_minute = 200;
 
-	$word_count = str_word_count(strip_tags($content));
+    $word_count = str_word_count(strip_tags($content));
 
-	$reading_time = ceil($word_count / $words_per_minute);
+    $reading_time = ceil($word_count / $words_per_minute);
 
-	return $reading_time;
+    return $reading_time;
 }
 
 
 function calculate_total_reading_time_for_term($term_id)
 {
-	$args = array(
-		'post_type' => 'module',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'modules',
-				'field' => 'term_id',
-				'terms' => $term_id,
-			),
-		),
-	);
+    $args = array(
+        'post_type' => 'module',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'modules',
+                'field' => 'term_id',
+                'terms' => $term_id,
+            ),
+        ),
+    );
 
-	$posts = get_posts($args);
-	$total_reading_time = 0;
+    $posts = get_posts($args);
+    $total_reading_time = 0;
 
-	foreach ($posts as $post) {
-		$content = $post->post_content;
-		$reading_time = calculate_reading_time($content);
-		$total_reading_time += $reading_time;
-	}
+    foreach ($posts as $post) {
+        $content = $post->post_content;
+        $reading_time = calculate_reading_time($content);
+        $total_reading_time += $reading_time;
+    }
 
-	return $total_reading_time;
+    return $total_reading_time;
 }
 add_filter( 'astra_comment_form_default_fields_markup', 'wplogout_remove_comment_website_field', 20 );
 
 function wplogout_remove_comment_website_field( $fields ) {
-	unset( $fields['url'] );
-	
-	return $fields;
+    unset( $fields['url'] );
+    
+    return $fields;
 }
 
 
 function comment_form_change_cookies_consent( $fields ) {
-	$commenter = wp_get_current_commenter();
-	$consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
-	$fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' />' .
-					 '<label for="wp-comment-cookies-consent">Save my name and email in this browser for the next time I comment.</label></p>';
-	return $fields;
+    $commenter = wp_get_current_commenter();
+    $consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+    $fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' />' .
+                     '<label for="wp-comment-cookies-consent">Save my name and email in this browser for the next time I comment.</label></p>';
+    return $fields;
 }
 add_filter( 'comment_form_default_fields', 'comment_form_change_cookies_consent' );
 
@@ -197,6 +197,7 @@ add_filter('comments_template', 'custom_comments_template');
 
 
 // Detect IP Address
+global $mycountry;
 
 function get_client_ip() {
     $ipaddress = '';
