@@ -296,6 +296,69 @@ body.mega-menu-open .site-content:before {
 	filter: blur(22px);
 }
 
+.geolocation_banner {
+    background: #497DF9;
+    border: 1px solid #E0E8F1;
+    padding: 18px 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.geolocation_banner .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.geolocation_banner .left p {
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.geolocation_banner .right a {
+    padding: 12px 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(209, 223, 254, 0.30);
+    background: #FFF;
+    color: #002852;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    display: flex;
+    align-items: center;
+}
+
+.geolocation_banner .right a:hover {
+    opacity: 0.8;
+}
+
+.geolocation_banner .right a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.geolocation_banner .right {
+    display: flex;
+    width: 130px;
+}
+
+.geolocation_banner .left .content {
+    padding: 0 26px;
+    text-align: left;
+    width: calc(100% - 29px);
+}
+
+.geolocation_banner .left .close {
+    width: 29px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 991px) {
 	body.mega-menu-open .site-content:before {
 		position: unset;
@@ -605,6 +668,42 @@ body.mega-menu-open .site-content:before {
     }
     header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul.global li:first-child {
         padding-bottom: 0;
+    }
+	.geolocation_banner {
+        padding: 12px 24px;
+    }
+    .geolocation_banner .left .close {
+        width: 18px;
+    }
+    .geolocation_banner .left .content {
+        padding: 0 12px;
+        width: calc(100% - 18px);
+    }
+    .geolocation_banner .left p {
+        font-size: 16px;
+    }
+    .geolocation_banner .left {
+        width: calc(100% - 130px);
+    }
+}
+
+@media (max-width: 575px) {
+    .geolocation_banner .left p {
+        font-size: 12px;
+    }
+    .geolocation_banner .right a {
+        padding: 2px 18px;
+        font-size: 14px;
+    }
+    .geolocation_banner .right {
+        width: 96px;
+    }
+    .geolocation_banner .left {
+        width: calc(100% - 96px);
+    }
+    .geolocation_banner .right a img {
+        width: 17px;
+        height: 17px;
     }
 }
 

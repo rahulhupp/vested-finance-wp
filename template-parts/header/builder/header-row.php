@@ -127,5 +127,10 @@ if ( Astra_Builder_Helper::is_row_empty( $astra_header_row, 'header', 'desktop' 
 					?>
 			</div>
 			</div>
+			<?php
+				if (is_page_template('templates/page-home-page.php') || is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-pricing.php') ) {
+					get_template_part('template-parts/geo-location-popup'); 
+				} 
+			?>
 	<?php
 }
