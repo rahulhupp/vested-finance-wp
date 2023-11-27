@@ -241,7 +241,7 @@ function custom_front_page_redirect() {
     if (is_front_page()) {
         if ($mycountry === 'India') {
             echo "Indian popup";
-            exit;
+            // exit;
         }
         else {
             echo "Global popup";
