@@ -240,20 +240,16 @@ function custom_front_page_redirect() {
     if ($mycountry === 'India') {
         if (is_page_template('templates/page-us-stock-global.php')) {
             echo "Go back to India page";
-            exit;
         }
         if (is_page_template('templates/page-home-page.php')) {
             echo "Show learn more";
-            exit;
         }
     } else {
         if (is_page_template('templates/page-us-stock-global.php')) {
             echo "Show learn more";
-            exit;
         }
         if (is_page_template('templates/page-home-page.php')) {
             echo "Go back to Global page";
-            exit;
         }
     }
 }
