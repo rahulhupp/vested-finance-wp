@@ -3,6 +3,13 @@ jQuery(document).ready(function () {
 		jQuery("body").toggleClass("menu-open");
 	});
 	jQuery(".geolocation_banner .left .close").click(function () {
+		localStorage.setItem('geolocationBanner', 'close');
 		jQuery(".geolocation_banner").css("display", "none");
 	});
+	var geolocationBannerStatus = localStorage.getItem('geolocationBanner');
+	// Check if the value is 'close'
+	if (geolocationBannerStatus === 'close') {
+		// Hide the geolocation_banner
+		jQuery(".geolocation_banner").css("display", "none");
+	}
 });
