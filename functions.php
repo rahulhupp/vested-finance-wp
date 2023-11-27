@@ -250,7 +250,7 @@ function custom_front_page_redirect() {
             $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our pricing for Indian users.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
         }
         if (is_page_template('templates/page-pricing-india.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url('')."/pricing'>Learn more</a></div>";
+            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'>Learn more</a></div>";
         }
     } else {
         if (is_page_template('templates/page-us-stock-global.php')) {
