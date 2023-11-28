@@ -37,12 +37,20 @@
 				<section>
 					<div class="container">
 						<?php 
-						$category_id = get_query_var('cat'); // Get the category ID
-						$args = array(
-							'cat' => $category_id, // Use the category ID to query posts from the specific category
-							'posts_per_page' => -1, // -1 to display all posts
-						);
-						$custom_query = new WP_Query($args);
+							$term = get_queried_object(); // Get the current term in 'master_categories' taxonomy
+
+							$args = array(
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'master_categories',
+										'field' => 'slug',
+										'terms' => $term->slug,
+									),
+								),
+								'posts_per_page' => -1,
+							);
+
+							$custom_query = new WP_Query($args);
 						?>
 						<?php if ($custom_query->have_posts()) : ?>
 							<header class="page-header">
@@ -86,40 +94,37 @@
 						</div>				
 					</div>
 				</section>
-				<section class="main-category">
-					<div class="container">
-						<div class="head-part">
-							<h2>Learn More With Vested</h2>
-							<p>Two stock deep-dives every month, published every other Wednesday</p>
-						</div>
-						<ul>
-							<?php
-								// Get the current taxonomy term
-								$term = get_queried_object();
-
-								// Check if the term has Repeater field data
-								if (have_rows('select_categroy', 'term_' . $term->term_id)) {
+				<?php if (have_rows('select_categroy', 'term_' . $term->term_id)) { ?>
+					<section class="main-category">
+						<div class="container">
+							<div class="head-part">
+								<h2>Learn More With Vested</h2>
+								<p>Two stock deep-dives every month, published every other Wednesday</p>
+							</div>
+							<ul>
+								<?php
+									// Check if the term has Repeater field data
 									while (have_rows('select_categroy', 'term_' . $term->term_id)) {
 										the_row();
 										$field1 = get_sub_field('item');
-										$category = get_term($field1, 'master_categories');
+										$category = get_term($field1, 'master_categories'); // Use the custom taxonomy 'master_categories'
 										?>
 										<li>
 											<div class="box">
 												<div class="image">
-													<img src="<?php echo the_field('category_image', $category); ?>" />
+													<img src="<?php echo get_field('category_image', $category); ?>" />
 												</div>
-												<a href="<?php echo get_category_link($category) ?>"><?php echo $category->name ?> ></a>
+												<a href="<?php echo get_term_link($category); ?>"><?php echo $category->name ?> ></a>
 												<div class="description"><?php echo $category->description ?></div>
 											</div>
 										</li>
 										<?php
 									}
-								}
-							?>							
-						</ul>
-					</div>
-				</section>
+								?>							
+							</ul>
+						</div>
+					</section>
+					<?php } ?>
 				<section class="newsletter-section category">
 					<?php get_template_part('template-parts/newsletter'); ?>
 				</section>
