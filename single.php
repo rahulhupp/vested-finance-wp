@@ -450,28 +450,19 @@ if (!is_wp_error($terms) && !empty($terms)) {
     };
     // 
 
-    const BlogData = {
-        title: '<?php the_title(); ?>',
-        url: '<?php the_permalink(); ?>',
-    }
-
-    const btn = document.querySelector('.sharing-icon');
-
-    // Share must be triggered by "user activation"
-    btn.addEventListener('click', async () => {
-		alert("This is an alert message!");
-        try {
-            if (navigator.canShare &&
-                typeof navigator.canShare === 'function' &&
-                navigator.canShare(BlogData)) {
-                let result = await navigator.share(BlogData);
-                document.getElementById("status").innerText = result || '';
-            } else {
-                document.getElementById("status").innerText = "Sharing selected data not supported.";
-            }
-        } catch (err) {
-            document.getElementById("status").innerText = "Share not complete";
-        }
-    });
+    const shareIcon = document.querySelector('.sharing-icon');
+	shareIcon.addEventListener("click", (e) => { 
+	if (navigator.share) {
+		navigator.share({
+			title: 'Web Share API Draft',
+			text: 'Take a look at this spec!',
+			url: 'https://wicg.github.io/web-share/#share-method',
+		})
+		.then(() => console.log('Successful share'))
+		.catch((error) => console.log('Error sharing', error));
+	} else {
+		console.log('Share not supported on this browser, do it the old way.');
+	}
+	});
 </script>
 <?php get_footer(); ?>
