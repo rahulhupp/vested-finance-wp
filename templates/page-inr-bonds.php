@@ -24,7 +24,7 @@ get_header(); ?>
                     <?php endif; ?>
                     <div class="banner_buttons">
                         <div class="btn">
-                            <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark"><?php the_field('banner_button_one_text'); ?></a>
+                            <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('banner_button_one_text'); ?></a>
                         </div>
                         <?php $button_text = get_field('banner_button_two_text'); ?>
                         <?php 
@@ -80,7 +80,7 @@ get_header(); ?>
                         </div>
                     <?php endif; ?>
                     <div class="explore_bonds_buttons">
-                        <a href="<?php the_field('explore_bonds_button_one_url'); ?>" class="btn_dark"><?php the_field('explore_bonds_button_one_text'); ?></a>
+                        <a href="<?php the_field('explore_bonds_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('explore_bonds_button_one_text'); ?></a>
                         <?php $button_text = get_field('explore_bonds_button_two_text'); ?>
                         <?php 
                         if (!empty($button_text)) {                            

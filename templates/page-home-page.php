@@ -147,7 +147,7 @@ get_header(); ?>
                             <?php endwhile; ?>
                         </div>
                         <div class="easy_access_btns">
-                            <a href="<?php the_field('inr_bond_button_one_url'); ?>" class="btn_dark"><?php the_field('inr_bond_button_text'); ?></a>
+                            <a href="<?php the_field('inr_bond_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('inr_bond_button_text'); ?></a>
                             <a href="<?php the_field('inr_bond_button_two_url'); ?>" class="link_light"><?php the_field('inr_bond_button_two_text'); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
