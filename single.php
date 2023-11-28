@@ -45,17 +45,31 @@ while (have_posts()) :
 							<li>
 								<a href="<?php echo home_url(); ?>/blog/">Blog</a>
 							</li>
-							<!-- <li>
-								<?php
+							<?php
+								// Get the post ID
+								$post_id = get_the_ID();
+
+								// Get the terms (categories or tags) assigned to the post
+								$terms = get_the_terms($post_id, 'master_categories'); // Replace 'your_taxonomy' with the actual name of your taxonomy
+						
+								// Check if terms exist
 								if ($terms && !is_wp_error($terms)) {
+									?>
+									<li>
+									<?php
+									// Loop through each term and get the name
 									foreach ($terms as $term) {
-								?>
-										<a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a>
-								<?php
+										$taxonomy_name = $term->name;
+										$taxonomy_url = get_term_link($term); // Get the link for the term
+
+										// Output the term name as a link
+										echo '<a href="' . esc_url($taxonomy_url) . '">' . esc_html($taxonomy_name) . '</a>';
 									}
+									?>
+									</li>
+									<?php
 								}
-								?>
-							</li> -->
+							?>
 							<li>
 								<span><?php the_title(); ?></span>
 							</li>
