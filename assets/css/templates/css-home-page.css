@@ -55,6 +55,16 @@
 	display: inline-block;
 }
 
+a.btn_dark {
+    background: #002852;
+    color: #fff;
+}
+
+a.btn_dark:hover {
+    background: #fff;
+    color: #002852;
+}
+
 .btn_light {
 	padding: 16px;
 	border-radius: 5px;
@@ -66,6 +76,11 @@
 	transition: all 0.3s;
 	display: inline-block;
 	background: #fff;
+}
+
+a.btn_light {
+    background: #fff;
+    color: #002852;
 }
 
 .btn_light i {
@@ -300,6 +315,10 @@
 	margin-left: 6px;
 }
 
+a.link_light {
+    color: #212529;
+}
+
 
 .edge_section {
 	padding: 0 0 50px;
@@ -390,6 +409,10 @@
 
 .link_dark:hover {
 	color: #fff;
+}
+
+a.link_dark {
+    color: #fff;
 }
 
 .edge_btns .btn_light:hover {
