@@ -465,12 +465,12 @@ if (!is_wp_error($terms) && !empty($terms)) {
                 typeof navigator.canShare === 'function' &&
                 navigator.canShare(BlogData)) {
                 let result = await navigator.share(BlogData);
-                //document.getElementById("status").innerText = result || '';
+                document.getElementById("status").innerText = result || '';
             } else {
-                //document.getElementById("status").innerText = "Sharing selected data not supported.";
+                document.getElementById("status").innerText = "Sharing selected data not supported.";
             }
         } catch (err) {
-            //document.getElementById("status").innerText = "Share not complete";
+            document.getElementById("status").innerText = "Share not complete";
         }
     });
 </script>
