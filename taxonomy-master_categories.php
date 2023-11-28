@@ -37,12 +37,20 @@
 				<section>
 					<div class="container">
 						<?php 
-						$category_id = get_query_var('cat'); // Get the category ID
-						$args = array(
-							'cat' => $category_id, // Use the category ID to query posts from the specific category
-							'posts_per_page' => -1, // -1 to display all posts
-						);
-						$custom_query = new WP_Query($args);
+							$term = get_queried_object(); // Get the current term in 'master_categories' taxonomy
+
+							$args = array(
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'master_categories',
+										'field' => 'slug',
+										'terms' => $term->slug,
+									),
+								),
+								'posts_per_page' => -1,
+							);
+
+							$custom_query = new WP_Query($args);
 						?>
 						<?php if ($custom_query->have_posts()) : ?>
 							<header class="page-header">
