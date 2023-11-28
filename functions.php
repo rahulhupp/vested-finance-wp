@@ -269,15 +269,20 @@ function custom_front_page_redirect() {
         }
     }
     ?>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
-            var globalBanner = document.querySelector(".geolocation_banner");
-            if (globalBanner) {
-                globalBanner.style.display = "flex";
-            }
-        });
-    </script>
+    <?php
+    if (is_page_template('templates/page-home-page.php') || is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-pricing-global.php') || is_page_template('templates/page-pricing-india.php') ) {
+        ?>    
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
+                var globalBanner = document.querySelector(".geolocation_banner");
+                if (globalBanner) {
+                    globalBanner.style.display = "flex";
+                }
+            });
+        </script>
+        }
+    ?>
     <?php
 }
 
