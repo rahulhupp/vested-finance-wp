@@ -11,26 +11,24 @@
            ?>
 		   <div class="custom_breadcrumb">
 				<div class="container">
-					<ul>
-						<li><a href="<?php echo get_home_url(); ?>/blog">Blog</a></li>
-						<?php 
-							$cat = get_queried_object(); 
-							if ($cat->category_parent) {
-								$parent_category = get_term($cat->category_parent, 'master_categories'); 
-								$parent_category_link = get_category_link($parent_category); 
-								echo '<li><a href="' . esc_url($parent_category_link) . '">' . $parent_category->name . '</a></li>'; 
-							}
-						?>						
-						<?php
-							$cat = get_queried_object(); 
+				<ul>
+					<li><a href="<?php echo get_home_url(); ?>/blog">Blog</a></li>
+					<?php
+						$term = get_queried_object();
+						$taxonomy = 'master_categories';
 
-							if ($cat) {
-								$subcategory_link = get_category_link($cat); 
-								echo '<li class="active"><a href="' . esc_url($subcategory_link) . '">' . $cat->name . '</a></li>'; 
-							}
-						?>
-						
-					</ul>
+						if ($term->parent) {
+							$parent_term = get_term($term->parent, $taxonomy);
+							$parent_term_link = get_term_link($parent_term, $taxonomy);
+							echo '<li><a href="' . esc_url($parent_term_link) . '">' . $parent_term->name . '</a></li>';
+						}
+
+						if ($term) {
+							$term_link = get_term_link($term, $taxonomy);
+							echo '<li class="active"><a href="' . esc_url($term_link) . '">' . $term->name . '</a></li>';
+						}
+					?>
+				</ul>
 				</div>
 		   </div>
 		   <div id="content" role="main" class="sub-category-page">
