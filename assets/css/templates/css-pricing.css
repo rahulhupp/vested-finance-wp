@@ -41,7 +41,7 @@
     line-height: 130%;
     max-width: 351px;
 }
-[lang="en-in"] .pricing-info .content p {
+.page-template-page-pricing-india .pricing-info .content p {
     font-size: 30px;
 }
 .pricing-info .plan-box {
@@ -617,7 +617,7 @@
     .pricing-info .content p {
         font-size: 28px;
     }
-    [lang="en-in"] .pricing-info .content p {
+    .page-template-page-pricing-india .pricing-info .content p {
         font-size: 26px;
     }
     .pricing-info .plan-box .box {
@@ -682,7 +682,7 @@
         margin: 0 auto 60px;
         max-width: 257px;
     }
-    [lang="en-in"] .pricing-info .content p {
+    .page-template-page-pricing-india .pricing-info .content p {
         font-size: 14px;
     }
     .pricing-info .plan-box {

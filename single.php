@@ -24,6 +24,9 @@ while (have_posts()) :
     $previous_post = get_previous_post(true, '', 'modules');
     $next_post = get_next_post(true, '', 'modules');
 ?>
+<div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
 <div class="social-overlay"></div>
 <div id="main-content" class="main-content">
 	<div class="single_module_main">
@@ -210,7 +213,7 @@ if (!is_wp_error($terms) && !empty($terms)) {
 		}
 
 		const scrollTop = window.scrollY;
-		const mainContent = document.querySelector('main');
+		const mainContent = document.querySelector('#main-content');
 		const mainContentHeight = mainContent.clientHeight - window.innerHeight;
 		const progress = (scrollTop / mainContentHeight) * 100;
 
