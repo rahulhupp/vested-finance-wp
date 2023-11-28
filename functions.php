@@ -277,7 +277,7 @@ function custom_front_page_redirect() {
                     document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
                     var globalBanner = document.querySelector(".geolocation_banner");
                     if (globalBanner) {
-                        globalBanner.style.display = "flex";
+                        globalBanner.style.display = "flex"; 
                     }
                 });
             </script>
