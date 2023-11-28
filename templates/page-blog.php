@@ -312,7 +312,7 @@ get_header(); ?>
 </section>
 
 <?php if( have_rows('vested_edge_post') ): ?>
-    <section class="vested-edge-blog">
+    <section class="vested-edge-blog" id="p2p-lending">
         <div class="container">
             <div class="head-part">
                 <div class="vested-label">
