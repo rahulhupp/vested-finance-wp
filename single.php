@@ -451,8 +451,8 @@ if (!is_wp_error($terms) && !empty($terms)) {
     // 
 
     const BlogData = {
-       title: '<?php the_title();?>',
-       url: '<?php the_permalink(); ?>',
+       title: 'Drake Doppelganger',
+       url: 'https://kvkirthy.github.io/web-share-sample',
     }
    
      const btn = document.querySelector('.single-blog-share-icon');
