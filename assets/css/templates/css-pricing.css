@@ -1,8 +1,12 @@
-.page-template-page-pricing .ast-container {
+.page-template-page-pricing .ast-container,
+.page-template-page-pricing-global .ast-container,
+.page-template-page-pricing-india .ast-container {
     padding: 0;
 }
 
-.page-template-page-pricing .container {
+.page-template-page-pricing .container,
+.page-template-page-pricing-global .container,
+.page-template-page-pricing-india .container  {
     max-width: 1064px;
     margin: 0 auto;
     padding: 0 24px;
@@ -423,6 +427,9 @@
     padding: 27px;
     text-align: center;
     line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .pricing-table .pricing-tabs-content .item .price-detail .info .inner {
     display: flex;
@@ -472,7 +479,9 @@
 .pricing_page_faqs {
     padding: 100px 0 170px;
 }
-.page-template-page-pricing .pricing_page_faqs .container {
+.page-template-page-pricing .pricing_page_faqs .container,
+.page-template-page-pricing-global .pricing_page_faqs .container,
+.page-template-page-pricing-india .pricing_page_faqs .container {
     max-width: 878px;
 }
 .pricing_page_faqs h2 {
@@ -757,7 +766,9 @@
         padding: 10px 16px;
         font-size: 14px;
     }
-    .page-template-page-pricing .pricing-sticky .container {
+    .page-template-page-pricing .pricing-sticky .container,
+    .page-template-page-pricing-global .pricing-sticky .container,
+    .page-template-page-pricing-india .pricing-sticky .container {
         padding: 0 14px;
     }
     .pricing-table .pricing-tabs-content .item:before {
@@ -798,7 +809,9 @@
     .pricing-table .pricing-tabs-content {
         padding: 10px;
     }
-    .page-template-page-pricing .pricing-table .container {
+    .page-template-page-pricing .pricing-table .container,
+    .page-template-page-pricing-global .pricing-table .container,
+    .page-template-page-pricing-india .pricing-table .container {
         padding: 0;
     }
     .pricing-table .pricing-tabs-content .head-part .inner .stock img {
