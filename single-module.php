@@ -102,6 +102,7 @@ while (have_posts()) :
                                     <button class="sharing-icon">
                                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="link" />
                                     </button>
+                                    <p class="result"></p>
                                     <button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="Share Icon" /><span>Share</span></button>
                                     <ul>
                                         <?php
@@ -547,27 +548,22 @@ endwhile; ?>
     };
     // 
 
-    const BlogData = {
+    const shareData = {
         title: '<?php the_title(); ?>',
         url: '<?php the_permalink(); ?>',
-    }
+    };
 
-    const btn = document.querySelector('.sharing-icon');
+    const btn = document.querySelector(".sharing-icon");
+    const resultPara = document.querySelector(".result");
 
     // Share must be triggered by "user activation"
-    btn.addEventListener('click', async () => {
-        try {
-            if (navigator.canShare &&
-                typeof navigator.canShare === 'function' &&
-                navigator.canShare(BlogData)) {
-                let result = await navigator.share(BlogData);
-                document.getElementById("status").innerText = result || '';
-            } else {
-                document.getElementById("status").innerText = "Sharing selected data not supported.";
-            }
-        } catch (err) {
-            document.getElementById("status").innerText = "Share not complete";
-        }
+    btn.addEventListener("click", async () => {
+    try {
+        await navigator.share(shareData);
+        resultPara.textContent = "MDN shared successfully";
+    } catch (err) {
+        resultPara.textContent = `Error: ${err}`;
+    }
     });
 </script>
 <?php
