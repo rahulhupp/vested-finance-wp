@@ -12,4 +12,5 @@ jQuery(document).ready(function () {
 		// Hide the geolocation_banner
 		jQuery(".geolocation_banner").css("display", "none");
 	}
+	jQuery(".geolocation_banner").css({"opacity": "1", "visibility": "visible"});
 });
