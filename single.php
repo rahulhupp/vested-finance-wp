@@ -46,24 +46,23 @@ while (have_posts()) :
 								<a href="<?php echo home_url(); ?>/blog/">Blog</a>
 							</li>
 							<?php
-								// Get the post ID
 								$post_id = get_the_ID();
+								$terms = get_the_terms($post_id, 'master_categories'); 
 
-								// Get the terms (categories or tags) assigned to the post
-								$terms = get_the_terms($post_id, 'master_categories'); // Replace 'your_taxonomy' with the actual name of your taxonomy
-						
-								// Check if terms exist
 								if ($terms && !is_wp_error($terms)) {
 									?>
 									<li>
 									<?php
-									// Loop through each term and get the name
 									foreach ($terms as $term) {
-										$taxonomy_name = $term->name;
-										$taxonomy_url = get_term_link($term); // Get the link for the term
-
-										// Output the term name as a link
-										echo '<a href="' . esc_url($taxonomy_url) . '">' . esc_html($taxonomy_name) . '</a>';
+										// Check if the term has a parent
+										$parent_id = $term->parent;
+										if (0 === $parent_id) { // 0 means it's a parent term
+											$taxonomy_name = $term->name;
+											$taxonomy_url = get_term_link($term);
+											echo '<a href="' . esc_url($taxonomy_url) . '">' . esc_html($taxonomy_name) . '</a>';
+											// Break the loop after finding the first parent term, if you only want to display one
+											break;
+										}
 									}
 									?>
 									</li>
