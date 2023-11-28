@@ -135,6 +135,11 @@
 	display: inline-block;
 }
 
+a.btn_dark {
+    background: #002852;
+    color: #fff;
+}
+
 .btn_light {
 	padding: 16px;
 	border-radius: 5px;

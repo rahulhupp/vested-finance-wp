@@ -180,6 +180,11 @@
 	transition: all 0.5s ease;
 }
 
+a.category-btn, a.read-button {
+    background-color: #002852;
+    color: #fff;
+}
+
 .category-btn:hover,
 .read-button:hover {
 	color: #002852;
