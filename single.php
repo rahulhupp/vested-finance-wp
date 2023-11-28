@@ -65,7 +65,7 @@ while (have_posts()) :
 					<div class="single_module_meta">
 						<div class="single_module_info_item last">
 							<div class="social-share-block">
-								<button class="sharing-icon single-blog-share-icon">
+								<button class="sharing-icon">
 									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="link" />
 								</button>
 								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="Share Icon" /><span>Share</span></button>
@@ -451,11 +451,11 @@ if (!is_wp_error($terms) && !empty($terms)) {
     // 
 
     const BlogData = {
-       title: 'Drake Doppelganger',
-       url: 'https://kvkirthy.github.io/web-share-sample',
+       title: '<?php the_title();?>',
+       url: '<?php the_permalink(); ?>',
     }
    
-     const btn = document.querySelector('.single-blog-share-icon');
+     const btn = document.querySelector('.sharing-icon');
    
      // Share must be triggered by "user activation"
      btn.addEventListener('click', async () => {
