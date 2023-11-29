@@ -135,7 +135,7 @@ if (function_exists('acf_add_options_page')) {
 function calculate_reading_time($content)
 {
 
-    $words_per_minute = 200;
+    $words_per_minute = 250;
 
     $word_count = str_word_count(strip_tags($content));
 
