@@ -193,8 +193,15 @@
             <ul>
                 <?php
                     $args = array(
-                        'category_name' => 'p2p-lending/vested-shorts/', // Use the slug of the subcategory
-                        'posts_per_page' => -5, // Set the number of posts you want to display, -1 to show all
+                        'post_type'      => 'post',
+                        'posts_per_page' => 5,
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
+                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
+                                'terms'    => 'vested-shorts', // Replace with the term you want to display
+                            ),
+                        ),
                     );
 
                     $custom_query = new WP_Query($args);
