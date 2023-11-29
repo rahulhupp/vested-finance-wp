@@ -1156,8 +1156,7 @@ div.is-ajax-search-result div.is-show-more-results:hover {
   top: 50%;
 }
 .vested-edge-blog .inner-row ul li .featured-image a {
-    width: 100%;
-    display: inline-block;
+  height: 100%;
 }
 .vested-edge-blog .inner-row ul li a {
   color: #212529;
