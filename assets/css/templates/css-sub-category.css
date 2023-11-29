@@ -289,6 +289,9 @@ div#is-ajax-search-result-4325 {
   padding: 62px 15px 98px;
   margin-top: 13px;
 }
+.tax-master_categories .site-content .main-category .container {
+  max-width: 1070px;
+}
 .main-category .head-part {
   text-align: center;
 }
@@ -299,6 +302,7 @@ div#is-ajax-search-result-4325 {
   font-weight: 600;
   line-height: 120%;
   margin: 0 0 10px 0;
+  letter-spacing: -1.52px;
 }
 .main-category .head-part p {
   color: #002852;
@@ -320,7 +324,7 @@ div#is-ajax-search-result-4325 {
   padding: 43px 15px;
   margin: 0 9.5px 10px;
   text-align: center;
-  min-height: 345px;
+  min-height: 322px;
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -525,7 +529,7 @@ div#is-ajax-search-result-4325 {
       padding: 47px 0 83px 15px;
   }
   .main-category ul {
-      margin: 0 -15px 0 -20px;
+      margin: 0 -24px 0 -20px;
   }
   .main-category ul button.slick-next {
       right: 15px;

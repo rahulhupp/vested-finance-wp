@@ -214,6 +214,17 @@ div#showMessage {
 .newsletter-section.category {
   padding: 69px 0;
 }
+.newsletter-section .content form input#mng_subscribe {
+  margin: 10px 0 0 0;
+  width: 100%;
+  transition: 0.3s all;
+  border: 1px solid #002852;
+  background: #002852;
+}
+.newsletter-section .content form input#mng_subscribe:hover {
+  background: transparent;
+  color: #002852;
+}
 
 @media (max-width: 991px) {
   .newsletter-section .inner-row {

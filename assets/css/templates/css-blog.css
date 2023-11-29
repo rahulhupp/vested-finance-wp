@@ -1,6 +1,9 @@
 .page-template-page-blog a {
   outline: none !important;
 }
+.tax-master_categories .site-content .container {
+  max-width: 1170px;
+}
 .page-template-page-blog .container {
   max-width: 1170px;
 }
