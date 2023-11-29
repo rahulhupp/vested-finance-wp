@@ -200,7 +200,13 @@ get_header(); ?>
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 4,
-                        's'              => 'Vested Shorts:',
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
+                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
+                                'terms'    => 'vested-shorts', // Replace with the term you want to display
+                            ),
+                        ),
                     );
 
                     $custom_query = new WP_Query($args);
@@ -233,6 +239,14 @@ get_header(); ?>
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 4,
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'master_categories',
+                                'field'    => 'slug',
+                                'terms'    => array('under-the-spotlight', 'vested-shorts'),
+                                'operator' => 'NOT IN',
+                            ),
+                        ),
                     );
 
                     $custom_query = new WP_Query($args);
