@@ -1670,6 +1670,10 @@ body.single.single-module {
 	order: 999;
 }
 
+.modules_list .modules_item[data-cat="modules-glossary"] .read_time {
+    display: none;
+}
+
 .alphabet-list {
 	display: flex;
 	flex-wrap: wrap;
