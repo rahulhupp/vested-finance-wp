@@ -194,10 +194,17 @@ get_header(); ?>
         <div class="post-list">
             <ul>
                 <?php
+
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 5,
-                        's'              => 'Vested Shorts:',
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
+                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
+                                'terms'    => 'vested-shorts', // Replace with the term you want to display
+                            ),
+                        ),
                     );
 
                     $custom_query = new WP_Query($args);

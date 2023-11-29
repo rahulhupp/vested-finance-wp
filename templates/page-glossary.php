@@ -133,6 +133,7 @@ get_header(); ?>
                 displayHeadings("ALL");
             });
             alphabetLinks.appendChild(allAlphabetLink);
+            displayHeadings("ALL");
         }
 
         generateAlphabetLinks();

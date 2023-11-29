@@ -52,8 +52,8 @@ get_header(); ?>
                     $module_name = $term->name;
                     $module_slug = $term->slug;
                     $module_desc = $term->description;
-                    if (strlen($module_desc) > 110) {
-                        $module_desc = substr($module_desc, 0, 110) . '...';
+                    if (strlen($module_desc) > 250) {
+                        $module_desc = substr($module_desc, 0, 250) . '...';
                     }
                     if (strlen($module_name) > 24) {
                         $module_name = substr($module_name, 0, 24) . '...';
