@@ -301,7 +301,9 @@ get_header(); ?>
                 "name": "<?php the_sub_field('faq_question_global') ?>",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "<?php the_sub_field('faq_answer_global') ?>"
+                    "text": "
+                        <?php the_sub_field('faq_answer_global') ?>
+                    "
                 }
             }<?php echo (++$rowCount === count(get_field('faq_list_global'))) ? '' : ','; ?>
         <?php endwhile; ?>
