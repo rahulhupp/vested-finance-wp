@@ -276,7 +276,7 @@ get_header(); ?>
     renderChart(xValues, yValues);
     // Define the URL of the API you want to call
     function triggerAPI (stockSelector, startDate, endDate) {
-        const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
 
         fetch(apiUrl)
             .then(response => response.json())
@@ -547,7 +547,7 @@ get_header(); ?>
         $partner_key = '4b766258-6495-40ed-8fa0-83182eda63c9';
 
         // Step 1: Obtain the authentication token from the first API
-        $token_request_url = 'https://vested-api-staging.vestedfinance.com/get-partner-token';
+        $token_request_url = 'https://vested-api-prod.vestedfinance.com/get-partner-token';
 
         // Build an array of headers for the first API request
         $headers_token_request = array(
@@ -572,7 +572,7 @@ get_header(); ?>
                 $_SESSION['last_api_call_timestamp'] = time();
                 
                 // Step 2: Use the token to make a request to the second API
-                $second_api_url = 'https://vested-api-staging.vestedfinance.com/v1/partner/instruments-list'; // Replace with the actual URL
+                $second_api_url = 'https://vested-api-prod.vestedfinance.com/v1/partner/instruments-list'; // Replace with the actual URL
                 $headers_second_api = array(
                     'partner-authentication-token' => $authentication_token,
                     'partner-key' => $partner_key,

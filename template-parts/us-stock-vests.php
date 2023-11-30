@@ -42,7 +42,7 @@
     });
 
     function callVestsTokenApi() {
-        const firstApiUrl = 'https://vested-api-staging.vestedfinance.com/get-partner-token'; // Replace with the actual URL of the first API
+        const firstApiUrl = 'https://vested-api-prod.vestedfinance.com/get-partner-token'; // Replace with the actual URL of the first API
         const headers = {
             'partner-id': '7bcc5a97-3a00-45f0-bb7d-2df254a467c4',
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
@@ -55,7 +55,7 @@
     }
 
     function callVestsApi(token) {
-        const vestsApiUrl = 'https://vested-api-staging.vestedfinance.com/v1/partner/vests-list';
+        const vestsApiUrl = 'https://vested-api-prod.vestedfinance.com/v1/partner/vests-list';
 
         const headers = {
             'partner-authentication-token': token,
