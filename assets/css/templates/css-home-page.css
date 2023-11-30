@@ -416,6 +416,10 @@ a.link_light {
     align-items: center;
 }
 
+.edge_btns a.btn_light {
+	font-weight: 700;
+}
+
 .link_dark {
 	color: #fff;
 	font-size: 18px;

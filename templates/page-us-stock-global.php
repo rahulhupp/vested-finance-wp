@@ -288,4 +288,27 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 </div>
+<?php if (have_rows('faq_list_global')) : ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        <?php $rowCount = 0; ?>
+        <?php while (have_rows('faq_list_global')) : the_row(); ?>
+            {
+                "@type": "Question",
+                "name": "<?php the_sub_field('faq_question_global') ?>",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "
+                        <?php the_sub_field('faq_answer_global') ?>
+                    "
+                }
+            }<?php echo (++$rowCount === count(get_field('faq_list_global'))) ? '' : ','; ?>
+        <?php endwhile; ?>
+    ]
+}
+</script>
+<?php endif; ?>
 <?php get_footer(); ?>
