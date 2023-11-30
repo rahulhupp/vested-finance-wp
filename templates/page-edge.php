@@ -415,9 +415,9 @@ get_header(); ?>
                 "name": "<?php the_sub_field('faq_question') ?>",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "
+                    "text": '
                         <?php the_sub_field('faq_answer') ?>
-                    "
+                    '
                 }
             }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
         <?php endwhile; ?>
