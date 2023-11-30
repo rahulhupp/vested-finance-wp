@@ -1244,10 +1244,6 @@
 		margin-right: 5px;
 	}
 
-	.faq_que h4 {
-		font-size: 14px;
-	}
-
 	.faq_que {
 		padding-right: 16px;
 	}
@@ -1638,6 +1634,12 @@
 	}
 	.stocks_slider_content .progressBar {
 		display: none;
+	}
+	.faq_que h4 {
+		font-size: 14px;
+	}
+	.faq_content ul li {
+		font-size: 12px !important;
 	}
 }
 
