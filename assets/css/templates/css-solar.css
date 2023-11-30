@@ -196,6 +196,7 @@ a.btn_dark {
 .solar_tabs .tabs {
     background: #F0F7FE;
     padding: 20px 16px 49px;
+    border-radius: 10px 10px 0 0;
 }
 .solar_tabs h2 {
     color: #002852;
