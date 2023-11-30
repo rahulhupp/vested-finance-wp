@@ -1252,10 +1252,6 @@
 		padding-right: 16px;
 	}
 
-	.faq_content p {
-		font-size: 12px !important;
-	}
-
 	.explore-stock .explore-image ul li {
 		width: calc(20% - 10px);
 	}
@@ -1641,6 +1637,10 @@
 	}
 	.faq_que h4 {
 		font-size: 14px;
+	}	
+
+	.faq_content p {
+		font-size: 12px !important;
 	}
 	.faq_content ul li {
 		font-size: 12px !important;
