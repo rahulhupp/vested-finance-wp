@@ -899,6 +899,10 @@
 	line-height: 130%;
 }
 
+.faq_content a {
+	color: #1e2022;
+}
+
 .faq_content ul {
     margin: 10px 25px;
 }
