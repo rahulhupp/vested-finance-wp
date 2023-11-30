@@ -160,6 +160,36 @@ get_header(); ?>
         </section>
     <?php endif; ?>
     <!--  -->
+    <?php if (have_rows('solar_bond_list')) : ?>
+        <section class="solar inr_bond easy_access">
+            <div class="container">
+                <div class="easy_access_wrap">
+                    <div class="easy_access_content">
+                        <h2 class="section_title align_left"><?php the_field('solar_bond_heading'); ?></h2>
+                        <img src="<?php the_field('solar_bond_image'); ?>" alt="Solar" class="mobile_easy_access_img desktop_hide">
+                        <div class="easy_access_list">
+                            <?php while (have_rows('solar_bond_list')) : the_row(); ?>
+                                <div class="single_easy-access">
+                                    <div class="easy_access_icon">
+                                        <img src="<?php the_sub_field('solar_bond_icon') ?>" alt="<?php the_sub_field('solar_bond_title') ?>">
+                                    </div>
+                                    <h4><?php the_sub_field('solar_bond_title') ?></h4>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                        <div class="easy_access_btns">
+                            <a href="<?php the_field('solar_bond_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('solar_bond_button_text'); ?></a>
+                            <a href="<?php the_field('solar_bond_button_two_url'); ?>" class="link_light"><?php the_field('solar_bond_button_two_text'); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="easy_access_img mobile_hide">
+                        <img src="<?php the_field('solar_bond_image'); ?>" alt="Easy Access">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
     <?php if (have_rows('portfolio_slider')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">

@@ -229,6 +229,24 @@ a.btn_light {
 	vertical-align: top;
 }
 
+.solar.inr_bond.easy_access {
+    padding: 50px 0 30px;
+}
+.solar.inr_bond.easy_access .easy_access_content {
+    order: 2;
+    padding-left: 38px;
+}
+.solar.inr_bond.easy_access .easy_access_content .section_title {
+    margin-bottom: 14px;
+}
+.solar.inr_bond.easy_access .easy_access_content .easy_access_btns {
+    margin-top: 55px;
+}
+.solar.inr_bond.easy_access .easy_access_img img {
+    border-radius: 20px;
+	width: 100%;
+}
+
 .inr_bond.easy_access {
 	padding: 34px 0 69px;
 }
@@ -1330,11 +1348,30 @@ section.invest_wisely_sec .container {
 	    margin-left: auto;
 	    margin-right: auto;
 	}
+	.inr_bond.easy_access h2.section_title {
+		text-align: left;
+	}
 	.inr_bond.easy_access .easy_access_content a.link_light {
 	    width: calc(100% - 195px);
 	}
 	.easy_access_content img.mobile_easy_access_img {
 		width: 100%;
+	}
+	.solar.inr_bond.easy_access {
+		padding: 67px 0 95px;
+	}
+	.solar.inr_bond.easy_access .easy_access_content .section_title {
+		margin-bottom: 27px;
+		text-align: left;
+	}
+	.solar.inr_bond.easy_access .easy_access_content {
+		padding-left: 0;
+	}
+	.solar .easy_access_list {
+		margin-top: 27px;
+	}
+	.solar.inr_bond.easy_access .easy_access_content .easy_access_btns {
+		margin-top: 27px;
 	}
 }
 

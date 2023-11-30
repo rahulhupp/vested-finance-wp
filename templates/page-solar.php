@@ -104,7 +104,8 @@ get_header(); ?>
                 <?php the_sub_field('work_content') ?>
               </div>
               <div class="image">
-                <img src="<?php the_sub_field('work_image') ?>">
+                <img class="desktop" src="<?php the_sub_field('work_image') ?>">
+                <img class="mobile" src="<?php the_sub_field('work_image_mobile') ?>">
               </div>
              </div>
             </div>
