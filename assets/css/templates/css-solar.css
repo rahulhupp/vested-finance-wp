@@ -195,7 +195,7 @@ a.btn_dark {
 }
 .solar_tabs .tabs {
     background: #F0F7FE;
-    padding: 20px 16px 43px;
+    padding: 20px 16px 49px;
 }
 .solar_tabs h2 {
     color: #002852;
@@ -224,6 +224,7 @@ a.btn_dark {
     font-size: 22px;
     font-weight: 600;
     line-height: 110%;
+    border-radius: 5px;
 }
 .solar_tabs .tabs ul#tabs-nav li.active a {
     background: #fff;
@@ -235,9 +236,10 @@ a.btn_dark {
 .solar_tabs .tabs .tab-content .content_wrap {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
 }
 .solar_tabs .tabs .tab-content {
-    padding: 83px 0 0 50px;
+    padding: 98px 0 0 50px;
 }
 .solar_tabs .tabs .tab-content a.toggle {
     display: none;
@@ -264,10 +266,11 @@ a.btn_dark {
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
+    margin: 0;
 }
 .solar_tabs .tabs .tab-content .content_wrap .content ul {
     padding: 0;
-    margin: 0;
+    margin: 32px 0;
     list-style-type: none;
 }
 .solar_tabs .tabs .tab-content .content_wrap .content ul li {
@@ -295,10 +298,22 @@ a.btn_dark {
     width: 50%;
     padding-left: 26px;
 }
+.solar_tabs .tabs .tab-content .content_wrap .image img.mobile {
+    display: none;
+}
+.solar_tabs .tabs .tab-content#tab1 .content_wrap .image {
+    position: absolute;
+    top: -63px;
+    right: 0;
+}
+.solar_tabs .tabs .tab-content#tab1 .content ul li {
+    align-items: flex-start;
+}
 .solar_tabs .tabs .tab-content#tab2 .image {
-    position: relative;
-    top: 45px;
+    position: absolute;
+    top: -28px;
     padding-left: 108px;
+    right: 0;
 }
 .solar_tabs .tabs .tab-content#tab3 .content {
     width: 41%;
@@ -306,6 +321,7 @@ a.btn_dark {
 .solar_tabs .tabs .tab-content#tab3 .image {
     width: calc(59% + 100px);
     margin-left: -100px;
+    margin-top: -50px;
 }
 .solar_tabs .tabs .tab-content#tab4 .image {
     position: relative;
@@ -524,7 +540,18 @@ a.btn_dark {
     margin: 0 0 16px 0;
 }
 
-
+@media (max-width: 1199px) {
+    .solar_tabs .tabs .tab-content#tab1 .content_wrap .image {
+        position: unset;
+    }
+    .solar_tabs .tabs .tab-content#tab2 .image {
+        position: relative;
+        top: 72px;
+    }
+    .solar_tabs .tabs .tab-content#tab3 .image {
+        margin-top: -20px;
+    }
+}
 @media (max-width: 992px) {
     .btn_dark {
         padding: 12px 20px;
@@ -761,6 +788,7 @@ a.btn_dark {
         font-size: 18px;
         font-weight: 600;
         line-height: 110%;
+        border-radius: 5px;
     }
     .solar_tabs .tabs .tab-content a.toggle .arrow {
         transform: rotate(45deg);
@@ -782,6 +810,16 @@ a.btn_dark {
     .solar_tabs .tabs .tab-content a.toggle.active span {
         background: #fff;
     }
+    .solar_tabs .tabs .tab-content .content_wrap .image img.desktop {
+        display: none;
+    }
+    .solar_tabs .tabs .tab-content .content_wrap .image {
+        display: flex;
+        justify-content: center;
+    }
+    .solar_tabs .tabs .tab-content .content_wrap .image img.mobile {
+        display: block;
+    }
     .solar_tabs .tabs .tab-content .content_wrap .content {
         width: 100%;
     }
@@ -791,6 +829,11 @@ a.btn_dark {
     .solar_tabs .tabs .tab-content .content_wrap .content p {
         font-size: 14px;
         line-height: 120%;
+    }
+    .solar_tabs .tabs .tab-content .content_wrap .content ul {
+        padding: 0;
+        margin: 22px 0;
+        list-style-type: none;
     }
     .solar_tabs .tabs .tab-content .content_wrap .content ul li .content {
         font-size: 14px;
@@ -820,7 +863,7 @@ a.btn_dark {
         width: 100%;
         padding-left: 0;
         text-align: center;
-        padding-top: 25px;
+        padding-top: 45px;
     }
     .solar_project {
         padding: 50px 0 0 0;
