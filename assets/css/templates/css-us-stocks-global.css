@@ -899,6 +899,10 @@
 	line-height: 130%;
 }
 
+.faq_content ul {
+    margin: 10px 25px;
+}
+
 .faq_que.active:after {
 	transform: rotate(180deg);
 }
