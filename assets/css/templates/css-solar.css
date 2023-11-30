@@ -423,6 +423,9 @@ a.btn_dark {
     line-height: 120%;
     margin: 0 0 53px 0;
 }
+.portfolio_slider_sec h2 br {
+    display: none;
+}
 .portfolio_slider_wrap {
     display: flex;
     flex-wrap: wrap;
@@ -908,6 +911,9 @@ a.btn_dark {
     .portfolio_slider_sec h2 {
         font-size: 22px !important;
         margin: 0 0 43px 0 ;
+    }
+    .portfolio_slider_sec h2 br {
+        display: block;
     }
     .portfolio_slider_wrap .portfolio_slider_content {
         width: 100%;
