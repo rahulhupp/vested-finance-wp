@@ -1211,11 +1211,28 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .faq_content p {
-	margin-bottom: 0;
+	margin-bottom: 15px;
 	color: #1e2022;
 	font-size: 22px !important;
 	font-weight: 400;
 	line-height: 130%;
+}
+
+.faq_content a {
+	color: #1e2022;
+}
+
+.faq_content ul {
+    margin: 10px 25px;
+}
+
+.faq_content ul li {
+    margin-bottom: 10px;
+    color: #1e2022;
+    font-size: 22px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
 }
 
 .faq_que.active:after {
@@ -1733,7 +1750,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 
 	.faq_que h3 {
-		font-size: 14px;
+		font-size: 20px;
 	}
 
 	.faq_que {
@@ -1741,7 +1758,11 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 
 	.faq_content p {
-		font-size: 12px !important;
+		font-size: 18px !important;
+	}
+
+	.faq_content ul li {
+	    font-size: 18px !important;
 	}
 
 	.invest_wisely_wrap.module_chapter_list {
@@ -2430,6 +2451,17 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 	.offer_label span {
 	    font-size: 12px;
+	}
+	.faq_que h3 {
+		font-size: 14px;
+	}
+
+	.faq_content p {
+		font-size: 12px !important;
+	}
+
+	.faq_content ul li {
+	    font-size: 12px !important;
 	}
 
 }
