@@ -341,7 +341,7 @@ get_header(); ?>
             "@type": "Answer",
             "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
             }
-        }
+        },
     ]
 
 }
