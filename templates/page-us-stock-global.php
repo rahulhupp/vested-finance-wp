@@ -294,56 +294,18 @@ get_header(); ?>
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "How can NRIs invest in US Stocks?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
-                {
-            "@type": "Question",
-            "name": "What are the fund transfer options available for NRIs investing in US Stocks?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
-                {
-            "@type": "Question",
-            "name": "Do the investments made by NRIs fall under LRS?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
-                {
-            "@type": "Question",
-            "name": "How will taxes work?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
-                {
-            "@type": "Question",
-            "name": "How can I verify ownership of the shares?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
-                {
-            "@type": "Question",
-            "name": "How does fractional investing work?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<p>Vested uses 256-bit encryption and Secure Sockets Layer (SSL) to ensure the security of our platform and to protect all your information. We also employ state of the art log-in methods, automatic logouts, and ID verification to help prevent unauthorized access.</p>"
-            }
-        },
+        <?php $rowCount = 0; ?>
+        <?php while (have_rows('faq_list_global')) : the_row(); ?>
+            {
+                "@type": "Question",
+                "name": "<?php the_sub_field('faq_question_global') ?>",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "<?php the_sub_field('faq_answer_global') ?>"
+                }
+            }<?php echo (++$rowCount === count(get_field('faq_list_global'))) ? '' : ','; ?>
+        <?php endwhile; ?>
     ]
-
 }
 </script>
 <?php endif; ?>
