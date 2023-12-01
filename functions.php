@@ -291,3 +291,41 @@ function custom_front_page_redirect() {
 add_action('template_redirect', 'custom_front_page_redirect');
 
 // End Detect IP Address
+
+
+function check_page_language() {
+    $post_id = get_the_ID();
+    $languages = get_the_terms($post_id, 'language');
+    if ($languages && !is_wp_error($languages)) {
+        foreach ($languages as $language) {
+            if ($language->slug === 'in') {
+                echo '<script>console.log("3 Page has \'in\' language.");</script>';
+                ?>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var logoLink = document.querySelector(".custom-logo-link");
+                            var pricingLink = document.querySelector(".mega-menu-item-1140 a");
+                            var usStocksLink = document.querySelector(".us_stocks_link");
+
+                            if (logoLink) { 
+                                logoLink.href = "<?php echo home_url(); ?>/in"; 
+                                console.log('logoLink');
+                            }
+                            if (pricingLink) { 
+                                pricingLink.href = "<?php echo home_url(); ?>/in/pricing"; 
+                                console.log('pricingLink');
+                            }
+                            if (usStocksLink) { 
+                                usStocksLink.href = "<?php echo home_url(); ?>/in/us-stocks"; 
+                                console.log('usStocksLink');
+                            }
+                        });
+
+                    </script>
+                <?php
+                break; // Exit the loop if "in" language is found
+            }
+        }
+    }
+}
+add_action('wp_footer', 'check_page_language');
