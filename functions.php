@@ -295,7 +295,7 @@ add_action('template_redirect', 'custom_front_page_redirect');
 
 function check_page_language() {
     $post_id = get_the_ID();
-    $languages = get_the_terms($post_id, 'language');
+    $languages = get_the_terms($post_id, 'languages');
     if ($languages && !is_wp_error($languages)) {
         foreach ($languages as $language) {
             if ($language->slug === 'in') {
