@@ -637,7 +637,7 @@ a.category-btn, a.read-button {
 .single_module_meta {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
 	border-top: 1px solid rgb(0 0 0 / 10%);
 	padding-top: 12px;
 }

@@ -18,7 +18,6 @@ while (have_posts()) :
     $featured_image_url = get_the_post_thumbnail_url();
     $author_id = get_the_author_meta('ID');
     $date_created = get_the_date();
-    $modified_date = get_the_modified_time('F j, Y');
     $reading_time = calculate_reading_time(get_the_content());
 
     $previous_post = get_previous_post(true, '', 'modules');
@@ -76,6 +75,40 @@ while (have_posts()) :
 					</div>
 					<h1 class="single_module_title"><?php the_title(); ?></h1>
 					<div class="single_module_meta">
+					<div class="module_single_meta_wrap">
+							<div class="single_module_meta_item">
+								<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 15.75V14.25C12 13.4544 11.6839 12.6913 11.1213 12.1287C10.5587 11.5661 9.79565 11.25 9 11.25H4.5C3.70435 11.25 2.94129 11.5661 2.37868 12.1287C1.81607 12.6913 1.5 13.4544 1.5 14.25V15.75" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M16.5 15.75V14.25C16.4995 13.5853 16.2783 12.9396 15.871 12.4142C15.4638 11.8889 14.8936 11.5136 14.25 11.3475" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M12 2.34747C12.6453 2.5127 13.2173 2.888 13.6257 3.41421C14.0342 3.94041 14.2559 4.5876 14.2559 5.25372C14.2559 5.91985 14.0342 6.56703 13.6257 7.09324C13.2173 7.61945 12.6453 7.99475 12 8.15997" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								<span>by <?php echo get_the_author(); ?></span>
+							</div>
+							<div class="single_module_meta_item">
+								<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M14.25 3H3.75C2.92157 3 2.25 3.67157 2.25 4.5V15C2.25 15.8284 2.92157 16.5 3.75 16.5H14.25C15.0784 16.5 15.75 15.8284 15.75 15V4.5C15.75 3.67157 15.0784 3 14.25 3Z" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M12 1.5V4.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M6 1.5V4.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M2.25 7.5H15.75" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								<span><?php echo $date_created; ?></span>
+							</div>
+							<div class="single_module_meta_item">
+								<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g clip-path="url(#clip0_1759_6166)">
+										<path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										<path d="M9 4.5V9L12 10.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									</g>
+									<defs>
+										<clipPath id="clip0_1759_6166">
+											<rect width="18" height="18" fill="white" />
+										</clipPath>
+									</defs>
+								</svg>
+								<span><?php echo $reading_time; ?> min read</span>
+							</div>
+						</div>
 						<div class="single_module_info_item last">
 							<div class="social-share-block">
 								<button class="sharing-icon">
