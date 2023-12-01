@@ -227,7 +227,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Blogs</h3>
-                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
+                        <a href="<?php echo home_url() ?>/blog/">View All</a>
 
                     </div>
                     <div class="short-content">

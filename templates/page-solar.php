@@ -187,7 +187,7 @@ get_header(); ?>
     </section>
 <?php endif; ?>
 
-<?php if (have_rows('faq_list')) : ?>
+<!-- <?php if (have_rows('faq_list')) : ?>
     <section class="solar_page_faqs">
         <div class="container">
             <h2><span><?php the_field('faqs_heading'); ?></span></h2>
@@ -207,7 +207,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
-<?php endif; ?>
+<?php endif; ?> -->
 
 </div>
 

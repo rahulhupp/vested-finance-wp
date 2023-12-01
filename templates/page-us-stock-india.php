@@ -189,7 +189,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Under the Spotlight</h3>
-                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
+                        <a href="<?php echo home_url() ?>/blog/us-stocks/under-the-spotlight/">View All</a>
 
                     </div>
                     <div class="short-content">
@@ -221,7 +221,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Vested Shorts</h3>
-                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
+                        <a href="<?php echo home_url() ?>/blog/us-stocks/vested-shorts/">View All</a>
 
                     </div>
                     <div class="short-content">
@@ -253,7 +253,7 @@ get_header(); ?>
                 <div class="head">
                     <div class="left-part">
                         <h3>Blogs</h3>
-                        <a href="http://wordpress-testing.vestedfinance.com/blog/">View All</a>
+                        <a href="<?php echo home_url() ?>/blog/">View All</a>
 
                     </div>
                     <div class="short-content">
