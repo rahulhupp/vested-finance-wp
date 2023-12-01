@@ -308,6 +308,11 @@ body.mega-menu-open .site-content:before {
     visibility: hidden;
 }
 
+.geolocation_banner .left.india .content {
+    padding-left: 0;
+    width: 100%;
+}
+
 .geolocation_banner .left {
     display: flex;
     align-items: center;

@@ -1021,8 +1021,14 @@ section.invest_wisely_sec .container {
 		line-height: 35.2px;
 	}
 
-	.banner_content p {
+	.banner_content p br {
 		display: none;
+	}
+
+	.banner_content p {
+		font-size: 14px !important;
+		max-width: 281px;
+		margin: 0 auto 40px;
 	}
 
 	.banner_buttons {
@@ -1097,7 +1103,6 @@ section.invest_wisely_sec .container {
 	}
 
 	.easy_access_wrap .section_title {
-		font-weight: 800;
 		margin-bottom: 26px;
 		text-align: center;
 	}

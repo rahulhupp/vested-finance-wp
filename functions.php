@@ -243,7 +243,7 @@ function custom_front_page_redirect() {
             // echo "Go back to India page";
         }
         if (is_page_template('templates/page-home-page.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
+            $chtml = "<div class='left india'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
             // echo "Show learn more";
         }
         if (is_page_template('templates/page-pricing-global.php')) {
