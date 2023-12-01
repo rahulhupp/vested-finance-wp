@@ -10,6 +10,22 @@ Text Domain: astra-child
 Template: astra
 */
 
+
+.page-template-default ul {
+    margin: 15px 0;
+}
+
+.page-template-default ul li {
+    margin-bottom: 15px;
+}
+.page-template-default a {
+    color: #334155;
+    outline: none;
+}
+.page-template-default a:hover {
+    color: #000;
+}
+
 .ast-separate-container {
     background-color: #fff;
 }
@@ -39,4 +55,11 @@ Template: astra
 
 .page-template-page-us-stock-global .mega-optional_menu, html[lang="en"] .page-template-page-pricing .mega-optional_menu {
     display: none !important;
+}
+
+@media (max-width: 1199px) {
+    .page-template-default.ast-plain-container.ast-no-sidebar #primary {
+        margin-top: 40px;
+        margin-bottom: 60px;
+    }
 }
