@@ -40,7 +40,7 @@ while (have_posts()) :
 						?>
 						<ul>
 							<li>
-								<a href="<?php echo home_url(); ?>"><?php echo $site_name; ?></a>
+								<a href="<?php echo home_url('in'); ?>"><?php echo $site_name; ?></a>
 							</li>
 							<li>
 								<a href="<?php echo home_url(); ?>/blog/">Blog</a>

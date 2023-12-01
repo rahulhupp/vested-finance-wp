@@ -119,7 +119,7 @@
             <a class="btn_dark" href="https://app.vestedfinance.com/us-stocks-etfs">Explore ALL US Stocks</a>
         </div>
         <div class="bottom-content">
-            <p>Disclosure: This list is representative of stocks available on Vested<br />but is not intended to recommend any investment.</p>
+            <p>Disclosure: This list is representative of stocks available on Vested but is not intended to recommend any investment.</p>
         </div>
     </div>
 </section>
