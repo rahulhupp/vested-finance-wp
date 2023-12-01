@@ -5,14 +5,14 @@ jQuery(document).ready(function () {
 		jQuery('.info.first').css('display', 'none');
 		jQuery('.sticky-plan .plan.first').css('display', 'none');
 		jQuery('.premium-plan').show();
-		jQuery('.info.second').show();
+		jQuery('.info.second').css('display', 'flex');
 		jQuery('.sticky-plan .plan.second').show();
 		jQuery('#basic_show_btn').removeClass('active');
 		jQuery('#premium_show_btn').addClass('active');
 		jQuery('.info.quarterly.second').css('display', 'none');
 		var getQuarterly = jQuery('[name="plan-selection"]:checked').attr('id');
 		if (getQuarterly == 'quarterly-plan') {
-			jQuery('.info.quarterly.second').css('display', 'block');
+			jQuery('.info.quarterly.second').css('display', 'flex');
 			jQuery('.info.second.annual').css('display', 'none');
 		}
 	});
@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
 		var getID = jQuery(this).attr('id');
 		if (getID == 'quarterly-plan') {
 			if (window.matchMedia('(min-width: 991px)').matches) {
-				jQuery('.info.quarterly').css('display', 'block');
+				jQuery('.info.quarterly').css('display', 'flex');
 			}
 
 			jQuery('.info.annual').css('display', 'none');
@@ -42,13 +42,13 @@ jQuery(document).ready(function () {
 			jQuery('.pricing-sticky .sticky-plan .plan span.quarterly').css('display', 'block');
 
 			if (window.matchMedia('(max-width: 991px)').matches) {
-				jQuery('.info.quarterly.second').css('display', 'block');
+				jQuery('.info.quarterly.second').css('display', 'flex');
 			}
 
 		}
 		else {
 			if (window.matchMedia('(min-width: 991px)').matches) {
-				jQuery('.info.annual').css('display', 'block');
+				jQuery('.info.annual').css('display', 'flex');
 			}
 
 			jQuery('.info.quarterly').css('display', 'none');
@@ -58,7 +58,7 @@ jQuery(document).ready(function () {
 			jQuery('.pricing-sticky .sticky-plan .plan span.quarterly').css('display', 'none');
 
 			if (window.matchMedia('(max-width: 991px)').matches) {
-				jQuery('.info.annual.second').css('display', 'block');
+				jQuery('.info.annual.second').css('display', 'flex');
 			}
 		}
 	});
