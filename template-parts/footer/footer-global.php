@@ -135,6 +135,18 @@
                             </ul>
                         </div>
                     <?php endif; ?>
+                    <?php if (have_rows('extra_info', 'option')) : ?>
+                        <div class="extra_info">
+                            <ul>
+                                <?php while (have_rows('extra_info', 'option')) : the_row(); ?>
+                                    <?php if (get_sub_field('extra_info_name', 'option')) : ?>
+                                        <li><sup><?php echo get_row_index(); ?></sup><?php the_sub_field('extra_info_name'); ?></li>
+                                    <?php endif; ?>
+                                <?php endwhile; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                    
                 </div>
             </div>
             <div class="footer_bottom">
