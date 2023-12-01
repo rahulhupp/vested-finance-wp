@@ -299,6 +299,45 @@ footer .container {
   right: -15px;
 }
 
+.page-template-page-home-page footer .extra_info {
+  display: block;
+}
+
+footer .extra_info {
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 60px 0 0 0;
+  margin-top: 60px;
+  display: none;
+}
+
+footer .extra_info ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+footer .extra_info ul li {
+    list-style: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    display: flex;
+}
+
+footer .extra_info ul li:first-child {
+    margin-bottom: 6px;
+}
+
+footer .extra_info ul li sup {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    margin-right: 6px;
+    top: -5px;
+}
+
 .tabs_conditions {
   margin-top: 70px;
 }
@@ -313,6 +352,7 @@ footer .container {
   font-size: 14px;
   font-weight: 300;
   line-height: normal;
+  display: flex;
 }
 
 .tabs_conditions ul li sup {
@@ -321,6 +361,7 @@ footer .container {
   font-weight: 300;
   line-height: normal;
   margin-right: 6px;
+  top: -5px;
 }
 
 .tabs_conditions ul li:first-child {
@@ -666,12 +707,21 @@ footer .container {
   }
 
   .tabs_conditions ul li {
-    font-size: 10px;
+    font-size: 10px !important;
   }
 
   .tabs_conditions ul li sup {
     font-size: 10px;
     margin-right: 2px;
+    top: -3px;
+  }
+  footer .extra_info ul li {
+      font-size: 10px !important;
+  }
+  footer .extra_info ul li sup {
+      font-size: 10px;
+      margin-right: 2px;
+      top: -3px;
   }
   .disclosure_block {
     padding: 70px 0 50px;
@@ -720,6 +770,10 @@ footer .container {
   .read_more_link {
     display: inline-block;
   }
+  footer .extra_info {
+    padding: 40px 0 0 0;
+    margin-top: 40px;
+}
 
   /* .single_app {
     width: 49%;

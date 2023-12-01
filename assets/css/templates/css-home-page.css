@@ -1000,7 +1000,7 @@ section.invest_wisely_sec .container {
 
 	.banner_content {
 		padding-top: 47px;
-		padding-bottom: 273px;
+		padding-bottom: 277px;
 	}
 
 	.home_banner:before {
@@ -1017,8 +1017,9 @@ section.invest_wisely_sec .container {
 	}
 
 	.banner_content h1 {
-		font-size: 32px;
-		line-height: 35.2px;
+		font-size: 32px !important;
+		line-height: 110%;
+		margin: 0 0 20px 0;
 	}
 
 	.banner_content p br {
@@ -1028,11 +1029,11 @@ section.invest_wisely_sec .container {
 	.banner_content p {
 		font-size: 14px !important;
 		max-width: 281px;
-		margin: 0 auto 40px;
+		margin: 0 auto;
 	}
 
 	.banner_buttons {
-		margin-top: 60px;
+		margin-top: 24px;
 	}
 
 	.counter_section {
