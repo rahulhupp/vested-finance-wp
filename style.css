@@ -16,7 +16,7 @@ Template: astra
 }
 
 .page-template-default ul li {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 .page-template-default a {
     color: #334155;
@@ -24,6 +24,13 @@ Template: astra
 }
 .page-template-default a:hover {
     color: #000;
+}
+.page-template-default p {
+    margin: 0 0 14px 0;
+}
+.page-template-default h4,
+.page-template-default h2 {
+    margin: 0 0 10px 0;
 }
 
 .ast-separate-container {
