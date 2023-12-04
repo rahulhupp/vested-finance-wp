@@ -64,7 +64,6 @@ get_header();
                             <div class="module_meta_wrap">
                                 <div class="module_meta">
                                     <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                    <p><?php echo $excerpt; ?></p>
                                 </div>
                                 <div class="module_img">
                                     <?php if (get_field('listing_image')) : ?>
@@ -73,8 +72,9 @@ get_header();
                                         <img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
                                     <?php endif; ?>
                                 </div>
-
                             </div>
+
+                            <p><?php echo $excerpt; ?></p>
 
                             <div class="module_btn">
                                 <div class="module_sharing_wrap">

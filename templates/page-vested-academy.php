@@ -81,14 +81,14 @@ get_header(); ?>
                         <div class="module_meta_wrap">
                             <div class="module_meta">
                                 <h3><a href="<?php echo $term_link; ?>"><?php echo $module_name; ?></a></h3>
-                                <p><?php echo $module_desc; ?></p>
-
                             </div>
                             <div class="module_img">
                                 <img src="<?php echo $module_image; ?>" alt="">
                             </div>
                         </div>
 
+                        <p><?php echo $module_desc; ?></p>
+                        
                         <div class="module_btn">
                             <div class="module_sharing_wrap">
                                 <a href="<?php echo $term_link; ?>" class="category-btn" data-cat-slug="<?php echo $module_slug; ?>">Start Learning</a>
