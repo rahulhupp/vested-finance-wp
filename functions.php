@@ -240,7 +240,7 @@ function custom_front_page_redirect() {
     
     ?>
         <script>
-            console.log('$mycountry', <?php echo $userInfo->country->name; ?>);
+            console.log('$mycountry 1', <?php echo $userInfo->country->name; ?>);
         </script>
     <?php
     $chtml = '';
