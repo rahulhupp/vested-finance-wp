@@ -244,7 +244,7 @@ jQuery(document).ready(function ($) {
 		} else {
 			percentTimeOne += 1 / (timeOne + 4);
 			var $progressBarOne = $(".stocks_slider_content .inProgress" + progressBarIndexOne);
-			var $progressbarMobOne = $(".stocks_slider_content .slick-dots li .inProgress" + progressBarIndex);
+			var $progressbarMobOne = $(".stocks_slider_content .slick-dots li .inProgress" + progressBarIndexOne);
 
 			$progressBarOne.closest(".single_portfolio_slider_content").addClass("slide-current");
 			// Check screen width and update width or height accordingly

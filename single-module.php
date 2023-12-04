@@ -243,7 +243,7 @@ while (have_posts()) :
                 <div class="chapter_cta_wrap">
                     <div class="chapter_cta_content">
                         <div class="vested_logo">
-                            <img src="https://vestedfinance.com/wp-content/uploads/2020/09/Vested_logo-2.svg" alt="Vested Finance">
+                            <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/Vested_logo.svg" alt="Vested Finance">
                         </div>
                         <?php
                         $single_cta_heading = get_field('single_chapter_cta_heading');
