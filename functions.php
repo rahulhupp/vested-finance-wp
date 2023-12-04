@@ -237,7 +237,7 @@ function custom_front_page_redirect() {
     $mycountry = $v->geoplugin_countryName;    
     $ip = geoip_detect2_get_client_ip();
     $userInfo = geoip_detect2_get_info_from_current_ip($ip);
-    echo 
+    
     ?>
         <script>
             console.log('$mycountry', <?php echo $userInfo->country->name; ?>);
