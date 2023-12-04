@@ -235,6 +235,11 @@ function custom_front_page_redirect() {
     $details =  ip_details($url); 
     $v = json_decode($details);
     $mycountry = $v->geoplugin_countryName;    
+    ?>
+        <script>
+            console.log('$mycountry', <?php echo $mycountry; ?>)
+        </script>
+    <?php
     $chtml = '';
 
     if ($mycountry === 'India') {
