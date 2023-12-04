@@ -87,7 +87,7 @@ get_header();
                                             </g>
                                         </svg></div>
                                         <div class="module_share_mobile">
-                                        <button class="sharing-icon">
+                                        <button class="sharing-icon" title="<?php the_title(); ?>" url="<?php the_permalink(); ?>">
                                             <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -302,27 +302,25 @@ get_header();
                 }, 1000);
             });
             // 
-            const BlogData = {
-                title: '<?php the_title(); ?>',
-                url: '<?php the_permalink(); ?>',
-            }
+            const SharingIcons = document.querySelectorAll('.sharing-icon');
 
-            const btn = document.querySelector('.sharing-icon');
-
-            // Share must be triggered by "user activation"
-            btn.addEventListener('click', async () => {
-                try {
-                    if (navigator.canShare &&
-                        typeof navigator.canShare === 'function' &&
-                        navigator.canShare(BlogData)) {
-                        let result = await navigator.share(BlogData);
-                        document.getElementById("status").innerText = result || '';
-                    } else {
-                        document.getElementById("status").innerText = "Sharing selected data not supported.";
+            SharingIcons.forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    try {
+                        const getTitle = button.getAttribute('title');
+                        const getURL = button.getAttribute('url');
+                        const BlogData = { title: getTitle, url: getURL };
+                        // console.log ('test', BlogData);
+                        if (navigator.canShare && typeof navigator.canShare === 'function' && navigator.canShare(BlogData)) {
+                            let result = await navigator.share(BlogData);
+                            document.getElementById("status").innerText = result || '';
+                        } else {
+                            document.getElementById("status").innerText = "Sharing selected data not supported.";
+                        }
+                    } catch (err) {
+                        document.getElementById("status").innerText = "Share not complete";
                     }
-                } catch (err) {
-                    document.getElementById("status").innerText = "Share not complete";
-                }
+                });
             });
         </script>
 </div>

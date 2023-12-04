@@ -285,40 +285,24 @@ get_header(); ?>
 
         // 
         const SharingIcons = document.querySelectorAll('.sharing-icon');
-        let getTitle = '';
-        let getURL = '';
-        
+
         SharingIcons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                getTitle = button.getAttribute('title');
-                getURL = button.getAttribute('url');
-                getData();                
-            });
-        });
-        
-        function getData() {
-            const BlogData = {
-                title: getTitle,
-                url: getURL,
-            }
-        }
-
-        const btn = document.querySelector('.sharing-icon');
-
-        // Share must be triggered by "user activation"
-        btn.addEventListener('click', async () => {
-            try {
-                if (navigator.canShare &&
-                    typeof navigator.canShare === 'function' &&
-                    navigator.canShare(BlogData)) {
-                    let result = await navigator.share(BlogData);
-                    document.getElementById("status").innerText = result || '';
-                } else {
-                    document.getElementById("status").innerText = "Sharing selected data not supported.";
+            button.addEventListener('click', async function () {
+                try {
+                    const getTitle = button.getAttribute('title');
+                    const getURL = button.getAttribute('url');
+                    const BlogData = { title: getTitle, url: getURL };
+                    // console.log ('test', BlogData);
+                    if (navigator.canShare && typeof navigator.canShare === 'function' && navigator.canShare(BlogData)) {
+                        let result = await navigator.share(BlogData);
+                        document.getElementById("status").innerText = result || '';
+                    } else {
+                        document.getElementById("status").innerText = "Sharing selected data not supported.";
+                    }
+                } catch (err) {
+                    document.getElementById("status").innerText = "Share not complete";
                 }
-            } catch (err) {
-                document.getElementById("status").innerText = "Share not complete";
-            }
+            });
         });
     </script>
 </div>
