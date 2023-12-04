@@ -18,7 +18,7 @@ get_header(); ?>
     echo "<br/> <br/> <br/> <br/>";
     $record = geoip_detect2_get_info_from_ip('87.200.16.47', [ 0 => 'en' ]);
     echo "$record";
-    echo $record;
+    echo $record->country->name
 
 
 ?>
