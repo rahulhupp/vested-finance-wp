@@ -87,7 +87,7 @@
 
 .module_meta_wrap {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	margin-bottom: 20px;
@@ -538,10 +538,6 @@ a.category-btn, a.read-button {
 		width: 100%;
 		order: 2;
 		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-
-	.module_meta {
 		margin-bottom: 10px;
 	}
 
