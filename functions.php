@@ -195,10 +195,10 @@ add_filter('comments_template', 'custom_comments_template');
 
 
 
-
 // Detect IP Address
-function custom_front_page_redirect() {    
-    $userInfo = geoip_detect2_get_info_from_current_ip();
+function custom_front_page_redirect() {   
+    $myipd = '192.166.244.41';  
+    $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
     $mycountry = $userInfo->country->isoCode;
 
     $chtml = '';
