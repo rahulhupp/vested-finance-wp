@@ -231,7 +231,7 @@ function ip_details($url) {
 
 function custom_front_page_redirect() {    
     $myipd = get_client_ip(); 
-    $url = 'https://www.geoplugin.com/json.gp?ip='.$myipd; 
+    $url = 'http://www.geoplugin.net/json.gp?ip='.$myipd; 
     $details =  ip_details($url); 
     $v = json_decode($details);
     $mycountry = $v->geoplugin_countryName;    
