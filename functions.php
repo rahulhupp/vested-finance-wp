@@ -231,11 +231,6 @@ function ip_details($url) {
 
 function custom_front_page_redirect() {    
     $myipd = get_client_ip(); 
-    ?>
-        <script>
-            console.log('$myipd', <?php echo $myipd; ?>);
-        </script>
-    <?php
     $url = 'https://www.geoplugin.net/json.gp?ip='.$myipd; 
     $details =  ip_details($url); 
     $v = json_decode($details);
