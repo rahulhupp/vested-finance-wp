@@ -240,6 +240,17 @@ function custom_front_page_redirect() {
     
     ?>
         <script>
+        fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            const country = data.country ? data.country : 'Unknown';
+            console.log('Current Country:', country);
+        })
+        .catch(error => {
+            console.error('Error fetching IP information:', error);
+        });
+    </script>
+        <script>
             console.log('$mycountry 1', <?php echo $userInfo->country->name; ?>);
         </script>
     <?php
