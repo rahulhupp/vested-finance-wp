@@ -9,10 +9,17 @@ get_header(); ?>
     echo $userInfo->country->isoCode;
     echo "<br/> <br/> <br/> <br/>";
     echo $mycountry;
+    echo "<br/> <br/> <br/> <br/>";
     if ($mycountry === 'India') {
         echo "India";
     } else {
         echo "Global";
     }
+    echo "<br/> <br/> <br/> <br/>";
+    $record = geoip_detect2_get_info_from_ip('87.200.16.47', [ 0 => 'en' ]);
+    echo "$record";
+    echo $record;
+
+
 ?>
 <?php get_footer(); ?>
