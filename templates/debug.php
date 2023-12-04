@@ -4,6 +4,9 @@ Template name: Page - Debug
 */
 get_header(); ?>
 <?php
+    $ip = geoip_detect2_get_client_ip();
+    echo $ip;
+    echo "<br /><br /><br />";
 
     function get_client_ip() {
         $ipaddress = '';
