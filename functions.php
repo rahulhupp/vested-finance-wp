@@ -194,32 +194,11 @@ function custom_comments_template($comment_template) {
 add_filter('comments_template', 'custom_comments_template');
 
 
-function get_client_ip() {
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP'))
-       $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-       $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-       $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-       $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-       $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-       $ipaddress = getenv('REMOTE_ADDR');
-    else
-       $ipaddress = 'UNKNOWN';
-
-    return $ipaddress;
-}
-
 
 
 // Detect IP Address
-function custom_front_page_redirect() {   
-    $myipd = get_client_ip();  
-    $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
+function custom_front_page_redirect() {    
+    $userInfo = geoip_detect2_get_info_from_current_ip();
     $mycountry = $userInfo->country->isoCode;
 
     $chtml = '';
