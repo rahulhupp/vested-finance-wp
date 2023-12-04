@@ -4,22 +4,9 @@ Template name: Page - Debug
 */
 get_header(); ?>
 <?php
-    $userInfo = geoip_detect2_get_info_from_current_ip();
-    $mycountry = $userInfo->country->isoCode;
-    echo "<br/> <br/>";
-    echo $mycountry;
-    echo "<br/> <br/>";
-    if ($mycountry === 'India') {
-        echo "India";
-    } else {
-        echo "Global";
-    }
-    echo "<br/> ipAddress Start  <br/>";
-    echo $userInfo->traits->ipAddress;
-    echo " <br/>ipAddress End";
-    // $ip = geoip_detect2_get_client_ip();
-    // userInfoo = geoip_detect2_get_info_from_current_ip($ip);
-    // echo $userInfoo->country->name;$
+    $ip = geoip_detect2_get_client_ip();
+    echo $ip;
+    echo "<br /><br /><br />";
 
     function get_client_ip() {
         $ipaddress = '';
@@ -42,11 +29,8 @@ get_header(); ?>
    }
 
     $myipd = get_client_ip(); 
-    echo "<br/> <br/>";
-    echo $myipd;
-    echo "<br/> <br/>";
     $userInfoo = geoip_detect2_get_info_from_ip($myipd, NULL);
-    echo $userInfoo->country->name;
+    echo $userInfoo->country->isoCode;
 
 ?>
 <?php get_footer(); ?>
