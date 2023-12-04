@@ -3,10 +3,9 @@
 Template name: Page - Debug
 */
 get_header(); ?>
-<?php $mycountry  = do_shortcode('[geoip_detect2 property="country"]');  ?>
 <?php
     $userInfo = geoip_detect2_get_info_from_current_ip();
-    echo $userInfo->country->isoCode;
+    $mycountry = $userInfo->country->isoCode;
     echo "<br/> <br/>";
     echo $mycountry;
     echo "<br/> <br/>";
@@ -15,9 +14,9 @@ get_header(); ?>
     } else {
         echo "Global";
     }
-    echo "<br/> <br/> ipAddress Start";
+    echo "<br/> ipAddress Start  <br/>";
     echo $userInfo->traits->ipAddress;
-    echo "ipAddress End";
+    echo " <br/>ipAddress End";
     // $ip = geoip_detect2_get_client_ip();
     // $userInfoo = geoip_detect2_get_info_from_current_ip($ip);
     // echo $userInfoo->country->name;
