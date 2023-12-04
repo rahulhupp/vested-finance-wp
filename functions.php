@@ -231,13 +231,18 @@ function ip_details($url) {
 
 function custom_front_page_redirect() {    
     $myipd = get_client_ip(); 
-    $url = 'http://www.geoplugin.net/json.gp?ip='.$myipd; 
+    ?>
+        <script>
+            console.log('$myipd', <?php echo $myipd; ?>);
+        </script>
+    <?php
+    $url = 'https://www.geoplugin.net/json.gp?ip='.$myipd; 
     $details =  ip_details($url); 
     $v = json_decode($details);
     $mycountry = $v->geoplugin_countryName;    
     ?>
         <script>
-            console.log('$mycountry', <?php echo $mycountry; ?>)
+            console.log('$mycountry', <?php echo $mycountry; ?>);
         </script>
     <?php
     $chtml = '';
