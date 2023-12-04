@@ -197,66 +197,13 @@ add_filter('comments_template', 'custom_comments_template');
 
 
 // Detect IP Address
-
-global $mycountry;
-function get_client_ip() {
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP'))
-    $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-    $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-    $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-    $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-    $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-    $ipaddress = getenv('REMOTE_ADDR');
-    else
-    $ipaddress = 'UNKNOWN';
-
-    return $ipaddress;
-}
-
-function ip_details($url) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    return $data;
-}
-
 function custom_front_page_redirect() {    
-    $myipd = get_client_ip(); 
-    $url = 'https://www.geoplugin.com/json.gp?ip='.$myipd; 
-    $details =  ip_details($url); 
-    $v = json_decode($details);
-    $mycountry = $v->geoplugin_countryName;    
-    $ip = geoip_detect2_get_client_ip();
-    $userInfo = geoip_detect2_get_info_from_current_ip($ip);
-    
-    ?>
-        <script>
-        fetch('https://ipinfo.io/json')
-        .then(response => response.json())
-        .then(data => {
-            const country = data.country ? data.country : 'Unknown';
-            console.log('Current Country:', country);
-        })
-        .catch(error => {
-            console.error('Error fetching IP information:', error);
-        });
-    </script>
-        <script>
-            console.log('$mycountry 1', <?php echo $userInfo->country->name; ?>);
-        </script>
-    <?php
+    $userInfo = geoip_detect2_get_info_from_current_ip();
+    $mycountry = $userInfo->country->isoCode;
+
     $chtml = '';
     
-    if ($mycountry === 'India') {
+    if ($mycountry === 'IN') {
         if (is_page_template('templates/page-us-stock-global.php')) {
             $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
             // echo "Go back to India page";
@@ -305,11 +252,7 @@ function custom_front_page_redirect() {
     ?>
     <?php
 }
-
-// Hook this function to the 'template_redirect' action
-add_action('template_redirect', 'custom_front_page_redirect');
-
-// End Detect IP Address
+add_action('wp_footer', 'custom_front_page_redirect');
 
 
 function check_page_language() {
