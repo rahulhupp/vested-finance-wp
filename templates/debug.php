@@ -15,10 +15,12 @@ get_header(); ?>
     } else {
         echo "Global";
     }
-    echo "<br/> <br/> <br/> <br/>";
-    $ip = geoip_detect2_get_client_ip();
-    $userInfoo = geoip_detect2_get_info_from_current_ip($ip);
-    echo $userInfoo->country->name;
+    echo "<br/> <br/> ipAddress Start";
+    echo $userInfo->traits->ipAddress;
+    echo "ipAddress End";
+    // $ip = geoip_detect2_get_client_ip();
+    // $userInfoo = geoip_detect2_get_info_from_current_ip($ip);
+    // echo $userInfoo->country->name;
 
 
 ?>
