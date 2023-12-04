@@ -18,8 +18,8 @@ get_header(); ?>
     echo $userInfo->traits->ipAddress;
     echo " <br/>ipAddress End";
     // $ip = geoip_detect2_get_client_ip();
-    // $userInfoo = geoip_detect2_get_info_from_current_ip($ip);
-    // echo $userInfoo->country->name;
+    // userInfoo = geoip_detect2_get_info_from_current_ip($ip);
+    // echo $userInfoo->country->name;$
 
     function get_client_ip() {
         $ipaddress = '';
@@ -41,8 +41,12 @@ get_header(); ?>
         return $ipaddress;
    }
 
-   $myipd = get_client_ip(); 
-   echo $myipd;
+    $myipd = get_client_ip(); 
+    echo "<br/> <br/>";
+    echo $myipd;
+    echo "<br/> <br/>";
+    $userInfoo = geoip_detect2_get_info_from_current_ip($myipd);
+    echo $userInfoo->country->name;
 
 ?>
 <?php get_footer(); ?>
