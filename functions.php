@@ -239,7 +239,8 @@ function custom_front_page_redirect() {
     $url = 'https://www.geoplugin.net/json.gp?ip='.$myipd; 
     $details =  ip_details($url); 
     $v = json_decode($details);
-    $mycountry = $v->geoplugin_countryName;    
+    // $mycountry = $v->geoplugin_countryName;    
+    $mycountry = $record->country->name;  
     ?>
         <script>
             console.log('$mycountry', <?php echo $mycountry; ?>);
