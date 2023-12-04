@@ -45,7 +45,7 @@ get_header(); ?>
     echo "<br/> <br/>";
     echo $myipd;
     echo "<br/> <br/>";
-    $userInfoo = geoip_detect2_get_info_from_current_ip($myipd);
+    $userInfoo = geoip_detect2_get_info_from_ip($myipd, NULL);
     echo $userInfoo->country->name;
 
 ?>
