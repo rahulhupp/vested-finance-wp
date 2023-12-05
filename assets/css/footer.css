@@ -12,6 +12,10 @@ footer .container {
   padding: 0 80px;
 }
 
+footer .footer_wrap a:hover {
+    color: #fff;
+}
+
 .footer_above_wrap {
   display: flex;
   justify-content: space-between;
@@ -19,6 +23,10 @@ footer .container {
   position: relative;
   padding-bottom: 66px;
   margin-bottom: 24px;
+}
+
+footer .footer_wrap .site_info_wrap a {
+    color: #fff;
 }
 
 .site_info_col {
