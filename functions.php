@@ -312,3 +312,36 @@ function check_page_language() {
     }
 }
 add_action('wp_footer', 'check_page_language');
+
+
+// Callback function to retrieve the mtags data
+function custom_get_mtags_field($object, $field_name, $request) {
+    // Get the post ID
+    $post_id = $object['id'];
+
+    // Get the tags for the post
+    $post_tags = wp_get_post_tags($post_id);
+
+    // Prepare the mtags data
+    $mtags_data = array();
+
+    foreach ($post_tags as $tag) {
+        $mtags_data[] = array(
+            'term_id' => $tag->term_id,
+            'name' => $tag->name,
+            'slug' => $tag->slug,
+            'term_group' => $tag->term_group,
+            'term_taxonomy_id' => $tag->term_taxonomy_id,
+            'taxonomy' => $tag->taxonomy,
+            'description' => $tag->description,
+            'parent' => $tag->parent,
+            'count' => $tag->count,
+            'filter' => 'raw'
+        );
+    }
+
+    return $mtags_data;
+}
+
+// Hook to add the custom field to the REST API response
+add_action('rest_api_init', 'custom_add_mtags_field');
