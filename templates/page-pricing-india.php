@@ -152,7 +152,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeading == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.webp" />
                             <?php
                           }
                           else {
@@ -172,7 +172,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeading == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.webp" />
                               <?php
                             }
                             else {
@@ -193,7 +193,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeadingQuarterly == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.webp" />
                             <?php
                           }
                           else {
@@ -213,7 +213,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeadingQuarterly == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.webp" />
                               <?php
                             }
                             else {
