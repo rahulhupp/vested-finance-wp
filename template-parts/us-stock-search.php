@@ -19,7 +19,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AAPL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.webp" />
                             </div>
                             <span>Apple</span>
                         </div>
@@ -29,7 +29,7 @@
                     <a href="https://app.vestedfinance.com/stocks/GOOGL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.webp" />
                             </div>
                             <span>Google</span>
                         </div>
@@ -39,7 +39,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AGPXX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.webp" />
                             </div>
                             <span>Invesco</span>
                         </div>
@@ -49,7 +49,7 @@
                     <a href="https://app.vestedfinance.com/stocks/MSFT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" />
                             </div>
                             <span>Microsoft</span>
                         </div>
@@ -59,7 +59,7 @@
                     <a href="https://app.vestedfinance.com/stocks/TSLA" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" />
                             </div>
                             <span>Tesla</span>
                         </div>
@@ -69,7 +69,7 @@
                     <a href="https://app.vestedfinance.com/stocks/META" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" />
                             </div>
                             <span>Meta</span>
                         </div>
@@ -79,7 +79,7 @@
                     <a href="https://app.vestedfinance.com/stocks/NFLX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" />
                             </div>
                             <span>Netflix</span>
                         </div>
@@ -89,7 +89,7 @@
                     <a href="https://app.vestedfinance.com/stocks/BWX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" />
                             </div>
                             <span>SPDR</span>
                         </div>
@@ -99,7 +99,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AMZN" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" />
                             </div>
                             <span>Amazon</span>
                         </div>
@@ -109,7 +109,7 @@
                     <a href="https://app.vestedfinance.com/stocks/SPOT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" />
                             </div>
                             <span>Spotify</span>
                         </div>
