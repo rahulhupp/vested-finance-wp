@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="newsletter-image">
-            <img class="desktop" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/v-logo.png" />
-            <img class="mobile" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/v-logo-mobile.png" />
+            <img class="desktop" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/v-logo.webp" />
+            <img class="mobile" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/v-logo-mobile.webp" />
         </div>
     </div>
 </div>
