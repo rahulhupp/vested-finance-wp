@@ -535,14 +535,5 @@
 		});
 	});  
 </script>
-<script>
-	window.onload = function() {
-		// Get the input element by its ID
-		var myInput = document.querySelector('.search-field');
-
-		// Set the placeholder attribute
-		myInput.placeholder = 'Search all blogs';
-	};
-</script>
 
 <?php get_footer(); ?>
