@@ -774,7 +774,7 @@
 
             </div>
         </div>
-        <?php if (is_page_template('templates/page-us-stock-global.php')) : ?>
+        <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
             <p class="calc_desc">
                 <?php the_field('calc_disclaimer'); ?>
             </p>
