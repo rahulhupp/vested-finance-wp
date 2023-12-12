@@ -14,6 +14,7 @@
 
     .calculator .main_heading {
         color: #002852;
+        font-family: Poppins;
         font-size: 38px;
         font-style: normal;
         font-weight: 600;
@@ -44,6 +45,7 @@
         background-position: calc(100% - 14px);
         cursor: pointer;
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -60,6 +62,7 @@
         padding: 8px 14px;
         cursor: pointer;
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -70,6 +73,7 @@
 
     .calculator .select2-container .select2-selection span#select2-resultsList-container {
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -104,6 +108,7 @@
     .stock-result-list .select2-results__option--selectable,
     .stock-result-list .select2-results__option {
         padding: 12px 14px;
+        font-family: Poppins;
         font-size: 14px;
         font-style: normal;
         margin: 0 0 1px;
@@ -112,6 +117,7 @@
     /* end select 2 */
     .calculator .calc_form label {
         color: #464646;
+        font-family: Poppins;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -131,6 +137,7 @@
     .calculator #invest_val {
         padding: 4px 14px 4px 24px;
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -143,6 +150,7 @@
 
     .calculator .currency {
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -159,6 +167,7 @@
 
     .calculator .currency_select input[type="radio"]+label {
         color: #1f4267;
+        font-family: Poppins;
         font-size: 17px;
         font-style: normal;
         font-weight: 500;
@@ -179,6 +188,7 @@
 
     .calculator .currency_select input[type="radio"]+label {
         color: #1f4267;
+        font-family: Poppins;
         font-size: 17px;
         font-style: normal;
         font-weight: 500;
@@ -198,6 +208,7 @@
         display: flex;
         align-items: center;
         color: #002852;
+        font-family: Poppins;
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -250,6 +261,7 @@
 
     .calculator .calc_result_col h3 {
         color: #002852;
+        font-family: Poppins;
         font-size: 20px;
         font-style: normal;
         font-weight: 600;
@@ -266,6 +278,7 @@
 
     .calculator .list p {
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -336,6 +349,7 @@
 
     .calculator .cta_content_col p {
         color: #bed3ea;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -350,6 +364,7 @@
 
     .calculator .cta_btn a {
         color: #0cc886;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 600;
@@ -422,6 +437,7 @@
         margin-bottom: 0;
         margin-top: 34px;
         color: rgba(33, 37, 41, 0.7);
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -443,13 +459,6 @@
 
     .calc-page .container {
         max-width: 1170px;
-    }
-
-    .calc_list li a:after {
-        content: '';
-        background: url('../assets/images/faq_arrow.svg');
-        width: 8px;
-        height: 14px;
     }
 
     .calculator .field_col input[type="date"] {
@@ -488,6 +497,7 @@
     .calculator .field_col input[type="date"] {
         padding: 4px 14px 4px 24px;
         color: #002852;
+        font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -519,6 +529,109 @@
 
     .chart.hidden {
         display: none;
+    }
+
+    .calc_col {
+        width: 498px;
+        padding: 36px;
+    }
+
+    .calc_result_col {
+        width: 670px;
+        background: #eef5fc;
+    }
+
+    @media (max-width: 1200px) {
+
+        .calc_col,
+        .calc_result_col {
+            width: 50%;
+        }
+
+        .calculator .result_breakdown_info {
+            width: 270px;
+        }
+
+        .calculator .cta_btn {
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .calculator .result_breakdown_info {
+            width: 248px;
+        }
+
+        .calculator .result_graph_col {
+            width: 200px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+
+        .calc_col,
+        .calc_result_col {
+            width: 100%;
+        }
+
+        .calculator .result_breakdown_info {
+            width: calc(100% - 285px);
+        }
+
+        .calculator .cta_btn {
+            margin-top: 0;
+        }
+    }
+
+
+    @media (max-width: 767px) {
+        .calculator .container {
+            padding: 0 24px;
+        }
+        .calculator .result_breakdown_wrap {
+            flex-direction: column;
+        }
+
+        .calculator .result_breakdown_info {
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .calc_desc {
+            font-size: 14px !important;
+        }
+
+        .calculator .cta_btn a {
+            margin-top: 15px;
+            align-items: center;
+    display: flex;
+        }
+
+        .sub_heading {
+            font-size: 14px !important;
+        }
+
+        .about_calc_col,
+        .other_calc_list {
+            width: 100%;
+        }
+
+        .calc_cont p {
+            font-size: 14px !important;
+        }
+        .main_calc_wrap {
+            flex-direction: column;
+        }
+        .calc_col {
+            padding: 16px;
+        }
+        .calculator .submit_btn input[type="submit"] {
+    height: 48px;
+    font-size: 16px;
+}
+.calculator .submit_btn {
+    margin-top: 30px;
+}
     }
 </style>
 <section class="calculator">
