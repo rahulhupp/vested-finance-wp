@@ -447,7 +447,7 @@
 
     .calc_list li a:after {
         content: '';
-        background: url('../../images/faq_arrow.svg');
+        background: url('../assets/images/faq_arrow.svg');
         width: 8px;
         height: 14px;
     }

@@ -515,6 +515,7 @@
 
 .calc_list {
   margin-top: 14px;
+  margin-left: 0;
 }
 
 .calc_list li a {
