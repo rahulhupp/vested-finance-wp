@@ -140,7 +140,8 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
-    <?php get_template_part('template-parts/returns-calculator'); ?>
+    <!-- <?php get_template_part('template-parts/returns-calculator'); ?> -->
+    <?php get_template_part('template-parts/stocks-calculator'); ?>
 
     <?php if (have_rows('portfolio_slider')) : ?>
         <section class="portfolio_slider_sec">

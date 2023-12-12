@@ -14,7 +14,7 @@
 
     .calculator .main_heading {
         color: #002852;
-        font-family: Poppins;
+
         font-size: 38px;
         font-style: normal;
         font-weight: 600;
@@ -45,7 +45,7 @@
         background-position: calc(100% - 14px);
         cursor: pointer;
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -62,7 +62,7 @@
         padding: 8px 14px;
         cursor: pointer;
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -73,7 +73,7 @@
 
     .calculator .select2-container .select2-selection span#select2-resultsList-container {
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -108,7 +108,7 @@
     .stock-result-list .select2-results__option--selectable,
     .stock-result-list .select2-results__option {
         padding: 12px 14px;
-        font-family: Poppins;
+
         font-size: 14px;
         font-style: normal;
         margin: 0 0 1px;
@@ -117,7 +117,7 @@
     /* end select 2 */
     .calculator .calc_form label {
         color: #464646;
-        font-family: Poppins;
+
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -137,7 +137,7 @@
     .calculator #invest_val {
         padding: 4px 14px 4px 24px;
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -150,7 +150,7 @@
 
     .calculator .currency {
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -167,7 +167,7 @@
 
     .calculator .currency_select input[type="radio"]+label {
         color: #1f4267;
-        font-family: Poppins;
+
         font-size: 17px;
         font-style: normal;
         font-weight: 500;
@@ -188,7 +188,7 @@
 
     .calculator .currency_select input[type="radio"]+label {
         color: #1f4267;
-        font-family: Poppins;
+
         font-size: 17px;
         font-style: normal;
         font-weight: 500;
@@ -208,7 +208,7 @@
         display: flex;
         align-items: center;
         color: #002852;
-        font-family: Poppins;
+
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -261,7 +261,7 @@
 
     .calculator .calc_result_col h3 {
         color: #002852;
-        font-family: Poppins;
+
         font-size: 20px;
         font-style: normal;
         font-weight: 600;
@@ -278,7 +278,7 @@
 
     .calculator .list p {
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -349,7 +349,7 @@
 
     .calculator .cta_content_col p {
         color: #bed3ea;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -364,7 +364,7 @@
 
     .calculator .cta_btn a {
         color: #0cc886;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 600;
@@ -437,7 +437,7 @@
         margin-bottom: 0;
         margin-top: 34px;
         color: rgba(33, 37, 41, 0.7);
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -497,7 +497,7 @@
     .calculator .field_col input[type="date"] {
         padding: 4px 14px 4px 24px;
         color: #002852;
-        font-family: Poppins;
+
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -539,6 +539,18 @@
     .calc_result_col {
         width: 670px;
         background: #eef5fc;
+    }
+
+    .calculator .field_col input[type="date"]:focus,
+    .calculator .field_col input[type="date"]:focus-visible {
+        border: 1px solid #a9bdd0 !important;
+        outline: none;
+    }
+
+    .calculator #invest_val:focus,
+    .calculator #invest_val:focus-visible {
+        border: 1px solid #a9bdd0;
+        outline: none;
     }
 
     @media (max-width: 1200px) {
@@ -588,6 +600,7 @@
         .calculator .container {
             padding: 0 24px;
         }
+
         .calculator .result_breakdown_wrap {
             flex-direction: column;
         }
@@ -604,7 +617,7 @@
         .calculator .cta_btn a {
             margin-top: 15px;
             align-items: center;
-    display: flex;
+            display: flex;
         }
 
         .sub_heading {
@@ -619,19 +632,23 @@
         .calc_cont p {
             font-size: 14px !important;
         }
+
         .main_calc_wrap {
             flex-direction: column;
         }
+
         .calc_col {
             padding: 16px;
         }
+
         .calculator .submit_btn input[type="submit"] {
-    height: 48px;
-    font-size: 16px;
-}
-.calculator .submit_btn {
-    margin-top: 30px;
-}
+            height: 48px;
+            font-size: 16px;
+        }
+
+        .calculator .submit_btn {
+            margin-top: 30px;
+        }
     }
 </style>
 <section class="calculator">
@@ -767,7 +784,7 @@
 
 
 
-<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')) : ?> hidden <?php endif; ?>">
+<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
     <div class="container">
         <div id="stocks_chart" class="blur">
             <canvas id="myChart" style="width:100%;max-width:1170px"></canvas>
