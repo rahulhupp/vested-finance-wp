@@ -821,3 +821,44 @@
   background: grey !important;
   pointer-events: none;
 }
+
+
+/* latest */
+.calc-page .container {
+  max-width: 1170px;
+}
+
+.calc_list li a:after {
+  content: '';
+  background: url('../../images/faq_arrow.svg');
+  width: 8px;
+  height: 14px;
+}
+
+.calculator .field_col input[type="date"] {
+  width: 100%;
+}
+
+.calculator .field_group {
+  margin-bottom: 18px;
+}
+
+.calculator .currency_select input[type="radio"] + label {
+  margin-bottom: 0;
+}
+
+.calculator #invest_val {
+  width: 100%;
+}
+
+.calculator .submit_btn input[type="submit"] {
+  width: 100%;
+    margin: 0;
+    border-radius: 6px;
+    background: #0CC886;
+    height: 56px;
+    padding: 15px 0px 14px 0px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+}
