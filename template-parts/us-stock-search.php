@@ -344,16 +344,6 @@
                 order: {
                     by: 'symbol',
                     type: "asc"
-                },
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            like: `${stock_name}%`
-                        }
-                    }
                 }
             });
             console.log('results', results);
