@@ -134,7 +134,9 @@
 
         // fetchResultAll();
 
-        console.log('sessionStorage results', fetchResultAll());
+        fetchResultAll().then(results => {
+            console.log('sessionStorage results', results);
+        });
         
         if (time_difference < cooldown_period) {
             indexedDBConnection();
