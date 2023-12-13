@@ -331,15 +331,33 @@
         }, 500);
     }
 
+    async function fetchResultAll(stock_name) {
+        try {
+            const results = await connection.select({
+                from: 'stocks',
+                order: {
+                    by: 'symbol',
+                    type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
+                }
+            });
+            console.log('results', results);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
-        const results = await connection.select({
-            from: 'stocks',
-            order: {
-                by: 'symbol',
-                type: "asc"
-            }
-        });
-        console.log('results', results);
+        fetchResultAll('');
     });
 
     
