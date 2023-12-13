@@ -131,10 +131,6 @@
         const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
-
-        
-
-        console.log('sessionStorage results', results);
         
         if (time_difference < cooldown_period) {
             indexedDBConnection();
