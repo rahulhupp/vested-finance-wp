@@ -220,6 +220,7 @@
     }
 
     function inputChange() {
+        var inputValue = document.getElementById("searchInput").value;
         var inputClearbtn = document.querySelector('.clear_icon');
         let timeout;
 
