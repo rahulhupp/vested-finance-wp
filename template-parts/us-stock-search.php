@@ -359,7 +359,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        fetchResultAll('AAPL');
+        fetchResultAll('');
     });
 
     
