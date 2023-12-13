@@ -191,10 +191,13 @@
         const isDbCreated = await connection.initDb(database);
         if(isDbCreated === true){
             console.log("db created");
+            setTimeout(function() {
+                fetchResultAll('');
+            }, 1000);
         } else {
             console.log("db opened");
+            fetchResultAll('');
         }
-        fetchResultAll('');
     }
 
     async function storeStockList(instruments) {
