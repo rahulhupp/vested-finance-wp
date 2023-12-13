@@ -652,8 +652,8 @@
     }
 </style>
 <?php 
-    $chart = isset($chart) ? $chart : 'false';
-    $stock_data = isset($stock_data) ? $stock_data : 'default_data';
+    $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
+    $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
     echo "chart: ";
     echo $chart;
     echo "<br />";
