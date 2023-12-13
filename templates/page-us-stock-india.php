@@ -142,7 +142,6 @@ get_header(); ?>
 
     <?php
         $chart = 'false';
-        $stock_data = 'data india';
     ?>
     <?php get_template_part('template-parts/stocks-calculator'); ?>
 
