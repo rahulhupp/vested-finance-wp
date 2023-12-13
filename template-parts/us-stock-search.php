@@ -132,11 +132,9 @@
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
 
-        // fetchResultAll();
+        
 
-        fetchResultAll().then(results => {
-            console.log('sessionStorage results', results);
-        });
+        console.log('sessionStorage results', results);
         
         if (time_difference < cooldown_period) {
             indexedDBConnection();
@@ -197,12 +195,12 @@
         const isDbCreated = await connection.initDb(database);
         if(isDbCreated === true){
             console.log("db created");
-            // setTimeout(function() {
-            //     fetchResultAll('');
-            // }, 1000);
+            setTimeout(function() {
+                fetchResultAll('');
+            }, 1000);
         } else {
             console.log("db opened");
-            // fetchResultAll('');
+            fetchResultAll('');
         }
     }
 
@@ -343,16 +341,26 @@
         }, 500);
     }
 
-    async function fetchResultAll() {
+    async function fetchResultAll(stock_name) {
         try {
             const results = await connection.select({
                 from: 'stocks',
                 order: {
                     by: 'symbol',
                     type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
                 }
             });
-            return results;
+            console.log('results', results);
         } catch (err) {
             console.log(err);
         }
