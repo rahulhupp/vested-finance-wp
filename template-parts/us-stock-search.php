@@ -132,6 +132,16 @@
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
 
+        const results = await connection.select({
+            from: 'stocks',
+            order: {
+                by: 'symbol',
+                type: "asc"
+            }
+        });
+
+        console.log('sessionStorage results', results);
+        
         if (time_difference < cooldown_period) {
             indexedDBConnection();
         } else {
@@ -344,6 +354,16 @@
                 order: {
                     by: 'symbol',
                     type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
                 }
             });
             console.log('results', results);
