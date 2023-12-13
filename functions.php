@@ -221,12 +221,16 @@ function custom_front_page_redirect() {
     $myipd = get_client_ip();  
     $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
     $mycountry = $userInfo->country->isoCode;
-
+    ?>
+        <script>
+            console.log('$mycountry', <?php echo $mycountry; ?>)
+        </script>
+    <?php
     $chtml = '';
     
     if ($mycountry === 'IN') {
         if (is_page_template('templates/page-us-stock-global.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
             // echo "Go back to India page";
         }
         if (is_page_template('templates/page-home-page.php')) {
@@ -234,25 +238,25 @@ function custom_front_page_redirect() {
             // echo "Show learn more";
         }
         if (is_page_template('templates/page-pricing-global.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our Global website. Visit the India website to explore our pricing for Indian users.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>You're on our Global website. Visit the India website to explore our pricing for Indian users.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
         }
         if (is_page_template('templates/page-pricing-india.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
         } 
     } else {
         if (is_page_template('templates/page-us-stock-global.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
             // echo "Show learn more";
         }
         if (is_page_template('templates/page-home-page.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='".home_url()."'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='".home_url()."'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
             // echo "Go back to Global page";
         }
         if (is_page_template('templates/page-pricing-india.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div></div><div class='right'><a href='".home_url()."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div></div><div class='right'><a href='".home_url()."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
         }
         if (is_page_template('templates/page-pricing-global.php')) {
-            $chtml = "<div class='left'><div class='close'><img src=' ".get_stylesheet_directory_uri()."/assets/images/close-icon.png'></div><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url('')."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
+            $chtml = "<div class='left'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url('')."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
         }
     }
     ?>
