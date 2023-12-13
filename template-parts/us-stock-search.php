@@ -338,16 +338,26 @@
                 order: {
                     by: 'symbol',
                     type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
                 }
             });
-            console.log('results 1', results);
+            console.log('results', results);
         } catch (err) {
             console.log(err);
         }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        fetchResultAll('');
+        fetchResultAll('AAPL');
     });
 
     
