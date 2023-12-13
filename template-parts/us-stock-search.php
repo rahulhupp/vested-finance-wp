@@ -179,6 +179,7 @@
     var connection;
 
     async function indexedDBConnection() {
+        console.log('indexedDBConnection');
         connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
         var dbName ='stocks_list';
         var tblstocks = {
@@ -199,6 +200,8 @@
     }
 
     async function storeStockList(instruments) {
+        console.log('storeStockList');
+        console.log('instruments', instruments);
         indexedDBConnection();
         var rowsDeleted = await connection.remove({ from: 'stocks' });
         var insertCount = await connection.insert({ into: 'stocks', values: instruments });
@@ -238,6 +241,7 @@
     
 
     async function fetchResult(stock_name) {
+        console.log('fetchResult');
         try {
             if (stock_name.length == 0) {
                 var ulElement = document.getElementById('stocksResultsList');
