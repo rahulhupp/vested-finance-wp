@@ -332,5 +332,12 @@
             fetchResult(inputValue);
         }, 500);
     }
-    <?php $stock_data = 'data search global'; ?>
+    
+    <?php
+        // Set the value for $stock_data
+        $stock_data = 'data from us-stock-search';
+
+        // Set the global variable for $stock_data
+        $GLOBALS['stock_data'] = $stock_data;
+    ?>
 </script>
