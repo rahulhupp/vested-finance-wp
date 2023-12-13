@@ -194,6 +194,7 @@
         } else {
             console.log("db opened");
         }
+        fetchResultAll('');
     }
 
     async function storeStockList(instruments) {
@@ -357,11 +358,6 @@
             console.log(err);
         }
     }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        fetchResultAll('');
-    });
-
     
     <?php
         // Set the value for $stock_data
