@@ -332,4 +332,5 @@
             fetchResult(inputValue);
         }, 500);
     }
+    <?php $stock_data = 'data search global'; ?>
 </script>

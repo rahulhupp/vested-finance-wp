@@ -102,7 +102,6 @@ get_header(); ?>
 
     <?php
         $chart = 'false';
-        $stock_data = 'data global';
     ?>
     <?php get_template_part('template-parts/stocks-calculator'); ?>
     
