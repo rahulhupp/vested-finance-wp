@@ -266,6 +266,7 @@
                 }
             });
             renderItems(results);
+            console.log('renderItems results', results);
         } catch (err) {
             console.log(err);
         }
