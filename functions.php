@@ -282,7 +282,6 @@ function check_page_language() {
     if ($languages && !is_wp_error($languages)) {
         foreach ($languages as $language) {
             if ($language->slug === 'in') {
-                echo '<script>console.log("3 Page has \'in\' language.");</script>';
                 ?>
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
@@ -292,15 +291,12 @@ function check_page_language() {
 
                             if (logoLink) { 
                                 logoLink.href = "<?php echo home_url(); ?>/in"; 
-                                console.log('logoLink');
                             }
                             if (pricingLink) { 
                                 pricingLink.href = "<?php echo home_url(); ?>/in/pricing"; 
-                                console.log('pricingLink');
                             }
                             if (usStocksLink) { 
                                 usStocksLink.href = "<?php echo home_url(); ?>/in/us-stocks"; 
-                                console.log('usStocksLink');
                             }
                         });
 
