@@ -140,7 +140,10 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
-    <!-- <?php get_template_part('template-parts/returns-calculator'); ?> -->
+    <?php
+        $chart = 'false';
+        $stock_data = 'data india';
+    ?>
     <?php get_template_part('template-parts/stocks-calculator'); ?>
 
     <?php if (have_rows('portfolio_slider')) : ?>

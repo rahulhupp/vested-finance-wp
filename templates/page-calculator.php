@@ -5,6 +5,10 @@ Template name: Page - Calculator
 get_header(); ?>
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <div id="content" role="main" class="calc-page">
+<?php
+    $chart = 'true';
+    $stock_data = 'data page';
+?>
 <?php get_template_part('template-parts/stocks-calculator'); ?>
 
 <section class="about_calc">

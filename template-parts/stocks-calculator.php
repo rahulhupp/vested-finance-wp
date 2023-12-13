@@ -651,6 +651,15 @@
         }
     }
 </style>
+<?php 
+    $chart = isset($chart) ? $chart : 'false';
+    $stock_data = isset($stock_data) ? $stock_data : 'default_data';
+    echo "$chart";
+    echo $chart;
+    echo "<br />";
+    echo "$stock_data";
+    echo $stock_data;
+?>
 <section class="calculator">
     <div class="container">
         <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
