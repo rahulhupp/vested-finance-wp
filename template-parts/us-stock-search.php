@@ -132,7 +132,7 @@
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
 
-        const results = await connection.select({
+        const results = connection.select({
             from: 'stocks',
             order: {
                 by: 'symbol',
