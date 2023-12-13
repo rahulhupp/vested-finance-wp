@@ -659,6 +659,19 @@
     echo "<br />";
     echo "stock_data: ";
     echo $stock_data;
+    echo "<br />";
+    echo "<br />";
+    if (is_string($stock_data) && is_array(json_decode($stock_data, true))) {
+        $decoded_stock_data = json_decode($stock_data, true);
+        echo "decoded_stock_data";
+        echo $decoded_stock_data[0]['symbol'];
+        // Use $decoded_stock_data as an associative array
+        // You can access individual elements using $decoded_stock_data[index]['property']
+        // For example: $decoded_stock_data[0]['symbol']
+    } else {
+        echo "Handle the case where $stock_data is not a valid JSON string";
+    }
+    
 ?>
 <section class="calculator">
     <div class="container">

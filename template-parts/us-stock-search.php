@@ -357,16 +357,12 @@
                 }
             });
             console.log('results', results);
+            <?php 
+                $json_data = results;
+                $GLOBALS['stock_data'] = $json_data; 
+            ?>
         } catch (err) {
             console.log(err);
         }
     }
-    
-    <?php
-        // Set the value for $stock_data
-        $stock_data = 'data from us-stock-search';
-
-        // Set the global variable for $stock_data
-        $GLOBALS['stock_data'] = $stock_data;
-    ?>
 </script>
