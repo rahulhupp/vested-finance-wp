@@ -130,6 +130,106 @@ get_header(); ?>
   </div>
 </section>
 
+<section class="solar_calculate">
+        <div class="container">
+            <div class="wrapper">
+                <h2>
+                    <span>Calculate your returns</span>
+                </h2>
+                <div class="calculate_from">
+                    <div class="left">
+                        <div class="field">
+                            <label>Your investment:<span>(Solar Panels)</span></label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="3" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                            <div class="input_info">
+                                <span>₹25,000 per panel</span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Expected return rate (p.a.)</label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="12" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Time period<span>(in years)</span></label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="5" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="field">
+                            <label>Investment amount:</label>
+                            <input type="text" value="75000" id="invest_amt_val" readonly/>
+                        </div>
+                        <div class="progress_bar">
+                            <div class="item">
+                                <label>Bank Deposits<span>(6% returns)</span></label>
+                                <div class="line_item">
+                                    <div class="line" style="width: 117px;"></div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <label>Vested Solar<span>(12% returns)</span></label>
+                                <div class="line_item">
+                                    <div class="line" style="width: 217px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculate_info">
+                    <div class="main_item">
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.png" />
+                            </div>
+                            <div class="content">
+                                <h3>350 kg <span>/year</span></h3>
+                                <p>CO2 emission saved</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.png" />
+                            </div>
+                            <div class="content">
+                                <h3>&#8377; 563 <sup>1</sup></h3>
+                                <p>Avg. Monthly income</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.png" />
+                            </div>
+                            <div class="content">
+                                <h3>12% p.a. <sup>2</sup></h3>
+                                <p>Investment returns (XIRR)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="calc_note">350 kg reduction neutralizes the emissions made by a car traveling 5,000 kms</p>
+                </div>
+                
+                <div class="bottom_content">
+                    <ul>
+                        <li><sup>1</sup>Monthly income may vary based on weather conditions and other factors. Income indicated are averaged over a 12 month period.</li>
+                        <li><sup>2</sup>XIRR based on scheduled returns. Check project details for exact schedule.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <section class="solar_invest">
   <div class="container">
     <div class="wrapper">
