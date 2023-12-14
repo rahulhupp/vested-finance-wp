@@ -651,6 +651,15 @@
         }
     }
 </style>
+<?php 
+    $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
+    $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
+    echo "chart: ";
+    echo $chart;
+    echo "<br />";
+    echo "stock_data: ";
+    echo $stock_data;
+?>
 <section class="calculator">
     <div class="container">
         <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>

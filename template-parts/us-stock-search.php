@@ -126,16 +126,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <script>
-    console.log('1 include search');
     if (sessionStorage.getItem('last_api_call_timestamp')) {
         const current_time = Math.floor(Date.now() / 1000);
         const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
-
+        
         if (time_difference < cooldown_period) {
             indexedDBConnection();
-            console.log('Test You can make another API call in ' + (cooldown_period - time_difference) + ' seconds.');
         } else {
             usstockapi();
         }
@@ -193,8 +191,12 @@
         const isDbCreated = await connection.initDb(database);
         if(isDbCreated === true){
             console.log("db created");
+            setTimeout(function() {
+                fetchResultAll('');
+            }, 1000);
         } else {
             console.log("db opened");
+            fetchResultAll('');
         }
     }
 
@@ -222,6 +224,7 @@
     }
 
     function inputChange() {
+        var inputValue = document.getElementById("searchInput").value;
         var inputClearbtn = document.querySelector('.clear_icon');
         let timeout;
 
@@ -268,6 +271,7 @@
                 }
             });
             renderItems(results);
+            console.log('renderItems results', results);
         } catch (err) {
             console.log(err);
         }
@@ -332,4 +336,37 @@
             fetchResult(inputValue);
         }, 500);
     }
+
+    async function fetchResultAll(stock_name) {
+        try {
+            const results = await connection.select({
+                from: 'stocks',
+                order: {
+                    by: 'symbol',
+                    type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
+                }
+            });
+            console.log('results', results);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
+    <?php
+        // Set the value for $stock_data
+        $stock_data = 'data from us-stock-search';
+
+        // Set the global variable for $stock_data
+        $GLOBALS['stock_data'] = $json_data;
+    ?>
 </script>
