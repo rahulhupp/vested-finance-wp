@@ -277,6 +277,25 @@ a.btn_light {
 
 .section_title.align_left {
 	text-align: left;
+	position: relative;
+}
+.section_title sup.sup_text{
+	position: absolute;
+	top: 50px;
+	right: 225px;
+	font-size: 13px;
+	font-weight: 300;
+	color: #000;
+}
+.disclosure p{
+	color: rgba(33, 37, 41, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    margin-top: 40px;
 }
 
 .easy_access_icon {

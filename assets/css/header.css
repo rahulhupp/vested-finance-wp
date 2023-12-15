@@ -1,6 +1,11 @@
 .ast-header-break-point #ast-desktop-header {
 	display: block;
 }
+header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul li .content p.small_text{
+	line-height: 16.80px !important;
+    font-size: 9px !important;
+    padding-top: 10px !important;
+}
 
 .ast-header-break-point #ast-mobile-header {
 	display: none;
@@ -360,6 +365,7 @@ body.mega-menu-open .site-content:before {
 .geolocation_banner .left .content {
     padding: 0 26px;
     text-align: left;
+    width: calc(100% - 29px);
 }
 
 .geolocation_banner .left .close {

@@ -93,8 +93,12 @@ get_header(); ?>
                     <div class="easy_access_img mobile_hide">
                         <img src="<?php the_field('easy_access_image'); ?>" alt="Easy Access">
                     </div>
-
                 </div>
+                <div class="disclosure">
+                   <p>
+                    <?php echo esc_html(get_field('easy_disclosure')); ?>
+                    </p>
+                    </div>
             </div>
         </section>
     <?php endif; ?>
