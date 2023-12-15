@@ -291,7 +291,7 @@
 									<img src="<?php the_field('subscriber_image', 'category_' . $category->term_id); ?>" />
 								</div>
 								<div class="newsletter-form">
-									<?php echo do_shortcode('[moengage_newsletter name="newsletter-subscriber" message="Thank You! You have been added to the waitlist." button_text="Subscribe"]'); ?>
+									<?php echo do_shortcode('[moengage_newsletter name="newsletter-subscriber" message="Thank you! You have successfully subscribed to our blog." button_text="Subscribe"]'); ?>
 								</div>
 							</div>
 						</div>
