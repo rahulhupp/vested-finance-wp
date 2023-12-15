@@ -224,6 +224,7 @@ function custom_front_page_redirect() {
     ?>
         <div style="display: none">
             country isoCode is <?php echo $mycountry; ?>
+            client_ip is <?php echo $myipd; ?>
         </div>
     <?php
     $chtml = '';
