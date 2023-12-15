@@ -343,9 +343,11 @@
     border-bottom: none;
 }
 .pricing-table .pricing-tabs-content .item .heading .tooltip {
-    display: inline;
     position: relative;
     margin-left: 5px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
 }
 .pricing-table .pricing-tabs-content .item .tooltip-content {
     border-radius: 6px;
@@ -458,6 +460,9 @@
 .pricing-table .pricing-tabs-content .item .heading img.info-icon {
     cursor: pointer;
     max-width: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .pricing-table .pricing-tabs-content .item .price-detail .info p {
     color: #1F2937;
