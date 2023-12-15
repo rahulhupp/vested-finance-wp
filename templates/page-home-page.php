@@ -94,6 +94,15 @@ get_header(); ?>
                         <img src="<?php the_field('easy_access_image'); ?>" alt="Easy Access">
                     </div>
 
+                    <div class="disclosure">
+                    <p>
+                    <?php the_field('disclosure_us'); ?>
+                </p>
+                <p>
+                    <?php echo esc_html(get_field('disclosure_us')); ?>
+                    </p>
+                    </div>
+
                 </div>
             </div>
         </section>

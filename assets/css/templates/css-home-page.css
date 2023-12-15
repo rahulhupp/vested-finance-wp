@@ -277,6 +277,15 @@ a.btn_light {
 
 .section_title.align_left {
 	text-align: left;
+	position: relative;
+}
+.section_title sup.sup_text{
+	position: absolute;
+	top: 50px;
+	right: 225px;
+	font-size: 13px;
+	font-weight: 300;
+	color: #000;
 }
 
 .easy_access_icon {
