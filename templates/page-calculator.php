@@ -38,6 +38,46 @@ get_header(); ?>
         </div>
     </div>
 </section>
+<section class="popular_stocks">
+    <div class="container">
+        <h2 class="popular_stocks_heading">Know your returns when investing in popular US Stocks or ETFs</h2>
+
+        <ul class="stocks_list_wrap">
+            <li class="single_stock"><a href="#">3M Company</a></li>
+            <li class="single_stock"><a href="#">Alphabet</a></li>
+            <li class="single_stock"><a href="#">Amazon</a></li>
+            <li class="single_stock"><a href="#">AmerisourceBergen</a></li>
+            <li class="single_stock"><a href="#">Berkshire Hathaway</a></li>
+            <li class="single_stock"><a href="#">BlackBerry Limited</a></li>
+            <li class="single_stock"><a href="#">Brilliant Earth Group</a></li>
+            <li class="single_stock"><a href="#">Chevron</a></li>
+            <li class="single_stock"><a href="#">Cloudflare</a></li>
+            <li class="single_stock"><a href="#">Coca-Cola</a></li>
+            <li class="single_stock"><a href="#">Disney</a></li>
+            <li class="single_stock"><a href="#">Facebook</a></li>
+            <li class="single_stock"><a href="#">Finserv</a></li>
+            <li class="single_stock"><a href="#">For Motors</a></li>
+            <li class="single_stock"><a href="#">Forward Industried</a></li>
+            <li class="single_stock"><a href="#">General Motors Company</a></li>
+            <li class="single_stock"><a href="#">Google</a></li>
+            <li class="single_stock"><a href="#">Home Depot</a></li>
+            <li class="single_stock"><a href="#">Lululemon</a></li>
+            <li class="single_stock"><a href="#">Marathon Digital Holdings</a></li>
+            <li class="single_stock"><a href="#">Mastercard</a></li>
+            <li class="single_stock"><a href="#">Match Group</a></li>
+            <li class="single_stock"><a href="#">Microsoft</a></li>
+            <li class="single_stock"><a href="#">Morgan Stanley</a></li>
+            <li class="single_stock"><a href="#">Netflix</a></li>
+            <li class="single_stock"><a href="#">Nike</a></li>
+            <li class="single_stock"><a href="#">NIO</a></li>
+            <li class="single_stock"><a href="#">NVIDIA</a></li>
+            <li class="single_stock"><a href="#">Parker-Hannifin</a></li>
+        </ul>
+        <button class="see_more_btn"><span>See More</span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<path d="M5 7.5L10 12.5L15 7.5" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></button>
+    </div>
+</section>
 <?php if (have_rows('faq_list')) : ?>
     <section class="faqs">
         <div class="container">
