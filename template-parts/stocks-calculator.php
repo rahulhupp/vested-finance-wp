@@ -1,4 +1,8 @@
 <style>
+ .calculator.calc_page_block .main_heading {
+        font-size: 32px;
+        line-height: 35.2px;
+    }
     .main_calc_wrap {
         position: relative;
         display: flex;
@@ -553,6 +557,10 @@
         outline: none;
     }
 
+    .cal_heading_wrap {
+        max-width: 684px;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -597,9 +605,6 @@
 
 
     @media (max-width: 767px) {
-        .calculator .container {
-            padding: 0 24px;
-        }
 
         .calculator .result_breakdown_wrap {
             flex-direction: column;
@@ -660,11 +665,12 @@
     echo "stock_data: ";
     echo $stock_data;
 ?>
-<section class="calculator">
+<section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
-        <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
-        <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
-
+        <div class="cal_heading_wrap">
+            <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
+            <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
+        </div>
 
         <div class="main_calc_wrap">
             <div class="calc_col">

@@ -51,5 +51,15 @@ jQuery(document).ready(function ($) {
       j.preventDefault();
     });
   });
-  
+
+  $('.see_more_btn ').click(function(){
+    $('.stocks_list_wrap').toggleClass('collapsed');
+    if($(this).children('span').text() === 'See More') {
+      $(this).children('span').text('See Less');
+    }
+    else {
+      $(this).children('span').text('See More');
+    }
+  });
+
 });
