@@ -95,9 +95,12 @@ get_header(); ?>
                     </div>
 
                     <div class="disclosure">
-                    <p class="text-left">
+                    <p>
                     <?php the_field('disclosure_us'); ?>
                 </p>
+                <p>
+                    <?php echo esc_html(get_field('disclosure_us')); ?>
+                    </p>
                     </div>
 
                 </div>
