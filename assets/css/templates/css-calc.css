@@ -895,8 +895,8 @@
   align-items: center;
   gap: 10px;
   border-radius: 100px;
-  background: #EEF5FC;
-  transition: all .3s;
+  background: #eef5fc;
+  transition: all 0.3s;
 }
 
 .stocks_list_wrap li a {
@@ -906,11 +906,15 @@
 }
 
 .stocks_list_wrap li:hover {
-  background: #CEDCEA;
+  background: #cedcea;
 }
 
 .see_more_btn {
   display: none;
+}
+
+.calc_cont {
+  margin: 20px 0;
 }
 
 @media (max-width: 767px) {
@@ -921,7 +925,7 @@
     margin: 18px 0 0 0;
     max-height: 334px;
     overflow: hidden;
-    transition: all .3s;
+    transition: all 0.3s;
   }
   .see_more_btn {
     display: flex;
@@ -939,13 +943,13 @@
     background: #fff;
     color: #002852;
     border-color: #002852;
-}
+  }
   .see_more_btn svg {
     margin-left: 8px;
-    transition: all .3s;
+    transition: all 0.3s;
   }
   .stocks_list_wrap.collapsed {
-   max-height: 1000px; 
+    max-height: 1000px;
   }
   .stocks_list_wrap.collapsed + .see_more_btn svg {
     transform: rotate(180deg);
@@ -955,10 +959,16 @@
   }
   .section_heading_med {
     font-size: 18px;
+  }
+  .about_calc_col .section_heading_med {
     margin-bottom: 50px;
-}
-.popular_stocks {
-  padding-top: 50px;
-  padding-bottom: 41px;
-}
+  }
+  .popular_stocks {
+    padding-top: 50px;
+    padding-bottom: 41px;
+  }
+  .about_calc .container,
+  .popular_stocks .container {
+    padding: 0;
+  }
 }
