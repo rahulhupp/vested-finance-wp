@@ -222,9 +222,9 @@ function custom_front_page_redirect() {
     $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
     $mycountry = $userInfo->country->isoCode;
     ?>
-        <script>
-            console.log('$mycountry', <?php echo $mycountry; ?>)
-        </script>
+        <div style="display: none">
+            country isoCode is <?php echo $mycountry; ?>
+        </div>
     <?php
     $chtml = '';
     
