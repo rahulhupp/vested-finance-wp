@@ -921,9 +921,12 @@
                 const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
                 const differenceInYears = parseFloat(differenceInDays / 365.25).toFixed(2);
                 const Periods = parseFloat(1 / differenceInYears).toFixed(2);
-                var CACR = (Math.pow(initialPortfolioPrice, Periods) - 1) * 100;
+                //var CACR = (Math.pow(initialPortfolioPrice, Periods) - 1) * 100;
+                var CACR = (Math.pow(totalValue / investmentAmount, 1 / differenceInYears) - 1) * 100;
+                CACR = CACR.toFixed(2);
                 Per = parseFloat(lastPortfolioValue / investmentAmount).toFixed(2);
-
+                var percentageInvestment = (investmentAmount / totalValue) * 100;
+                var percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
                 data.data.forEach(item => {
                     let finalAmount = item.Adj_Close * startStockQty;
                     // let result = parseFloat(finalAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -963,7 +966,8 @@
                 document.getElementById('content_cagr').textContent = CACR.toLocaleString();
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                bar.animate(Per);
+                // bar.animate(Per);
+                bar.animate(percentageEstimatedReturn);
                 renderChart(xValues, yValues);
 
             })
