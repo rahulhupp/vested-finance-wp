@@ -221,8 +221,12 @@ function custom_front_page_redirect() {
     $myipd = get_client_ip();  
     $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
     $mycountry = $userInfo->country->isoCode;
-
-    $chtml = '';
+    ?>
+<div style="display: none">
+            country isoCode is <?php echo $mycountry; ?>
+            client_ip is <?php echo $myipd; ?>
+        </div>
+    <?php $chtml = '';
     
     if ($mycountry === 'IN') {
         if (is_page_template('templates/page-us-stock-global.php')) {
