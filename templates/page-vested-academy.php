@@ -14,7 +14,12 @@ get_header(); ?>
                 </div>
                 <div class="acadamy_banner_image_col">
                     <div class="acadamy_banner_img">
-                        <img src="<?php the_field('banner_image'); ?>" alt="Learn With Vested">
+                          <?php
+                                            $image = get_field('banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                     </div>
                 </div>
             </div>

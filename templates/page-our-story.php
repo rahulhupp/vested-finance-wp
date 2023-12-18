@@ -7,8 +7,20 @@ get_header(); ?>
 
 <section class="our-story-banner">
   <div class="image">
-    <img class="desktop" src="<?php the_field('image_desktop'); ?>" />
-    <img class="mobile" src="<?php the_field('image_mobile'); ?>" />
+   
+    <?php
+$image = get_field('image_desktop');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop" />
+                          <?php endif; ?>
+                          <?php
+$image = get_field('image_mobile');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>" class="mobile"/>
+                          <?php endif; ?>
+  
   </div>
   <div class="content">
     <div class="inner">
@@ -40,18 +52,24 @@ get_header(); ?>
         <ul class="list">
         <?php while( have_rows('leadership_list') ): the_row(); ?>
             <li>
-                <img class="leader-image" src="<?php the_sub_field('image'); ?>" />
+               
+                <?php
+$image = get_sub_field('image');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                 <div class="content">
                   <h3><?php the_sub_field('title'); ?></h3>
                   <span><?php the_sub_field('designation'); ?></span>
                   <div class="bio">
                     <div class="label">
                       <?php the_sub_field('bio'); ?>
-                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.png">
+                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.png" alt="info">
                     </div>
                     <div class="social">
                       <a href="<?php the_sub_field('linkedin_link'); ?>" target="_blank">
-                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.png" />
+                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.png" alt="linkdin" />
                       </a>
                     </div>
                   </div>
