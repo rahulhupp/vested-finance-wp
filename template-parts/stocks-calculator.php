@@ -914,7 +914,7 @@
         event.preventDefault(); // Prevent the default form submission
 
         // Retrieve and log the values of the form elements
-        var stockSelector = document.getElementById('resultsList').value;
+        var stockSelector = document.getElementById('resultsList').dataset.value;
         var investmentAmount = document.getElementById('invest_val').value;
         var currency = document.querySelector('input[name="currency"]:checked').value;
         var startDate = document.getElementById('startMonth').value;
@@ -1009,7 +1009,7 @@
                 const firstDate = new Date(data.data[0].Date);
                 const lastDate = new Date(data.data[data.data.length - 1].Date);
                 const startStockQty = parseFloat(10000 / startPrice).toFixed(2);
-                const stockSelector = document.getElementById('resultsList').value;
+                const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
