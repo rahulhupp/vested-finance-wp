@@ -750,7 +750,7 @@
                             <div class="select_box_new">
                                 <div class="selected_option" data-value="AAPL" id="resultsList">Apple</div>
                                 <div class="options_dropdown_wrap">
-                                    <input type="text" class="dropdown_search">
+                                    <input type="text" class="dropdown_search" oninput="inputChange()">
                                     <div class="dropdown_options">
                                         <ul>
                                             <li data-value="AAPL" >Apple</li>
