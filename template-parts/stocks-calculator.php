@@ -731,11 +731,6 @@
 <?php 
     $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
     $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
-    echo "chart: ";
-    echo $chart;
-    echo "<br />";
-    echo "stock_data: ";
-    echo $stock_data;
 ?>
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
