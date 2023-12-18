@@ -279,7 +279,12 @@ $image = get_field('easy_access_image');
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                                 <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -317,7 +322,12 @@ $image = get_field('easy_access_image');
                     <?php while (have_rows('learning_list')) : the_row(); ?>
                         <div class="single_wisely_list">
                             <div class="single_wisely_img">
-                                <img src="<?php the_sub_field('learning_image') ?>" alt="<?php the_sub_field('learning_title') ?>">
+                                 <?php
+                                            $image = get_sub_field('learning_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                             <div class="single_wisely_content">
                                 <h3><?php the_sub_field('learning_title') ?></h3>
