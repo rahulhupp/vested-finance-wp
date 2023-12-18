@@ -231,7 +231,7 @@ $data = json_decode($response);
 // Get the country code from the response
 $countryCode = $data->country;
     ?>
-<div style="display: none">
+<div style="display: none" class="ip_detect">
             country isoCode is <?php echo $countryCode; ?>
             client_ip is <?php echo $myipd; ?>
         </div>
