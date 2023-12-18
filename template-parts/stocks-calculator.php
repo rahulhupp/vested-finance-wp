@@ -49,7 +49,6 @@
         background-position: calc(100% - 14px);
         cursor: pointer;
         color: #002852;
-
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -66,12 +65,10 @@
         padding: 8px 14px;
         cursor: pointer;
         color: #002852;
-
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        margin-bottom: 1em;
         outline: none;
     }
 
@@ -90,7 +87,7 @@
 
     /* select 2 */
     .stock-result-list {
-        margin-top: 16px;
+        margin-top: -16px;
         border: 1px solid #a9bdd0;
         border-radius: 4px;
     }
@@ -561,6 +558,81 @@
         max-width: 684px;
     }
 
+     /* 18/12/23 */
+
+    .dropdown_options ul {
+    margin: 0;
+    max-height: 240px;
+    overflow: auto;
+    margin-top: 15px;
+}
+
+.dropdown_options ul li {
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all .3s;
+    color: rgba(33, 37, 41, 0.6);
+}
+
+.options_dropdown_wrap {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
+    padding: 10px 20px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    display: none;
+}
+
+.dropdown_collased .options_dropdown_wrap{
+    display: block;
+}
+
+.options_dropdown_wrap input {
+    width: 100%;
+    border: 1px solid #002852;
+    background: none;
+    border-radius: 6px;
+}
+
+.dropdown_options ul li:hover {
+    color: #002852;
+}
+
+.selected_option {
+    border-radius: 4px;
+    border: 1px solid #A9BDD0;
+    background: #FFF;
+    height: 52px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    color: #002852;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.selected_option:after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB6SURBVHgB7ZDBDYAgDEW/TKI31nAD46DGDVyDm0xiNEUPSFs6QN+JAH2PADiOM7C7cT3L4pqR9gyNuIxAOGidtul/HJTRMkiCrly8IwSelwNZjdTy/M408F8kCb7v0s7MAUlE2OT9ABshTHJboI3AKrcH6giscsdxCje0EzktB/V6CwAAAABJRU5ErkJggg==);
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 14px;
+    transition: all .3s;
+}
+
+.options_dropdown_wrap input:focus, .options_dropdown_wrap input:focus-visible {
+    border: 1px solid #002852;
+    outline: none;
+}
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -680,13 +752,38 @@
 
                         <div class="field_group">
                             <label for="stockSelector">Select any US Stock or ETF</label>
-                            <select name="stockSelector" id="resultsList">
-                                <option value="AAPL">Appl, Inc - AAPL </option>
-                                <option value="GOOGL">Alphabet </option>
-                                <option value="META">Meta </option>
-                                <option value="AMZN">Amazon </option>
-                                <option value="NFLX">Netflix </option>
-                            </select>
+                            <div class="select_box_new">
+                                <div class="selected_option" data-value="AAPL" id="resultsList">Apple</div>
+                                <div class="options_dropdown_wrap">
+                                    <input type="text" class="dropdown_search">
+                                    <div class="dropdown_options">
+                                        <ul>
+                                            <li data-value="AAPL" >Apple</li>
+                                            <li data-value="GOOGL" >Google</li>
+                                            <li data-value="AGPXX" >Invesco</li>
+                                            <li data-value="MSFT" >Microsoft</li>
+                                            <li data-value="TSLA" >Tesla</li>
+                                            <li data-value="META" >Meta</li>
+                                            <li data-value="NFLX" >Netflix</li>
+                                            <li data-value="BWX" >SPDR</li>
+                                            <li data-value="AMZN" >Amazon</li>
+                                            <li data-value="SPOT" >Spotify</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <select name="stockSelector" id="resultsList">
+                                <option value="AAPL">Apple</option>
+                                <option value="GOOGL">Google</option>
+                                <option value="AGPXX">Invesco</option>
+                                <option value="MSFT">Microsoft</option>
+                                <option value="TSLA">Tesla</option>
+                                <option value="META">Meta</option>
+                                <option value="NFLX">Netflix</option>
+                                <option value="BWX">SPDR</option>
+                                <option value="AMZN">Amazon</option>
+                                <option value="SPOT">Spotify</option>
+                            </select> -->
                         </div>
 
                         <div class="field_group">
@@ -817,7 +914,7 @@
         event.preventDefault(); // Prevent the default form submission
 
         // Retrieve and log the values of the form elements
-        var stockSelector = document.getElementById('resultsList').value;
+        var stockSelector = document.getElementById('resultsList').dataset.value;
         var investmentAmount = document.getElementById('invest_val').value;
         var currency = document.querySelector('input[name="currency"]:checked').value;
         var startDate = document.getElementById('startMonth').value;
@@ -912,7 +1009,7 @@
                 const firstDate = new Date(data.data[0].Date);
                 const lastDate = new Date(data.data[data.data.length - 1].Date);
                 const startStockQty = parseFloat(10000 / startPrice).toFixed(2);
-                const stockSelector = document.getElementById('resultsList').value;
+                const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
@@ -1035,4 +1132,134 @@
             }
         });
     }
+   document.querySelector('.selected_option').addEventListener("click", function(){
+    const mainDropdown = document.querySelector('.select_box_new');
+    if(mainDropdown.classList.contains("dropdown_collased")) {
+        mainDropdown.classList.remove("dropdown_collased");
+    }
+    else {
+        mainDropdown.classList.add("dropdown_collased");
+    }
+});
+
+
+document.addEventListener('click', function(event) {
+    const clickedElement = event.target;
+
+    if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
+        const mainDropdown = document.querySelector('.select_box_new');
+        const mainValue = document.querySelector('.selected_option');
+
+        const selectedValue = clickedElement.dataset.value;
+
+        mainValue.textContent = clickedElement.textContent;
+        mainValue.dataset.value = selectedValue;
+
+        if(mainDropdown.classList.contains("dropdown_collased")) {
+        mainDropdown.classList.remove("dropdown_collased");
+    }
+    else {
+        mainDropdown.classList.add("dropdown_collased");
+    }
+    } else {
+        const mainDropdown = document.querySelector('.select_box_new');
+        mainDropdown.classList.add("dropdown_collapsed");
+    }
+});
+
+
+function fetchDataFromIndexedDB(searchTerm) {
+    let db;
+    const dbName = "stocks_list";
+
+    const request = indexedDB.open(dbName, 2);
+
+    request.onsuccess = function (event) {
+        db = event.target.result;
+
+        populateDropdownOptions(searchTerm);
+    };
+
+    request.onerror = function (event) {
+        console.error("Error opening database:", event.target.error);
+    };
+
+    function populateDropdownOptions(searchTerm) {
+        const transaction = db.transaction(["stocks"], "readonly");
+        const objectStore = transaction.objectStore("stocks");
+
+        const cursorRequest = objectStore.openCursor();
+
+        const dropdownOptions = document.querySelector('.dropdown_options ul');
+        
+        dropdownOptions.innerHTML = '';
+
+        cursorRequest.onsuccess = function (event) {
+            const cursor = event.target.result;
+
+            if (cursor) {
+                const symbol = cursor.value.symbol;
+                const name = cursor.value.name;
+
+                if (name.toLowerCase().includes(searchTerm)) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = name;
+                    listItem.dataset.value = symbol;
+
+                    dropdownOptions.appendChild(listItem);
+                }
+
+                cursor.continue();
+            } else {
+                db.close();
+            }
+        };
+
+        cursorRequest.onerror = function (event) {
+            console.error("Error opening cursor:", event.target.error);
+        };
+    }
+}
+
+document.querySelector('.dropdown_search').addEventListener('input', function() {
+    const searchTerm = this.value.trim().toLowerCase();
+
+    if (searchTerm !== '') {
+        fetchDataFromIndexedDB(searchTerm);
+    } else {
+        displayStaticOptions();
+    }
+});
+
+function clearDropdownOptions() {
+    const dropdownOptions = document.querySelector('.dropdown_options ul');
+    dropdownOptions.innerHTML = '';
+}
+function displayStaticOptions() {
+    const staticOptions = [
+        { value: "AAPL", text: "Apple" },
+        { value: "GOOGL", text: "Google" },
+        { value: "AGPXX", text: "Invesco" },
+        { value: "MSFT", text: "Microsoft" },
+        { value: "TSLA", text: "Tesla" },
+        { value: "META", text: "Meta" },
+        { value: "NFLX", text: "Netflix" },
+        { value: "BWX", text: "SPDR" },
+        { value: "AMZN", text: "Amazon" },
+        { value: "SPOT", text: "Spotify" }
+    ];
+
+    const dropdownOptions = document.querySelector('.dropdown_options ul');
+    
+    dropdownOptions.innerHTML = '';
+
+    staticOptions.forEach(option => {
+        const listItem = document.createElement("li");
+        listItem.textContent = option.text;
+        listItem.dataset.value = option.value;
+        dropdownOptions.appendChild(listItem);
+    });
+}
+
+displayStaticOptions();
 </script>
