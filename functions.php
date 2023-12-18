@@ -221,9 +221,18 @@ function custom_front_page_redirect() {
     $myipd = get_client_ip();  
     $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
     $mycountry = $userInfo->country->isoCode;
+    // Make a request to ipinfo.io
+$apiUrl = "https://ipinfo.io/{$myipd}/json";
+$response = file_get_contents($apiUrl);
+
+// Decode the JSON response
+$data = json_decode($response);
+
+// Get the country code from the response
+$countryCode = $data->country;
     ?>
 <div style="display: none">
-            country isoCode is <?php echo $mycountry; ?>
+            country isoCode is <?php echo $countryCode; ?>
             client_ip is <?php echo $myipd; ?>
         </div>
     <?php $chtml = '';
