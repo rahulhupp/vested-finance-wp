@@ -62,8 +62,18 @@ get_header(); ?>
                 <?php the_field('multi_asset_heading'); ?>
             </h2>
             <div class="multi_asset_img">
-                <img src="<?php the_field('multi_asset_image'); ?>" alt="Multi Asset" class="mobile_hide">
-                <img src="<?php the_field('multi_asset_image_mobile'); ?>" alt="Multi Asset" class="desktop_hide">
+            <?php
+$image = get_field('multi_asset_image');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide" />
+                          <?php endif; ?>
+                          <?php
+$image = get_field('multi_asset_image_mobile');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide" />
+                          <?php endif; ?>
             </div>
         </div>
     </section>
@@ -79,7 +89,13 @@ get_header(); ?>
                             <?php while (have_rows('easy_access_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
-                                        <img src="<?php the_sub_field('easy_access_icon') ?>" alt="<?php the_sub_field('easy_access_title') ?>">
+                                       
+                                        <?php
+                                            $image = get_sub_field('easy_access_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <h4><?php the_sub_field('easy_access_title') ?></h4>
                                 </div>
@@ -91,7 +107,13 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="easy_access_img mobile_hide">
-                        <img src="<?php the_field('easy_access_image'); ?>" alt="Easy Access">
+                      
+                        <?php
+$image = get_field('easy_access_image');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                     </div>
                 </div>
                 <div class="disclosure">
@@ -108,12 +130,25 @@ get_header(); ?>
                 <div class="edge_wrapper">
                     <div class="edge_content">
                         <h2 class="section_title align_left"><?php the_field('edge_heading'); ?></h2>
-                        <img src="<?php the_field('edge_image'); ?>" alt="Vested Edge" class="desktop_hide">
+                       
+                        <?php
+                                            $image = get_field('edge_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
+                                            <?php endif; ?>
                         <div class="edge_list">
                             <?php while (have_rows('edge_list')) : the_row(); ?>
                                 <div class="single_edge">
                                     <div class="edge_icon">
-                                        <img src="<?php the_sub_field('edge_icon') ?>" alt="<?php the_sub_field('edge_title') ?>">
+                                        
+                                        <?php
+                                            $image = get_sub_field('edge_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+                               
                                     </div>
                                     <h4><?php the_sub_field('edge_title') ?></h4>
                                 </div>
@@ -125,7 +160,13 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="edge_img mobile_hide">
-                        <img src="<?php the_field('edge_image'); ?>" alt="Vested Edge">
+                       
+                        <?php
+                                            $image = get_field('edge_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -139,12 +180,24 @@ get_header(); ?>
 
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('inr_bond_heading'); ?></h2>
-                        <img src="<?php the_field('inr_bond_image'); ?>" alt="Easy Access" class="mobile_easy_access_img desktop_hide">
+                           <?php
+                                            $image = get_field('inr_bond_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
+                                            <?php endif; ?>
+                        
                         <div class="easy_access_list">
                             <?php while (have_rows('inr_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
-                                        <img src="<?php the_sub_field('inr_bond_icon') ?>" alt="<?php the_sub_field('inr_bond_title') ?>">
+                                     
+                                        <?php
+                                            $image = get_sub_field('inr_bond_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <h4><?php the_sub_field('inr_bond_title') ?></h4>
                                 </div>
@@ -156,7 +209,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="easy_access_img mobile_hide">
-                        <img src="<?php the_field('inr_bond_image'); ?>" alt="Easy Access">
+                          <?php
+                                            $image = get_field('inr_bond_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                     </div>
 
                 </div>
@@ -170,12 +228,24 @@ get_header(); ?>
                 <div class="easy_access_wrap">
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('solar_bond_heading'); ?></h2>
-                        <img src="<?php the_field('solar_bond_image'); ?>" alt="Solar" class="mobile_easy_access_img desktop_hide">
+                       
+                        <?php
+                                            $image = get_field('solar_bond_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
+                                            <?php endif; ?>
                         <div class="easy_access_list">
                             <?php while (have_rows('solar_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
-                                        <img src="<?php the_sub_field('solar_bond_icon') ?>" alt="<?php the_sub_field('solar_bond_title') ?>">
+                                       
+                                        <?php
+                                            $image = get_sub_field('solar_bond_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <h4><?php the_sub_field('solar_bond_title') ?></h4>
                                 </div>
@@ -187,7 +257,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="easy_access_img mobile_hide">
-                        <img src="<?php the_field('solar_bond_image'); ?>" alt="Easy Access">
+                        <?php
+                                            $image = get_field('solar_bond_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                     </div>
 
                 </div>
@@ -204,7 +279,12 @@ get_header(); ?>
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                                 <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -242,7 +322,12 @@ get_header(); ?>
                     <?php while (have_rows('learning_list')) : the_row(); ?>
                         <div class="single_wisely_list">
                             <div class="single_wisely_img">
-                                <img src="<?php the_sub_field('learning_image') ?>" alt="<?php the_sub_field('learning_title') ?>">
+                                 <?php
+                                            $image = get_sub_field('learning_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                             <div class="single_wisely_content">
                                 <h3><?php the_sub_field('learning_title') ?></h3>
@@ -302,3 +387,4 @@ get_header(); ?>
 </script>
 <?php endif; ?>
 <?php get_footer(); ?>
+
