@@ -120,13 +120,7 @@ get_header(); ?>
                 <div class="heading">
                   <div class="inner">
                     <div class="icon">
-                      
-                      <?php
-$image = get_field('icon');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
-                          <?php endif; ?>
+                      <img src="<?php the_sub_field('icon'); ?>">
                     </div>
                     <div class="inside">
                       <h3><?php the_sub_field('heading'); ?></h3>
