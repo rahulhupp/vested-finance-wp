@@ -731,11 +731,6 @@
 <?php 
     $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
     $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
-    echo "chart: ";
-    echo $chart;
-    echo "<br />";
-    echo "stock_data: ";
-    echo $stock_data;
 ?>
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
@@ -1221,45 +1216,54 @@ function fetchDataFromIndexedDB(searchTerm) {
     }
 }
 
-document.querySelector('.dropdown_search').addEventListener('input', function() {
-    const searchTerm = this.value.trim().toLowerCase();
+/**/
 
-    if (searchTerm !== '') {
-        fetchDataFromIndexedDB(searchTerm);
-    } else {
-        displayStaticOptions();
+function inputChange() {
+        var inputValue = document.querySelector(".dropdown_search").value;
+        let timeout;
+        if(timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            fetchResult(inputValue);
+        }, 500);
     }
-});
 
-function clearDropdownOptions() {
+    async function fetchResult(stock_name) {    
+        try {
+            const results = await connection.select({
+                from: 'stocks',
+                order: {
+                    by: 'symbol',
+                    type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
+                }
+            });
+            renderItems(results);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function renderItems(results) {
     const dropdownOptions = document.querySelector('.dropdown_options ul');
     dropdownOptions.innerHTML = '';
-}
-function displayStaticOptions() {
-    const staticOptions = [
-        { value: "AAPL", text: "Apple" },
-        { value: "GOOGL", text: "Google" },
-        { value: "AGPXX", text: "Invesco" },
-        { value: "MSFT", text: "Microsoft" },
-        { value: "TSLA", text: "Tesla" },
-        { value: "META", text: "Meta" },
-        { value: "NFLX", text: "Netflix" },
-        { value: "BWX", text: "SPDR" },
-        { value: "AMZN", text: "Amazon" },
-        { value: "SPOT", text: "Spotify" }
-    ];
 
-    const dropdownOptions = document.querySelector('.dropdown_options ul');
-    
-    dropdownOptions.innerHTML = '';
-
-    staticOptions.forEach(option => {
+    results.forEach(result => {
         const listItem = document.createElement("li");
-        listItem.textContent = option.text;
-        listItem.dataset.value = option.value;
+        listItem.textContent = result.name;
+        listItem.dataset.value = result.symbol;
         dropdownOptions.appendChild(listItem);
     });
 }
 
-displayStaticOptions();
 </script>
