@@ -62,7 +62,12 @@ get_header(); ?>
                 <?php the_field('multi_asset_heading'); ?>
             </h2>
             <div class="multi_asset_img">
-                <img src="<?php the_field('multi_asset_image'); ?>" alt="Multi Asset" class="mobile_hide">
+                  <?php
+                  $image = get_field('multi_asset_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide" />
+                                            <?php endif; ?>
                 <img src="<?php the_field('multi_asset_image_mobile'); ?>" alt="Multi Asset" class="desktop_hide">
             </div>
         </div>
@@ -302,3 +307,4 @@ get_header(); ?>
 </script>
 <?php endif; ?>
 <?php get_footer(); ?>
+
