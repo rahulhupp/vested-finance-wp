@@ -1089,7 +1089,13 @@
                 document.getElementById('content_cagr').textContent = CACR.toLocaleString();
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                bar.animate(percentageEstimatedReturn);
+                console.log(percentageEstimatedReturn, "percentageEstimatedReturn");
+                if(percentageEstimatedReturn > 0) {
+                    bar.animate(percentageEstimatedReturn);    
+                }
+                else {
+                    bar.animate(0);    
+                }
                 renderChart(xValues, yValues, zValues, bValues, uValues);
             })
             .catch(error => alert("Something went wrong!"));
@@ -1183,9 +1189,9 @@
 
 document.addEventListener('click', function(event) {
     const clickedElement = event.target;
-
+    const mainDropdown = document.querySelector('.select_box_new');
     if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
-        const mainDropdown = document.querySelector('.select_box_new');
+        
         const mainValue = document.querySelector('.selected_option');
 
         const selectedValue = clickedElement.dataset.value;
@@ -1194,14 +1200,15 @@ document.addEventListener('click', function(event) {
         mainValue.dataset.value = selectedValue;
 
         if(mainDropdown.classList.contains("dropdown_collased")) {
+            mainDropdown.classList.remove("dropdown_collased");
+        }
+        else {
+            mainDropdown.classList.add("dropdown_collased");
+        }
+    }
+
+    if (!mainDropdown.contains(clickedElement)) {
         mainDropdown.classList.remove("dropdown_collased");
-    }
-    else {
-        mainDropdown.classList.add("dropdown_collased");
-    }
-    } else {
-        const mainDropdown = document.querySelector('.select_box_new');
-        mainDropdown.classList.add("dropdown_collapsed");
     }
 });
 
