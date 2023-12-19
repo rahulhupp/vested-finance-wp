@@ -1147,7 +1147,9 @@ section.invest_wisely_sec .container {
 		width: 25px;
 		height: 25px;
 		object-fit: contain;
+		max-width: 36px !important;
 	}
+	
 
 	.btn_dark {
 		font-size: 14px;
@@ -1184,6 +1186,7 @@ section.invest_wisely_sec .container {
 		width: 25px;
 		height: 25px;
 		object-fit: contain;
+		max-width: 35px !important;
 	}
 
 	.single_edge h4 {
