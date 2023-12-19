@@ -131,7 +131,13 @@ get_header(); ?>
                 <div class="heading">
                   <div class="inner">
                     <div class="icon">
-                      <img src="<?php the_sub_field('icon'); ?>">
+                    
+                      <?php
+                                            $image = get_sub_field('icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>  
                     </div>
                     <div class="inside">
                       <h3><?php the_sub_field('heading'); ?></h3>
@@ -183,7 +189,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeading == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
                               <?php
                             }
                             else {
@@ -204,7 +210,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeadingQuarterly == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click" />
                             <?php
                           }
                           else {
@@ -224,7 +230,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeadingQuarterly == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click" />
                               <?php
                             }
                             else {

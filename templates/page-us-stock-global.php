@@ -101,7 +101,12 @@ $image = get_field('why_inveset_image_global');
                     <div class="us_stocks_slider stock-single-item">
                         <?php while (have_rows('stocks_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('stocks_slider_image_global') ?>" alt="Portfolio" />
+                                 <?php
+                                            $image = get_sub_field('stocks_slider_image_global');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -127,7 +132,12 @@ $image = get_field('why_inveset_image_global');
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image_global') ?>" alt="Portfolio" />
+                                 <?php
+                                            $image = get_sub_field('slider_image_global');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -199,7 +209,7 @@ $image = get_field('why_inveset_image_global');
                     endif; ?>
                 </ul>
             </div>
-            <div class="post-listing">
+            <div class="post-listing">  
                 <div class="head">
                     <div class="left-part">
                         <h3>Vested Shorts</h3>
