@@ -199,7 +199,7 @@ $image = get_field('why_inveset_image_global');
                     endif; ?>
                 </ul>
             </div>
-            <div class="post-listing">
+            <div class="post-listing">  
                 <div class="head">
                     <div class="left-part">
                         <h3>Vested Shorts</h3>
