@@ -998,11 +998,26 @@
         svgStyle: null,
     });
     bar.animate(0.5);
+    const generateRandomValues = (count, min, max) => {
+    const randomValues = [];
+    for (let i = 0; i < count; i++) {
+        const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+        randomValues.push(randomValue);
+    }
+    return randomValues;
+};
+const generateXValues = (count, start, step) => {
     const xValues = [];
-    const yValues = [1, 1000]; // stock price
-    const zValues = [1, 400]; // s&p 500 value
-    const bValues = [1,600]; // nifty50 value
-    const uValues = [1,800]; // usd inr value
+    for (let i = 0; i < count; i++) {
+        xValues.push(start + i * step);
+    }
+    return xValues;
+};
+    const xValues = generateXValues(10, 2000, 200);
+    const yValues = generateRandomValues(1500, 1, 10000);
+    const zValues = generateRandomValues(1500, 1, 10000);
+    const bValues = generateRandomValues(1500, 1, 10000);
+    const uValues = generateRandomValues(1500, 1, 10000);
     renderChart(xValues, yValues, zValues, bValues, uValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
@@ -1101,6 +1116,7 @@
                     bar.animate(0);    
                 }
                 renderChart(xValues, yValues, zValues, bValues, uValues);
+                console.log(xValues);
             })
             .catch(error => alert("Something went wrong!"));
     }
