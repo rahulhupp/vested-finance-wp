@@ -633,6 +633,10 @@
     outline: none;
 }
 
+.dropdown_options ul p {
+    margin: 0;
+}
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -1314,6 +1318,12 @@ function inputChange() {
         listItem.dataset.value = result.symbol;
         dropdownOptions.appendChild(listItem);
     });
+    
+    if(results.length < 1) {
+        const listItem = document.createElement("p");
+        listItem.textContent = "No Result Found!";
+        dropdownOptions.appendChild(listItem);
+    }
 }
 
 </script>
