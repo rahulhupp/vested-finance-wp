@@ -101,7 +101,7 @@ get_header(); ?>
             <div class="head-part">
               <div class="inner">
                 <div class="stock">
-                  <img src="<?php the_sub_field('stock_icon'); ?>">  
+                 
                   <?php
                                             $image = get_sub_field('stock_icon');
                                             if (!empty($image)): ?>
@@ -191,7 +191,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeading == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
                               <?php
                             }
                             else {
@@ -212,7 +212,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeadingQuarterly == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
                             <?php
                           }
                           else {
@@ -232,7 +232,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeadingQuarterly == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
                               <?php
                             }
                             else {
