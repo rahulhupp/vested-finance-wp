@@ -12,7 +12,12 @@ get_header(); ?>
                 <div class="inner_content">
                   <div class="sub_heading">
                       <div class="sub_heading_icon">
-                          <img src="<?php the_field('banner_sub_heading_icon'); ?>" alt="<?php the_field('banner_sub_heading'); ?>" alt="vested solar logo">
+                        <?php
+                                            $image = get_field('banner_sub_heading_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                       </div>
                       <h3><?php the_field('banner_sub_heading'); ?></h3>
                   </div>
@@ -36,7 +41,12 @@ get_header(); ?>
                 </div>
             </div>
             <div class="banner_img">
-                <img src="<?php the_field('banner_image'); ?>" alt="Banner" alt="P2P lending returns">
+                   <?php
+                                            $image = get_field('banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
             </div>
         </div>
     </div>
@@ -72,7 +82,12 @@ get_header(); ?>
                 <div class="solar_slider_image solar-single-item">
                     <?php while (have_rows('solar_slider')) : the_row(); ?>
                         <div class="single_portfolio_slider">
-                            <img src="<?php the_sub_field('solar_slider_image') ?>" alt="Portfolio" />
+                             <?php
+                                            $image = get_sub_field('solar_slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -104,8 +119,19 @@ get_header(); ?>
                 <?php the_sub_field('work_content') ?>
               </div>
               <div class="image">
-                <img class="desktop" src="<?php the_sub_field('work_image') ?>">
-                <img class="mobile" src="<?php the_sub_field('work_image_mobile') ?>">
+                <?php
+                                            $image = get_sub_field('work_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop" />
+                                            <?php endif; ?>
+
+                                            <?php
+                                            $image = get_sub_field('work_image_mobile');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile" />
+                                            <?php endif; ?>
               </div>
              </div>
             </div>
