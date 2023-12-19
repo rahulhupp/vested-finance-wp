@@ -18,7 +18,12 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-image">
-                    <img src="<?php the_field('stock_image'); ?>" />
+                      <?php
+                      $image = get_field('stock_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -70,8 +75,19 @@ get_header(); ?>
                                     </div>
                                     <div class="image">
                                         <?php if( get_sub_field('mobile_image') ){ ?>
-                                            <img src="<?php the_sub_field('image'); ?>" class="mobile_hide" />
-                                            <img src="<?php the_sub_field('mobile_image'); ?>" class="desktop_hide" />
+                                         <?php
+                                           $image = get_sub_field('image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide"/>
+                                            <?php endif; ?>
+
+                                            <?php
+                                           $image = get_sub_field('mobile_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
+                                            <?php endif; ?>
                                         <?php } else { ?>
                                             <img src="<?php the_sub_field('image'); ?>" />
                                         <?php } ?>
@@ -129,7 +145,13 @@ get_header(); ?>
                     <div class="us_stocks_slider stock-single-item">
                         <?php while (have_rows('stocks_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('stocks_slider_image') ?>" alt="Portfolio" />
+                            <?php
+                                            $image = get_sub_field('stocks_slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -155,7 +177,13 @@ get_header(); ?>
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                               
+                                <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -317,7 +345,12 @@ get_header(); ?>
                 <div class="partners_wrap">
                     <?php while (have_rows('partners_list')) : the_row(); ?>
                         <div class="single_partner_block">
-                            <img src="<?php the_sub_field('partner_logo') ?>" alt="<?php the_sub_field('partner_name') ?>">
+                             <?php
+                                            $image = get_sub_field('partner_logo');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>

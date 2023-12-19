@@ -1144,10 +1144,12 @@ section.invest_wisely_sec .container {
 	}
 
 	.easy_access_icon img {
-		width: 25px;
-		height: 25px;
+		width: 39px;
+		height: 39px;
 		object-fit: contain;
+		
 	}
+	
 
 	.btn_dark {
 		font-size: 14px;
@@ -1181,9 +1183,10 @@ section.invest_wisely_sec .container {
 	}
 
 	.edge_icon img {
-		width: 25px;
-		height: 25px;
+		width: 37px;
+		height: 37px;
 		object-fit: contain;
+		
 	}
 
 	.single_edge h4 {
