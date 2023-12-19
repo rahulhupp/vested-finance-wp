@@ -18,7 +18,13 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-image">
-                    <img src="<?php the_field('stock_image_global'); ?>" />
+                    
+                    <?php
+$image = get_field('stock_image_global');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -43,7 +49,13 @@ get_header(); ?>
 
                     </div>
                     <div class="why_invest_img">
-                        <img src="<?php the_field('why_inveset_image_global'); ?>" alt="Why Invest">
+                       
+                        <?php
+$image = get_field('why_inveset_image_global');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                         <p class="img_source"><?php the_field('why_inveset_img_source_global'); ?></p>
                     </div>
                 </div>
