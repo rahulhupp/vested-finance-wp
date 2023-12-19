@@ -10,7 +10,12 @@ get_header(); ?>
                 <div class="banner_content">
                     <div class="sub_heading">
                         <div class="sub_heading_icon">
-                            <img src="<?php the_field('banner_sub_heading_icon'); ?>" alt="<?php the_field('banner_sub_heading'); ?>" alt="vested edge logo">
+                            <?php
+                             $image = get_field('banner_sub_heading_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                         <h3><?php the_field('banner_sub_heading'); ?></h3>
                     </div>
@@ -34,7 +39,12 @@ get_header(); ?>
 
                 </div>
                 <div class="banner_img">
-                    <img src="<?php the_field('banner_image'); ?>" alt="Banner" alt="P2P lending returns">
+                <?php
+                 $image = get_field('banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -46,8 +56,19 @@ get_header(); ?>
                 <p class="smart_desc"><?php the_field('description'); ?></p>
             </div>
             <div class="smart_diversification_img">
-                <img src="<?php the_field('smart_image'); ?>" alt="Smart Diversification" class="mobile_hide" alt="Vested P2P Lending Cycle">
-                <img src="<?php the_field('smart_image_mob'); ?>" alt="Smart Diversification" class="desktop_hide">
+                 <?php
+                 $image = get_field('smart_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_hide" />
+                                            <?php endif; ?>
+
+                                            <?php
+                 $image = get_field('smart_image_mob');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
+                                            <?php endif; ?>
             </div>
 
 
@@ -57,7 +78,20 @@ get_header(); ?>
         <div class="container">
             <div class="interest_block">
                 <img src="<?php the_field('return_image'); ?>" alt="Return Image" class="mobile_hide">
-                <img src="<?php the_field('return_image_mob'); ?>" alt="Return Image" class="desktop_hide">
+
+                <?php
+                 $image = get_field('return_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_hide" />
+                                            <?php endif; ?>
+
+                                            <?php
+                 $image = get_field('return_image_mob');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
+                                            <?php endif; ?>
             </div>
         </div>
     </section>
@@ -73,7 +107,13 @@ get_header(); ?>
                             <div class="single_plan">
                                 <div class="plan_head">
                                     <div class="plan_icon">
-                                        <img src="<?php the_sub_field('plan_icon') ?>" alt="<?php the_sub_field('investment_plan_title') ?>">
+                                         <?php
+                                        $image = get_sub_field('plan_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+
                                     </div>
                                     <div class="return_rates">
                                         <div>
@@ -213,7 +253,12 @@ get_header(); ?>
                             <?php while (have_rows('edge_list')) : the_row(); ?>
                                 <div class="single_edge_list">
                                     <div class="edge_list_icon">
-                                        <img src="<?php the_sub_field('edge_list_icon') ?>" alt="Edge List">
+                                        <?php
+                                        $image = get_sub_field('edge_list_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <p class="edge_content">
                                         <?php the_sub_field('edge_list_description') ?>
@@ -237,7 +282,12 @@ get_header(); ?>
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                                 <?php
+                                        $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
