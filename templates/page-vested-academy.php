@@ -88,7 +88,7 @@ get_header(); ?>
                                 <h3><a href="<?php echo $term_link; ?>"><?php echo $module_name; ?></a></h3>
                             </div>
                             <div class="module_img">
-                                <img src="<?php echo $module_image; ?>" alt="">
+                                <img src="<?php echo $module_image; ?>" alt="Modual-edge">
                             </div>
                         </div>
 
