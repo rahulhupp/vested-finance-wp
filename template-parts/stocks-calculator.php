@@ -872,7 +872,7 @@
 
                 <div class="investment_cta">
                     <div class="cta_content_col">
-                        <p>If you had invested $<span id="content_invest_amt">0</span> in January 2021, it would be worth <strong>$<span id="content_total_value">0</span></strong> by August 2023 with <strong><span id="content_cagr">0</span>% CAGR</strong></p>
+                        <p>If you had invested $<span id="content_invest_amt">0</span> in <span id="start_month">January 2021</span>, it would be worth <strong>$<span id="content_total_value">0</span></strong> by <span id="end_month">August 2023</span> with <strong><span id="content_cagr">0</span>% CAGR</strong></p>
                     </div>
                     <div class="cta_btn">
                         <a href="<?php the_field('cta_button_url'); ?>"><?php the_field('cta_button_text'); ?> <i class="fa fa-chevron-right"></i></a>
@@ -914,6 +914,20 @@
         var currency = document.querySelector('input[name="currency"]:checked').value;
         var startDate = document.getElementById('startMonth').value;
         var endDate = document.getElementById('endMonth').value;
+        var inputDate = new Date(startDate);
+        var inputDateEnd = new Date(endDate);
+        var start_month = inputDate.toLocaleString('default', {
+            month: 'long'
+        });
+        var end_month = inputDateEnd.toLocaleString('default', {
+            month: 'long'
+        });
+        var year = inputDate.getFullYear();
+        var endYear = inputDateEnd.getFullYear();
+        var result = start_month + ' ' + year;
+        var resultEnd = end_month + ' ' + endYear;
+        document.querySelector('#start_month').textContent = result;
+        document.querySelector('#end_month').textContent = resultEnd;
 
         // console.log('Stock Selector: ' + stockSelector);
         // console.log('Investment Amount: ' + investmentAmount);
@@ -981,28 +995,41 @@
     });
     bar.animate(0.5);
     const xValues = [];
-    const yValues = [1, 1000];
-    renderChart(xValues, yValues);
+    const yValues = [1, 1000]; // stock price
+    const zValues = [1, 400]; // s&p 500 value
+    const bValues = [1,600]; // nifty50 value
+    const uValues = [1,800]; // usd inr value
+    renderChart(xValues, yValues, zValues, bValues, uValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
         const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const usdInrApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/USDINR.FOREX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const fetchStockData = fetch(apiUrl)
+            .then(response => response.json());
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                console.log('inn dataArray', data.data);
+        const fetchSP500Data = fetch(sp500Api)
+            .then(response => response.json());
 
+        const fetchNiftyData = fetch(niftyApi)
+            .then(response => response.json());
+
+        const fetchusdInrData = fetch(usdInrApi)
+            .then(response => response.json());
+
+        Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData, fetchusdInrData])
+            .then(([stockData, sp500Data, niftyData, usdInrData]) => {
+                // Process stockData
                 const xValues = [];
-                data.data.forEach(item => {
-                    xValues.push(item.Date);
-
-                });
-
                 const yValues = [];
-                const startPrice = data.data[0].Adj_Close;
-                const endPrice = data.data[data.data.length - 1].Adj_Close;
-                const firstDate = new Date(data.data[0].Date);
-                const lastDate = new Date(data.data[data.data.length - 1].Date);
+                const zValues = [];
+                const bValues = [];
+                const uValues = [];
+                const startPrice = stockData.data[0].Adj_Close;
+                const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
+                const firstDate = new Date(stockData.data[0].Date);
+                const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
                 const startStockQty = parseFloat(10000 / startPrice).toFixed(2);
                 const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
@@ -1019,41 +1046,39 @@
                 const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
                 const differenceInYears = parseFloat(differenceInDays / 365.25).toFixed(2);
                 const Periods = parseFloat(1 / differenceInYears).toFixed(2);
-                //var CACR = (Math.pow(initialPortfolioPrice, Periods) - 1) * 100;
+                // var CACR = (Math.pow(initialPortfolioPrice, Periods) - 1) * 100;
                 var CACR = (Math.pow(totalValue / investmentAmount, 1 / differenceInYears) - 1) * 100;
                 CACR = CACR.toFixed(2);
                 Per = parseFloat(lastPortfolioValue / investmentAmount).toFixed(2);
                 var percentageInvestment = (investmentAmount / totalValue) * 100;
                 var percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
-                data.data.forEach(item => {
+
+                stockData.data.forEach(item => {
+                    xValues.push(item.Date);
                     let finalAmount = item.Adj_Close * startStockQty;
-                    // let result = parseFloat(finalAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                    let result = parseFloat(item.Adj_Close * startStockQty);
-                    result = Math.round(result);
-                    // console.log('Final price', result);
+                    let result = Math.round(finalAmount);
                     yValues.push(result);
                 });
 
+                // Process sp500Data
 
+                sp500Data.data.forEach(item => {
+                    let sp500Value = Math.round(item.Adj_Close);
+                    zValues.push(sp500Value);
+                });
 
-                console.log('startPrice', startPrice);
-                console.log('endPrice', endPrice);
-                console.log('stockSelector', stockSelector);
-                console.log('investmentAmount', finalInvestmentAmount);
-                console.log('currency', currency);
-                console.log('stockQty', stockQty);
-                console.log('estReturns', estReturns.toLocaleString());
-                console.log('lastPortfolioValue', lastPortfolioValue);
-                console.log('totalValue', totalValue);
-                console.log('initialPortfolioPrice', initialPortfolioPrice);
-                console.log('firstDate', firstDate);
-                console.log('lastDate', lastDate);
-                console.log('differenceInDays', differenceInDays);
-                console.log('differenceInYears', differenceInYears);
-                console.log('Periods', Periods);
-                console.log('CACR', CACR);
-                console.log('calculatePercentage', Per);
+                niftyData.data.forEach(item => {
+                    let niftyValue = Math.round(item.Adj_Close);
+                    bValues.push(niftyValue);
+                });
 
+                usdInrData.data.forEach(item => {
+                    let usdInrValue = Math.round(item.Adj_Close);
+                    uValues.push(usdInrValue);
+                });
+
+                // Continue with the rest of your calculations and rendering
+                // ...
                 document.getElementById('invest_amt').textContent = finalInvestmentAmount;
                 document.getElementById('total_calc_val').textContent = finalInvestmentAmount;
                 document.getElementById('est_returns').textContent = estReturns.toLocaleString();
@@ -1064,18 +1089,14 @@
                 document.getElementById('content_cagr').textContent = CACR.toLocaleString();
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                // bar.animate(Per);
                 bar.animate(percentageEstimatedReturn);
-                renderChart(xValues, yValues);
-
+                renderChart(xValues, yValues, zValues, bValues, uValues);
             })
             .catch(error => alert("Something went wrong!"));
     }
 
-
-    function renderChart(xValues, yValues) {
+    function renderChart(xValues, yValues, zValues, bValues, uValues) {
         const dateObjects = xValues.map(dateString => new Date(dateString));
-
         const formattedLabels = dateObjects.map(date => {
             const month = date.toLocaleString('default', {
                 month: 'short'
@@ -1084,17 +1105,39 @@
             const year = date.getFullYear(); // Get full year
             return `${month} ${day}, ${year}`;
         });
-
         new Chart("myChart", {
             type: "line",
             data: {
                 labels: formattedLabels,
                 datasets: [{
-                    data: yValues,
-                    borderColor: "#002852",
-                    fill: false,
-                    pointRadius: 0
-                }]
+                        label: 'Stocks Value',
+                        data: yValues,
+                        borderColor: "#002852",
+                        fill: false,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'S&P 500',
+                        data: zValues,
+                        borderColor: "#ec9235",
+                        fill: false,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'Nifty 50',
+                        data: bValues,
+                        borderColor: "#3861f6",
+                        fill: false,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'USD INR',
+                        data: uValues,
+                        borderColor: "#0d1115",
+                        fill: false,
+                        pointRadius: 0
+                    }
+                ]
             },
             options: {
                 scales: {
@@ -1122,7 +1165,7 @@
                     }
                 },
                 legend: {
-                    display: false
+                    display: true
                 }
             }
         });
