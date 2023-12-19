@@ -1144,8 +1144,8 @@ section.invest_wisely_sec .container {
 	}
 
 	.easy_access_icon img {
-		width: 39px;
-		height: 39px;
+		width: 39px !important;
+		height: 39px !important;
 		object-fit: contain;
 		
 	}
@@ -1183,8 +1183,8 @@ section.invest_wisely_sec .container {
 	}
 
 	.edge_icon img {
-		width: 37px;
-		height: 37px;
+		width: 37px !important;
+		height: 37px !important;
 		object-fit: contain;
 		
 	}

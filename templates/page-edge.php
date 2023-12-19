@@ -77,9 +77,7 @@ get_header(); ?>
     <section class="interest_rates_sec">
         <div class="container">
             <div class="interest_block">
-                <img src="<?php the_field('return_image'); ?>" alt="Return Image" class="mobile_hide">
-
-                <?php
+                 <?php
                  $image = get_field('return_image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
