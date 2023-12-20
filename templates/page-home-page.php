@@ -389,6 +389,3 @@ $image = get_field('easy_access_image');
 <?php get_footer(); ?>
 
 
-
-
-
