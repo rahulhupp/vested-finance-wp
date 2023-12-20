@@ -199,11 +199,9 @@ function custom_front_page_redirect() {
         $chtml = '';
         ?>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                getUserLocationByIP();
-            });
 
             function getUserLocationByIP() {
+                console.log('getUserLocationByIP');
                 // Make a request to the ipinfo.io API to get user location based on IP
                 fetch('https://ipinfo.io/json').then(response => response.json()).then(data => {
                     // Process the location information
@@ -248,6 +246,8 @@ function custom_front_page_redirect() {
                 });
             }
             document.addEventListener("DOMContentLoaded", function() {
+                console.log('DOMContentLoaded');
+                getUserLocationByIP();
                 document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
                 var globalBanner = document.querySelector(".geolocation_banner");
                 if (globalBanner) {
