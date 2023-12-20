@@ -330,7 +330,6 @@ body.mega-menu-open .site-content:before {
     letter-spacing: -0.36px;
     display: flex;
     align-items: center;
-	width: 100%;
 	justify-content: center;
 }
 
@@ -347,7 +346,6 @@ body.mega-menu-open .site-content:before {
 .geolocation_banner .content {
     padding: 0 26px;
     text-align: left;
-    width: calc(100% - 29px);
 }
 
 
