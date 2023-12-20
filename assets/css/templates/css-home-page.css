@@ -308,15 +308,15 @@ a.btn_light {
 	justify-content: center;
 }
 
-.easy_access_icon img{
-	width: 36px !important;
-	height: 36px !important;
+.easy_access_icon img {
+	width: 39px !important;
+	height: 39px !important;
 	object-fit: contain;
+	
 }
-
 .edge_icon img{
-	width: 36px !important;
-	height: 36px !important;
+	width: 37px !important;
+	height: 37px !important;
 	object-fit: contain;
 }
 
@@ -1159,7 +1159,9 @@ section.invest_wisely_sec .container {
 		width: 25px;
 		height: 25px;
 		object-fit: contain;
+		
 	}
+	
 
 	.btn_dark {
 		font-size: 14px;
@@ -1196,6 +1198,7 @@ section.invest_wisely_sec .container {
 		width: 25px;
 		height: 25px;
 		object-fit: contain;
+		
 	}
 
 	.single_edge h4 {

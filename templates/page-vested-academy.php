@@ -14,7 +14,12 @@ get_header(); ?>
                 </div>
                 <div class="acadamy_banner_image_col">
                     <div class="acadamy_banner_img">
-                        <img src="<?php the_field('banner_image'); ?>" alt="Learn With Vested">
+                          <?php
+                                            $image = get_field('banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -83,7 +88,7 @@ get_header(); ?>
                                 <h3><a href="<?php echo $term_link; ?>"><?php echo $module_name; ?></a></h3>
                             </div>
                             <div class="module_img">
-                                <img src="<?php echo $module_image; ?>" alt="">
+                                <img src="<?php echo $module_image; ?>" alt="Modual-edge">
                             </div>
                         </div>
 
