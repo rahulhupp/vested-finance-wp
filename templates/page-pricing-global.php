@@ -57,7 +57,7 @@ get_header(); ?>
                 </div>
                 <div class="box premium-plan">
                     <div class="recommended">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/star.svg" alt="Star"/>
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/star.svg" />
                         <?php the_field('recommended_label'); ?>
                     </div>
                     <h2><?php the_field('premium_plan_heading'); ?></h2>
@@ -101,22 +101,11 @@ get_header(); ?>
             <div class="head-part">
               <div class="inner">
                 <div class="stock">
-                   <?php
-                                            $image = get_sub_field('stock_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>   
+                  <img src="<?php the_sub_field('stock_icon'); ?>">     
                   <strong><?php the_sub_field('stock_title'); ?></strong> 
                 </div>
                 <div class="currency">
-             
-                  <?php
-                                            $image = get_sub_field('currency_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>     
+                  <img src="<?php the_sub_field('currency_icon'); ?>">   
                   <span><?php the_sub_field('currency_text'); ?></span>
                 </div>
               </div>
@@ -131,13 +120,7 @@ get_header(); ?>
                 <div class="heading">
                   <div class="inner">
                     <div class="icon">
-                    
-                      <?php
-                                            $image = get_sub_field('icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>  
+                      <img src="<?php the_sub_field('icon'); ?>">
                     </div>
                     <div class="inside">
                       <h3><?php the_sub_field('heading'); ?></h3>
@@ -146,7 +129,7 @@ get_header(); ?>
                         if ($tooltipContent) {
                           ?>
                           <div class="tooltip">
-                            <img class="info-icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/toolkit.svg" alt="info"/>
+                            <img class="info-icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/toolkit.svg" />
                             <div class="overlay"></div>
                             <div class="tooltip-content">
                             <div class="line"></div>
@@ -169,7 +152,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeading == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
                             <?php
                           }
                           else {
@@ -189,7 +172,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeading == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click"/>
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
                               <?php
                             }
                             else {
@@ -210,7 +193,7 @@ get_header(); ?>
                         <?php 
                           if ($firstHeadingQuarterly == 'check') {
                             ?>
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click" />
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
                             <?php
                           }
                           else {
@@ -230,7 +213,7 @@ get_header(); ?>
                         <?php 
                             if ($secondHeadingQuarterly == 'check') {
                               ?>
-                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" alt="right_click" />
+                              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tick_new_one.svg" />
                               <?php
                             }
                             else {
