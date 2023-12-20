@@ -1176,16 +1176,34 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
     function renderChart(xValues, yValues, zValues, bValues) {
         const dateObjects = xValues.map(dateString => new Date(dateString));
+        const currecySelector = document.querySelector('input[name="currency"]:checked');
         const inrCurrencyRadioButton = document.getElementById('inr_currency');
         const usdCurrencyRadioButton = document.getElementById('usd_currency');
         const formattedLabels = dateObjects.map(date => {
             const month = date.toLocaleString('default', {
                 month: 'short'
-            }); // Get short month name
-            const day = date.getDate(); // Get day of the month
-            const year = date.getFullYear(); // Get full year
+            });
+            const day = date.getDate();
+            const year = date.getFullYear();
             return `${month} ${day}, ${year}`;
         });
+
+        const nifty50DatasetIndex = 2;
+
+        inrCurrencyRadioButton.addEventListener('change', function() {
+            myChart.data.datasets[nifty50DatasetIndex].hidden = false;
+            document.querySelector('.nifty_legend').style.display = 'flex';
+            myChart.update();
+        });
+
+        usdCurrencyRadioButton.addEventListener('change', function() {
+            myChart.data.datasets[nifty50DatasetIndex].hidden = true;
+            myChart.update();
+            document.querySelector('.nifty_legend').style.display = 'none';
+        });
+
+        const initialHiddenState = currecySelector.value === 'usd';
+
         const myChart = new Chart("myChart", {
             type: "line",
             data: {
@@ -1210,7 +1228,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                         borderColor: "#3861f6",
                         fill: false,
                         pointRadius: 0,
-                        hidden: true
+                        hidden: initialHiddenState
                     }
                 ]
             },
@@ -1223,7 +1241,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     },
                     yAxes: [{
                         ticks: {
-                            // Include a dollar sign in the ticks
                             callback: function(value, index, values) {
                                 return '' + value.toLocaleString();
                             }
@@ -1244,21 +1261,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 }
             }
         });
-        inrCurrencyRadioButton.addEventListener('change', function() {
-            const nifty50DatasetIndex = 2;
-
-            myChart.data.datasets[nifty50DatasetIndex].hidden = !inrCurrencyRadioButton.checked;
-            document.querySelector('.nifty_legend').style.display = 'flex';
-            myChart.update();
-        });
-
-        usdCurrencyRadioButton.addEventListener('change', function() {
-            const nifty50DatasetIndex = 2;
-            myChart.data.datasets[nifty50DatasetIndex].hidden = usdCurrencyRadioButton.checked;
-            myChart.update();
-            document.querySelector('.nifty_legend').style.display = 'none';
-        });
     }
+
     document.querySelector('.selected_option').addEventListener("click", function() {
         const mainDropdown = document.querySelector('.select_box_new');
         if (mainDropdown.classList.contains("dropdown_collased")) {
