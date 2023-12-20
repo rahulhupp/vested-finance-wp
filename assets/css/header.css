@@ -665,7 +665,6 @@ body.mega-menu-open .site-content:before {
     }
     .geolocation_banner .content {
         padding: 0 12px;
-        width: calc(100% - 18px);
     }
     .geolocation_banner p {
         font-size: 16px;
