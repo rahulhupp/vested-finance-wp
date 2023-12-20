@@ -691,6 +691,13 @@
         display: none;
     }
 
+    #loader {
+        display: none;
+        width: 32px;
+        height: 32px;
+        animation: loaderamin 0.5s infinite;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -785,6 +792,16 @@
             margin-top: 30px;
         }
     }
+
+    @keyframes loaderamin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 <?php
 $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
@@ -809,6 +826,18 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                                 <div class="selected_option" data-value="AAPL" id="resultsList">Apple</div>
                                 <div class="options_dropdown_wrap">
                                     <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF">
+                                    <div id="loader" style="display: none;">
+                                        <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <g>
+                                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                                    <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
                                     <div class="dropdown_options">
                                         <ul class="static_options">
                                             <li data-value="AAPL">Apple</li>
@@ -1384,8 +1413,22 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         debounceFunctionCalc(makeAPICallCalc, 500)
     }
 
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+        document.querySelector(".static_options").style.display = 'none';
+        document.querySelector(".dynamic_options").style.display = 'none';
+    }
+
+    // Add this function to hide the loader
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+        document.querySelector(".static_options").style.display = 'none';
+        document.querySelector(".dynamic_options").style.display = 'block';
+    }
+
     async function fetchResultCalc(stock_name) {
         try {
+            showLoader();
             const results = await connection.select({
                 from: 'stocks',
                 order: {
@@ -1406,6 +1449,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             renderItemsCalc(results);
         } catch (err) {
             console.log(err);
+        } finally {
+            hideLoader(); // Hide the loader regardless of success or error
         }
     }
 
