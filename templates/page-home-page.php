@@ -398,7 +398,7 @@ $image = get_field('easy_access_image');
             .then(data => {
             // Process the location information
             console.log('User location based on IP:', data);
-            if (data.country) {
+            if (data.country === "IN") {
                 console.log('show geolocation_banner');
             } else {
                 console.log('hide geolocation_banner');
