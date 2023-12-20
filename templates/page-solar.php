@@ -12,7 +12,12 @@ get_header(); ?>
                 <div class="inner_content">
                   <div class="sub_heading">
                       <div class="sub_heading_icon">
-                          <img src="<?php the_field('banner_sub_heading_icon'); ?>" alt="<?php the_field('banner_sub_heading'); ?>" alt="vested solar logo">
+                        <?php
+                                            $image = get_field('banner_sub_heading_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                       </div>
                       <h3><?php the_field('banner_sub_heading'); ?></h3>
                   </div>
@@ -36,7 +41,12 @@ get_header(); ?>
                 </div>
             </div>
             <div class="banner_img">
-                <img src="<?php the_field('banner_image'); ?>" alt="Banner" alt="P2P lending returns">
+                   <?php
+                                            $image = get_field('banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
             </div>
         </div>
     </div>
@@ -72,7 +82,12 @@ get_header(); ?>
                 <div class="solar_slider_image solar-single-item">
                     <?php while (have_rows('solar_slider')) : the_row(); ?>
                         <div class="single_portfolio_slider">
-                            <img src="<?php the_sub_field('solar_slider_image') ?>" alt="Portfolio" />
+                             <?php
+                                            $image = get_sub_field('solar_slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -104,8 +119,19 @@ get_header(); ?>
                 <?php the_sub_field('work_content') ?>
               </div>
               <div class="image">
-                <img class="desktop" src="<?php the_sub_field('work_image') ?>">
-                <img class="mobile" src="<?php the_sub_field('work_image_mobile') ?>">
+                <?php
+                                            $image = get_sub_field('work_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop" />
+                                            <?php endif; ?>
+
+                                            <?php
+                                            $image = get_sub_field('work_image_mobile');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile" />
+                                            <?php endif; ?>
               </div>
              </div>
             </div>
@@ -121,7 +147,12 @@ get_header(); ?>
     <div class="wrapper">
       <h2><?php the_field('project_heading'); ?></h2>
       <div class="blur_image">
-        <img src="<?php the_field('project_image'); ?>" />
+        <?php
+                                            $image = get_field('project_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
         <div class="btn">
             <a href="<?php the_field('project_button_url'); ?>" class="btn_dark" target="_blank"><?php the_field('project_button_text'); ?></a>
         </div>
@@ -129,6 +160,106 @@ get_header(); ?>
     </div>
   </div>
 </section>
+
+<section class="solar_calculate">
+        <div class="container">
+            <div class="wrapper">
+                <h2>
+                    <span>Calculate your returns</span>
+                </h2>
+                <div class="calculate_from">
+                    <div class="left">
+                        <div class="field">
+                            <label>Your investment:<span>(Solar Panels)</span></label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="3" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                            <div class="input_info">
+                                <span>₹25,000 per panel</span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Expected return rate (p.a.)</label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="12" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Time period<span>(in years)</span></label>
+                            <div class="input_with_qty">
+                                <p class="input_qty minus">-</p>
+                                <input type="number" value="5" />
+                                <p class="input_qty plus">+</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="field">
+                            <label>Investment amount:</label>
+                            <input type="text" value="75000" id="invest_amt_val" readonly/>
+                        </div>
+                        <div class="progress_bar">
+                            <div class="item">
+                                <label>Bank Deposits<span>(6% returns)</span></label>
+                                <div class="line_item">
+                                    <div class="line" style="width: 117px;"></div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <label>Vested Solar<span>(12% returns)</span></label>
+                                <div class="line_item">
+                                    <div class="line" style="width: 217px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculate_info">
+                    <div class="main_item">
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.png"  alt="co2"/>
+                            </div>
+                            <div class="content">
+                                <h3>350 kg <span>/year</span></h3>
+                                <p>CO2 emission saved</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.png" alt="income card" />
+                            </div>
+                            <div class="content">
+                                <h3>&#8377; 563 <sup>1</sup></h3>
+                                <p>Avg. Monthly income</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.png" alt="Investment returns" />
+                            </div>
+                            <div class="content">
+                                <h3>12% p.a. <sup>2</sup></h3>
+                                <p>Investment returns (XIRR)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="calc_note">350 kg reduction neutralizes the emissions made by a car traveling 5,000 kms</p>
+                </div>
+                
+                <div class="bottom_content">
+                    <ul>
+                        <li><sup>1</sup>Monthly income may vary based on weather conditions and other factors. Income indicated are averaged over a 12 month period.</li>
+                        <li><sup>2</sup>XIRR based on scheduled returns. Check project details for exact schedule.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <section class="solar_invest">
   <div class="container">
@@ -139,7 +270,13 @@ get_header(); ?>
       <div class="invest_grid">
           <?php while (have_rows('Invest_item')) : the_row(); ?>
             <div class="item" style="background: <?php the_sub_field('Invest_background_color') ?>">
-              <img src="<?php the_sub_field('Invest_icon') ?>" />
+              <?php
+                                            $image = get_sub_field('Invest_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+
               <h3 style="color: <?php the_sub_field('Invest_text_color') ?>"><?php the_sub_field('Invest_title') ?></h3>
               <p style="color: <?php the_sub_field('Invest_text_color') ?>"><?php the_sub_field('Invest_content') ?></p>
             </div>
@@ -159,7 +296,12 @@ get_header(); ?>
                 <div class="portfolio_slider slider single-item">
                     <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                         <div class="single_portfolio_slider">
-                            <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                        <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
