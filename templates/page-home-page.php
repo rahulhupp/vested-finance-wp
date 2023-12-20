@@ -403,12 +403,12 @@ $image = get_field('easy_access_image');
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
                     if (document.body.classList.contains('page-template-page-home-page')) {
-                        globalBanner.innerHTML = "<div class='left india'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
+                        globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
                     }
                     console.log('show geolocation_banner');
                 } else {
                     if (document.body.classList.contains('page-template-page-home-page')) {
-                        globalBanner.innerHTML = "<div class='left'><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a></div>";
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
                     }
                     console.log('hide geolocation_banner');
                 }
