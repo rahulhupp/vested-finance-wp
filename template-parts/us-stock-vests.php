@@ -108,18 +108,18 @@
             li.innerHTML = `
                 <a href="https://app.vestedfinance.com/vest-details?vestId=${vest.vestId}" target="_blank" class="inner">
                     <div class="top">
-                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/${vest.vestId}.svg" />
+                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/${vest.vestId}.svg" alt="solid-foundations" />
                         <strong>${vest.name}</strong>
                     </div>
                     <div class="middle">
                         <div class="left">
-                            <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/${vest.risk}.svg" />
+                            <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/${vest.risk}.svg" alt="progress bar"  />
                             <strong>${getRiskText(vest.risk)}</strong>
                         </div>
                         <div class="right">
                             <div class="per-value">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5" fill="none">
-                                    <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" />
+                                    <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786"  alt="green-up"/>
                                 </svg>
                                 <span class="green">${vest.oneYearReturn}</span>
                             </div>
@@ -142,7 +142,7 @@
         defaultBox.innerHTML = `
             <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
                 <div class="plus-icon">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.png" />
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.png" alt="plus-icon" />
                 </div>
                 <div class="content">
                     <strong>Create Your Own </strong>
