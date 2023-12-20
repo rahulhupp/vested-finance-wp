@@ -10,7 +10,12 @@ get_header(); ?>
                 <div class="bonds_banner_content">
                     <div class="sub_heading">
                         <div class="sub_heading_icon">
-                            <img src="<?php the_field('banner_sub_heading_icon'); ?>" alt="banner icon">
+                        <?php
+                                            $image = get_field('banner_sub_heading_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                         <h3><?php the_field('banner_sub_heading'); ?></h3>
                     </div>
@@ -39,7 +44,12 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="bonds_banner_img">
-                    <img src="<?php the_field('banner_banner_image'); ?>" alt="banner image">
+                <?php
+                                            $image = get_field('banner_banner_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -48,7 +58,12 @@ get_header(); ?>
         <div class="container">
             <div class="explore_bonds_wrap">
                 <div class="explore_bonds_img mobile_hide">
-                    <img src="<?php the_field('explore_bonds_image'); ?>" alt="<?php the_field('explore_bonds_heading'); ?>">
+                    <?php
+                                            $image = get_field('explore_bonds_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                 </div>
                 <div class="explore_bonds_content">
                     <h2 class="section_title align_left mobile_hide"><span><?php the_field('explore_bonds_heading'); ?></span></h2>
@@ -59,7 +74,12 @@ get_header(); ?>
                             <?php while (have_rows('explore_corporate_bonds_list')) : the_row(); ?>
                                 <div class="single_bond_list">
                                     <div class="single_bond_icon">
-                                        <img src="<?php the_sub_field('corporate_bonds_list_icon') ?>" alt="<?php the_sub_field('corporate_bonds_list_text') ?>">
+                                         <?php
+                                            $image = get_sub_field('corporate_bonds_list_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <p><?php the_sub_field('corporate_bonds_list_text') ?></p>
                                 </div>
@@ -72,7 +92,12 @@ get_header(); ?>
                             <?php while (have_rows('explore_corporate_bonds_list_mobile')) : the_row(); ?>
                                 <div class="single_bond_list">
                                     <div class="single_bond_icon">
-                                        <img src="<?php the_sub_field('corporate_bonds_list_icon_mobile') ?>" alt="<?php the_sub_field('corporate_bonds_list_text_mobile') ?>">
+                                         <?php
+                                            $image = get_sub_field('corporate_bonds_list_icon_mobile');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                     </div>
                                     <p><?php the_sub_field('corporate_bonds_list_text_mobile') ?></p>
                                 </div>
@@ -251,7 +276,12 @@ get_header(); ?>
                         <?php while (have_rows('edge_list')) : the_row(); ?>
                             <div class="single_edge_list">
                                 <div class="edge_list_icon">
-                                    <img src="<?php the_sub_field('edge_list_icon') ?>" alt="Edge List">
+                                      <?php
+                                            $image = get_sub_field('edge_list_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                 </div>
                                 <p class="edge_content mobile_hide">
                                     <?php the_sub_field('edge_list_description') ?>
@@ -277,7 +307,13 @@ get_header(); ?>
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                                 <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+
                             </div>
                         <?php endwhile; ?>
                     </div>

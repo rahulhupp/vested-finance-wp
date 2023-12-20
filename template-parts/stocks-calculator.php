@@ -633,6 +633,10 @@
     outline: none;
 }
 
+.dropdown_options ul p {
+    margin: 0;
+}
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -994,11 +998,26 @@
         svgStyle: null,
     });
     bar.animate(0.5);
+    const generateRandomValues = (count, min, max) => {
+    const randomValues = [];
+    for (let i = 0; i < count; i++) {
+        const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+        randomValues.push(randomValue);
+    }
+    return randomValues;
+};
+const generateXValues = (count, start, step) => {
     const xValues = [];
-    const yValues = [1, 1000]; // stock price
-    const zValues = [1, 400]; // s&p 500 value
-    const bValues = [1,600]; // nifty50 value
-    const uValues = [1,800]; // usd inr value
+    for (let i = 0; i < count; i++) {
+        xValues.push(start + i * step);
+    }
+    return xValues;
+};
+    const xValues = generateXValues(10, 2000, 200);
+    const yValues = generateRandomValues(1500, 1, 10000);
+    const zValues = generateRandomValues(1500, 1, 10000);
+    const bValues = generateRandomValues(1500, 1, 10000);
+    const uValues = generateRandomValues(1500, 1, 10000);
     renderChart(xValues, yValues, zValues, bValues, uValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
@@ -1089,8 +1108,15 @@
                 document.getElementById('content_cagr').textContent = CACR.toLocaleString();
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                bar.animate(percentageEstimatedReturn);
+                console.log(percentageEstimatedReturn, "percentageEstimatedReturn");
+                if(percentageEstimatedReturn > 0) {
+                    bar.animate(percentageEstimatedReturn);    
+                }
+                else {
+                    bar.animate(0);    
+                }
                 renderChart(xValues, yValues, zValues, bValues, uValues);
+                console.log(xValues);
             })
             .catch(error => alert("Something went wrong!"));
     }
@@ -1183,9 +1209,9 @@
 
 document.addEventListener('click', function(event) {
     const clickedElement = event.target;
-
+    const mainDropdown = document.querySelector('.select_box_new');
     if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
-        const mainDropdown = document.querySelector('.select_box_new');
+        
         const mainValue = document.querySelector('.selected_option');
 
         const selectedValue = clickedElement.dataset.value;
@@ -1194,14 +1220,15 @@ document.addEventListener('click', function(event) {
         mainValue.dataset.value = selectedValue;
 
         if(mainDropdown.classList.contains("dropdown_collased")) {
+            mainDropdown.classList.remove("dropdown_collased");
+        }
+        else {
+            mainDropdown.classList.add("dropdown_collased");
+        }
+    }
+
+    if (!mainDropdown.contains(clickedElement)) {
         mainDropdown.classList.remove("dropdown_collased");
-    }
-    else {
-        mainDropdown.classList.add("dropdown_collased");
-    }
-    } else {
-        const mainDropdown = document.querySelector('.select_box_new');
-        mainDropdown.classList.add("dropdown_collapsed");
     }
 });
 
@@ -1307,6 +1334,12 @@ function inputChange() {
         listItem.dataset.value = result.symbol;
         dropdownOptions.appendChild(listItem);
     });
+    
+    if(results.length < 1) {
+        const listItem = document.createElement("p");
+        listItem.textContent = "No Result Found!";
+        dropdownOptions.appendChild(listItem);
+    }
 }
 
 </script>

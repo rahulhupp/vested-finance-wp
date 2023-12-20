@@ -89,7 +89,12 @@ get_header(); ?>
                                                     alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
                                             <?php endif; ?>
                                         <?php } else { ?>
-                                            <img src="<?php the_sub_field('image'); ?>" />
+                                            <?php
+                                           $image = get_sub_field('image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                                         <?php } ?>
                                         <?php if ($index == 1) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>  
                                     </div>
