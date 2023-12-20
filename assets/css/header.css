@@ -330,8 +330,8 @@ body.mega-menu-open .site-content:before {
     letter-spacing: -0.36px;
     display: flex;
     align-items: center;
-	width: 100%;
 	justify-content: center;
+	width: 130px;
 }
 
 .geolocation_banner a:hover {
@@ -347,7 +347,6 @@ body.mega-menu-open .site-content:before {
 .geolocation_banner .content {
     padding: 0 26px;
     text-align: left;
-    width: calc(100% - 29px);
 }
 
 
@@ -666,7 +665,6 @@ body.mega-menu-open .site-content:before {
     }
     .geolocation_banner .content {
         padding: 0 12px;
-        width: calc(100% - 18px);
     }
     .geolocation_banner p {
         font-size: 16px;
