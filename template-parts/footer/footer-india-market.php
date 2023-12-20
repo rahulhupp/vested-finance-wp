@@ -6,7 +6,15 @@
                     <div class="site_info_col">
                         <div class="site_info_wrap">
                             <h2>
-                                <a href="<?php echo site_url() ?>"><img src="<?php the_field('site_logo_in', 'option'); ?>" alt="Site Logo"></a>
+                                <a href="<?php echo site_url() ?>">
+                               
+                                <?php
+                            $image = get_field('site_logo_in', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
+                            </a>
                             </h2>
                             <p class="footer_address"><?php the_field('site_address_in', 'option'); ?></p>
                             <?php $link = get_field('contact_url_in', 'option');
@@ -23,19 +31,39 @@
                                 <div class="app_wrap">
                                     <div class="single_app">
                                         <a href="<?php the_field('google_play_url_in', 'option'); ?>" target="_blank">
-                                            <img src="<?php the_field('google_play_icon_in', 'option'); ?>" alt="Google Play Store">
+                                            
+                                            <?php
+                            $image = get_field('google_play_icon_in', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                         </a>
                                     </div>
                                     <div class="single_app">
                                         <a href="<?php the_field('apple_app_store_url_in', 'option'); ?>" target="_blank">
-                                            <img src="<?php the_field('apple_app_store_icon_in', 'option'); ?>" alt="Apple App Store">
+                                           
+                                            <?php
+                            $image = get_field('apple_app_store_icon_in', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                         </a>
                                     </div>
                                 </div>
                                 <?php if (have_rows('social_media_links_in', 'option')) : ?>
                                     <div class="footer_social_wrap">
                                         <?php while (have_rows('social_media_links_in', 'option')) : the_row(); ?>
-                                            <a href="<?php the_sub_field('social_media_url_in'); ?>" class="footer_icon" target="_blank"><img src="<?php the_sub_field('social_media_icon_in'); ?>"></a>
+                                            <a href="<?php the_sub_field('social_media_url_in'); ?>" class="footer_icon" target="_blank">
+                                            <img src="<?php the_sub_field('social_media_icon_in'); ?>">
+                                            <?php
+                            $image = get_sub_field('social_media_icon_in');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
+                                        </a>
                                         <?php endwhile; ?>
                                     </div>
                                 <?php endif; ?>
@@ -145,7 +173,13 @@
 
                                 <div class="disclosure_heading">
                                     <h3><?php the_sub_field('disclosure_name_in'); ?></h3>
-                                    <img src="<?php the_sub_field('country_icon_in'); ?>" alt="">
+                                    
+                                    <?php
+                            $image = get_sub_field('country_icon_in');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                 </div>
 
                                 <div class="disclosure_content">
