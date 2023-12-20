@@ -639,6 +639,58 @@
         margin: 0;
     }
 
+
+    /* 20/12/23 */
+    #stocks_chart {
+        position: relative;
+        margin-top: 30px;
+    }
+
+    .legend_color {
+        width: 40px;
+        height: 20px;
+    }
+
+    .legend_color.stock_color {
+        background: #002852;
+    }
+
+    .legend_color.sp_color {
+        background: #ec9235;
+    }
+
+    .legend_color.nifty_color {
+        background: #3861f6;
+    }
+
+    .chart_legends {
+        position: absolute;
+        top: -30px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+    }
+
+    .single_legend {
+        display: flex;
+        align-items: center;
+    }
+
+    .legend_name {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .single_legend:not(:first-child) {
+        margin-left: 15px;
+    }
+
+    .nifty_legend {
+        display: none;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -890,6 +942,32 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     <div class="container">
         <div id="stocks_chart" class="blur">
             <canvas id="myChart" style="width:100%;max-width:1170px"></canvas>
+            <div class="chart_legends">
+                <div class="single_legend">
+                    <div class="legend_color stock_color">
+
+                    </div>
+                    <div class="legend_name">
+                        Stocks Value
+                    </div>
+                </div>
+                <div class="single_legend">
+                    <div class="legend_color sp_color">
+
+                    </div>
+                    <div class="legend_name">
+                        S&P Value
+                    </div>
+                </div>
+                <div class="single_legend nifty_legend">
+                    <div class="legend_color nifty_color">
+
+                    </div>
+                    <div class="legend_name">
+                        Nifty 50
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -999,6 +1077,10 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     const yValues = generateRandomValues(1500, 1, 10000);
     const zValues = generateRandomValues(1500, 1, 10000);
     const bValues = generateRandomValues(1500, 1, 10000);
+    // const xValues = [];
+    // const yValues = [];
+    // const zValues = [];
+    // const bValues = [];
     renderChart(xValues, yValues, zValues, bValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
@@ -1093,6 +1175,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
     function renderChart(xValues, yValues, zValues, bValues) {
         const dateObjects = xValues.map(dateString => new Date(dateString));
+        const inrCurrencyRadioButton = document.getElementById('inr_currency');
+        const usdCurrencyRadioButton = document.getElementById('usd_currency');
         const formattedLabels = dateObjects.map(date => {
             const month = date.toLocaleString('default', {
                 month: 'short'
@@ -1101,7 +1185,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             const year = date.getFullYear(); // Get full year
             return `${month} ${day}, ${year}`;
         });
-        new Chart("myChart", {
+        const myChart = new Chart("myChart", {
             type: "line",
             data: {
                 labels: formattedLabels,
@@ -1154,9 +1238,23 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     }
                 },
                 legend: {
-                    display: true
+                    display: false
                 }
             }
+        });
+        inrCurrencyRadioButton.addEventListener('change', function() {
+            const nifty50DatasetIndex = 2;
+
+            myChart.data.datasets[nifty50DatasetIndex].hidden = !inrCurrencyRadioButton.checked;
+            document.querySelector('.nifty_legend').style.display = 'flex';
+            myChart.update();
+        });
+
+        usdCurrencyRadioButton.addEventListener('change', function() {
+            const nifty50DatasetIndex = 2;
+            myChart.data.datasets[nifty50DatasetIndex].hidden = usdCurrencyRadioButton.checked;
+            myChart.update();
+            document.querySelector('.nifty_legend').style.display = 'none';
         });
     }
     document.querySelector('.selected_option').addEventListener("click", function() {
