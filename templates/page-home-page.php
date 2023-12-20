@@ -399,13 +399,20 @@ $image = get_field('easy_access_image');
             // Process the location information
             console.log('User location based on IP:', data);
             if (data.country === "IN") {
+                var globalBanner = document.querySelector(".geolocation_banner");
+                if (globalBanner) {
+                    globalBanner.style.display = "flex"; 
+                    if (document.body.classList.contains('page-template-page-home-page')) {
+                        globalBanner.innerHTML = "<div class='left india'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>"
+                    }
+                }
                 console.log('show geolocation_banner');
             } else {
                 console.log('hide geolocation_banner');
             }
             })
             .catch(error => {
-            console.error('Error getting user location based on IP:', error);
+                console.error('Error getting user location based on IP:', error);
             });
     }
 </script>
