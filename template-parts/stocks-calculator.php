@@ -1002,6 +1002,11 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         document.querySelector('#start_month').textContent = result;
         document.querySelector('#end_month').textContent = resultEnd;
         triggerAPI(stockSelector, startDate, endDate)
+            .then(data => {
+                // Update the chart with the processed data
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
+            })
+            .catch(error => alert("Something went wrong!"));
     });
 
     // Event handler for currency radio buttons
@@ -1073,48 +1078,36 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         }
         return xValues;
     };
-    const xValues = generateXValues(10, 2000, 200);
-    const yValues = generateRandomValues(1500, 1, 10000);
-    const zValues = generateRandomValues(1500, 1, 10000);
-    const bValues = generateRandomValues(1500, 1, 10000);
-    // const xValues = [];
-    // const yValues = [];
-    // const zValues = [];
-    // const bValues = [];
+    var xValues = [];
+    var yValues = [];
+    var zValues = [];
+    var bValues = [];
     renderChart(xValues, yValues, zValues, bValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
         const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
-        const fetchStockData = fetch(apiUrl)
-            .then(response => response.json());
-
-        const fetchSP500Data = fetch(sp500Api)
-            .then(response => response.json());
-
-        const fetchNiftyData = fetch(niftyApi)
-            .then(response => response.json());
-
-        Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData])
-            .then(([stockData, sp500Data, niftyData, usdInrData]) => {
+        const fetchStockData = fetch(apiUrl).then(response => response.json());
+        const fetchSP500Data = fetch(sp500Api).then(response => response.json());
+        const fetchNiftyData = fetch(niftyApi).then(response => response.json());
+        return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData])
+            .then(([stockData, sp500Data, niftyData]) => {
                 // Process stockData
-                const xValues = [];
-                const yValues = [];
-                const zValues = [];
-                const bValues = [];
-                const uValues = [];
+                var xValues = [];
+                var yValues = [];
+                var zValues = [];
+                var bValues = [];
                 const startPrice = stockData.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
                 const firstDate = new Date(stockData.data[0].Date);
                 const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
-                const startStockQty = parseFloat(10000 / startPrice).toFixed(2);
                 const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
+                const startStockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
                 const currency = document.querySelector('input[name="currency"]:checked').value;
-
                 const stockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
                 const lastPortfolioValue = parseFloat(endPrice * stockQty).toFixed(2);
                 const estReturns = parseFloat(lastPortfolioValue - investmentAmount);
@@ -1141,13 +1134,13 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 // Process sp500Data
 
                 sp500Data.data.forEach(item => {
-                    let sp500Value = Math.round(item.Adj_Close);
-                    zValues.push(sp500Value);
+                    let spResult = Math.round(item.Adj_Close);
+                    zValues.push(spResult);
                 });
 
                 niftyData.data.forEach(item => {
-                    let niftyValue = Math.round(item.Adj_Close);
-                    bValues.push(niftyValue);
+                    let niftyResult = Math.round(item.Adj_Close);
+                    bValues.push(niftyResult);
                 });
 
                 // Continue with the rest of your calculations and rendering
@@ -1168,7 +1161,12 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 } else {
                     bar.animate(0);
                 }
-                renderChart(xValues, yValues, zValues, bValues);
+                return {
+                    xValues,
+                    yValues,
+                    zValues,
+                    bValues
+                };
             })
             .catch(error => alert("Something went wrong!"));
     }
@@ -1208,7 +1206,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                         data: bValues,
                         borderColor: "#3861f6",
                         fill: false,
-                        pointRadius: 0
+                        pointRadius: 0,
+                        hidden: true
                     }
                 ]
             },
