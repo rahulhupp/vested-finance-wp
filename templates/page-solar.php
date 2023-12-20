@@ -147,7 +147,12 @@ get_header(); ?>
     <div class="wrapper">
       <h2><?php the_field('project_heading'); ?></h2>
       <div class="blur_image">
-        <img src="<?php the_field('project_image'); ?>" />
+        <?php
+                                            $image = get_field('project_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
         <div class="btn">
             <a href="<?php the_field('project_button_url'); ?>" class="btn_dark" target="_blank"><?php the_field('project_button_text'); ?></a>
         </div>
@@ -217,7 +222,7 @@ get_header(); ?>
                     <div class="main_item">
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.png"  alt="co2"/>
                             </div>
                             <div class="content">
                                 <h3>350 kg <span>/year</span></h3>
@@ -226,7 +231,7 @@ get_header(); ?>
                         </div>
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.png" alt="income card" />
                             </div>
                             <div class="content">
                                 <h3>&#8377; 563 <sup>1</sup></h3>
@@ -235,7 +240,7 @@ get_header(); ?>
                         </div>
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.png" alt="Investment returns" />
                             </div>
                             <div class="content">
                                 <h3>12% p.a. <sup>2</sup></h3>
@@ -265,7 +270,13 @@ get_header(); ?>
       <div class="invest_grid">
           <?php while (have_rows('Invest_item')) : the_row(); ?>
             <div class="item" style="background: <?php the_sub_field('Invest_background_color') ?>">
-              <img src="<?php the_sub_field('Invest_icon') ?>" />
+              <?php
+                                            $image = get_sub_field('Invest_icon');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
+
               <h3 style="color: <?php the_sub_field('Invest_text_color') ?>"><?php the_sub_field('Invest_title') ?></h3>
               <p style="color: <?php the_sub_field('Invest_text_color') ?>"><?php the_sub_field('Invest_content') ?></p>
             </div>
@@ -285,7 +296,12 @@ get_header(); ?>
                 <div class="portfolio_slider slider single-item">
                     <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                         <div class="single_portfolio_slider">
-                            <img src="<?php the_sub_field('slider_image') ?>" alt="Portfolio" />
+                        <?php
+                                            $image = get_sub_field('slider_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
