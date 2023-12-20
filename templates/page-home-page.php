@@ -386,6 +386,29 @@ $image = get_field('easy_access_image');
 }
 </script>
 <?php endif; ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        getUserLocationByIP();
+    });
+
+    function getUserLocationByIP() {
+        // Make a request to the ipinfo.io API to get user location based on IP
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+            // Process the location information
+            console.log('User location based on IP:', data);
+            if (data.country) {
+                console.log('show geolocation_banner');
+            } else {
+                console.log('hide geolocation_banner');
+            }
+            })
+            .catch(error => {
+            console.error('Error getting user location based on IP:', error);
+            });
+    }
+</script>
 <?php get_footer(); ?>
 
 
