@@ -1102,10 +1102,10 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
                 const firstDate = new Date(stockData.data[0].Date);
                 const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
-                const startStockQty = parseFloat(1000 / startPrice).toFixed(2);
                 const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
+                const startStockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
                 const currency = document.querySelector('input[name="currency"]:checked').value;
                 const stockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
