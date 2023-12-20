@@ -1099,6 +1099,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 var zValues = [];
                 var bValues = [];
                 const startPrice = stockData.data[0].Adj_Close;
+                const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
                 const firstDate = new Date(stockData.data[0].Date);
                 const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
@@ -1106,6 +1107,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 const investmentAmountString = document.getElementById('invest_val').value;
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
                 const startStockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
+                const startSPQty = parseFloat(investmentAmount / spStartPrice).toFixed(2);
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
                 const currency = document.querySelector('input[name="currency"]:checked').value;
                 const stockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
@@ -1134,7 +1136,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 // Process sp500Data
 
                 sp500Data.data.forEach(item => {
-                    let spResult = Math.round(item.Adj_Close);
+                    let spAmount = item.Adj_Close * startSPQty;
+                    let spResult = Math.round(spAmount);
                     zValues.push(spResult);
                 });
 
