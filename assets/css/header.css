@@ -309,22 +309,9 @@ body.mega-menu-open .site-content:before {
     display: none;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    visibility: hidden;
 }
 
-.geolocation_banner .left.india .content {
-    padding-left: 0;
-    width: 100%;
-}
-
-.geolocation_banner .left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.geolocation_banner .left p {
+.geolocation_banner p {
     margin: 0;
     color: #fff;
     font-size: 18px;
@@ -333,7 +320,7 @@ body.mega-menu-open .site-content:before {
     line-height: 130%;
 }
 
-.geolocation_banner .right a {
+.geolocation_banner a {
     padding: 9px 12px;
     border-radius: 5px;
     border: 2px solid rgba(209, 223, 254, 0.30);
@@ -347,31 +334,22 @@ body.mega-menu-open .site-content:before {
 	justify-content: center;
 }
 
-.geolocation_banner .right a:hover {
+.geolocation_banner a:hover {
     opacity: 0.8;
 }
 
-.geolocation_banner .right a img {
+.geolocation_banner a img {
     width: 20px;
     height: 20px;
     margin-right: 6px;
 }
 
-.geolocation_banner .right {
-    display: flex;
-    width: 130px;
-}
-
-.geolocation_banner .left .content {
+.geolocation_banner .content {
     padding: 0 26px;
     text-align: left;
     width: calc(100% - 29px);
 }
 
-.geolocation_banner .left .close {
-    width: 29px;
-    cursor: pointer;
-}
 
 @media only screen and (max-width: 991px) {
 	body.mega-menu-open .site-content:before {
@@ -686,39 +664,27 @@ body.mega-menu-open .site-content:before {
 	.geolocation_banner {
         padding: 12px 24px;
     }
-    .geolocation_banner .left .close {
-        width: 18px;
-    }
-    .geolocation_banner .left .content {
+    .geolocation_banner .content {
         padding: 0 12px;
         width: calc(100% - 18px);
     }
-    .geolocation_banner .left p {
+    .geolocation_banner p {
         font-size: 16px;
-    }
-    .geolocation_banner .left {
-        width: calc(100% - 130px);
     }
 }
 
 @media (max-width: 575px) {
-    .geolocation_banner .left p {
+    .geolocation_banner p {
         font-size: 12px;
     }
-    .geolocation_banner .right a {
+    .geolocation_banner a {
         padding: 2px 18px;
         font-size: 14px;
     }
-    .geolocation_banner .right {
-        width: 95px;
-    }
-    .geolocation_banner .right.learn-more a {
+    .geolocation_banner a {
 	    padding: 2px 8px;
 	}
-    .geolocation_banner .left {
-        width: calc(100% - 95px);
-    }
-    .geolocation_banner .right a img {
+    .geolocation_banner  a img {
         width: 17px;
         height: 17px;
     }
