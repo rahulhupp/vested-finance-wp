@@ -398,17 +398,20 @@ $image = get_field('easy_access_image');
             .then(data => {
             // Process the location information
             console.log('User location based on IP:', data);
-            if (data.country === "IN") {
-                var globalBanner = document.querySelector(".geolocation_banner");
-                if (globalBanner) {
-                    globalBanner.style.display = "flex"; 
+            var globalBanner = document.querySelector(".geolocation_banner");
+            if (globalBanner) {
+                globalBanner.style.display = "flex"; 
+                if (data.country === "IN") {
                     if (document.body.classList.contains('page-template-page-home-page')) {
-                        globalBanner.innerHTML = "<div class='left india'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>"
+                        globalBanner.innerHTML = "<div class='left india'><div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
                     }
+                    console.log('show geolocation_banner');
+                } else {
+                    if (document.body.classList.contains('page-template-page-home-page')) {
+                        globalBanner.innerHTML = "<div class='left'><div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a></div>";
+                    }
+                    console.log('hide geolocation_banner');
                 }
-                console.log('show geolocation_banner');
-            } else {
-                console.log('hide geolocation_banner');
             }
             })
             .catch(error => {
