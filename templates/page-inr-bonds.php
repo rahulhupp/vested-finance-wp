@@ -68,7 +68,12 @@ get_header(); ?>
                 <div class="explore_bonds_content">
                     <h2 class="section_title align_left mobile_hide"><span><?php the_field('explore_bonds_heading'); ?></span></h2>
                     <h2 class="section_title align_left desktop_hide"><span><?php the_field('explore_bonds_heading_mobile'); ?></span></h2>
-                    <img src="<?php the_field('explore_bonds_image'); ?>" alt="<?php the_field('explore_bonds_heading'); ?>" class="desktop_hide">
+                     <?php
+                                            $image = get_field('explore_bonds_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide"/>
+                                            <?php endif; ?>
                     <?php if (have_rows('explore_corporate_bonds_list')) : ?>
                         <div class="explore_bonds_list mobile_hide">
                             <?php while (have_rows('explore_corporate_bonds_list')) : the_row(); ?>
