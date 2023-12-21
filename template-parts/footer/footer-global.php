@@ -6,7 +6,14 @@
                     <div class="site_info_col">
                         <div class="site_info_wrap">
                             <h2>
-                                <a href="<?php echo site_url() ?>"><img src="<?php the_field('site_logo', 'option'); ?>" alt="Site Logo"></a>
+                                <a href="<?php echo site_url() ?>">
+                                <?php
+                            $image = get_field('site_logo', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
+                            </a>
                             </h2>
                             <p class="footer_address"><?php the_field('site_address', 'option'); ?></p>
                             <?php $link = get_field('contact_url', 'option');
@@ -23,19 +30,39 @@
                                 <div class="app_wrap">
                                     <div class="single_app">
                                         <a href="<?php the_field('google_play_url', 'option'); ?>" target="_blank">
-                                            <img src="<?php the_field('google_play_icon', 'option'); ?>" alt="Google Play Store">
+                                            
+                                            <?php
+                            $image = get_field('google_play_icon', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                         </a>
                                     </div>
                                     <div class="single_app">
                                         <a href="<?php the_field('apple_app_store_url', 'option'); ?>" target="_blank">
-                                            <img src="<?php the_field('apple_app_store_icon', 'option'); ?>" alt="Apple App Store">
+                                           
+                                             <?php
+                            $image = get_field('apple_app_store_icon', 'option');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                         </a>
                                     </div>
                                 </div>
                                 <?php if (have_rows('social_media_links', 'option')) : ?>
                                     <div class="footer_social_wrap">
                                         <?php while (have_rows('social_media_links', 'option')) : the_row(); ?>
-                                            <a href="<?php the_sub_field('social_media_url'); ?>" class="footer_icon" target="_blank"><img src="<?php the_sub_field('social_media_icon'); ?>"></a>
+                                            <a href="<?php the_sub_field('social_media_url'); ?>" class="footer_icon" target="_blank">
+                                            
+                                            <?php
+                            $image = get_sub_field('social_media_icon');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
+                                        </a>
                                         <?php endwhile; ?>
                                     </div>
                                 <?php endif; ?>
@@ -157,7 +184,12 @@
 
                                 <div class="disclosure_heading">
                                     <h3><?php the_sub_field('disclosure_name'); ?></h3>
-                                    <img src="<?php the_sub_field('country_icon'); ?>" alt="">
+                                     <?php
+                            $image = get_sub_field('country_icon');
+                          if (!empty($image)): ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
+                          <?php endif; ?>
                                 </div>
 
                                 <div class="disclosure_content">
