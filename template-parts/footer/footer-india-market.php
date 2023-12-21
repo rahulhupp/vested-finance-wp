@@ -56,7 +56,7 @@
                                     <div class="footer_social_wrap">
                                         <?php while (have_rows('social_media_links_in', 'option')) : the_row(); ?>
                                             <a href="<?php the_sub_field('social_media_url_in'); ?>" class="footer_icon" target="_blank">
-                                            <img src="<?php the_sub_field('social_media_icon_in'); ?>">
+                                          
                                             <?php
                             $image = get_sub_field('social_media_icon_in');
                           if (!empty($image)): ?>
