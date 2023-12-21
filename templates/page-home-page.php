@@ -386,6 +386,35 @@ $image = get_field('easy_access_image');
 }
 </script>
 <?php endif; ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        getUserLocationByIP();
+    });
+
+    function getUserLocationByIP() {
+        // Make a request to the ipinfo.io API to get user location based on IP
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+            // Process the location information
+            console.log('User location based on IP:', data);
+            var globalBanner = document.querySelector(".geolocation_banner");
+            if (globalBanner) {
+                globalBanner.style.display = "flex"; 
+                if (data.country === "IN") {
+                    globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                    console.log('show geolocation_banner');
+                } else {
+                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                    console.log('hide geolocation_banner');
+                }
+            }
+            })
+            .catch(error => {
+                console.error('Error getting user location based on IP:', error);
+            });
+    }
+</script>
 <?php get_footer(); ?>
 
 

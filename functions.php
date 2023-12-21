@@ -194,88 +194,44 @@ function custom_comments_template($comment_template) {
 add_filter('comments_template', 'custom_comments_template');
 
 
-function get_client_ip() {
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP'))
-       $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-       $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-       $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-       $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-       $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-       $ipaddress = getenv('REMOTE_ADDR');
-    else
-       $ipaddress = 'UNKNOWN';
-
-    return $ipaddress;
-}
-
-
 
 // Detect IP Address
-function custom_front_page_redirect() {   
-    $myipd = get_client_ip();  
-    $userInfo = geoip_detect2_get_info_from_ip($myipd, NULL);
-    $mycountry = $userInfo->country->isoCode;
-    ?>
-        <div style="display: none">
-            country isoCode is <?php echo $mycountry; ?>
-            client_ip is <?php echo $myipd; ?>
-        </div>
-    <?php
-    $chtml = '';
-    
-    if ($mycountry === 'IN') {
-        if (is_page_template('templates/page-us-stock-global.php')) {
-            $chtml = "<div class='left'><div class='content global-page'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div></div><div class='right'><a href='".home_url('in')."'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
-            // echo "Go back to India page";
-        }
-        if (is_page_template('templates/page-home-page.php')) {
-            $chtml = "<div class='left india'><div class='content india-page'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
-            // echo "Show learn more";
-        }
-        if (is_page_template('templates/page-pricing-global.php')) {
-            $chtml = "<div class='left'><div class='content global-pricing-page'><p>You're on our Global website. Visit the India website to explore our pricing for Indian users.</p></div></div><div class='right'><a href='".home_url('in')."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/india.png'>India</a></div>";
-        }
-        if (is_page_template('templates/page-pricing-india.php')) {
-            $chtml = "<div class='left'><div class='content india-pricing-page'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
-        } 
-    } else {
-        if (is_page_template('templates/page-us-stock-global.php')) {
-            $chtml = "<div class='left'><div class='content global-page'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url()."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
-            // echo "Show learn more";
-        }
-        if (is_page_template('templates/page-home-page.php')) {
-            $chtml = "<div class='left'><div class='content india-page'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div></div><div class='right'><a href='".home_url()."'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
-            // echo "Go back to Global page";
-        }
-        if (is_page_template('templates/page-pricing-india.php')) {
-            $chtml = "<div class='left'><div class='content india-pricing-page'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div></div><div class='right'><a href='".home_url()."/pricing'><img src='".get_stylesheet_directory_uri()."/assets/images/global.png'>Global</a></div>";
-        }
-        if (is_page_template('templates/page-pricing-global.php')) {
-            $chtml = "<div class='left'><div class='content global-pricing-page'><p>Discover the new face of Vested! Read our latest update to know more.</p></div></div><div class='right learn-more'><a href='".home_url('')."/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank'>Learn more</a></div>";
-        }
-    }
-    ?>
-    <?php 
-        if (is_page_template('templates/page-home-page.php') || is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-pricing-global.php') || is_page_template('templates/page-pricing-india.php') ) {
-            ?>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".geolocation_banner").innerHTML = "<?php echo $chtml; ?>";
-                    var globalBanner = document.querySelector(".geolocation_banner");
-                    if (globalBanner) {
-                        globalBanner.style.display = "flex"; 
+function custom_front_page_redirect() {  ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            getUserLocationByIP();
+        });
+
+        function getUserLocationByIP() {
+            // Make a request to the ipinfo.io API to get user location based on IP
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                // Process the location information
+                console.log('2 User location based on IP:', data);
+                var globalBanner = document.querySelector(".geolocation_banner");
+                console.log('globalBanner', globalBanner);
+                if (globalBanner) {
+                    console.log('Inner globalBanner');
+                    globalBanner.style.display = "flex"; 
+                    console.log('data.country', data.country);
+                    if (data.country === "IN") {
+                        if (document.body.classList.contains('page-template-page-us-stock-global')) {
+                            globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
+                        }
+                    } else {
+                        console.log('hide geolocation_banner');
+                        if (document.body.classList.contains('page-template-page-us-stock-global')) {
+                            globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                        }
                     }
+                }
+                })
+                .catch(error => {
+                    console.error('Error getting user location based on IP:', error);
                 });
-            </script>
-            <?php
         }
-    ?>
+    </script>
     <?php
 }
 add_action('wp_footer', 'custom_front_page_redirect');
