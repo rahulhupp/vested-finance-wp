@@ -356,7 +356,7 @@ $image = get_field('why_inveset_image_global');
                 console.log('data.country', data.country);
                 if (data.country === "IN") {
                     if (document.body.classList.contains('page-template-page-us-stock-global')) {
-                        globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.webp'>India</a>";
                     }
                 } else {
                     console.log('hide geolocation_banner');
