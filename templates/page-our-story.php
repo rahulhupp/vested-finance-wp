@@ -96,5 +96,30 @@ $image = get_sub_field('image');
 
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  getUserLocationByIP();
+});
 
+function getUserLocationByIP() {
+  // Make a request to the GeoJS API to get user location based on IP
+  const apiUrl = 'https://get.geojs.io/v1/ip/geo.js';
+
+  // Add a script element to the document to load the GeoJS API
+  const scriptElement = document.createElement('script');
+  scriptElement.src = apiUrl;
+  document.head.appendChild(scriptElement);
+
+  // Callback function to process the location information
+  window.geoip_callback = function(data) {
+    // Remove the script element after executing the callback
+    document.head.removeChild(scriptElement);
+
+    // Process the location information
+    console.log('User location based on IP:', data);
+    // You can extract relevant information from the 'data' object
+    alert('Your approximate location: ' + data.city + ', ' + data.region);
+  };
+}
+</script>
 <?php get_footer(); ?>
