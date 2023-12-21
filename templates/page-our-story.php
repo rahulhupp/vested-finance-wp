@@ -65,11 +65,11 @@ $image = get_sub_field('image');
                   <div class="bio">
                     <div class="label">
                       <?php the_sub_field('bio'); ?>
-                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.png" alt="info">
+                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.webp" alt="info">
                     </div>
                     <div class="social">
                       <a href="<?php the_sub_field('linkedin_link'); ?>" target="_blank">
-                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.png" alt="linkdin" />
+                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.webp" alt="linkdin" />
                       </a>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ $image = get_sub_field('image');
                   <div class="modal-content">
                     <div class="head-part">
                       <h3><?php the_sub_field('bio'); ?></h3>
-                      <img class="close" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/close.png">
+                      <img class="close" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/close.webp">
                     </div>
                     <div class="content-area">
                       <?php the_sub_field('bio_content'); ?>

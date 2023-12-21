@@ -518,7 +518,7 @@ body.mega-menu-open .site-content:before {
 
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator {
 		display: block;
-		background-image: url('../../assets/images/chevron-down.png');
+		background-image: url('../../assets/images/chevron-down.webp');
 		width: 20px;
 		height: 20px;
 		background-size: 20px;

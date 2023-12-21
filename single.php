@@ -112,9 +112,9 @@ while (have_posts()) :
 						<div class="single_module_info_item last">
 							<div class="social-share-block">
 								<button class="sharing-icon">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="link" />
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="link" />
 								</button>
-								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="Share Icon" /><span>Share</span></button>
+								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="Share Icon" /><span>Share</span></button>
 								<ul>
 									<?php
 									$current_page_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -122,13 +122,13 @@ while (have_posts()) :
 
 									<li>
 										<a id="copyLink" href="">
-											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.png" alt="link" />
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
 											<span>Copy link</span>
 										</a>
 									</li>
 									<li class="share_whatsapp">
 										<a href="javascript:void(0);" target="_blank">
-											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.png" alt="whatsapp" />
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
 											<span>Share on Whatsapp</span>
 										</a>
 									</li>
