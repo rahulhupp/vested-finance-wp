@@ -672,15 +672,20 @@ body.mega-menu-open .site-content:before {
 }
 
 @media (max-width: 575px) {
+	.geolocation_banner .content {
+		padding-left: 0;
+		width: calc(100% - 100px);
+	}
     .geolocation_banner p {
         font-size: 12px;
     }
     .geolocation_banner a {
         padding: 2px 18px;
         font-size: 14px;
+		width: 94px;
     }
-    .geolocation_banner a {
-	    padding: 2px 8px;
+    .geolocation_banner a.learn_more_btn {
+		padding: 2px 8px;
 	}
     .geolocation_banner  a img {
         width: 17px;
