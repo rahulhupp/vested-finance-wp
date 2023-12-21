@@ -1036,7 +1036,7 @@ section.invest_wisely_sec .container {
 
 	.home_banner:before {
 		left: 0;
-		background: url(../../images/home_banner_mobile.png);
+		background: url(../../images/home_banner_mobile.webp);
 		top: auto;
 		bottom: 31px;
 		width: 100%;

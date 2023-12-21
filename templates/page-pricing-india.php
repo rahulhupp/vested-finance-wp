@@ -300,7 +300,7 @@ get_header(); ?>
                     globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
                     console.log('show geolocation_banner');
                 } else {
-                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div><a href='<?php home_url() ?>/pricing'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div><a href='<?php home_url() ?>/pricing'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.webp'>Global</a>";
                     console.log('hide geolocation_banner');
                 }
             }

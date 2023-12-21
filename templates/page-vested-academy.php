@@ -122,14 +122,14 @@ get_header(); ?>
                                        <ul>
                                             <li>
                                                 <a class="copyLink">
-                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.png" alt="link" />
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
                                                     <input class="copyPostLink" type="hidden" value="<?php echo $term_link; ?>" />
                                                     <span>Copy link</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="share_whatsapp" href="javascript:void(0);" data-title="<?php echo $module_name; ?>" data-url="<?php echo $term_link; ?>" target="_blank">
-                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.png" alt="whatsapp" />
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
                                                     <span>Share on Whatsapp</span>
                                                 </a>
                                             </li>

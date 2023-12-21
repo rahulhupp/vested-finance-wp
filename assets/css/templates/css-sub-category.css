@@ -366,7 +366,7 @@ div#is-ajax-search-result-4325 {
 }
 .main-category ul button.slick-prev:before {
   content: "";
-  background-image: url(../../images/chevron.png);
+  background-image: url(../../images/chevron.webp);
   background-size: 24px;
   width: 24px;
   height: 24px;
@@ -379,7 +379,7 @@ div#is-ajax-search-result-4325 {
 }
 .main-category ul button.slick-next:before {
   content: "";
-  background-image: url(../../images/chevron.png);
+  background-image: url(../../images/chevron.webp);
   background-size: 24px;
   width: 24px;
   height: 24px;

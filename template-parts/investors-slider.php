@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="platform_icon">
                                         <a href="<?php the_sub_field('investor_link') ?>" target="_blank">
-                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.png" alt="Review Platform">
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.webp" alt="Review Platform">
                                         </a>
                                     </div>
                                 </div>
