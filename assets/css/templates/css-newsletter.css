@@ -139,7 +139,7 @@ div#showMessage {
 }
 .newsletter-section .newsletter-image:before {
   content: "";
-  background-image: url(../../images/subscriber-logo-bg.png);
+  background-image: url(../../images/subscriber-logo-bg.webp);
   position: absolute;
   top: -36px;
   bottom: -50px;
@@ -241,7 +241,7 @@ div#showMessage {
       width: auto;
   }
   .newsletter-section .newsletter-image:before {
-      background-image: url(../../images/mobile-subscriber-logo-bg.png);
+      background-image: url(../../images/mobile-subscriber-logo-bg.webp);
       background-size: contain;
       background-position: top right;
       right: 0;

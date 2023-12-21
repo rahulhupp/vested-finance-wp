@@ -142,7 +142,7 @@
         defaultBox.innerHTML = `
             <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
                 <div class="plus-icon">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.png" alt="plus-icon" />
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.webp" alt="plus-icon" />
                 </div>
                 <div class="content">
                     <strong>Create Your Own </strong>
