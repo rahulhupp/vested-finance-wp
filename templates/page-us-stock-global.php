@@ -347,7 +347,7 @@ $image = get_field('why_inveset_image_global');
             .then(response => response.json())
             .then(data => {
             // Process the location information
-            console.log('User location based on IP:', data);
+            console.log('2 User location based on IP:', data);
             var globalBanner = document.querySelector(".geolocation_banner");
             console.log('globalBanner', globalBanner);
             if (globalBanner) {
