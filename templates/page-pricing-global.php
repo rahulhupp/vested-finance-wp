@@ -286,7 +286,7 @@ get_header(); ?>
 
     function getUserLocationByIP() {
         // Make a request to the ipinfo.io API to get user location based on IP
-        fetch('https://ipinfo.io/json')
+        fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
             // Process the location information
