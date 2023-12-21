@@ -644,6 +644,7 @@
     #stocks_chart {
         position: relative;
         margin-top: 30px;
+        z-index: 1;
     }
 
     .legend_color {
@@ -695,6 +696,33 @@
         display: none;
         width: 32px;
         height: 32px;
+        animation: loaderamin 0.5s infinite;
+    }
+
+    .canvas_loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+
+    }
+
+    #myChart {
+        background: #fff;
+    }
+
+    #chartLoader {
+        width: 100%;
+        height: 400px;
+        position: relative;
+    }
+
+    #chartLoader svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         animation: loaderamin 0.5s infinite;
     }
 
@@ -790,6 +818,16 @@
 
         .calculator .submit_btn {
             margin-top: 30px;
+        }
+
+        .legend_color {
+            width: 20px;
+            height: 10px;
+        }
+
+        .legend_name {
+            font-size: 10px;
+            line-height: 1;
         }
     }
 
@@ -970,7 +1008,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 <section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
     <div class="container">
         <div id="stocks_chart" class="blur">
-            <canvas id="myChart" style="width:100%;max-width:1170px"></canvas>
+            <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas>
             <div class="chart_legends">
                 <div class="single_legend">
                     <div class="legend_color stock_color">
@@ -997,6 +1035,18 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     </div>
                 </div>
             </div>
+            <div id="chartLoader" style="display: none;">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <g>
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
         </div>
 
     </div>
@@ -1009,7 +1059,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
-
         // Retrieve and log the values of the form elements
         var stockSelector = document.getElementById('resultsList').dataset.value;
         var investmentAmount = document.getElementById('invest_val').value;
@@ -1032,10 +1081,39 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         document.querySelector('#end_month').textContent = resultEnd;
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                // Update the chart with the processed data
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
             })
             .catch(error => alert("Something went wrong!"));
+
+        var chartLoader = document.getElementById("chartLoader");
+        chartLoader.style.display = "block";
+        var stocksChartDiv = document.getElementById('stocks_chart');
+        var canvasToRemove = document.getElementById("myChart");
+        if (canvasToRemove) {
+            canvasToRemove.parentNode.removeChild(canvasToRemove);
+        }
+
+
+        // Create a new canvas element
+        var newCanvas = document.createElement("canvas");
+        newCanvas.id = "myChart";
+        newCanvas.style.width = "100%";
+        newCanvas.style.maxWidth = "1170px";
+        newCanvas.style.zIndex = "9";
+        newCanvas.style.display = "none"; // Hide the new canvas initially
+
+        // Append the new canvas to the div with id "stocks_chart"
+        stocksChartDiv.appendChild(newCanvas);
+
+        setTimeout(function() {
+            // Your chart rendering logic here
+            renderChart(xValues, yValues, zValues, bValues);
+
+            // Hide loader and show the new canvas once the chart is rendered
+            chartLoader.style.display = "none";
+            newCanvas.style.display = "block";
+        }, 2000);
+
     });
 
     // Event handler for currency radio buttons
@@ -1122,11 +1200,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         const fetchNiftyData = fetch(niftyApi).then(response => response.json());
         return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData])
             .then(([stockData, sp500Data, niftyData]) => {
-                // Process stockData
-                var xValues = [];
-                var yValues = [];
-                var zValues = [];
-                var bValues = [];
                 const startPrice = stockData.data[0].Adj_Close;
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
@@ -1155,24 +1228,47 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 var percentageInvestment = (investmentAmount / totalValue) * 100;
                 var percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
 
-                stockData.data.forEach(item => {
-                    xValues.push(item.Date);
-                    let finalAmount = item.Adj_Close * startStockQty;
-                    let result = Math.round(finalAmount);
-                    yValues.push(result);
+                stockData.data.forEach((item, index) => {
+                    if (index < xValues.length) {
+                        xValues[index] = item.Date;
+                        let finalAmount = item.Adj_Close * startStockQty;
+                        let result = Math.round(finalAmount);
+                        yValues[index] = result;
+                    } else {
+                        // Push new values
+                        xValues.push(item.Date);
+                        let finalAmount = item.Adj_Close * startStockQty;
+                        let result = Math.round(finalAmount);
+                        yValues.push(result);
+                    }
                 });
 
                 // Process sp500Data
 
-                sp500Data.data.forEach(item => {
-                    let spAmount = item.Adj_Close * startSPQty;
-                    let spResult = Math.round(spAmount);
-                    zValues.push(spResult);
+                sp500Data.data.forEach((item, index) => {
+                    if (index < zValues.length) {
+                        // Update existing values
+                        let spAmount = item.Adj_Close * startSPQty;
+                        let spResult = Math.round(spAmount);
+                        zValues[index] = spResult;
+                    } else {
+                        // Push new values
+                        let spAmount = item.Adj_Close * startSPQty;
+                        let spResult = Math.round(spAmount);
+                        zValues.push(spResult);
+                    }
                 });
 
-                niftyData.data.forEach(item => {
-                    let niftyResult = Math.round(item.Adj_Close);
-                    bValues.push(niftyResult);
+                niftyData.data.forEach((item, index) => {
+                    if (index < bValues.length) {
+                        // Update existing values
+                        let niftyResult = Math.round(item.Adj_Close);
+                        bValues[index] = niftyResult;
+                    } else {
+                        // Push new values
+                        let niftyResult = Math.round(item.Adj_Close);
+                        bValues.push(niftyResult);
+                    }
                 });
 
                 // Continue with the rest of your calculations and rendering
@@ -1203,7 +1299,12 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             .catch(error => alert("Something went wrong!"));
     }
 
+
+
     function renderChart(xValues, yValues, zValues, bValues) {
+        if (window.myChart) {
+            // window.myChart.destroy();
+        }
         const dateObjects = xValues.map(dateString => new Date(dateString));
         const currecySelector = document.querySelector('input[name="currency"]:checked');
         const inrCurrencyRadioButton = document.getElementById('inr_currency');
@@ -1219,6 +1320,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
         const nifty50DatasetIndex = 2;
 
+
+
         inrCurrencyRadioButton.addEventListener('change', function() {
             myChart.data.datasets[nifty50DatasetIndex].hidden = false;
             document.querySelector('.nifty_legend').style.display = 'flex';
@@ -1233,7 +1336,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
         const initialHiddenState = currecySelector.value === 'usd';
 
-        const myChart = new Chart("myChart", {
+
+        let myChart = new Chart("myChart", {
             type: "line",
             data: {
                 labels: formattedLabels,
