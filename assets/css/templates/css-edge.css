@@ -100,10 +100,21 @@
 	position: absolute;
 	width: 26px;
 	height: 26px;
-	background: url(../../images/check.webp);
+	background: url(../../images/Tick-icon.svg);
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+
+.edge_list_icon{
+	width: 100px !important;
+    margin: 0 auto !important;
+}
+.edge_list_icon img{
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: contain;
 }
 
 .banner_buttons {
@@ -387,15 +398,7 @@ a.btn_dark {
 	margin-left: 87px;
 }
 
-.edge_list_icon{
-	width: 100px !important;
-    margin: 0 auto !important;
-}
-.edge_list_icon img{
-	width: 100% !important;
-	height: 100% !important;
-	object-fit: contain;
-}
+
 
 .single_interest_list:nth-child(2) .rate h3 {
 	margin: 0;
