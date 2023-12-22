@@ -271,7 +271,6 @@
 }
 .leadership ul.list li .modal .modal-content p {
     color: #505A64;
-    
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -282,6 +281,10 @@
     max-height: calc(100vh - 135px);
     overflow: auto;
     padding-right: 20px;
+}
+
+.leadership ul.list li .modal .modal-content .content-area p + p {
+    margin-top: 15px;
 }
 
 @media only screen and (max-width: 1199px) {

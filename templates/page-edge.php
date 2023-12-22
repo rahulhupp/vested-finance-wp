@@ -126,7 +126,7 @@ get_header(); ?>
                                         ?>
                                         <div class="offer_label">
                                             <div class="image_label">
-                                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/balance.png" />
+                                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/balance.webp" />
                                                 <span><?php the_sub_field('offer_label') ?></span>
                                             </div>
                                         </div>

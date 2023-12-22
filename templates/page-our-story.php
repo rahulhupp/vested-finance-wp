@@ -65,11 +65,11 @@ $image = get_sub_field('image');
                   <div class="bio">
                     <div class="label">
                       <?php the_sub_field('bio'); ?>
-                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.png" alt="info">
+                      <img class="info" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/leader-info.webp" alt="info">
                     </div>
                     <div class="social">
                       <a href="<?php the_sub_field('linkedin_link'); ?>" target="_blank">
-                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.png" alt="linkdin" />
+                        <img class="linkedin" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin.webp" alt="linkdin" />
                       </a>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ $image = get_sub_field('image');
                   <div class="modal-content">
                     <div class="head-part">
                       <h3><?php the_sub_field('bio'); ?></h3>
-                      <img class="close" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/close.png">
+                      <img class="close" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/close.webp">
                     </div>
                     <div class="content-area">
                       <?php the_sub_field('bio_content'); ?>
@@ -96,5 +96,30 @@ $image = get_sub_field('image');
 
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  getUserLocationByIP();
+});
 
+function getUserLocationByIP() {
+  // Make a request to the GeoJS API to get user location based on IP
+  const apiUrl = 'https://get.geojs.io/v1/ip/geo.js';
+
+  // Add a script element to the document to load the GeoJS API
+  const scriptElement = document.createElement('script');
+  scriptElement.src = apiUrl;
+  document.head.appendChild(scriptElement);
+
+  // Callback function to process the location information
+  window.geoip_callback = function(data) {
+    // Remove the script element after executing the callback
+    document.head.removeChild(scriptElement);
+
+    // Process the location information
+    console.log('User location based on IP:', data);
+    // You can extract relevant information from the 'data' object
+    alert('Your approximate location: ' + data.city + ', ' + data.region);
+  };
+}
+</script>
 <?php get_footer(); ?>

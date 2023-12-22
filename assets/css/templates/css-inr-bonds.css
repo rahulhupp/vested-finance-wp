@@ -83,7 +83,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background: url(../../images/check.png);
+  background: url(../../images/check.webp);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -622,7 +622,7 @@ a.btn_dark {
   position: absolute;
   width: 1349px;
   height: 364px;
-  background: url(../../images/edge-shape-bg.png);
+  background: url(../../images/edge-shape-bg.webp);
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -2172,7 +2172,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   .vested_edge_list:after {
     width: 375;
     height: 481px;
-    background: url(../../images/edge-shape-bg-mobile.png);
+    background: url(../../images/edge-shape-bg-mobile.webp);
     top: 10px;
     transform: none;
     left: 0;

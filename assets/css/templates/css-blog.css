@@ -119,7 +119,7 @@
   background-color: transparent;
   width: 32px;
   height: 47px;
-  background-image: url(../../images/search.png);
+  background-image: url(../../images/search.webp);
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -133,7 +133,7 @@
   background-color: transparent;
   width: 32px;
   height: 47px;
-  background-image: url('../../images/search.png');
+  background-image: url('../../images/search.webp');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -203,7 +203,7 @@ div.is-ajax-search-result div.is-show-more-results:hover {
   width: auto;
   height: auto;
   line-height: normal;
-  background-image: url(../../images/search.png) ;
+  background-image: url(../../images/search.webp) ;
   background-color: transparent !important;
   background-repeat: no-repeat;
   background-position: center;
@@ -620,7 +620,7 @@ div.is-ajax-search-result div.is-show-more-results:hover {
 .us-stock-list .inner-row .subscriber-blog {
   width: 350px;
   background: #002852;
-  background-image: url('../../images/subscriber-blog-bg.png');
+  background-image: url('../../images/subscriber-blog-bg.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
