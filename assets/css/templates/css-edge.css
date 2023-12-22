@@ -387,6 +387,16 @@ a.btn_dark {
 	margin-left: 87px;
 }
 
+.edge_list_icon{
+	width: 100px !important;
+    margin: 0 auto !important;
+}
+.edge_list_icon img{
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: contain;
+}
+
 .single_interest_list:nth-child(2) .rate h3 {
 	margin: 0;
 	color: #fff;
