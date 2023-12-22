@@ -349,6 +349,15 @@ body.mega-menu-open .site-content:before {
     padding: 0 26px;
     text-align: left;
 }
+
+header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul li .content a:after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 34px);
+    height: 100%;
+    left: -34px;
+}
+
 @media only screen and (max-width: 991px) {
 	body.mega-menu-open .site-content:before {
 		position: unset;
