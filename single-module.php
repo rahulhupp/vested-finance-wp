@@ -143,7 +143,7 @@ while (have_posts()) :
                         </div>
 
                         <div class="single_module_post_content pb-0">
-                            <div class="single_module_table_content">
+                            <div class="single_module_table_content scrolled">
                                 <div class="single_module_table_wrap">
                                     <?php echo do_shortcode('[ez-toc]') ?>
                                 </div>
@@ -302,7 +302,7 @@ while (have_posts()) :
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
-            if (scrollTop > 0) {
+            if (window.scrollY > 0) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');
