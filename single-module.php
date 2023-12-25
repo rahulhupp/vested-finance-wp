@@ -302,7 +302,7 @@ while (have_posts()) :
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
-            if (scrollTop > 20) {
+            if (scrollTop > 0) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');
