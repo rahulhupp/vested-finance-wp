@@ -1461,7 +1461,7 @@ body.single.single-module {
 	.single_module_table_content {
 		position: fixed;
 		width: 100%;
-		top: 88px;
+		top: 0px;
 		height: auto;
 	}
 }
