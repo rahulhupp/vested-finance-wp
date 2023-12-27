@@ -1,8 +1,18 @@
+.show_tag_line{
+	margin-bottom: 0 !important;
+    text-align: center;
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+	padding: 24px 40px 20px 40px;
+    font-size: 25px;
+    background-color: #002042;
+    color: #ffff !important;
+}
+
 .single-post .site-content .ast-container {
 	max-width: 100%;
 	padding: 0 !important;
 }
-
 .has-off-canvas.has-off-canvas-right {
 	overflow: hidden;
 }
