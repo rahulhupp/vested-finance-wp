@@ -276,6 +276,8 @@ $post_id = get_the_ID();
 		if (window.innerWidth < 1201 && tocElement) {
 			tocElement.classList.add('toc_close');
 			tocNav.style.display = 'none';
+
+			
 			tocInsideNav.addEventListener('click', function(event) {
 				if (event.target === this) {
 					tocNav.style.display = 'none';
