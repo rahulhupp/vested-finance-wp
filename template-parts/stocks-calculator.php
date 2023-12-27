@@ -1128,6 +1128,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 var zValues = [];
                 var bValues = [];
                 const startPrice = stockData.data[0].Adj_Close;
+                console.log('startPrice', startPrice);
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
                 const firstDate = new Date(stockData.data[0].Date);
