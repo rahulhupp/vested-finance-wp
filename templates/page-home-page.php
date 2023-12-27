@@ -84,14 +84,14 @@ $image = get_field('multi_asset_image_mobile');
 
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('easy_access_heading'); ?></h2>
-                      
-                        <?php
-                                            $image = get_field('easy_access_image');
+                         <?php
+                         $image = get_field('easy_access_image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
                                                     alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
                                             <?php endif; ?>
-                        <div class="easy_access_list">
+                                            
+                                              <div class="easy_access_list">
                             <?php while (have_rows('easy_access_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
