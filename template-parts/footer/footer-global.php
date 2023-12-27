@@ -185,7 +185,7 @@
                                 <div class="disclosure_heading">
                                     <h3><?php the_sub_field('disclosure_name'); ?></h3>
                                      <?php
-                            $image = get_field('country_icon');
+                            $image = get_sub_field('country_icon');
                           if (!empty($image)): ?>
                               <img src="<?php echo esc_url($image['url']); ?>"
                                   alt="<?php echo esc_attr($image['alt']); ?>"/>

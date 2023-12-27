@@ -292,7 +292,7 @@ while (have_posts()) :
 
     $terms = wp_get_post_terms($post_id, $taxonomy);
 
-    if (!is_wp_error($terms) && !empty($terms)) {
+    if (!is_wp_error($terms) && !empty($terms)) {   
         $term_slug = $terms[0]->slug;
     }
     ?>
@@ -302,7 +302,8 @@ while (have_posts()) :
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
-            if (scrollTop > 20) {
+            const scrollDistance = 0;
+            if (scrollTop > scrollDistance) {
                 triggerElement.classList.add('scrolledd');
             } else {
                 triggerElement.classList.remove('scrolledd');

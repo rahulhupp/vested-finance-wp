@@ -238,65 +238,33 @@ while (have_posts()) :
 </div>
 <?php
 $post_id = get_the_ID();
-$taxonomy = 'modules';
-
-$terms = wp_get_post_terms($post_id, $taxonomy);
-
-if (!is_wp_error($terms) && !empty($terms)) {
-	$term_slug = $terms[0]->slug;
-}
 ?>
 <script>
 	const targetElement = document.querySelector('.single_module_post_content');
 	const triggerElement = document.querySelector('.single_module_table_content');
 
 	window.addEventListener('scroll', () => {
-		const rect = targetElement.getBoundingClientRect();
-		if (rect.top <= 0) {
-			triggerElement.classList.add('scrolledd');
-		} else {
-			triggerElement.classList.remove('scrolledd');
-		}
-
 		const scrollTop = window.scrollY;
+            const scrollDistance = 0;
+            if (scrollTop > scrollDistance ) {
+                triggerElement.classList.add('scrolledd');
+            } else {
+                triggerElement.classList.remove('scrolledd');
+			}
+
 		const mainContent = document.querySelector('#main-content');
 		const mainContentHeight = mainContent.clientHeight - window.innerHeight;
 		const progress = (scrollTop / mainContentHeight) * 100;
 
-		const currentId = <?php echo $post_id ?>;
-
-		const storedResumeIds = localStorage.getItem(`visited-module-<?php echo $term_slug; ?>-resume`);
-		const storedOverIds = localStorage.getItem(`visited-module-<?php echo $term_slug; ?>-over`);
-		const resumeIdArray = storedResumeIds ? JSON.parse(storedResumeIds) : [];
-		const overIdArray = storedOverIds ? JSON.parse(storedOverIds) : [];
-
-		if (!resumeIdArray.includes(currentId) && !overIdArray.includes(currentId)) {
-			if (progress > 70) {
-				resumeIdArray.push(currentId);
-				localStorage.setItem(`visited-module-<?php echo $term_slug; ?>-resume`, JSON.stringify(resumeIdArray));
-			}
-		}
-
-		if (progress > 90 && !overIdArray.includes(currentId)) {
-			triggerElement.classList.remove('scrolled');
-			const index = resumeIdArray.indexOf(currentId);
-			if (index !== -1) {
-				resumeIdArray.splice(index, 1);
-				overIdArray.push(currentId);
-				localStorage.setItem(`visited-module-<?php echo $term_slug; ?>-over`, JSON.stringify(overIdArray));
-				localStorage.setItem(`visited-module-<?php echo $term_slug; ?>-resume`, JSON.stringify(resumeIdArray));
-			}
-		}
-
-		document.getElementById('progress-bar').style.width = `${progress}%`;
-
 		if (progress >= 90) {
-			triggerElement.classList.add('module_completed');
-		} else {
-			triggerElement.classList.remove('module_completed');
-		}
+	triggerElement.classList.add('module_completed');
+} else {
+	triggerElement.classList.remove('module_completed');
+}
 
 	});
+
+	
 	const tocElement = document.getElementById('ez-toc-container');
 	const tocNav = document.querySelector('.ez-toc-list');
 	const tocInsideNav = document.querySelector('#ez-toc-container a');
