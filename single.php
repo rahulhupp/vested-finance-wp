@@ -151,11 +151,22 @@ while (have_posts()) :
 
 					<div class="single_module_post_content pb-0">
 						<div class="single_module_table_content">
+						<?php
+								$premium_tag = get_field('premium_tag');
+								if (!has_tag('premium', get_the_ID())) {
+									?>
 							<div class="single_module_table_wrap">
 								<?php echo do_shortcode('[ez-toc]') ?>
 							</div>
+							<?php
+								} 
+								?>
 						</div>
 						<div class="content">
+						 <?php
+								$premium_tag = get_field('premium_tag');
+								if (!has_tag('premium', get_the_ID())) {
+								?>
 							<div class="inner_content">
 								<?php if (get_field('heading_notes')) : ?>
 									<div class="heading_note">
@@ -170,11 +181,20 @@ while (have_posts()) :
 									</div>
 								<?php endif; ?>
 							</div>
+							<?php
+								} else {
+									echo '<p class="show_tag_line">This is premium content. Upgrade to access.</p>';
+								}
+								?>
 						</div>
 					</div>
 					<div class="single_module_post_content pt-0">
 						<div class="single_module_table_content"></div>
 						<div class="content">
+						<?php
+								$premium_tag = get_field('premium_tag');
+								if (!has_tag('premium', get_the_ID())) {
+									?>
 							<div class="single_module_comments">
 								<?php
 								if (comments_open() || get_comments_number()) {
@@ -182,6 +202,9 @@ while (have_posts()) :
 								}
 								?>
 							</div>
+							<?php
+								} 
+								?>
 						</div>
 					</div>
 				</div>
