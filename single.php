@@ -205,6 +205,7 @@ while (have_posts()) :
 				<?php if (has_tag('premium')) { ?>
 					<div class="premium_box">
 						<div class="premium_box_content">
+							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-logo.svg" alt="premium_tag" class="premium_tag" />
 							<h2>Continue reading on app</h2>
 							<p>The content you are trying to access is available exclusively to Vested Premium subscribers. If you are an existing Premium subscriber, you can access this content on our mobile app.</p>
 							<div class="premium_box_buttons">
@@ -215,7 +216,6 @@ while (have_posts()) :
 									<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Apple_Badge.svg" alt="app_store" />
 								</a>
 							</div>
-							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-logo.svg" alt="premium_tag" class="premium_tag" />
 						</div>
 					</div>
 				<?php } ?>
