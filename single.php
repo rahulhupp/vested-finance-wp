@@ -162,7 +162,7 @@ while (have_posts()) :
 						</div>
 						<div class="content">
 							<?php if (has_tag('premium')) { ?>
-								<div class="inner_content">
+								<div class="inner_content premium_inner_content">
 									<?php 
 										$content = get_the_content();
 										$trimmed_content = wp_trim_words($content, 60, '');
