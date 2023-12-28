@@ -112,9 +112,9 @@ while (have_posts()) :
 						<div class="single_module_info_item last">
 							<div class="social-share-block">
 								<button class="sharing-icon">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="link" />
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="link" />
 								</button>
-								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.png" alt="Share Icon" /><span>Share</span></button>
+								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="Share Icon" /><span>Share</span></button>
 								<ul>
 									<?php
 									$current_page_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -122,13 +122,13 @@ while (have_posts()) :
 
 									<li>
 										<a id="copyLink" href="">
-											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.png" alt="link" />
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
 											<span>Copy link</span>
 										</a>
 									</li>
 									<li class="share_whatsapp">
 										<a href="javascript:void(0);" target="_blank">
-											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.png" alt="whatsapp" />
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
 											<span>Share on Whatsapp</span>
 										</a>
 									</li>
@@ -139,24 +139,6 @@ while (have_posts()) :
 					<div class="single_module_feature_image">
 						<img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
 					</div>
-
-
-					<?php
-								$premium_tag = get_field('premium_tag');
-								// var_dump($premium_tag); // Add this line to debug the value
-							
-								if (has_tag('premium', get_the_ID())) {
-									// Or use: if ($premium_tag === false)
-									?>
-									<div class="premium_image">
-										<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/premium_icon.svg"
-											alt="premium-icon">
-					</div>
-									<?php
-								}
-								?>
-
-
 				</div>
 				
 				<div class="single_module_content_wrapper">
@@ -169,22 +151,11 @@ while (have_posts()) :
 
 					<div class="single_module_post_content pb-0">
 						<div class="single_module_table_content">
-						<?php
-								$premium_tag = get_field('premium_tag');
-								if (!has_tag('premium', get_the_ID())) {
-									?>
 							<div class="single_module_table_wrap">
 								<?php echo do_shortcode('[ez-toc]') ?>
 							</div>
-							<?php
-								} 
-								?>
 						</div>
 						<div class="content">
-						 <?php
-								$premium_tag = get_field('premium_tag');
-								if (!has_tag('premium', get_the_ID())) {
-								?>
 							<div class="inner_content">
 								<?php if (get_field('heading_notes')) : ?>
 									<div class="heading_note">
@@ -199,48 +170,11 @@ while (have_posts()) :
 									</div>
 								<?php endif; ?>
 							</div>
-							<?php
-									} else {
-									// Content for premium posts
-									$content = get_the_content();
-									$content_lines = explode("\n", $content);
-
-									$num_lines_to_display = min(22, count($content_lines));
-
-									$first_lines = implode("\n", array_slice($content_lines, 0, $num_lines_to_display));
-									?>
-									<div class="inner_content premium_class">
-										<?php if (get_field('heading_notes')): ?>
-											<div class="heading_note">
-												<?php the_field('heading_notes'); ?>
-											</div>
-										<?php endif; ?>
-
-										<?php echo $first_lines; ?>
-
-										<?php if (get_field('takeaways')): ?>
-											<div class="takeways">
-												<h2>Key Takeaways</h2>
-												<?php the_field('takeaways'); ?>
-											</div>
-										<?php endif; ?>
-									</div>
-									
-									<?php
-
-								}
-
-
-								?>
 						</div>
 					</div>
 					<div class="single_module_post_content pt-0">
 						<div class="single_module_table_content"></div>
 						<div class="content">
-						<?php
-								$premium_tag = get_field('premium_tag');
-								if (!has_tag('premium', get_the_ID())) {
-									?>
 							<div class="single_module_comments">
 								<?php
 								if (comments_open() || get_comments_number()) {
@@ -248,52 +182,9 @@ while (have_posts()) :
 								}
 								?>
 							</div>
-							<?php
-								} 
-								?>
 						</div>
 					</div>
-
-
 				</div>
-
-				<?php
-					$premium_tag = get_field('premium_tag');
-					// var_dump($premium_tag); // Add this line to debug the value
-				
-					if (has_tag('premium', get_the_ID())) {
-						// Or use: if ($premium_tag === false)
-						?>
-						<div class="margin_box">
-							<div class="nev_blue_box">
-							<h2>Continue reading on app</h2>
-							<p>The content you are trying to access is available exclusively to Vested Premium
-								subscribers. If you are an existing Premium subscriber, you can access this content
-								on our mobile app.</p>
-
-								<div class="google_links">
-								<a
-								href="https://play.google.com/store/apps/details?id=com.vested.investing.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-								<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Google_Play_Store_badge.svg"
-									alt="google_playstore" target="_blank">
-							</a>
-							<a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1">
-								<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Apple_Badge.svg"
-									alt="apple_playstore" target="_blank">
-							</a>
-								</div>
-
-							
-						</div>
-						</div>
-
-						<div class="yellow_premium_icon">
-							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-Logo_label.png" alt="premium_logo">
-						</div>
-						<?php
-					}
-					?>
-
 			</div>	
 		</div>
 	</div>
@@ -353,27 +244,27 @@ $post_id = get_the_ID();
 	const triggerElement = document.querySelector('.single_module_table_content');
 
 	window.addEventListener('scroll', () => {
-		const scrollTop = window.scrollY;
-            const scrollDistance = 0;
-            if (scrollTop > scrollDistance ) {
-                triggerElement.classList.add('scrolledd');
-            } else {
-                triggerElement.classList.remove('scrolledd');
+			const scrollTop = window.scrollY;
+			const scrollDistance = 0;
+			if (scrollTop > scrollDistance) {
+				triggerElement.classList.add('scrolledd');
+			} else {
+				triggerElement.classList.remove('scrolledd');
 			}
 
-		const mainContent = document.querySelector('#main-content');
-		const mainContentHeight = mainContent.clientHeight - window.innerHeight;
-		const progress = (scrollTop / mainContentHeight) * 100;
+			const mainContent = document.querySelector('#main-content');
+			const mainContentHeight = mainContent.clientHeight - window.innerHeight;
+			const progress = (scrollTop / mainContentHeight) * 100;
 
-		if (progress >= 90) {
-	triggerElement.classList.add('module_completed');
-} else {
-	triggerElement.classList.remove('module_completed');
-}
+			document.getElementById('progress-bar').style.width = `${progress}%`;
 
-	});
+			if (progress >= 90) {
+				triggerElement.classList.add('module_completed');
+			} else {
+				triggerElement.classList.remove('module_completed');
+			}
 
-	
+		});
 	const tocElement = document.getElementById('ez-toc-container');
 	const tocNav = document.querySelector('.ez-toc-list');
 	const tocInsideNav = document.querySelector('#ez-toc-container a');
@@ -385,8 +276,6 @@ $post_id = get_the_ID();
 		if (window.innerWidth < 1201 && tocElement) {
 			tocElement.classList.add('toc_close');
 			tocNav.style.display = 'none';
-
-			
 			tocInsideNav.addEventListener('click', function(event) {
 				if (event.target === this) {
 					tocNav.style.display = 'none';
