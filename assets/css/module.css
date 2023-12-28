@@ -1996,3 +1996,40 @@ a.chapter_back_btn:hover {
 .premium_inner_content {
     position: relative;
 }
+
+@media (max-width: 767px) {
+	.premium_box .premium_box_content .premium_tag {
+		position: relative;
+		top: 0;
+		right: 0;
+		display: block;
+		margin: auto;
+	}
+	
+	.premium_box {
+		padding: 15px 18px 30px;
+		margin-top: 0;
+		margin-bottom: 60px;
+	}
+	
+	.premium_box .premium_box_content h2 {
+		font-size: 18px !important;
+		font-weight: 600;
+		letter-spacing: -0.36px;
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
+	
+	.premium_box .premium_box_content p {
+		font-size: 14px;
+		line-height: 21px;
+	}
+	
+	.premium_box .premium_box_content .premium_box_buttons {
+		margin-top: 28px;
+	}
+	
+	.premium_box .premium_box_content .premium_box_buttons a {
+		margin: 0 4px;
+	}
+}
