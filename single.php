@@ -215,7 +215,7 @@ while (have_posts()) :
 									<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Apple_Badge.svg" alt="app_store" />
 								</a>
 							</div>
-							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-Logo_label.png" alt="premium_tag" class="premium_tag" />
+							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-logo.svg" alt="premium_tag" class="premium_tag" />
 						</div>
 					</div>
 				<?php } ?>
