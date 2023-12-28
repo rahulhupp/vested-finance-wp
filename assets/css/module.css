@@ -1934,7 +1934,7 @@ a.chapter_back_btn:hover {
 .premium_box {
     width: 100%;
     max-width: 832px;
-    margin: 48px auto 0;
+    margin: 48px auto 100px;
     padding: 30px 24px;
     border-radius: 8px;
     background: radial-gradient(1080.56% 350.06% at 50% 50%, #002852 22.9%, #396EE6 100%), #FFF;
@@ -1950,8 +1950,6 @@ a.chapter_back_btn:hover {
 .premium_box .premium_box_content h2 {
     color: #FFF;
     text-align: center;
-
-/* Header 1 */
     font-size: 34px;
     font-weight: 700;
     line-height: normal;
