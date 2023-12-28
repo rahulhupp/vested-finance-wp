@@ -150,11 +150,13 @@ while (have_posts()) :
 					</div>
 
 					<div class="single_module_post_content pb-0">
-						<div class="single_module_table_content">
-							<div class="single_module_table_wrap">
-								<?php echo do_shortcode('[ez-toc]') ?>
+						<?php if (!has_tag('premium')) { ?>
+							<div class="single_module_table_content">
+								<div class="single_module_table_wrap">
+									<?php echo do_shortcode('[ez-toc]') ?>
+								</div>
 							</div>
-						</div>
+						<?php } ?>
 						<div class="content">
 							<div class="inner_content">
 								<?php if (get_field('heading_notes')) : ?>
@@ -327,21 +329,7 @@ $post_id = get_the_ID();
 	});
 	document.addEventListener("DOMContentLoaded", function() {
 		var current_text = document.querySelector(".single_module_title").textContent;
-
-		// document.querySelector(".share_twitter").addEventListener("click", function() {
-		//     ga('send', 'event', 'Social Sharing on Academy', 'Click', 'Twitter');
-		//     var current_page_url = window.location.href;
-		//     window.open('http://twitter.com/share?text=' + encodeURIComponent(current_text) + '&url=' + encodeURIComponent(current_page_url) + '&utm-medium=social&utm-source=Twitter&utm-campaign=Academy', "", "width=600,height=400");
-		// });
-
-		// document.querySelector(".share_facebook").addEventListener("click", function() {
-		//     ga('send', 'event', 'Social Sharing on Academy', 'Click', 'Facebook');
-		//     var current_page_url = window.location.href;
-		//     window.open('https://www.facebook.com/sharer.php?text=' + encodeURIComponent(current_text) + '&u=' + encodeURIComponent(current_page_url) + '&utm-medium=social&utm-source=Facebook&utm-campaign=Academy', "", "width=600,height=400");
-		// });
-
 		document.querySelector(".share_whatsapp").addEventListener("click", function() {
-			// ga('send', 'event', 'Social Sharing on Academy', 'Click', 'WhatsApp');
 			var current_page_url = window.location.href;
 			window.open('https://wa.me/?text=' + encodeURIComponent(current_text + " , " + current_page_url) + '&utm-medium=social&utm-source=WhatsApp&utm-campaign=Academy', "_blank");
 		});
