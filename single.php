@@ -139,6 +139,24 @@ while (have_posts()) :
 					<div class="single_module_feature_image">
 						<img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
 					</div>
+
+
+					<?php
+								$premium_tag = get_field('premium_tag');
+								// var_dump($premium_tag); // Add this line to debug the value
+							
+								if (has_tag('premium', get_the_ID())) {
+									// Or use: if ($premium_tag === false)
+									?>
+									<div class="premium_image">
+										<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/premium_icon.svg"
+											alt="premium-icon">
+					</div>
+									<?php
+								}
+								?>
+
+
 				</div>
 				
 				<div class="single_module_content_wrapper">
@@ -182,9 +200,37 @@ while (have_posts()) :
 								<?php endif; ?>
 							</div>
 							<?php
-								} else {
-									echo '<p class="show_tag_line">This is premium content. Upgrade to access.</p>';
+									} else {
+									// Content for premium posts
+									$content = get_the_content();
+									$content_lines = explode("\n", $content);
+
+									$num_lines_to_display = min(22, count($content_lines));
+
+									$first_lines = implode("\n", array_slice($content_lines, 0, $num_lines_to_display));
+									?>
+									<div class="inner_content premium_class">
+										<?php if (get_field('heading_notes')): ?>
+											<div class="heading_note">
+												<?php the_field('heading_notes'); ?>
+											</div>
+										<?php endif; ?>
+
+										<?php echo $first_lines; ?>
+
+										<?php if (get_field('takeaways')): ?>
+											<div class="takeways">
+												<h2>Key Takeaways</h2>
+												<?php the_field('takeaways'); ?>
+											</div>
+										<?php endif; ?>
+									</div>
+									
+									<?php
+
 								}
+
+
 								?>
 						</div>
 					</div>
@@ -207,7 +253,47 @@ while (have_posts()) :
 								?>
 						</div>
 					</div>
+
+
 				</div>
+
+				<?php
+					$premium_tag = get_field('premium_tag');
+					// var_dump($premium_tag); // Add this line to debug the value
+				
+					if (has_tag('premium', get_the_ID())) {
+						// Or use: if ($premium_tag === false)
+						?>
+						<div class="margin_box">
+							<div class="nev_blue_box">
+							<h2>Continue reading on app</h2>
+							<p>The content you are trying to access is available exclusively to Vested Premium
+								subscribers. If you are an existing Premium subscriber, you can access this content
+								on our mobile app.</p>
+
+								<div class="google_links">
+								<a
+								href="https://play.google.com/store/apps/details?id=com.vested.investing.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+								<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Google_Play_Store_badge.svg"
+									alt="google_playstore" target="_blank">
+							</a>
+							<a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1">
+								<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Apple_Badge.svg"
+									alt="apple_playstore" target="_blank">
+							</a>
+								</div>
+
+							
+						</div>
+						</div>
+
+						<div class="yellow_premium_icon">
+							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-Logo_label.png" alt="premium_logo">
+						</div>
+						<?php
+					}
+					?>
+
 			</div>	
 		</div>
 	</div>
