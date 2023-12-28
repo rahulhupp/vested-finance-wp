@@ -150,28 +150,41 @@ while (have_posts()) :
 					</div>
 
 					<div class="single_module_post_content pb-0">
-						<?php if (!has_tag('premium')) { ?>
-							<div class="single_module_table_content">
+						<div class="single_module_table_content">
+							<?php if (!has_tag('premium')) { ?>
 								<div class="single_module_table_wrap">
 									<?php echo do_shortcode('[ez-toc]') ?>
 								</div>
-							</div>
-						<?php } ?>
+							<?php } ?>
+						</div>
 						<div class="content">
-							<div class="inner_content">
-								<?php if (get_field('heading_notes')) : ?>
-									<div class="heading_note">
-										<?php the_field('heading_notes'); ?>
-									</div>
-								<?php endif; ?>
-								<?php the_content(); ?>
-								<?php if (get_field('takeaways')) : ?>
-									<div class="takeways">
-										<h2>Key Takeaways </h2>
-										<?php the_field('takeaways'); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+							<?php if (has_tag('premium')) { ?>
+								<div class="inner_content">
+									<?php 
+										$content = get_the_content();
+										$trimmed_content = wp_trim_words($content, 60, '');
+										echo $trimmed_content;
+									?>
+								</div>
+							<?php } else {?>
+								<div class="inner_content">
+									<?php if (get_field('heading_notes')) : ?>
+										<div class="heading_note">
+											<?php the_field('heading_notes'); ?>
+										</div>
+									<?php endif; ?>
+									<?php the_content(); ?>
+									<?php if (get_field('takeaways')) : ?>
+										<div class="takeways">
+											<h2>Key Takeaways </h2>
+											<?php the_field('takeaways'); ?>
+										</div>
+									<?php endif; ?>
+								</div>
+							<?php } ?>
+								
+							
+							
 						</div>
 					</div>
 					<div class="single_module_post_content pt-0">
