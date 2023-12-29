@@ -496,7 +496,7 @@
     }
 
     .calculator .field_col input[type="month"] {
-        padding: 4px 14px 4px 24px;
+        padding: 4px 14px;
         color: #002852;
 
         font-size: 16px;
