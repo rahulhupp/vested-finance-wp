@@ -167,15 +167,6 @@
         display: none;
     }
 
-    .calculator .currency_select input[type="radio"]+label {
-        color: #1f4267;
-
-        font-size: 17px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-    }
-
     .calculator .currency_select {
         display: inline-flex;
         align-items: center;
@@ -207,15 +198,13 @@
     }
 
     .calculator .field_note span {
-        display: flex;
-        align-items: center;
         color: #002852;
-
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        gap: 8px;
+        width: calc(100% - 21px);
+        padding-left: 8px;
     }
 
     .calculator .field_note {
@@ -223,6 +212,9 @@
         border-radius: 4px;
         background: #eef5fc;
         margin-top: 8px;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
     }
 
     .calculator .submit_btn input[type="submit"] {
@@ -365,8 +357,7 @@
     }
 
     .calculator .cta_btn a {
-        color: #0cc886;
-
+        color: #0CC886;
         font-size: 16px;
         font-style: normal;
         font-weight: 600;
@@ -374,20 +365,28 @@
         display: inline-block;
         padding: 12px 14px 12px 18px;
         border-radius: 6px;
-        border: 1px solid #146045;
+        border: 1px solid #0CC886;
         transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .calculator .cta_btn a span {
+        display: block;
     }
 
-    .calculator .cta_btn a i {
-        width: 24px;
-        height: 24px;
-        display: inline-flex;
-        align-items: center;
-        margin-left: 2px;
+    .calculator .cta_btn a svg {
+        margin: 0 0 0 9px;
+        position: relative;
+        top: 1px;
+    }
+
+    .calculator .cta_btn a:hover svg path {
+        stroke: #fff;
     }
 
     .calculator .cta_btn a:hover {
-        background: #146045;
+        background: #0CC886;
         color: #fff;
     }
 
@@ -463,7 +462,7 @@
         max-width: 1170px;
     }
 
-    .calculator .field_col input[type="date"] {
+    .calculator .field_col input[type="month"] {
         width: 100%;
     }
 
@@ -496,7 +495,7 @@
         padding: 0;
     }
 
-    .calculator .field_col input[type="date"] {
+    .calculator .field_col input[type="month"] {
         padding: 4px 14px 4px 24px;
         color: #002852;
 
@@ -543,8 +542,8 @@
         background: #eef5fc;
     }
 
-    .calculator .field_col input[type="date"]:focus,
-    .calculator .field_col input[type="date"]:focus-visible {
+    .calculator .field_col input[type="month"]:focus,
+    .calculator .field_col input[type="month"]:focus-visible {
         border: 1px solid #a9bdd0 !important;
         outline: none;
     }
@@ -829,6 +828,112 @@
             font-size: 10px;
             line-height: 1;
         }
+        .main_calc_wrap {
+            border: none;
+            padding: 0;
+        }
+
+        .main_calc_wrap .calc_col {
+            padding: 0;
+        }
+
+        .calculator .calc_form label {
+            font-size: 12px;
+        }
+
+        .selected_option {
+            font-size: 14px;
+            height: 42px;
+        }
+
+        .options_dropdown_wrap {
+            border: 1px solid #A9BDD0;
+            padding: 10px 10px;
+        }
+
+        .options_dropdown_wrap input {
+            font-size: 14px;
+        }
+
+        .calculator #invest_val {
+            font-size: 14px;
+            height: 42px;
+            padding-right: 130px;
+        }
+
+        .calculator .currency {
+            font-size: 14px;
+        }
+
+        .calculator .currency_select input[type="radio"]+label {
+            font-size: 14px;
+            padding: 5px 14px;
+        }
+
+        .calculator .currency_select {
+            top: 1px;
+            right: 1px;
+        }
+
+        .calculator .field_col input[type="month"] {
+            font-size: 14px;
+            padding-left: 10px;
+        }
+
+        .calc_result_col {
+            margin-top: 24px;
+        }
+
+        .result_inner_col {
+            padding: 30px 20px;
+        }
+
+        .calculator .list p {
+            font-size: 14px;
+        }
+
+        .calculator .list h4 {
+            font-size: 18px;
+        }
+
+        .calculator .invested_val.list {
+            padding-bottom: 12px;
+        }
+
+        .calculator .est_return.list {
+            margin-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .calculator .total_val.list {
+            margin-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .calculator .cagr_val.list {
+            margin-top: 12px;
+        }
+
+        .calculator .cagr_val.list h4, .calculator .total_val.list h4 {
+            font-size: 18px;
+        }
+
+        .calculator .investment_cta {
+            margin: 0;
+            padding: 16px;
+        }
+
+        .calculator .cta_content_col {
+            width: 100%;
+        }
+
+        .calculator .cta_content_col p {
+            font-size: 14px;
+        }
+
+        .calculator .sub_heading {
+            font-size: 14px !important;
+        }
     }
 
     @keyframes loaderamin {
@@ -900,41 +1005,49 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
                             <div class="inner_field">
                                 <span class="currency">$</span>
-                                <input type="text" id="invest_val" value="1,000">
+                                <input type="text" id="invest_val" value="1,000" maxlength="10" />
 
                                 <div class="currency_select">
-                                    <div>
-                                        <input type="radio" name="currency" id="inr_currency" value="inr">
-                                        <label for="inr_currency">INR</label>
-                                    </div>
                                     <div>
                                         <input type="radio" name="currency" id="usd_currency" value="usd" checked>
                                         <label for="usd_currency">USD</label>
                                     </div>
+                                    <div>
+                                        <input type="radio" name="currency" id="inr_currency" value="inr">
+                                        <label for="inr_currency">INR</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="field_note">
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                        <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                    <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
                             </div>
                         </div>
 
-                        <?php $currentDate = date('Y-m-d'); ?>
+                        <?php
+                            $currentDate = date('Y-m');
+                            $startMonthDefaultValue = date('Y-m', strtotime('-1 year', strtotime($currentDate)));
+                            $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
+
+                        ?>
+
                         <div class="field_group">
                             <div class="field_row">
                                 <div class="field_col">
                                     <label for="startMonth">Start Month</label>
-                                    <input type="date" name="startMonth" id="startMonth" max="<?php echo $currentDate; ?>">
+                                    <input type="month" name="startMonth" id="startMonth" max="<?php echo $currentDate; ?>" value="<?php echo $startMonthDefaultValue; ?>">
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
-                                    <input type="date" name="endMonth" id="endMonth" max="<?php echo $currentDate; ?>">
+                                    <input type="month" name="endMonth" id="endMonth" max="<?php echo $currentDate; ?>" value="<?php echo $endMonthDefaultValue; ?>">
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="submit_btn">
                             <input type="submit" value="Calculate">
@@ -986,10 +1099,27 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
                 <div class="investment_cta">
                     <div class="cta_content_col">
-                        <p>If you had invested $<span id="content_invest_amt">0</span> in <span id="start_month">January 2021</span>, it would be worth <strong>$<span id="content_total_value">0</span></strong> by <span id="end_month">August 2023</span> with <strong><span id="content_cagr">0</span>% CAGR</strong></p>
+                        <p>
+                            If you had invested 
+                            <span class="calc_currency">$</span>
+                            <span id="content_invest_amt">0</span> in 
+                            <span id="start_month">January 2021</span>, 
+                            it would be worth 
+                            <strong>
+                                <span class="calc_currency">$</span>
+                                <span id="content_total_value">0</span>
+                            </strong> by 
+                            <span id="end_month">August 2023</span> with 
+                            <strong><span id="content_cagr">0</span>% CAGR</strong>
+                        </p>
                     </div>
                     <div class="cta_btn">
-                        <a href="<?php the_field('cta_button_url'); ?>"><?php the_field('cta_button_text'); ?> <i class="fa fa-chevron-right"></i></a>
+                        <a href="https://app.vestedfinance.com/signup" target="_blank">
+                            <span>Start Investing</span> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
@@ -1056,46 +1186,49 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
+    console.log('Hello 4');
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
-        // Retrieve and log the values of the form elements
-        var stockSelector = document.getElementById('resultsList').dataset.value;
-        var investmentAmount = document.getElementById('invest_val').value;
-        var currency = document.querySelector('input[name="currency"]:checked').value;
-        var startDate = document.getElementById('startMonth').value;
-        var endDate = document.getElementById('endMonth').value;
-        var inputDate = new Date(startDate);
-        var inputDateEnd = new Date(endDate);
-        var start_month = inputDate.toLocaleString('default', {
-            month: 'long'
-        });
-        var end_month = inputDateEnd.toLocaleString('default', {
-            month: 'long'
-        });
-        var year = inputDate.getFullYear();
-        var endYear = inputDateEnd.getFullYear();
-        var result = start_month + ' ' + year;
-        var resultEnd = end_month + ' ' + endYear;
-        document.querySelector('#start_month').textContent = result;
-        document.querySelector('#end_month').textContent = resultEnd;
+        
+        // Retrieve form values
+        const stockSelector = document.getElementById('resultsList').dataset.value;
+        const investmentAmount = document.getElementById('invest_val').value;
+        const currency = document.querySelector('input[name="currency"]:checked').value;
+        const startDate = document.getElementById('startMonth').value;
+        const endDate = document.getElementById('endMonth').value;
+        
+        // Parse date values
+        const inputDate = new Date(startDate);
+        const inputDateEnd = new Date(endDate);
+        const startMonth = inputDate.toLocaleString('default', { month: 'long' });
+        const endMonth = inputDateEnd.toLocaleString('default', { month: 'long' });
+        const startYear = inputDate.getFullYear();
+        const endYear = inputDateEnd.getFullYear();
+        
+        // Display selected date range
+        document.querySelector('#start_month').textContent = `${startMonth} ${startYear}`;
+        document.querySelector('#end_month').textContent = `${endMonth} ${endYear}`;
+
+        // Trigger API and render chart
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
             })
             .catch(error => alert("Something went wrong!"));
 
-        var chartLoader = document.getElementById("chartLoader");
+        // Show loader while waiting for the chart
+        const chartLoader = document.getElementById("chartLoader");
         chartLoader.style.display = "block";
-        var stocksChartDiv = document.getElementById('stocks_chart');
-        var canvasToRemove = document.getElementById("myChart");
+
+        // Remove existing canvas, if any
+        const canvasToRemove = document.getElementById("myChart");
         if (canvasToRemove) {
             canvasToRemove.parentNode.removeChild(canvasToRemove);
         }
 
-
         // Create a new canvas element
-        var newCanvas = document.createElement("canvas");
+        const newCanvas = document.createElement("canvas");
         newCanvas.id = "myChart";
         newCanvas.style.width = "100%";
         newCanvas.style.maxWidth = "1170px";
@@ -1103,55 +1236,46 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         newCanvas.style.display = "none"; // Hide the new canvas initially
 
         // Append the new canvas to the div with id "stocks_chart"
+        const stocksChartDiv = document.getElementById('stocks_chart');
         stocksChartDiv.appendChild(newCanvas);
 
+        // Delay rendering for demonstration purposes (replace with actual rendering logic)
         setTimeout(function() {
-            // Your chart rendering logic here
             renderChart(xValues, yValues, zValues, bValues);
 
             // Hide loader and show the new canvas once the chart is rendered
             chartLoader.style.display = "none";
             newCanvas.style.display = "block";
         }, 2000);
-
     });
+
 
     // Event handler for currency radio buttons
     document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
             // Check which radio button is checked
+            document.querySelector('.calc_result_col').classList.add('blur');
+            document.querySelector('#stocks_chart').classList.add('blur');
             var selectedOption = document.querySelector('input[name="currency"]:checked').value;
 
             // Update the text based on the selected radio button
-            if (selectedOption === "inr") {
-                document.querySelectorAll('.currency').forEach(function(element) {
-                    element.textContent = "₹";
-                });
-                document.querySelectorAll('.calc_currency').forEach(function(element) {
-                    element.textContent = "₹";
-                });
-            } else if (selectedOption === "usd") {
-                document.querySelectorAll('.currency').forEach(function(element) {
-                    element.textContent = "$";
-                });
-                document.querySelectorAll('.calc_currency').forEach(function(element) {
-                    element.textContent = "$";
-                });
-            }
+            const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
+            
+            document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
+                element.textContent = currencySymbol;
+            });
         });
     });
+
 
     // Function to update button status
     function btnStatus() {
         var startDate = document.getElementById('startMonth').value;
         var endDate = document.getElementById('endMonth').value;
 
-        if (startDate === '' || endDate === '') {
-            document.querySelector('.submit_btn input').classList.add('btn-disabled');
-        } else {
-            document.querySelector('.submit_btn input').classList.remove('btn-disabled');
-        }
+        document.querySelector('.submit_btn input').classList.toggle('btn-disabled', startDate === '' || endDate === '');
     }
+
 
     btnStatus();
 
@@ -1195,101 +1319,120 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const USDINRApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/USDINR.FOREX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const fetchStockData = fetch(apiUrl).then(response => response.json());
         const fetchSP500Data = fetch(sp500Api).then(response => response.json());
         const fetchNiftyData = fetch(niftyApi).then(response => response.json());
-        return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData])
-            .then(([stockData, sp500Data, niftyData]) => {
+        const fetchUSDINRData = fetch(USDINRApi).then(response => response.json());
+        
+        return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData, fetchUSDINRData])
+            .then(([stockData, sp500Data, niftyData, usdinrData]) => {
+                const selectedCurrency = document.querySelector('input[name="currency"]:checked');
+                
                 const startPrice = stockData.data[0].Adj_Close;
-                console.log('startPrice', startPrice);
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
                 const firstDate = new Date(stockData.data[0].Date);
                 const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
                 const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
+                console.log('investmentAmountString', investmentAmountString);
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
-                const startStockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
-                const startSPQty = parseFloat(investmentAmount / spStartPrice).toFixed(2);
+                console.log('investmentAmount', investmentAmount);
+                const startStockQty = parseFloat(investmentAmount / startPrice);
+                const startSPQty = parseFloat(investmentAmount / spStartPrice);
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
+                console.log('finalInvestmentAmount', finalInvestmentAmount);
                 const currency = document.querySelector('input[name="currency"]:checked').value;
-                const stockQty = parseFloat(investmentAmount / startPrice).toFixed(2);
-                const lastPortfolioValue = parseFloat(endPrice * stockQty).toFixed(2);
+                const stockQty = parseFloat(investmentAmount / startPrice);
+                const lastPortfolioValue = parseFloat(endPrice * stockQty);
                 const estReturns = parseFloat(lastPortfolioValue - investmentAmount);
                 const totalValue = parseFloat(Number(investmentAmount) + Number(estReturns));
-                const initialPortfolioPrice = parseFloat(Number(lastPortfolioValue) / investmentAmount).toFixed(2);
                 const differenceInMilliseconds = lastDate - firstDate;
                 const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
                 const differenceInYears = parseFloat(differenceInDays / 365.25).toFixed(2);
-                const Periods = parseFloat(1 / differenceInYears).toFixed(2);
-                // var CACR = (Math.pow(initialPortfolioPrice, Periods) - 1) * 100;
-                var CACR = (Math.pow(totalValue / investmentAmount, 1 / differenceInYears) - 1) * 100;
-                CACR = CACR.toFixed(2);
+                const CAGR = ((Math.pow(totalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 Per = parseFloat(lastPortfolioValue / investmentAmount).toFixed(2);
-                var percentageInvestment = (investmentAmount / totalValue) * 100;
-                var percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
+                const percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
+
+
+                const inrStartPrice = usdinrData.data[0].Adj_Close;
+                const inrEndPrice = usdinrData.data[usdinrData.data.length - 1].Adj_Close;
+                const inrStartStockQty = investmentAmount/(startPrice*inrStartPrice);
+                const inrLastPortfolioValue = parseFloat(inrStartStockQty * endPrice * inrEndPrice).toFixed(2);
+
+                const inrEstReturns = parseFloat(inrLastPortfolioValue - investmentAmount);
+                const inrTotalValue = parseFloat(Number(investmentAmount) + Number(inrEstReturns));
+                const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
+                const inrPercentageEstimatedReturn = (inrEstReturns / inrTotalValue).toFixed(2);
 
                 stockData.data.forEach((item, index) => {
+                    const currentDate = item.Date;
+                    const adjClose = selectedCurrency.value === "inr" ? (usdinrData.data[index]?.Adj_Close || null) : null;
+
+                    let finalAmount = selectedCurrency.value === "inr" ? inrStartStockQty * item.Adj_Close : item.Adj_Close * startStockQty;
+
+                    if (adjClose) {
+                        finalAmount *= adjClose;
+                    }
+
+                    const result = Math.round(finalAmount);
                     if (index < xValues.length) {
-                        xValues[index] = item.Date;
-                        let finalAmount = item.Adj_Close * startStockQty;
-                        let result = Math.round(finalAmount);
+                        xValues[index] = currentDate;
                         yValues[index] = result;
                     } else {
-                        // Push new values
-                        xValues.push(item.Date);
-                        let finalAmount = item.Adj_Close * startStockQty;
-                        let result = Math.round(finalAmount);
+                        xValues.push(currentDate);
                         yValues.push(result);
                     }
                 });
 
                 // Process sp500Data
-
                 sp500Data.data.forEach((item, index) => {
+                    const inrStockQty = investmentAmount / sp500Data.data[0].Adj_Close / usdinrData.data[0].Adj_Close;
+                    const adjClose = usdinrData.data[index]?.Adj_Close || null;
+
+                    let spAmount = selectedCurrency.value === "inr" ? inrStockQty * item.Adj_Close * adjClose : item.Adj_Close * startSPQty;
+                    let spResult = Math.round(spAmount);
+
                     if (index < zValues.length) {
-                        // Update existing values
-                        let spAmount = item.Adj_Close * startSPQty;
-                        let spResult = Math.round(spAmount);
                         zValues[index] = spResult;
                     } else {
-                        // Push new values
-                        let spAmount = item.Adj_Close * startSPQty;
-                        let spResult = Math.round(spAmount);
                         zValues.push(spResult);
                     }
                 });
 
                 niftyData.data.forEach((item, index) => {
+                    const niftyqty = investmentAmount / niftyData.data[0].Adj_Close;
+                    const niftyValue = niftyqty * item.Adj_Close;
                     if (index < bValues.length) {
                         // Update existing values
-                        let niftyResult = Math.round(item.Adj_Close);
+                        let niftyResult = Math.round(niftyValue);
                         bValues[index] = niftyResult;
                     } else {
                         // Push new values
-                        let niftyResult = Math.round(item.Adj_Close);
+                        let niftyResult = Math.round(niftyValue);
                         bValues.push(niftyResult);
                     }
                 });
 
-                // Continue with the rest of your calculations and rendering
-                // ...
+                
+                const targetCurrency = selectedCurrency.value === "inr" ? "inr" : "usd";
+
+                document.getElementById('est_returns').textContent = Math.round(targetCurrency === "inr" ? inrEstReturns : estReturns).toLocaleString();
+                document.getElementById('total_value').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
+                document.getElementById('content_total_value').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
+                document.getElementById('cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
+                document.getElementById('content_cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
+
+
                 document.getElementById('invest_amt').textContent = finalInvestmentAmount;
                 document.getElementById('total_calc_val').textContent = finalInvestmentAmount;
-                document.getElementById('est_returns').textContent = Math.round(estReturns);
-                document.getElementById('total_value').textContent = Math.round(totalValue);
-                document.getElementById('cagr').textContent = CACR.toLocaleString();
                 document.getElementById('content_invest_amt').textContent = finalInvestmentAmount;
-                // document.getElementById('content_total_value').textContent = totalValue.toLocaleString();
-                document.getElementById('content_total_value').textContent = Math.round(totalValue);
-                document.getElementById('content_cagr').textContent = CACR.toLocaleString();
+
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                if (percentageEstimatedReturn > 0) {
-                    bar.animate(percentageEstimatedReturn);
-                } else {
-                    bar.animate(0);
-                }
+                const percentageToAnimate = selectedCurrency.value === "inr" ? inrPercentageEstimatedReturn : percentageEstimatedReturn;
+                bar.animate(Math.max(percentageToAnimate, 0));
                 return {
                     xValues,
                     yValues,
@@ -1308,6 +1451,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         }
         const dateObjects = xValues.map(dateString => new Date(dateString));
         const currecySelector = document.querySelector('input[name="currency"]:checked');
+        console.log('currecySelector 3', currecySelector.value);
         const inrCurrencyRadioButton = document.getElementById('inr_currency');
         const usdCurrencyRadioButton = document.getElementById('usd_currency');
         const formattedLabels = dateObjects.map(date => {
@@ -1376,7 +1520,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     yAxes: [{
                         ticks: {
                             callback: function(value, index, values) {
-                                return '' + value.toLocaleString();
+                                return currecySelector.value === "inr" ? `₹${value.toLocaleString()}` : `$${value.toLocaleString()}`;
                             }
                         }
                     }]
@@ -1384,10 +1528,10 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 tooltips: {
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            return "" + Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function(c, i, a) {
-                                return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
-                            });
+                            const value = tooltipItem.yLabel;
+                            return currecySelector.value === "inr" ? `₹${value.toLocaleString()}` : `$${value.toLocaleString()}`;
                         }
+                        
                     }
                 },
                 legend: {
@@ -1553,7 +1697,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             });
             renderItemsCalc(results);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         } finally {
             hideLoader(); // Hide the loader regardless of success or error
         }
