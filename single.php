@@ -162,13 +162,13 @@ while (have_posts()) :
 						</div>
 						<div class="content">
 							<?php if (has_tag('premium')) { ?>
-								<div class="inner_content premium_inner_content">
+								<!-- <div class="inner_content premium_inner_content">
 									<?php 
-										$content = get_the_content();
-										$trimmed_content = wp_trim_words($content, 60, '');
-										echo $trimmed_content;
+										// $content = get_the_content();
+										// $trimmed_content = wp_trim_words($content, 60, '');
+										// echo $trimmed_content;
 									?>
-								</div>
+								</div> -->
 							<?php } else {?>
 								<div class="inner_content">
 									<?php if (get_field('heading_notes')) : ?>
