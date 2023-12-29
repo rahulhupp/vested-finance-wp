@@ -1316,7 +1316,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     renderChart(xValues, yValues, zValues, bValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
-        const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const USDINRApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/USDINR.FOREX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;

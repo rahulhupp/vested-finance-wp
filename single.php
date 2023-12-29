@@ -138,9 +138,6 @@ while (have_posts()) :
 					</div>
 					<div class="single_module_feature_image">
 						<img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
-						<?php if (has_tag('premium')) { ?>
-							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/premium_icon.svg" alt="premium_icon" class="premium_tag_icon" />
-						<?php } ?>
 					</div>
 				</div>
 				
