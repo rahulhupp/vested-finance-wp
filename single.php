@@ -141,37 +141,53 @@ while (have_posts()) :
 					</div>
 				</div>
 				
-				<div class="single_module_content_wrapper">
-					<!-- The Modal -->
-					<div id="modal" class="modal">
-						<span id="modal-close" class="modal-close">&times;</span>
-						<img id="modal-content" class="modal-content">
-						<div id="modal-caption" class="modal-caption"></div>
-					</div>
+				<?php if (!has_tag('premium')) { ?>
+					<div class="single_module_content_wrapper">
+						<!-- The Modal -->
+						<div id="modal" class="modal">
+							<span id="modal-close" class="modal-close">&times;</span>
+							<img id="modal-content" class="modal-content">
+							<div id="modal-caption" class="modal-caption"></div>
+						</div>
 
-					<div class="single_module_post_content pb-0">
-						<div class="single_module_table_content">
-							<div class="single_module_table_wrap">
-								<?php echo do_shortcode('[ez-toc]') ?>
+						<div class="single_module_post_content pb-0">
+							<div class="single_module_table_content">
+								<div class="single_module_table_wrap">
+									<?php echo do_shortcode('[ez-toc]') ?>
+								</div>
+							</div>
+							<div class="content">
+								<div class="inner_content">
+									<?php if (get_field('heading_notes')) : ?>
+										<div class="heading_note">
+											<?php the_field('heading_notes'); ?>
+										</div>
+									<?php endif; ?>
+									<?php the_content(); ?>
+									<?php if (get_field('takeaways')) : ?>
+										<div class="takeways">
+											<h2>Key Takeaways </h2>
+											<?php the_field('takeaways'); ?>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
-						<div class="content">
-							<div class="inner_content">
-								<?php if (get_field('heading_notes')) : ?>
-									<div class="heading_note">
-										<?php the_field('heading_notes'); ?>
-									</div>
-								<?php endif; ?>
-								<?php the_content(); ?>
-								<?php if (get_field('takeaways')) : ?>
-									<div class="takeways">
-										<h2>Key Takeaways </h2>
-										<?php the_field('takeaways'); ?>
-									</div>
-								<?php endif; ?>
+						<div class="single_module_post_content pt-0">
+							<div class="single_module_table_content"></div>
+							<div class="content">
+								<div class="single_module_comments">
+									<?php
+									if (comments_open() || get_comments_number()) {
+										comments_template();
+									}
+									?>
+								</div>
 							</div>
 						</div>
 					</div>
+				<?php } ?>
+				<?php if (!has_tag('premium')) { ?>
 					<div class="single_module_post_content pt-0">
 						<div class="single_module_table_content"></div>
 						<div class="content">
@@ -184,7 +200,7 @@ while (have_posts()) :
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php } ?>
 			</div>	
 		</div>
 	</div>

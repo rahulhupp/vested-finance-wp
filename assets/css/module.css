@@ -1916,3 +1916,119 @@ a.chapter_back_btn:hover {
 .single_module_post_content .comment-form-cookies-consent label {
 	margin-left: 5px;
 }
+
+
+.single_module_feature_image .premium_tag_icon {
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    top: 16px;
+    right: 16px;
+}
+
+.single_module_feature_image {
+    position: relative;
+}
+
+.premium_box {
+    width: 100%;
+    max-width: 832px;
+    margin: 48px auto 100px;
+    padding: 30px 24px;
+    border-radius: 8px;
+    background: radial-gradient(1080.56% 350.06% at 50% 50%, #002852 22.9%, #396EE6 100%), #FFF;
+    text-align: center;
+    position: relative;
+}
+
+.premium_box .premium_box_content {
+    max-width: 584px;
+    margin: auto;
+}
+
+.premium_box .premium_box_content h2 {
+    color: #FFF;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.68px;
+    margin-bottom: 20px;
+}
+
+.premium_box .premium_box_content p {
+    color: #FFF;
+    text-align: center;
+    font-size: 17.399px;
+    font-weight: 400;
+    line-height: 26.098px; /* 26.098px */
+}
+
+.premium_box .premium_box_content .premium_box_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 38px;
+}
+
+.premium_box .premium_box_content .premium_box_buttons a {
+    display: block;
+    margin: 0 8px;
+}
+
+.premium_box .premium_box_content .premium_tag {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+}
+
+.premium_inner_content:before {
+    content: "";
+    box-shadow: inset 0px -200px 130px -140px rgb(255 255 255);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.premium_inner_content {
+    position: relative;
+}
+
+@media (max-width: 767px) {
+	.premium_box .premium_box_content .premium_tag {
+		position: relative;
+		top: 0;
+		right: 0;
+		display: block;
+		margin: auto;
+	}
+	
+	.premium_box {
+		padding: 15px 18px 30px;
+		margin-top: 40px;
+		margin-bottom: 60px;
+	}
+	
+	.premium_box .premium_box_content h2 {
+		font-size: 18px !important;
+		font-weight: 600;
+		letter-spacing: -0.36px;
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
+	
+	.premium_box .premium_box_content p {
+		font-size: 14px;
+		line-height: 21px;
+	}
+	
+	.premium_box .premium_box_content .premium_box_buttons {
+		margin-top: 28px;
+	}
+	
+	.premium_box .premium_box_content .premium_box_buttons a {
+		margin: 0 4px;
+	}
+}
