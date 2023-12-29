@@ -187,16 +187,19 @@ while (have_posts()) :
 						</div>
 					</div>
 				<?php } ?>
-				<?php if (!has_tag('premium')) { ?>
-					<div class="single_module_post_content pt-0">
-						<div class="single_module_table_content"></div>
-						<div class="content">
-							<div class="single_module_comments">
-								<?php
-								if (comments_open() || get_comments_number()) {
-									comments_template();
-								}
-								?>
+				<?php if (has_tag('premium')) { ?>
+					<div class="premium_box">
+						<div class="premium_box_content">
+							<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/permium-logo.svg" alt="premium_tag" class="premium_tag" />
+							<h2>Continue reading on app</h2>
+							<p>The content you are trying to access is available exclusively to Vested Premium subscribers. If you are an existing Premium subscriber, you can access this content on our mobile app.</p>
+							<div class="premium_box_buttons">
+								<a href="https://play.google.com/store/apps/details?id=com.vested.investing.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank">
+									<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Google_Play_Store_badge.svg" alt="Google_Play_Store" />
+								</a>
+								<a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1" target="_blank">
+									<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2023/12/Apple_Badge.svg" alt="app_store" />
+								</a>
 							</div>
 						</div>
 					</div>
