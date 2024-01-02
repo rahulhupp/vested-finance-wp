@@ -2831,13 +2831,17 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .left-side {
+	position: relative;
+}
+
+.left-side a {
+	display: block;
 	color: white;
 	font-size: 20px;
 	font-family: Inter;
 	font-weight: 700;
 	line-height: 24.20px;
 	word-wrap: break-word;
-	position: relative;
 }
 
 .left-side::before {
