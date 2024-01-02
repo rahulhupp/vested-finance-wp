@@ -10,14 +10,7 @@ get_header(); ?>
         <div class="p2p_new_header">
 
             <div class="left-side">
-                <?php
-                $page_header_logo = ''; 
-                if (!empty($page_header_logo)) {
-                    echo '<img src="' . htmlspecialchars($page_header_logo) . '" alt="Header-logo">';
-                } else {
-                    echo the_field('header_text');
-                }
-                ?>
+                <a href="#home" class="scroll-link"><?php the_field('header_text'); ?></a>
             </div>
 
             <div class="burger-menu" onclick="toggleMenu()">
@@ -60,7 +53,7 @@ get_header(); ?>
 
 <div id="content" role="main" class="edge-page">
     <div class="p2p_new_section">
-        <section class="edge_banner" >
+        <section class="edge_banner" id="home">
             <div class="container">
                 <div class="banner_wrapper">
                     <div class="banner_content">
