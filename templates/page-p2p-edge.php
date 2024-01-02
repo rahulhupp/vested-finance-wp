@@ -454,9 +454,9 @@ get_header(); ?>
                 <?php echo do_shortcode('[contact-form-7 id="dc0ce5d" title="p2p-edge-form"]'); ?>
 
                 <div class="social_links">
-                    <a href="#"><img src="<?php the_field('facebook'); ?>" alt=""></a>
-                    <a href="#"><img src="<?php the_field('insta'); ?>" alt=""></a>
-                    <a href="#"><img src="<?php the_field('linkdin'); ?>" alt=""></a>
+                    <a href="https://www.facebook.com/groups/1286109401787226/" target="_blank"><img src="<?php the_field('facebook'); ?>" alt=""></a>
+                    <a href="https://www.instagram.com/vested-finance/" target="_blank"><img src="<?php the_field('insta'); ?>" alt=""></a>
+                    <a href="https://www.linkedin.com/company/vestedfinance" target="_blank"><img src="<?php the_field('linkdin'); ?>" alt=""></a>
                 </div>
 
             </div>
