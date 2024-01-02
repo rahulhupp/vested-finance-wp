@@ -59,7 +59,7 @@ get_header(); ?>
 
 <div id="content" role="main" class="edge-page">
     <div class="p2p_new_section">
-        <section class="edge_banner" id="section-1">
+        <section class="edge_banner" >
             <div class="container">
                 <div class="banner_wrapper">
                     <div class="banner_content">
@@ -110,7 +110,7 @@ get_header(); ?>
             </div>
         </section>
     </div>
-    <section class="smart_diversification">
+    <section class="smart_diversification" id="section-1">
         <div class="container">
             <div class="smart_diversification_content">
                 <h2 class="section_title align_left"><span>
@@ -336,7 +336,7 @@ get_header(); ?>
         </div>
     </section>
     <?php if (have_rows('edge_list')): ?>
-        <section class="vested_edge_list" id="section-4">
+        <section class="vested_edge_list">
             <div class="container">
                 <div class="edge_list_row">
                     <h2 class="section_title light">
@@ -368,7 +368,7 @@ get_header(); ?>
         </section>
     <?php endif; ?>
     <?php if (have_rows('portfolio_slider')): ?>
-        <section class="portfolio_slider_sec">
+        <section class="portfolio_slider_sec"  id="section-4">
             <div class="container">
                 <h2 class="section_title">
                     <span>
@@ -416,92 +416,6 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    <?php /*                       
-<section class="invest_wisely_sec">
-   <div class="container">
-       <h2 class="section_title"><span><?php the_field('invest_wisely_heading'); ?></span></h2>
-       <?php if (have_rows('learning_list')) : ?>
-           <div class="invest_wisely_wrap">
-               <?php while (have_rows('learning_list')) : the_row(); ?>
-                   <div class="single_wisely_list">
-                       <div class="single_wisely_img">
-                           <img src="<?php the_sub_field('learning_image') ?>" alt="<?php the_sub_field('learning_title') ?>">
-                       </div>
-                       <div class="single_wisely_content">
-                           <h3><?php the_sub_field('learning_title') ?></h3>
-                           <p><?php the_sub_field('learning_description') ?></p>
-                           <a href="<?php the_sub_field('learning_cta_url') ?>" class="btn_dark"><?php the_sub_field('learning_cta_text') ?></a>
-                       </div>
-                   </div>
-               <?php endwhile; ?>
-           </div>
-       <?php endif; ?>
-   </div>
-   <div class="invest_module_sec">
-       <div class="container">
-           <?php
-           // Get the current term
-           $term = 'peer-to-peer-lending';
-
-           // Create a custom query to retrieve posts from the "module" post type with the current term
-           $args = array(
-               'post_type' => 'module',
-               'posts_per_page' => 3,
-               'tax_query' => array(
-                   array(
-                       'taxonomy' => 'modules_category',
-                       'field'    => 'slug', // Use 'slug' or 'id' depending on your preference
-                       'terms'    => $term, // Use $term->term_id if you have the ID instead of slug
-                   ),
-               ),
-           );
-
-           $query = new WP_Query($args);
-
-           if ($query->have_posts()) : ?>
-               <div class="invest_wisely_wrap module_chapter_list">
-                   <?php while ($query->have_posts()) :
-                       $query->the_post();
-                       $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                       $author_image_url = get_avatar_url(get_the_author_meta('user_email'));
-                       $reading_time = calculate_reading_time(get_the_content());
-                       $post_date = get_the_date();
-                   ?>
-                       <div class="single_module_list">
-                           <div class="single_module_img">
-                               <img src="<?php echo $featured_image_url; ?>" alt="">
-                           </div>
-                           <div class="single_module_content">
-                               <div class="module_date">
-                                   <span><?php echo $post_date; ?></span>
-                               </div>
-                               <h4><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                               <div class="author_info">
-                                   <div class="reading_time">
-                                       <h5><?php echo $reading_time; ?> mins read</h5>
-                                   </div>
-                                   <div class="author_meta">
-                                       <div class="author_img">
-                                           <img src="<?php echo $author_image_url; ?>" alt="Author">
-                                       </div>
-                                       <p class="author_name"><?php the_author(); ?></p>
-                                   </div>
-                               </div>
-                           </div>
-
-                       </div>
-                   <?php endwhile;
-                   wp_reset_postdata(); // Reset the post data 
-                   ?>
-               </div>
-           <?php else :
-               echo 'No posts found.';
-           endif;
-           ?>
-       </div>
-   </div>
-   </div>
-</section> */?>
     <?php if (have_rows('faq_list')): ?>
         <section class="home_page_faqs">
             <div class="container">
@@ -589,65 +503,6 @@ get_header(); ?>
     }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/", 
-  "@type": "BreadcrumbList", 
-  "itemListElement": [{
-    "@type": "ListItem", 
-    "position": 1, 
-    "name": "Vested Finance",
-    "item": "https://vestedfinance.com/in/"  
-  },{
-    "@type": "ListItem", 
-    "position": 2, 
-    "name": "Vested Edge P2P lending",
-    "item": "https://vestedfinance.com/in/vested-edge-p2p-lending/"  
-  }]
-}
-</script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "P2P lending - Invest in peer to peer lending in India with Vested Finance",
-    "description": "Invest in P2P Lending from India with Vested Finance. Explore How P2P lending works and returns and minimum investments.",
-    "publisher": {
-        "@type": "Organization",
-        "name": "Vested Finance"
-    }
-},
-</script>
-<?php if (have_rows('faq_list')): ?>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            <?php $rowCount = 0; ?>
-            <?php while (have_rows('faq_list')):
-                the_row(); ?>
-                    {
-                        "@type": "Question",
-                        "name": "<?php the_sub_field('faq_question') ?>",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": '
-                                <?php the_sub_field('faq_answer') ?>
-                            '
-                        }
-                    }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-            <?php endwhile; ?>
-        ]
-    }
-    </script>
-
-
-<?php endif; ?>
-
-
-
-<?php get_footer(); ?>
 <section class="footer_section">
     <div class="container">
         <?php if (have_rows('footer_section')): ?>
@@ -665,3 +520,5 @@ get_header(); ?>
 
     </div>
 </section>
+
+<?php get_footer(); ?>
