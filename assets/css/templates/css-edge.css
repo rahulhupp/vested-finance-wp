@@ -2606,6 +2606,9 @@ input[type=range]::-webkit-slider-runnable-track {
 	padding-bottom: 0px;
 }
 
+.pzp-new .single_plan:first-child .plans_list{
+	padding-bottom: 0;
+}
 
 /* contact-form */
 
