@@ -39,7 +39,7 @@ get_header(); ?>
                         <?php endwhile; ?>
                     </ul>
                     <div class="button_header">
-                        <a href="<?php the_field('header_button_url'); ?>" class="btn_green_header">
+                        <a href="<?php the_field('header_button_url'); ?>" class="btn_green_header" target="_blank">
                             <?php the_field('header_button_text'); ?>
                         </a>
                     </div>
@@ -81,7 +81,7 @@ get_header(); ?>
                         <?php endif; ?>
                         <div class="banner_buttons green">
                             <div class="btn">
-                                <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark">
+                                <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark" target="_blank">
                                     <?php the_field('banner_button_one_text'); ?>
                                 </a>
                             </div>
