@@ -2821,10 +2821,11 @@ position: relative;
 }
 .header_section{
 	background-color: #002852;
-	position: sticky;
+	padding: 20px 0px;
+	/* position: sticky;
 	top: 0px;
 	z-index: 9999;
-	padding: 20px 0px;
+	padding: 20px 0px; */
 
 }
 .right_side_menu {
@@ -3083,4 +3084,11 @@ word-wrap: break-word;
 		margin-top: 20px;
 	}
 	
+}
+#main-header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }

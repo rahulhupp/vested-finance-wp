@@ -5,7 +5,7 @@
 
 get_header(); ?>
 <div class="pzp-new">
-<div class="header_section">
+<div class="header_section" id="main-header">
     <div class="container">
         <div class="p2p_new_header">
 
@@ -56,6 +56,7 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
 
 <div id="content" role="main" class="edge-page">
     <div class="p2p_new_section">
@@ -502,6 +503,32 @@ get_header(); ?>
         overlay.style.display = 'none';
     }
 </script>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var header = document.getElementById('main-header');
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.toggle('show');
+        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
+    }
+
+    function closeMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+    }
+</script>
+
 
 <section class="footer_section">
     <div class="container">
