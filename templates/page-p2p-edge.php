@@ -13,10 +13,8 @@ get_header(); ?>
                 <a href="#home" class="scroll-link"><?php the_field('header_text'); ?></a>
             </div>
 
-            <div class="humburger burger-menu" onclick="toggleMenu()">
-                <div class="inner">
-                    <div class="icon"></div>
-                </div>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
             </div>
 
             <div class="overlay" id="overlay" onclick="closeMenu()"></div>
