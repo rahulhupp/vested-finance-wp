@@ -3059,6 +3059,10 @@ a:focus {
 }
 
 @media screen and (max-width: 767px) {
+	.pzp-new {
+		overflow: hidden;
+	}
+	
 	.right_side_menu {
 		position: fixed;
 		top: 75px;
@@ -3094,6 +3098,10 @@ a:focus {
 
 	.left-side a {
 		font-size: 16px;
+	}
+
+	.left-side::before {
+		display: none;
 	}
 
 	.overlay {
