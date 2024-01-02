@@ -13,8 +13,10 @@ get_header(); ?>
                 <a href="#home" class="scroll-link"><?php the_field('header_text'); ?></a>
             </div>
 
-            <div class="burger-menu" onclick="toggleMenu()">
-                <div class="bar"><i class="fa fa-bars"></i></div>
+            <div class="humburger burger-menu" onclick="toggleMenu()">
+                <div class="inner">
+                    <div class="icon"></div>
+                </div>
             </div>
 
             <div class="overlay" id="overlay" onclick="closeMenu()"></div>
@@ -465,64 +467,6 @@ get_header(); ?>
 </div>
 </div>
 
-<script>
-    jQuery(document).ready(function ($) {
-        $(".scroll-link").on("click", function (event) {
-            event.preventDefault();
-            const targetId = $(this).attr("href");
-            const targetSection = $(targetId);
-
-            if (targetSection.length) {
-                $("html, body").animate({
-                    scrollTop: targetSection.offset().top - 100
-                }, 1000);
-            }
-        });
-    });
-</script>
-
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.toggle('show');
-        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
-    }
-
-    function closeMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.remove('show');
-        overlay.style.display = 'none';
-    }
-</script>
-
-<script>
-    window.addEventListener('scroll', function () {
-        var header = document.getElementById('main-header');
-        if (window.scrollY > 0) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    function toggleMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.toggle('show');
-        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
-    }
-
-    function closeMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.remove('show');
-        overlay.style.display = 'none';
-    }
-</script>
-
-
 <section class="footer_section">
     <div class="container">
         <?php if (have_rows('footer_section')): ?>
@@ -540,5 +484,45 @@ get_header(); ?>
 
     </div>
 </section>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll-link").on("click", function (event) {
+            closeMenu();
+            event.preventDefault();
+            const targetId = $(this).attr("href");
+            const targetSection = $(targetId);
+
+            if (targetSection.length) {
+                $("html, body").animate({
+                    scrollTop: targetSection.offset().top - 100
+                }, 1000);
+            }
+        });
+    });
+
+    function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.toggle('show');
+        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
+    }
+
+    function closeMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+    }
+
+    window.addEventListener('scroll', function () {
+        var header = document.getElementById('main-header');
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
 
 <?php get_footer(); ?>
