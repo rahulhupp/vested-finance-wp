@@ -2780,8 +2780,8 @@ input[type=range]::-webkit-slider-runnable-track {
     border-radius: 5px;
 }
 .left-side{
-	color: white;
-font-size: 22px;
+color: white;
+font-size: 20px;
 font-family: Inter;
 font-weight: 700;
 line-height: 24.20px;
@@ -2793,7 +2793,7 @@ position: relative;
     background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
     height: 48px;
-    width: 2px;
+    width: 1px;
     top: 50%;
     transform: translate(-50px, -50%);
     right: -70px;
@@ -2801,7 +2801,7 @@ position: relative;
 .header_section{
 	background-color: #002852;
 	position: sticky;
-	top: 32px;
+	top: 0px;
 	z-index: 9999;
 	padding: 20px 0px;
 
@@ -2836,8 +2836,236 @@ word-wrap: break-word;
 .footer_content{
 	padding: 50px 20px 0;
 }
+.pzp-new .smart_diversification_content{
+	padding: 0;
+}
+
+@media (min-width:576px) and (max-width:767px){
+	.contact-form{
+		margin-bottom: 100px;
+		padding: 40px 60px;
+	}
+	
+	
+}
+
+@media (min-width:992px) and (max-width:1200px){
+	.left-side{
+		font-size: 18px;
+	}
+	
+	.right_side_menu ul li a{
+		font-size: 15px	;
+	}
+	.right_side_menu ul li{
+		padding-right: 25px;
+	}
+	.contact-form{
+		margin-bottom: 120px;
+	}
+}
+
+@media (min-width:768px) and (max-width:991px){
+	.left-side{
+		font-size: 16px;
+	}
+	.left-side::before{
+		right: -65px;
+	}
+	.right_side_menu ul li a{
+		font-size: 13px;
+	}
+	.right_side_menu ul li{
+		padding-right: 15px;
+	}
+	.button_header .btn_green_header{
+		padding: 8px 26px;
+	}
+	.sub_heading_new h4{
+		font-size: 20px;
+	}
+	.pzp-new .smart_diversification{
+		padding-top: 70px;
+	}
+	.contact-form{
+		padding: 40px 100px;
+		margin-bottom: 100px;
+	}
+	
+}
 
 /* end new page-p2p-edge */
+
+
+/* Add this to your existing styles or create a new CSS file */
+.burger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.burger-menu .bar i {
+    color: #fff;
+    margin: 6px 0;
+	font-size: 30px;
+}
+
+@media screen and (max-width: 300px) {
+	.left-side{
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.contact-headinng h2 {
+		font-size: 16px !important;
+	}
+	.contact-headinng p {
+		font-size: 12px;
+		padding-bottom: 20px;
+	}
+	
+}
+
+
+
+@media screen and (max-width: 500px) {
+	.right_side_menu {
+		width: 70% !important;
+		
+	}
+	
+}
+
+@media screen and (max-width:575px){
+	.contact-headinng h2{
+		font-size: 18px !important;
+	}
+	.contact-form{
+		padding: 40px 30px !important;
+	}
+	.contact-form{
+		margin-bottom: 100px !important;
+	}
+	.form-section .col-section.inner{
+		display: block;
+	}
+	.form-section .col-section:nth-child(3){
+		padding-top: 19px !important;
+	}
+	.form-section .col-section.bg_pd{
+		padding-right: 0px;
+	}
+	.contact-headinng p{
+		font-size: 14px;
+		padding-bottom: 25px;
+	}
+	
+
+}
+
+@media screen and (max-width: 767px) {
+    .right_side_menu {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+		position: absolute;
+		top: -8px;
+		right: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+    }
+
+    #menu.show {
+        display: block;
+    }
+
+	.p2p_new_header{
+		display: block;
+		position: relative;
+	}
+	.right_side_menu ul{
+		display: block;
+	}
+	.banner_img{
+		text-align: center;
+	}
+	.banner-description{
+		padding-bottom: 70px;
+	}
+
+	.sub_heading_new h4{
+		font-size: 18px;
+	}
+	.left-side{
+		font-size: 16px;
+	}
+
+	
+	.burger-menu {
+		cursor: pointer;
+	}
+	
+	.bar {
+		font-size: 24px;
+	}
+	
+	.overlay {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.1);
+		z-index: 999;
+	}
+	
+	.right_side_menu {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 40%;
+		height: 100%;
+		background: #fff;
+		z-index: 1000;
+		transition: left 0.3s ease;
+	}
+	
+	.right_side_menu.show {
+		left: 0;
+	}
+
+	.right_side_menu ul li a{
+		font-size: 16px;
+    line-height: 21px;
+    font-weight: 600;
+    color: #595959;
+	}
+
+	.right_side_menu ul li{
+		padding: 12px 0;
+   
+	}
+	.right_side_menu.show{
+		flex-grow: 1;
+    padding: 24px;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 1.5715;
+    word-wrap: break-word;
+	}
+	.button_header .btn_green_header{
+		padding: 12px 50px;
+		margin-top: 20px;
+	}
+	
+}
+
+
+
 
 
 

@@ -4,25 +4,29 @@
 */
 
 get_header(); ?>
-
+<div class="pzp-new">
 <div class="header_section">
     <div class="container">
         <div class="p2p_new_header">
 
             <div class="left-side">
                 <?php
-              
                 $page_header_logo = ''; 
-                
                 if (!empty($page_header_logo)) {
-                  
                     echo '<img src="' . htmlspecialchars($page_header_logo) . '" alt="Header-logo">';
                 } else {
                     echo the_field('header_text');
                 }
                 ?>
- </div>
-            <div class="right_side_menu">
+            </div>
+
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="bar"><i class="fa fa-bars"></i></div>
+            </div>
+
+            <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+            <div class="right_side_menu" id="menu">
                 <?php if (have_rows('header_menu_links')): ?>
                     <ul class="header_list">
                         <?php $counter = 1; ?>
@@ -52,8 +56,6 @@ get_header(); ?>
         </div>
     </div>
 </div>
-
-
 
 <div id="content" role="main" class="edge-page">
     <div class="p2p_new_section">
@@ -553,7 +555,7 @@ get_header(); ?>
         </section>
     </div>
 </div>
-
+</div>
 
 <script>
     jQuery(document).ready(function ($) {
@@ -571,6 +573,21 @@ get_header(); ?>
     });
 </script>
 
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.toggle('show');
+        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
+    }
+
+    function closeMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+    }
+</script>
 
 <script type="application/ld+json">
 {
