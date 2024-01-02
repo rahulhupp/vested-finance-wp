@@ -136,9 +136,14 @@
 	display: inline-block;
 }
 
+.banner_buttons.green .btn_dark {
+	border: 1px solid #3C875E;
+	background: #3C875E;
+}
+
 a.btn_dark {
-    background: #002852;
-    color: #fff;
+	background: #002852;
+	color: #fff;
 }
 
 .btn_light {
@@ -168,6 +173,11 @@ a.btn_dark {
 .btn_dark:hover {
 	background: #fff;
 	color: #002852;
+}
+
+.green .btn_dark:hover {
+	background: #fff;
+	color: #3C875E;
 }
 
 .watch_time {
@@ -567,7 +577,7 @@ a.btn_dark {
 }
 
 .single_plan:first-child .plans_list {
-    padding-bottom: 66px;
+	padding-bottom: 66px;
 }
 
 .plans_list li {
@@ -940,7 +950,7 @@ input#investment_range:before {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-    box-shadow: none;
+	box-shadow: none;
 }
 
 #investment_range::-webkit-slider-thumb {
@@ -952,7 +962,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
 	cursor: pointer;
 	border: none;
-    margin-top: -11px;
+	margin-top: -11px;
 }
 
 #investment_range::-moz-range-thumb {
@@ -964,7 +974,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	-webkit-appearance: none;
 	cursor: pointer;
 	border: none;
-    margin-top: -11px;
+	margin-top: -11px;
 }
 
 .fd_calc_sec {
@@ -1224,16 +1234,16 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .faq_content ul {
-    margin: 10px 25px;
+	margin: 10px 25px;
 }
 
 .faq_content ul li {
-    margin-bottom: 10px;
-    color: #1e2022;
-    font-size: 22px !important;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
+	margin-bottom: 10px;
+	color: #1e2022;
+	font-size: 22px !important;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 130%;
 }
 
 .faq_que.active:after {
@@ -1746,7 +1756,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	.home_page_faqs {
 		padding-bottom: 80px;
 	}
-	
+
 	.home_page_faq_wrap {
 		padding: 0 2px;
 	}
@@ -1764,7 +1774,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 
 	.faq_content ul li {
-	    font-size: 18px !important;
+		font-size: 18px !important;
 	}
 
 	.invest_wisely_wrap.module_chapter_list {
@@ -1876,8 +1886,9 @@ input[type=range]::-webkit-slider-runnable-track {
 		height: 360px;
 		margin: 0 auto 33px;
 	}
+
 	.offer_label span {
-	    font-size: 11px;
+		font-size: 11px;
 	}
 
 }
@@ -2449,12 +2460,15 @@ input[type=range]::-webkit-slider-runnable-track {
 		display: block;
 		margin: auto;
 	}
+
 	.single_plan:first-child .plans_list {
-	    padding-bottom: 0;
+		padding-bottom: 0;
 	}
+
 	.offer_label span {
-	    font-size: 12px;
+		font-size: 12px;
 	}
+
 	.faq_que h3 {
 		font-size: 14px;
 	}
@@ -2464,7 +2478,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 
 	.faq_content ul li {
-	    font-size: 12px !important;
+		font-size: 12px !important;
 	}
 
 }
@@ -2546,7 +2560,6 @@ input[type=range]::-webkit-slider-runnable-track {
 	}
 
 }
-
 
 /* new page-p2p-edge */
 .sub_heading_new {
@@ -2825,3 +2838,6 @@ word-wrap: break-word;
 }
 
 /* end new page-p2p-edge */
+
+
+
