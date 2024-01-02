@@ -1693,6 +1693,9 @@ input[type=range]::-webkit-slider-runnable-track {
 	.edge_banner {
 		padding: 60px 0 60px;
 	}
+	.p2p_new_section .edge_banner {
+		padding-top: 140px;
+	}
 }
 
 @media (max-width: 992px) {

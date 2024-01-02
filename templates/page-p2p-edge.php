@@ -481,7 +481,7 @@ get_header(); ?>
 
             if (targetSection.length) {
                 $("html, body").animate({
-                    scrollTop: targetSection.offset().top
+                    scrollTop: targetSection.offset().top - 100
                 }, 1000);
             }
         });
