@@ -2981,19 +2981,36 @@ a:focus {
 /* Add this to your existing styles or create a new CSS file */
 .burger-menu {
 	display: none;
-	cursor: pointer;
+	width: 35px;
+    height: 35px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
-.burger-menu .bar i {
-	color: #fff;
-	margin: 6px 0;
-	font-size: 30px;
+
+.burger-menu .bar {
+    height: 1px;
+    width: 20px;
+    background-color: #ffffff;
 }
 
-@media screen and (max-width: 300px) {
-	.left-side {
-		font-size: 12px;
-	}
+.burger-menu .bar:before, .burger-menu .bar:after {
+    content: "";
+    height: 1px;
+    width: 20px;
+    background-color: #ffffff;
+    position: absolute;
+}
+
+.burger-menu .bar:before {
+    top: 9px;
+}
+
+.burger-menu .bar:after {
+    bottom: 9px;
 }
 
 @media screen and (max-width: 360px) {
@@ -3004,16 +3021,6 @@ a:focus {
 	.contact-headinng p {
 		font-size: 12px;
 		padding-bottom: 20px;
-	}
-
-}
-
-
-
-@media screen and (max-width: 500px) {
-	.right_side_menu {
-		width: 70% !important;
-
 	}
 
 }
@@ -3053,26 +3060,20 @@ a:focus {
 
 @media screen and (max-width: 767px) {
 	.right_side_menu {
-		display: none;
+		position: fixed;
+		top: 75px;
+		right: -100%;
+		width: 100%;
+		height: calc(100% - 75px);
+		background: #fff;
+		z-index: 1000;
+		transition: right 0.3s ease;
+		padding: 10px 20px 90px;
+		align-items: flex-start;
 	}
 
 	.burger-menu {
-		display: block;
-		position: absolute;
-		top: -8px;
-		right: 0;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	#menu.show {
-		display: block;
-	}
-
-	.p2p_new_header {
-		display: block;
-		position: relative;
 	}
 
 	.right_side_menu ul {
@@ -3091,17 +3092,8 @@ a:focus {
 		font-size: 18px;
 	}
 
-	.left-side {
+	.left-side a {
 		font-size: 16px;
-	}
-
-
-	.burger-menu {
-		cursor: pointer;
-	}
-
-	.bar {
-		font-size: 24px;
 	}
 
 	.overlay {
@@ -3115,19 +3107,9 @@ a:focus {
 		z-index: 999;
 	}
 
-	.right_side_menu {
-		position: fixed;
-		top: 0;
-		left: -100%;
-		width: 40%;
-		height: 100%;
-		background: #fff;
-		z-index: 1000;
-		transition: left 0.3s ease;
-	}
 
 	.right_side_menu.show {
-		left: 0;
+		right: 0;
 	}
 
 	.right_side_menu ul li a {
@@ -3142,18 +3124,20 @@ a:focus {
 
 	}
 
-	.right_side_menu.show {
-		flex-grow: 1;
-		padding: 24px;
-		overflow: auto;
-		font-size: 14px;
-		line-height: 1.5715;
-		word-wrap: break-word;
+	.right_side_menu .button_header {
+		border-top: 1px solid #E8E8E8;
+		background: #FFF;
+		box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.07);
+		padding: 20px 20px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 
 	.button_header .btn_green_header {
-		padding: 12px 50px;
-		margin-top: 20px;
+		padding: 12px 20px;
+		width: 100%;
 	}
 
 }
