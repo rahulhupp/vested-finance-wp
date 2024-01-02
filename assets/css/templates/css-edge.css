@@ -2890,7 +2890,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	word-wrap: break-word;
 }
 
-.right_side_menu ul li a:focus {
+a:focus {
 	outline: none;
 }
 
