@@ -438,18 +438,6 @@ get_header(); ?>
   }]
 }
 </script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "P2P lending - Invest in peer to peer lending in India with Vested Finance",
-    "description": "Invest in P2P Lending from India with Vested Finance. Explore How P2P lending works and returns and minimum investments.",
-    "publisher": {
-        "@type": "Organization",
-        "name": "Vested Finance"
-    }
-},
-</script>
 <?php if (have_rows('faq_list')) : ?>
 <script type="application/ld+json">
 {
@@ -463,9 +451,7 @@ get_header(); ?>
                 "name": "<?php the_sub_field('faq_question') ?>",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": '
-                        <?php the_sub_field('faq_answer') ?>
-                    '
+                    "text": "<?php the_sub_field('faq_answer') ?>"
                 }
             }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
         <?php endwhile; ?>
