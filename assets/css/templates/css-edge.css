@@ -3062,7 +3062,7 @@ a:focus {
 	.pzp-new {
 		overflow: hidden;
 	}
-	
+
 	.right_side_menu {
 		position: fixed;
 		top: 75px;
@@ -3089,7 +3089,18 @@ a:focus {
 	}
 
 	.banner-description {
-		padding-bottom: 70px;
+		padding-bottom: 60px;
+    	padding-top: 40px;
+	}
+
+	.banner-description p {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	
+	.banner-description p a {
+		font-size: 14px;
+		line-height: 1.4;
 	}
 
 	.sub_heading_new h4 {
@@ -3146,6 +3157,26 @@ a:focus {
 	.button_header .btn_green_header {
 		padding: 12px 20px;
 		width: 100%;
+	}
+
+	.footer_section h2 {
+		font-size: 16px !important;
+	}
+	
+	.footer_section p {
+		margin-top: 15px;
+	}
+	
+	.footer_content {
+		padding: 20px 0;
+	}
+	
+	.link-tag {
+		font-size: 14px;
+	}
+	
+	.footer_section .bg_mg {
+		font-size: 14px !important;
 	}
 
 }
