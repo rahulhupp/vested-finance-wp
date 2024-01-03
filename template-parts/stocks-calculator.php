@@ -7,7 +7,7 @@
     .main_calc_wrap {
         position: relative;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         border-radius: 8px;
         border: 1px solid #b6c9db;
         overflow: hidden;
@@ -296,18 +296,51 @@
     .calculator .invested_val.list {
         padding-bottom: 18px;
         border-bottom: 1px dashed rgb(6 52 98 / 30%);
+       
     }
+    .calculator .invested_val.list p{
+        position: relative;
+        padding-left: 30px;
+    }
+    .calculator .invested_val.list p:before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #b3d2f1;
+  border-radius: 50%;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.est_return.list p{
+    position: relative;
+    padding-left: 30px;
+}
 
-    .calculator .est_return.list {
+.est_return.list p:before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #002852;
+  border-radius: 50%;
+  left:0px;
+  top: 50%;
+  transform: translateY(-50%);
+}   
+  .calculator .est_return.list {
         margin-top: 18px;
         padding-bottom: 29px;
         border-bottom: 1px solid rgb(6 52 98 / 30%);
+        
     }
-
+ 
     .calculator .total_val.list {
         margin-top: 29px;
         padding-bottom: 16px;
         border-bottom: 1px dashed rgb(6 52 98 / 30%);
+        padding-left: 0;
     }
 
     .calculator .cagr_val.list {
@@ -1248,8 +1281,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             newCanvas.style.display = "block";
         }, 2000);
     });
-
-
+      
     // Event handler for currency radio buttons
     document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
@@ -1268,11 +1300,50 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     });
 
 
-    // Function to update button status
+    //on page loaded function//
+    document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Check which radio button is checked
+            document.querySelector('.calc_result_col').classList.add('blur');
+            document.querySelector('#stocks_chart').classList.add('blur');
+            var selectedOption = document.querySelector('input[name="currency"]:checked').value;
+
+            // Update the text based on the selected radio button
+            const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
+            
+            document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
+                element.textContent = currencySymbol;
+            });
+        });
+    });
+
+    // Initial state with a delay of 2000 milliseconds (2 seconds)
+    setTimeout(function() {
+
+        const stockSelector = document.getElementById('resultsList').dataset.value;
+        const investmentAmount = document.getElementById('invest_val').value;
+        const currency = document.querySelector('input[name="currency"]:checked').value;
+        const startDate = document.getElementById('startMonth').value;
+        const endDate = document.getElementById('endMonth').value;
+      // Trigger API and render chart
+      triggerAPI(stockSelector, startDate, endDate)
+            .then(data => {
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
+            })
+            .catch(error => alert("Something went wrong!"));
+
+          
+          
+    }, 1000);
+});
+
+//end on page loaded function//
+
+// Function to update button status
     function btnStatus() {
         var startDate = document.getElementById('startMonth').value;
         var endDate = document.getElementById('endMonth').value;
-
         document.querySelector('.submit_btn input').classList.toggle('btn-disabled', startDate === '' || endDate === '');
     }
 
