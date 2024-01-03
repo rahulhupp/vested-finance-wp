@@ -305,8 +305,8 @@
     .calculator .invested_val.list p:before {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: #b3d2f1;
   border-radius: 50%;
   left: 0px;
@@ -321,8 +321,8 @@
 .est_return.list p:before {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: #002852;
   border-radius: 50%;
   left:0px;
