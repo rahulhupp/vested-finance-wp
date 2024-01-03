@@ -10,18 +10,11 @@ get_header(); ?>
         <div class="p2p_new_header">
 
             <div class="left-side">
-                <?php
-                $page_header_logo = ''; 
-                if (!empty($page_header_logo)) {
-                    echo '<img src="' . htmlspecialchars($page_header_logo) . '" alt="Header-logo">';
-                } else {
-                    echo the_field('header_text');
-                }
-                ?>
+                <a href="#home" class="scroll-link"><?php the_field('header_text'); ?></a>
             </div>
 
             <div class="burger-menu" onclick="toggleMenu()">
-                <div class="bar"><i class="fa fa-bars"></i></div>
+                <div class="bar"></div>
             </div>
 
             <div class="overlay" id="overlay" onclick="closeMenu()"></div>
@@ -46,7 +39,7 @@ get_header(); ?>
                         <?php endwhile; ?>
                     </ul>
                     <div class="button_header">
-                        <a href="<?php the_field('header_button_url'); ?>" class="btn_green_header">
+                        <a href="<?php the_field('header_button_url'); ?>" class="btn_green_header" target="_blank">
                             <?php the_field('header_button_text'); ?>
                         </a>
                     </div>
@@ -60,7 +53,7 @@ get_header(); ?>
 
 <div id="content" role="main" class="edge-page">
     <div class="p2p_new_section">
-        <section class="edge_banner" >
+        <section class="edge_banner" id="home">
             <div class="container">
                 <div class="banner_wrapper">
                     <div class="banner_content">
@@ -88,7 +81,7 @@ get_header(); ?>
                         <?php endif; ?>
                         <div class="banner_buttons green">
                             <div class="btn">
-                                <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark">
+                                <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark" target="_blank">
                                     <?php the_field('banner_button_one_text'); ?>
                                 </a>
                             </div>
@@ -461,9 +454,9 @@ get_header(); ?>
                 <?php echo do_shortcode('[contact-form-7 id="dc0ce5d" title="p2p-edge-form"]'); ?>
 
                 <div class="social_links">
-                    <a href="#"><img src="<?php the_field('facebook'); ?>" alt=""></a>
-                    <a href="#"><img src="<?php the_field('insta'); ?>" alt=""></a>
-                    <a href="#"><img src="<?php the_field('linkdin'); ?>" alt=""></a>
+                    <a href="https://www.facebook.com/groups/1286109401787226/" target="_blank"><img src="<?php the_field('facebook'); ?>" alt=""></a>
+                    <a href="https://www.instagram.com/vested-finance/" target="_blank"><img src="<?php the_field('insta'); ?>" alt=""></a>
+                    <a href="https://www.linkedin.com/company/vestedfinance" target="_blank"><img src="<?php the_field('linkdin'); ?>" alt=""></a>
                 </div>
 
             </div>
@@ -471,64 +464,6 @@ get_header(); ?>
     </div>
 </div>
 </div>
-
-<script>
-    jQuery(document).ready(function ($) {
-        $(".scroll-link").on("click", function (event) {
-            event.preventDefault();
-            const targetId = $(this).attr("href");
-            const targetSection = $(targetId);
-
-            if (targetSection.length) {
-                $("html, body").animate({
-                    scrollTop: targetSection.offset().top
-                }, 1000);
-            }
-        });
-    });
-</script>
-
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.toggle('show');
-        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
-    }
-
-    function closeMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.remove('show');
-        overlay.style.display = 'none';
-    }
-</script>
-
-<script>
-    window.addEventListener('scroll', function () {
-        var header = document.getElementById('main-header');
-        if (window.scrollY > 0) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    function toggleMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.toggle('show');
-        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
-    }
-
-    function closeMenu() {
-        var menu = document.getElementById('menu');
-        var overlay = document.getElementById('overlay');
-        menu.classList.remove('show');
-        overlay.style.display = 'none';
-    }
-</script>
-
 
 <section class="footer_section">
     <div class="container">
@@ -547,5 +482,45 @@ get_header(); ?>
 
     </div>
 </section>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll-link").on("click", function (event) {
+            closeMenu();
+            event.preventDefault();
+            const targetId = $(this).attr("href");
+            const targetSection = $(targetId);
+
+            if (targetSection.length) {
+                $("html, body").animate({
+                    scrollTop: targetSection.offset().top - 100
+                }, 1000);
+            }
+        });
+    });
+
+    function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.toggle('show');
+        overlay.style.display = (menu.classList.contains('show')) ? 'block' : 'none';
+    }
+
+    function closeMenu() {
+        var menu = document.getElementById('menu');
+        var overlay = document.getElementById('overlay');
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+    }
+
+    window.addEventListener('scroll', function () {
+        var header = document.getElementById('main-header');
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
 
 <?php get_footer(); ?>
