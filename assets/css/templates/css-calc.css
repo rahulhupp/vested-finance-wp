@@ -33,7 +33,81 @@
   overflow: hidden;
 }
 
+.calculator {
+  padding: 42px 0;
+}
 
+.calculator .main_heading {
+  color: #002852;
+
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -1.28px;
+  margin-bottom: 10px;
+}
+
+.calculator .sub_heading {
+  margin-bottom: 32px;
+  color: rgba(33, 37, 41, 0.6);
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.32px;
+  text-align: left;
+  max-width: 100%;
+}
+
+.calculator .calc_form select {
+  height: 52px;
+  padding: 8px 14px;
+  box-shadow: none;
+  border-radius: 4px;
+  border: 1px solid #a9bdd0;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB6SURBVHgB7ZDBDYAgDEW/TKI31nAD46DGDVyDm0xiNEUPSFs6QN+JAH2PADiOM7C7cT3L4pqR9gyNuIxAOGidtul/HJTRMkiCrly8IwSelwNZjdTy/M408F8kCb7v0s7MAUlE2OT9ABshTHJboI3AKrcH6giscsdxCje0EzktB/V6CwAAAABJRU5ErkJggg==);
+  background-position: calc(100% - 14px);
+  cursor: pointer;
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.calculator .select2-container .select2-selection {
+  border: 1px solid #a9bdd0;
+  border-radius: 4px;
+  height: 52px;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 1em;
+  outline: none;
+}
+.calculator
+  .select2-container
+  .select2-selection
+  span#select2-resultsList-container {
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 34px;
+}
+.calculator
+  .select2-container
+  .select2-selection
+  span.select2-selection__arrow {
+  height: 52px;
+}
 /* select 2 */
 .stock-result-list {
   margin-top: 16px;
@@ -65,7 +139,329 @@
   margin: 0 0 1px;
 }
 /* end select 2 */
+.calculator .calc_form label {
+  color: #464646;
 
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.calculator .field_group {
+  position: relative;
+}
+
+.calculator .inner_field {
+  position: relative;
+}
+
+.calculator #invest_val {
+  padding: 4px 14px 4px 24px;
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 52px;
+  margin-bottom: 0;
+  border-radius: 4px;
+  border: 1px solid #a9bdd0;
+}
+
+.calculator .currency {
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+}
+
+.calculator .currency_select input[type="radio"] {
+  display: none;
+}
+
+.calculator .currency_select input[type="radio"] + label {
+  color: #1f4267;
+
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.calculator .currency_select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  background: #eef5fc;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+
+.calculator .currency_select input[type="radio"] + label {
+  color: #1f4267;
+
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 3px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.calculator .currency_select input[type="radio"]:checked + label {
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.calculator .field_note span {
+  display: flex;
+  align-items: center;
+  color: #002852;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  gap: 8px;
+}
+
+.calculator .field_note {
+  padding: 8px;
+  border-radius: 4px;
+  background: #eef5fc;
+  margin-top: 8px;
+}
+
+.calculator .submit_btn input[type="submit"] {
+  width: 100%;
+  margin: 0;
+}
+
+.calculator .submit_btn {
+  margin-top: 32px;
+}
+.calculator .field_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.calculator .field_col {
+  width: calc(50% - 8px);
+}
+
+.calculator .result_graph_col {
+  width: 222px;
+}
+
+.calculator .result_breakdown_info {
+  width: 320px;
+}
+
+.calculator .result_breakdown_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.calculator .calc_result_col h3 {
+  color: #002852;
+
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%;
+  margin-bottom: 28px;
+}
+
+.calculator .list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.calculator .list p {
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  margin-bottom: 0;
+}
+
+.calculator .list h4 {
+  color: #002852;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%; /* 24.2px */
+  letter-spacing: -0.66px;
+  margin-bottom: 0;
+  display: inline-block;
+  width: auto;
+}
+
+.calculator .invested_val.list {
+  padding-bottom: 18px;
+  border-bottom: 1px dashed rgb(6 52 98 / 30%);
+  padding-left: 0;
+}
+
+.calculator .est_return.list {
+  margin-top: 18px;
+  padding-bottom: 29px;
+  border-bottom: 1px solid rgb(6 52 98 / 30%);
+  padding-left: 0;
+}
+
+.calculator .total_val.list {
+  margin-top: 29px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed rgb(6 52 98 / 30%);
+}
+
+.calculator .cagr_val.list {
+  margin-top: 16px;
+  padding-left: 0;
+}
+
+.calculator .cagr_val.list h4,
+.calculator .total_val.list h4 {
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.96px;
+  line-height: 110%;
+}
+
+.calculator .investment_cta {
+  margin: 0 16px 16px 16px;
+  border-radius: 6px;
+  background: #002852;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.calculator .cta_content_col {
+  width: 383px;
+}
+
+.calculator .cta_btn {
+  width: 184px;
+}
+
+.calculator .cta_content_col p {
+  color: #bed3ea;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 147.5%;
+  margin-bottom: 0;
+}
+
+.calculator .cta_content_col p strong {
+  font-weight: 600;
+  color: #fff;
+}
+
+.calculator .cta_btn a {
+  color: #0cc886;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: inline-block;
+  padding: 12px 14px 12px 18px;
+  border-radius: 6px;
+  border: 1px solid #146045;
+  transition: all 0.3s;
+}
+
+.calculator .cta_btn a i {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2px;
+}
+
+.calculator .cta_btn a:hover {
+  background: #146045;
+  color: #fff;
+}
+
+.calculator .result_circle_wrap {
+  position: relative;
+}
+
+.calculator .investment_amount_data {
+  width: 184px;
+  height: 184px;
+  background-image: radial-gradient(
+      circle closest-side,
+      white 0,
+      white 87%,
+      transparent 0,
+      transparent 100%,
+      white 0
+    ),
+    conic-gradient(
+      from 58deg,
+      #b3d2f1 100%,
+      transparent 0%,
+      transparent 0,
+      transparent 0
+    );
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.calculator .returns_data {
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(
+      circle closest-side,
+      white 0,
+      white 80%,
+      transparent 0,
+      transparent 100%,
+      white 0
+    ),
+    conic-gradient(
+      from 0deg,
+      #002852 40%,
+      transparent 0%,
+      transparent 0,
+      transparent 0
+    );
+  margin: 0 auto;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .calc_desc {
   margin-bottom: 0;
   margin-top: 34px;
@@ -236,17 +632,40 @@
   position: relative;
 }
 
+.calculator .list {
+  padding-left: 24px;
+  position: relative;
+}
+
+.calculator .list p {
+  position: relative;
+}
+
+.calculator .invested_val.list p:before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #b3d2f1;
+  border-radius: 50%;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
 .est_return.list p:before {
   content: "";
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: #002852;
   border-radius: 50%;
   left: -24px;
   top: 50%;
   transform: translateY(-50%);
 }
+
 .total_value {
   position: absolute;
   top: 50%;
@@ -287,12 +706,24 @@
   .calc_result_col {
     width: 50%;
   }
+  .calculator .result_breakdown_info {
+    width: 270px;
+  }
+  .calculator .cta_btn {
+    margin-top: 15px;
+  }
   .home_page_faq_wrap {
     padding: 0 115px;
   }
 }
 
 @media (max-width: 1100px) {
+  .calculator .result_breakdown_info {
+    width: 248px;
+  }
+  .calculator .result_graph_col {
+    width: 200px;
+  }
   .home_page_faq_wrap {
     padding: 0 90px;
   }
@@ -304,6 +735,12 @@
     width: 100%;
   }
 
+  .calculator .result_breakdown_info {
+    width: calc(100% - 285px);
+  }
+  .calculator .cta_btn {
+    margin-top: 0;
+  }
   .home_page_faq_wrap {
     padding: 0 80px;
   }
@@ -348,8 +785,19 @@
 }
 
 @media (max-width: 767px) {
+  .calculator .result_breakdown_wrap {
+    flex-direction: column;
+  }
+
+  .calculator .result_breakdown_info {
+    width: 100%;
+    margin-top: 40px;
+  }
   .calc_desc {
     font-size: 14px !important;
+  }
+  .calculator .cta_btn a {
+    margin-top: 15px;
   }
   .sub_heading {
     font-size: 14px !important;
@@ -366,6 +814,24 @@
   }
 }
 
+.calculator .field_col input[type="date"] {
+  padding: 4px 14px 4px 24px;
+  color: #002852;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 52px;
+  margin-bottom: 0;
+  border-radius: 4px;
+  border: 1px solid #a9bdd0;
+}
+
+.calculator .submit_btn input[type="submit"].btn-disabled {
+  background: grey !important;
+  pointer-events: none;
+}
 
 /* latest */
 .calc-page .container {
@@ -377,6 +843,34 @@
   background: url("../../images/faq_arrow.svg");
   width: 8px;
   height: 14px;
+}
+
+.calculator .field_col input[type="date"] {
+  width: 100%;
+}
+
+.calculator .field_group {
+  margin-bottom: 18px;
+}
+
+.calculator .currency_select input[type="radio"] + label {
+  margin-bottom: 0;
+}
+
+.calculator #invest_val {
+  width: 100%;
+}
+
+.calculator .submit_btn input[type="submit"] {
+  width: 100%;
+  margin: 0;
+  border-radius: 6px;
+  background: #0cc886;
+  height: 56px;
+  padding: 15px 0px 14px 0px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .popular_stocks {
