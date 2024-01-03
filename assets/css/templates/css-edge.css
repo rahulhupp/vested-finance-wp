@@ -2599,7 +2599,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .banner-description p a {
 	text-decoration: underline;
-
+	color: black;
 }
 
 .p2p_new_section .edge_banner {
@@ -3093,6 +3093,10 @@ a:focus {
 		color: #505a64;
 		line-height: 18.2px;
 		font-weight: 400;
+	}
+
+	.banner-description p a {
+		color: #505a64;
 	}
 	
 
