@@ -273,25 +273,3 @@ function custom_get_mtags_field($object, $field_name, $request) {
 
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
-
-
-function dynamic_from_email( $contact_form ) {
-    // Get the submitted form data
-    $submission = WPCF7_Submission::get_instance();
-
-    if ( $submission ) {
-        $posted_data = $submission->get_posted_data();
-
-        // Get the user's entered email from the form
-        $user_email = isset( $posted_data['your-email'] ) ? $posted_data['your-email'] : '';
-
-        // Validate the email address (you may want to add more robust validation)
-        if ( is_email( $user_email ) ) {
-            // Set the "From" email address dynamically
-            $mail = $contact_form->prop( 'mail' );
-            $mail['sender'] = $user_email;
-            $contact_form->set_properties( array( 'mail' => $mail ) );
-        }
-    }
-}
-add_action( 'wpcf7_before_send_mail', 'dynamic_from_email' );
