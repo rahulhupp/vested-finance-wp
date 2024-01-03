@@ -2274,9 +2274,8 @@ input[type=range]::-webkit-slider-runnable-track {
 
 
 	.smart_desc {
-		font-size: 14px !important;
-		line-height: 130%;
-		color: #505a64;
+		font-size: 15px !important;
+	
 	}
 
 	.money_plans_content .smart_desc.align_center {
