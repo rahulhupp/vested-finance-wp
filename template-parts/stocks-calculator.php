@@ -1335,7 +1335,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
           
           
-    }, 1000);
+    }, 500);
 });
 
 //end on page loaded function//
