@@ -305,8 +305,8 @@
     .calculator .invested_val.list p:before {
   content: "";
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: #b3d2f1;
   border-radius: 50%;
   left: 0px;
@@ -321,8 +321,8 @@
 .est_return.list p:before {
   content: "";
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: #002852;
   border-radius: 50%;
   left:0px;
@@ -1091,7 +1091,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3>Return Breakdown</h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown </h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
                             <!-- <div class="result_circle_wrap">
@@ -1216,8 +1216,71 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 </section>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var startMonthInput = document.getElementById('startMonth');
+        var endMonthInput = document.getElementById('endMonth');
+        var calcResultCol = document.querySelector('.calc_result_col');
+        var investInput = document.getElementById('invest_val');
+        var calcResultCol = document.querySelector('.calc_result_col');
+
+
+        startMonthInput.addEventListener('change', handleDateInputChange);
+        endMonthInput.addEventListener('change', handleDateInputChange);
+        investInput.addEventListener('input', filedInputChange);
+
+
+   
+         // Function to Month DATE Change //
+         function handleDateInputChange() {
+             if (startMonthInput.value || endMonthInput.value) {
+                 calcResultCol.classList.add('blur');
+            } else {
+                  calcResultCol.classList.remove('blur');
+            }
+        }
+
+         // Function to handle input change //
+         function filedInputChange() {
+              if (investInput.value.trim() !== '') {
+                 calcResultCol.classList.add('blur');
+            } else {
+                 calcResultCol.classList.add('blur');
+            }
+        }
+
+        //Droupdown blur //
+         function updateReturnBreakdown(selectedValue) {
+            var placeholderTotalValue = 1000;
+            document.getElementById('total_calc_val').innerText = placeholderTotalValue;
+            document.getElementById('returnBreakdownTitle').textContent = 'Return Breakdown of ' + selectedValue;
+            var calcResultCol = document.querySelector('.calc_result_col');
+            if (selectedValue) {
+                calcResultCol.classList.add('blur');
+            } else {
+                calcResultCol.classList.remove('blur');
+            }
+        }
+        var staticOptions = document.querySelectorAll('.static_options li');
+        staticOptions.forEach(function(option) {
+            option.addEventListener('click', function() {
+                // Get the selected value
+                var selectedValue = this.getAttribute('data-value');
+                updateReturnBreakdown(selectedValue);
+            });
+        });
+
+        // Set a default value
+        var defaultValue = 'AAPL';
+        updateReturnBreakdown(defaultValue);
+    });
+    // Droupdown blur //
+</script>
+
+
+
 <script>
     console.log('Hello 4');
     // Add an event listener to the form for the "submit" event
@@ -1321,7 +1384,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     // Initial state with a delay of 2000 milliseconds (2 seconds)
     setTimeout(function() {
 
-        const stockSelector = document.getElementById('resultsList').dataset.value;
+       const stockSelector = document.getElementById('resultsList').dataset.value;
         const investmentAmount = document.getElementById('invest_val').value;
         const currency = document.querySelector('input[name="currency"]:checked').value;
         const startDate = document.getElementById('startMonth').value;
@@ -1332,10 +1395,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
             })
             .catch(error => alert("Something went wrong!"));
+          }, 500);
 
-          
-          
-    }, 500);
 });
 
 //end on page loaded function//
@@ -1495,9 +1556,9 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 document.getElementById('cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
                 document.getElementById('content_cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
 
-
+              console.log(totalValue);
                 document.getElementById('invest_amt').textContent = finalInvestmentAmount;
-                document.getElementById('total_calc_val').textContent = finalInvestmentAmount;
+                document.getElementById('total_calc_val').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
                 document.getElementById('content_invest_amt').textContent = finalInvestmentAmount;
 
                 document.querySelector('.calc_result_col').classList.remove('blur');
