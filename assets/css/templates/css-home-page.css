@@ -280,12 +280,14 @@ a.btn_light {
 	position: relative;
 }
 .section_title sup.sup_text{
-	position: absolute;
-	top: 50px;
-	right: 225px;
+	/* position: absolute; */
+	/* top: 7px;
+    right: -5px; */
 	font-size: 13px;
-	font-weight: 300;
-	color: #000;
+    font-weight: 300;
+    color: #000;
+    vertical-align: middle;
+    margin-left: 4px;
 }
 .disclosure p{
 	color: rgba(33, 37, 41, 0.7);

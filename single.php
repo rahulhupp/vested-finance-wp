@@ -141,50 +141,69 @@ while (have_posts()) :
 					</div>
 				</div>
 				
-				<div class="single_module_content_wrapper">
-					<!-- The Modal -->
-					<div id="modal" class="modal">
-						<span id="modal-close" class="modal-close">&times;</span>
-						<img id="modal-content" class="modal-content">
-						<div id="modal-caption" class="modal-caption"></div>
-					</div>
+				<?php if (!has_tag('premium')) { ?>
+					<div class="single_module_content_wrapper">
+						<!-- The Modal -->
+						<div id="modal" class="modal">
+							<span id="modal-close" class="modal-close">&times;</span>
+							<img id="modal-content" class="modal-content">
+							<div id="modal-caption" class="modal-caption"></div>
+						</div>
 
-					<div class="single_module_post_content pb-0">
-						<div class="single_module_table_content">
-							<div class="single_module_table_wrap">
-								<?php echo do_shortcode('[ez-toc]') ?>
+						<div class="single_module_post_content pb-0">
+							<div class="single_module_table_content">
+								<div class="single_module_table_wrap">
+									<?php echo do_shortcode('[ez-toc]') ?>
+								</div>
+							</div>
+							<div class="content">
+								<div class="inner_content">
+									<?php if (get_field('heading_notes')) : ?>
+										<div class="heading_note">
+											<?php the_field('heading_notes'); ?>
+										</div>
+									<?php endif; ?>
+									<?php the_content(); ?>
+									<?php if (get_field('takeaways')) : ?>
+										<div class="takeways">
+											<h2>Key Takeaways </h2>
+											<?php the_field('takeaways'); ?>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
-						<div class="content">
-							<div class="inner_content">
-								<?php if (get_field('heading_notes')) : ?>
-									<div class="heading_note">
-										<?php the_field('heading_notes'); ?>
-									</div>
-								<?php endif; ?>
-								<?php the_content(); ?>
-								<?php if (get_field('takeaways')) : ?>
-									<div class="takeways">
-										<h2>Key Takeaways </h2>
-										<?php the_field('takeaways'); ?>
-									</div>
-								<?php endif; ?>
+						<div class="single_module_post_content pt-0">
+							<div class="single_module_table_content"></div>
+							<div class="content">
+								<div class="single_module_comments">
+									<?php
+									if (comments_open() || get_comments_number()) {
+										comments_template();
+									}
+									?>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="single_module_post_content pt-0">
-						<div class="single_module_table_content"></div>
-						<div class="content">
-							<div class="single_module_comments">
-								<?php
-								if (comments_open() || get_comments_number()) {
-									comments_template();
-								}
-								?>
+				<?php } ?>
+				<?php if (has_tag('premium')) { ?>
+					<div class="premium_box">
+						<div class="premium_box_content">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/permium-logo.svg" alt="premium_tag" class="premium_tag" />
+							<h2>Continue reading on app</h2>
+							<p>The content you are trying to access is available exclusively to Vested Premium subscribers. If you are an existing Premium subscriber, you can access this content on our mobile app.</p>
+							<div class="premium_box_buttons">
+								<a href="https://play.google.com/store/apps/details?id=com.vested.investing.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank">
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/permium-google-icon.svg" alt="google_play_store" />
+								</a>
+								<a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1" target="_blank">
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/permium-apple-icon.svg" alt="app_store" />
+								</a>
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php } ?>
 			</div>	
 		</div>
 	</div>
