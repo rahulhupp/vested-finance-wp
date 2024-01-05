@@ -13,7 +13,7 @@ get_header(); ?>
     <div class="container">
         <div class="about_calc_wrap">
             <div class="about_calc_col">
-                <h3 class="section_heading_med">What is US Stocks Returns Calculator</h3>
+                <!-- <h3 class="section_heading_med">What is US Stocks Returns Calculator</h3> -->
 
                 <div class="calc_cont">
                     <?php the_field('calc_cont'); ?>
