@@ -922,6 +922,15 @@
   margin: 20px 0;
 }
 
+/* other calculater css  */
+.us_stock_content{
+  padding-bottom: 20px;
+}
+
+ul.stock_listing li{
+  padding-bottom: 10px;
+}
+
 @media (max-width: 767px) {
   .popular_stocks_heading {
     font-size: 18px !important;
