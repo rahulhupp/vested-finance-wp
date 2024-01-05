@@ -3067,6 +3067,13 @@ a:focus {
 		overflow: hidden;
 	}
 
+	.pzp-new .smart_desc{
+		font-size: 14px;
+		color: #505a64;
+		line-height: 18.2px;
+		font-weight: 400;
+	}
+
 	.right_side_menu {
 		position: fixed;
 		top: 75px;
