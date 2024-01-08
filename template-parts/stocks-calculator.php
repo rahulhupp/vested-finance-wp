@@ -217,11 +217,6 @@
         flex-wrap: wrap;
     }
 
-    .calculator .submit_btn input[type="submit"] {
-        width: 100%;
-        margin: 0;
-    }
-
     .calculator .submit_btn {
         margin-top: 32px;
     }
@@ -511,17 +506,35 @@
         width: 100%;
     }
 
-    .calculator .submit_btn input[type="submit"] {
+    .calculator .submit_btn button {
         width: 100%;
         margin: 0;
         border-radius: 6px;
         background: #0CC886;
+        border: 1px solid #0CC886;
         height: 56px;
-        padding: 15px 0px 14px 0px;
         color: #FFF;
         font-size: 18px;
         font-weight: 700;
         line-height: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease;
+    }
+
+
+    .calculator .submit_btn button svg {
+        width: 0;
+        height: 0;
+        margin-right: 0;
+        transition: all 0.5s ease;
+    }
+
+    .calculator .submit_btn button svg.show_loader {
+        margin-right: 8px;
+        width: 32px;
+        height: 32px;
     }
 
     .calculator .container {
@@ -542,7 +555,7 @@
         border: 1px solid #a9bdd0;
     }
 
-    .calculator .submit_btn input[type="submit"].btn-disabled {
+    .calculator .submit_btn button.btn-disabled {
         background: grey !important;
         pointer-events: none;
     }
@@ -597,7 +610,6 @@
         margin: 0;
         max-height: 240px;
         overflow: auto;
-        margin-top: 15px;
     }
 
     .dropdown_options ul li {
@@ -642,11 +654,28 @@
         padding: 8px 14px;
         display: flex;
         align-items: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .selected_option .dropdown_search {
         color: #002852;
         font-size: 16px;
         font-weight: 500;
-        cursor: pointer;
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: #fff;
+    }
+
+    .selected_option .dropdown_search:focus, .selected_option .dropdown_search:active, .selected_option .dropdown_search:focus-within, .selected_option .dropdown_search:focus-visible {
+        border: none;
+        outline: none;
+        box-shadow: none;
     }
 
     .selected_option:after {
@@ -755,6 +784,9 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .loader_svg {
         animation: loaderamin 0.5s infinite;
     }
 
@@ -843,7 +875,7 @@
             padding: 16px;
         }
 
-        .calculator .submit_btn input[type="submit"] {
+        .calculator .submit_btn button {
             height: 48px;
             font-size: 16px;
         }
@@ -999,9 +1031,10 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                         <div class="field_group">
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
-                                <div class="selected_option" data-value="AAPL" id="resultsList">Apple</div>
+                                <div class="selected_option" data-value="AAPL" id="resultsList">
+                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="Apple">
+                                </div>
                                 <div class="options_dropdown_wrap">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF">
                                     <div id="loader" style="display: none;">
                                         <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -1083,7 +1116,19 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 
                         <div class="submit_btn">
-                            <input type="submit" value="Calculate">
+                            <button type="submit">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -1091,7 +1136,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3 id="returnBreakdownTitle">Return Breakdown </h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown of Apple</h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
                             <!-- <div class="result_circle_wrap">
@@ -1199,7 +1244,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 </div>
             </div>
             <div id="chartLoader" style="display: none;">
-                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -1218,71 +1263,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        var startMonthInput = document.getElementById('startMonth');
-        var endMonthInput = document.getElementById('endMonth');
-        var calcResultCol = document.querySelector('.calc_result_col');
-        var investInput = document.getElementById('invest_val');
-        var calcResultCol = document.querySelector('.calc_result_col');
-
-
-        startMonthInput.addEventListener('change', handleDateInputChange);
-        endMonthInput.addEventListener('change', handleDateInputChange);
-        investInput.addEventListener('input', filedInputChange);
-
-
-   
-         // Function to Month DATE Change //
-         function handleDateInputChange() {
-             if (startMonthInput.value || endMonthInput.value) {
-                 calcResultCol.classList.add('blur');
-            } else {
-                  calcResultCol.classList.remove('blur');
-            }
-        }
-
-         // Function to handle input change //
-         function filedInputChange() {
-              if (investInput.value.trim() !== '') {
-                 calcResultCol.classList.add('blur');
-            } else {
-                 calcResultCol.classList.add('blur');
-            }
-        }
-
-        //Droupdown blur //
-         function updateReturnBreakdown(selectedValue) {
-            var placeholderTotalValue = 1000;
-            document.getElementById('total_calc_val').innerText = placeholderTotalValue;
-            document.getElementById('returnBreakdownTitle').textContent = 'Return Breakdown of ' + selectedValue;
-            var calcResultCol = document.querySelector('.calc_result_col');
-            if (selectedValue) {
-                calcResultCol.classList.add('blur');
-            } else {
-                calcResultCol.classList.remove('blur');
-            }
-        }
-        var staticOptions = document.querySelectorAll('.static_options li');
-        staticOptions.forEach(function(option) {
-            option.addEventListener('click', function() {
-                // Get the selected value
-                var selectedValue = this.getAttribute('data-value');
-                updateReturnBreakdown(selectedValue);
-            });
-        });
-
-        // Set a default value
-        var defaultValue = 'AAPL';
-        updateReturnBreakdown(defaultValue);
-    });
-    // Droupdown blur //
-</script>
-
-
-
-<script>
-    console.log('Hello 4');
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
@@ -1294,17 +1274,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         const startDate = document.getElementById('startMonth').value;
         const endDate = document.getElementById('endMonth').value;
         
-        // Parse date values
-        const inputDate = new Date(startDate);
-        const inputDateEnd = new Date(endDate);
-        const startMonth = inputDate.toLocaleString('default', { month: 'long' });
-        const endMonth = inputDateEnd.toLocaleString('default', { month: 'long' });
-        const startYear = inputDate.getFullYear();
-        const endYear = inputDateEnd.getFullYear();
-        
-        // Display selected date range
-        document.querySelector('#start_month').textContent = `${startMonth} ${startYear}`;
-        document.querySelector('#end_month').textContent = `${endMonth} ${endYear}`;
 
         // Trigger API and render chart
         triggerAPI(stockSelector, startDate, endDate)
@@ -1316,6 +1285,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         // Show loader while waiting for the chart
         const chartLoader = document.getElementById("chartLoader");
         chartLoader.style.display = "block";
+
 
         // Remove existing canvas, if any
         const canvasToRemove = document.getElementById("myChart");
@@ -1405,11 +1375,11 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     function btnStatus() {
         var startDate = document.getElementById('startMonth').value;
         var endDate = document.getElementById('endMonth').value;
-        document.querySelector('.submit_btn input').classList.toggle('btn-disabled', startDate === '' || endDate === '');
+        document.querySelector('.submit_btn button').classList.toggle('btn-disabled', startDate === '' || endDate === '');
+        document.querySelector('.calc_result_col').classList.add('blur');
+        document.querySelector('#stocks_chart').classList.add('blur');
     }
 
-
-    btnStatus();
 
     // Event listeners for date input changes
     document.getElementById('startMonth').addEventListener('input', btnStatus);
@@ -1448,6 +1418,11 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     renderChart(xValues, yValues, zValues, bValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
+
+      
+        const svgElement = document.querySelector('.calculator .submit_btn button svg');
+        svgElement.classList.add('show_loader');
+
         const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
@@ -1468,13 +1443,10 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 const lastDate = new Date(stockData.data[stockData.data.length - 1].Date);
                 const stockSelector = document.getElementById('resultsList').dataset.value;
                 const investmentAmountString = document.getElementById('invest_val').value;
-                console.log('investmentAmountString', investmentAmountString);
                 const investmentAmount = parseFloat(investmentAmountString.replace(/[^0-9.]/g, ''));
-                console.log('investmentAmount', investmentAmount);
                 const startStockQty = parseFloat(investmentAmount / startPrice);
                 const startSPQty = parseFloat(investmentAmount / spStartPrice);
                 const finalInvestmentAmount = investmentAmount.toLocaleString();
-                console.log('finalInvestmentAmount', finalInvestmentAmount);
                 const currency = document.querySelector('input[name="currency"]:checked').value;
                 const stockQty = parseFloat(investmentAmount / startPrice);
                 const lastPortfolioValue = parseFloat(endPrice * stockQty);
@@ -1497,6 +1469,27 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 const inrTotalValue = parseFloat(Number(investmentAmount) + Number(inrEstReturns));
                 const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 const inrPercentageEstimatedReturn = (inrEstReturns / inrTotalValue).toFixed(2);
+                svgElement.classList.remove('show_loader');
+                
+
+                
+                var options = { year: 'numeric', month: 'long' };
+                var formattedDate = firstDate.toLocaleString('en-US', options);
+                console.log('formattedDate', formattedDate);
+                document.querySelector('#start_month').textContent = formattedDate;
+
+
+                // var formattedDateParts = formattedDate.split(' ');
+                // console.log('formattedDateParts', formattedDateParts);
+                // var formattedDateComparable = formattedDateParts[1] + ' ' + formattedDateParts[0];
+                // console.log('formattedDateComparable', formattedDateComparable);
+
+                
+                // if (formattedDateComparable > startDate) {
+                //     // If formattedDate is greater than startDate, update the input value
+                //     document.getElementById('startDate').value = formattedDateComparable;
+                // }
+
 
                 stockData.data.forEach((item, index) => {
                     const currentDate = item.Date;
@@ -1555,8 +1548,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 document.getElementById('content_total_value').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
                 document.getElementById('cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
                 document.getElementById('content_cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
-
-              console.log(totalValue);
                 document.getElementById('invest_amt').textContent = finalInvestmentAmount;
                 document.getElementById('total_calc_val').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
                 document.getElementById('content_invest_amt').textContent = finalInvestmentAmount;
@@ -1583,7 +1574,6 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         }
         const dateObjects = xValues.map(dateString => new Date(dateString));
         const currecySelector = document.querySelector('input[name="currency"]:checked');
-        console.log('currecySelector 3', currecySelector.value);
         const inrCurrencyRadioButton = document.getElementById('inr_currency');
         const usdCurrencyRadioButton = document.getElementById('usd_currency');
         const formattedLabels = dateObjects.map(date => {
@@ -1675,11 +1665,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
     document.querySelector('.selected_option').addEventListener("click", function() {
         const mainDropdown = document.querySelector('.select_box_new');
-        if (mainDropdown.classList.contains("dropdown_collased")) {
-            mainDropdown.classList.remove("dropdown_collased");
-        } else {
-            mainDropdown.classList.add("dropdown_collased");
-        }
+        mainDropdown.classList.add("dropdown_collased");
     });
 
 
@@ -1689,11 +1675,17 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
 
             const mainValue = document.querySelector('.selected_option');
+            const searchValue = document.querySelector('.dropdown_search');
+            const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
 
             const selectedValue = clickedElement.dataset.value;
-
-            mainValue.textContent = clickedElement.textContent;
+            
+            searchValue.value = clickedElement.textContent;
+            returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
             mainValue.dataset.value = selectedValue;
+
+            document.querySelector('.calc_result_col').classList.add('blur');
+            document.querySelector('#stocks_chart').classList.add('blur');
 
             if (mainDropdown.classList.contains("dropdown_collased")) {
                 mainDropdown.classList.remove("dropdown_collased");
@@ -1865,4 +1857,11 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             }
         }
     }
+
+    document.getElementById('invest_val').addEventListener('input', function() {
+        // This function will be called whenever the input value changes
+        var inputValue = this.value;
+        document.querySelector('.calc_result_col').classList.add('blur');
+        document.querySelector('#stocks_chart').classList.add('blur');
+    });
 </script>
