@@ -922,7 +922,7 @@
   margin: 20px 0;
 }
 
-/* other calculater css  */
+/* other calculater section css  */
 .us_stock_content{
   padding-bottom: 20px;
 }
@@ -930,6 +930,7 @@
 ul.stock_listing li{
   padding-bottom: 10px;
 }
+/* end other calculater css  */
 
 @media (max-width: 767px) {
   .popular_stocks_heading {

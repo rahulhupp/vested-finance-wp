@@ -33,6 +33,11 @@
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
             wp_enqueue_script('edge-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-edge.js');
         }
+
+        if (is_page_template('templates/page-calculators.php')) {
+            wp_enqueue_style('culators-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-calculators.css', false, '', '');
+        
+        }
         if (is_page_template('templates/page-edge.php')) {
             wp_enqueue_style('edge-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-edge.css', false, '', '');
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
