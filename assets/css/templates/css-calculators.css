@@ -192,6 +192,8 @@
 
 	.container {
 		max-width: 720px;
+		padding-left: 24px;
+		padding-right: 24px;
 
 	}
 
