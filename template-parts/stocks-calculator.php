@@ -1381,7 +1381,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         });
     });
 
-    // Initial state with a delay of 2000 milliseconds (2 seconds)
+    
     setTimeout(function() {
 
        const stockSelector = document.getElementById('resultsList').dataset.value;
