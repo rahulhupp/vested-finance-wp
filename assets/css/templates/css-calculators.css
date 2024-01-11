@@ -83,17 +83,26 @@
 	font-weight: 500;
 	line-height: 24px;
 	word-wrap: break-word;
-	padding-top: 8px;
+	padding-top: 8px !important;
 	padding-bottom: 8px;
 	max-width: 96px;
 	max-height: 40px;
 	display: flex;
 	align-items: center;
+	position: relative;
 
 }
 
-.cal_card_warap .card_content .card_description .card_calculate_btn a i{
-	padding-left: 12px;
+.cal_card_warap .card_content .card_description .card_calculate_btn a::after{
+	content: "";
+    background: url("../../images/chevron-right.svg");
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
 }
 
 .cal_card_warap .card_content .card_description h4 {
@@ -115,6 +124,10 @@
 /* End Bannner section*/
 
 /* Faqs */
+
+.faqs_sec{
+	display: none;
+}
 .calculators_faqs .section_title {
 	color: black;
 	font-size: 24px;
