@@ -50,9 +50,6 @@ get_header(); ?>
                 <div class="box basic-plan">
                     <h2><?php the_field('basic_plan_heading'); ?></h2>
                     <span><?php the_field('basic_plan_price'); ?></span>
-                    <div class="basic-plan-selection">
-                        <label for="pay-once">Pay Once</label>
-                    </div>
                     <a href="<?php the_field('basic_plan_button_link'); ?>"><?php the_field('basic_plan_button_label'); ?></a>
                 </div>
                 <div class="box premium-plan">
@@ -62,18 +59,6 @@ get_header(); ?>
                     </div>
                     <h2><?php the_field('premium_plan_heading'); ?></h2>
                     <span class="annual"><?php the_field('premium_plan_price'); ?></span>
-                    <span class="quarterly"><?php the_field('premium_plan_price_quarterly'); ?></span>
-                    <div class="plan-selection">
-                        <div class="single-plan-button">
-                            <input type="radio" name="plan-selection" id="annual-plan" value="" checked>
-                            <label for="annual-plan">Annual</label>
-                            <div class="save">Save 10%</div>
-                        </div>
-                        <div class="single-plan-button">
-                            <input type="radio" name="plan-selection" id="quarterly-plan" value="" >
-                            <label for="quarterly-plan">Quarterly</label>
-                        </div>
-                    </div>
                     <a href="<?php the_field('premium_plan_button_link'); ?>"><?php the_field('premium_plan_button_label'); ?></a>
                 </div>
             </div>
