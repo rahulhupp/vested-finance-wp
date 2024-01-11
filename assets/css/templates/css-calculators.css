@@ -123,82 +123,6 @@
 
 /* End Bannner section*/
 
-/* Faqs */
-
-.faqs_sec{
-	display: none;
-}
-.calculators_faqs .section_title {
-	color: black;
-	font-size: 24px;
-	font-weight: 600;
-	word-wrap: break-word;
-	padding: 24px 16px;
-	margin-bottom: 0;
-}
-
-.faq_content {
-	display: none;
-}
-
-.faq_que h3 {
-	line-height: normal;
-	margin-bottom: 0;
-	padding-right: 15px;
-	color: #212529;
-	font-size: 16px;
-	font-weight: 500;
-	word-wrap: break-word;
-}
-
-.faq_que {
-	position: relative;
-	cursor: pointer;
-}
-
-.faq_que:after {
-	content: "\f078";
-	font-family: "FontAwesome";
-	position: absolute;
-	top: 0;
-	right: 0px;
-	color: rgba(0, 40, 82, 1);
-	transition: transform 0.3s;
-}
-
-.single_faq {
-	padding: 18px 16px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.faq_content p {
-	color: #1E2022;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 22.40px;
-	word-wrap: break-word;
-	margin-bottom: 0;
-	padding-top: 13px;
-}
-
-.faq_content a {
-	color: #1e2022;
-}
-
-.faq_que.active:after {
-	transform: rotate(180deg);
-}
-
-.calculators_faq_wrap {
-	max-width: 770px;
-}
-
-.calculators_faqs {
-	padding-bottom: 122px;
-}
-
-/* End Faqs */
-
 /* responsive  */
 
 @media (max-width: 767px) {
@@ -252,37 +176,6 @@
 
 		line-height: 19.60px;
 	}
-
-	.faq_que h3 {
-		font-size: 14px;
-		font-weight: 500;
-	}
-
-	.faq_content p {
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 21px;
-		padding-top: 16px;
-	}
-
-	.calculators_faqs .section_title {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.calculators_faqs .section_title span {
-		font-size: 18px;
-	}
-
-	.calculators_faq_wrap .single_faq {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.calculators_faqs {
-		padding-bottom: 100px;
-	}
-
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
