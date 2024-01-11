@@ -35,7 +35,7 @@ get_header(); ?>
 
                             <?php if (get_sub_field('calculation')): ?>
                                 <div class="card_calculate_btn">
-                                     <a href="<?php the_sub_field('button_link'); ?>" > <?php the_sub_field('calculation'); ?><i class="fa fa-chevron-right" aria-hidden="true"></i> </a>
+                                     <a href="<?php the_sub_field('button_link'); ?>" > <?php the_sub_field('calculation'); ?></a>
                                 </div>
                             <?php endif; ?>
                             
@@ -51,7 +51,7 @@ get_header(); ?>
     </div>
 </section>
 
-<section>
+<section class="faqs_sec">
     <div>
         <?php if (have_rows('calculators_faq_list')): ?>
             <section class="calculators_faqs">
