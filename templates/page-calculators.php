@@ -35,15 +35,7 @@ get_header(); ?>
 
                             <?php if (get_sub_field('calculation')): ?>
                                 <div class="card_calculate_btn">
-                                    <a href="#">
-                                        <?php the_sub_field('calculation'); ?>
-                                        <?php
-                                        $image = get_sub_field('calculation_arrow');
-                                        if (!empty($image)): ?>
-                                            <img src="<?php echo esc_url($image['url']); ?>"
-                                                alt="<?php echo esc_attr($image['alt']); ?>" />
-                                        <?php endif; ?>
-                                    </a>
+                                     <a href="<?php the_sub_field('button_link'); ?>" > <?php the_sub_field('calculation'); ?><i class="fa fa-chevron-right" aria-hidden="true"></i> </a>
                                 </div>
                             <?php endif; ?>
                             
