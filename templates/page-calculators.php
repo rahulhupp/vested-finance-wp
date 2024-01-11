@@ -64,9 +64,9 @@ get_header(); ?>
                                     <?php endif; ?>
                                 </a>
                             </div>
-                            <?php if ($counter > 3): ?>
+                            <?php if ($calcarcommingsoon): ?>
                                 <h4>
-                                    <?php echo $calcarcommingsoon; ?>
+                                    <?php echo $calcarcommingsoon ; ?>
                                 </h4>
                             <?php endif; ?>
                         </div>
