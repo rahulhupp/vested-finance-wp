@@ -7,12 +7,8 @@ get_header(); ?>
 <section>
     <div class="container">
         <div class="cal_banner_warraper">
-            <h2>
-                <?php the_field('banner_heading'); ?>
-            </h2>
-            <p>
-                <?php the_field('banner_description'); ?>
-            </p>
+            <h2><?php the_field('banner_heading'); ?></h2>
+            <p><?php the_field('banner_description'); ?></p>
         </div>
     </div>
 </section>
@@ -22,10 +18,8 @@ get_header(); ?>
         <div class="cal_card_warap">
             <?php if (have_rows('cal_card')): ?>
                 <?php
-                $counter = 0;
                 while (have_rows('cal_card')):
                     the_row();
-                    $counter++;
                     ?>
                     <div class="card_content">
                         <div class="card_img">
@@ -36,45 +30,28 @@ get_header(); ?>
                             <?php endif; ?>
                         </div>
                         <div class="card_description">
-                            <?php
-                            $calcardItem = get_sub_field('cal_cards_heading');
-                            $calcardItem = str_replace('?', '₹', $calcardItem);
-                            $calcarddes = get_sub_field('cal_card_description');
-                            $calcarddes = str_replace('?', '₹', $calcarddes);
-                            $calcardbtn = get_sub_field('calculation');
-                            $calcardbtn = str_replace('?', '₹', $calcardbtn);
-                            $calcarcommingsoon = get_sub_field('comming_soon');
-                            $calcarcommingsoon = str_replace('?', '₹', $calcarcommingsoon);
-                            ?>
-                            <h2>
-                                <?php echo $calcardItem; ?>
-                            </h2>
-                            <p>
-                                <?php echo $calcarddes; ?>
-                            </p>
+                            <h2><?php the_sub_field('cal_cards_heading'); ?></h2>
+                            <p><?php the_sub_field('cal_card_description') ?></p>
 
-                            <div class="card_calculate_btn">
-                                <a href="<?php echo $calcardbtn; ?>">
-                                    <?php echo $calcardbtn; ?>
-                                    <?php
-                                    $image = get_sub_field('calculation_arrow');
-                                    if (!empty($image)): ?>
-                                        <img src="<?php echo esc_url($image['url']); ?>"
-                                            alt="<?php echo esc_attr($image['alt']); ?>" />
-                                    <?php endif; ?>
-                                </a>
-                            </div>
-                            <?php if ($calcarcommingsoon): ?>
-                                <h4>
-                                    <?php echo $calcarcommingsoon ; ?>
-                                </h4>
+                            <?php if (get_sub_field('calculation')): ?>
+                                <div class="card_calculate_btn">
+                                    <a href="#">
+                                        <?php the_sub_field('calculation'); ?>
+                                        <?php
+                                        $image = get_sub_field('calculation_arrow');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (get_sub_field('comming_soon')): ?>
+                                <h4><?php the_sub_field('comming_soon'); ?></h4>
                             <?php endif; ?>
                         </div>
-
-
-
                     </div>
-
                 <?php endwhile; ?>
             <?php endif; ?>
 
@@ -130,22 +107,6 @@ get_header(); ?>
             }
             dropDown.stop(false, true).slideToggle();
             j.preventDefault();
-        });
-    });
-
-    // post//
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var cardContents = document.querySelectorAll('.card_content');
-
-        cardContents.forEach(function (cardContent, index) {
-            var comingSoonElement = cardContent.querySelector('.card_calculate_btn');
-            var h4Element = cardContent.querySelector('h4');
-
-            if (h4Element && index > 2) {
-
-                comingSoonElement.style.display = 'none';
-            }
         });
     });
 </script>
