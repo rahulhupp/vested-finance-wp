@@ -121,13 +121,13 @@ while (have_posts()) :
 									?>
 
 									<li>
-										<a id="copyLink" href="">
+										<a id="copyLink" href="" class="blog_share_copylink">
 											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
 											<span>Copy link</span>
 										</a>
 									</li>
 									<li class="share_whatsapp">
-										<a href="javascript:void(0);" target="_blank" class="share_whatsapp_link">
+										<a href="javascript:void(0);" target="_blank" class="blog_share_whatsapp">
 											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
 											<span>Share on Whatsapp</span>
 										</a>
