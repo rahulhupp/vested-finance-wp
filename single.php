@@ -127,7 +127,7 @@ while (have_posts()) :
 										</a>
 									</li>
 									<li class="share_whatsapp">
-										<a href="javascript:void(0);" target="_blank">
+										<a href="javascript:void(0);" target="_blank" class="share_whatsapp_link">
 											<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
 											<span>Share on Whatsapp</span>
 										</a>
