@@ -265,7 +265,7 @@
                     },
                     or: {
                         name: {
-                            regex: `/hospit/i`
+                            regex: /hospit/i
                         }
                     }
                 }
