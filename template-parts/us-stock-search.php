@@ -264,7 +264,7 @@
                 },
                 where: {
                     symbol: {
-                        in: [`${stock_name}`, `${stock_name}%`]
+                        like: `${stock_name}%`
                     },
                     or: {
                         name: {
@@ -273,7 +273,6 @@
                     }
                 }
             });
-
             renderItems(results);
         } catch (err) {
             console.log(err);
