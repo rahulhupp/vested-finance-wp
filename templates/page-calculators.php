@@ -35,7 +35,7 @@ get_header(); ?>
 
                             <?php if (get_sub_field('calculation')): ?>
                                 <div class="card_calculate_btn">
-                                     <a href="<?php the_sub_field('button_link'); ?>" > <?php the_sub_field('calculation'); ?><i class="fa fa-chevron-right" aria-hidden="true"></i> </a>
+                                     <a href="<?php the_sub_field('button_link'); ?>" > <?php the_sub_field('calculation'); ?></a>
                                 </div>
                             <?php endif; ?>
                             
@@ -50,57 +50,4 @@ get_header(); ?>
         </div>
     </div>
 </section>
-
-<section>
-    <div>
-        <?php if (have_rows('calculators_faq_list')): ?>
-            <section class="calculators_faqs">
-                <div class="container">
-                    <h2 class="section_title"><span>
-                            <?php the_field('faqs_heading'); ?>
-                        </span></h2>
-                    <div class="calculators_faq_wrap">
-                        <?php while (have_rows('calculators_faq_list')):
-                            the_row(); ?>
-                            <div class="single_faq">
-                                <div class="faq_que">
-                                    <h3>
-                                        <?php the_sub_field('faq_question') ?>
-                                    </h3>
-                                </div>
-                                <div class="faq_content">
-                                    <?php the_sub_field('faq_ans') ?>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
-                    </div>
-                </div>
-            </section>
-        <?php endif; ?>
-    </div>
-</section>
-
-
-<script>
-
-    // faqs//
-    jQuery(function ($) {
-        $('.faq_que').click(function (j) {
-            var dropDown = $(this).closest('.single_faq').find('.faq_content');
-            var allOtherContents = $(this).closest('.calculators_faq_wrap').find('.faq_content').not(dropDown);
-            
-            allOtherContents.slideUp();
-
-            if ($(this).hasClass('active')) {
-                $(this).removeClass('active');
-            } else {
-                $(this).closest('.calculators_faq_wrap').find('.faq_que.active').removeClass('active');
-                $(this).addClass('active');
-            }
-            dropDown.stop(false, true).slideToggle();
-            j.preventDefault();
-        });
-    });
-</script>
-
 <?php get_footer(); ?>
