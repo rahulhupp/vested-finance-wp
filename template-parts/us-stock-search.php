@@ -263,25 +263,14 @@
                     type: "asc"
                 },
                 where: {
-                    or: [
-                        {
-                            symbol: {
-                                like: `${stock_name}%`
-                            }
-                        },
-                        {
-                            and: {
-                                name: {
-                                    like: `%${stock_name}%`
-                                },
-                                not: {
-                                    symbol: {
-                                        like: `${stock_name}%`
-                                    }
-                                }
-                            }
+                    symbol: {
+                        in: [`${stock_name}`, `${stock_name}%`]
+                    },
+                    or: {
+                        name: {
+                            like: `%${stock_name}%`
                         }
-                    ]
+                    }
                 }
             });
 
