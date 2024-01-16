@@ -253,7 +253,7 @@
                 ulElement.nextElementSibling.style.display = 'none';
                 ulElement.style.display = 'flex';
             }
-            const regex = new RegExp(`\\b${stock_name}\\b`, 'i');
+            const regex = new RegExp(`${stock_name}\\b`, 'i');
 
             console.log('regex', regex);
             const results = await connection.select({
