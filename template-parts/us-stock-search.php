@@ -254,6 +254,7 @@
                 ulElement.style.display = 'flex';
             }
             const regex = `/${stock_name}/i`;
+            console.log('regex', regex);
             const results = await connection.select({
                 from: 'stocks',
                 order: {
