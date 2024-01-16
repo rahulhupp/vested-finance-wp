@@ -263,16 +263,28 @@
                     type: "asc"
                 },
                 where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    and: {
-                        name: {
-                            like: `%${stock_name}%`
+                    or: [
+                        {
+                            symbol: {
+                                like: `${stock_name}%`
+                            }
+                        },
+                        {
+                            and: {
+                                name: {
+                                    like: `%${stock_name}%`
+                                },
+                                not: {
+                                    symbol: {
+                                        like: `${stock_name}%`
+                                    }
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             });
+
             renderItems(results);
         } catch (err) {
             console.log(err);
