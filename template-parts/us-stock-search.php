@@ -253,7 +253,7 @@
                 ulElement.nextElementSibling.style.display = 'none';
                 ulElement.style.display = 'flex';
             }
-            const regex = new RegExp(stock_name, 'ig');
+            const regex = new RegExp(stock_name, 'g');
 
             console.log('regex', regex);
             const results = await connection.select({
