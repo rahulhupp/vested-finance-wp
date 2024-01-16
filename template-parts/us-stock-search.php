@@ -253,7 +253,7 @@
                 ulElement.nextElementSibling.style.display = 'none';
                 ulElement.style.display = 'flex';
             }
-            const regex = new RegExp(stock_name, 'g');
+            const regex = new RegExp(`\\b${stock_name}\\b`, 'i');
 
             console.log('regex', regex);
             const results = await connection.select({
@@ -268,7 +268,7 @@
                     },
                     or: {
                         name: {
-                            like: `%${stock_name}%`
+                            regex: regex
                         }
                     }
                 }
