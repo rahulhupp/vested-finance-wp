@@ -253,6 +253,7 @@
                 ulElement.nextElementSibling.style.display = 'none';
                 ulElement.style.display = 'flex';
             }
+            const regex = `/${stock_name}/i`;
             const results = await connection.select({
                 from: 'stocks',
                 order: {
@@ -265,7 +266,7 @@
                     },
                     or: {
                         name: {
-                            regex: /`${stock_name}`/i
+                            regex: regex
                         }
                     }
                 }
