@@ -262,8 +262,13 @@
                     type: "asc"
                 },
                 where: {
-                    name: {
-                        regex: regex
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            regex: regex
+                        }
                     }
                 }
             });
