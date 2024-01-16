@@ -265,8 +265,7 @@
                     },
                     or: {
                         name: {
-                            like: `*${stock_name}*`,
-                            Case: false,
+                            regex: `/${stock_name}/i`
                         }
                     }
                 }
