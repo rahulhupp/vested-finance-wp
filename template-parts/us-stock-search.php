@@ -266,9 +266,9 @@
                     symbol: {
                         like: `${stock_name}%`
                     },
-                    or: {
+                    and: {
                         name: {
-                            regex: regex
+                            like: `%${stock_name}%`
                         }
                     }
                 }
