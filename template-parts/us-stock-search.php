@@ -265,7 +265,7 @@
                     },
                     or: {
                         name: {
-                            regex: `/${stock_name}/i`
+                            regex: `/hospit/i`
                         }
                     }
                 }
