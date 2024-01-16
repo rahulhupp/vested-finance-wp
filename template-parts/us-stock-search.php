@@ -265,7 +265,7 @@
                     },
                     or: {
                         name: {
-                            like: `${stock_name}%`
+                            like: `%${stock_name}%`
                         }
                     }
                 }
