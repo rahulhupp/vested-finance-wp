@@ -1588,3 +1588,14 @@
       padding-right: 15px;
   } */
   
+
+
+
+  .solar_calculate {
+    display: none;
+}
+
+.solar_invest {
+    margin-top: 100px;
+    padding-top: 50px;
+}
