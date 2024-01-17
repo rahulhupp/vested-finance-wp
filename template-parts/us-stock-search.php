@@ -8,10 +8,8 @@
         <form>
             <div class="field">
                 <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="inputChange()">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.png">
-                <div class="clear_icon" onclick="inputClear()">
-                    <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#002852"></path> </g></svg>
-                </div>
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp">
+                <div class="clear_icon" onclick="inputClear()"><i class="fa fa-times"></i></div>
             </div>
         </form>
         <div class="explore-image">
@@ -21,7 +19,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AAPL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.webp" alt="Apple" />
                             </div>
                             <span>Apple</span>
                         </div>
@@ -31,7 +29,7 @@
                     <a href="https://app.vestedfinance.com/stocks/GOOGL" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.webp" alt="Google" />
                             </div>
                             <span>Google</span>
                         </div>
@@ -41,7 +39,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AGPXX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.webp" alt="Invesco" />
                             </div>
                             <span>Invesco</span>
                         </div>
@@ -51,7 +49,7 @@
                     <a href="https://app.vestedfinance.com/stocks/MSFT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft"/>
                             </div>
                             <span>Microsoft</span>
                         </div>
@@ -61,7 +59,7 @@
                     <a href="https://app.vestedfinance.com/stocks/TSLA" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla"/>
                             </div>
                             <span>Tesla</span>
                         </div>
@@ -71,7 +69,7 @@
                     <a href="https://app.vestedfinance.com/stocks/META" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta"/>
                             </div>
                             <span>Meta</span>
                         </div>
@@ -81,7 +79,7 @@
                     <a href="https://app.vestedfinance.com/stocks/NFLX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix"/>
                             </div>
                             <span>Netflix</span>
                         </div>
@@ -91,7 +89,7 @@
                     <a href="https://app.vestedfinance.com/stocks/BWX" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr"/>
                             </div>
                             <span>SPDR</span>
                         </div>
@@ -101,7 +99,7 @@
                     <a href="https://app.vestedfinance.com/stocks/AMZN" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon"/>
                             </div>
                             <span>Amazon</span>
                         </div>
@@ -111,7 +109,7 @@
                     <a href="https://app.vestedfinance.com/stocks/SPOT" target="_blank" rel="noopener noreferrer">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.png" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify"/>
                             </div>
                             <span>Spotify</span>
                         </div>
@@ -128,16 +126,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <script>
-    console.log('1 include search');
     if (sessionStorage.getItem('last_api_call_timestamp')) {
         const current_time = Math.floor(Date.now() / 1000);
         const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
-
+        
         if (time_difference < cooldown_period) {
             indexedDBConnection();
-            console.log('Test You can make another API call in ' + (cooldown_period - time_difference) + ' seconds.');
         } else {
             usstockapi();
         }
@@ -195,8 +191,12 @@
         const isDbCreated = await connection.initDb(database);
         if(isDbCreated === true){
             console.log("db created");
+            setTimeout(function() {
+                fetchResultAll('');
+            }, 1000);
         } else {
             console.log("db opened");
+            fetchResultAll('');
         }
     }
 
@@ -253,6 +253,7 @@
                 ulElement.nextElementSibling.style.display = 'none';
                 ulElement.style.display = 'flex';
             }
+
             const regex = new RegExp(`\\b${stock_name}`, 'i');
             const results = await connection.select({
                 from: 'stocks',
@@ -272,6 +273,7 @@
                 }
             });
             renderItems(results);
+            console.log('renderItems results', results);
         } catch (err) {
             console.log(err);
         }
@@ -336,4 +338,37 @@
             fetchResult(inputValue);
         }, 500);
     }
+
+    async function fetchResultAll(stock_name) {
+        try {
+            const results = await connection.select({
+                from: 'stocks',
+                order: {
+                    by: 'symbol',
+                    type: "asc"
+                },
+                where: {
+                    symbol: {
+                        like: `${stock_name}%`
+                    },
+                    or: {
+                        name: {
+                            like: `${stock_name}%`
+                        }
+                    }
+                }
+            });
+            console.log('results', results);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
+    <?php
+        // Set the value for $stock_data
+        $stock_data = 'data from us-stock-search';
+
+        // Set the global variable for $stock_data
+        $GLOBALS['stock_data'] = $json_data;
+    ?>
 </script>
