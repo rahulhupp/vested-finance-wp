@@ -101,14 +101,14 @@ get_header();
                                         <div class="module_share_inner">
                                             <ul>
                                                 <li>
-                                                    <a class="copyLink">
+                                                    <a class="copyLink academy_share_copylink">
                                                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
                                                         <input class="copyPostLink" type="hidden" value="<?php the_permalink(); ?>" />
                                                         <span>Copy link</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="share_whatsapp" href="javascript:void(0);" data-title="<?php the_title(); ?>" data-url="<?php the_permalink(); ?>" target="_blank">
+                                                    <a class="share_whatsapp academy_share_whatsapp" href="javascript:void(0);" data-title="<?php the_title(); ?>" data-url="<?php the_permalink(); ?>" target="_blank">
                                                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
                                                         <span>Share on Whatsapp</span>
                                                     </a>
