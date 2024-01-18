@@ -107,7 +107,7 @@ get_header(); ?>
                                     </svg>
                                 </div>
                                 <div class="module_share_mobile">
-                                <button class="sharing-icon" title="<?php echo $module_name ?>" url="<?php echo $term_link; ?>">
+                                <button class="sharing-icon academy_share_mw" title="<?php echo $module_name ?>" url="<?php echo $term_link; ?>">
                                     <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

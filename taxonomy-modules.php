@@ -79,7 +79,7 @@ get_header();
                             <div class="module_btn">
                                 <div class="module_sharing_wrap">
                                     <a href="<?php the_permalink(); ?>" data-post-id="<?php echo get_the_ID(); ?>" data-category="<?php echo $term_slug; ?>" class="read-button">Start Learning</a>
-                                    <div class="module_share"><svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <div class="module_share"><svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                             <g id="SVGRepo_iconCarrier">
@@ -87,7 +87,7 @@ get_header();
                                             </g>
                                         </svg></div>
                                         <div class="module_share_mobile">
-                                        <button class="sharing-icon" title="<?php the_title(); ?>" url="<?php the_permalink(); ?>">
+                                        <button class="sharing-icon academy_share_mw" title="<?php the_title(); ?>" url="<?php the_permalink(); ?>">
                                             <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

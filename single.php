@@ -111,7 +111,7 @@ while (have_posts()) :
 						</div>
 						<div class="single_module_info_item last">
 							<div class="social-share-block">
-								<button class="sharing-icon">
+								<button class="sharing-icon blog_share_mw">
 									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="link" />
 								</button>
 								<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="Share Icon" /><span>Share</span></button>
