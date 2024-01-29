@@ -314,7 +314,7 @@
             const selectedValue = clickedElement.dataset.value;
             var selectedText = clickedElement.querySelector('strong').innerText;
             
-            var formattedText = selectedText.toLowerCase().replace(/\s+/g, '-');
+            var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
             var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
 
             var redirectToURL = `<?php echo home_url(); ?>/us-stocks/${formattedValue}/${formattedText}-share-price`;

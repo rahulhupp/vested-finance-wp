@@ -91,7 +91,56 @@
                         <div class="separator_line"></div>
                         <div class="stock_metrics_wrapper">
                             <div class="stock_metrics_keyvalue">
-                                <div id="stock_summary" class="stock_summary"></div>
+                            <div class="stock_summary">
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Market Cap
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">This is a company’s total value as determined by the stock market. It is calculated by multiplying the total number of a company's outstanding shares by the current market price of one share.</div>
+                                    </span>
+                                    <strong id="market_cap"></strong>
+                                </div>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        P/E Ratio
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">This is the ratio of a security’s current share price to its earnings per share. This ratio determines the relative value of a company’s share.</div>
+                                    </span>
+                                    <strong id="pe_ratio"></strong>
+                                </div>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Volume
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">This is the total number of shares traded during the most recent trading day.</div>
+                                    </span>
+                                    <strong id="volume"></strong>
+                                </div>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Avg Volume
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">Text Missing</div>
+                                    </span>
+                                    <strong id="avg_volume"></strong>
+                                </div>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Dividend Yield
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">This ratio shows how much income you earn in dividend payouts per year for every dollar invested in the stock (or the stock’s annual dividend payment expressed as a percentage of its current price).</div>
+                                    </span>
+                                    <strong id="dividend_yield"></strong>
+                                </div>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Beta
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">This measures the expected move in a stock’s price relative to movements in the overall market. The market, such as the S&P 500 Index, has a beta of 1.0. If a stock has a Beta greater (or lower) than 1.0, it suggests that the stock is more (or less) volatile than the broader market.</div>
+                                    </span>
+                                    <strong id="beta"></strong>
+                                </div>
+                            </div>
                             </div>
                             <div class="stock_metrics_range">
 
@@ -146,16 +195,37 @@
                     <div class="stock_details_box">
                         <h2 class="heading">Financials</h2>
                         <div class="separator_line"></div>
-                        <div class="stock_box_tab_container">
-                            <button class="stock_box_tab_button active" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab1', this)">Income Statement</button>
-                            <button class="stock_box_tab_button" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab2', this)">Balance Sheet</button>
-                            <button class="stock_box_tab_button" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab3', this)">Cash Flow</button>
+                        <div class="financials_box_header">
+                            <div class="stock_box_tab_container">
+                                <button class="stock_box_tab_button active" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab1', this)">Income Statement</button>
+                                <button class="stock_box_tab_button" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab2', this)">Balance Sheet</button>
+                                <button class="stock_box_tab_button" onclick="changeStockBoxTab('financials_tab', 'financials_tab_tab3', this)">Cash Flow</button>
+                            </div>
+                            <div class="financials_select_container">
+                                <select id="value_type_select" onchange="updateFinancialSelection('value_type_select')">
+                                    <option value="change">Growth</option>
+                                    <option value="number" selected>Absolute</option>
+                                </select>
+
+                                <select id="data_type_select" onchange="updateFinancialSelection('data_type_select')">
+                                    <option value="quarter">Quarterly</option>
+                                    <option value="annual" selected>Annual</option>
+                                </select>
+                            </div>
                         </div>
                         <div id="financials_tab_tab1" class="stock_box_tab_content">
-                            <h2>Income Statement Content</h2>
+                            <div class="stock_details_table_container">
+                                <div class="stock_details_table_wrapper">
+                                    <div id="income_statement_table"class="stock_details_table financial_table"></div>
+                                </div>
+                            </div>
                         </div>
                         <div id="financials_tab_tab2" class="stock_box_tab_content hidden">
-                            <h2>Balance Sheet Content</h2>
+                            <div class="stock_details_table_container">
+                                <div class="stock_details_table_wrapper">
+                                    <h2>Balance Sheet</h2>
+                                </div>
+                            </div>
                         </div>
                         <div id="financials_tab_tab3" class="stock_box_tab_content hidden">
                             <h2>Cash Flow Content</h2>
@@ -552,7 +622,7 @@
             callOverviewApi(data);
             callAnalystForecastApi(data);
             callReturnsApi(data);
-            callIncomeStatementApi(data);
+            callIncomeStatementApi('annual', 'number');
             localStorage.setItem('csrf', data.csrf);
             localStorage.setItem('jwToken', data.jwToken);
         })
@@ -607,12 +677,19 @@
 
         var peRatio = data.data.summary[2].value;
         setTextContent('faq_stock_pe_ratio', peRatio);
+        setTextContent('pe_ratio', peRatio);
 
         var dividendYield = data.data.summary[5].value;
         setTextContent('faq_stock_dividend_yield', dividendYield);
+        setTextContent('dividend_yield', dividendYield);
 
         var marketCap = data.data.summary[0].value;
         setTextContent('faq_stock_market_cap', marketCap);
+        setTextContent('market_cap', marketCap);
+
+        setTextContent('volume', data.data.summary[3].value);
+        setTextContent('avg_volume', data.data.summary[4].value);
+        setTextContent('beta', data.data.summary[6].value);
         
 
         var stockChangeElement = document.getElementById('stock_change');
@@ -628,13 +705,6 @@
         var stockTags = document.getElementById('stock_tags');
         data.data.tags.forEach(tag => stockTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
         
-        var stockSummaryDiv = document.getElementById('stock_summary');
-        data.data.summary.filter(item => item.type === 'keyValue').forEach(item => {
-            var div = document.createElement('div');
-            div.className = 'stock_summary_item';
-            div.innerHTML = `<span>${item.label}<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" /><div class="info_text">${item.label} info hover tooltip that can extend up to multiple lines</div></span><strong>${item.value}</strong>`;
-            stockSummaryDiv.appendChild(div);
-        });
         
         setTextContent('stock_about_title', `About ${data.data.name}` + "," + `${data.data.type}`);
         
@@ -1184,110 +1254,212 @@
             return data;
         }
 
-        function callIncomeStatementApi(data){
+        function callIncomeStatementApi(dataType, valueType){
+            var csrf = localStorage.getItem('csrf');
+            var jwToken = localStorage.getItem('jwToken');
+
             const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/income-statement';
             headers = {
-                'x-csrf-token': data.csrf,
-                'Authorization': `Bearer ${data.jwToken}`
+                'x-csrf-token': csrf,
+                'Authorization': `Bearer ${jwToken}`
             }
             fetch(returnsApiUrl, { method: 'GET',  headers: headers })
             .then(response => response.json())
             .then(data => { 
-                bindIncomeStatementData(data); 
+                bindIncomeStatementData(data.data, dataType, valueType);
             })
             .catch(error => console.error('Error:', error));
         }
         
-        function bindIncomeStatementData(data) {
-            console.log('2 bindIncomeStatementData', data);
-            const head = data.data.meta.header;
-            console.log('head', head);
-            const body = data.data.data;
-            console.log('body', body);
+        function createFinancialsTable(data, valueType) {
+            console.log('createFinancialsTable Data', data);
+            console.log('createFinancialsTable valueType', valueType);
+            var tableHTML = '<table border="1"><thead><tr>';
 
-            const annualHeaderData = head.annual;
-            console.log('annualHeaderData', annualHeaderData);
-            createTableHeader(annualHeaderData, 'annualTable');
-
-            const annualTbodyData = body.annual;
-            console.log('annualTbodyData', annualTbodyData);
-            createTableBody(annualTbodyData, 'annualTable');
-
-            // Quarter Table
-            const quarterHeaderData = head.quarter;
-            console.log('annualHeaderData', annualHeaderData);
-            createTableHeader(quarterHeaderData, 'quarterTable');
-
-            const quarterTbodyData = body.quarter;
-            console.log('quarterTbodyData', quarterTbodyData);
-            createTableBody(quarterTbodyData, 'quarterTable');
-        }
-
-        function createTableHeader(data, tableId) {
-            const tableHead = document.getElementById(tableId).createTHead();
-            const row = tableHead.insertRow();
-
-            data.forEach(entry => {
-                const cell = row.insertCell();
-                cell.textContent = entry.label;
+            // Add column headers
+            data.columns.forEach(function (column) {
+                tableHTML += '<th>' + column.label + '</th>';
             });
-        }
 
-        // Function to create a table body
-        function createTableBody(data, tableId) {
-            const table = document.getElementById(tableId);
-            const tbody = document.createElement('tbody');
-            table.appendChild(tbody);
+            tableHTML += '</tr></thead><tbody>';
 
-            data.forEach(item => {
-                item.data.forEach(rowData => {
-                    const row = tbody.insertRow();
-                    
-                    // Add the first <td> with item.info
-                    const infoCell = row.insertCell();
-                    infoCell.textContent = rowData.info;
+            // Add data rows
+            data.data.forEach(function (rowData) {
+                tableHTML += '<tr>';
 
-                    // Add the remaining <td> elements for each year in rowData
-                    Object.keys(rowData).forEach(key => {
-                        if (key !== 'info') {
-                            const cell = row.insertCell();
-                            const value = rowData[key].number ? rowData[key].number.value : '-';
-                            cell.textContent = value;
+                // Loop through columns
+                data.columns.forEach(function (column) {
+                    var key = column.key;
+
+                    // Check if it's a year column or other type of column
+                    if (rowData[key]) {
+                        if (key === "info") {
+                            var classToAdd = rowData[key][1] ? 'highlighted-info' : '';
+                            tableHTML += '<td class="' + classToAdd + '">' + (rowData[key][0] || '') + '</td>';
+                        } else if (key === "trend") {
+                            var chartData = rowData[key];
+                            var canvasId = 'chart_' + Math.random().toString(36).substring(7); // Generate a unique ID for the canvas
+                            tableHTML += '<td><canvas id="' + canvasId + '" width="38" height="20"></canvas></td>';
+
+                            // Wait for the canvas to be rendered before getting its context
+                            setTimeout(function () {
+                                var ctx = document.getElementById(canvasId).getContext('2d');
+                                var chart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: chartData[valueType].map(item => item.date),
+                                        datasets: [{
+                                            label: 'Number',
+                                            backgroundColor: chartData[valueType].map(item => item.value < 0 ? "#b92406" : "#008a5a"),
+                                            borderColor: chartData[valueType].map(item => item.value < 0 ? "#b92406" : "#008a5a"),
+                                            borderWidth: 1,
+                                            data: chartData[valueType].map(item => item.value),
+                                        }],
+                                    },
+                                    options: {
+                                        scales: {
+                                            x: {
+                                                display: false, // Hide x-axis labels
+                                            },
+                                            y: {
+                                                display: false, // Hide y-axis labels
+                                                beginAtZero: true
+                                            }
+                                        },
+                                        plugins: {
+                                            legend: {
+                                                display: false // Hide legends
+                                            },
+                                            tooltip: {
+                                                enabled: false // Hide tooltips
+                                            }
+                                        }
+                                    },
+                                });
+                            }, 0);
+                        } else {
+                            tableHTML += '<td>' + (rowData[key][valueType] ? rowData[key][valueType].value : '') + '</td>';
                         }
-                    });
+                    } else {
+                        tableHTML += '<td></td>';
+                    }
                 });
+
+                tableHTML += '</tr>';
             });
+
+            tableHTML += '</tbody></table>';
+
+            return tableHTML;
+        }
+
+        // Function to add the table to the target div
+        function addFinancialsTable(data, divId, valueType) {
+            console.log('addFinancialsTable', data);
+            var targetDiv = document.getElementById(divId);
+            if (targetDiv) {
+                targetDiv.innerHTML = createFinancialsTable(data, valueType);
+            } else {
+                console.error('Target div with id ' + divId + ' not found.');
+            }
+        }
+
+        function bindIncomeStatementData(data, dataType, valueType) {
+            console.log('meta', data.meta);
+            if (!data) {return null;}
+            try {
+                const result = {
+                    annual: {
+                        columns: data.meta.header.annual,
+                        data: [],
+                    },
+                    quarter: {
+                        columns: data.meta.header.quarter,
+                        data: [],
+                    },
+                };
+                // if (isEmpty(data.data.annual) || isEmpty(data.data.quarter)) {return result;}
+                const annualData = data.data.annual;
+                const quarterData = data.data.quarter;
+                prepareDataForTable(annualData, result, 'annual');
+                prepareDataForTable(quarterData, result, 'quarter');
+                console.log('dataType', dataType);
+                console.log('result', result[dataType]);
+                addFinancialsTable(result[dataType], 'income_statement_table', valueType);
+                return result;
+            } catch (err) {
+                console.log('err', err);
+                return {};
+            }
         }
 
 
-        const faqItems = document.querySelectorAll('.faq_item');
-
-        faqItems.forEach(item => {
-        const question = item.querySelector('.faq_question');
-        const answer = item.nextElementSibling;
-        const icon = item.querySelector('i');
-
-        item.addEventListener('click', () => {
-            faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                const otherAnswer = otherItem.nextElementSibling;
-                const otherIcon = otherItem.querySelector('i');
-
-                otherAnswer.classList.remove('active');
-                otherIcon.classList.remove('active');
-                otherAnswer.style.maxHeight = "0";
+        function prepareDataForTable(framedData, result, frame) {
+            for(let i = 0; i < framedData.length; i++) {
+                if (framedData[i].section) {
+                    const section = {
+                        info: [framedData[i].section, true],
+                    };
+                    result[frame].data.push(section);
+                }
+                for(let j = 0; j < framedData[i].data.length; j++) {
+                    const sectionData = {
+                        info: [framedData[i].data[j].info, framedData[i].data[j].highlight],
+                    };
+                    const years = findYears(result[frame].columns);
+                    years.forEach((year) => {
+                        sectionData[year] = framedData[i].data[j][year];
+                    });
+                    sectionData.trend = framedData[i].data[j].trend;
+                    years.forEach((year, index) => {
+                        sectionData.trend.change[index].displayValue =
+                framedData[i].data[j][year].change.value;
+                        sectionData.trend.number[index].displayValue =
+                framedData[i].data[j][year].number.value;
+                    });
+                    if (framedData[i].data[j].breakdown) {
+                        const breakdown = framedData[i].data[j].breakdown;
+                        const breakdownResult = [];
+                        for(let k = 0; k < breakdown.length; k++) {
+                            const breakdownData = {
+                                info: [breakdown[k].info, breakdown[k].highlight, 'child'],
+                            };
+                            years.forEach((year) => {
+                                breakdownData[year] = breakdown[k][year];
+                            });
+                            breakdownData.trend = breakdown[k].trend;
+                            years.forEach((year, index) => {
+                                breakdownData.trend.change[index].displayValue =
+                    breakdown[k][year].change.value;
+                                breakdownData.trend.number[index].displayValue =
+                    breakdown[k][year].number.value;
+                            });
+                            breakdownResult.push(breakdownData);
+                        }
+                        sectionData.children = breakdownResult;
+                    }
+                    result[frame].data.push(sectionData);
+                }
+                if (i !== framedData.length - 1) {
+                    result[frame].data.push({});
+                }
             }
-            });
+        }
 
-            answer.classList.toggle('active');
-            icon.classList.toggle('active');
-            if (answer.classList.contains('active')) {
-            answer.style.maxHeight = answer.scrollHeight + "px";
-            } else {
-            answer.style.maxHeight = "0";
-            }
-        });
-        });
+        function findYears(columns) {
+            const years = [...columns];
+            years.shift();
+            years.pop();
+            return years.map((year) => year.key);
+        };
+
+        function updateFinancialSelection(selectNumber) {
+            var selectElement = document.getElementById(selectNumber);
+            var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+            var dataType = document.getElementById('data_type_select').value;
+            var valueType = document.getElementById('value_type_select').value;
+            callIncomeStatementApi(dataType, valueType);
+        }
 
     
 
