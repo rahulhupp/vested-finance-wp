@@ -245,7 +245,8 @@
                     }
                 }
             });
-            renderItemsCalc(results);
+            let filteredResults = results.filter(item => item.type !== "etf");
+            renderItemsCalc(filteredResults);
         } catch (err) {
             // console.log(err);
         } finally {

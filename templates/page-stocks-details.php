@@ -66,12 +66,12 @@
                         <div class="stock_chart_header">
                             <h2 class="heading">Price Chart</h2>
                             <div class="stock_chart_buttons">
-                                <button onclick="callChartApi('1D')">1D</button>
-                                <button onclick="callChartApi('1W')">1W</button>
-                                <button onclick="callChartApi('1M')">1M</button>
-                                <button onclick="callChartApi('6M')">6M</button>
-                                <button class="active" onclick="callChartApi('1Y')">1Y</button>
-                                <button onclick="callChartApi('5Y')">5Y</button>
+                                <button onclick="callChartApi('1D', '')">1D</button>
+                                <button onclick="callChartApi('1W', '')">1W</button>
+                                <button onclick="callChartApi('1M', '')">1M</button>
+                                <button onclick="callChartApi('6M', 'daily')">6M</button>
+                                <button class="active" onclick="callChartApi('1Y', 'daily')">1Y</button>
+                                <button onclick="callChartApi('5Y', 'daily')">5Y</button>
                                 <button id="open_ac_modal">Advanced Chart</button>
                             </div>
                         </div>
@@ -143,7 +143,26 @@
                             </div>
                             </div>
                             <div class="stock_metrics_range">
-
+                                <h6>
+                                    <span>52-week Range</span>
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                    <div class="info_text">This shows the range of the stock’s price between the 52-week high (the highest price of the stock for the past 52 weeks) and the 52-week low (the lowest price of the stock for the past 52 weeks).</div>
+                                </h6>
+                                <div class="range_container">
+                                    <div class="range_item range_low">
+                                        <span id="range_low"></span>
+                                        <strong>L</strong>
+                                    </div>
+                                    <div class="range_item range_high">
+                                        <span id="range_high"></span>
+                                        <strong>H</strong>
+                                    </div>
+                                    <div class="float_range_item">
+                                        <div class="float_range" id="range_current_percentage">
+                                            <span id="range_current"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,12 +242,16 @@
                         <div id="financials_tab_tab2" class="stock_box_tab_content hidden">
                             <div class="stock_details_table_container">
                                 <div class="stock_details_table_wrapper">
-                                    <h2>Balance Sheet</h2>
+                                    <div id="balance_sheet_table"class="stock_details_table financial_table"></div>
                                 </div>
                             </div>
                         </div>
                         <div id="financials_tab_tab3" class="stock_box_tab_content hidden">
-                            <h2>Cash Flow Content</h2>
+                            <div class="stock_details_table_container">
+                                <div class="stock_details_table_wrapper">
+                                    <div id="cash_flow_table"class="stock_details_table financial_table"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,6 +259,8 @@
                 <div id="ratios_tab" class="tab_content">
                     <div class="stock_details_box">
                         <h2 class="heading">Ratios</h2>
+                        <div class="separator_line"></div>
+                        <div id="ratios_content"></div>
                     </div>
                 </div>
 
@@ -623,6 +648,9 @@
             callAnalystForecastApi(data);
             callReturnsApi(data);
             callIncomeStatementApi('annual', 'number');
+            callBalanceSheetApi('annual', 'number');
+            callCashFlowApi('annual', 'number');
+            callRatiosApi();
             localStorage.setItem('csrf', data.csrf);
             localStorage.setItem('jwToken', data.jwToken);
         })
@@ -640,7 +668,7 @@
         fetch(instrumentsApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => {
-            callChartApi('1Y');
+            callChartApi('1Y', 'daily');
             bindOverviewData(data);
             updateMetaTags(data);
          })
@@ -714,16 +742,23 @@
        
         var stockAboutTags = document.getElementById('stock_about_tags');
         data.data.tags.forEach(tag => stockAboutTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
+        
+        setTextContent('range_low', `$${data.data.summary[1].raw.low}`);
+        setTextContent('range_high', `$${data.data.summary[1].raw.high}`);
+        setTextContent('range_current', `$${data.data.price}`);
+        const rangePercentage = ((data.data.price - data.data.summary[1].raw.low) / (data.data.summary[1].raw.high - data.data.summary[1].raw.low)) * 100;
+        const rangeCurrentPercentage = document.getElementById('range_current_percentage');
+        rangeCurrentPercentage.style.left = `calc(${rangePercentage}% - 28px)`;;
+
+
     }
 
     function updateMetaTags(data) {
-        console.log('1 updateMetaTags', data);
-        // Access the head element
         var head = document.head || document.getElementsByTagName('head')[0];
 
         // Update title
         var titleTag = head.querySelector('title');
-        console.log('titleTag', titleTag);
+
         if (titleTag) {
             titleTag.textContent = `${data.data.name} Share Price today - Invest in ${data.data.ticker} Stock | Market Cap, Quote, Returns & More`;
         }
@@ -765,8 +800,6 @@
     }
 
     function callReturnsCompareApi(returnData, ticker) {
-        console.log('returnData', returnData);
-        console.log('ticker', ticker);
         var csrf = localStorage.getItem('csrf');
         var jwToken = localStorage.getItem('jwToken');
         const returnsCompareApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns?compare=${ticker}`;
@@ -777,16 +810,12 @@
         fetch(returnsCompareApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => {
-            if (returnData === 'absolute_returns') {
-                bindAbsoluteReturnsData(data);
-                var currentTable = document.getElementById('absolute_returns_table');
-                currentTable.classList.add('ticker_added');
-            }
-            if (returnData === 'annualized_returns') {
-                bindAnnualizedReturnsData(data);
-                var currentTable = document.getElementById('annualized_returns_table');
-                currentTable.classList.add('ticker_added');
-            } 
+            bindAbsoluteReturnsData(data);
+            bindAnnualizedReturnsData(data);
+            var currentTable = document.getElementById('absolute_returns_table');
+            currentTable.classList.add('ticker_added');
+            var currentTable = document.getElementById('annualized_returns_table');
+            currentTable.classList.add('ticker_added');
         })
         .catch(error => console.error('Error:', error));
     }
@@ -976,7 +1005,9 @@
     }
 
 
-    function callChartApi(timeframe, button) {
+    function callChartApi(timeframe, interval) {
+        console.log('1 timeframe', timeframe);
+        console.log('interval', interval);
         if (event) {
             var button = event.target;
             handleButtonClick(button); // Add or remove active class
@@ -984,7 +1015,11 @@
         var chartLoaderContainer = document.getElementById('chart_loader_container');
         chartLoaderContainer.style.opacity = '1';
 
-        const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
+        // const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
+        let apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}`;
+        if (interval === 'daily') {
+            apiUrl += '&interval=daily';
+        }
 
         fetch(apiUrl, { method: 'GET' })
         .then(response => response.json())
@@ -1270,10 +1305,42 @@
             })
             .catch(error => console.error('Error:', error));
         }
+
+        function callBalanceSheetApi(dataType, valueType){
+            var csrf = localStorage.getItem('csrf');
+            var jwToken = localStorage.getItem('jwToken');
+
+            const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/balance-sheet';
+            headers = {
+                'x-csrf-token': csrf,
+                'Authorization': `Bearer ${jwToken}`
+            }
+            fetch(returnsApiUrl, { method: 'GET',  headers: headers })
+            .then(response => response.json())
+            .then(data => { 
+                bindBalanceSheetData(data.data, dataType, valueType);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function callCashFlowApi(dataType, valueType){
+            var csrf = localStorage.getItem('csrf');
+            var jwToken = localStorage.getItem('jwToken');
+
+            const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/cash-flow';
+            headers = {
+                'x-csrf-token': csrf,
+                'Authorization': `Bearer ${jwToken}`
+            }
+            fetch(returnsApiUrl, { method: 'GET',  headers: headers })
+            .then(response => response.json())
+            .then(data => { 
+                bindCashFlowData(data.data, dataType, valueType);
+            })
+            .catch(error => console.error('Error:', error));
+        }
         
         function createFinancialsTable(data, valueType) {
-            console.log('createFinancialsTable Data', data);
-            console.log('createFinancialsTable valueType', valueType);
             var tableHTML = '<table border="1"><thead><tr>';
 
             // Add column headers
@@ -1355,7 +1422,6 @@
 
         // Function to add the table to the target div
         function addFinancialsTable(data, divId, valueType) {
-            console.log('addFinancialsTable', data);
             var targetDiv = document.getElementById(divId);
             if (targetDiv) {
                 targetDiv.innerHTML = createFinancialsTable(data, valueType);
@@ -1365,7 +1431,6 @@
         }
 
         function bindIncomeStatementData(data, dataType, valueType) {
-            console.log('meta', data.meta);
             if (!data) {return null;}
             try {
                 const result = {
@@ -1383,9 +1448,59 @@
                 const quarterData = data.data.quarter;
                 prepareDataForTable(annualData, result, 'annual');
                 prepareDataForTable(quarterData, result, 'quarter');
-                console.log('dataType', dataType);
-                console.log('result', result[dataType]);
                 addFinancialsTable(result[dataType], 'income_statement_table', valueType);
+                return result;
+            } catch (err) {
+                console.log('err', err);
+                return {};
+            }
+        }
+
+        function bindBalanceSheetData(data, dataType, valueType) {
+            if (!data) {return null;}
+            try {
+                const result = {
+                    annual: {
+                        columns: data.meta.header.annual,
+                        data: [],
+                    },
+                    quarter: {
+                        columns: data.meta.header.quarter,
+                        data: [],
+                    },
+                };
+                // if (isEmpty(data.data.annual) || isEmpty(data.data.quarter)) {return result;}
+                const annualData = data.data.annual;
+                const quarterData = data.data.quarter;
+                prepareDataForTable(annualData, result, 'annual');
+                prepareDataForTable(quarterData, result, 'quarter');
+                addFinancialsTable(result[dataType], 'balance_sheet_table', valueType);
+                return result;
+            } catch (err) {
+                console.log('err', err);
+                return {};
+            }
+        }
+
+        function bindCashFlowData(data, dataType, valueType) {
+            if (!data) {return null;}
+            try {
+                const result = {
+                    annual: {
+                        columns: data.meta.header.annual,
+                        data: [],
+                    },
+                    quarter: {
+                        columns: data.meta.header.quarter,
+                        data: [],
+                    },
+                };
+                // if (isEmpty(data.data.annual) || isEmpty(data.data.quarter)) {return result;}
+                const annualData = data.data.annual;
+                const quarterData = data.data.quarter;
+                prepareDataForTable(annualData, result, 'annual');
+                prepareDataForTable(quarterData, result, 'quarter');
+                addFinancialsTable(result[dataType], 'cash_flow_table', valueType);
                 return result;
             } catch (err) {
                 console.log('err', err);
@@ -1459,7 +1574,136 @@
             var dataType = document.getElementById('data_type_select').value;
             var valueType = document.getElementById('value_type_select').value;
             callIncomeStatementApi(dataType, valueType);
+            callBalanceSheetApi(dataType, valueType);
+            callCashFlowApi(dataType, valueType);
         }
+
+        function callRatiosApi() {
+            var csrf = localStorage.getItem('csrf');
+            var jwToken = localStorage.getItem('jwToken');
+            const ratiosApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios`;
+            headers = {
+                'x-csrf-token': csrf,
+                'Authorization': `Bearer ${jwToken}`
+            }
+            fetch(ratiosApiUrl, { method: 'GET',  headers: headers })
+            .then(response => response.json())
+            .then(data => {
+                bindRatiosData(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function callRatiosCompareApi(ticker) {
+            var csrf = localStorage.getItem('csrf');
+            var jwToken = localStorage.getItem('jwToken');
+            const ratiosApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios?compare=${ticker}`;
+            headers = {
+                'x-csrf-token': csrf,
+                'Authorization': `Bearer ${jwToken}`
+            }
+            fetch(ratiosApiUrl, { method: 'GET',  headers: headers })
+            .then(response => response.json())
+            .then(data => {
+                bindRatiosData(data);
+                var currentTable = document.getElementById('ratios_content');
+                currentTable.classList.add('ticker_added');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function bindRatiosData(data) {
+            const ratiosData = data.data.ratios;
+            const ratiosContentDiv = document.getElementById('ratios_content');
+            document.querySelectorAll(".ratios_section").forEach(e => e.remove());
+
+
+            for (const section of ratiosData) {
+                // Create a div for the section
+                const sectionDiv = document.createElement('div');
+                sectionDiv.innerHTML = `<h2>${section.section}</h2><p>${section.description}</p>`;
+                sectionDiv.classList.add('ratios_section');
+
+                // Create a container div for the table and button
+                const tableContainerDiv = document.createElement('div');
+                tableContainerDiv.classList.add('stock_details_table_container');
+
+                // Create a wrapper div for the table
+                const tableWrapperDiv = document.createElement('div');
+                tableWrapperDiv.classList.add('stock_details_table_wrapper');
+
+                // Create a div for the table
+                const ratiosTableDiv = document.createElement('div');
+                ratiosTableDiv.classList.add('stock_details_table', 'ratios_table');
+
+                // Create a table for ratios in each section
+                const ratioTable = document.createElement('table');
+
+                // Create thead for the header row
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                headerRow.innerHTML = `<th></th><th>${section.data.current.label}</th><th>${section.data.peers.label}</th>`;
+                
+                // Check if reference data exists, and add a column for it
+                if (section.data.reference) {
+                    headerRow.innerHTML += `<th>${section.data.reference.label}<button onclick="openModalAddTicker('ratios_compare')" class="ticker_button"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/repeat.svg">Ticker</button></th>`;
+                }
+
+                thead.appendChild(headerRow);
+
+                // Append the thead to the ratioTable
+                ratioTable.appendChild(thead);
+
+                // Create tbody for the rows
+                const tbody = document.createElement('tbody');
+
+                // Loop through ratios in each section
+                for (const ratio of section.data.ratios.value) {
+                    // Create a row for each ratio
+                    const row = document.createElement('tr');
+                    const label = ratio.subtext ? `${ratio.label} <span>${ratio.subtext}</span>` : ratio.label;
+                    const currentHighlight = section.data.current.value[ratio.key].highlight;
+                    const peersHighlight = section.data.peers.value[ratio.key].highlight;
+
+                    row.innerHTML = `<td class="${currentHighlight ? 'highlight' : ''}">${label}</td><td class="${currentHighlight ? 'highlight' : ''}">${section.data.current.value[ratio.key].value}</td><td class="${peersHighlight ? 'highlight' : ''}">${section.data.peers.value[ratio.key].value}</td>`;
+
+                    // Check if reference data exists, and add a column for it
+                    if (section.data.reference) {
+                        row.innerHTML += `<td>${section.data.reference.value[ratio.key].value}</td>`;
+                    }
+
+                    tbody.appendChild(row);
+                }
+
+                // Append the tbody to the ratioTable
+                ratioTable.appendChild(tbody);
+
+                // Append the ratioTable to the ratiosTableDiv
+                ratiosTableDiv.appendChild(ratioTable);
+
+                // Append the ratiosTableDiv to the tableWrapperDiv
+                tableWrapperDiv.appendChild(ratiosTableDiv);
+
+                // Create a button for adding a ticker
+                const addButton = document.createElement('button');
+                addButton.classList.add('stock_details_table_button');
+                addButton.innerHTML = `<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.svg" alt="plus-icon" /><span>Add ticker to compare</span>`;
+                addButton.addEventListener('click', () => openModalAddTicker('ratios_compare'));
+
+                // Append the button to the tableWrapperDiv
+                tableWrapperDiv.appendChild(addButton);
+
+                // Append the tableWrapperDiv to the tableContainerDiv
+                tableContainerDiv.appendChild(tableWrapperDiv);
+
+                // Append the tableContainerDiv to the sectionDiv
+                sectionDiv.appendChild(tableContainerDiv);
+
+                // Append the sectionDiv to the ratiosContentDiv
+                ratiosContentDiv.appendChild(sectionDiv);
+            }
+        }
+
 
     
 

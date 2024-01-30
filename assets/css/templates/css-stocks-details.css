@@ -846,6 +846,243 @@
   }
 /* feedback  ends */
 
+
+
+.financials_box_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.financials_box_header .stock_box_tab_container {
+    margin-bottom: 0;
+}
+
+.financials_select_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.financials_select_container select {
+    border-radius: 6px;
+    border: 1px solid #CCD4DC;
+    background-color: linear-gradient(0deg, rgba(0, 40, 82, 0.04) 0%, rgba(0, 40, 82, 0.04) 100%), #FFF;
+    color: rgba(0, 40, 82, 0.80);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../images/chevron-down.png');
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: 69px 4px;
+    padding: 6px 32px 6px 12px;
+}
+
+.financials_select_container select:focus-visible {
+    outline: none;
+}
+
+.financials_select_container select + select {
+    margin-left: 6px;
+}
+
+.financial_table canvas {
+    width: 38px !important;
+    height: 20px !important;
+    margin: auto;
+}
+
+.ratios_section {
+    margin-bottom: 48px;
+}
+
+.ratios_section h2 {
+    color: #262626;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.ratios_section p {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    margin: 4px 0 0;
+}
+
+.ratios_section .stock_details_table_container {
+    margin-top: 16px;
+}
+
+.ratios_section:last-child {
+    margin-bottom: 0;
+}
+
+.stock_details_table_container .stock_details_table.ratios_table table td.highlight {
+    background: #EFF6FF;
+    border-color: #EFF6FF;
+    color: #1F2937;
+}
+
+.stock_details_table_container .stock_details_table.ratios_table table td.highlight:first-child {
+    color: #374151;
+    background-color: #FFFFFF;
+    border-color: #F5F5F5;
+}
+
+.stock_details_table_container .stock_details_table.ratios_table table td span {
+    display: block;
+    color: #6B7280;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 2px;
+}
+
+.stock_details_table_container .stock_details_table.ratios_table table td:first-child {
+    width: 65%;
+}
+
+.ticker_added .stock_details_table_container .stock_details_table {
+    padding-right: 0;
+}
+
+.ticker_added .stock_details_table_button {
+    display: none;
+}
+
+.stock_metrics_wrapper .stock_metrics_range h6 {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.stock_metrics_wrapper .stock_metrics_range h6 img {
+    margin-left: 4px;
+    display: block;
+}
+
+.stock_metrics_wrapper .stock_metrics_range h6 .info_text {
+    position: absolute;
+    left: calc(100% - -15px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    padding: 16px;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 12px 0px rgba(0, 40, 82, 0.16);
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.6px;
+    display: none;
+    z-index: 1;
+}
+
+.stock_metrics_wrapper .stock_metrics_range h6 img:hover + .info_text {
+    display: block;
+}
+
+.range_container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+}
+
+.range_container .float_range_item {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: calc(100% - 40px);
+    height: 2px;
+}
+
+.range_container .range_item {
+    position: relative;
+}
+
+.range_container .range_item span {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.range_container .range_item strong {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    display: block;
+}
+
+.range_container:before {
+    content: "";
+    height: 1px;
+    width: calc(100% - 40px);
+    background: rgba(0, 40, 82, 0.20);
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.range_container .range_item.range_low {
+    text-align: left;
+}
+
+.range_container .range_item.range_high {
+    text-align: right;
+}
+
+.range_container .float_range_item span {
+    display: block;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.range_container .float_range_item .float_range:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #002852;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.range_container .float_range_item .float_range {
+    position: absolute;
+    left: calc(0% - 28px);
+    bottom: -21px;
+    padding-top: 18px;
+}
+
+
 @media screen and (max-width: 1199px) {
     .stock_details_left_column {
         width: 320px;
@@ -919,54 +1156,3 @@
         white-space: normal;
     }
 }
-
-
-.financials_box_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-}
-
-.financials_box_header .stock_box_tab_container {
-    margin-bottom: 0;
-}
-
-.financials_select_container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.financials_select_container select {
-    border-radius: 6px;
-    border: 1px solid #CCD4DC;
-    background-color: linear-gradient(0deg, rgba(0, 40, 82, 0.04) 0%, rgba(0, 40, 82, 0.04) 100%), #FFF;
-    color: rgba(0, 40, 82, 0.80);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: normal;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('../../images/chevron-down.png');
-    background-repeat: no-repeat;
-    background-repeat: no-repeat;
-    background-position: 69px 4px;
-    padding: 6px 32px 6px 12px;
-}
-
-.financials_select_container select:focus-visible {
-    outline: none;
-}
-
-.financials_select_container select + select {
-    margin-left: 6px;
-}
-
-.financial_table canvas {
-    width: 38px !important;
-    height: 20px !important;
-    margin: auto;
-}
-

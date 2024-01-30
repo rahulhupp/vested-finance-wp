@@ -243,7 +243,8 @@
                     }
                 }
             });
-            tickerRenderItemsCalc(results);
+            let filteredResults = results.filter(item => item.type !== "etf");
+            tickerRenderItemsCalc(filteredResults);
         } catch (err) {
             // console.log(err);
         } finally {
@@ -316,7 +317,12 @@
             var returnData = tickerModalName.dataset.value;
             console.log('tickerModalName.dataset.value', tickerModalName.dataset.value);
             console.log('selectedValue', selectedValue);
-            callReturnsCompareApi(returnData, selectedValue);
+            if (returnData === 'ratios_compare') {
+                callRatiosCompareApi(selectedValue);
+            } else {
+                callReturnsCompareApi(returnData, selectedValue);
+            }
+            
             var modal = document.getElementById('at_modal');
             modal.style.display = 'none';
 
