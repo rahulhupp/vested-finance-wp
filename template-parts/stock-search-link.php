@@ -134,43 +134,31 @@
         <div class="dropdown_options">
             <ul class="static_options">
                 <li data-value="AAPL">
-                    <strong>Apple</strong>
+                    <strong>Apple, Inc</strong>
                     <span>AAPL</span>
                 </li>
                 <li data-value="GOOGL">
-                    <strong>Google</strong>
+                    <strong>Alphabet Inc. - Class A Shares</strong>
                     <span>GOOGL</span>
                 </li>
-                <li data-value="AGPXX">
-                    <strong>Invesco</strong>
-                    <span>AGPXX</span>
-                </li>
                 <li data-value="MSFT">
-                    <strong>Microsoft</strong>
+                    <strong>Microsoft Corporation</strong>
                     <span>MSFT</span>
                 </li>
-                <li data-value="TSLA">
-                    <strong>Tesla</strong>
-                    <span>TSLA</span>
-                </li>
                 <li data-value="META">
-                    <strong>Meta</strong>
+                    <strong>Meta Platforms Inc</strong>
                     <span>META</span>
                 </li>
                 <li data-value="NFLX">
-                    <strong>Netflix</strong>
+                    <strong>Netflix, Inc.</strong>
                     <span>NFLX</span>
                 </li>
-                <li data-value="BWX">
-                    <strong>SPDR</strong>
-                    <span>BWX</span>
-                </li>
                 <li data-value="AMZN">
-                    <strong>Amazon</strong>
+                    <strong>Amazon.com Inc.</strong>
                     <span>AMZN</span>
                 </li>
                 <li data-value="SPOT">
-                    <strong>Spotify</strong>
+                    <strong>Spotify Technology SA</strong>
                     <span>SPOT</span>
                 </li>
             </ul>
@@ -315,7 +303,8 @@
             const selectedValue = clickedElement.dataset.value;
             var selectedText = clickedElement.querySelector('strong').innerText;
             
-            var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
+            // var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
+            var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
 
             var redirectToURL = `<?php echo home_url(); ?>/us-stocks/${formattedValue}/${formattedText}-share-price`;
