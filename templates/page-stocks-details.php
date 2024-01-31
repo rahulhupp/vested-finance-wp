@@ -322,120 +322,152 @@
                             <a href="#"><button type="button" class="read_more_btn">More</button></a>
                         </div>
                     </div>
-                </div>
 
-                <div id="discover_tab" class="tab_content">
-                    <div class="stock_details_box">
-                        <h2 class="heading">Discover more</h2>
-                        <div class="separator_line"></div>
-                        <div class="explore_stocks">
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Microsoft</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
+                     <div id="discover_tab" class="stock_details_box">
+                <h2 class="heading">Discover more</h2>
+                <div class="separator_line"></div>
+                <div class="explore_stocks">
+                <div class="box_warrp" data-symbol="tsal">
+                            <a href="#">
+                            <div class="stocks_img" >
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/TSLA.png"
+                            alt="Tsla">
                             </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/google.png"
-                                    alt="google"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Google Inc</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/tesla.png"
-                                    alt="tesla"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Tesla Inc</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Stock D</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Stock E</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Stock F</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Stock G</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
-                            <div class="box_warrp">
-                                <div class="stocks_img">
-                                <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stocks/microsoft.png"
-                                    alt="Microsoft"></a>
-                                </div>
-                                <div class="stocks_details">
-                                <a href="#">
-                                    <h2>Stock H</h2>
-                                </a>
-                                <h4>$243.24</h4>
-                                <p>+25.26%</p>
-                                </div>
-                            </div>
+                            </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>TESLA INC</h2>
+                        </a>    
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
                         </div>
                     </div>
+                 
+                    <div class="box_warrp" data-symbol="aapl">
+                        <a href="#">
+                        <div class="stocks_img" id="stock_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/AAPl.png" alt="aaple">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>APPLE INC</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div> 
+                    </div>
+                    <div class="box_warrp" data-symbol="googl">
+                        <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/GOOGL.png"
+                            alt="GOOGL">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>ALPHABET INC CLASS A</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div> 
+                    </div>
+                    <div class="box_warrp" data-symbol="meta">
+                        <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/META.png"
+                            alt="META">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>META PLATFORMS INC</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    <div class="box_warrp" data-symbol="amzn">
+                        <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/AMZN.png"
+                            alt="AMZN">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>AMAZON.COM INC</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    <div class="box_warrp" data-symbol="msft">
+                    <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/microsoft.png"
+                            alt="Microsoft">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>MICROSOFT CORPORATION</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    <div class="box_warrp" data-symbol="nvda">
+                    <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/NVDA.png"
+                            alt="NVDA">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>NVIDIA CORPORATION</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    <div class="box_warrp" data-symbol="brk.b">
+                    <a href="#">
+                        <div class="stocks_img">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/BRK.B.png"
+                            alt="BRK">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>BERKSHIRE HATHAWAY INC</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    <div class="box_warrp" data-symbol="lly">
+                    <a href="#">
+                        <div class="stocks_img">
+                       <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/LLY.png"
+                            alt="LLY">
+                        </div>
+                        </a>
+                        <div class="stocks_details">
+                        <a href="#">
+                            <h2>ELI LILLY AND COMPANY</h2>
+                        </a>
+                        <h4>$243.24</h4>
+                        <p>+25.26%</p>
+                        </div>
+                    </div>
+                    
                 </div>
+                     </div>
+                </div>
+
+              
 
                 <div id="faqs_tab" class="tab_content">
                     <div class="stock_details_box">
@@ -697,27 +729,30 @@
             element.textContent = data.data.price;
         });
 
-        var weekHigh = data.data.summary[1].value.high;
-        setTextContent('faq_stock_52_week_high', weekHigh);
+        const high52WeekRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).value.high;
+        setTextContent('faq_stock_52_week_high', high52WeekRange);
 
-        var weekLow = data.data.summary[1].value.low;
-        setTextContent('faq_stock_52_week_low', weekLow);
+        const low52WeekRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).value.low;
+        setTextContent('faq_stock_52_week_low', low52WeekRange);
 
-        var peRatio = data.data.summary[2].value;
+        const peRatio = (data.data.summary.find(item => item.label === "P/E Ratio") || {}).value;
         setTextContent('faq_stock_pe_ratio', peRatio);
         setTextContent('pe_ratio', peRatio);
 
-        var dividendYield = data.data.summary[5].value;
-        setTextContent('faq_stock_dividend_yield', dividendYield);
-        setTextContent('dividend_yield', dividendYield);
+        const dividendYieldValue = (data.data.summary.find(item => item.label === "Dividend Yield") || {}).value;
+        setTextContent('faq_stock_dividend_yield', dividendYieldValue);
+        setTextContent('dividend_yield', dividendYieldValue);
 
-        var marketCap = data.data.summary[0].value;
-        setTextContent('faq_stock_market_cap', marketCap);
-        setTextContent('market_cap', marketCap);
+        const marketCapValue = (data.data.summary.find(item => item.label === "Market Cap") || {}).value;
+        setTextContent('faq_stock_market_cap', marketCapValue);
+        setTextContent('market_cap', marketCapValue);
 
-        setTextContent('volume', data.data.summary[3].value);
-        setTextContent('avg_volume', data.data.summary[4].value);
-        setTextContent('beta', data.data.summary[6].value);
+        const volumeValue = (data.data.summary.find(item => item.label === "Volume") || {}).value;
+        setTextContent('volume', volumeValue);
+        const avgVolumeValue = (data.data.summary.find(item => item.label === "Avg Volume") || {}).value;
+        setTextContent('avg_volume', avgVolumeValue);
+        const betaValue = (data.data.summary.find(item => item.label === "Beta") || {}).value;
+        setTextContent('beta', betaValue);
         
 
         var stockChangeElement = document.getElementById('stock_change');
@@ -743,10 +778,12 @@
         var stockAboutTags = document.getElementById('stock_about_tags');
         data.data.tags.forEach(tag => stockAboutTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
         
-        setTextContent('range_low', `$${data.data.summary[1].raw.low}`);
-        setTextContent('range_high', `$${data.data.summary[1].raw.high}`);
+        const highRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.high;
+        const lowRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.low;
+        setTextContent('range_low', `$${lowRange}`);
+        setTextContent('range_high', `$${highRange}`);
         setTextContent('range_current', `$${data.data.price}`);
-        const rangePercentage = ((data.data.price - data.data.summary[1].raw.low) / (data.data.summary[1].raw.high - data.data.summary[1].raw.low)) * 100;
+        const rangePercentage = ((data.data.price - lowRange) / (highRange - lowRange)) * 100;
         const rangeCurrentPercentage = document.getElementById('range_current_percentage');
         rangeCurrentPercentage.style.left = `calc(${rangePercentage}% - 28px)`;;
 
@@ -1004,10 +1041,7 @@
         button.classList.add('active');
     }
 
-
     function callChartApi(timeframe, interval) {
-        console.log('1 timeframe', timeframe);
-        console.log('interval', interval);
         if (event) {
             var button = event.target;
             handleButtonClick(button); // Add or remove active class
@@ -1024,13 +1058,13 @@
         fetch(apiUrl, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-            bindChartData(data, timeframe);
+            bindChartData(data, timeframe, interval);
             chartLoaderContainer.style.opacity = '0';
         })
         .catch(error => console.error('Error:', error));
     }
 
-    function bindChartData(data, timeframe) {
+    function bindChartData(data, timeframe, interval) {
 			var existingChart = Chart.getChart("myLineChart");
 			if (existingChart) {
 				document.getElementById('myLineChart').removeEventListener('mousemove', handleMouseMove);
@@ -1038,7 +1072,9 @@
 				existingChart.destroy();
 			}
 			const labels = data.data.map(item => item.Date);
-			const dataValues = data.data.map(item => item.Close);
+			const dataValues = data.data.map(item => interval === 'daily' ? item.Adj_Close : item.Close);
+   
+            console.log('dataValues', dataValues);
 			const chartData = {
 				labels: labels,
 				datasets: [{
@@ -1072,11 +1108,19 @@
 							color: 'rgba(0,0,0,0)', // Set the grid color to transparent
 							drawBorder: false, // Hide the border of the scale
 						},
-						type: "time",
+						type: 'timeseries',
+						ticks: {
+							source: 'labels',
+							maxTicksLimit: timeframe === '1Y' ? 5 : 6,
+							labelOffset: 30,
+						},
 						time: {
-							unit: getTimeUnit(timeframe)
-						}
-					}
+							unit: getTimeUnit(timeframe),
+							displayFormats: {
+								'day': 'dd-MMM',
+							}
+						},
+					},
 				},
 				plugins: {
 					tooltip: false,
@@ -1703,10 +1747,60 @@
                 ratiosContentDiv.appendChild(sectionDiv);
             }
         }
-
-
-    
-
 </script>
+
+
+<!-- discover more -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var symbol = "<?php echo $symbol; ?>";
+        var stockBoxes = document.querySelectorAll('.box_warrp');
+        var hideLastDiv = true;
+        stockBoxes.forEach(function (box) {
+            if (box.getAttribute('data-symbol') === symbol) {
+                hideLastDiv = false;
+                box.style.display = 'none';
+            }
+        });
+        if (hideLastDiv) {
+            var lastDiv = stockBoxes[stockBoxes.length - 1];
+            lastDiv.style.display = 'none';
+        }
+    });
+</script>
+
+<!-- discover more-->
+
+<!-- faqs -->
+<script>
+ const faqItems = document.querySelectorAll('.faq_item');
+
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq_question');
+  const answer = item.nextElementSibling;
+  const icon = item.querySelector('i');
+
+  item.addEventListener('click', () => {
+    faqItems.forEach(otherItem => {
+      if (otherItem !== item) {
+        const otherAnswer = otherItem.nextElementSibling;
+        const otherIcon = otherItem.querySelector('i');
+
+        otherAnswer.classList.remove('active');
+        otherIcon.classList.remove('active');
+        otherAnswer.style.maxHeight = "0";
+      }
+    });
+    answer.classList.toggle('active');
+    icon.classList.toggle('active');
+    if (answer.classList.contains('active')) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+      answer.style.maxHeight = "0";
+    }
+  });
+});
+</script>
+<!-- end -faqs -->
 
 <?php get_footer(); ?>
