@@ -62,7 +62,7 @@
     line-height: 24px;
 }
 
-.stock_tabs_menu {
+.stock_tabs_menu .stock_tabs_menu_wrapper {
     border-radius: 6px;
     background: rgba(0, 40, 82, 0.10);
     display: flex;
@@ -76,9 +76,10 @@
     position: sticky;
     top: 0;
     width: 100%;
-    background: #d9dee4;
+    background: linear-gradient(0deg, rgba(0, 40, 82, 0.05) 0%, rgba(0, 40, 82, 0.05) 100%), #FFF;
     z-index: 1;
     border-radius: 0px 0px 6px 6px;
+    padding-top: 24px;
 }
 
 .stock_tabs_menu .tab_button {
@@ -715,7 +716,7 @@
 
 .explore_stocks {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
     grid-row-gap: 24px;
@@ -726,45 +727,18 @@
     width: calc(24.33% - 0px);
 }
 
-.box_warrp .stocks_img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    border-radius: 100px;
-    overflow: hidden;
-    margin-bottom: 8px
+.box_warrp a .stocks_img {
+    margin-bottom: 8px;
 }
 
-.box_warrp .stocks_img img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-}
-
-.box_warrp .stocks_details a h2 {
+.box_warrp a .stocks_details h2 {
     color: #595959;
     font-size: 16px !important;
     font-weight: 600;
     line-height: 20.80px;
     word-wrap: break-word;
-}
-
-.box_warrp .stocks_details h4 {
-    color: rgba(0, 0, 0, 0.50);
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16.80px;
-    word-wrap: break-word;
-    padding: 2px 0;
-}
-
-.box_warrp .stocks_details p {
-    color: #16A34A;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16.80px;
-    word-wrap: break-word;
-    margin: 0;
+    display: block;
+    width: 130px;
 }
 
 
@@ -1101,6 +1075,40 @@
     padding-top: 18px;
 }
 
+#copy_link_message {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 150px;
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 6px;
+    transition: all 0.5s ease;
+}
+
+#copy_link_message img {
+    max-width: 20px;
+}
+
+#copy_link_message span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    display: block;
+    margin-left: 10px;
+}
+
+#copy_link_message.active {
+    top: 120px;
+}
+
 
 @media screen and (max-width: 1199px) {
     .stock_details_left_column {
@@ -1146,9 +1154,15 @@
 
     .stock_tabs_menu.highlighted {
         position: fixed;
-        left: 15px;
+        left: 0;
+        right: 0;
         width: calc(100% - 30px);
-        margin-top: 0;
+        margin: auto;
+        padding: 0;
+    }
+
+    .stock_tabs_menu.highlighted .stock_tabs_menu_wrapper {
+        border-radius: 0px 0px 6px 6px;
     }
 
     .analyst_forecast_chart_container {
@@ -1270,18 +1284,51 @@
 
     /* end news */
 
+    /* discover */
+    .box_warrp a .stocks_details h2 {
+        max-width: 120px;
+    }
+
+    /* end discover */
+
     /* faqs */
     .icon_container i {
         font-size: 22px;
     }
 
     /* end-faqs */
+
+    /*  model  */
+    .at_modal_header h2 {
+        font-size: 16px !important;
+    }
+
+    .at_modal_header button {
+        height: 24px;
+        width: 24px;
+    }
+
+    .ticker_selected_option .ticker_dropdown_search {
+        font-size: 14px !important;
+    }
+
+    .ac_modal_text {
+        flex-direction: column-reverse;
+    }
+
+    .ac_modal_text img {
+        margin: 0 auto;
+        padding: 10px 0px;
+    }
+
+    .ac_modal_list {
+        max-width: 100% !important;
+    }
+
+    /* end model */
+
     .stock_details_main {
         margin: 0 -0.54em;
-    }
-    
-    .stock_details_table_container .stock_details_table.ratios_table table td:first-child {
-        width: auto;
     }
 }
 
@@ -1304,4 +1351,21 @@
     }
 
     /* end discover */
+}
+
+.box_warrp a .stocks_img.brk_stocks_img {
+    width: 41px;
+    height: 41px;
+    background-color: rgb(0 0 0 / 8%);
+    border: 1px solid rgb(0 0 0 / 16%);
+    border-radius: 100%;
+}
+
+.ac_modal_list li a {
+    background-color: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: #fff;
+    line-height: inherit;
 }

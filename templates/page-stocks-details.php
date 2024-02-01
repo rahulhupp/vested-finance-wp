@@ -1,9 +1,9 @@
 <?php
-    $symbol = get_query_var('symbol');
-    $symbol_uppercase = strtoupper($symbol);
-    set_query_var('custom_stock_title_value', "$symbol_uppercase Share Price today - Invest in $symbol_uppercase Stock  | Market Cap, Quote, Returns & More");
-    set_query_var('custom_stock_description_value', "Get the Live stock price of $symbol_uppercase ($symbol_uppercase), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $symbol_uppercase and other US Stocks with Vested."); // Replace this with your actual description
-    get_header();
+$symbol = get_query_var('symbol');
+$symbol_uppercase = strtoupper($symbol);
+set_query_var('custom_stock_title_value', "$symbol_uppercase Share Price today - Invest in $symbol_uppercase Stock  | Market Cap, Quote, Returns & More");
+set_query_var('custom_stock_description_value', "Get the Live stock price of $symbol_uppercase ($symbol_uppercase), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $symbol_uppercase and other US Stocks with Vested."); // Replace this with your actual description
+get_header();
 ?>
 
 <div class="stock_details_main">
@@ -18,7 +18,7 @@
                         <div class="stock_img">
                             <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/<?php echo $symbol_uppercase; ?>.png" alt="<?php echo $symbol; ?>-img" />
                         </div>
-                        <div class="share_icon">
+                        <div class="share_icon" onclick="copyLink()">
                             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/share-icon.svg" alt="share-icon" />
                         </div>
                     </div>
@@ -32,13 +32,15 @@
                         <span>1D</span>
                     </div>
                     <div id="stock_tags" class="stock_tags"></div>
-                    <button class="primary_button">Invest in <?php echo $symbol_uppercase; ?> stock</button>
+                    <a href="https://app.vestedfinance.com/signup"><button class="primary_button">Invest in <?php echo $symbol_uppercase; ?> stock</button></a>
+                    <a href="https://app.vestedfinance.com/signup">
                     <button class="secondary_button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path opacity="0.8" d="M11.9662 13.6667L7.81807 10.7037L3.66992 13.6667V4.18519C3.66992 3.87085 3.79479 3.5694 4.01705 3.34713C4.23932 3.12487 4.54078 3 4.85511 3H10.781C11.0954 3 11.3968 3.12487 11.6191 3.34713C11.8414 3.5694 11.9662 3.87085 11.9662 4.18519V13.6667Z" stroke="#002852" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>    
                         <span>Add to watchlist</span>
                     </button>
+                    </a>
                 </div>
                 <div class="stock_details_box stock_forecast_container">
                     <h2 class="heading">Analyst Forecast</h2>
@@ -50,15 +52,14 @@
             </div>
             <div class="stock_details_right_column">
                 <div class="stock_tabs_menu">
-                    <a class="tab_button active" href="#overview_tab">Overview</a>
-                    <a class="tab_button" href="#returns_tab">Returns</a>
-                    <a class="tab_button" href="#financials_tab">Financials</a>
-                    <a class="tab_button" href="#ratios_tab">Ratios</a>
-                    <!-- <a class="tab_button" href="#peers_tab">Peers</a> -->
-                    <a class="tab_button" href="#news_tab">News</a>
-                    <a class="tab_button" href="#faqs_tab">FAQs</a>
-                    <!-- <a class="tab_button" href="#earning_transcripts_tab">Earning Transcripts</a> -->
-                    <!-- <a class="tab_button" href="#calculator_tab">Calculator</a> -->
+                    <div class="stock_tabs_menu_wrapper">
+                        <a class="tab_button active" href="#overview_tab">Overview</a>
+                        <a class="tab_button" href="#returns_tab">Returns</a>
+                        <a class="tab_button" href="#financials_tab">Financials</a>
+                        <a class="tab_button" href="#ratios_tab">Ratios</a>
+                        <a class="tab_button" href="#news_tab">News</a>
+                        <a class="tab_button" href="#faqs_tab">FAQs</a>
+                    </div>
                 </div>
 
                 <div id="overview_tab" class="tab_content">
@@ -323,149 +324,104 @@
                         </div>
                     </div>
 
-                     <div id="discover_tab" class="stock_details_box">
-                <h2 class="heading">Discover more</h2>
-                <div class="separator_line"></div>
-                <div class="explore_stocks">
-                <div class="box_warrp" data-symbol="tsal">
-                            <a href="#">
-                            <div class="stocks_img" >
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/TSLA.png"
-                            alt="Tsla">
+                    <div id="discover_tab" class="stock_details_box">
+                        <h2 class="heading">Discover more</h2>
+                        <div class="separator_line"></div>
+                        <div class="explore_stocks">
+                            <div class="box_warrp" data-symbol="tsal">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/tsal/tesla-inc">
+                                    <div class="stocks_img">
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/tesla_logo.svg" alt="Tsla">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Tesla, Inc.</h2>
+                                    </div>
+                                </a>
                             </div>
-                            </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>TESLA INC</h2>
-                        </a>    
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
+                            <div class="box_warrp" data-symbol="aapl">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/aapl/apple-inc">
+                                    <div class="stocks_img" id="stock_img">
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/apple_logo.svg" alt="aaple">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Apple, Inc.</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="googl">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/googl/alphabet-inc-class-a">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/google_logo.svg" alt="GOOGL">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Alphabet Inc. - Class A Shares</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="meta">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/meta/meta-platforms-inc">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/meta_logo.svg" alt="META">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Meta Platforms Inc</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="amzn">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/amzn/amazoncom-inc">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/amazon_logo.svg" alt="AMZN">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Amazon.com Inc.</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="msft">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/msft/microsoft-corporation">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/microsoft_logo.svg" alt="Microsoft">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Microsoft Corporation</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="nvda">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/nvda/nvidia-corporation">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/navida_logo.svg" alt="NVDA">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>NVIDIA Corporation</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="brk.b">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/brk.b/berkshire-hathaway-inc">
+                                    <div class="stocks_img brk_stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/BRK.B.png"
+                                        alt="BRK">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Berkshire Hathaway Inc. Hld B</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box_warrp" data-symbol="lly">
+                                <a href="<?php echo get_site_url(); ?>/us-stocks/lly/eli-lilly-and-company">
+                                    <div class="stocks_img">
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/lilly_logo.svg" alt="LLY">
+                                    </div>
+                                    <div class="stocks_details">
+                                    <h2>Eli Lilly and Company</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                 
-                    <div class="box_warrp" data-symbol="aapl">
-                        <a href="#">
-                        <div class="stocks_img" id="stock_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/AAPl.png" alt="aaple">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>APPLE INC</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div> 
-                    </div>
-                    <div class="box_warrp" data-symbol="googl">
-                        <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/GOOGL.png"
-                            alt="GOOGL">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>ALPHABET INC CLASS A</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div> 
-                    </div>
-                    <div class="box_warrp" data-symbol="meta">
-                        <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/META.png"
-                            alt="META">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>META PLATFORMS INC</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    <div class="box_warrp" data-symbol="amzn">
-                        <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/AMZN.png"
-                            alt="AMZN">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>AMAZON.COM INC</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    <div class="box_warrp" data-symbol="msft">
-                    <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/microsoft.png"
-                            alt="Microsoft">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>MICROSOFT CORPORATION</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    <div class="box_warrp" data-symbol="nvda">
-                    <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/NVDA.png"
-                            alt="NVDA">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>NVIDIA CORPORATION</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    <div class="box_warrp" data-symbol="brk.b">
-                    <a href="#">
-                        <div class="stocks_img">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/BRK.B.png"
-                            alt="BRK">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>BERKSHIRE HATHAWAY INC</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    <div class="box_warrp" data-symbol="lly">
-                    <a href="#">
-                        <div class="stocks_img">
-                       <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/LLY.png"
-                            alt="LLY">
-                        </div>
-                        </a>
-                        <div class="stocks_details">
-                        <a href="#">
-                            <h2>ELI LILLY AND COMPANY</h2>
-                        </a>
-                        <h4>$243.24</h4>
-                        <p>+25.26%</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                     </div>
-                </div>
 
               
 
@@ -591,12 +547,18 @@
         </div>
     </div>
 </div>
+<div id="copy_link_message">
+    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+    <span>Link copied</span>
+</div>
+                            
 <?php get_template_part('template-parts/advanced-chart-modal'); ?>
 <?php get_template_part('template-parts/add-ticker-modal'); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
 <script>
 
@@ -712,7 +674,7 @@
         setTextContent('stock_exchange', data.data.exchange);
         setTextContent('stock_price', `$${data.data.price}`);
         setTextContent('stock_changePercent', `${data.data.changePercent}%`);
-        setTextContent('stock_change', `(${data.data.change})`);
+        setTextContent('stock_change', `($${data.data.change})`);
 
         var stockNameElements = document.querySelectorAll('#faq_stock_name');
         stockNameElements.forEach(function (element) {
@@ -1073,8 +1035,7 @@
 			}
 			const labels = data.data.map(item => item.Date);
 			const dataValues = data.data.map(item => interval === 'daily' ? item.Adj_Close : item.Close);
-   
-            console.log('dataValues', dataValues);
+
 			const chartData = {
 				labels: labels,
 				datasets: [{
@@ -1185,22 +1146,26 @@
 					chartInstance.update();
 
 					var label = labels[index];
+                    console.log('label', label);
 					var date = new Date(label);
-
+                    console.log('date', date);
+                   
 					var optionsDate = {
 						year: 'numeric',
 						month: 'short',
-						day: 'numeric'
+						day: 'numeric',
+                        timeZone: 'UTC'
 					};
 
 					var optionsTime = {
 						hour: 'numeric',
 						minute: 'numeric',
 						hour12: true,
-						timeZone: 'America/New_York'
+						timeZone: 'UTC'
 					};
 
 					var formattedDate = date.toLocaleDateString('en-US', optionsDate);
+                    console.log('formattedDate', formattedDate);
 					var formattedTime = date.toLocaleTimeString('en-US', optionsTime);
 					var timeZoneAbbreviation = Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: 'America/New_York' }).formatToParts(new Date()).find(part => part.type === 'timeZoneName').value;
 
@@ -1800,7 +1765,28 @@ faqItems.forEach(item => {
     }
   });
 });
+
+function copyLink() {
+    console.log('copyLink');
+    var inputElement = document.createElement("input");
+    inputElement.value = "<?php echo esc_url(get_stylesheet_directory_uri()) ?>/assets/images/share-icon.svg";
+    document.body.appendChild(inputElement);
+    inputElement.select();
+    document.body.removeChild(inputElement);
+
+    // Display the message multiple times
+    for (var i = 0; i < 5; i++) {
+        displayMessage();
+    }
+}
+
+function displayMessage() {
+    var copyMessage = document.getElementById("copy_link_message");
+    copyMessage.classList.add('active');
+    setTimeout(function () {
+        copyMessage.classList.remove('active');
+    }, 2000);
+}
 </script>
 <!-- end -faqs -->
-
 <?php get_footer(); ?>
