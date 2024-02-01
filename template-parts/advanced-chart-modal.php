@@ -130,7 +130,7 @@
         <h2>Signup to access all features and start your US investing journey!</h2>
         <div class="ac_modal_text">
             <ul class="ac_modal_list">
-                <li>Access Advanced Charts for 5,000+ US Stocks & ETFs</li>
+                <li id="first_line"></li>
                 <li>Open your account in minutes</li>
                 <li>Take your portfolio global, starting at just $1</li>
             </ul>
@@ -147,14 +147,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var modal = document.getElementById('ac_modal');
-        var openModalBtn = document.getElementById('open_ac_modal');
         var closeModalBtn = document.getElementById('close_ac_modal');
         var overlay = document.getElementById('overlay_ac_modal');
-
-        // Open modal on button click
-        openModalBtn.addEventListener('click', function () {
-            modal.style.display = 'flex';
-        });
 
         // Close modal on close button click
         closeModalBtn.addEventListener('click', function () {
@@ -168,5 +162,23 @@
             }
         });
     });
+
+    function openACModal(data) {
+        console.log('data', data);
+        let firstLineElement = document.getElementById("first_line");
+        switch (data) {
+            case "add_watchlist":
+                firstLineElement.innerHTML = "<a href='https://app.vestedfinance.com/signup'>Create a watchlist and track your favorite stocks</a>";
+                break;
+            case 'news':
+                firstLineElement.innerHTML = "<a href='https://app.vestedfinance.com/signup'>Stay updated with news events for your favorite stocks</a>";
+                break;
+            default:
+                firstLineElement.innerHTML = "Access Advanced Charts for 5,000+ US Stocks & ETFs";
+        }
+
+        var modal = document.getElementById('ac_modal');
+        modal.style.display = 'flex';
+    }
 
 </script>

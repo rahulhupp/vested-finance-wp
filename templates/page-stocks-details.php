@@ -5,7 +5,7 @@ set_query_var('custom_stock_title_value', "$symbol_uppercase Share Price today -
 set_query_var('custom_stock_description_value', "Get the Live stock price of $symbol_uppercase ($symbol_uppercase), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $symbol_uppercase and other US Stocks with Vested."); // Replace this with your actual description
 get_header();
 ?>
-
+<script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <div class="stock_details_main">
     <div class="container">
         <div class="stock_details_wrapper">
@@ -33,14 +33,12 @@ get_header();
                     </div>
                     <div id="stock_tags" class="stock_tags"></div>
                     <a href="https://app.vestedfinance.com/signup"><button class="primary_button">Invest in <?php echo $symbol_uppercase; ?> stock</button></a>
-                    <a href="https://app.vestedfinance.com/signup">
-                    <button class="secondary_button">
+                    <button class="secondary_button" onclick="openACModal('add_watchlist')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path opacity="0.8" d="M11.9662 13.6667L7.81807 10.7037L3.66992 13.6667V4.18519C3.66992 3.87085 3.79479 3.5694 4.01705 3.34713C4.23932 3.12487 4.54078 3 4.85511 3H10.781C11.0954 3 11.3968 3.12487 11.6191 3.34713C11.8414 3.5694 11.9662 3.87085 11.9662 4.18519V13.6667Z" stroke="#002852" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>    
                         <span>Add to watchlist</span>
                     </button>
-                    </a>
                 </div>
                 <div class="stock_details_box stock_forecast_container">
                     <h2 class="heading">Analyst Forecast</h2>
@@ -73,7 +71,7 @@ get_header();
                                 <button onclick="callChartApi('6M', 'daily')">6M</button>
                                 <button class="active" onclick="callChartApi('1Y', 'daily')">1Y</button>
                                 <button onclick="callChartApi('5Y', 'daily')">5Y</button>
-                                <button id="open_ac_modal">Advanced Chart</button>
+                                <button onclick="openACModal('advanced_chart')">Advanced Chart</button>
                             </div>
                         </div>
                         <div class="separator_line"></div>
@@ -1735,33 +1733,13 @@ get_header();
                 newsListDiv.appendChild(newsDiv);
             });
 
-            currentIndex += itemsPerLoad;
-
-            // Append the "Load More" button after the "news_list" div
-            const loadMoreBtn = document.getElementById('load_more_btn');
-
-            // If there is no more data, hide the "Load More" button
-            if (currentIndex >= data.data.length) {
-                if (loadMoreBtn) {
-                    loadMoreBtn.style.display = 'none';
-                }
-            } else {
-                // If the button is hidden, show it
-                if (loadMoreBtn) {
-                    loadMoreBtn.style.display = 'block';
-                } else {
-                    // If the button doesn't exist, create and append it
-                    const newLoadMoreBtn = document.createElement('button');
-                    newLoadMoreBtn.id = 'load_more_btn';
-                    newLoadMoreBtn.innerText = 'More';
-                    newLoadMoreBtn.addEventListener('click', loadMoreItems);
-                    newsContainer.appendChild(newLoadMoreBtn);
-                }
-            }
-        }
-
-        function loadMoreItems() {
-            callNewsApi();  // Assuming you want to load more data from the API
+            const newLoadMoreBtn = document.createElement('button');
+            newLoadMoreBtn.id = 'load_more_btn';
+            newLoadMoreBtn.innerText = 'More';
+            newLoadMoreBtn.onclick = function() {
+                openACModal('news');
+            };
+            newsContainer.appendChild(newLoadMoreBtn);
         }
 
         function formatDatetime(timestamp) {
