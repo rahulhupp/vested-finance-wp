@@ -149,6 +149,7 @@
         callInstrumentsTokenApi();
         const current_time = Math.floor(Date.now() / 1000); // Current time in seconds
         sessionStorage.setItem('last_api_call_timestamp', current_time);
+        localStorage.setItem('stocks_list_db_connected', true);
     }
 
     function callInstrumentsTokenApi() {
