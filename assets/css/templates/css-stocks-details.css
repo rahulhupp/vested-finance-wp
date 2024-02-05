@@ -563,11 +563,10 @@
     background: #002852;
     border-color: #002852;
     color: #fff;
-    margin-right: 4px;
 }
 
 .stock_box_tab_container .stock_box_tab_button+.stock_box_tab_button {
-    margin-right: 4px;
+    margin-left: 4px;
 }
 
 
@@ -801,8 +800,8 @@
 }
 
 .financial_table canvas {
-    width: 38px !important;
-    height: 20px !important;
+    width: 100px !important;
+    height: 50px !important;
     margin: auto;
 }
 
