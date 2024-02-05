@@ -114,6 +114,9 @@
                                     plugins: {
                                         legend: {
                                             display: false // Hide legends
+                                        },
+                                        tooltip: {
+                                            enabled: false // Hide tooltips
                                         }
                                     }
                                 },
