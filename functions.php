@@ -18,6 +18,7 @@ define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
 require_once get_stylesheet_directory() . '/inc/allow-svg.php';
 require_once get_stylesheet_directory() . '/inc/enqueue-style-script.php';
 require_once get_stylesheet_directory() . '/inc/acf-options.php';
+require_once get_stylesheet_directory() . '/inc/store-token.php';
 require_once get_stylesheet_directory() . '/inc/stocks-details-fucntions.php';
 
 

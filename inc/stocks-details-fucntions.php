@@ -11,7 +11,8 @@ add_filter('query_vars', 'custom_query_vars');
 
 function custom_rewrite_rules() {
     add_rewrite_rule(
-        '^us-stocks/([^/]+)/([^/]+)/?$',
+        // '^us-stocks/([^/]+)/([^/]+)/?$',
+        '^us-stocks/([^/]+)/([^/]+)$',
         'index.php?custom_stock_request=1&symbol=$matches[1]&company=$matches[2]',
         'top'
     );
@@ -27,6 +28,8 @@ function custom_template_redirect() {
     if ($custom_stock_request) {
         include get_stylesheet_directory() . '/templates/page-stocks-details.php';
         exit();
+    } else {
+        echo "Debug: Custom stock request not detected. 3<br>";
     }
 }
 add_action('template_redirect', 'custom_template_redirect');
@@ -44,6 +47,8 @@ function custom_modify_document_title_parts($title_parts) {
         if (!has_action('wp_head', 'custom_add_meta_description')) {
             add_action('wp_head', 'custom_add_meta_description');
         }
+    } else {
+        echo "Debug: Custom stock title value not found<br>";
     }
 
     return $title_parts;
@@ -59,15 +64,4 @@ function custom_add_meta_description() {
 
 // Hook into document_title_parts filter
 add_filter('document_title_parts', 'custom_modify_document_title_parts');
-
-
-
-
-
-
-
-
-
-
-
 ?>
