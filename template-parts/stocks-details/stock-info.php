@@ -45,7 +45,7 @@
         <h2><?php echo $symbol_uppercase; ?></h2>
         <h6><?php echo $overview_data->exchange; ?></h6>
         <div class="stock_price_box">
-            <h3><?php echo $overview_data->price; ?></h3>
+            <h3>$<?php echo $overview_data->price; ?></h3>
             <h4 class="<?php echo $changeClass; ?>"><?php echo $changeText; ?></h4>
             <h4 class="<?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</h4>
             <span>1D</span>
