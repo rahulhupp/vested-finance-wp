@@ -87,7 +87,6 @@ get_header();
     }
 </script>
 <?php get_template_part('template-parts/stocks-details/js/store-stocks-js'); ?>
-<?php get_template_part('template-parts/stocks-details/js/overview-js'); ?>
 <?php get_template_part('template-parts/stocks-details/js/price-chart-js'); ?>
 <?php get_template_part('template-parts/stocks-details/js/analyst-forecast-js'); ?>
 <?php get_template_part('template-parts/stocks-details/js/returns-js'); ?>
