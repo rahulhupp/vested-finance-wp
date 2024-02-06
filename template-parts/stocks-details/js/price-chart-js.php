@@ -1,4 +1,6 @@
 <script>
+	callChartApi('1Y', 'daily');
+	
     function handleButtonClick(button) {
         var buttons = document.querySelectorAll('.stock_chart_buttons button');
         buttons.forEach(function (btn) {
