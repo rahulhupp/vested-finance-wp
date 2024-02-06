@@ -27,10 +27,10 @@
     }
 
     function bindOverviewData(data) {
-        setTextContent('stock_title', `${data.data.name}` + "," + `${data.data.type}`);
-        setTextContent('stock_exchange', data.data.exchange);
-        setTextContent('stock_price', `$${data.data.price}`);
-        setTextContent('stock_changePercent', `${data.data.changePercent}%`);
+        // setTextContent('stock_title', `${data.data.name}` + "," + `${data.data.type}`);
+        // setTextContent('stock_exchange', data.data.exchange);
+        // setTextContent('stock_price', `$${data.data.price}`);
+        // setTextContent('stock_changePercent', `${data.data.changePercent}%`);
         
 
         var stockNameElements = document.querySelectorAll('#faq_stock_name');
@@ -74,21 +74,21 @@
         setTextContent('beta', betaValue);
         
 
-        var stockChangeElement = document.getElementById('stock_change');
-        if (data.data.change < 0) {
-            stockChangeElement.classList.add('negative');
-            setTextContent('stock_change', `(-$${data.data.change.toString().replace('-', '')})`);
-        } else {
-            setTextContent('stock_change', `($${data.data.change})`);
-        }
+        // var stockChangeElement = document.getElementById('stock_change');
+        // if (data.data.change < 0) {
+        //     stockChangeElement.classList.add('negative');
+        //     setTextContent('stock_change', `(-$${data.data.change.toString().replace('-', '')})`);
+        // } else {
+        //     setTextContent('stock_change', `($${data.data.change})`);
+        // }
    
-        var stockChangePercentElement = document.getElementById('stock_changePercent');
-        if (data.data.changePercent < 0) {
-            stockChangePercentElement.classList.add('negative');
-        }
+        // var stockChangePercentElement = document.getElementById('stock_changePercent');
+        // if (data.data.changePercent < 0) {
+        //     stockChangePercentElement.classList.add('negative');
+        // }
         
-        var stockTags = document.getElementById('stock_tags');
-        data.data.tags.forEach(tag => stockTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
+        // var stockTags = document.getElementById('stock_tags');
+        // data.data.tags.forEach(tag => stockTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
         
         
         setTextContent('stock_about_title', `About ${data.data.name}` + "," + `${data.data.type}`);
