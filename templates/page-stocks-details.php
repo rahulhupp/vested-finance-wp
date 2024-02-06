@@ -1,9 +1,20 @@
 <?php
-$symbol = get_query_var('symbol');
-$symbol_uppercase = strtoupper($symbol);
-set_query_var('custom_stock_title_value', "$symbol_uppercase Share Price today - Invest in $symbol_uppercase Stock  | Market Cap, Quote, Returns & More");
-set_query_var('custom_stock_description_value', "Get the Live stock price of $symbol_uppercase ($symbol_uppercase), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $symbol_uppercase and other US Stocks with Vested."); // Replace this with your actual description
-get_header();
+    if (function_exists('get_partner_tokens_from_database')) {
+        $token = get_partner_tokens_from_database();
+    } else {
+        $token = us_stocks_get_token();
+    }
+    $overview_data = fetch_overview_api_data($symbol, $token);
+    if ($overview_data) {
+        $ticker = $overview_data->ticker;
+        $name = $overview_data->name;
+        set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
+        set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
+    }
+?>
+<?php
+    $symbol = get_query_var('symbol');
+    get_header();
 ?>
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <div class="stock_details_main">
