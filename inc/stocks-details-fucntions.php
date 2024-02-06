@@ -34,34 +34,24 @@ function custom_template_redirect() {
 }
 add_action('template_redirect', 'custom_template_redirect');
 
-
-// Function to set custom title and meta description
-function custom_modify_document_title_parts($title_parts) {
+// Customize the meta title
+function custom_wpseo_title($title) {
     $custom_stock_title_value = get_query_var('custom_stock_title_value');
-    $custom_stock_description_value = get_query_var('custom_stock_description_value');
-
-    if ($custom_stock_title_value) {
-        $title_parts = array('title' => $custom_stock_title_value);
-
-        // Add meta description only if it hasn't been added before
-        if (!has_action('wp_head', 'custom_add_meta_description')) {
-            add_action('wp_head', 'custom_add_meta_description');
-        }
-    } else {
-        echo "Debug: Custom stock title value not found<br>";
+    if ( $custom_stock_title_value ) {
+        $title = $custom_stock_title_value;
     }
-
-    return $title_parts;
+    return $title;
 }
+add_filter('wpseo_title', 'custom_wpseo_title', 10, 1);
 
-// Function to add meta description
-function custom_add_meta_description() {
+// Customize the meta description
+function custom_wpseo_metadesc($description) {
     $custom_stock_description_value = get_query_var('custom_stock_description_value');
-    ?>
-    <meta name="description" content="<?php echo esc_attr($custom_stock_description_value); ?>">
-    <?php
+    if ($custom_stock_description_value) {
+        $description = $custom_stock_description_value;
+    }
+    return $description;
 }
+add_filter('wpseo_metadesc', 'custom_wpseo_metadesc', 10, 1);
 
-// Hook into document_title_parts filter
-add_filter('document_title_parts', 'custom_modify_document_title_parts');
 ?>

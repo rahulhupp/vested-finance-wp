@@ -16,10 +16,10 @@
         $change = $overview_data->change;
         if ($change < 0) {
             $changeClass = 'negative';
-            $changeText = '(-$' . abs($change) . ')';
+            $changeText = '-$' . abs($change) . '';
         } else {
             $changeClass = '';
-            $changeText = '($' . $change . ')';
+            $changeText = '+$' . $change . '';
         }
         $changePercent = $overview_data->changePercent;
         $changePercentClass = ($changePercent < 0) ? 'negative' : '';
@@ -30,7 +30,7 @@
         $formattedName = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
         $formattedTicker = strtolower(str_replace(' ', '-', $ticker));
         $signupurl = 'https://app.vestedfinance.com/signup?redirect_uri=stocks/' . $formattedTicker . '/' . $formattedName . '-share-price';
-
+        
 ?>
     <div class="stock_details_box stock_info_container">
         <div class="stock_info_icons">
@@ -46,8 +46,8 @@
         <h6><?php echo $overview_data->exchange; ?></h6>
         <div class="stock_price_box">
             <h3><?php echo $overview_data->price; ?></h3>
-            <h4 class="<?php echo $changePercentClass; ?>"><?php echo $changePercent; ?></h4>
             <h4 class="<?php echo $changeClass; ?>"><?php echo $changeText; ?></h4>
+            <h4 class="<?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</h4>
             <span>1D</span>
         </div>
         <div class="stock_tags">
