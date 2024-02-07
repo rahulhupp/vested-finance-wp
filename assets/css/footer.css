@@ -13,7 +13,7 @@ footer .container {
 }
 
 footer .footer_wrap a:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .footer_above_wrap {
@@ -21,12 +21,12 @@ footer .footer_wrap a:hover {
   justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
-  padding-bottom: 66px;
+  padding-bottom: 0px;
   margin-bottom: 24px;
 }
 
 footer .footer_wrap .site_info_wrap a {
-    color: #fff;
+  color: #fff;
 }
 
 .site_info_col {
@@ -48,6 +48,10 @@ footer .footer_wrap .site_info_wrap a {
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
+}
+
+.footer_address p {
+  margin-bottom: 18px;
 }
 
 .btn_url {
@@ -179,6 +183,7 @@ footer .footer_wrap .site_info_wrap a {
 .footer_stocks_tabs {
   margin-top: 32px;
 }
+
 .footer_tabs_wrap {
   position: relative;
   display: flex;
@@ -212,7 +217,7 @@ footer .footer_wrap .site_info_wrap a {
   text-transform: uppercase;
 }
 
-.single_tab_heading.collapsed + .single_tab_content {
+.single_tab_heading.collapsed+.single_tab_content {
   display: block;
 }
 
@@ -319,31 +324,31 @@ footer .extra_info {
 }
 
 footer .extra_info ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
 footer .extra_info ul li {
-    list-style: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: normal;
-    display: flex;
+  list-style: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: normal;
+  display: flex;
 }
 
 footer .extra_info ul li:first-child {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
 footer .extra_info ul li sup {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: normal;
-    margin-right: 6px;
-    top: -5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: normal;
+  margin-right: 6px;
+  top: -5px;
 }
 
 .tabs_conditions {
@@ -462,12 +467,15 @@ footer .extra_info ul li sup {
   .footer_wrap {
     padding: 0 20px;
   }
+
   .site_info_wrap {
     margin-right: 60px;
   }
+
   .site_link_wrap {
     margin-left: 64px;
   }
+
   .site_info_col {
     width: 40%;
   }
@@ -498,6 +506,7 @@ footer .extra_info ul li sup {
   .tab_links_wrap a {
     font-size: 14px;
   }
+
   .other_link_block h4 {
     font-size: 16px;
   }
@@ -547,8 +556,12 @@ footer .extra_info ul li sup {
   }
 
   .footer_address {
-    margin: 12px 0;
+    margin: 20px 0 12px 0;
     font-size: 12px;
+  }
+
+  .footer_address p {
+    margin-bottom: 10px;
   }
 
   .btn_url {
@@ -556,7 +569,7 @@ footer .extra_info ul li sup {
   }
 
   .footer_app_block {
-    margin-top: 39px;
+    margin-top: 30px;
   }
 
   .footer_social_wrap {
@@ -572,6 +585,7 @@ footer .extra_info ul li sup {
     width: 100%;
     height: 100%;
   }
+
   .site_link_wrap {
     margin-left: 0;
     padding-top: 0;
@@ -620,16 +634,20 @@ footer .extra_info ul li sup {
     background: rgba(255, 255, 255, 0.22);
     right: -25px;
   }
+
   .company_links.last:before {
     display: none;
   }
+
   .footer_above_wrap:after {
     bottom: 0;
   }
+
   .footer_above_wrap {
     margin-bottom: 0;
     padding-bottom: 24px;
   }
+
   .tab_links_wrap {
     position: relative;
   }
@@ -723,14 +741,17 @@ footer .extra_info ul li sup {
     margin-right: 2px;
     top: -3px;
   }
+
   footer .extra_info ul li {
-      font-size: 10px !important;
+    font-size: 10px !important;
   }
+
   footer .extra_info ul li sup {
-      font-size: 10px;
-      margin-right: 2px;
-      top: -3px;
+    font-size: 10px;
+    margin-right: 2px;
+    top: -3px;
   }
+
   .disclosure_block {
     padding: 70px 0 50px;
   }
@@ -778,10 +799,11 @@ footer .extra_info ul li sup {
   .read_more_link {
     display: inline-block;
   }
+
   footer .extra_info {
     padding: 40px 0 0 0;
     margin-top: 40px;
-}
+  }
 
   /* .single_app {
     width: 49%;
@@ -801,6 +823,7 @@ footer .extra_info ul li sup {
     height: 16px;
     margin-left: 7px;
   }
+
   .disclosure_heading h3 {
     font-size: 15px;
   }
