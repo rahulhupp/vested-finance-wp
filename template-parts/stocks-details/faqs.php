@@ -1,12 +1,5 @@
-<?php 
-    if (function_exists('get_partner_tokens_from_database')) {
-        $token = get_partner_tokens_from_database();
-    } else {
-        $token = us_stocks_get_token();
-    }
-    $overview_data = fetch_overview_api_data($symbol, $token);
-?>
 <?php
+    $overview_data = $args['overview_data'];
     if ($overview_data) {
         $name = $overview_data->name;
         $ticker = $overview_data->ticker;
@@ -35,9 +28,8 @@
         $highRange = isset($rangeItem->value->high) ? $rangeItem->value->high : '';
         
         $formattedName = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
-        $formattedTicker = strtolower(str_replace(' ', '-', $ticker));
-        $feedbackLinkAdd = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $formattedTicker . '&company_name=' . $formattedName . '&feedback_type=add_data';
-        $feedbackLinkIncorrect = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $formattedTicker . '&company_name=' . $formattedName . '&feedback_type=incorrect_data';
+        $feedbackLinkAdd = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $ticker . '&company_name=' . $formattedName . '&feedback_type=add_data';
+        $feedbackLinkIncorrect = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $ticker . '&company_name=' . $formattedName . '&feedback_type=incorrect_data';
 ?>
     <div id="faqs_tab" class="tab_content">
         <div class="stock_details_box">

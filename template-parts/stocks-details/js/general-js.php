@@ -81,9 +81,10 @@
     });
 
     var stockTabsMenu = document.querySelector('.stock_tabs_menu');
+    var stockTabsMenuPosition = document.querySelector('.stock_tabs_menu_position');
     function addClassOnScroll() {
       var scrollPosition = window.scrollY;
-      if (scrollPosition >= stockTabsMenu.offsetTop && scrollPosition >= 100) {
+      if (scrollPosition >= stockTabsMenuPosition.offsetTop && scrollPosition >= 100) {
         stockTabsMenu.classList.add('highlighted');
       } else {
         stockTabsMenu.classList.remove('highlighted');
@@ -131,7 +132,7 @@
         }
     }
 
-    function showMore(data) {
-        setTextContent('stock_about_description', data);
-    }
+    // function showMore(data) {
+    //     setTextContent('stock_about_description', data);
+    // }
 </script>

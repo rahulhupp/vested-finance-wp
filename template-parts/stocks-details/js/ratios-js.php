@@ -7,7 +7,11 @@
 ?>
 
 <script>
-    callRatiosApi();
+    document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callRatiosApi();
+		}, 1000);
+	});
 
     function callRatiosApi() {
         const ratiosApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios`;
@@ -18,6 +22,8 @@
         fetch(ratiosApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => {
+            var ratiosSkeleton = document.getElementById('ratios_skeleton');
+            ratiosSkeleton.style.display = 'none';
             bindRatiosData(data);
         })
         .catch(error => console.error('Error:', error));

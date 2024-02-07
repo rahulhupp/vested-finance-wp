@@ -6,9 +6,13 @@
     }
 ?>
 <script>
-    callIncomeStatementApi('annual', 'number');
-    callBalanceSheetApi('annual', 'number');
-    callCashFlowApi('annual', 'number');
+    document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callIncomeStatementApi('annual', 'number');
+            callBalanceSheetApi('annual', 'number');
+            callCashFlowApi('annual', 'number');
+		}, 1000);
+	});
 
     function callIncomeStatementApi(dataType, valueType){
         const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/income-statement';
@@ -19,6 +23,10 @@
         fetch(returnsApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => { 
+            var financialsSkeleton = document.getElementById('financials_skeleton');
+            var financialsSkeletonAfter = document.getElementById('financials_skeleton_after');
+            financialsSkeleton.style.display = 'none';
+            financialsSkeletonAfter.style.display = 'block';
             bindIncomeStatementData(data.data, dataType, valueType);
         })
         .catch(error => console.error('Error:', error));

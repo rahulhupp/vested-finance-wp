@@ -72,7 +72,7 @@
             </button>
         </div>
         <div class="at_stock_search" id="at_stock_search">
-            <?php get_template_part('template-parts/stock-search-ticker'); ?>
+            <?php get_template_part('template-parts/stocks-details/stock-search-ticker'); ?>
         </div>
     </div>
     <div class="at_modal_overlay" id="overlay_at_modal"></div>

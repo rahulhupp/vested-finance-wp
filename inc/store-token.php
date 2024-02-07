@@ -1,6 +1,7 @@
 <?php 
 
 function us_stocks_get_token() {
+	error_log("Store Token API Call");
 	try {
 		$curl = curl_init();
 
