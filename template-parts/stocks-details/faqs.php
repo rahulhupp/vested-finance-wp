@@ -148,6 +148,111 @@
             </div>
         </div>
     </div>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?> share price today?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "<?php echo $name; ?> (<?php echo $ticker; ?>) share price today is $<?php echo $price; ?>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can Indians buy <?php echo $name; ?> shares?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>). There are two primary methods to buy <?php echo $name; ?> via Vested.
+                            i.e., direct investing and investing through instruments. You can open your US brokerage account via the
+                            Vested app and purchase shares of <?php echo $name; ?> directly or invest in <?php echo $name; ?> via international mutual funds and
+                            exchange-traded funds. If you want an alternative, you can also go for domestic (Indian) funds investing
+                            in the US stock market."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can Fractional shares of <?php echo $name; ?> be purchased?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via the Vested app. You can start investing
+                            in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How to invest in <?php echo $name; ?> shares from India?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "<p>You can invest in shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via the Vested app in 3 simple steps:
+                        <ul>
+                            <li>
+                                Download the Vested app or visit app.vestedfinance.com and Sign up with a new account
+                            </li>
+                            <li>
+                                Breeze through our fully digital and secure KYC process and open your US Brokerage account in less
+                                than 2 minutes</li>
+                            <li>
+                                Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
+                        </ul>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?> 52-week high and low stock price?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The 52-week high price of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $highRange; ?>. The 52-week low price of <?php echo $name; ?> (<?php echo $ticker; ?>)
+                            is <?php echo $lowRange; ?>."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?> price-to-earnings (P/E) ratio?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The price-to-earnings (P/E) ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $peRatio; ?>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?> price-to-book (P/B) ratio?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The price-to-book (P/B) ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <span id='faq_stock_pb_ratio'></span>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?> dividend yield?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The dividend yield of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $dividendYieldValue; ?>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is the Market Cap of <?php echo $name; ?>?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The market capitalization of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $marketCapValue; ?>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is <?php echo $name; ?>’s stock symbol?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?>"
+                    }
+                }
+            ]
+        }
+    </script>
 <?php
     } else {
         echo "Error retrieving data"; // Handle error
