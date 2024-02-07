@@ -1,6 +1,7 @@
 <?php
 // Define a function to fetch data from the API
 function fetch_overview_api_data($symbol, $token) {
+    error_log("API Call");
     $instruments_api_url = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/' . $symbol . '/overview';
 
     // Set headers

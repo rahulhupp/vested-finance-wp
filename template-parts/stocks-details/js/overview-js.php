@@ -19,7 +19,6 @@
         fetch(instrumentsApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => {
-            callChartApi('1Y', 'daily');
             bindOverviewData(data);
             updateMetaTags(data);            
          })
@@ -56,22 +55,12 @@
 
         const peRatio = (data.data.summary.find(item => item.label === "P/E Ratio") || {}).value;
         setTextContent('faq_stock_pe_ratio', peRatio);
-        setTextContent('pe_ratio', peRatio);
 
         const dividendYieldValue = (data.data.summary.find(item => item.label === "Dividend Yield") || {}).value;
         setTextContent('faq_stock_dividend_yield', dividendYieldValue);
-        setTextContent('dividend_yield', dividendYieldValue);
 
         const marketCapValue = (data.data.summary.find(item => item.label === "Market Cap") || {}).value;
         setTextContent('faq_stock_market_cap', marketCapValue);
-        setTextContent('market_cap', marketCapValue);
-
-        const volumeValue = (data.data.summary.find(item => item.label === "Volume") || {}).value;
-        setTextContent('volume', volumeValue);
-        const avgVolumeValue = (data.data.summary.find(item => item.label === "Avg Volume") || {}).value;
-        setTextContent('avg_volume', avgVolumeValue);
-        const betaValue = (data.data.summary.find(item => item.label === "Beta") || {}).value;
-        setTextContent('beta', betaValue);
         
 
         // var stockChangeElement = document.getElementById('stock_change');
@@ -91,43 +80,43 @@
         // data.data.tags.forEach(tag => stockTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
         
         
-        setTextContent('stock_about_title', `About ${data.data.name}` + "," + `${data.data.type}`);
+        // setTextContent('stock_about_title', `About ${data.data.name}` + "," + `${data.data.type}`);
         
-        var limitedDescription = data.data.description.split(' ').slice(0, 35).join(' ');
-        var stockAboutDescription = document.getElementById('stock_about_description');
-        stockAboutDescription.innerHTML += `${limitedDescription}...<span onclick="showMore('${data.data.description}')">more</span>`;
+        // var limitedDescription = data.data.description.split(' ').slice(0, 35).join(' ');
+        // var stockAboutDescription = document.getElementById('stock_about_description');
+        // stockAboutDescription.innerHTML += `${limitedDescription}...<span onclick="showMore('${data.data.description}')">more</span>`;
        
-        var stockAboutTags = document.getElementById('stock_about_tags');
-        data.data.tags.forEach(tag => stockAboutTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
+        // var stockAboutTags = document.getElementById('stock_about_tags');
+        // data.data.tags.forEach(tag => stockAboutTags.innerHTML += `<span>${tag.label}: ${tag.value}</span>`);
         
-        const highRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.high;
-        const lowRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.low;
-        setTextContent('range_low', `$${lowRange}`);
-        setTextContent('range_high', `$${highRange}`);
-        setTextContent('range_current', `$${data.data.price}`);
-        const rangePercentage = ((data.data.price - lowRange) / (highRange - lowRange)) * 100;
-        const rangeCurrentPercentage = document.getElementById('range_current_percentage');
-        rangeCurrentPercentage.style.left = `calc(${rangePercentage}% - 28px)`;
+        // const highRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.high;
+        // const lowRange = (data.data.summary.find(item => item.label === "52-Week Range") || {}).raw.low;
+        // setTextContent('range_low', `$${lowRange}`);
+        // setTextContent('range_high', `$${highRange}`);
+        // setTextContent('range_current', `$${data.data.price}`);
+        // const rangePercentage = ((data.data.price - lowRange) / (highRange - lowRange)) * 100;
+        // const rangeCurrentPercentage = document.getElementById('range_current_percentage');
+        // rangeCurrentPercentage.style.left = `calc(${rangePercentage}% - 28px)`;
 
 
-        var ticker = data.data.ticker;
-        var name = data.data.name;
-        var formattedName = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        var formattedTicker = ticker.toLowerCase().replace(/\s+/g, '-');
-        var signupurl = `https://app.vestedfinance.com/signup?redirect_uri=stocks/${formattedTicker}/${formattedName}-share-price`;
+        // var ticker = data.data.ticker;
+        // var name = data.data.name;
+        // var formattedName = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        // var formattedTicker = ticker.toLowerCase().replace(/\s+/g, '-');
+        // var signupurl = `https://app.vestedfinance.com/signup?redirect_uri=stocks/${formattedTicker}/${formattedName}-share-price`;
         
-        setTimeout(function() {
-            var elements = document.querySelectorAll(".signup_url");
-            elements.forEach(function(element) {
-                element.href = signupurl;
-            });
-        }, 1000);
+        // setTimeout(function() {
+        //     var elements = document.querySelectorAll(".signup_url");
+        //     elements.forEach(function(element) {
+        //         element.href = signupurl;
+        //     });
+        // }, 1000);
         
-        var feedbackLinkAdd = document.getElementById('feedback_link_add');
-        var feedbackLinkIncorrect = document.getElementById('feedback_link_incorrect');
+        // var feedbackLinkAdd = document.getElementById('feedback_link_add');
+        // var feedbackLinkIncorrect = document.getElementById('feedback_link_incorrect');
 
-        feedbackLinkAdd.href = `https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=${formattedTicker}&company_name=${formattedName}&feedback_type=add_data`;
-        feedbackLinkIncorrect.href = `https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=${formattedTicker}&company_name=${formattedName}&feedback_type=incorrect_data`;
+        // feedbackLinkAdd.href = `https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=${formattedTicker}&company_name=${formattedName}&feedback_type=add_data`;
+        // feedbackLinkIncorrect.href = `https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=${formattedTicker}&company_name=${formattedName}&feedback_type=incorrect_data`;
 
     }
 </script>

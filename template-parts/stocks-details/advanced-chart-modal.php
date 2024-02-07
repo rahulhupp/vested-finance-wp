@@ -122,6 +122,16 @@
         }
     }
 </style>
+<?php
+    $overview_data = $args['overview_data'];
+    if ($overview_data) {
+        $ticker = $overview_data->ticker;
+        $name = $overview_data->name;
+        $formattedName = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
+        $formattedTicker = strtolower(str_replace(' ', '-', $ticker));
+        $signupurl = 'https://app.vestedfinance.com/signup?redirect_uri=stocks/' . $formattedTicker . '/' . $formattedName . '-share-price';
+    }
+?>
 <div class="ac_modal_container" id="ac_modal">
     <div class="ac_modal_content">
         <button class="close_button" id="close_ac_modal">
@@ -130,13 +140,13 @@
         <h2>Signup to access all features and start your US investing journey!</h2>
         <div class="ac_modal_text">
             <ul class="ac_modal_list">
-                <li><a href='#' class='signup_url' id="first_line"></a></li>
+                <li><a href="<?php echo $signupurl; ?>" id="first_line"></a></li>
                 <li>Open your account in minutes</li>
                 <li>Take your portfolio global, starting at just $1</li>
             </ul>
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/usd_coin.png" />
         </div>
-        <a href="#" class='signup_url'>
+        <a href="<?php echo $signupurl; ?>">
             <span>Get started</span>
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/arrow-right.svg" />
         </a>

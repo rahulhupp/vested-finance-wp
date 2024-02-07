@@ -7,20 +7,28 @@
 ?>
 
 <script>
-    callNewsApi();
+    document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callNewsApi();
+		}, 1000);
+	});
 
     let currentIndex = 0;
     const itemsPerLoad = 3;
 
     function callNewsApi() {
+        var csrf = localStorage.getItem('csrf');
+        var jwToken = localStorage.getItem('jwToken');
         const ratiosApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/news`;
         headers = {
-            'x-csrf-token': '<?php echo $token->csrf; ?>',
-            'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
+            'x-csrf-token': csrf,
+            'Authorization': `Bearer ${jwToken}`
         }
         fetch(ratiosApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
         .then(data => {
+            var newsSkeleton = document.getElementById('news_skeleton');
+            newsSkeleton.style.display = 'none';
             bindNewsData(data);
         })
         .catch(error => console.error('Error:', error));

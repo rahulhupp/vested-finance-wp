@@ -6,7 +6,11 @@
     }
 ?>
 <script>
-    callReturnsApi();
+    document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callReturnsApi();
+		}, 1000);
+	});
 
     function callReturnsApi() {
         const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns';
@@ -16,7 +20,11 @@
         }
         fetch(returnsApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
-        .then(data => { 
+        .then(data => {
+            var returnsSkeleton = document.getElementById('returns_skeleton');
+            var returnsSkeletonAfter = document.getElementById('returns_skeleton_after');
+            returnsSkeleton.style.display = 'none';
+            returnsSkeletonAfter.style.display = 'block';
             bindAbsoluteReturnsData(data); 
             bindAnnualizedReturnsData(data); 
         })

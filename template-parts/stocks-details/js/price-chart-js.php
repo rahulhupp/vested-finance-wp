@@ -1,5 +1,9 @@
 <script>
-	callChartApi('1Y', 'daily');
+	document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callChartApi('1Y', 'daily');
+		}, 1000);
+	});
 	
     function handleButtonClick(button) {
         var buttons = document.querySelectorAll('.stock_chart_buttons button');
@@ -15,6 +19,7 @@
             handleButtonClick(button); // Add or remove active class
         }
         var chartLoaderContainer = document.getElementById('chart_loader_container');
+		var priceChartSkeleton = document.getElementById('price_chart_skeleton');
         chartLoaderContainer.style.opacity = '1';
 
         // const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
@@ -28,15 +33,16 @@
         .then(data => {
             bindChartData(data, timeframe, interval);
             chartLoaderContainer.style.opacity = '0';
+			priceChartSkeleton.style.display = 'none';
         })
         .catch(error => console.error('Error:', error));
     }
 
     function bindChartData(data, timeframe, interval) {
-			var existingChart = Chart.getChart("myLineChart");
+			var existingChart = Chart.getChart("stocksLineChart");
 			if (existingChart) {
-				document.getElementById('myLineChart').removeEventListener('mousemove', handleMouseMove);
-        		document.getElementById('myLineChart').removeEventListener('mouseleave', handleMouseLeave);
+				document.getElementById('stocksLineChart').removeEventListener('mousemove', handleMouseMove);
+        		document.getElementById('stocksLineChart').removeEventListener('mouseleave', handleMouseLeave);
 				existingChart.destroy();
 			}
 			const labels = data.data.map(item => item.Date);
@@ -100,23 +106,23 @@
 			};
 
 
-			var ctx = document.getElementById('myLineChart').getContext('2d');
-			var myLineChart = new Chart(ctx, {
+			var ctx = document.getElementById('stocksLineChart').getContext('2d');
+			var stocksLineChart = new Chart(ctx, {
 				type: 'line',
 				data: chartData,
 				options: chartOptions
 			});
 
 			var throttledHandleMouseMove = throttle(function(event) {
-				handleMouseMove(event, myLineChart, labels);
+				handleMouseMove(event, stocksLineChart, labels);
 			}, 100); // Adjust the delay as needed
 
-			document.getElementById('myLineChart').onmousemove = function(event) {
+			document.getElementById('stocksLineChart').onmousemove = function(event) {
 				throttledHandleMouseMove(event);
 			};
 
-			document.getElementById('myLineChart').onmouseleave = function() {
-				handleMouseLeave(myLineChart);
+			document.getElementById('stocksLineChart').onmouseleave = function() {
+				handleMouseLeave(stocksLineChart);
 			};
 			
 		}

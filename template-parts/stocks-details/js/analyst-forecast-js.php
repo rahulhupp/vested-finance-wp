@@ -6,8 +6,12 @@
     }
 ?>
 <script>
-    callAnalystForecastApi();
-
+    document.addEventListener("DOMContentLoaded", function() {
+		setTimeout(() => {
+			callAnalystForecastApi();
+		}, 1000);
+	});
+    
     function callAnalystForecastApi() {
         const instrumentsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/analysts-predictions'; // Replace with the actual URL of the second API
 
@@ -18,7 +22,11 @@
         
         fetch(instrumentsApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
-        .then(data => { bindAnalystForecastData(data); })
+        .then(data => {
+            var analystChartSkeleton = document.getElementById('analyst_chart_skeleton');
+            analystChartSkeleton.style.display = 'none';
+            bindAnalystForecastData(data); 
+        })
         .catch(error => console.error('Error:', error));
     }
 
