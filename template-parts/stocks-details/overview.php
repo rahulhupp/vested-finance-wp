@@ -168,7 +168,15 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This ratio shows how much income you earn in dividend payouts per year for every dollar invested in the stock (or the stock’s annual dividend payment expressed as a percentage of its current price).</div>
                             </span>
-                            <strong><?php echo $dividendYieldValue; ?></strong>
+                            <strong>
+                                <?php 
+                                    if ($dividendYieldValue) {
+                                        echo $dividendYieldValue;
+                                    } else {
+                                        echo '0.00%';
+                                    }
+                                ?>
+                            </strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>

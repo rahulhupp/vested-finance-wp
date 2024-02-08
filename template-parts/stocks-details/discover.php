@@ -4,7 +4,7 @@
         <div class="separator_line"></div>
         <div class="explore_stocks">
             <div class="box_warrp" data-symbol="tsal">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/tsla/tesla-inc">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/tsla/tesla-inc-share-price">
                     <div class="stocks_img">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/tesla_logo.svg" alt="Tsla">
                     </div>
@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="aapl">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/aapl/apple-inc">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/aapl/apple-inc-share-price">
                     <div class="stocks_img" id="stock_img">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/apple_logo.svg" alt="aaple">
                     </div>
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="googl">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/googl/alphabet-inc-class-a">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/googl/alphabet-inc-class-a-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/google_logo.svg" alt="GOOGL">
                     </div>
@@ -34,7 +34,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="meta">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/meta/meta-platforms-inc">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/meta/meta-platforms-inc-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/meta_logo.svg" alt="META">
                     </div>
@@ -44,7 +44,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="amzn">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/amzn/amazoncom-inc">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/amzn/amazoncom-inc-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/amazon_logo.svg" alt="AMZN">
                     </div>
@@ -54,7 +54,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="msft">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/msft/microsoft-corporation">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/msft/microsoft-corporation-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/microsoft_logo.svg" alt="Microsoft">
                     </div>
@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="nvda">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/nvda/nvidia-corporation">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/nvda/nvidia-corporation-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/navida_logo.svg" alt="NVDA">
                     </div>
@@ -74,7 +74,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="brk.b">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/brk.b/berkshire-hathaway-inc">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/brk.b/berkshire-hathaway-inc-share-price">
                     <div class="stocks_img brk_stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/BRK.B.png"
                         alt="BRK">
@@ -85,7 +85,7 @@
                 </a>
             </div>
             <div class="box_warrp" data-symbol="lly">
-                <a href="<?php echo get_site_url(); ?>/us-stocks/lly/eli-lilly-and-company">
+                <a href="<?php echo get_site_url(); ?>/us-stocks/lly/eli-lilly-and-company-share-price">
                     <div class="stocks_img">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/lilly_logo.svg" alt="LLY">
                     </div>
