@@ -51,11 +51,7 @@
                         <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, Indians can buy shares of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>). There are two primary methods to buy <span><?php echo $name; ?></span> via Vested.
-                            i.e., direct investing and investing through instruments. You can open your US brokerage account via the
-                            Vested app and purchase shares of <span><?php echo $name; ?></span> directly or invest in <span><?php echo $name; ?></span> via international mutual funds and
-                            exchange-traded funds. If you want an alternative, you can also go for domestic (Indian) funds investing
-                            in the US stock market.</p>
+                        <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <company-name> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Can Fractional shares of <span><?php echo $name; ?></span> be purchased?</div>
@@ -70,18 +66,12 @@
                         <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                     </div>
                     <div class="faq_answer">
-                        <p>You can invest in shares of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) via the Vested app in 3 simple steps:
+                        <p>You can invest in shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via Vested in three simple steps:</p>
                         <ul>
-                            <li>
-                                Download the Vested app or visit app.vestedfinance.com and Sign up with a new account
-                            </li>
-                            <li>
-                                Breeze through our fully digital and secure KYC process and open your US Brokerage account in less
-                                than 2 minutes</li>
-                            <li>
-                                Transfer USD funds to your US Brokerage account and start investing in <span><?php echo $name; ?></span> shares</li>
+                            <li>Click on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page</li>
+                            <li>Breeze through our fully digital and secure KYC process and open your US Brokerage account in a few minutes</li>
+                            <li>Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
                         </ul>
-                        </p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> 52-week high and low stock price?</div>
@@ -167,11 +157,7 @@
                     "name": "Can Indians buy <?php echo $name; ?> shares?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>). There are two primary methods to buy <?php echo $name; ?> via Vested.
-                            i.e., direct investing and investing through instruments. You can open your US brokerage account via the
-                            Vested app and purchase shares of <?php echo $name; ?> directly or invest in <?php echo $name; ?> via international mutual funds and
-                            exchange-traded funds. If you want an alternative, you can also go for domestic (Indian) funds investing
-                            in the US stock market."
+                        "text": "Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <company-name> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete."
                     }
                 },
                 {
@@ -188,16 +174,11 @@
                     "name": "How to invest in <?php echo $name; ?> shares from India?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "<p>You can invest in shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via the Vested app in 3 simple steps:
+                        "text": "<p>You can invest in shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via Vested in three simple steps:</p>
                         <ul>
-                            <li>
-                                Download the Vested app or visit app.vestedfinance.com and Sign up with a new account
-                            </li>
-                            <li>
-                                Breeze through our fully digital and secure KYC process and open your US Brokerage account in less
-                                than 2 minutes</li>
-                            <li>
-                                Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
+                            <li>Click on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page</li>
+                            <li>Breeze through our fully digital and secure KYC process and open your US Brokerage account in a few minutes</li>
+                            <li>Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
                         </ul>"
                     }
                 },
