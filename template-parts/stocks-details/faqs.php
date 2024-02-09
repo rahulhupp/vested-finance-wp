@@ -100,7 +100,7 @@
                         <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                     </div>
                     <div class="faq_answer">
-                        <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $dividendYieldValue; ?></span></p>
+                        <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?></span></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is the Market Cap of <span><?php echo $name; ?></span>?</div>
@@ -212,7 +212,7 @@
                     "name": "What is <?php echo $name; ?> dividend yield?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "The dividend yield of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $dividendYieldValue; ?>"
+                        "text": "The dividend yield of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?>"
                     }
                 },
                 {
