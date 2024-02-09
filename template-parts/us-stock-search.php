@@ -16,7 +16,7 @@
             <ul id="stocksResultsList"></ul>
             <ul>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/AAPL" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/aapl/apple-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.webp" alt="Apple" />
@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/GOOGL" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/googl/alphabet-inc-class-a-shares-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.webp" alt="Google" />
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/AGPXX" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/ivz/invesco-ltd-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.webp" alt="Invesco" />
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/MSFT" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/msft/microsoft-corporation-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft"/>
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/TSLA" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/tsla/tesla-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla"/>
@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/META" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/meta/meta-platforms-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta"/>
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/NFLX" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/nflx/netflix-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix"/>
@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/BWX" target="_blank" rel="noopener noreferrer">
+                    <a href="https://app.vestedfinance.com/stocks/BWX">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr"/>
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/AMZN" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/amzn/amazoncom-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon"/>
@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/SPOT" target="_blank" rel="noopener noreferrer">
+                    <a href="https://vestedfinance.com/us-stocks/spot/spotify-technology-sa-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify"/>
@@ -295,8 +295,12 @@
                 if (count < limit) {
                     var liElement = document.createElement('li');
                     var aElement = document.createElement('a'); // Create an anchor element
+                    var selectedText = object.name;
+                    var selectedValue = object.symbol;
+                    var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+                    var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
                     if (object.type === 'stock') {
-                        aElement.href = `https://app.vestedfinance.com/stocks/${object.symbol}`;
+                        aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
                     } else if (object.type === 'etf') {
                         aElement.href = `https://app.vestedfinance.com/etfs/${object.symbol}`;
                     }
