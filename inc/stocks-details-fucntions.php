@@ -139,4 +139,74 @@ function remove_unwanted_styles() {
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 9999);
 
 
+// Hook into the template_redirect action
+add_action('template_redirect', 'custom_redirect');
+
+$requested_url = $_SERVER['REQUEST_URI'];
+$home_url = parse_url(home_url(), PHP_URL_PATH);
+$path = substr($requested_url, strlen($home_url));
+$getfirstpath = explode("/", $path);
+
+if ($getfirstpath[1] == 'us-stocks') {
+    $redirect_mappings = get_data_from_stocks_list();
+    $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
+    $stocks_symbol = substr($requested_url, $start_pos_symbol);
+    $end_pos_symbol = strpos($stocks_symbol, '/');
+    if ($end_pos_symbol !== false) {
+        $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
+    }
+    $stocks_symbol = trim($stocks_symbol);
+    $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
+
+    error_log('Redirect Slug: ' . $redirect_slug);
+    if ($getfirstpath[3] !== $redirect_slug) {
+        error_log('if if 4');
+        custom_redirect();
+    }
+} else {
+    error_log('else');
+}
+
+function custom_redirect() {
+    $requested_url = $_SERVER['REQUEST_URI'];
+    $home_url = parse_url(home_url(), PHP_URL_PATH);
+    $path = substr($requested_url, strlen($home_url));
+    $getfirstpath = explode("/", $path);
+    if ($getfirstpath[1] == 'us-stocks') {
+        $redirect_mappings = get_data_from_stocks_list();
+        $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
+        $stocks_symbol = substr($requested_url, $start_pos_symbol);
+        $end_pos_symbol = strpos($stocks_symbol, '/');
+        if ($end_pos_symbol !== false) {
+            $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
+        }
+        error_log('Extracted symbol: ' . $stocks_symbol);
+        $stocks_symbol = trim($stocks_symbol);
+        if (array_key_exists($stocks_symbol, $redirect_mappings)) {
+            $new_slug = $redirect_mappings[$stocks_symbol];
+            $new_url = home_url("/us-stocks/{$stocks_symbol}/{$new_slug}-share-price/");
+            error_log('New URL: ' . $new_url);
+            wp_redirect($new_url, 301);
+            exit();
+        } else {
+            error_log('Defult New URL:');
+        }
+    }
+}
+
+function get_data_from_stocks_list() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'stocks_list';
+    $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+    $redirect_mappings = array();
+    foreach ($results as $row) {
+        $symbol = strtolower($row['symbol']);
+        $name = strtolower($row['name']);
+        $name = str_replace([' ', ','], '-', $name);
+        $name = preg_replace('/[^a-zA-Z0-9\-]/', '', $name);
+        $name = preg_replace('/-+/', '-', $name);
+        $redirect_mappings[$symbol] = $name;
+    }
+    return $redirect_mappings;
+}
 ?>
