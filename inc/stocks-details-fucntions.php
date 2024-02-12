@@ -34,6 +34,16 @@ function custom_template_redirect() {
 }
 add_action('template_redirect', 'custom_template_redirect');
 
+function yoast_seo_robots_modify_search( $robots ) {
+    $custom_stock_title_value = get_query_var('custom_stock_title_value');
+    if ($custom_stock_title_value) { 
+        error_log('no-follow, no-index 10');
+        return "noindex, nofollow";
+    }
+}
+
+add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
+
 function custom_wpseo_title($title) {
     $custom_stock_title_value = get_query_var('custom_stock_title_value');
     if ( $custom_stock_title_value ) {
