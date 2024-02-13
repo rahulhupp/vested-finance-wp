@@ -14,9 +14,10 @@
         $formattedName = preg_replace('/[^a-zA-Z0-9\-]/', '', $formattedName);
         $formattedName = preg_replace('/-+/', '-', $formattedName);
         $formattedName = trim($formattedName, '-');
+        $homeURL = home_url();
         set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
         set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
-        set_query_var('custom_stock_url_value', "https://vestedfinance.com/us-stocks/$formattedTicker/$formattedName-share-price/");
+        set_query_var('custom_stock_url_value', "$homeURL/us-stocks/$formattedTicker/$formattedName-share-price/");
         set_query_var('custom_stock_image_value', "https://d13dxy5z8now6z.cloudfront.net/symbol/$ticker.png");
     }
 ?>
