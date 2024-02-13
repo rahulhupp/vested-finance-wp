@@ -32,12 +32,10 @@
     }
 
     function callReturnsCompareApi(returnData, ticker) {
-        var csrf = localStorage.getItem('csrf');
-        var jwToken = localStorage.getItem('jwToken');
         const returnsCompareApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns?compare=${ticker}`;
         headers = {
-            'x-csrf-token': csrf,
-            'Authorization': `Bearer ${jwToken}`
+            'x-csrf-token': '<?php echo $token->csrf; ?>',
+            'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
         }
         fetch(returnsCompareApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
