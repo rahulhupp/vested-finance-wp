@@ -30,12 +30,10 @@
     }
 
     function callRatiosCompareApi(ticker) {
-        var csrf = localStorage.getItem('csrf');
-        var jwToken = localStorage.getItem('jwToken');
         const ratiosApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios?compare=${ticker}`;
         headers = {
-            'x-csrf-token': csrf,
-            'Authorization': `Bearer ${jwToken}`
+            'x-csrf-token': '<?php echo $token->csrf; ?>',
+            'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
         }
         fetch(ratiosApiUrl, { method: 'GET',  headers: headers })
         .then(response => response.json())
