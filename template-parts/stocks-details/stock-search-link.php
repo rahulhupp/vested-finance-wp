@@ -304,7 +304,13 @@
             var selectedText = clickedElement.querySelector('strong').innerText;
             
             // var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
-            var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            // var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            var formattedText = selectedText.toLowerCase()
+                                            .replace(/ /g, '-')
+                                            .replace(/,/g, '-')
+                                            .replace(/[^a-zA-Z0-9\-]/g, '')
+                                            .replace(/-+/g, '-')
+                                            .replace(/^-+|-+$/g, '');
             var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
 
             var redirectToURL = `<?php echo home_url(); ?>/us-stocks/${formattedValue}/${formattedText}-share-price`;

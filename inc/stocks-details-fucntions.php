@@ -65,7 +65,7 @@ function custom_wpseo_opengraph_url($url) {
     return $url;
 }
 add_filter('wpseo_opengraph_url', 'custom_wpseo_opengraph_url', 10, 1);
-add_filter('wpseo_canonical', 'custom_wpseo_opengraph_url', 10, 1);
+// add_filter('wpseo_canonical', 'custom_wpseo_opengraph_url', 10, 1);
 
 
 function custom_wpseo_opengraph_image($image) {
@@ -90,6 +90,10 @@ function add_extra_og() {
     if ($stock_description_value) {
         $description = $stock_description_value;
         echo '<meta property="og:description" content="'. $description .'" />';
+    }
+    $stock_url_value = get_query_var('custom_stock_url_value');
+    if ($stock_url_value) {
+        echo '<link rel="canonical" href="'. $stock_url_value .'" />';
     }
 }
 
@@ -205,6 +209,7 @@ function get_data_from_stocks_list() {
         $name = str_replace([' ', ','], '-', $name);
         $name = preg_replace('/[^a-zA-Z0-9\-]/', '', $name);
         $name = preg_replace('/-+/', '-', $name);
+        $name = trim($name, '-');
         $redirect_mappings[$symbol] = $name;
     }
     return $redirect_mappings;
