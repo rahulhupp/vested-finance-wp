@@ -1015,6 +1015,7 @@
 $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
 $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
 ?>
+
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
@@ -1031,8 +1032,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                         <div class="field_group">
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
-                                <div class="selected_option" data-value="AAPL" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="Apple">
+                                <div class="selected_option" data-value="SPY" id="resultsList">
+                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="S&P 500 ETF Trust SPDR">
                                 </div>
                                 <div class="options_dropdown_wrap">
                                     <div id="loader" style="display: none;">
@@ -1049,6 +1050,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                                     </div>
                                     <div class="dropdown_options">
                                         <ul class="static_options">
+                                            <li data-value="SPY">S&P 500 ETF Trust SPDR</li>
                                             <li data-value="AAPL">Apple</li>
                                             <li data-value="GOOGL">Google</li>
                                             <li data-value="AGPXX">Invesco</li>
@@ -1136,13 +1138,9 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3 id="returnBreakdownTitle">Return Breakdown of Apple</h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown of S&P 500 ETF Trust SPDR</h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
-                            <!-- <div class="result_circle_wrap">
-                                    <div class="investment_amount_data"></div>
-                                    <div class="returns_data"></div>
-                                </div> -->
                             <div class="fd_result" id="fd_results">
                                 <div class="total_value">
                                     <p>Total Value</p>
@@ -1216,33 +1214,9 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 <section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
     <div class="container">
         <div id="stocks_chart" class="blur">
-            <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas>
-            <div class="chart_legends">
-                <div class="single_legend">
-                    <div class="legend_color stock_color">
-
-                    </div>
-                    <div class="legend_name">
-                        Stocks Value
-                    </div>
-                </div>
-                <div class="single_legend">
-                    <div class="legend_color sp_color">
-
-                    </div>
-                    <div class="legend_name">
-                        S&P Value
-                    </div>
-                </div>
-                <div class="single_legend nifty_legend">
-                    <div class="legend_color nifty_color">
-
-                    </div>
-                    <div class="legend_name">
-                        Nifty 50
-                    </div>
-                </div>
-            </div>
+            <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
+            <canvas id="calculatorChart" width="400" height="200"></canvas>
+            
             <div id="chartLoader" style="display: none;">
                 <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -1261,7 +1235,9 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
@@ -1269,50 +1245,44 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         
         // Retrieve form values
         const stockSelector = document.getElementById('resultsList').dataset.value;
+        const stockName = document.querySelector('.dropdown_search').value;
         const investmentAmount = document.getElementById('invest_val').value;
         const currency = document.querySelector('input[name="currency"]:checked').value;
         const startDate = document.getElementById('startMonth').value;
         const endDate = document.getElementById('endMonth').value;
-        
+        const showNifty = (currency === "inr") ? false : true;
+        const currencySymbol = (currency === "inr") ? "₹" : "$";
+
+        const differenceStartDate = new Date(document.getElementById('startMonth').value);
+        const differenceEndDate = new Date(document.getElementById('endMonth').value);
+
+        const differenceInMonths = (differenceEndDate.getFullYear() - differenceStartDate.getFullYear()) * 12 + differenceEndDate.getMonth() - differenceStartDate.getMonth();
+
+        let dateRange;
+
+        if (differenceInMonths < 6) {
+            dateRange = "week";
+        } else if (differenceInMonths >= 12 && differenceInMonths <= 36) {
+            dateRange = "month";
+        } else if (differenceInMonths > 36) {
+            dateRange = "years";
+        } else {
+            dateRange = "month";
+        }
+
+        console.log('dateRange', dateRange);
+
+
+        console.log('currencySymbol', currencySymbol);
+        console.log('stockSelector', stockSelector);
+        console.log('stockName', stockName);
 
         // Trigger API and render chart
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, showNifty, currencySymbol, stockName, dateRange);
             })
             .catch(error => alert("Something went wrong!"));
-
-        // Show loader while waiting for the chart
-        const chartLoader = document.getElementById("chartLoader");
-        chartLoader.style.display = "block";
-
-
-        // Remove existing canvas, if any
-        const canvasToRemove = document.getElementById("myChart");
-        if (canvasToRemove) {
-            canvasToRemove.parentNode.removeChild(canvasToRemove);
-        }
-
-        // Create a new canvas element
-        const newCanvas = document.createElement("canvas");
-        newCanvas.id = "myChart";
-        newCanvas.style.width = "100%";
-        newCanvas.style.maxWidth = "1170px";
-        newCanvas.style.zIndex = "9";
-        newCanvas.style.display = "none"; // Hide the new canvas initially
-
-        // Append the new canvas to the div with id "stocks_chart"
-        const stocksChartDiv = document.getElementById('stocks_chart');
-        stocksChartDiv.appendChild(newCanvas);
-
-        // Delay rendering for demonstration purposes (replace with actual rendering logic)
-        setTimeout(function() {
-            renderChart(xValues, yValues, zValues, bValues);
-
-            // Hide loader and show the new canvas once the chart is rendered
-            chartLoader.style.display = "none";
-            newCanvas.style.display = "block";
-        }, 2000);
     });
       
     // Event handler for currency radio buttons
@@ -1362,7 +1332,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
       // Trigger API and render chart
       triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                renderChart(data.xValues, data.yValues, data.zValues, data.bValues);
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
             })
             .catch(error => alert("Something went wrong!"));
           }, 500);
@@ -1415,7 +1385,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
     var yValues = [];
     var zValues = [];
     var bValues = [];
-    renderChart(xValues, yValues, zValues, bValues);
+    // renderChart(xValues, yValues, zValues, bValues);
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
 
@@ -1566,102 +1536,118 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
             .catch(error => alert("Something went wrong!"));
     }
 
+    var chartInstance = null; // Declare a variable to hold the chart instance globally
 
+    function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
+        const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
+        console.log('1 xValues', xValues);
+        console.log('yValues', yValues);
+        console.log('zValues', zValues);
+        console.log('bValues', bValues);
+        console.log('hideNifty', hideNifty);
 
-    function renderChart(xValues, yValues, zValues, bValues) {
-        if (window.myChart) {
-            // window.myChart.destroy();
+        // Check if a chart instance already exists
+        if (chartInstance) {
+            chartInstance.destroy(); // Destroy the existing chart instance
         }
-        const dateObjects = xValues.map(dateString => new Date(dateString));
-        const currecySelector = document.querySelector('input[name="currency"]:checked');
-        const inrCurrencyRadioButton = document.getElementById('inr_currency');
-        const usdCurrencyRadioButton = document.getElementById('usd_currency');
-        const formattedLabels = dateObjects.map(date => {
-            const month = date.toLocaleString('default', {
-                month: 'short'
-            });
-            const day = date.getDate();
-            const year = date.getFullYear();
-            return `${month} ${day}, ${year}`;
-        });
 
-        const nifty50DatasetIndex = 2;
+        // Define the datasets based on the condition
+        let datasets;
+        if (hideNifty) {
+            datasets = [
+                {
+                    label: `${stockName}`,
+                    data: yValues,
+                    borderColor: '#002852',
+                    backgroundColor: '#002852',
+                    tension: 0.1,
+                },
+                {
+                    label: `S&P 500`,
+                    data: zValues,
+                    borderColor: '#ec9235',
+                    backgroundColor: '#ec9235',
+                    tension: 0.1,
+                }
+            ];
+        } else {
+            datasets = [
+                {
+                    label: `${stockName}`,
+                    data: yValues,
+                    borderColor: '#002852',
+                    backgroundColor: '#002852',
+                    tension: 0.1,
+                },
+                {
+                    label: `S&P 500`,
+                    data: zValues,
+                    borderColor: '#ec9235',
+                    backgroundColor: '#ec9235',
+                    tension: 0.1,
+                },
+                {
+                    label: `Nifty`,
+                    data: bValues,
+                    borderColor: '#3861f6',
+                    backgroundColor: '#3861f6',
+                    tension: 0.1,
+                }
+            ];
+        }
 
+        const uniqueDates = [...new Set(xValues)];
+        // const minDate = new Date(uniqueDates[0]);
+        // minDate.setMonth(minDate.getMonth() - 1);
+        // const maxDate = new Date(uniqueDates[uniqueDates.length - 1]);
+        // maxDate.setMonth(maxDate.getMonth() + 1); 
 
-
-        inrCurrencyRadioButton.addEventListener('change', function() {
-            myChart.data.datasets[nifty50DatasetIndex].hidden = false;
-            document.querySelector('.nifty_legend').style.display = 'flex';
-            myChart.update();
-        });
-
-        usdCurrencyRadioButton.addEventListener('change', function() {
-            myChart.data.datasets[nifty50DatasetIndex].hidden = true;
-            myChart.update();
-            document.querySelector('.nifty_legend').style.display = 'none';
-        });
-
-        const initialHiddenState = currecySelector.value === 'usd';
-
-
-        let myChart = new Chart("myChart", {
-            type: "line",
+        // console.log('1 minDate', minDate);
+        // console.log('1 maxDate', maxDate);
+        // Create the chart instance
+        chartInstance = new Chart(calculatorChart, {
+            type: 'line',
             data: {
-                labels: formattedLabels,
-                datasets: [{
-                        label: 'Stocks Value',
-                        data: yValues,
-                        borderColor: "#002852",
-                        fill: false,
-                        pointRadius: 0
-                    },
-                    {
-                        label: 'S&P 500',
-                        data: zValues,
-                        borderColor: "#ec9235",
-                        fill: false,
-                        pointRadius: 0
-                    },
-                    {
-                        label: 'Nifty 50',
-                        data: bValues,
-                        borderColor: "#3861f6",
-                        fill: false,
-                        pointRadius: 0,
-                        hidden: initialHiddenState
-                    }
-                ]
+                labels: uniqueDates,
+                datasets: datasets
             },
             options: {
-                scales: {
-                    xAxis: {
-                        ticks: {
-                            maxTicksLimit: 10
-                        }
-                    },
-                    yAxes: [{
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return currecySelector.value === "inr" ? `₹${value.toLocaleString()}` : `$${value.toLocaleString()}`;
-                            }
-                        }
-                    }]
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function(tooltipItem, data) {
-                            const value = tooltipItem.yLabel;
-                            return currecySelector.value === "inr" ? `₹${value.toLocaleString()}` : `$${value.toLocaleString()}`;
-                        }
-                        
+                plugins: {
+                    datalabels: {
+                        display: true,
+                        align: 'end',
+                        color: 'red'
                     }
                 },
-                legend: {
-                    display: false
+                scales: {
+                    y: {
+                        display: true,
+                        position: 'left',
+                        ticks: {
+                            callback: function(value) {
+                                return currencySymbol + value;
+                            }
+                        }
+                    },
+                    x: {
+						type: 'timeseries',
+						time: {
+							unit: dateRange,
+							displayFormats: {
+								'day': 'dd-MMM',
+								'year': 'MMM yyyy',
+							}                            
+						}
+					},
                 }
             }
         });
+
+        // console.log('Converted minDate', minDate.toISOString().split('T')[0]);
+        // console.log('Converted maxDate', maxDate.toISOString().split('T')[0]);
     }
+
+    
 
     document.querySelector('.selected_option').addEventListener("click", function() {
         const mainDropdown = document.querySelector('.select_box_new');

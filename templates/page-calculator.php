@@ -13,25 +13,9 @@ get_header(); ?>
     <div class="container">
         <div class="about_calc_wrap">
             <div class="about_calc_col">
-                <!-- <h3 class="section_heading_med">What is US Stocks Returns Calculator</h3> -->
-
                 <div class="calc_cont">
                     <?php the_field('calc_cont'); ?>
                 </div>
-            </div>
-            <div class="other_calc_list">
-
-            <h3 class="section_heading_small">Other Calculators</h3>
-
-            <ul class="calc_list">
-                <li><a href="#">Lumpsum/SIP calculator</a></li>
-                <li><a href="#">P2P lending calculator</a></li>
-                <li><a href="#">Stock SIP/lumpsum Calculator</a></li>
-                <li><a href="#">SGB Bond calculator</a></li>
-                <li><a href="#">FD Returns calculator</a></li>
-                <li><a href="#">Retirement calculator</a></li>
-            </ul>
-
             </div>
         </div>
     </div>
