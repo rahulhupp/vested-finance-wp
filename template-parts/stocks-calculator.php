@@ -1444,9 +1444,11 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
                 
                 var options = { year: 'numeric', month: 'long' };
-                var formattedDate = firstDate.toLocaleString('en-US', options);
-                console.log('formattedDate', formattedDate);
-                document.querySelector('#start_month').textContent = formattedDate;
+                var firstFormattedDate = firstDate.toLocaleString('en-US', options);
+                var lastFormattedDate = lastDate.toLocaleString('en-US', options);
+                // console.log('formattedDate', formattedDate);
+                document.querySelector('#start_month').textContent = firstFormattedDate;
+                document.querySelector('#end_month').textContent = lastFormattedDate;
 
 
                 // var formattedDateParts = formattedDate.split(' ');
