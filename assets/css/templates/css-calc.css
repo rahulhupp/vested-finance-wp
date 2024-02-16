@@ -491,9 +491,9 @@
   justify-content: space-between;
 }
 
-.about_calc_col {
+/* .about_calc_col {
   width: calc(100% - 390px);
-}
+} */
 
 .other_calc_list {
   width: 370px;
@@ -565,9 +565,9 @@
   display: none;
 }
 
-.faq_wrap {
+/* .faq_wrap {
   max-width: 770px;
-}
+} */
 .faq_que h4 {
   color: #212529;
 
