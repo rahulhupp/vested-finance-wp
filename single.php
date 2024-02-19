@@ -328,9 +328,10 @@ $post_id = get_the_ID();
 	headingsToProcess.forEach((heading) => {
 		const spanElement = document.createElement('span');
 
-		let headingText = heading.textContent.replace(/\s+/g, '_').replace(/[.\[\]{}()?;:\u00A0]/g, '');
+		// let headingText = heading.textContent.replace(/\s+/g, '_').replace(/[.\[\]{}()?;:\u00A0]/g, '');
 
-		headingText = headingText.replace(/_+$/, '');
+		// headingText = headingText.replace(/_+$/, '');
+		let headingText = heading.textContent.replace(/[^a-zA-Z0-9_\s]+/g, '').replace(/\s+/g, '_');
 
 		spanElement.className = 'ez-toc-section';
 		spanElement.id = headingText;
