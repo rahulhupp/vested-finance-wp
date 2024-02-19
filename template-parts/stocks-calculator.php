@@ -1261,7 +1261,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
             document.querySelector('#start_month').textContent = dateStr;
             var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
-            console.log('5 formattedDate', formattedDate);
             callEndDate(formattedDate);
         },
         onClose: function (selectedDates, dateStr, instance) {
@@ -1276,7 +1275,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     });
 
     function callEndDate(minDate) {
-        console.log('callEndDate');
         var end_month = flatpickr("#endMonth", {
             plugins: [
                 new monthSelectPlugin({
@@ -1337,17 +1335,9 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             dateRange = "month";
         }
 
-        console.log('1 dateRange', dateRange);
-
-
-        console.log('currencySymbol', currencySymbol);
-        console.log('stockSelector', stockSelector);
-        console.log('stockName', stockName);
-
         // Trigger API and render chart
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                console.log('data', data);
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, showNifty, currencySymbol, stockName, dateRange);
             })
             .catch(error => alert("Something went wrong!"));
@@ -1400,7 +1390,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
       // Trigger API and render chart
       triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                console.log('data', data);
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
             })
             .catch(error => alert("Something went wrong!"));
@@ -1505,8 +1494,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 const inrPercentageEstimatedReturn = (inrEstReturns / inrTotalValue).toFixed(2);
                 svgElement.classList.remove('show_loader');
-
-                    console.log('stockData', stockData);
+                
                 stockData.data.forEach((item, index) => {
                     const currentDate = item.Date;
                     const adjClose = selectedCurrency.value === "inr" ? (usdinrData.data[index]?.Adj_Close || null) : null;
@@ -1586,20 +1574,11 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
     function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
         const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
-        console.log('xValues', xValues.length);
-        console.log('yValues', yValues.length);
-        console.log('zValues', zValues.length);
-        console.log('bValues', bValues.length);
-        console.log('hideNifty', hideNifty);
-        console.log('dateRange', dateRange);
 
         // Check if a chart instance already exists
         if (chartInstance) {
-            console.log('If chartInstance', chartInstance);
             chartInstance.destroy(); // Destroy the existing chart instance
         }
-
-        console.log('chartInstance', chartInstance);
 
         // Define the datasets based on the condition
         let datasets;
@@ -1647,14 +1626,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         }
 
         const uniqueDates = [...new Set(xValues)];
-        console.log('uniqueDates', uniqueDates.length);
         const minDate = new Date(uniqueDates[0]);
-        // minDate.setMonth(minDate.getMonth() - 1);
         const maxDate = new Date(uniqueDates[uniqueDates.length - 1]);
-        // maxDate.setMonth(maxDate.getMonth() + 1); 
-
-        console.log('minDate', minDate);
-        console.log('maxDate', maxDate);
         // Create the chart instance
         chartInstance = new Chart(calculatorChart, {
             type: 'line',
@@ -1668,6 +1641,24 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         display: true,
                         align: 'end',
                         color: 'red'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                var inputDateStr = tooltipItems[0].parsed.x;
+                                var inputDate = new Date(inputDateStr);
+                                var formattedDate = inputDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                                return formattedDate;
+                            },
+                            label: function(context) {
+                                var label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += currencySymbol + context.parsed.y;
+                                return label;
+                            }
+                        }
                     }
                 },
                 scales: {
@@ -1699,9 +1690,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 }
             }
         });
-
-        console.log('2 Converted minDate', minDate.toISOString().split('T')[0]);
-        console.log('Converted maxDate', maxDate.toISOString().split('T')[0]);
     }
 
     
