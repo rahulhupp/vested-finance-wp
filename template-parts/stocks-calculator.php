@@ -824,7 +824,9 @@
     }
 
     @media (max-width: 1024px) {
-
+        .main_calc_wrap {
+            flex-wrap: wrap;
+        }
         .calc_col,
         .calc_result_col {
             width: 100%;
