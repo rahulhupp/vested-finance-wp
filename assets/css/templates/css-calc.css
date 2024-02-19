@@ -203,27 +203,6 @@
   position: relative;
 }
 
-.calculator .list {
-  padding-left: 24px;
-  position: relative;
-}
-
-.calculator .list p {
-  position: relative;
-}
-
-.calculator .invested_val.list p:before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #b3d2f1;
-  border-radius: 50%;
-  left: -24px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 
 .est_return.list p:before {
   content: "";
@@ -273,45 +252,18 @@
 }
 
 @media (max-width: 1200px) {
-  .calc_col,
-  .calc_result_col {
-    width: 50%;
-  }
-  .calculator .result_breakdown_info {
-    width: 270px;
-  }
-  .calculator .cta_btn {
-    margin-top: 15px;
-  }
   .home_page_faq_wrap {
     padding: 0 115px;
   }
 }
 
 @media (max-width: 1100px) {
-  .calculator .result_breakdown_info {
-    width: 248px;
-  }
-  .calculator .result_graph_col {
-    width: 200px;
-  }
   .home_page_faq_wrap {
     padding: 0 90px;
   }
 }
 
 @media (max-width: 1024px) {
-  .calc_col,
-  .calc_result_col {
-    width: 100%;
-  }
-
-  .calculator .result_breakdown_info {
-    width: calc(100% - 285px);
-  }
-  .calculator .cta_btn {
-    margin-top: 0;
-  }
   .home_page_faq_wrap {
     padding: 0 80px;
   }
@@ -356,20 +308,6 @@
 }
 
 @media (max-width: 767px) {
-  .calculator .result_breakdown_wrap {
-    flex-direction: column;
-  }
-
-  .calculator .result_breakdown_info {
-    width: 100%;
-    margin-top: 40px;
-  }
-  .calc_desc {
-    font-size: 14px !important;
-  }
-  .calculator .cta_btn a {
-    margin-top: 15px;
-  }
   .sub_heading {
     font-size: 14px !important;
   }
@@ -385,25 +323,6 @@
   }
 }
 
-.calculator .field_col input[type="date"] {
-  padding: 4px 14px 4px 24px;
-  color: #002852;
-
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  height: 52px;
-  margin-bottom: 0;
-  border-radius: 4px;
-  border: 1px solid #a9bdd0;
-}
-
-.calculator .submit_btn input[type="submit"].btn-disabled {
-  background: grey !important;
-  pointer-events: none;
-}
-
 /* latest */
 .calc-page .container {
   max-width: 1170px;
@@ -416,33 +335,6 @@
   height: 14px;
 }
 
-.calculator .field_col input[type="date"] {
-  width: 100%;
-}
-
-.calculator .field_group {
-  margin-bottom: 18px;
-}
-
-.calculator .currency_select input[type="radio"] + label {
-  margin-bottom: 0;
-}
-
-.calculator #invest_val {
-  width: 100%;
-}
-
-.calculator .submit_btn input[type="submit"] {
-  width: 100%;
-  margin: 0;
-  border-radius: 6px;
-  background: #0cc886;
-  height: 56px;
-  padding: 15px 0px 14px 0px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-}
 
 .popular_stocks {
   padding-top: 40px;
