@@ -182,7 +182,8 @@ function custom_redirect() {
         $stocks_symbol = substr($requested_url, $start_pos_symbol);
         $end_pos_symbol = strpos($stocks_symbol, '/');
         if ($end_pos_symbol !== false) {
-            $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
+            $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
+            $stocks_symbol = strtolower($stocks_symbol_draft);
         }
         error_log('Extracted symbol: ' . $stocks_symbol);
         $stocks_symbol = trim($stocks_symbol);
