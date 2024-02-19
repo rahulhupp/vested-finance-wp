@@ -233,6 +233,7 @@
 
     .calculator .field_col {
         width: calc(50% - 8px);
+        position: relative;
     }
 
     .calculator .result_graph_col {
@@ -538,7 +539,6 @@
     .calculator .field_col .flatpickr-input {
         padding: 4px 14px;
         color: #002852;
-
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -547,6 +547,20 @@
         margin-bottom: 0;
         border-radius: 4px;
         border: 1px solid #a9bdd0;
+    }
+
+    .calculator .field_col:before {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB6SURBVHgB7ZDBDYAgDEW/TKI31nAD46DGDVyDm0xiNEUPSFs6QN+JAH2PADiOM7C7cT3L4pqR9gyNuIxAOGidtul/HJTRMkiCrly8IwSelwNZjdTy/M408F8kCb7v0s7MAUlE2OT9ABshTHJboI3AKrcH6giscsdxCje0EzktB/V6CwAAAABJRU5ErkJggg==);
+        background-size: contain;
+        background-repeat: no-repeat;
+        right: 14px;
+        bottom: 13px;
+        pointer-events: none;
+        transition: all .3s;
     }
 
     .flatpickr-monthSelect-month.selected {
@@ -1494,7 +1508,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 const inrPercentageEstimatedReturn = (inrEstReturns / inrTotalValue).toFixed(2);
                 svgElement.classList.remove('show_loader');
-                
+
                 stockData.data.forEach((item, index) => {
                     const currentDate = item.Date;
                     const adjClose = selectedCurrency.value === "inr" ? (usdinrData.data[index]?.Adj_Close || null) : null;
