@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
 <style>
     .calculator.calc_page_block .main_heading {
         font-size: 32px;
@@ -486,11 +488,7 @@
         margin-right: auto;
     }
 
-    .calc-page .container {
-        max-width: 1170px;
-    }
-
-    .calculator .field_col input[type="month"] {
+    .calculator .field_col .flatpickr-input {
         width: 100%;
     }
 
@@ -537,11 +535,7 @@
         height: 32px;
     }
 
-    .calculator .container {
-        padding: 0;
-    }
-
-    .calculator .field_col input[type="month"] {
+    .calculator .field_col .flatpickr-input {
         padding: 4px 14px;
         color: #002852;
 
@@ -553,6 +547,19 @@
         margin-bottom: 0;
         border-radius: 4px;
         border: 1px solid #a9bdd0;
+    }
+
+    .flatpickr-monthSelect-month.selected {
+        background-color: #002852;
+        border-color: #002852;
+    }
+
+    .flatpickr-current-month {
+        padding-top: 12px;
+    }
+
+    .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+        fill: #002852;
     }
 
     .calculator .submit_btn button.btn-disabled {
@@ -588,8 +595,8 @@
         background: #eef5fc;
     }
 
-    .calculator .field_col input[type="month"]:focus,
-    .calculator .field_col input[type="month"]:focus-visible {
+    .calculator .field_col .flatpickr-input:focus,
+    .calculator .field_col .flatpickr-input:focus-visible {
         border: 1px solid #a9bdd0 !important;
         outline: none;
     }
@@ -940,7 +947,7 @@
             right: 1px;
         }
 
-        .calculator .field_col input[type="month"] {
+        .calculator .field_col .flatpickr-input {
             font-size: 14px;
             padding-left: 10px;
         }
@@ -963,11 +970,13 @@
 
         .calculator .invested_val.list {
             padding-bottom: 12px;
+            padding-left: 0;
         }
 
         .calculator .est_return.list {
             margin-top: 12px;
             padding-bottom: 12px;
+            padding-left: 0;
         }
 
         .calculator .total_val.list {
@@ -977,6 +986,7 @@
 
         .calculator .cagr_val.list {
             margin-top: 12px;
+            padding-left: 0;
         }
 
         .calculator .cagr_val.list h4, .calculator .total_val.list h4 {
@@ -1014,6 +1024,9 @@
 <?php
 $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
 $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
+$currentDate = date('Y-m');
+$startMonthDefaultValue = date('Y-m', strtotime('-1 year', strtotime($currentDate)));
+$endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 ?>
 
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
@@ -1095,23 +1108,15 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                                 <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
                             </div>
                         </div>
-
-                        <?php
-                            $currentDate = date('Y-m');
-                            $startMonthDefaultValue = date('Y-m', strtotime('-1 year', strtotime($currentDate)));
-                            $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
-
-                        ?>
-
                         <div class="field_group">
                             <div class="field_row">
                                 <div class="field_col">
                                     <label for="startMonth">Start Month</label>
-                                    <input type="month" name="startMonth" id="startMonth" max="<?php echo $currentDate; ?>" value="<?php echo $startMonthDefaultValue; ?>">
+                                    <input type="text" id="startMonth" data-value="<?php echo $startMonthDefaultValue; ?>" />
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
-                                    <input type="month" name="endMonth" id="endMonth" max="<?php echo $currentDate; ?>" value="<?php echo $endMonthDefaultValue; ?>">
+                                    <input type="text" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
                                 </div>
                             </div>
                         </div>
@@ -1238,6 +1243,66 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+<script>
+    var start_date = flatpickr("#startMonth", {
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "F Y",
+            })
+        ],
+        defaultDate: "February 2023",
+        maxDate: "today",
+        onReady: function (selectedDates, dateStr, instance) {
+            // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
+            document.querySelector('#start_month').textContent = dateStr;
+            var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
+            console.log('5 formattedDate', formattedDate);
+            callEndDate(formattedDate);
+        },
+        onClose: function (selectedDates, dateStr, instance) {
+            var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toISOString().slice(0, 7);
+            var formattedDateEnd = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
+            const startDate = document.getElementById('startMonth');
+            startDate.setAttribute('data-value', formattedDate);
+            callEndDate(formattedDateEnd);
+            document.querySelector('#start_month').textContent = dateStr;
+        },
+        disableMobile: "true"
+    });
+
+    function callEndDate(minDate) {
+        console.log('callEndDate');
+        var end_month = flatpickr("#endMonth", {
+            plugins: [
+                new monthSelectPlugin({
+                    shorthand: true,
+                    dateFormat: "F Y",
+                })
+            ],
+            defaultDate: "February 2024",
+            minDate: minDate,
+            maxDate: "today",
+            onReady: function (selectedDates, dateStr, instance) {
+                document.querySelector('#end_month').textContent = dateStr;
+            },
+            onClose: function (selectedDates, dateStr, instance) {
+                var date = new Date(dateStr);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var monthStr = month < 10 ? '0' + month : month;
+                var formattedDate = year + '-' + monthStr;
+                const endDate = document.getElementById('endMonth');
+                endDate.setAttribute('data-value', formattedDate);
+                document.querySelector('#end_month').textContent = dateStr;
+            },
+            disableMobile: "true"
+        });
+    }
+</script>
+
 <script>
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
@@ -1248,13 +1313,13 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         const stockName = document.querySelector('.dropdown_search').value;
         const investmentAmount = document.getElementById('invest_val').value;
         const currency = document.querySelector('input[name="currency"]:checked').value;
-        const startDate = document.getElementById('startMonth').value;
-        const endDate = document.getElementById('endMonth').value;
+        const startDate = document.getElementById('startMonth').getAttribute('data-value');
+        const endDate = document.getElementById('endMonth').getAttribute('data-value');
         const showNifty = (currency === "inr") ? false : true;
         const currencySymbol = (currency === "inr") ? "₹" : "$";
 
-        const differenceStartDate = new Date(document.getElementById('startMonth').value);
-        const differenceEndDate = new Date(document.getElementById('endMonth').value);
+        const differenceStartDate = new Date(document.getElementById('startMonth').getAttribute('data-value'));
+        const differenceEndDate = new Date(document.getElementById('endMonth').getAttribute('data-value'));
 
         const differenceInMonths = (differenceEndDate.getFullYear() - differenceStartDate.getFullYear()) * 12 + differenceEndDate.getMonth() - differenceStartDate.getMonth();
 
@@ -1265,12 +1330,12 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         } else if (differenceInMonths >= 12 && differenceInMonths <= 36) {
             dateRange = "month";
         } else if (differenceInMonths > 36) {
-            dateRange = "years";
+            dateRange = "year";
         } else {
             dateRange = "month";
         }
 
-        console.log('dateRange', dateRange);
+        console.log('1 dateRange', dateRange);
 
 
         console.log('currencySymbol', currencySymbol);
@@ -1280,6 +1345,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         // Trigger API and render chart
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
+                console.log('data', data);
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, showNifty, currencySymbol, stockName, dateRange);
             })
             .catch(error => alert("Something went wrong!"));
@@ -1327,11 +1393,12 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
        const stockSelector = document.getElementById('resultsList').dataset.value;
         const investmentAmount = document.getElementById('invest_val').value;
         const currency = document.querySelector('input[name="currency"]:checked').value;
-        const startDate = document.getElementById('startMonth').value;
-        const endDate = document.getElementById('endMonth').value;
+        const startDate = document.getElementById('startMonth').getAttribute('data-value');
+        const endDate = document.getElementById('endMonth').getAttribute('data-value');
       // Trigger API and render chart
       triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
+                console.log('data', data);
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
             })
             .catch(error => alert("Something went wrong!"));
@@ -1343,8 +1410,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
 // Function to update button status
     function btnStatus() {
-        var startDate = document.getElementById('startMonth').value;
-        var endDate = document.getElementById('endMonth').value;
+        var startDate = document.getElementById('startMonth').getAttribute('data-value');
+        var endDate = document.getElementById('endMonth').getAttribute('data-value');
         document.querySelector('.submit_btn button').classList.toggle('btn-disabled', startDate === '' || endDate === '');
         document.querySelector('.calc_result_col').classList.add('blur');
         document.querySelector('#stocks_chart').classList.add('blur');
@@ -1374,21 +1441,17 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         }
         return randomValues;
     };
-    const generateXValues = (count, start, step) => {
-        const xValues = [];
-        for (let i = 0; i < count; i++) {
-            xValues.push(start + i * step);
-        }
-        return xValues;
-    };
-    var xValues = [];
-    var yValues = [];
-    var zValues = [];
-    var bValues = [];
-    // renderChart(xValues, yValues, zValues, bValues);
+    let xValues = [];
+    let yValues = [];
+    let zValues = [];
+    let bValues = [];
+    
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
-
+        xValues = [];
+        yValues = [];
+        zValues = [];
+        bValues = [];
       
         const svgElement = document.querySelector('.calculator .submit_btn button svg');
         svgElement.classList.add('show_loader');
@@ -1440,29 +1503,8 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                 const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 const inrPercentageEstimatedReturn = (inrEstReturns / inrTotalValue).toFixed(2);
                 svgElement.classList.remove('show_loader');
-                
 
-                
-                var options = { year: 'numeric', month: 'long' };
-                var firstFormattedDate = firstDate.toLocaleString('en-US', options);
-                var lastFormattedDate = lastDate.toLocaleString('en-US', options);
-                // console.log('formattedDate', formattedDate);
-                document.querySelector('#start_month').textContent = firstFormattedDate;
-                document.querySelector('#end_month').textContent = lastFormattedDate;
-
-
-                // var formattedDateParts = formattedDate.split(' ');
-                // console.log('formattedDateParts', formattedDateParts);
-                // var formattedDateComparable = formattedDateParts[1] + ' ' + formattedDateParts[0];
-                // console.log('formattedDateComparable', formattedDateComparable);
-
-                
-                // if (formattedDateComparable > startDate) {
-                //     // If formattedDate is greater than startDate, update the input value
-                //     document.getElementById('startDate').value = formattedDateComparable;
-                // }
-
-
+                    console.log('stockData', stockData);
                 stockData.data.forEach((item, index) => {
                     const currentDate = item.Date;
                     const adjClose = selectedCurrency.value === "inr" ? (usdinrData.data[index]?.Adj_Close || null) : null;
@@ -1472,7 +1514,7 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     if (adjClose) {
                         finalAmount *= adjClose;
                     }
-
+                    
                     const result = Math.round(finalAmount);
                     if (index < xValues.length) {
                         xValues[index] = currentDate;
@@ -1542,16 +1584,20 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 
     function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
         const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
-        console.log('1 xValues', xValues);
-        console.log('yValues', yValues);
-        console.log('zValues', zValues);
-        console.log('bValues', bValues);
+        console.log('xValues', xValues.length);
+        console.log('yValues', yValues.length);
+        console.log('zValues', zValues.length);
+        console.log('bValues', bValues.length);
         console.log('hideNifty', hideNifty);
+        console.log('dateRange', dateRange);
 
         // Check if a chart instance already exists
         if (chartInstance) {
+            console.log('If chartInstance', chartInstance);
             chartInstance.destroy(); // Destroy the existing chart instance
         }
+
+        console.log('chartInstance', chartInstance);
 
         // Define the datasets based on the condition
         let datasets;
@@ -1599,13 +1645,14 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
         }
 
         const uniqueDates = [...new Set(xValues)];
-        // const minDate = new Date(uniqueDates[0]);
+        console.log('uniqueDates', uniqueDates.length);
+        const minDate = new Date(uniqueDates[0]);
         // minDate.setMonth(minDate.getMonth() - 1);
-        // const maxDate = new Date(uniqueDates[uniqueDates.length - 1]);
+        const maxDate = new Date(uniqueDates[uniqueDates.length - 1]);
         // maxDate.setMonth(maxDate.getMonth() + 1); 
 
-        // console.log('1 minDate', minDate);
-        // console.log('1 maxDate', maxDate);
+        console.log('minDate', minDate);
+        console.log('maxDate', maxDate);
         // Create the chart instance
         chartInstance = new Chart(calculatorChart, {
             type: 'line',
@@ -1633,20 +1680,26 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
                     },
                     x: {
 						type: 'timeseries',
+                        ticks: {
+                            autoSkip: false,
+                            minRotation: dateRange === 'year' ? 0 : 30
+                        },
 						time: {
 							unit: dateRange,
 							displayFormats: {
 								'day': 'dd-MMM',
 								'year': 'MMM yyyy',
 							}                            
-						}
+						},
+                        min: minDate.toISOString().split('T')[0],
+                        max: maxDate.toISOString().split('T')[0]
 					},
                 }
             }
         });
 
-        // console.log('Converted minDate', minDate.toISOString().split('T')[0]);
-        // console.log('Converted maxDate', maxDate.toISOString().split('T')[0]);
+        console.log('2 Converted minDate', minDate.toISOString().split('T')[0]);
+        console.log('Converted maxDate', maxDate.toISOString().split('T')[0]);
     }
 
     
