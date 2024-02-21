@@ -418,8 +418,10 @@ a.btn_dark {
 }
 
 .solar_invest {
-  padding: 0 0 100px 0;
-  margin-top: -230px;
+  /* padding: 0 0 100px 0;
+  margin-top: -230px; */
+  padding: 40px 0 100px 0;
+    margin-top: 60px;
 }
 .solar_invest .container {
   max-width: 1059px;
