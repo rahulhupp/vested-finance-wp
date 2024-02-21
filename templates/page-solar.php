@@ -141,7 +141,7 @@ get_header(); ?>
   </div>
 </div>
 </section>
-
+<!-- 
 <section class="solar_project">
   <div class="container">
     <div class="wrapper">
@@ -159,8 +159,8 @@ get_header(); ?>
       </div>
     </div>
   </div>
-</section>
-
+</section> -->
+<!-- 
 <section class="solar_calculate">
         <div class="container">
             <div class="wrapper">
@@ -222,7 +222,7 @@ get_header(); ?>
                     <div class="main_item">
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.webp"  alt="co2"/>
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/co2-emission.png"  alt="co2"/>
                             </div>
                             <div class="content">
                                 <h3>350 kg <span>/year</span></h3>
@@ -231,7 +231,7 @@ get_header(); ?>
                         </div>
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.webp" alt="income card" />
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/avg-monthly-income.png" alt="income card" />
                             </div>
                             <div class="content">
                                 <h3>&#8377; 563 <sup>1</sup></h3>
@@ -240,7 +240,7 @@ get_header(); ?>
                         </div>
                         <div class="item">
                             <div class="icon">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.webp" alt="Investment returns" />
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/investment-returns.png" alt="Investment returns" />
                             </div>
                             <div class="content">
                                 <h3>12% p.a. <sup>2</sup></h3>
@@ -259,7 +259,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 <section class="solar_invest">
   <div class="container">
