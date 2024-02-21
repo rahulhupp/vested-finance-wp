@@ -160,12 +160,18 @@ if ($getfirstpath[1] == 'us-stocks') {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
     $stocks_symbol = trim($stocks_symbol);
-    $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
-
-    error_log('Redirect Slug: ' . $redirect_slug);
-    if ($getfirstpath[3] !== $redirect_slug) {
-        error_log('if if 4');
-        custom_redirect();
+    
+    if ($redirect_mappings[$stocks_symbol]?? false) {
+        $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
+        error_log('Redirect Slug: ' . $redirect_slug);
+        if ($getfirstpath[3] !== $redirect_slug) {
+            custom_redirect();
+        }
+    } else {
+        error_log('Symbol not found');
+        $not_found_url = home_url("/stock-not-found");
+        wp_redirect($not_found_url, 301);
+        exit();
     }
 } else {
     error_log('else');
