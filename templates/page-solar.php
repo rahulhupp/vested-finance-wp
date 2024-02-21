@@ -141,7 +141,7 @@ get_header(); ?>
   </div>
 </div>
 </section>
-
+<!-- 
 <section class="solar_project">
   <div class="container">
     <div class="wrapper">
@@ -159,8 +159,8 @@ get_header(); ?>
       </div>
     </div>
   </div>
-</section>
-
+</section> -->
+<!-- 
 <section class="solar_calculate">
         <div class="container">
             <div class="wrapper">
@@ -259,7 +259,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 <section class="solar_invest">
   <div class="container">
