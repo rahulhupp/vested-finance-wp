@@ -346,20 +346,14 @@ $image = get_field('why_inveset_image_global');
         fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
-            // Process the location information
-            console.log('2 User location based on IP:', data);
             var globalBanner = document.querySelector(".geolocation_banner");
-            console.log('globalBanner', globalBanner);
             if (globalBanner) {
-                console.log('Inner globalBanner');
                 globalBanner.style.display = "flex"; 
-                console.log('data.country', data.country);
                 if (data.country === "IN") {
                     if (document.body.classList.contains('page-template-page-us-stock-global')) {
-                        globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='<?php home_url(); ?>/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
                     }
                 } else {
-                    console.log('hide geolocation_banner');
                     if (document.body.classList.contains('page-template-page-us-stock-global')) {
                         globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='<?php home_url(); ?>/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
                     }

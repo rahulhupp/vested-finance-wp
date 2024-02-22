@@ -403,17 +403,13 @@ $image = get_field('easy_access_image');
         fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
-            // Process the location information
-            console.log('User location based on IP:', data);
             var globalBanner = document.querySelector(".geolocation_banner");
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
                     globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='<?php home_url(); ?>/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
-                    console.log('show geolocation_banner');
                 } else {
-                    globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='<?php home_url(); ?>/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
-                    console.log('hide geolocation_banner');
+                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
                 }
             }
             })
