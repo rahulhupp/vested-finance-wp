@@ -1032,12 +1032,16 @@
 
 
 .news_list .news_item {
-    display: flex;
+    display: none;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
     border-bottom: 1px solid #F4F7FE;
     padding: 16px 0;
+}
+
+.news_list .news_item:nth-child(-n+3) {
+    display: flex;
 }
 
 .news_list .news_item .news_item_image {
@@ -1413,5 +1417,16 @@
 }
 
 #returns_skeleton_after, #financials_skeleton_after {
+    display: none;
+}
+
+.stock_details_table_container .stock_details_table table td.trend_chart {
+    color: #fff;
+    width: 130px;
+    height: 70px;
+    font-size: 0;
+}
+
+.stock_details_table_container .stock_details_table.financial_table table tr:last-child {
     display: none;
 }

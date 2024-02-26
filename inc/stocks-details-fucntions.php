@@ -34,20 +34,6 @@ function custom_template_redirect() {
 }
 add_action('template_redirect', 'custom_template_redirect');
 
-
-
-
-function yoast_seo_robots_modify_search( $robots ) {
-    $custom_stock_title_value = get_query_var('custom_stock_title_value');
-    if ($custom_stock_title_value) { 
-        error_log('no-follow, no-index 10');
-        return "noindex, nofollow";
-    }
-}
-
-add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
-
-
 function custom_wpseo_title($title) {
     $custom_stock_title_value = get_query_var('custom_stock_title_value');
     if ( $custom_stock_title_value ) {
@@ -107,7 +93,6 @@ function add_extra_og() {
     }
     $stock_url_value = get_query_var('custom_stock_url_value');
     if ($stock_url_value) {
-        $description = $stock_url_value;
         echo '<link rel="canonical" href="'. $stock_url_value .'" />';
     }
 }
@@ -168,6 +153,7 @@ $getfirstpath = explode("/", $path);
 
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
+
     $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
     $stocks_symbol = substr($requested_url, $start_pos_symbol);
     $end_pos_symbol = strpos($stocks_symbol, '/');
@@ -175,15 +161,22 @@ if ($getfirstpath[1] == 'us-stocks') {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
     $stocks_symbol = trim($stocks_symbol);
-    $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
-
-    error_log('Redirect Slug: ' . $redirect_slug);
-    if ($getfirstpath[3] !== $redirect_slug) {
-        error_log('if if 4');
-        custom_redirect();
+    
+    
+    if ($redirect_mappings[$stocks_symbol]?? false) {
+        $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
+        error_log('Redirect Slug: ' . $redirect_slug);
+        if ($getfirstpath[3] !== $redirect_slug) {
+            custom_redirect();
+        }
+    } else {
+        error_log('Symbol not found');
+        $not_found_url = home_url("/stock-not-found");
+        wp_redirect($not_found_url, 301);
+        exit();
     }
 } else {
-    error_log('else');
+    error_log('Not us-stocks');
 }
 
 function custom_redirect() {
@@ -197,7 +190,8 @@ function custom_redirect() {
         $stocks_symbol = substr($requested_url, $start_pos_symbol);
         $end_pos_symbol = strpos($stocks_symbol, '/');
         if ($end_pos_symbol !== false) {
-            $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
+            $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
+            $stocks_symbol = strtolower($stocks_symbol_draft);
         }
         error_log('Extracted symbol: ' . $stocks_symbol);
         $stocks_symbol = trim($stocks_symbol);

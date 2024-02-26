@@ -6,33 +6,9 @@
     }
 ?>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-		setTimeout(() => {
-			callReturnsApi();
-		}, 1000);
-	});
-
-    function callReturnsApi() {
-        const returnsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns';
-        headers = {
-            'x-csrf-token': '<?php echo $token->csrf; ?>',
-            'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
-        }
-        fetch(returnsApiUrl, { method: 'GET',  headers: headers })
-        .then(response => response.json())
-        .then(data => {
-            var returnsSkeleton = document.getElementById('returns_skeleton');
-            var returnsSkeletonAfter = document.getElementById('returns_skeleton_after');
-            returnsSkeleton.style.display = 'none';
-            returnsSkeletonAfter.style.display = 'block';
-            bindAbsoluteReturnsData(data); 
-            bindAnnualizedReturnsData(data); 
-        })
-        .catch(error => console.error('Error:', error));
-    }
 
     function callReturnsCompareApi(returnData, ticker) {
-        const returnsCompareApiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns?compare=${ticker}`;
+        const returnsCompareApiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns?compare=${ticker}`;
         headers = {
             'x-csrf-token': '<?php echo $token->csrf; ?>',
             'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
