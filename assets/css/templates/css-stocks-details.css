@@ -1036,7 +1036,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    border-bottom: 1px solid #F4F7FE;
+    border-top: 1px solid #F4F7FE;
     padding: 16px 0;
 }
 
@@ -1115,10 +1115,7 @@
 
 .news_list .news_item:first-child {
     padding-top: 0;
-}
-
-.news_list .news_item:last-child {
-    border-bottom: 0;
+    border-top: 0;
 }
 
 #load_more_btn {
