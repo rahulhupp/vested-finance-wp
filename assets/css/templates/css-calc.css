@@ -1,65 +1,67 @@
 .breadcrumb_wrap {
-  display: none;
+	display: none;
 }
+
 .calc-page .container {
-  max-width: 1200px;
+	max-width: 1200px;
 }
 
 .calc_col {
-  width: 498px;
-  padding: 36px;
+	width: 498px;
+	padding: 36px;
 }
 
 .calc_result_col {
-  width: 670px;
-  background: #eef5fc;
+	width: 670px;
+	background: #eef5fc;
 }
 
 .calc_result_col.blur {
-  filter: blur(4px);
-  pointer-events: none;
+	filter: blur(4px);
+	pointer-events: none;
 }
 
 .result_inner_col {
-  padding: 36px 36px 28px 36px;
+	padding: 36px 36px 28px 36px;
 }
 
 .main_calc_wrap {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 8px;
-  border: 1px solid #b6c9db;
-  overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 8px;
+	border: 1px solid #b6c9db;
+	overflow: hidden;
 }
 
 .calc_desc {
-  margin-bottom: 0;
-  margin-top: 34px;
-  color: rgba(33, 37, 41, 0.7);
+	margin-bottom: 0;
+	margin-top: 34px;
+	color: rgba(33, 37, 41, 0.7);
 
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }
+
 .sub_heading {
-  color: #505a64;
-  text-align: center;
-  font-size: 18px !important;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 120%;
-  margin-top: 10px;
-  max-width: 807px;
-  margin-left: auto;
-  margin-right: auto;
+	color: #505a64;
+	text-align: center;
+	font-size: 18px !important;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 120%;
+	margin-top: 10px;
+	max-width: 807px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .about_calc_wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 /* .about_calc_col {
@@ -67,398 +69,420 @@
 } */
 
 .other_calc_list {
-  width: 370px;
-  padding: 8px;
+	width: 370px;
+	padding: 8px;
 }
 
 .section_heading_med {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  color: #000;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	color: #000;
 }
 
 .section_heading_small {
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  color: #000;
-  padding-left: 12px;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	color: #000;
+	padding-left: 12px;
 }
 
 .calc_list li {
-  list-style: none;
-  padding: 12px 8px 12px 12px;
-  transition: all 0.3s;
-  margin-bottom: 0;
+	list-style: none;
+	padding: 12px 8px 12px 12px;
+	transition: all 0.3s;
+	margin-bottom: 0;
 }
 
 .calc_list {
-  margin-top: 14px;
-  margin-left: 0;
+	margin-top: 14px;
+	margin-left: 0;
 }
 
 .calc_list li a {
-  color: #000;
+	color: #000;
 
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: relative;
-  display: block;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	position: relative;
+	display: block;
 }
 
 .calc_list li:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .calc_list li:hover {
-  background: #eee;
+	background: #eee;
 }
 
 .calc_list li a:after {
-  content: "\f054";
-  font-family: "FontAwesome";
-  position: absolute;
-  top: 0;
-  right: 0px;
-  color: #002852;
-  transition: transform 0.3s;
+	content: "\f054";
+	font-family: "FontAwesome";
+	position: absolute;
+	top: 0;
+	right: 0px;
+	color: #002852;
+	transition: transform 0.3s;
 }
+
 .faqs {
-  padding: 78px 0;
+	padding: 78px 0;
 }
 
 .faq_content {
-  display: none;
+	display: none;
 }
 
 /* .faq_wrap {
   max-width: 770px;
 } */
 .faq_que h4 {
-  color: #212529;
+	color: #212529;
 
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 0;
-  padding-right: 30px;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	margin-bottom: 0;
+	padding-right: 30px;
 }
 
 .faq_que {
-  position: relative;
-  cursor: pointer;
+	position: relative;
+	cursor: pointer;
 }
 
 .faq_que:after {
-  content: "\f078";
-  font-family: "FontAwesome";
-  position: absolute;
-  top: 0;
-  right: 0px;
-  color: #212529;
-  transition: transform 0.3s;
+	content: "\f078";
+	font-family: "FontAwesome";
+	position: absolute;
+	top: 0;
+	right: 0px;
+	color: #212529;
+	transition: transform 0.3s;
 }
 
 .single_faq {
-  padding: 28px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 28px 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .faq_content {
-  margin-top: 28px;
+	margin-top: 28px;
 }
 
 .faq_content p {
-  margin-bottom: 0;
-  color: #1e2022;
-  font-size: 16px !important;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 130%;
+	margin-bottom: 0;
+	color: #1e2022;
+	font-size: 16px !important;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 130%;
 }
 
 .faq_que.active:after {
-  transform: rotate(180deg);
+	transform: rotate(180deg);
 }
+
 .faqs .section_heading_med {
-  padding: 24px 16px;
+	padding: 24px 16px;
 }
+
 .chart {
-  padding: 24px 0 48px;
+	padding: 24px 0 48px;
 }
 
 .calc_cont p {
-  font-size: 16px !important;
+	font-size: 16px !important;
 }
 
 .fd_result {
-  width: 200px;
-  height: 200px;
-  position: relative;
+	width: 200px;
+	height: 200px;
+	position: relative;
 }
 
 
 .est_return.list p:before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #002852;
-  border-radius: 50%;
-  left: -24px;
-  top: 50%;
-  transform: translateY(-50%);
+	content: "";
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: #002852;
+	border-radius: 50%;
+	left: -24px;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .total_value {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .total_value p {
-  color: #002852;
+	color: #002852;
 
-  font-size: 14px !important;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 110%;
-  margin-bottom: 7px;
-  text-align: center;
+	font-size: 14px !important;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 110%;
+	margin-bottom: 7px;
+	text-align: center;
 }
 
 .total_value h4 {
-  color: #002852;
+	color: #002852;
 
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 110%; /* 19.8px */
-  letter-spacing: -0.72px;
-  margin-bottom: 0;
-  text-align: center;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 110%;
+	/* 19.8px */
+	letter-spacing: -0.72px;
+	margin-bottom: 0;
+	text-align: center;
 }
 
 #stocks_chart.blur {
-  filter: blur(4px);
-  pointer-events: none;
+	filter: blur(4px);
+	pointer-events: none;
 }
 
 @media (max-width: 1200px) {
-  .home_page_faq_wrap {
-    padding: 0 115px;
-  }
+	.home_page_faq_wrap {
+		padding: 0 115px;
+	}
 }
 
 @media (max-width: 1100px) {
-  .home_page_faq_wrap {
-    padding: 0 90px;
-  }
+	.home_page_faq_wrap {
+		padding: 0 90px;
+	}
 }
 
 @media (max-width: 1024px) {
-  .home_page_faq_wrap {
-    padding: 0 80px;
-  }
+	.home_page_faq_wrap {
+		padding: 0 80px;
+	}
 }
 
 @media (max-width: 992px) {
-  .home_page_faq_wrap {
-    padding: 0 40px;
-  }
+	.home_page_faq_wrap {
+		padding: 0 40px;
+	}
 
-  .faq_que h4 {
-    font-size: 20px;
-  }
+	.faq_que h4 {
+		font-size: 20px;
+	}
 
-  .home_page_faqs {
-    padding-bottom: 80px;
-  }
-  .faq_content p {
-    font-size: 18px !important;
-  }
-  .home_page_faqs {
-    padding-top: 17px;
-  }
+	.home_page_faqs {
+		padding-bottom: 80px;
+	}
 
-  .home_page_faq_wrap {
-    padding: 0 2px;
-  }
-  .faq_que h4 {
-    font-size: 14px;
-  }
+	.faq_content p {
+		font-size: 18px !important;
+	}
 
-  .faq_que {
-    padding-right: 16px;
-  }
+	.home_page_faqs {
+		padding-top: 17px;
+	}
 
-  .faq_content p {
-    font-size: 12px !important;
-  }
-  .home_page_faqs {
-    padding: 104px 0;
-  }
+	.home_page_faq_wrap {
+		padding: 0 2px;
+	}
+
+	.faq_que h4 {
+		font-size: 14px;
+	}
+
+	.faq_que {
+		padding-right: 16px;
+	}
+
+	.faq_content p {
+		font-size: 12px !important;
+	}
+
+	.home_page_faqs {
+		padding: 104px 0;
+	}
 }
 
 @media (max-width: 767px) {
-  .sub_heading {
-    font-size: 14px !important;
-  }
-  .about_calc_col,
-  .other_calc_list {
-    width: 100%;
-  }
-  .calc_cont p {
-    font-size: 14px !important;
-  }
-  .faqs {
-    padding: 20px 0;
-  }
+	.sub_heading {
+		font-size: 14px !important;
+	}
+
+	.about_calc_col,
+	.other_calc_list {
+		width: 100%;
+	}
+
+	.calc_cont p {
+		font-size: 14px !important;
+	}
+
+	.faqs {
+		padding: 20px 0;
+	}
 }
 
 /* latest */
 .calc-page .container {
-  max-width: 1170px;
+	max-width: 1170px;
 }
 
 .calc_list li a:after {
-  content: "";
-  background: url("../../images/faq_arrow.svg");
-  width: 8px;
-  height: 14px;
+	content: "";
+	background: url("../../images/faq_arrow.svg");
+	width: 8px;
+	height: 14px;
 }
 
 
 .popular_stocks {
-  padding-top: 40px;
+	padding-top: 40px;
 }
 
 .popular_stocks_heading {
-  color: #002852;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+	color: #002852;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
 }
 
 .stocks_list_wrap {
-  margin: 24px 0 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+	margin: 24px 0 0 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
 }
 
 .stocks_list_wrap li {
-  list-style: none;
-  display: inline-flex;
-  padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 100px;
-  background: #eef5fc;
-  transition: all 0.3s;
+	list-style: none;
+	display: inline-flex;
+	padding: 10px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border-radius: 100px;
+	background: #eef5fc;
+	transition: all 0.3s;
 }
 
 .stocks_list_wrap li a {
-  color: #002852;
-  font-size: 16px;
-  font-weight: 400;
+	color: #002852;
+	font-size: 16px;
+	font-weight: 400;
 }
 
 .stocks_list_wrap li:hover {
-  background: #cedcea;
+	background: #cedcea;
 }
 
 .see_more_btn {
-  display: none;
+	display: none;
 }
 
 .calc_cont {
-  margin: 20px 0;
+	margin: 20px 0;
 }
 
 /* other calculater section css  */
-.us_stock_content{
-  padding-bottom: 20px;
+.us_stock_content {
+	padding-bottom: 20px;
 }
 
-ul.stock_listing li{
-  padding-bottom: 10px;
+ul.stock_listing li {
+	padding-bottom: 10px;
 }
+
 /* end other calculater css  */
 
 
 @media (min-width: 768px) and (max-width: 990px) {
-  .about_calc_col {
-      width: 100%;
-  }
+	.about_calc_col {
+		width: 100%;
+	}
 
-  .other_calc_list {
-      width: 100%;
-      padding: 20px 0 0;
-  }
+	.other_calc_list {
+		width: 100%;
+		padding: 20px 0 0;
+	}
 
-  .section_heading_small {
-      padding-left: 0;
-  }
+	.section_heading_small {
+		padding-left: 0;
+	}
 }
 
 @media (max-width: 767px) {
-  .popular_stocks_heading {
-    font-size: 18px !important;
-  }
-  .stocks_list_wrap {
-    margin: 18px 0 0 0;
-    max-height: 334px;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  .see_more_btn {
-    display: flex;
-    margin-top: 16px;
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: 5px;
-    border: 1px solid #002852;
-    color: #002852;
-    font-size: 14px;
-    font-weight: 400;
-    align-items: center;
-  }
-  .see_more_btn:hover {
-    background: #fff;
-    color: #002852;
-    border-color: #002852;
-  }
-  .see_more_btn svg {
-    margin-left: 8px;
-    transition: all 0.3s;
-  }
-  .stocks_list_wrap.collapsed {
-    max-height: 1000px;
-  }
-  .stocks_list_wrap.collapsed + .see_more_btn svg {
-    transform: rotate(180deg);
-  }
-  .other_calc_list {
-    padding: 0;
-  }
-  .section_heading_med {
-    font-size: 18px;
-  }
-  .about_calc_col .section_heading_med {
-    margin-bottom: 50px;
-  }
-  .popular_stocks {
-    padding-top: 50px;
-    padding-bottom: 41px;
-  }
+	.popular_stocks_heading {
+		font-size: 18px !important;
+	}
+
+	.stocks_list_wrap {
+		margin: 18px 0 0 0;
+		max-height: 334px;
+		overflow: hidden;
+		transition: all 0.3s;
+	}
+
+	.see_more_btn {
+		display: flex;
+		margin-top: 16px;
+		background: #fff;
+		padding: 12px 16px;
+		border-radius: 5px;
+		border: 1px solid #002852;
+		color: #002852;
+		font-size: 14px;
+		font-weight: 400;
+		align-items: center;
+	}
+
+	.see_more_btn:hover {
+		background: #fff;
+		color: #002852;
+		border-color: #002852;
+	}
+
+	.see_more_btn svg {
+		margin-left: 8px;
+		transition: all 0.3s;
+	}
+
+	.stocks_list_wrap.collapsed {
+		max-height: 1000px;
+	}
+
+	.stocks_list_wrap.collapsed+.see_more_btn svg {
+		transform: rotate(180deg);
+	}
+
+	.other_calc_list {
+		padding: 0;
+	}
+
+	.section_heading_med {
+		font-size: 18px;
+	}
+
+	.about_calc_col .section_heading_med {
+		margin-bottom: 50px;
+	}
+
+	.popular_stocks {
+		padding-top: 50px;
+		padding-bottom: 41px;
+	}
 }

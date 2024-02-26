@@ -13,7 +13,7 @@
 	});
     
     function callAnalystForecastApi() {
-        const instrumentsApiUrl = 'https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/analysts-predictions'; // Replace with the actual URL of the second API
+        const instrumentsApiUrl = 'https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/analysts-predictions'; // Replace with the actual URL of the second API
 
         headers = {
             'x-csrf-token': '<?php echo $token->csrf; ?>',

@@ -22,8 +22,8 @@
 		var priceChartSkeleton = document.getElementById('price_chart_skeleton');
         chartLoaderContainer.style.opacity = '1';
 
-        // const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
-        let apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}`;
+        // const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
+        let apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}`;
         if (interval === 'daily') {
             apiUrl += '&interval=daily';
         }
