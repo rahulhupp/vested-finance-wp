@@ -4,13 +4,15 @@
     } else {
         $token = us_stocks_get_token();
     }
-    $overview_data = fetch_overview_api_data($symbol, $token);
-    $returns_data = fetch_returns_api_data($symbol, $token);
-    $income_statement_data = fetch_income_statement_api_data($symbol, $token);
-    $balance_sheet_data = fetch_balance_sheet_api_data($symbol, $token);
-    $cash_flow_data = fetch_cash_flow_api_data($symbol, $token);
-    $ratios_data = fetch_ratios_api_data($symbol, $token);
-    $news_data = fetch_news_api_data($symbol, $token);
+    $api_calls = fetch_all_api_data($symbol, $token);
+    $overview_data = $api_calls['overview'];
+    $returns_data = $api_calls['returns'];
+    $income_statement_data = $api_calls['income-statement'];
+    $balance_sheet_data = $api_calls['balance-sheet'];
+    $cash_flow_data = $api_calls['cash-flow'];
+    $ratios_data = $api_calls['key-ratios'];
+    $news_data = $api_calls['news'];
+    
     if ($overview_data) {
         $ticker = $overview_data->ticker;
         $name = $overview_data->name;
@@ -25,6 +27,25 @@
         set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
         set_query_var('custom_stock_url_value', "$homeURL/us-stocks/$formattedTicker/$formattedName-share-price/");
         set_query_var('custom_stock_image_value', "https://d13dxy5z8now6z.cloudfront.net/symbol/$ticker.png");
+    }
+
+    function preprocessSummary($summary) {
+        $mapping = [];
+        foreach ($summary as $item) {
+            if ($item->label === "52-Week Range") {
+                $mapping[$item->label] = [
+                    'low' => isset($item->raw->low) ? $item->raw->low : '',
+                    'high' => isset($item->raw->high) ? $item->raw->high : ''
+                ];
+            } else {
+                $mapping[$item->label] = $item->value;
+            }
+        }
+        return $mapping;
+    }
+
+    function getValueByLabel($summaryMapping, $label) {
+        return isset($summaryMapping[$label]) ? $summaryMapping[$label] : '';
     }
 ?>
 <?php

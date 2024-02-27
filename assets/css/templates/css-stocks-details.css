@@ -1427,3 +1427,10 @@
 .stock_details_table_container .stock_details_table.financial_table table tr:last-child {
     display: none;
 }
+
+@media (max-width: 544px) {
+    .ast-separate-container #content .ast-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

@@ -2,34 +2,18 @@
     $overview_data = $args['overview_data'];
     if ($overview_data) {
         $summary = $overview_data->summary;
-
-        function getValueByLabel($summary, $label) {
-            foreach ($summary as $item) {
-                if ($item->label === $label) {
-                    return $item->value;
-                }
-            }
-            return ''; // Return empty string if label not found
-        }
-
-        $marketCapValue = getValueByLabel($summary, "Market Cap");
-        $peRatio = getValueByLabel($summary, "P/E Ratio");
-        $volumeValue = getValueByLabel($summary, "Volume");
-        $avgVolumeValue = getValueByLabel($summary, "Avg Volume");
-        $betaValue = getValueByLabel($summary, "Beta");
-        $dividendYieldValue = getValueByLabel($summary, "Dividend Yield");
-        $rangeItem = null;
-        foreach ($summary as $item) {
-            if ($item->label === "52-Week Range") {
-                $rangeItem = $item;
-                break;
-            }
-        }
-        $lowRange = isset($rangeItem->raw->low) ? $rangeItem->raw->low : '';
-        $highRange = isset($rangeItem->raw->high) ? $rangeItem->raw->high : '';
+        $summaryMapping = preprocessSummary($summary);
+        $marketCapValue = getValueByLabel($summaryMapping, "Market Cap");
+        $peRatio = getValueByLabel($summaryMapping, "P/E Ratio");
+        $volumeValue = getValueByLabel($summaryMapping, "Volume");
+        $avgVolumeValue = getValueByLabel($summaryMapping, "Avg Volume");
+        $betaValue = getValueByLabel($summaryMapping, "Beta");
+        $dividendYieldValue = getValueByLabel($summaryMapping, "Dividend Yield");
+        $rangeItem = isset($summaryMapping["52-Week Range"]) ? $summaryMapping["52-Week Range"] : null;
+        $lowRange = isset($rangeItem['low']) ? $rangeItem['low'] : '';
+        $highRange = isset($rangeItem['high']) ? $rangeItem['high'] : '';
         $price = $overview_data->price;
         $rangePercentage = (($price - $lowRange) / ($highRange - $lowRange)) * 100;
-
         $aboutTitle = 'About ' . $overview_data->name . ', ' . $overview_data->type;
         $limitedDescription = substr($overview_data->description, 0, 250); // Assuming 100 characters limit
         $aboutTagsHTML = '';
