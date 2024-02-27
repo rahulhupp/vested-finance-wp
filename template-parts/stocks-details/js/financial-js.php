@@ -59,11 +59,6 @@
         }, 500); 
     };
 
-
-    setTimeout(function() {
-        
-    }, 6000);
-
     const valueTypeSelect = document.getElementById("value_type_select");
     const dataTypeSelect = document.getElementById("data_type_select");
 
