@@ -119,7 +119,7 @@ add_filter('wpseo_sitemap_index', 'custom_wpseo_sitemap_index', 10, 1);
 function remove_unwanted_styles() {
     $stock_title_value = get_query_var('custom_stock_title_value');
     if ( $stock_title_value ) {
-        error_log('2 Dequeue function IF');
+        wp_enqueue_style('stocks-details-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-details.css', false, '', '');
         wp_dequeue_style('slick-carousel');
         wp_deregister_style('slick-carousel');
         wp_dequeue_style('slick-theme');
@@ -161,12 +161,15 @@ function remove_unwanted_styles() {
         wp_deregister_script('hoverIntent');
         wp_dequeue_script('ivory-search-scripts');
         wp_deregister_script('ivory-search-scripts');
+        wp_dequeue_script('header-js');
+        wp_deregister_script('header-js');
+        wp_dequeue_script('footer-js');
+        wp_deregister_script('footer-js');
     } else {
         error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 9999);
-
 
 // Hook into the template_redirect action
 add_action('template_redirect', 'custom_redirect');

@@ -9,28 +9,13 @@
         $ticker = $overview_data->ticker;
         $price = $overview_data->price;
         $summary = $overview_data->summary;
-
-        function getValueByLabelFAQ($summary, $label) {
-            foreach ($summary as $item) {
-                if ($item->label === $label) {
-                    return $item->value;
-                }
-            }
-            return ''; // Return empty string if label not found
-        }
-        $marketCapValue = getValueByLabelFAQ($summary, "Market Cap");
-        $peRatio = getValueByLabelFAQ($summary, "P/E Ratio");
-        $dividendYieldValue = getValueByLabelFAQ($summary, "Dividend Yield");
-        $rangeItem = null;
-        foreach ($summary as $item) {
-            if ($item->label === "52-Week Range") {
-                $rangeItem = $item;
-                break;
-            }
-        }
-        $lowRange = isset($rangeItem->value->low) ? $rangeItem->value->low : '';
-        $highRange = isset($rangeItem->value->high) ? $rangeItem->value->high : '';
-        
+        $summaryMapping = preprocessSummary($summary);
+        $marketCapValue = getValueByLabel($summaryMapping, "Market Cap");
+        $peRatio = getValueByLabel($summaryMapping, "P/E Ratio");
+        $dividendYieldValue = getValueByLabel($summaryMapping, "Dividend Yield");
+        $rangeItem = isset($summaryMapping["52-Week Range"]) ? $summaryMapping["52-Week Range"] : null;
+        $lowRange = isset($rangeItem['low']) ? $rangeItem['low'] : '';
+        $highRange = isset($rangeItem['high']) ? $rangeItem['high'] : '';
         $formattedName = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
         $feedbackLinkAdd = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $ticker . '&company_name=' . $formattedName . '&feedback_type=add_data';
         $feedbackLinkIncorrect = 'https://vestedfinance.typeform.com/to/C5vDYzi5#ticker=' . $ticker . '&company_name=' . $formattedName . '&feedback_type=incorrect_data';
