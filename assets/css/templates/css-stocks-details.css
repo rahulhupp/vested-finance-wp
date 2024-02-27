@@ -164,6 +164,8 @@
 
 .stock_info_icons img {
     display: block;
+    width: 17px;
+    height: 17px;
 }
 
 .stock_info_container h2 {
@@ -340,6 +342,8 @@
 .stock_summary .stock_summary_item span img {
     margin-left: 4px;
     display: block;
+    width: 12px;
+    height: 12px;
 }
 
 .stock_summary .stock_summary_item strong {
@@ -650,6 +654,12 @@
 
 .box_warrp a .stocks_img {
     margin-bottom: 8px;
+}
+
+.box_warrp a .stocks_img img {
+    width: 41px;
+    height: 41px;
+    display: block;
 }
 
 .box_warrp a .stocks_details h2 {
