@@ -144,6 +144,14 @@ function remove_unwanted_styles() {
         wp_deregister_style('fontawesome');
         wp_dequeue_style('wp-block-library');
         wp_deregister_style('wp-block-library');
+        wp_dequeue_style('megamenu');
+        wp_deregister_style('megamenu');
+        wp_dequeue_style('header-style');
+        wp_deregister_style('header-style');
+        wp_dequeue_style('footer-style');
+        wp_deregister_style('footer-style');
+        // wp_dequeue_style('astra-theme-css');
+        // wp_deregister_style('astra-theme-css');
 
         wp_dequeue_script('slick-carousel');
         wp_deregister_script('slick-carousel');
