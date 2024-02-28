@@ -119,6 +119,7 @@ add_filter('wpseo_sitemap_index', 'custom_wpseo_sitemap_index', 10, 1);
 function remove_unwanted_styles() {
     $stock_title_value = get_query_var('custom_stock_title_value');
     if ( $stock_title_value ) {
+        wp_enqueue_style('stocks-details-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-details.css', false, '', '');
         wp_dequeue_style('slick-carousel');
         wp_deregister_style('slick-carousel');
         wp_dequeue_style('slick-theme');
@@ -131,6 +132,26 @@ function remove_unwanted_styles() {
         wp_deregister_style('blog-page-style');
         wp_dequeue_style('module-style');
         wp_deregister_style('module-style');
+        wp_dequeue_style('contact-form-7');
+        wp_deregister_style('contact-form-7');
+        wp_dequeue_style('astra-contact-form-7');
+        wp_deregister_style('astra-contact-form-7');
+        wp_dequeue_style('ivory-search-styles');
+        wp_deregister_style('ivory-search-styles');
+        wp_dequeue_style('dashicons');
+        wp_deregister_style('dashicons');
+        wp_dequeue_style('fontawesome');
+        wp_deregister_style('fontawesome');
+        wp_dequeue_style('wp-block-library');
+        wp_deregister_style('wp-block-library');
+        wp_dequeue_style('megamenu');
+        wp_deregister_style('megamenu');
+        wp_dequeue_style('header-style');
+        wp_deregister_style('header-style');
+        wp_dequeue_style('footer-style');
+        wp_deregister_style('footer-style');
+        // wp_dequeue_style('astra-theme-css');
+        // wp_deregister_style('astra-theme-css');
 
         wp_dequeue_script('slick-carousel');
         wp_deregister_script('slick-carousel');
@@ -138,10 +159,25 @@ function remove_unwanted_styles() {
         wp_deregister_script('custom-slick-slider');
         wp_dequeue_script('script-js');
         wp_deregister_script('script-js');
+        wp_dequeue_script('moengage-ajax-script');
+        wp_deregister_script('moengage-ajax-script');
+        wp_dequeue_script('swv');
+        wp_deregister_script('swv');
+        wp_dequeue_script('contact-form-7');
+        wp_deregister_script('contact-form-7');
+        wp_dequeue_script('hoverIntent');
+        wp_deregister_script('hoverIntent');
+        wp_dequeue_script('ivory-search-scripts');
+        wp_deregister_script('ivory-search-scripts');
+        wp_dequeue_script('header-js');
+        wp_deregister_script('header-js');
+        wp_dequeue_script('footer-js');
+        wp_deregister_script('footer-js');
+    } else {
+        error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 9999);
-
 
 // Hook into the template_redirect action
 add_action('template_redirect', 'custom_redirect');
@@ -153,6 +189,7 @@ $getfirstpath = explode("/", $path);
 
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
+
     $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
     $stocks_symbol = substr($requested_url, $start_pos_symbol);
     $end_pos_symbol = strpos($stocks_symbol, '/');
@@ -160,6 +197,7 @@ if ($getfirstpath[1] == 'us-stocks') {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
     $stocks_symbol = trim($stocks_symbol);
+    
     
     if ($redirect_mappings[$stocks_symbol]?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol] . '-share-price';
@@ -174,7 +212,7 @@ if ($getfirstpath[1] == 'us-stocks') {
         exit();
     }
 } else {
-    error_log('else');
+    error_log('Not us-stocks');
 }
 
 function custom_redirect() {

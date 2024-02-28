@@ -20,13 +20,13 @@
     faqItems.forEach(item => {
         const question = item.querySelector('.faq_question');
         const answer = item.nextElementSibling;
-        const icon = item.querySelector('i');
+        const icon = item.querySelector('.faq_icon');
 
         item.addEventListener('click', () => {
             faqItems.forEach(otherItem => {
             if (otherItem !== item) {
                 const otherAnswer = otherItem.nextElementSibling;
-                const otherIcon = otherItem.querySelector('i');
+                const otherIcon = otherItem.querySelector('.faq_icon');
 
                 otherAnswer.classList.remove('active');
                 otherIcon.classList.remove('active');
@@ -44,7 +44,6 @@
     });
 
     function copyLink() {
-        console.log('copyLink');
         var inputElement = document.createElement("input");
         inputElement.value = "<?php echo esc_url(get_stylesheet_directory_uri()) ?>/assets/images/share-icon.svg";
         document.body.appendChild(inputElement);
@@ -132,7 +131,67 @@
         }
     }
 
-    // function showMore(data) {
-    //     setTextContent('stock_about_description', data);
-    // }
+    document.addEventListener("DOMContentLoaded", function(){
+        var singleTabHeadings = document.querySelectorAll('.single_tab_wrap:nth-child(1) .single_tab_heading');
+        singleTabHeadings.forEach(function(singleTabHeading) {
+            singleTabHeading.classList.add('collapsed');
+        });
+
+        var singleTabHeadingsAll = document.querySelectorAll(".single_tab_heading");
+        singleTabHeadingsAll.forEach(function(singleTabHeadingAll) {
+            singleTabHeadingAll.addEventListener("click", function() {
+                if (!this.classList.contains("collapsed")) {
+                    var collapsedHeadings = document.querySelectorAll(".single_tab_heading.collapsed");
+                    collapsedHeadings.forEach(function(collapsedHeading) {
+                        collapsedHeading.classList.remove("collapsed");
+                    });
+                    this.classList.add("collapsed");
+                } else {
+                    var collapsedHeadings = document.querySelectorAll(".single_tab_heading.collapsed");
+                    collapsedHeadings.forEach(function(collapsedHeading) {
+                        collapsedHeading.classList.remove("collapsed");
+                    });
+                }
+                if (window.innerWidth > 767) {
+                    var tabLinksWraps = document.querySelectorAll('.single_tab_wrap .tab_links_wrap');
+                    tabLinksWraps.forEach(function(tabLinksWrap) {
+                        var tabHeight = tabLinksWrap.offsetHeight;
+                        var finaHeight = tabHeight - 17;
+                        var parentElement = tabLinksWrap.closest('.single_tab_content');
+                        parentElement.style.marginBottom = finaHeight + 'px';
+                    });
+                }
+            });
+        });
+
+        var readMoreLinks = document.querySelectorAll('.read_more_link');
+        readMoreLinks.forEach(function(readMoreLink) {
+            readMoreLink.addEventListener("click", function() {
+                var disclosure = document.querySelector('.read_more_content');
+                readMoreLink.style.display = "none";
+                var readLessLink = document.querySelector('.read_less_link');
+                readLessLink.style.display = "block";
+                disclosure.style.display = "block";
+            });
+        });
+
+        var readLessLinks = document.querySelectorAll('.read_less_link');
+        readLessLinks.forEach(function(readLessLink) {
+            readLessLink.addEventListener("click", function() {
+                var disclosure = document.querySelector('.read_more_content');
+                readLessLink.style.display = "none";
+                var readMoreLink = document.querySelector('.read_more_link');
+                readMoreLink.style.display = "block";
+                disclosure.style.display = "none";
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
+        humburger.addEventListener("click", function() {
+            document.body.classList.toggle("menu-open");
+        });
+    });
+
 </script>
