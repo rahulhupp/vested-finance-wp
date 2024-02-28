@@ -29,7 +29,11 @@
                     <div class="list_faqs">
                         <div class="faq_item">
                             <div class="faq_question">What is <span><?php echo $name; ?></span> share price today?</div>
-                            <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                            <div class="faq_icon">
+                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                         <div class="faq_answer">
                             <p><span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) share price today is $<span><?php echo $price; ?></span></p>
@@ -37,14 +41,22 @@
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Can Indians buy <span><?php echo $name; ?></span> shares?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <company-name> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Can Fractional shares of <span><?php echo $name; ?></span> be purchased?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>Yes, you can purchase fractional shares of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) via the Vested app. You can start investing
@@ -52,7 +64,11 @@
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How to invest in <span><?php echo $name; ?></span> shares from India?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>You can invest in shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via Vested in three simple steps:</p>
@@ -64,7 +80,11 @@
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> 52-week high and low stock price?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The 52-week high price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $highRange; ?></span>. The 52-week low price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>)
@@ -72,35 +92,55 @@
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-earnings (P/E) ratio?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The price-to-earnings (P/E) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $peRatio; ?></span></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-book (P/B) ratio?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?></span></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is the Market Cap of <span><?php echo $name; ?></span>?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The market capitalization of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $marketCapValue; ?></span></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span>’s stock symbol?</div>
-                        <div class="icon_container"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="faq_icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="faq_answer">
                         <p>The stock symbol (or ticker) of <span><?php echo $name; ?></span> is <span><?php echo $ticker; ?></span></p>

@@ -159,9 +159,7 @@
 					chartInstance.update();
 
 					var label = labels[index];
-                    console.log('label', label);
 					var date = new Date(label);
-                    console.log('date', date);
                    
 					var optionsDate = {
 						year: 'numeric',
@@ -178,7 +176,6 @@
 					};
 
 					var formattedDate = date.toLocaleDateString('en-US', optionsDate);
-                    console.log('formattedDate', formattedDate);
 					var formattedTime = date.toLocaleTimeString('en-US', optionsTime);
 					var timeZoneAbbreviation = Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: 'America/New_York' }).formatToParts(new Date()).find(part => part.type === 'timeZoneName').value;
 

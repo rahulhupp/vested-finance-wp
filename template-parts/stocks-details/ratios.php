@@ -6,12 +6,12 @@
         <div class="separator_line"></div>
         <div id="ratios_content">
             <?php foreach ($ratios_data['ratios'] as $ratios): ?>
-                <div class="ratios_section">
-                    <h2><?php echo $ratios['section']; ?></h2>
-                    <p><?php echo $ratios['description']; ?></p>
-                    <?php
-                        if ($ratios['data']['current']['value']) {
-                            ?>
+                <?php
+                    if ($ratios['data']['current']['value']) {
+                        ?>
+                            <div class="ratios_section">
+                                <h2><?php echo $ratios['section']; ?></h2>
+                                <p><?php echo $ratios['description']; ?></p>
                                 <div class="stock_details_table_container">
                                     <div class="stock_details_table_wrapper">
                                         <div class="stock_details_table ratios_table">
@@ -47,10 +47,10 @@
                                         <button class="stock_details_table_button" onclick="openModalAddTicker('ratios_compare')"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.svg" alt="plus-icon" /><span>Add ticker to compare</span></button>
                                     </div>
                                 </div>
-                            <?php
-                        }
-                    ?>
-                </div>
+                            </div>
+                        <?php
+                    }
+                ?>
             <?php endforeach; ?>
         </div>
     </div>
