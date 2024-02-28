@@ -1,10 +1,7 @@
 <script>
     window.onload = function() {
-        console.log("On page load");
         setTimeout(function() {
-            console.log("setTimeout");
             document.querySelectorAll('.trend_chart').forEach(function(cell) {
-                console.log("trend_chart");
                 var trendData = JSON.parse(cell.textContent);
                 if (trendData.length > 0) {
                     cell.textContent = '';

@@ -3328,7 +3328,7 @@ body.mega-menu-open .site-content:before {
 
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator {
 		display: block;
-		background-image: url('../../assets/images/chevron-down.png');
+		background-image: url('../../images/chevron-down.png');
 		width: 20px;
 		height: 20px;
 		background-size: 20px;
@@ -5038,15 +5038,15 @@ footer {
     margin-bottom: 15px;
 }
 
-.icon_container i {
-    font-size: 24px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    color: #000;
+.faq_item .faq_icon svg {
+  width: 15px;
+  height: 28px;
+  display: block;
+  transition: transform 0.3s ease-in-out;
 }
 
-.icon_container i.active {
-    transform: rotate(180deg);
+.faq_item .faq_icon.active svg {
+  transform: rotate(180deg);
 }
 
 /* faqs and */
@@ -5630,8 +5630,12 @@ footer {
     /* end discover */
 
     /* faqs */
-    .icon_container i {
-        font-size: 22px;
+    .faq_item .faq_question {
+        padding-right: 10px;
+    }
+    .faq_item .faq_icon svg {
+      width: 12px;
+      height: 22px;
     }
 
     /* end-faqs */

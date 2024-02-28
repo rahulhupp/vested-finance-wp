@@ -20,13 +20,13 @@
     faqItems.forEach(item => {
         const question = item.querySelector('.faq_question');
         const answer = item.nextElementSibling;
-        const icon = item.querySelector('i');
+        const icon = item.querySelector('.faq_icon');
 
         item.addEventListener('click', () => {
             faqItems.forEach(otherItem => {
             if (otherItem !== item) {
                 const otherAnswer = otherItem.nextElementSibling;
-                const otherIcon = otherItem.querySelector('i');
+                const otherIcon = otherItem.querySelector('.faq_icon');
 
                 otherAnswer.classList.remove('active');
                 otherIcon.classList.remove('active');
@@ -44,7 +44,6 @@
     });
 
     function copyLink() {
-        console.log('copyLink');
         var inputElement = document.createElement("input");
         inputElement.value = "<?php echo esc_url(get_stylesheet_directory_uri()) ?>/assets/images/share-icon.svg";
         document.body.appendChild(inputElement);
@@ -159,7 +158,6 @@
                         var tabHeight = tabLinksWrap.offsetHeight;
                         var finaHeight = tabHeight - 17;
                         var parentElement = tabLinksWrap.closest('.single_tab_content');
-                        console.log(tabHeight);
                         parentElement.style.marginBottom = finaHeight + 'px';
                     });
                 }
@@ -195,6 +193,5 @@
             document.body.classList.toggle("menu-open");
         });
     });
-
 
 </script>
