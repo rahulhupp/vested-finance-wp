@@ -1,4 +1,4 @@
-<script>
+<script defer>
     document.querySelectorAll('.trend_chart').forEach(function(cell) {
         var trendData = JSON.parse(cell.textContent);
         if (trendData.length > 0) {

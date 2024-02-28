@@ -1,4 +1,4 @@
-<script>
+<script defer>
     var visibleCount = 3;
     var increment = 3;
     var items = document.querySelectorAll('.news_list .news_item');
