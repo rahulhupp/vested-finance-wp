@@ -1,60 +1,56 @@
 <script>
-    window.onload = function() {
-        setTimeout(function() {
-            document.querySelectorAll('.trend_chart').forEach(function(cell) {
-                var trendData = JSON.parse(cell.textContent);
-                if (trendData.length > 0) {
-                    cell.textContent = '';
-                    var chartContainer = document.createElement('div');
-                    cell.appendChild(chartContainer);
-                    var canvas = document.createElement('canvas');
-                    canvas.width = 400;
-                    canvas.height = 400;
-                    chartContainer.appendChild(canvas);
-                    var dates = [];
-                    var values = [];
-                    trendData.forEach(function(trend) {
-                        dates.push(trend.date);
-                        values.push(trend.value);
-                    });
-                    // Create a chart
-                    var ctx = canvas.getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: dates,
-                            datasets: [{
-                                label: 'Values',
-                                data: values,
-                                borderWidth: 1,
-                                backgroundColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
-                                borderColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    display: false, // Hide x-axis labels
-                                },
-                                y: {
-                                    display: false, // Hide y-axis labels
-                                    beginAtZero: true
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false // Hide legends
-                                },
-                                tooltip: {
-                                    enabled: false // Hide tooltips
-                                }
-                            }
-                        },
-                    });
-                }
+    document.querySelectorAll('.trend_chart').forEach(function(cell) {
+        var trendData = JSON.parse(cell.textContent);
+        if (trendData.length > 0) {
+            cell.textContent = '';
+            var chartContainer = document.createElement('div');
+            cell.appendChild(chartContainer);
+            var canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 400;
+            chartContainer.appendChild(canvas);
+            var dates = [];
+            var values = [];
+            trendData.forEach(function(trend) {
+                dates.push(trend.date);
+                values.push(trend.value);
             });
-        }, 500); 
-    };
+            // Create a chart
+            var ctx = canvas.getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Values',
+                        data: values,
+                        borderWidth: 1,
+                        backgroundColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
+                        borderColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: false, // Hide x-axis labels
+                        },
+                        y: {
+                            display: false, // Hide y-axis labels
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Hide legends
+                        },
+                        tooltip: {
+                            enabled: false // Hide tooltips
+                        }
+                    }
+                },
+            });
+        }
+    });
 
     const valueTypeSelect = document.getElementById("value_type_select");
     const dataTypeSelect = document.getElementById("data_type_select");
