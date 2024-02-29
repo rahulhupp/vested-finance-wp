@@ -5,7 +5,7 @@
         $token = us_stocks_get_token();
     }
 ?>
-<script>
+<script defer>
     document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(() => {
 			callAnalystForecastApi();

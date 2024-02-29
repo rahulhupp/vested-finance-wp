@@ -170,7 +170,7 @@
 
 
 
-<script>
+<script defer>
 
     function inputChangeCalc() {
         var inputValue = document.querySelector(".dropdown_search").value;

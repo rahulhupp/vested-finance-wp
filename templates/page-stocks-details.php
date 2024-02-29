@@ -143,9 +143,9 @@
 <?php get_template_part('template-parts/stocks-details/advanced-chart-modal', null, array('overview_data' => $overview_data)); ?>
 <?php get_template_part('template-parts/stocks-details/add-ticker-modal'); ?>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <?php get_template_part('template-parts/stocks-details/js/general-js'); ?>
 <?php get_template_part('template-parts/stocks-details/js/price-chart-js'); ?>
 <?php get_template_part('template-parts/stocks-details/js/analyst-forecast-js'); ?>

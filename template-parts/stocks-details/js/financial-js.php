@@ -1,4 +1,4 @@
-<script>
+<script defer>
     window.onload = function() {
         setTimeout(function() {
             document.querySelectorAll('.trend_chart').forEach(function(cell) {
