@@ -4,7 +4,10 @@
     } else {
         $token = us_stocks_get_token();
     }
+    $start_time = microtime(true);
     $api_calls = fetch_all_api_data($symbol, $token);
+    $end_time = microtime(true);
+    $time_taken = $end_time - $start_time;
     $overview_data = $api_calls['overview'];
     $returns_data = $api_calls['returns'];
     $income_statement_data = $api_calls['income-statement'];
@@ -59,6 +62,7 @@
                 <div class="stocks_search_container">
                     <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
                 </div>
+                <?php echo "Time taken for API call: " . $time_taken . " seconds"; ?>
                 <?php get_template_part('template-parts/stocks-details/stock-info', null, array('overview_data' => $overview_data)); ?>
                 
                 <div class="stock_details_box stock_forecast_container">
