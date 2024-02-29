@@ -168,30 +168,9 @@
 </div>
 
 
+
+
 <script>
-    indexedDBConnection();
-
-    var connection;
-
-    async function indexedDBConnection() {
-        connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
-        var dbName ='stocks_list';
-        var tblstocks = {
-            name: 'stocks',
-            columns: {
-                id: { primaryKey: true, autoIncrement: true },
-                name: { notNull: true, dataType: "string" },
-                symbol: { notNull: true, dataType: "string" },
-            }
-        };
-        var database = { name: dbName, tables: [tblstocks], version: 2 }
-        const isDbCreated = await connection.initDb(database);
-        if(isDbCreated === true){
-            console.log("db created");
-        } else {
-            console.log("db opened");
-        }
-    }
 
     function inputChangeCalc() {
         var inputValue = document.querySelector(".dropdown_search").value;
@@ -214,32 +193,21 @@
     }
 
     async function fetchResultCalc(stock_name) {
-        try {
-            showLoader();
-            const results = await connection.select({
-                from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            like: `${stock_name}%`
-                        }
-                    }
-                }
-            });
-            let filteredResults = results.filter(item => item.type !== "etf");
-            renderItemsCalc(filteredResults);
-        } catch (err) {
-            // console.log(err);
-        } finally {
-            hideLoader(); // Hide the loader regardless of success or error
-        }
+        <?php
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'stocks_list';
+            $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+        ?>
+        var dbStocksList = <?php echo json_encode($results); ?>;
+        // console.log('dbStocksList', dbStocksList);
+
+        var filteredStocks = dbStocksList.filter(function(stock) {
+            return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
+                stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+        });
+
+        console.log('filteredStocks', filteredStocks);
+        renderItemsCalc(filteredStocks);
     }
 
     function showLoader() {
