@@ -212,7 +212,7 @@
     echo "Error retrieving data"; // Handle error
 }
 ?>
-<script>
+<script defer>
     function showMore(description) {
         document.getElementById('stock_about_description').innerHTML = description;
     }

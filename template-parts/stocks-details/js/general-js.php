@@ -1,4 +1,4 @@
-<script>
+<script defer>
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {

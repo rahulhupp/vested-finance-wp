@@ -154,7 +154,7 @@
     <div class="ac_modal_overlay" id="overlay_ac_modal"></div>
 </div>
 
-<script>
+<script defer>
     document.addEventListener('DOMContentLoaded', function () {
         var modal = document.getElementById('ac_modal');
         var closeModalBtn = document.getElementById('close_ac_modal');

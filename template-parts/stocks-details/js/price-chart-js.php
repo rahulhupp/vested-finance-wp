@@ -1,4 +1,4 @@
-<script>
+<script defer>
 	document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(() => {
 			callChartApi('1Y', 'daily');

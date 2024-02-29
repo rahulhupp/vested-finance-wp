@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<script>
+<script defer>
 
     function tickerInputChangeCalc() {
         var inputValue = document.querySelector(".ticker_dropdown_search").value;
