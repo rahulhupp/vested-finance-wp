@@ -59,6 +59,6 @@ function fetch_async_api_data($endpoints, $symbol, $token)
 
 function fetch_all_api_data($symbol, $token)
 {
-    $endpoints = ['overview'];
+    $endpoints = ['overview', 'returns', 'income-statement', 'balance-sheet', 'cash-flow', 'key-ratios', 'news'];
     return fetch_async_api_data($endpoints, $symbol, $token);
 }
