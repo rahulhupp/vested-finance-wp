@@ -2,7 +2,7 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(() => {
 			callChartApi('1Y', 'daily');
-		}, 5000);
+		}, 1000);
 	});
 	
     function handleButtonClick(button) {

@@ -33,7 +33,7 @@
         <h1><?php echo $name . ', ' . $overview_data->type; ?></h1>
         <h2><?php echo $ticker; ?></h2>
         <h6><?php echo $overview_data->exchange; ?></h6>
-        <div class="stock_price_box">
+        <div class="stock_price_box" id="stock_price">
             <h3>$<?php echo $overview_data->price; ?></h3>
             <h4 class="<?php echo $changeClass; ?>"><?php echo $changeText; ?></h4>
             <h4 class="<?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</h4>
