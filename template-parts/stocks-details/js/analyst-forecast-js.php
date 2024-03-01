@@ -9,7 +9,7 @@
     document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(() => {
 			callAnalystForecastApi();
-		}, 1000);
+		}, 5000);
 	});
     
     function callAnalystForecastApi() {
