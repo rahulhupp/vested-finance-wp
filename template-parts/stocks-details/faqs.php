@@ -1,10 +1,9 @@
 <?php
     $overview_data = $args['overview_data'];
     $ratios_data = $args['ratios_data'];
-    $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
-    $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
-
-    if ($overview_data) {
+    if ($overview_data && $ratios_data ) {
+        $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
+        $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
         $name = $overview_data->name;
         $ticker = $overview_data->ticker;
         $price = $overview_data->price;
