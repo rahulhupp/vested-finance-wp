@@ -144,7 +144,7 @@
                 <li>Open your account in minutes</li>
                 <li>Take your portfolio global, starting at just $1</li>
             </ul>
-            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/usd_coin.svg" />
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/usd_coin.svg" alt="usd_coin" />
         </div>
         <a href="<?php echo $signupurl; ?>">
             <span>Get started</span>
