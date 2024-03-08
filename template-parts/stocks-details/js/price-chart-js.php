@@ -12,7 +12,7 @@
     }
 
     function callChartApi(timeframe, interval) {
-        if (event) {
+        if (event.type === "click") {
             var button = event.target;
             handleButtonClick(button); // Add or remove active class
         }
