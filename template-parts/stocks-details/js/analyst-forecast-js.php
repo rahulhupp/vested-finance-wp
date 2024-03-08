@@ -7,9 +7,7 @@
 ?>
 <script defer>
     document.addEventListener("DOMContentLoaded", function() {
-		setTimeout(() => {
-			callAnalystForecastApi();
-		}, 1000);
+		callAnalystForecastApi();
 	});
     
     function callAnalystForecastApi() {

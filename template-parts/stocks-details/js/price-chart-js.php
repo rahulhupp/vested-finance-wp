@@ -1,8 +1,6 @@
 <script defer>
 	document.addEventListener("DOMContentLoaded", function() {
-		setTimeout(() => {
-			callChartApi('1Y', 'daily');
-		}, 1000);
+		callChartApi('1Y', 'daily');
 	});
 	
     function handleButtonClick(button) {
