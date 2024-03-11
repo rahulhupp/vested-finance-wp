@@ -20,7 +20,6 @@
         foreach ($overview_data->tags as $tag) {
             $aboutTagsHTML .= '<span>' . $tag->label . ': ' . $tag->value . '</span>';
         }
-
 ?>
     <div id="overview_tab" class="tab_content">
         <div class="stock_details_box stock_chart_container">
@@ -120,7 +119,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This is a company’s total value as determined by the stock market. It is calculated by multiplying the total number of a company's outstanding shares by the current market price of one share.</div>
                             </span>
-                            <strong><?php echo $marketCapValue; ?></strong>
+                            <strong><?php echo $marketCapValue ? $marketCapValue : "$0"; ?></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
@@ -128,7 +127,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This is the ratio of a security’s current share price to its earnings per share. This ratio determines the relative value of a company’s share.</div>
                             </span>
-                            <strong><?php echo $peRatio; ?></strong>
+                            <strong><?php echo $peRatio ? $peRatio : "0"; ?></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
@@ -136,7 +135,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This is the total number of shares traded during the most recent trading day.</div>
                             </span>
-                            <strong><?php echo $volumeValue; ?></strong>
+                            <strong><?php echo $volumeValue ? $volumeValue : "0"; ?></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
@@ -144,7 +143,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This is the average number of shares traded during the most recent 30 days.</div>
                             </span>
-                            <strong><?php echo $avgVolumeValue; ?></strong>
+                            <strong><?php echo $avgVolumeValue ? $avgVolumeValue : "0"; ?></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
@@ -152,15 +151,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This ratio shows how much income you earn in dividend payouts per year for every dollar invested in the stock (or the stock’s annual dividend payment expressed as a percentage of its current price).</div>
                             </span>
-                            <strong>
-                                <?php 
-                                    if ($dividendYieldValue) {
-                                        echo $dividendYieldValue;
-                                    } else {
-                                        echo '0.00%';
-                                    }
-                                ?>
-                            </strong>
+                            <strong><?php echo $dividendYieldValue ? $dividendYieldValue : "0.00%"; ?></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
@@ -168,7 +159,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                                 <div class="info_text">This measures the expected move in a stock’s price relative to movements in the overall market. The market, such as the S&P 500 Index, has a beta of 1.0. If a stock has a Beta greater (or lower) than 1.0, it suggests that the stock is more (or less) volatile than the broader market.</div>
                             </span>
-                            <strong><?php echo $betaValue; ?></strong>
+                            <strong><?php echo $betaValue ? $betaValue : "0"; ?></strong>
                         </div>
                     </div>
                 </div>

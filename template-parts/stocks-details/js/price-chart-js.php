@@ -1,20 +1,24 @@
-<script defer>
+<?php $price_chart_data = $args['price_chart_data']; ?>
+
+<script>
 	document.addEventListener("DOMContentLoaded", function() {
-		setTimeout(() => {
-			callChartApi('1Y', 'daily');
-		}, 1000);
+		bindChartData(<?php echo json_encode($price_chart_data); ?>, '1Y', 'daily');
+		var chartLoaderContainer = document.getElementById('chart_loader_container');
+		var priceChartSkeleton = document.getElementById('price_chart_skeleton');
+        chartLoaderContainer.style.opacity = '0';
+		priceChartSkeleton.style.display = 'none';
 	});
-	
-    function handleButtonClick(button) {
-        var buttons = document.querySelectorAll('.stock_chart_buttons button');
-        buttons.forEach(function (btn) {
-            btn.classList.remove('active');
-        });
-        button.classList.add('active');
-    }
+
+	function handleButtonClick(button) {
+		var buttons = document.querySelectorAll('.stock_chart_buttons button');
+		buttons.forEach(function (btn) {
+			btn.classList.remove('active');
+		});
+		button.classList.add('active');
+	}
 
     function callChartApi(timeframe, interval) {
-        if (event) {
+        if (event.type === "click") {
             var button = event.target;
             handleButtonClick(button); // Add or remove active class
         }
@@ -22,7 +26,6 @@
 		var priceChartSkeleton = document.getElementById('price_chart_skeleton');
         chartLoaderContainer.style.opacity = '1';
 
-        // const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}&hermes=true`;
         let apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/ohlcv?timeframe=${timeframe}`;
         if (interval === 'daily') {
             apiUrl += '&interval=daily';
@@ -31,7 +34,7 @@
         fetch(apiUrl, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-            bindChartData(data, timeframe, interval);
+            bindChartData(data.data, timeframe, interval);
             chartLoaderContainer.style.opacity = '0';
 			priceChartSkeleton.style.display = 'none';
         })
@@ -45,8 +48,8 @@
         		document.getElementById('stocksLineChart').removeEventListener('mouseleave', handleMouseLeave);
 				existingChart.destroy();
 			}
-			const labels = data.data.map(item => item.Date);
-			const dataValues = data.data.map(item => interval === 'daily' ? item.Adj_Close : item.Close);
+			const labels = data.map(item => item.Date);
+			const dataValues = data.map(item => interval === 'daily' ? item.Adj_Close : item.Close);
 
 			const chartData = {
 				labels: labels,
