@@ -168,29 +168,6 @@
 </div>
 
 <script>
-    tickerIndexedDBConnection();
-
-    var connection;
-
-    async function tickerIndexedDBConnection() {
-        connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
-        var dbName ='stocks_list';
-        var tblstocks = {
-            name: 'stocks',
-            columns: {
-                id: { primaryKey: true, autoIncrement: true },
-                name: { notNull: true, dataType: "string" },
-                symbol: { notNull: true, dataType: "string" },
-            }
-        };
-        var database = { name: dbName, tables: [tblstocks], version: 2 }
-        const isDbCreated = await connection.initDb(database);
-        if(isDbCreated === true){
-            console.log("db created");
-        } else {
-            console.log("db opened");
-        }
-    }
 
     function tickerInputChangeCalc() {
         var inputValue = document.querySelector(".ticker_dropdown_search").value;
@@ -209,34 +186,23 @@
             dynamicOptions.style.display = "none";
         }
     }
+    
+    function tickerFetchResultCalction(stock_name) {
+        <?php
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'stocks_list';
+            $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+        ?>
+        var dbStocksList = <?php echo json_encode($results); ?>;
+        // console.log('dbStocksList', dbStocksList);
 
-    async function tickerFetchResultCalction(stock_name) {
-        try {
-            tickerShowLoader();
-            const results = await connection.select({
-                from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            like: `${stock_name}%`
-                        }
-                    }
-                }
-            });
-            let filteredResults = results.filter(item => item.type !== "etf");
-            tickerRenderItemsCalc(filteredResults);
-        } catch (err) {
-            // console.log(err);
-        } finally {
-            tickerHideLoader(); // Hide the loader regardless of success or error
-        }
+        var filteredStocks = dbStocksList.filter(function(stock) {
+            return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
+                stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+        });
+
+        console.log('filteredStocks', filteredStocks);
+        renderItemsCalc(filteredStocks);
     }
 
     function tickerShowLoader() {
