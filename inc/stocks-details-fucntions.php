@@ -173,11 +173,13 @@ function remove_unwanted_styles() {
         wp_deregister_script('header-js');
         wp_dequeue_script('footer-js');
         wp_deregister_script('footer-js');
+        wp_dequeue_script('astra-theme-js');
+        wp_deregister_script('astra-theme-js');
     } else {
         error_log('Dequeue function Else');
     }
 }
-add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 9999);
+add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 99999999999);
 
 // Hook into the template_redirect action
 add_action('template_redirect', 'custom_redirect');
