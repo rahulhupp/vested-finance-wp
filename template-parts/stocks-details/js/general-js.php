@@ -218,7 +218,7 @@
 
     // Financial JS Start
 
-    window.onload = function() {
+    document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.querySelectorAll('.trend_chart').forEach(function(cell) {
                 var trendData = JSON.parse(cell.textContent);
@@ -273,7 +273,8 @@
                 }
             });
         }, 500); 
-    };
+    });
+
 
     const valueTypeSelect = document.getElementById("value_type_select");
     const dataTypeSelect = document.getElementById("data_type_select");
@@ -289,6 +290,7 @@
     });
 
     function handleSelectChange() {
+        console.log('hello');
         const valueType = valueTypeSelect.value;
         const dataType = dataTypeSelect.value;
 

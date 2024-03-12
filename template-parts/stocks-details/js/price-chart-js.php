@@ -1,6 +1,6 @@
 <?php $price_chart_data = $args['price_chart_data']; ?>
 
-<script>
+<script defer>
 	document.addEventListener("DOMContentLoaded", function() {
 		bindChartData(<?php echo json_encode($price_chart_data); ?>, '1Y', 'daily');
 		var chartLoaderContainer = document.getElementById('chart_loader_container');
