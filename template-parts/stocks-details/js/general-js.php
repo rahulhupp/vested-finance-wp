@@ -228,7 +228,7 @@
             addFinancialChart();
             let timeTaken = performance.now() - start;
             console.log("Total time taken : " + timeTaken + " milliseconds");
-        }, 500); 
+        }, 2000); 
     });
 
     function addFinancialChart() {
