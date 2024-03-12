@@ -92,22 +92,7 @@
 
     window.addEventListener('scroll', addClassOnScroll);
 
-    function moveElements() {
-        // Get the elements to be moved
-        var tabsMenu = document.querySelector('.stock_tabs_menu');
-        var searchContainer = document.querySelector('.stocks_search_container');
-        var forecastContainer = document.querySelector('.stock_forecast_container');
-        var metricsContainer = document.querySelector('.stock_metrics_container');
-        var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        if (windowWidth < 1024) {
-            searchContainer.parentNode.insertBefore(tabsMenu, searchContainer.nextSibling);
-            metricsContainer.parentNode.insertBefore(forecastContainer, metricsContainer.nextSibling);
-        }
-    }
-
-    // Call the function on page load and window resize
-    document.addEventListener('DOMContentLoaded', moveElements);
-    window.addEventListener('resize', moveElements);
+    
 
     function changeStockBoxTab(sectionId, tabId, clickedTab) {
         var tabs = document.getElementById(sectionId).getElementsByClassName('stock_box_tab_content');
@@ -189,10 +174,15 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
-        humburger.addEventListener("click", function() {
-            document.body.classList.toggle("menu-open");
-        });
+        if (humburger) {
+            humburger.addEventListener("click", function() {
+                document.body.classList.toggle("menu-open");
+            });
+        } else {
+            console.error("Hamburger element not found!");
+        }
     });
+
 
 
     // News JS Start
@@ -290,7 +280,6 @@
     });
 
     function handleSelectChange() {
-        console.log('hello');
         const valueType = valueTypeSelect.value;
         const dataType = dataTypeSelect.value;
 
