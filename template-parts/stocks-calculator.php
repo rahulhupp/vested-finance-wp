@@ -1139,7 +1139,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
 
                         <div class="submit_btn">
-                            <button type="submit">
+                            <button type="submit" class="calculator_cta_click">
                                 <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
