@@ -114,9 +114,9 @@
     }
 </style>
 <div class="select_box_new">
-    <div class="selected_option" data-value="" id="resultsList">
+    <div class="selected_option" data-value="" data-type="" id="resultsList">
         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" />
-        <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Search for any stock" value="">
+        <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Search any stock or ETF" value="">
     </div>
     <div class="options_dropdown_wrap">
         <div id="loader" style="display: none;">
@@ -133,31 +133,35 @@
         </div>
         <div class="dropdown_options">
             <ul class="static_options">
-                <li data-value="AAPL">
+                <li data-value="AAPL" data-type="stock">
                     <strong>Apple, Inc</strong>
                     <span>AAPL</span>
                 </li>
-                <li data-value="GOOGL">
+                <li data-value="SPY" data-type="etf">
+                    <strong>S&amp;P 500 ETF Trust SPDR</strong>
+                    <span>SPY</span>
+                </li>
+                <li data-value="GOOGL" data-type="stock">
                     <strong>Alphabet Inc. - Class A Shares</strong>
                     <span>GOOGL</span>
                 </li>
-                <li data-value="MSFT">
+                <li data-value="MSFT" data-type="stock">
                     <strong>Microsoft Corporation</strong>
                     <span>MSFT</span>
                 </li>
-                <li data-value="META">
+                <li data-value="META" data-type="stock">
                     <strong>Meta Platforms Inc</strong>
                     <span>META</span>
                 </li>
-                <li data-value="NFLX">
+                <li data-value="NFLX" data-type="stock">
                     <strong>Netflix, Inc.</strong>
                     <span>NFLX</span>
                 </li>
-                <li data-value="AMZN">
+                <li data-value="AMZN" data-type="stock">
                     <strong>Amazon.com Inc.</strong>
                     <span>AMZN</span>
                 </li>
-                <li data-value="SPOT">
+                <li data-value="SPOT" data-type="stock">
                     <strong>Spotify Technology SA</strong>
                     <span>SPOT</span>
                 </li>
@@ -170,7 +174,7 @@
 
 
 
-<script defer>
+<script>
 
     function inputChangeCalc() {
         var inputValue = document.querySelector(".dropdown_search").value;
@@ -232,6 +236,7 @@
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `<strong>${result.name}</strong><span>${result.symbol}</span>`;
                 listItem.dataset.value = result.symbol;
+                listItem.dataset.type = result.type;
                 dropdownOptions.appendChild(listItem);
             });
         } else {
@@ -243,6 +248,7 @@
                     const listItem = document.createElement("li");
                     listItem.innerHTML = `<strong>${result.name}</strong><span>${result.symbol}</span>`;
                     listItem.dataset.value = staticOption.dataset.value;
+                    listItem.dataset.type = staticOption.dataset.type;
                     dropdownOptions.appendChild(listItem);
                 });
             } else {
@@ -269,8 +275,9 @@
             const searchValue = document.querySelector('.dropdown_search');
 
             const selectedValue = clickedElement.dataset.value;
+            const selectedType = clickedElement.dataset.type;
             var selectedText = clickedElement.querySelector('strong').innerText;
-            
+            console.log('2 selectedType', selectedType);
             // var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
             // var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             var formattedText = selectedText.toLowerCase()
@@ -281,11 +288,18 @@
                                             .replace(/^-+|-+$/g, '');
             var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
 
-            var redirectToURL = `<?php echo home_url(); ?>/us-stocks/${formattedValue}/${formattedText}-share-price`;
+            var redirectToURL = '';
+            if (selectedType === "etf") {
+                redirectToURL = `<?php echo home_url(); ?>/us-stocks/etf/${formattedValue}/${formattedText}-share-price`;
+            } else {
+                redirectToURL = `<?php echo home_url(); ?>/us-stocks/${formattedValue}/${formattedText}-share-price`;
+            }
+            console.log('redirectToURL', redirectToURL);
             window.location.href = redirectToURL;
             
             searchValue.value = selectedText;
             mainValue.dataset.value = selectedValue;
+            mainValue.dataset.type = selectedType;
 
             if (mainDropdown.classList.contains("dropdown_collased")) {
                 mainDropdown.classList.remove("dropdown_collased");

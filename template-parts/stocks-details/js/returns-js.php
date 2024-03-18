@@ -5,7 +5,7 @@
         $token = us_stocks_get_token();
     }
 ?>
-<script defer>
+<script>
 
     function callReturnsCompareApi(returnData, ticker) {
         const returnsCompareApiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/returns?compare=${ticker}`;

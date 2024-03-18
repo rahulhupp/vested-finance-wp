@@ -1,5 +1,6 @@
 <?php
     $overview_data = $args['overview_data'];
+    $get_path = $args['get_path'];
     // Check if response is successful
     if ($overview_data) {
         $change = $overview_data->change;
@@ -37,7 +38,9 @@
             <h3>$<?php echo $overview_data->price; ?></h3>
             <h4 class="<?php echo $changeClass; ?>"><?php echo $changeText; ?></h4>
             <h4 class="<?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</h4>
-            <span>1D</span>
+            <?php if ($get_path[2] !== 'etf'): ?>
+                <span>1D</span>
+            <?php endif; ?>
         </div>
         <div class="stock_tags">
             <?php foreach ($tags as $tag): ?>
