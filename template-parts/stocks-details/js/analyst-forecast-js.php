@@ -1,35 +1,11 @@
-<?php
-    if (function_exists('get_partner_tokens_from_database')) {
-        $token = get_partner_tokens_from_database();
-    } else {
-        $token = us_stocks_get_token();
-    }
-?>
-<script defer>
+<?php $analysts_data = $args['analysts_data']; ?>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
-		callAnalystForecastApi();
+        bindAnalystForecastData(<?php echo json_encode($analysts_data); ?>); 
 	});
-    
-    function callAnalystForecastApi() {
-        const instrumentsApiUrl = 'https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/analysts-predictions'; // Replace with the actual URL of the second API
-
-        headers = {
-            'x-csrf-token': '<?php echo $token->csrf; ?>',
-            'Authorization': 'Bearer <?php echo $token->jwToken; ?>'
-        }
-        
-        fetch(instrumentsApiUrl, { method: 'GET',  headers: headers })
-        .then(response => response.json())
-        .then(data => {
-            var analystChartSkeleton = document.getElementById('analyst_chart_skeleton');
-            analystChartSkeleton.style.display = 'none';
-            bindAnalystForecastData(data); 
-        })
-        .catch(error => console.error('Error:', error));
-    }
 
     function bindAnalystForecastData(data) {
-        var distributionData = data.data.distribution;
+        var distributionData = data.distribution;
         distributionData = combineLabels(distributionData, "Strong Buy", "Buy", "Buy");
         distributionData = combineLabels(distributionData, "Strong Sell", "Sell", "Sell");
 

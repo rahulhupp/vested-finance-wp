@@ -3,19 +3,19 @@
     anchorLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            anchorLinks.forEach(function(anchor) {
-                anchor.classList.remove('active');
-            });
-            link.classList.add('active');
             const targetId = link.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
+                anchorLinks.forEach(function(anchor) {
+                    anchor.classList.remove('active');
+                });
+                link.classList.add('active');
                 targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
-
     
+
     const faqItems = document.querySelectorAll('.faq_item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq_question');
@@ -45,9 +45,10 @@
 
     function copyLink() {
         var inputElement = document.createElement("input");
-        inputElement.value = "<?php echo esc_url(get_stylesheet_directory_uri()) ?>/assets/images/share-icon.svg";
+        inputElement.value = window.location.href;
         document.body.appendChild(inputElement);
         inputElement.select();
+        document.execCommand("copy"); // This command copies the selected text
         document.body.removeChild(inputElement);
 
         for (var i = 0; i < 5; i++) {
@@ -62,6 +63,7 @@
             copyMessage.classList.remove('active');
         }, 2000);
     }
+
 
     document.addEventListener("DOMContentLoaded", function () {
         var symbol = "<?php echo $symbol; ?>";
@@ -189,8 +191,28 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
-        humburger.addEventListener("click", function() {
-            document.body.classList.toggle("menu-open");
+        if (humburger) {
+            humburger.addEventListener("click", function() {
+                document.body.classList.toggle("menu-open");
+            });
+        } else {
+            console.error("Hamburger element not found!");
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var content = document.getElementById("stock_about_description");
+        var showMoreBtn = document.getElementById("show_more");
+        var originalText = content.textContent;
+
+        if (originalText.length > 255) {
+            content.textContent = originalText.slice(0, 255) + " ...";
+            showMoreBtn.style.display = "inline-block";
+        }
+
+        showMoreBtn.addEventListener("click", function () {
+            content.textContent = originalText;
+            showMoreBtn.style.display = "none";
         });
     });
 

@@ -59,6 +59,38 @@ function fetch_async_api_data($endpoints, $symbol, $token)
 
 function fetch_all_api_data($symbol, $token)
 {
-    $endpoints = ['overview', 'returns', 'income-statement', 'balance-sheet', 'cash-flow', 'key-ratios', 'news'];
+    $endpoints = ['overview', 'returns', 'income-statement', 'balance-sheet', 'cash-flow', 'key-ratios', 'news', 'analysts-predictions', 'holdings', 'sector-breakdown'];
     return fetch_async_api_data($endpoints, $symbol, $token);
+}
+
+
+function fetch_price_chart_api_data($symbol, $token) {
+    error_log("Price Chart API Call");
+    $price_chart_api_url = 'https://vested-woodpecker-prod.vestedfinance.com/instrument/' . $symbol . '/ohlcv?timeframe=1Y&interval=daily';
+    $headers = array(
+        'x-csrf-token' => $token->csrf,
+        'Authorization' => 'Bearer ' . $token->jwToken
+    );
+
+    $response = wp_remote_get($price_chart_api_url, array(
+        'headers' => $headers,
+    ));
+
+    if (is_wp_error($response)) {
+        $error_message = $response->get_error_message();
+        error_log("Price Chart API request error: $error_message");
+        return false;
+    }
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code !== 200) {
+        error_log("Price Chart API response error: HTTP $response_code");
+        return false;
+    }
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+    if ($data && isset($data['data'])) {
+        return $data['data'];
+    }
+    error_log("Price Chart API response error: Invalid data format");
+    return false;
 }

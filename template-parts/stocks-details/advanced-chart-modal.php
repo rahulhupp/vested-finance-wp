@@ -144,7 +144,7 @@
                 <li>Open your account in minutes</li>
                 <li>Take your portfolio global, starting at just $1</li>
             </ul>
-            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/usd_coin.svg" alt="usd_coin" />
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/usd_coin.png" />
         </div>
         <a href="<?php echo $signupurl; ?>">
             <span>Get started</span>
@@ -154,7 +154,7 @@
     <div class="ac_modal_overlay" id="overlay_ac_modal"></div>
 </div>
 
-<script defer>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         var modal = document.getElementById('ac_modal');
         var closeModalBtn = document.getElementById('close_ac_modal');

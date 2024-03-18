@@ -6,7 +6,7 @@
     }
 ?>
 
-<script defer>
+<script>
     function callRatiosCompareApi(ticker) {
         const ratiosApiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios?compare=${ticker}`;
         headers = {

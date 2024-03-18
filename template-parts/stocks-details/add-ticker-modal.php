@@ -78,7 +78,7 @@
     <div class="at_modal_overlay" id="overlay_at_modal"></div>
 </div>
 
-<script defer>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         var modal = document.getElementById('at_modal');
         var closeModalBtn = document.getElementById('close_at_modal');
