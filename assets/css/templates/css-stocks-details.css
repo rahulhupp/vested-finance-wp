@@ -6671,6 +6671,20 @@ td.holdings_stock_weight_td {
 	.news_list .news_item .news_item_content .news_item_info span {
 		display: inline-block;
 	}
+
+	.sector_breakdown_table_wrapper {
+		width: 100%;
+		order: 2;
+	}
+
+	.sector_breakdown_chart_wrapper {
+		width: 277px;
+		margin-bottom: 20px;
+	}
+
+	.sector_breakdown_section {
+		justify-content: center;
+	}
 }
 
 @media (max-width: 360px) {
