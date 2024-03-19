@@ -216,11 +216,20 @@ add_filter('wpseo_twitter_site', 'custom_wpseo_twitter_site', 10, 1);
 
 function custom_wpseo_sitemap_index($sitemap_index) {
     $last_modified = date('c');
-    $custom_url = '<sitemap><loc>' . home_url('/us-stocks-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>';
-    $sitemap_index .= $custom_url;
+    $custom_urls = array(
+        '<sitemap><loc>' . home_url('/us-stocks-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
+        '<sitemap><loc>' . home_url('/us-stocks-etf-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>'
+    );
+    
+    // Append each custom URL to the sitemap index
+    foreach ($custom_urls as $url) {
+        $sitemap_index .= $url;
+    }
+    
     return $sitemap_index;
 }
 add_filter('wpseo_sitemap_index', 'custom_wpseo_sitemap_index', 10, 1);
+
 
 
 function remove_unwanted_styles() {
