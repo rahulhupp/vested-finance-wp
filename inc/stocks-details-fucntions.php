@@ -188,6 +188,7 @@ add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_action('wpseo_head', 'add_extra_og', 10);
 
 function add_extra_og() {
+    echo '<link rel="canonical" href="test-2" />';
     $stock_image_value = get_query_var('custom_stock_image_value');
     if ($stock_image_value) {
         $image = $stock_image_value;
