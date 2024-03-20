@@ -185,6 +185,18 @@ function custom_wpseo_opengraph_image($image) {
 // add_filter('wpseo_opengraph_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 
+
+function prefix_filter_canonical_example( $canonical ) {
+    $stock_url_value = get_query_var('custom_stock_url_value');
+    if ($stock_url_value) {
+        $canonical = $stock_url_value;
+    }
+  
+    return $canonical;
+}
+  
+add_filter( 'wpseo_canonical', 'prefix_filter_canonical_example' );
+
 add_action('wpseo_head', 'add_extra_og', 10);
 
 function add_extra_og() {
