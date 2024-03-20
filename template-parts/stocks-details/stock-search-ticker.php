@@ -202,7 +202,7 @@
         });
 
         console.log('filteredStocks', filteredStocks);
-        renderItemsCalc(filteredStocks);
+        tickerRenderItemsCalc(filteredStocks);
     }
 
     function tickerShowLoader() {

@@ -41,7 +41,7 @@
         $homeURL = home_url();
         if ($get_path[2] == 'etf') {
             set_query_var('custom_stock_title_value', "$ticker Stock Price, Invest in $name share today - Quotes & Returns");
-            set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, news and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
+            set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
             set_query_var('custom_stock_url_value', "$homeURL/us-stocks/etf/$formattedTicker/$formattedName-share-price/");
         } else {
             set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
