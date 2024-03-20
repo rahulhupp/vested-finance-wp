@@ -216,4 +216,18 @@
         });
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
+        var images = document.getElementsByClassName("holdings_image");
+
+        // Check if there are images with the class "image"
+        if (images.length > 0) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].onerror = function() {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "https://vestedfinance.com/wp-content/uploads/2024/03/holdings-defult.svg";
+                };
+            }
+        }
+    });
+
 </script>

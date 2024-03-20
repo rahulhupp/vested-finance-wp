@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The 52-week high price of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $highRange; ?>. The 52-week low price of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $lowRange; ?>.</p>
+                        <p>The 52-week high price of <?php echo $name; ?> (<?php echo $ticker; ?>) is $<?php echo $highRange; ?>. The 52-week low price of <?php echo $name; ?> (<?php echo $ticker; ?>) is $<?php echo $lowRange; ?>.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <?php echo $name; ?>'s ticker or symbol?</div>

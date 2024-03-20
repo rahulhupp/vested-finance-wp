@@ -87,8 +87,8 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The 52-week high price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $highRange; ?></span>. The 52-week low price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>)
-                            is <span><?php echo $lowRange; ?></span>.</p>
+                        <p>The 52-week high price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span>$<?php echo $highRange; ?></span>. The 52-week low price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>)
+                            is <span>$<?php echo $lowRange; ?></span>.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-earnings (P/E) ratio?</div>
