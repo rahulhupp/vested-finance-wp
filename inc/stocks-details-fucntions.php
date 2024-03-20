@@ -185,7 +185,7 @@ function custom_wpseo_opengraph_image($image) {
 // add_filter('wpseo_opengraph_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 
-add_action('wpseo_head', 'add_extra_og', 5);
+add_action('wpseo_head', 'add_extra_og', 10);
 
 function add_extra_og() {
     $stock_image_value = get_query_var('custom_stock_image_value');
