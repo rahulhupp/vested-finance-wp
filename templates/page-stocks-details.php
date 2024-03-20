@@ -201,8 +201,10 @@
     <?php get_template_part('template-parts/stocks-details/js/analyst-forecast-js', null, array('analysts_data' => $analysts_data)); ?>
     <?php get_template_part('template-parts/stocks-details/js/ratios-js'); ?>
     <?php get_template_part('template-parts/stocks-details/js/financial-js'); ?>
+    <?php get_template_part('template-parts/stocks-details/js/returns-js'); ?>
 <?php else: ?>
     <?php get_template_part('template-parts/stocks-details/js/sector-breakdown-js'); ?>
+    <?php get_template_part('template-parts/stocks-details/js/returns-etf-js'); ?>
 <?php endif; ?>
 
 <?php get_template_part('template-parts/stocks-details/js/returns-js'); ?>
