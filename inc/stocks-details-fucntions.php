@@ -199,6 +199,7 @@ function add_extra_og() {
         echo '<meta property="og:description" content="'. $description .'" />';
     }
     $stock_url_value = get_query_var('custom_stock_url_value');
+    echo '<link rel="canonical" href="test" />';
     if ($stock_url_value) {
         echo '<link rel="canonical" href="'. $stock_url_value .'" />';
     }
