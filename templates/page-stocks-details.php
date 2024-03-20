@@ -207,6 +207,4 @@
     <?php get_template_part('template-parts/stocks-details/js/returns-etf-js'); ?>
 <?php endif; ?>
 
-<?php get_template_part('template-parts/stocks-details/js/returns-js'); ?>
-
 <?php get_footer(); ?>
