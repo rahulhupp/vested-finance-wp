@@ -193,7 +193,6 @@ function add_extra_og() {
         $image = $stock_image_value;
         echo '<meta property="og:image" content="'. $image .'" />';
     }
-    echo '<link rel="canonical" href="test" />';
     $stock_description_value = get_query_var('custom_stock_description_value');
     if ($stock_description_value) {
         $description = $stock_description_value;
