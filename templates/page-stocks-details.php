@@ -9,8 +9,7 @@
     $home_url = parse_url(home_url(), PHP_URL_PATH);
     $path = substr($requested_url, strlen($home_url));
     $get_path = explode("/", $path);
-
-
+    
     $api_calls = fetch_all_api_data($symbol, $token);
     $overview_data = $api_calls['overview'];
     $returns_data = $api_calls['returns'];
@@ -42,11 +41,11 @@
         if ($get_path[2] == 'etf') {
             set_query_var('custom_stock_title_value', "$ticker Stock Price, Invest in $name share today - Quotes & Returns");
             set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
-            set_query_var('custom_stock_url_value', "$homeURL/us-stocks/etf/$formattedTicker/$formattedName-share-price/");
+            set_query_var('custom_stock_url_value', "$homeURL$path");
         } else {
             set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
             set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
-            set_query_var('custom_stock_url_value', "$homeURL/us-stocks/$formattedTicker/$formattedName-share-price/");
+            set_query_var('custom_stock_url_value', "$homeURL$path");
         }
         set_query_var('custom_stock_image_value', "https://d13dxy5z8now6z.cloudfront.net/symbol/$ticker.png");
     }
@@ -206,5 +205,7 @@
     <?php get_template_part('template-parts/stocks-details/js/sector-breakdown-js'); ?>
     <?php get_template_part('template-parts/stocks-details/js/returns-etf-js'); ?>
 <?php endif; ?>
+
+
 
 <?php get_footer(); ?>
