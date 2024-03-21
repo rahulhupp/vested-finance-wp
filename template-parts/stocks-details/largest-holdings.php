@@ -7,7 +7,7 @@
     $wpdb->query("SET SESSION group_concat_max_len = @@group_concat_max_len");
     $symbols = explode(',', $symbols_concatenated);
 ?>
-<?php if ($largest_holdings_data) { ?>
+<?php if ($largest_holdings_data['error'] != 1) { ?>
     <div id="largest_holdings_tab" class="tab_content">
         <div class="stock_details_box">
             <h2 class="heading">Largest Holdings</h2>
