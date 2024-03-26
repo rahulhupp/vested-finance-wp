@@ -193,12 +193,22 @@ while (have_posts()) :
 								<div class="single_module_comments">
 									<?php
 									if (comments_open() || get_comments_number()) {
+										// Output the comments template
 										comments_template();
+
+										// Add reCAPTCHA here
+										?>
+										<div class="recaptcha-container">
+											<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+											<div class="g-recaptcha" data-sitekey="6LeGMSAlAAAAAOCpi_3SLw_Z_eLxE4W5XhW3C6zF"></div>
+										</div>
+										<?php
 									}
 									?>
 								</div>
 							</div>
 						</div>
+
 					<?php } ?>
 				</div>
 				<?php if (has_tag('premium')) { ?>
