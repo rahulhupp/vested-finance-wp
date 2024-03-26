@@ -1874,6 +1874,10 @@ a.chapter_back_btn:hover {
 	margin-bottom: 24px;
 }
 
+.single_module_post_content .content p.form-submit {
+    margin-bottom: 0;
+}
+
 .single_module_post_content .content figure {
 	margin: 24px 0;
 }
@@ -1911,6 +1915,11 @@ a.chapter_back_btn:hover {
 .ast-comment-formwrap.ast-row {
 	flex-wrap: wrap;
 	justify-content: space-between;
+}
+
+.ast-comment-formwrap.ast-row .g-recaptcha {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .single_module_post_content .comment-form-cookies-consent label {
