@@ -276,3 +276,33 @@ function custom_get_mtags_field($object, $field_name, $request) {
 
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
+
+
+
+// Add this code to your theme's functions.php file or a custom plugin
+add_action('pre_comment_on_post', 'verify_recaptcha_comment_form');
+
+function verify_recaptcha_comment_form($comment_data) {
+    $recaptcha_secret = '6LeGMSAlAAAAAIMVgLUlIpI8Xbrc8knciaSi0xpB'; // Replace with your actual reCAPTCHA secret key
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+
+    // Verify the reCAPTCHA response
+    $verify_response = wp_remote_post(
+        'https://www.google.com/recaptcha/api/siteverify',
+        array(
+            'body' => array(
+                'secret' => $recaptcha_secret,
+                'response' => $recaptcha_response
+            )
+        )
+    );
+
+    $body = json_decode(wp_remote_retrieve_body($verify_response));
+
+    // If reCAPTCHA verification fails, prevent the comment from being processed
+    if (!$body->success) {
+        wp_die('reCAPTCHA verification failed. Please try again.');
+    }
+
+    return $comment_data;
+}
