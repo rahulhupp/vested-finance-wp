@@ -279,30 +279,54 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 
 
 
-// Add this code to your theme's functions.php file or a custom plugin
-add_action('pre_comment_on_post', 'verify_recaptcha_comment_form');
-
-function verify_recaptcha_comment_form($comment_data) {
-    $recaptcha_secret = '6LeGMSAlAAAAAIMVgLUlIpI8Xbrc8knciaSi0xpB'; // Replace with your actual reCAPTCHA secret key
-    $recaptcha_response = $_POST['g-recaptcha-response'];
-
-    // Verify the reCAPTCHA response
-    $verify_response = wp_remote_post(
-        'https://www.google.com/recaptcha/api/siteverify',
-        array(
-            'body' => array(
-                'secret' => $recaptcha_secret,
-                'response' => $recaptcha_response
-            )
-        )
-    );
-
-    $body = json_decode(wp_remote_retrieve_body($verify_response));
-
-    // If reCAPTCHA verification fails, prevent the comment from being processed
-    if (!$body->success) {
-        wp_die('reCAPTCHA verification failed. Please try again.');
-    }
-
-    return $comment_data;
+/** 
+ * Google reCAPTCHA: Add widget before the submit button 
+ */ 
+function add_google_recaptcha($submit_field) { 
+    $submit_field['submit_field'] = '<div class="g-recaptcha" data-sitekey="6LeGMSAlAAAAAOCpi_3SLw_Z_eLxE4W5XhW3C6zF"></div>'.$submit_field['submit_field']; 
+    return $submit_field; 
+} 
+ 
+if (!is_user_logged_in()) { 
+    add_filter('comment_form_defaults', 'add_google_recaptcha'); 
+} 
+ 
+/** 
+ * Google reCAPTCHA: verify response and validate comment submission 
+ */ 
+function is_valid_captcha_response($captcha) { 
+    $captcha_postdata = http_build_query( 
+        array( 
+            'secret' => '6LeGMSAlAAAAAIMVgLUlIpI8Xbrc8knciaSi0xpB', 
+            'response' => $captcha, 
+            'remoteip' => $_SERVER['REMOTE_ADDR'] 
+        ) 
+    ); 
+    $captcha_opts = array( 
+        'http' => array( 
+            'method'  => 'POST', 
+            'header'  => 'Content-type: application/x-www-form-urlencoded', 
+            'content' => $captcha_postdata 
+        ) 
+    ); 
+    $captcha_context  = stream_context_create($captcha_opts); 
+    $captcha_response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $captcha_context), true); 
+    if(!empty($captcha_response['success'])){ 
+        return true; 
+    }else{ 
+        return false; 
+    } 
+} 
+ 
+function verify_google_recaptcha() { 
+    $recaptcha = $_POST['g-recaptcha-response']; 
+    if(empty($recaptcha)){ 
+        wp_die(__("<b>ERROR: </b><b>Please click the captcha checkbox.</b><p><a href='javascript:history.back()'>« Back</a></p>")); 
+    }elseif(!is_valid_captcha_response($recaptcha)){ 
+        wp_die(__("<b>Sorry, spam detected!</b>")); 
+    } 
+} 
+ 
+if (!is_user_logged_in()) { 
+    add_action('pre_comment_on_post', 'verify_google_recaptcha'); 
 }
