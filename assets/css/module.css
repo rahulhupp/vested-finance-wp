@@ -1921,6 +1921,9 @@ a.chapter_back_btn:hover {
     width: 100%;
     margin-bottom: 20px;
 }
+.ast-comment-formwrap.ast-row .g-recaptcha div {
+    max-width: 100%;
+}
 
 .single_module_post_content .comment-form-cookies-consent label {
 	margin-left: 5px;
