@@ -330,3 +330,13 @@ function verify_google_recaptcha() {
 if (!is_user_logged_in()) { 
     add_action('pre_comment_on_post', 'verify_google_recaptcha'); 
 }
+
+add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
+
+function yoast_seo_robots_modify_search( $robots ) {
+  if ( is_search() ) {
+    return "noindex, nofollow";
+  } else {
+    return $robots;
+  }
+}
