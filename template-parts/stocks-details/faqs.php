@@ -1,8 +1,11 @@
 <?php
     $overview_data = $args['overview_data'];
     $ratios_data = $args['ratios_data'];
-    $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
-    $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
+    
+    if ($ratios_data) {
+        $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
+        $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
+    }
 
     if ($overview_data) {
         $name = $overview_data->name;
@@ -110,7 +113,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
+                        <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php if($ratios_data) { echo $priceBookMRQ; } ?></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</div>
