@@ -68,7 +68,12 @@ get_header(); ?>
                 <div class="explore_bonds_content">
                     <h2 class="section_title align_left mobile_hide"><span><?php the_field('explore_bonds_heading'); ?></span></h2>
                     <h2 class="section_title align_left desktop_hide"><span><?php the_field('explore_bonds_heading_mobile'); ?></span></h2>
-                    <img src="<?php the_field('explore_bonds_image'); ?>" alt="<?php the_field('explore_bonds_heading'); ?>" class="desktop_hide">
+                     <?php
+                                            $image = get_field('explore_bonds_image');
+                                            if (!empty($image)): ?>
+                                                <img src="<?php echo esc_url($image['url']); ?>"
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide"/>
+                                            <?php endif; ?>
                     <?php if (have_rows('explore_corporate_bonds_list')) : ?>
                         <div class="explore_bonds_list mobile_hide">
                             <?php while (have_rows('explore_corporate_bonds_list')) : the_row(); ?>
@@ -151,8 +156,8 @@ get_header(); ?>
         </div>
     </section>
     */ ?>
-    <?php /*
-    <?php if (have_rows('portfolio_list')) : ?>
+    <?php 
+    if (have_rows('portfolio_list')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
                 <h2 class="section_title"><span><?php the_field('diversify_heading'); ?></span></h2>
@@ -160,14 +165,25 @@ get_header(); ?>
                     <div class="tab-menu">
                         <ul>
                             <li><a href="javascript:void(0)" class="tab-a active-a" data-id="tabcorporate">Corporate Bonds</a></li>
+                            <li><a href="javascript:void(0)" class="tab-a" data-id="tabsgbs">SGBs</a></li>
                             <li><a href="javascript:void(0)" class="tab-a" data-id="tabgovt">Gsecs</a></li>
                         </ul>
-                    </div><!--end of tab-menu-->
+                    </div>
+                    <div class="sub_title">
+                        <a href="#">
+                        What are corporate bonds?
+                    </a>
+                    </div>
+                    <!--end of tab-menu-->
                     <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
                         <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
                         <div class="bond_slider_wrap" id="corporateBondSlider">
                             <!-- Placeholder for corporate bond data -->
                         </div>
+                    </div>
+
+                    <div class="tab" data-id="tabsgbs" id="tabsgbs">
+                       <h2>Hello</h2>
                     </div>
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
@@ -180,8 +196,7 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    */ ?>
-    <?php /*
+    
     <section class="returns_calc">
         <div class="container">
             <div class="returns-cal_wrap">
@@ -235,9 +250,11 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Bank Fixed Deposit</p>
-                                    <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div>
+                                    <div class="return_flex">
+                                     <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div>
                                     </h3>
                                     <span id="fd_bond_return">(6% Returns)</span>
+                                    </div>
                                 </div>
                                 <div class="progressed">
                                     <div class="bong_progress" id="bond_amt_progress"></div>
@@ -246,9 +263,11 @@ get_header(); ?>
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Selected Bonds</p>
+                                    <div class="return_flex">
                                     <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div>
                                     </h3>
                                     <span id="fd_bond_return">(<span id="yield_returns">12</span>% Returns)</span>
+                                    </div>
                                 </div>
                                 <div class="progressed">
                                     <div class="bong_progress" id="selected_bond_progress"></div>
@@ -266,7 +285,6 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    */ ?>
     <section class="vested_edge_list">
         <div class="container">
             <div class="edge_list_row">
@@ -340,7 +358,6 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    <?php /*
     <section class="invest_wisely_sec">
         <div class="container">
             <h2 class="section_title"><span><?php the_field('invest_wisely_heading'); ?></span></h2>
@@ -425,9 +442,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    */ ?>
-    
-    <?php if (have_rows('faq_list')) : ?>
+     <?php if (have_rows('faq_list')) : ?>
         <section class="home_page_faqs">
             <div class="container">
                 <h2 class="section_title"><span><?php the_field('faqs_heading'); ?></span></h2>
@@ -450,7 +465,7 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 </div>
-<!-- <script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         const corporateApiUrl = "https://yield-api-test.vestedfinance.com/bonds";
         const corporateContainerId = "corporateBondSlider";
@@ -671,12 +686,12 @@ get_header(); ?>
             slideCerti.className = 'slide_certi';
             // slideCerti.style.backgroundColor = background_color;
             const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svgElement.setAttribute("width", "100");
-            svgElement.setAttribute("height", "29");
+            svgElement.setAttribute("width", "70");
+            svgElement.setAttribute("height", "70");
 
 
             const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            pathElement.setAttribute("d", "M102.5 4C102.5 1.79086 100.709 0 98.5 0L17.7252 0C16.3604 0 15.0897 0.695884 14.3547 1.84589L0.93322 22.8459C-0.768471 25.5084 1.14376 29 4.30365 29H98.5C100.709 29 102.5 27.2091 102.5 25V4Z");
+            pathElement.setAttribute("d", "M58.8057 26.7612C57.6787 25.4407 57.3159 23.6266 57.8528 21.9772C58.6122 19.6408 57.5577 17.1013 55.3713 15.984C53.8234 15.1955 52.798 13.6572 52.6625 11.9255C52.469 9.47788 50.5245 7.53333 48.0769 7.33985C46.3452 7.20441 44.807 6.17892 44.0185 4.63101C42.9012 2.4446 40.3617 1.39008 38.0253 2.14952C36.371 2.68646 34.5619 2.32366 33.2414 1.19659C31.3742 -0.399678 28.6219 -0.399678 26.7548 1.19659C25.4342 2.32366 23.6203 2.68646 21.9708 2.14952C19.6393 1.39008 17.095 2.4446 15.9824 4.63101C15.194 6.17892 13.6558 7.20441 11.9241 7.33985C9.47644 7.53333 7.53191 9.47788 7.33842 11.9255C7.20298 13.6572 6.17751 15.1955 4.62962 15.984C2.44323 17.1013 1.38873 19.6408 2.14816 21.9772C2.68509 23.6315 2.3223 25.4407 1.19524 26.7612C-0.401017 28.6284 -0.401017 31.3807 1.19524 33.2478C2.3223 34.5685 2.68509 36.3824 2.14816 38.0319C1.38873 40.3634 2.44323 42.903 4.62962 44.0204C6.17751 44.8088 7.20298 46.347 7.33842 48.0787C7.53191 50.5263 9.47644 52.471 11.9241 52.6645C13.6558 52.7999 15.194 53.8254 15.9824 55.3733C17.0998 57.5597 19.6393 58.6141 21.9757 57.8547C23.63 57.3178 25.439 57.6806 26.7596 58.8076C28.6267 60.4039 31.3791 60.4039 33.2462 58.8076C34.5668 57.6806 36.3807 57.3178 38.0301 57.8547C40.3665 58.6141 42.906 57.5597 44.0234 55.3733C44.8118 53.8254 46.35 52.7999 48.0817 52.6645C50.5293 52.471 52.4739 50.5263 52.6674 48.0787C52.8028 46.347 53.8283 44.8088 55.3762 44.0204C57.5626 42.903 58.6171 40.3634 57.8576 38.027C57.3207 36.3727 57.6835 34.5636 58.8105 33.243C60.3971 31.3759 60.3971 28.6284 58.8057 26.7612ZM30.0005 54.5413C16.4468 54.5413 5.46161 43.556 5.46161 30.0021C5.46161 16.4483 16.4468 5.46301 30.0005 5.46301C43.5542 5.46301 54.5393 16.4483 54.5393 30.0021C54.5393 43.556 43.5542 54.5413 30.0005 54.5413Z" );
             pathElement.setAttribute("fill", background_color);
 
 
@@ -838,7 +853,7 @@ get_header(); ?>
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
          
     });
-</script> -->
+</script>
 
 <?php if (have_rows('faq_list')) : ?>
 <script type="application/ld+json">
