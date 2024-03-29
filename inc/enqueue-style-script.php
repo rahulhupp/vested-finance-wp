@@ -78,6 +78,9 @@
             wp_enqueue_style('solar-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-solar.css', false, '', '');
             wp_enqueue_script('solar-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-solar.js');
         }
+        if (is_page_template('templates/page-calculator-sip-lumpsum.php')) {
+            wp_enqueue_style('sip-lumpsum-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-sip-lumpsum-calculator.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
