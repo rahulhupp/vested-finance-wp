@@ -189,7 +189,7 @@ get_header(); ?>
                         What are SGBs bonds?
                     </a>
                     </div>
-                       <h2 class="alert_danger">There are no corporate bonds</h2>
+                       <h2 class="alert_danger">There are no SGBs bonds available.</h2>
                     </div>
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
