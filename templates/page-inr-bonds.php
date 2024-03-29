@@ -169,25 +169,36 @@ get_header(); ?>
                             <li><a href="javascript:void(0)" class="tab-a" data-id="tabgovt">Gsecs</a></li>
                         </ul>
                     </div>
-                    <div class="sub_title">
+                    <!--end of tab-menu-->
+                    <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
+                        <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
+                        
+                        <div class="bond_slider_wrap" id="corporateBondSlider">
+                        <div class="sub_title">
                         <a href="#">
                         What are corporate bonds?
                     </a>
                     </div>
-                    <!--end of tab-menu-->
-                    <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
-                        <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
-                        <div class="bond_slider_wrap" id="corporateBondSlider">
                             <!-- Placeholder for corporate bond data -->
                         </div>
                     </div>
 
                     <div class="tab" data-id="tabsgbs" id="tabsgbs">
+                    <div class="sub_title">
+                        <a href="#" class="p-lg">
+                        What are SGBs bonds?
+                    </a>
+                    </div>
                        <h2 class="alert_danger">There are no corporate bonds</h2>
                     </div>
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
                         <!-- <a href="#" class="btn_link">What are gsecs?</a> -->
+                        <div class="sub_title">
+                        <a href="#" class="p-lg">
+                        What are Gsecs bonds?
+                    </a>
+                    </div>
                         <div class="bond_slider_wrap" id="govtBondSlider">
                             <!-- Placeholder for government bond data -->
                         </div>
