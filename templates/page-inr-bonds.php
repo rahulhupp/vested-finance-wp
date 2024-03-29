@@ -183,7 +183,7 @@ get_header(); ?>
                     </div>
 
                     <div class="tab" data-id="tabsgbs" id="tabsgbs">
-                       <h2>Hello</h2>
+                       <h2 class="alert_danger">There are no corporate bonds</h2>
                     </div>
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
@@ -636,9 +636,6 @@ get_header(); ?>
                     var color = "linear-gradient(90deg, rgba(0, 40, 52, 1) 0%, rgba(229, 231, 235, 1) 0%)";
                     slider.style.background = color;
 
-
-
-
                 })
                 .catch(error => {
                     // Handle any errors that occurred during the fetch request
@@ -809,25 +806,25 @@ get_header(); ?>
 
                         bondContainer.appendChild(bondPortfolioSlider);
 
-                        jQuery(`#${containerId} .bond_portfolio_slider`).slick({
-                            infinite: false,
-                            arrows: true,
-                            dots: false,
-                            autoplay: false,
-                            speed: 800,
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                            centerMode: false,
-                            nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-                            prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-                            responsive: [{
-                                breakpoint: 768,
-                                settings: {
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1,
-                                },
-                            }],
-                        });
+                        // jQuery(`#${containerId} .bond_portfolio_slider`).slick({
+                        //     infinite: false,
+                        //     arrows: true,
+                        //     dots: false,
+                        //     autoplay: false,
+                        //     speed: 800,
+                        //     slidesToShow: 2,
+                        //     slidesToScroll: 1,
+                        //     centerMode: false,
+                        //     nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+                        //     prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+                        //     responsive: [{
+                        //         breakpoint: 768,
+                        //         settings: {
+                        //             slidesToShow: 1,
+                        //             slidesToScroll: 1,
+                        //         },
+                        //     }],
+                        // });
 
                         const singleSlides = bondContainer.querySelectorAll('.single_portfolio_slide');
                         if (singleSlides.length < 3) {
