@@ -52,12 +52,15 @@ if ($getfirstpath[1] == 'us-stocks') {
         $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
     }
     $stocks_symbol = substr($requested_url, $start_pos_symbol);
+    error_log('0 $stocks_symbol: ' . $stocks_symbol);
     $end_pos_symbol = strpos($stocks_symbol, '/');
     if ($end_pos_symbol !== false) {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
-    $stocks_symbol = trim($stocks_symbol);
-    
+    error_log('1 $stocks_symbol: ' . $stocks_symbol);
+    $stocks_symbol = strtolower(trim($stocks_symbol));
+    error_log('2 $stocks_symbol: ' . $stocks_symbol);
+    error_log('$redirect_mappings ' . $redirect_mappings[$stocks_symbol]['name']);
     if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
         if ($getfirstpath[2] == 'etf') {
@@ -75,6 +78,7 @@ if ($getfirstpath[1] == 'us-stocks') {
         wp_redirect($not_found_url, 301);
         exit();
     }
+    error_log('============================================================================================');
 } else {
     error_log('Not us-stocks');
 }
@@ -99,7 +103,7 @@ function custom_redirect() {
             $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
             $stocks_symbol = strtolower($stocks_symbol_draft);
         }
-        $stocks_symbol = trim($stocks_symbol);
+        $stocks_symbol = strtolower(trim($stocks_symbol));
         
         if (array_key_exists($stocks_symbol, $redirect_mappings)) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
@@ -126,7 +130,7 @@ function get_data_from_stocks_list() {
     $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
     $redirect_mappings = array();
     foreach ($results as $row) {
-        $symbol = strtolower($row['symbol']);
+        $symbol = strtolower(trim($row['symbol']));
         $name = strtolower($row['name']);
         $name = str_replace([' ', ','], '-', $name);
         $name = preg_replace('/[^a-zA-Z0-9\-]/', '', $name);
@@ -185,7 +189,6 @@ function custom_wpseo_opengraph_image($image) {
 // add_filter('wpseo_opengraph_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 
-
 function prefix_filter_canonical_example( $canonical ) {
     $stock_url_value = get_query_var('custom_stock_url_value');
     if ($stock_url_value) {
@@ -210,6 +213,7 @@ function add_extra_og() {
         $description = $stock_description_value;
         echo '<meta property="og:description" content="'. $description .'" />';
     }
+    
 }
 
 function custom_wpseo_twitter_card_type($card_type) {
