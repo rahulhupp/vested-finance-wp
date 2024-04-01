@@ -52,23 +52,19 @@ if ($getfirstpath[1] == 'us-stocks') {
         $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
     }
     $stocks_symbol = substr($requested_url, $start_pos_symbol);
-    error_log('0 $stocks_symbol: ' . $stocks_symbol);
     $end_pos_symbol = strpos($stocks_symbol, '/');
     if ($end_pos_symbol !== false) {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
-    error_log('1 $stocks_symbol: ' . $stocks_symbol);
     $stocks_symbol = strtolower(trim($stocks_symbol));
-    error_log('2 $stocks_symbol: ' . $stocks_symbol);
-    error_log('$redirect_mappings ' . $redirect_mappings[$stocks_symbol]['name']);
     if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
         if ($getfirstpath[2] == 'etf') {
-            if ($getfirstpath[4] !== $redirect_slug ) {
+            if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
             }
         } else {
-            if ($getfirstpath[3] !== $redirect_slug ) {
+            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2]) ) {
                 custom_redirect();
             }
         }
@@ -78,7 +74,6 @@ if ($getfirstpath[1] == 'us-stocks') {
         wp_redirect($not_found_url, 301);
         exit();
     }
-    error_log('============================================================================================');
 } else {
     error_log('Not us-stocks');
 }
@@ -107,7 +102,6 @@ function custom_redirect() {
         
         if (array_key_exists($stocks_symbol, $redirect_mappings)) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
-
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
             } else {
