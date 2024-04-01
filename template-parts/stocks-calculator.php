@@ -522,12 +522,17 @@
         transition: all 0.5s ease;
     }
 
+    .calculator .submit_btn button span {
+        pointer-events: none;
+    }
+
 
     .calculator .submit_btn button svg {
         width: 0;
         height: 0;
         margin-right: 0;
         transition: all 0.5s ease;
+        pointer-events: none;
     }
 
     .calculator .submit_btn button svg.show_loader {
