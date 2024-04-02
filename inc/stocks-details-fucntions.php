@@ -46,7 +46,7 @@ $getfirstpath = explode("/", $path);
 $requestUri = $_SERVER['REQUEST_URI'];
     // Check if the URL contains uppercase characters
     if (preg_match('/[A-Z]/', $requestUri)) {
-    // Redirect to the lowercase URL
+    echo "Redirect to the lowercase URL";
     $lowercaseUri = strtolower($requestUri);
     header('Location: ' . $lowercaseUri, true, 301);
     exit();
