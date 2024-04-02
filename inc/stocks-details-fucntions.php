@@ -43,6 +43,15 @@ $home_url = parse_url(home_url(), PHP_URL_PATH);
 $path = substr($requested_url, strlen($home_url));
 $getfirstpath = explode("/", $path);
 
+$requestUri = $_SERVER['REQUEST_URI'];
+    // Check if the URL contains uppercase characters
+    if (preg_match('/[A-Z]/', $requestUri)) {
+    // Redirect to the lowercase URL
+    $lowercaseUri = strtolower($requestUri);
+    header('Location: ' . $lowercaseUri, true, 301);
+    exit();
+ }
+
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
 
