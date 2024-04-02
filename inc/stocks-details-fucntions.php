@@ -59,10 +59,6 @@ if ($getfirstpath[1] == 'us-stocks') {
     $stocks_symbol = strtolower(trim($stocks_symbol));
     if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
-        echo "<pre>";
-        print_r($getfirstpath);
-        echo "</pre>";
-        exit;
         if ($getfirstpath[2] == 'etf') {
             if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
@@ -104,7 +100,7 @@ function custom_redirect() {
         }
         $stocks_symbol = strtolower(trim($stocks_symbol));
         
-        if (array_key_exists($stocks_symbol, $redirect_mappings)) {
+        if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[3])) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
