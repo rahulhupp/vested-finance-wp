@@ -60,8 +60,9 @@ if ($getfirstpath[1] == 'us-stocks') {
     if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
         echo "<pre>";
-        echo $getfirstpath[3];
+        print_r($getfirstpath);
         echo "</pre>";
+        exit;
         if ($getfirstpath[2] == 'etf') {
             if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
