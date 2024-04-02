@@ -747,7 +747,7 @@ get_header(); ?>
             slideCion.className = 'slide_cion';
 
             const img = document.createElement('img');
-            img.src = 'https://d13dxy5z8now6z.cloudfront.net/symbol/NESN.png';
+            img.src = bondData.logo;
             img.className = 'bond_image';
             slideCion.appendChild(img);
             slideIconWrap.appendChild(slideCion);
@@ -952,10 +952,7 @@ get_header(); ?>
 
     function bondImages() {
         var bondImages = document.getElementsByClassName("bond_image");
-        console.log('bondImages', bondImages);
-        console.log('bondImages.length', bondImages.length);
         if (bondImages.length > 0) {
-                console.log('2 bondImages.length', bondImages.length);
             for (var i = 0; i < bondImages.length; i++) {
                 bondImages[i].onerror = function() {
                     // If the image fails to load (i.e., returns 404), replace it with a default image
