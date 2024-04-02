@@ -43,6 +43,15 @@ $home_url = parse_url(home_url(), PHP_URL_PATH);
 $path = substr($requested_url, strlen($home_url));
 $getfirstpath = explode("/", $path);
 
+$requestUri = $_SERVER['REQUEST_URI'];
+    // Check if the URL contains uppercase characters
+    if (preg_match('/[A-Z]/', $requestUri)) {
+    echo "Redirect to the lowercase URL";
+    $lowercaseUri = strtolower($requestUri);
+    header('Location: ' . $lowercaseUri, true, 301);
+    exit();
+ }
+
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
 
@@ -56,16 +65,15 @@ if ($getfirstpath[1] == 'us-stocks') {
     if ($end_pos_symbol !== false) {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
-    $stocks_symbol = trim($stocks_symbol);
-    
+    $stocks_symbol = strtolower(trim($stocks_symbol));
     if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
         if ($getfirstpath[2] == 'etf') {
-            if ($getfirstpath[4] !== $redirect_slug ) {
+            if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
             }
         } else {
-            if ($getfirstpath[3] !== $redirect_slug ) {
+            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2]) ) {
                 custom_redirect();
             }
         }
@@ -99,11 +107,10 @@ function custom_redirect() {
             $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
             $stocks_symbol = strtolower($stocks_symbol_draft);
         }
-        $stocks_symbol = trim($stocks_symbol);
+        $stocks_symbol = strtolower(trim($stocks_symbol));
         
-        if (array_key_exists($stocks_symbol, $redirect_mappings)) {
+        if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[3])) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
-
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
             } else {
@@ -126,7 +133,7 @@ function get_data_from_stocks_list() {
     $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
     $redirect_mappings = array();
     foreach ($results as $row) {
-        $symbol = strtolower($row['symbol']);
+        $symbol = strtolower(trim($row['symbol']));
         $name = strtolower($row['name']);
         $name = str_replace([' ', ','], '-', $name);
         $name = preg_replace('/[^a-zA-Z0-9\-]/', '', $name);
@@ -185,7 +192,6 @@ function custom_wpseo_opengraph_image($image) {
 // add_filter('wpseo_opengraph_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 
-
 function prefix_filter_canonical_example( $canonical ) {
     $stock_url_value = get_query_var('custom_stock_url_value');
     if ($stock_url_value) {
@@ -210,6 +216,7 @@ function add_extra_og() {
         $description = $stock_description_value;
         echo '<meta property="og:description" content="'. $description .'" />';
     }
+    
 }
 
 function custom_wpseo_twitter_card_type($card_type) {

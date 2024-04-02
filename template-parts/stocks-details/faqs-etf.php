@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="faq_answer">
-                            <p><?php echo $name; ?> (<?php echo $ticker; ?>) share price today is $<?php echo $price; ?></p>
+                            <p><?php echo $name; ?> (<?php echo $ticker; ?>) share price today is $<?php echo $price; ?>.</p>
                         </div>
                     </div>
                     <div class="faq_item">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $ticker; ?> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> ETF at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
+                        <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $ticker; ?> from India, you can open a US Brokerage account by signing up on Vested. The account opening process is completely digital and secure, and takes 3-5 minutes to complete.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Can Fractional shares of <?php echo $name; ?> be purchased?</div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via the Vested app. You can start investing in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1.</p>
+                        <p>Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. You can start investing in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How to invest in <?php echo $name; ?> shares from India?</div>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?></p>
+                        <p>The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?>.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Can I set up automatic investments (SIP) in <?php echo $name; ?> shares?</div>
@@ -103,10 +103,15 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, you can setup SIP in <?php echo $name; ?> shares via Vested. You can access your SIPs (recurring investments) under the Profile menu on the Vested app, or create a new SIP by searching for <?php echo $ticker; ?> on the Vested app.</p>
+                        <p>Yes, you can setup SIP in <?php echo $name; ?> shares. Follow the below steps to create the SIP:</p>
+                        <ul>
+                            <li>Sign up on Vested and complete your KYC for US Stocks</li>
+                            <li>Transfer funds to your US Stocks account</li>
+                            <li>Navigate to <?php echo $ticker; ?> tickr page and set up your recurring investment</li>
+                        </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can I track the historical performance of <?php echo $name; ?> ETF?</div>
+                        <div class="faq_question">What is the historical performance of <?php echo $name; ?> ETF?</div>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,7 +119,13 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, you can track the historical performance of <?php echo $ticker; ?> on the Vested app. You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on the Vested app.</p>
+                        <p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
+                        <ul>
+                            <li>1 Year Return - {X%}</li>
+                            <li>3 Year Return</li>
+                            <li>5 Year</li>
+                            <li>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</li>
+                        </ul>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is the expense ratio of <?php echo $name; ?>?</div>
@@ -125,7 +136,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The expense ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $expenseRatio; ?></p>
+                        <p>The expense ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $expenseRatio; ?>.</p>
                     </div>
                 </div>
             </div>
@@ -160,7 +171,7 @@
                     "name": "What is <?php echo $name; ?> (<?php echo $ticker; ?>) ETF share price today?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "<?php echo $name; ?> (<?php echo $ticker; ?>) share price today is $<?php echo $price; ?>"
+                        "text": "<?php echo $name; ?> (<?php echo $ticker; ?>) share price today is $<?php echo $price; ?>."
                     }
                 },
                 {
@@ -168,7 +179,7 @@
                     "name": "Can Indians buy <?php echo $name; ?> shares?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $ticker; ?> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> ETF at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete."
+                        "text": "Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $ticker; ?> from India, you can open a US Brokerage account by signing up on Vested. The account opening process is completely digital and secure, and takes 3-5 minutes to complete."
                     }
                 },
                 {
@@ -176,7 +187,7 @@
                     "name": "Can Fractional shares of <?php echo $name; ?> be purchased?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) via the Vested app. You can start investing in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1."
+                        "text": "Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. You can start investing in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1."
                     }
                 },
                 {
@@ -200,7 +211,7 @@
                     "name": "What is <?php echo $name; ?>'s ticker or symbol?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?>"
+                        "text": "The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?>."
                     }
                 },
                 {
@@ -208,15 +219,26 @@
                     "name": "Can I set up automatic investments (SIP) in <?php echo $name; ?> shares?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes, you can setup SIP in <?php echo $name; ?> shares via Vested. You can access your SIPs (recurring investments) under the Profile menu on the Vested app, or create a new SIP by searching for <?php echo $ticker; ?> on the Vested app."
+                        "text": "<p>Yes, you can setup SIP in <?php echo $name; ?> shares. Follow the below steps to create the SIP:</p>
+                        <ul>
+                            <li>Sign up on Vested and complete your KYC for US Stocks</li>
+                            <li>Transfer funds to your US Stocks account</li>
+                            <li>Navigate to <?php echo $ticker; ?> tickr page and set up your recurring investment</li>
+                        </ul>"
                     }
                 },
                 {
                     "@type": "Question",
-                    "name": "Can I track the historical performance of <?php echo $name; ?> ETF?",
+                    "name": "What is the historical performance of <?php echo $name; ?> ETF?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes, you can track the historical performance of <?php echo $ticker; ?> on the Vested app. You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on the Vested app."
+                        "text": "<p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
+                        <ul>
+                            <li>1 Year Return - {X%}</li>
+                            <li>3 Year Return</li>
+                            <li>5 Year</li>
+                            <li>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</li>
+                        </ul>"
                     }
                 },
                 {
@@ -224,7 +246,7 @@
                     "name": "What is the expense ratio of <?php echo $name; ?>?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "The expense ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $expenseRatio; ?>"
+                        "text": "The expense ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $expenseRatio; ?>."
                     }
                 }
             ]
