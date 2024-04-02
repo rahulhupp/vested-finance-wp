@@ -423,10 +423,11 @@ h2.alert_danger{
 .slide_cion img{
   max-height: 46.32px;
   width: 100%;
-  object-fit: cover;
   border: 1px solid #ccc;
   border-radius: 4px;
   height: 100%;
+  object-fit: contain;
+  overflow: hidden;
 }
 .slide_certi {
   border-radius: 0 0 0 6px;

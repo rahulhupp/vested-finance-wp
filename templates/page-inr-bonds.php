@@ -946,7 +946,6 @@ get_header(); ?>
 
         fetchDataAndDisplay(corporateApiUrl, corporateContainerId);
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
-
     });
 
 
