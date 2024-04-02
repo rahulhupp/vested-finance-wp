@@ -63,11 +63,11 @@ if ($getfirstpath[1] == 'us-stocks') {
         echo $getfirstpath[3];
         echo "</pre>";
         if ($getfirstpath[2] == 'etf') {
-            if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/i', $getfirstpath[3])) {
+            if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
             }
         } else {
-            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/i', $getfirstpath[2]) ) {
+            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2]) ) {
                 custom_redirect();
             }
         }
