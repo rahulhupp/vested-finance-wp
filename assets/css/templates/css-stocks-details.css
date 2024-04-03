@@ -5437,8 +5437,8 @@ footer .extra_info ul li sup {
 }
 
 .primary_button:hover {
-	background-color: #fff;
-	color: #002852;
+	background-color: #002852;
+	color: #FFFFFF;
 }
 
 .secondary_button {
@@ -5465,12 +5465,9 @@ footer .extra_info ul li sup {
 }
 
 .secondary_button:hover {
-	background-color: #002852;
-	color: #fff;
-}
-
-.secondary_button:hover svg path {
-	stroke: #fff;
+	background: linear-gradient(0deg, rgba(0, 40, 82, 0.04) 0%, rgba(0, 40, 82, 0.04) 100%), #FFF;
+	color: rgba(0, 40, 82, 0.80);
+	border: 1px solid var(--Stroke-Button, #CCD4DC);
 }
 
 

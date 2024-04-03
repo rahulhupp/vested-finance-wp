@@ -1,5 +1,6 @@
 <?php
     $overview_data = $args['overview_data'];
+    $returns_data = $args['returns_data'];
     if ($overview_data) {
         $name = $overview_data->name;
         $ticker = $overview_data->ticker;
@@ -107,7 +108,7 @@
                         <ul>
                             <li>Sign up on Vested and complete your KYC for US Stocks</li>
                             <li>Transfer funds to your US Stocks account</li>
-                            <li>Navigate to <?php echo $ticker; ?> tickr page and set up your recurring investment</li>
+                            <li>Navigate to <?php echo $ticker; ?> ticker page and set up your recurring investment</li>
                         </ul>
                     </div>
                     <div class="faq_item">
@@ -120,12 +121,14 @@
                     </div>
                     <div class="faq_answer">
                         <p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
-                        <ul>
-                            <li>1 Year Return - {X%}</li>
-                            <li>3 Year Return</li>
-                            <li>5 Year</li>
-                            <li>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</li>
-                        </ul>
+                        <?php if ($returns_data) : ?>
+                            <ul>
+                                <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
+                                <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
+                            </ul>
+                        <?php endif ?>
+                        <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is the expense ratio of <?php echo $name; ?>?</div>
@@ -223,7 +226,7 @@
                         <ul>
                             <li>Sign up on Vested and complete your KYC for US Stocks</li>
                             <li>Transfer funds to your US Stocks account</li>
-                            <li>Navigate to <?php echo $ticker; ?> tickr page and set up your recurring investment</li>
+                            <li>Navigate to <?php echo $ticker; ?> ticker page and set up your recurring investment</li>
                         </ul>"
                     }
                 },
@@ -233,12 +236,14 @@
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "<p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
-                        <ul>
-                            <li>1 Year Return - {X%}</li>
-                            <li>3 Year Return</li>
-                            <li>5 Year</li>
-                            <li>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</li>
-                        </ul>"
+                        <?php if ($returns_data) : ?>
+                            <ul>
+                                <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
+                                <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
+                            </ul>
+                        <?php endif ?>
+                        <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>"
                     }
                 },
                 {
