@@ -1,9 +1,11 @@
 <?php
     $overview_data = $args['overview_data'];
+    $get_path = $args['get_path'];
     if ($overview_data) {
         $summary = $overview_data->summary;
         $summaryMapping = preprocessSummary($summary);
         $marketCapValue = getValueByLabel($summaryMapping, "Market Cap");
+        $expenseRatioValue = getValueByLabel($summaryMapping, "Expense Ratio");
         $peRatio = getValueByLabel($summaryMapping, "P/E Ratio");
         $volumeValue = getValueByLabel($summaryMapping, "Volume");
         $avgVolumeValue = getValueByLabel($summaryMapping, "Avg Volume");
@@ -113,22 +115,40 @@
             <div class="stock_metrics_wrapper">
                 <div class="stock_metrics_keyvalue">
                     <div class="stock_summary">
-                        <div class="stock_summary_item">
-                            <span>
-                                Market Cap
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is a company’s total value as determined by the stock market. It is calculated by multiplying the total number of a company's outstanding shares by the current market price of one share.</div>
-                            </span>
-                            <strong><?php echo $marketCapValue ? $marketCapValue : "$0"; ?></strong>
-                        </div>
-                        <div class="stock_summary_item">
-                            <span>
-                                P/E Ratio
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is the ratio of a security’s current share price to its earnings per share. This ratio determines the relative value of a company’s share.</div>
-                            </span>
-                            <strong><?php echo $peRatio ? $peRatio : "0"; ?></strong>
-                        </div>
+                        
+                        <?php
+                            if ($get_path[2] == 'etf') {
+                                ?>
+                                    <div class="stock_summary_item">
+                                        <span>
+                                            Expense Ratio
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                            <div class="info_text">The expense ratio is how much you pay a mutual fund or ETF per year, expressed as a percent of your investments. It is a measure of the fund's operating costs relative to assets.</div>
+                                        </span>
+                                        <strong><?php echo $expenseRatioValue ? $expenseRatioValue : "0"; ?></strong>
+                                    </div>
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="stock_summary_item">
+                                        <span>
+                                            Market Cap
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                            <div class="info_text">This is a company’s total value as determined by the stock market. It is calculated by multiplying the total number of a company's outstanding shares by the current market price of one share.</div>
+                                        </span>
+                                        <strong><?php echo $marketCapValue ? $marketCapValue : "$0"; ?></strong>
+                                    </div>
+                                    <div class="stock_summary_item">
+                                        <span>
+                                            P/E Ratio
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                            <div class="info_text">This is the ratio of a security’s current share price to its earnings per share. This ratio determines the relative value of a company’s share.</div>
+                                        </span>
+                                        <strong><?php echo $peRatio ? $peRatio : "0"; ?></strong>
+                                    </div>
+                                <?php
+                            }
+                        ?>
                         <div class="stock_summary_item">
                             <span>
                                 Volume
@@ -192,7 +212,10 @@
             <h2 class="heading"><?php echo $aboutTitle; ?></h2>
             <div class="separator_line"></div>
             <div class="stock_about_wrapper">
-                <p id="stock_about_description" class="stock_about_description"><?php echo $limitedDescription; ?>...<span onclick="showMore('<?php echo $overview_data->description; ?>')">more</span></p>
+                <p class="stock_about_description">
+                    <span id="stock_about_description"><?php echo $overview_data->description; ?></span>
+                    <span id="show_more">more</span>
+                </p>
             </div>
             <div class="stock_tags"><?php echo $aboutTagsHTML; ?></div>
         </div>
@@ -203,8 +226,3 @@
     echo "Error retrieving data"; // Handle error
 }
 ?>
-<script>
-    function showMore(description) {
-        document.getElementById('stock_about_description').innerHTML = description;
-    }
-</script>

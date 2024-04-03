@@ -6,7 +6,7 @@
     }
 ?>
 
-<script defer>
+<script>
     function callRatiosCompareApi(ticker) {
         const ratiosApiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/<?php echo $symbol; ?>/key-ratios?compare=${ticker}`;
         headers = {
@@ -26,6 +26,8 @@
     function bindRatiosData(data) {
         console.log('data', data);
         const ratiosData = data.data.ratios;
+        const priceBookMRQValue = ratiosData.find(section => section.section === 'Valuation').data.current.value['priceBookMRQ'].value;
+        setTextContent('faq_stock_pb_ratio', priceBookMRQValue);
         const ratiosContentDiv = document.getElementById('ratios_content');
         document.querySelectorAll(".ratios_section").forEach(e => e.remove());
 

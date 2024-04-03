@@ -119,7 +119,6 @@
                 var days = convertHeadingToDays(heading);
 
                 var stockValue = returnTableData.current.value[timeFrameKey].value;
-                var sectorValue = returnTableData.sector.value[timeFrameKey].value;
                 var sp500Value = returnTableData.sp500.value[timeFrameKey].value;
 
                 if (returnTableData.reference) {
@@ -135,13 +134,6 @@
                     // (((1 + (1089 / 100)) ^ (1/10)) - 1) * 100
                 }
                 
-
-                let sectorNumericValue = parseFloat(sectorValue.replace("%", ""));
-                if (isNaN(sectorNumericValue)) {
-                    var sectorPercentChange = stockValue;
-                } else {
-                    var sectorPercentChange = `${((((1 + (sectorNumericValue / 100)) ** (365/days)) - 1) * 100).toFixed(2)}%`;
-                }
 
                 let spNumericValue = parseFloat(sp500Value.replace("%", ""));
                 if (isNaN(spNumericValue)) {
@@ -161,9 +153,9 @@
 
                 var row = document.createElement('tr');
                 if (returnTableData.reference) {
-                    row.innerHTML = `<td>${heading}</td><td>${stockPercentChange}</td><td>${sectorPercentChange}</td><td>${spPercentChange}</td><td>${referencePercentChange}</td>`;
+                    row.innerHTML = `<td>${heading}</td><td>${stockPercentChange}</td><td>${spPercentChange}</td><td>${referencePercentChange}</td>`;
                 } else {
-                    row.innerHTML = `<td>${heading}</td><td>${stockPercentChange}</td><td>${sectorPercentChange}</td><td>${spPercentChange}</td>`;
+                    row.innerHTML = `<td>${heading}</td><td>${stockPercentChange}</td><td>${spPercentChange}</td>`;
                 }
                 
                 tbody.appendChild(row);

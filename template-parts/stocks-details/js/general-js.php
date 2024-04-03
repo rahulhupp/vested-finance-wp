@@ -15,6 +15,7 @@
         });
     });
     
+
     const faqItems = document.querySelectorAll('.faq_item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq_question');
@@ -44,9 +45,10 @@
 
     function copyLink() {
         var inputElement = document.createElement("input");
-        inputElement.value = "<?php echo esc_url(get_stylesheet_directory_uri()) ?>/assets/images/share-icon.svg";
+        inputElement.value = window.location.href;
         document.body.appendChild(inputElement);
         inputElement.select();
+        document.execCommand("copy"); // This command copies the selected text
         document.body.removeChild(inputElement);
 
         for (var i = 0; i < 5; i++) {
@@ -61,6 +63,7 @@
             copyMessage.classList.remove('active');
         }, 2000);
     }
+
 
     document.addEventListener("DOMContentLoaded", function () {
         var symbol = "<?php echo $symbol; ?>";
@@ -197,133 +200,34 @@
         }
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+        var content = document.getElementById("stock_about_description");
+        var showMoreBtn = document.getElementById("show_more");
+        var originalText = content.textContent;
 
-
-    // News JS Start
-
-    var visibleCount = 3;
-    var increment = 3;
-    var items = document.querySelectorAll('.news_list .news_item');
-    var loadMoreBtn = document.getElementById('load_more_btn');
-
-    function loadMore() {
-        for (var i = visibleCount; i < visibleCount + increment && i < items.length; i++) {
-            items[i].style.display = 'flex';
+        if (originalText.length > 255) {
+            content.textContent = originalText.slice(0, 255) + " ...";
+            showMoreBtn.style.display = "inline-block";
         }
-        visibleCount += increment;
-        if (visibleCount >= items.length) {
-            loadMoreBtn.style.display = 'none';
-        }
-    }
 
-    loadMoreBtn.addEventListener('click', loadMore);
-
-    // News JS End
-
-    // Financial JS Start
-
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            let start = performance.now();
-            addFinancialChart();
-            let timeTaken = performance.now() - start;
-            console.log("Total time taken : " + timeTaken + " milliseconds");
-        }, 2000); 
+        showMoreBtn.addEventListener("click", function () {
+            content.textContent = originalText;
+            showMoreBtn.style.display = "none";
+        });
     });
 
-    function addFinancialChart() {
-        document.querySelectorAll('.trend_chart').forEach(function(cell) {
-            var trendData = JSON.parse(cell.textContent);
-            if (trendData.length > 0) {
-                cell.textContent = '';
-                var chartContainer = document.createElement('div');
-                cell.appendChild(chartContainer);
-                var canvas = document.createElement('canvas');
-                canvas.width = 400;
-                canvas.height = 400;
-                chartContainer.appendChild(canvas);
-                var dates = [];
-                var values = [];
-                trendData.forEach(function(trend) {
-                    dates.push(trend.date);
-                    values.push(trend.value);
-                });
-                // Create a chart
-                var ctx = canvas.getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: dates,
-                        datasets: [{
-                            label: 'Values',
-                            data: values,
-                            borderWidth: 1,
-                            backgroundColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
-                            borderColor: values.map(item => item < 0 ? "#b92406" : "#008a5a"),
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            x: {
-                                display: false, // Hide x-axis labels
-                            },
-                            y: {
-                                display: false, // Hide y-axis labels
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: false // Hide legends
-                            },
-                            tooltip: {
-                                enabled: false // Hide tooltips
-                            }
-                        }
-                    },
-                });
+    document.addEventListener("DOMContentLoaded", function() {
+        var images = document.getElementsByClassName("holdings_image");
+
+        // Check if there are images with the class "image"
+        if (images.length > 0) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].onerror = function() {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "https://vestedfinance.com/wp-content/uploads/2024/03/holdings-defult.svg";
+                };
             }
-        });
-    }
-
-
-    const valueTypeSelect = document.getElementById("value_type_select");
-    const dataTypeSelect = document.getElementById("data_type_select");
-
-    valueTypeSelect.addEventListener("change", handleSelectChange);
-    dataTypeSelect.addEventListener("change", handleSelectChange);
-
-    // Ensure that annual_absolute is shown by default for each data_display
-    const initialDisplays = document.querySelectorAll(".data_display");
-    initialDisplays.forEach(display => {
-        const defaultDisplay = display.querySelector(".annual_absolute");
-        defaultDisplay.classList.remove("hidden");
+        }
     });
-
-    function handleSelectChange() {
-        const valueType = valueTypeSelect.value;
-        const dataType = dataTypeSelect.value;
-
-        // Hide all divs first
-        hideAllDivs();
-
-        // Determine which divs to show based on selected values for each data_display
-        const dataDisplays = document.querySelectorAll(".data_display");
-        dataDisplays.forEach(display => {
-            const divToShow = display.querySelector(`.${dataType}_${valueType}`);
-            if (divToShow) {
-                divToShow.classList.remove("hidden");
-            }
-        });
-    }
-
-    function hideAllDivs() {
-        const allDisplays = document.querySelectorAll(".data_display .stock_details_table");
-        allDisplays.forEach(display => {
-            display.classList.add("hidden");
-        });
-    }
-    
-    // Financial JS End
 
 </script>

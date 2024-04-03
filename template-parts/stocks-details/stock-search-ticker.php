@@ -116,7 +116,7 @@
 <div class="ticker_select_box_new">
     <div class="ticker_selected_option" data-value="" id="tickerResultsLists">
         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" />
-        <input type="text" class="ticker_dropdown_search" oninput="tickerInputChangeCalc()" placeholder="Search for any stock" value="">
+        <input type="text" class="ticker_dropdown_search" oninput="tickerInputChangeCalc()" placeholder="Search any stock or ETF" value="">
     </div>
     <div class="options_dropdown_wrap">
         <div id="ticker_loader" style="display: none;">
@@ -202,7 +202,7 @@
         });
 
         console.log('filteredStocks', filteredStocks);
-        renderItemsCalc(filteredStocks);
+        tickerRenderItemsCalc(filteredStocks);
     }
 
     function tickerShowLoader() {

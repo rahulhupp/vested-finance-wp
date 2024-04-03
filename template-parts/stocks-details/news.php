@@ -1,4 +1,5 @@
 <?php $news_data = $args['news_data']; ?>
+
 <?php if ($news_data) { ?>
     <div id="news_tab" class="tab_content">
         <div class="stock_details_box">

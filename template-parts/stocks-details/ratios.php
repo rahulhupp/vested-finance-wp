@@ -1,4 +1,5 @@
 <?php $ratios_data = $args['ratios_data']; ?>
+
 <?php if ($ratios_data) { ?>
     <div id="ratios_tab" class="tab_content">
         <div class="stock_details_box">
@@ -55,4 +56,4 @@
             </div>
         </div>
     </div>
-<?php } ?>
+<?php }?>
