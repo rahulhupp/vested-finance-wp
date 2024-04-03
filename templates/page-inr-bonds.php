@@ -277,8 +277,7 @@ get_header(); ?>
                     </div>
 
                     <div class="bond_result_col blur">
-
-                        <div class="bond_result_wrap">
+                         <div class="bond_result_wrap">
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Investment amount</p>
@@ -672,10 +671,10 @@ get_header(); ?>
                     document.getElementById('units').value = minimumQuantity;
                     document.getElementById('unit_range').value = minimumQuantity;
                     document.getElementById('yield_price').textContent = Math.round(yieldPrice);
-                    document.getElementById('bank_fixed_deposit').textContent = Math.round(bankFixedDeposit);
-                    document.getElementById('selected_bond').textContent = Math.round(selectedBonds);
+                    document.getElementById('bank_fixed_deposit').textContent = Math.round(bankFixedDeposit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    document.getElementById('selected_bond').textContent = Math.round(selectedBonds).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     document.getElementById('yield_returns').textContent = Math.round(yieldPrice);
-                    document.getElementById('investment_amount').textContent = Math.round(investmentAmount);
+                    document.getElementById('investment_amount').textContent = Math.round(investmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     document.getElementById('result_note_investment_amount').textContent = Math.round(investmentAmount);
                     document.getElementById('extra_amount').textContent = Math.round(extraAmount);
                     document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
@@ -736,6 +735,7 @@ get_header(); ?>
         }
 
         function createBondElements(bondData) {
+            console.log(bondData);
             const bondDiv = document.createElement('div');
             bondDiv.className = 'single_portfolio_slide';
 
@@ -747,7 +747,11 @@ get_header(); ?>
             slideCion.className = 'slide_cion';
 
             const img = document.createElement('img');
-            img.src = bondData.logo;
+            if (bondData.bondCategory === 'GOVT') {
+                img.src = "http://localhost/vested-testing/wp-content/uploads/2024/04/Government-Bonds.png";
+            } else {
+                img.src = bondData.logo;
+            }
             img.className = 'bond_image';
             slideCion.appendChild(img);
             slideIconWrap.appendChild(slideCion);
@@ -830,7 +834,6 @@ get_header(); ?>
                 slideInvestmentInfo.appendChild(singleSlideInfo);
             }
 
-           
             createInvestmentInfo('Min investment', `₹ ${bondData.minimumInvestment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`);
             createInvestmentInfo('Yield', `${bondData.yield.toFixed(2)} %`);
             function monthsToYearsAndMonth(months) {
@@ -935,15 +938,12 @@ get_header(); ?>
                         noDataMessage.className = 'no-data-message';
                         noDataMessage.textContent = 'No bonds available.';
                         bondContainer.appendChild(noDataMessage);
-
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
         }
-
-
         fetchDataAndDisplay(corporateApiUrl, corporateContainerId);
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
     });
@@ -960,6 +960,8 @@ get_header(); ?>
             }
         }
     }
+
+
 </script>
 <?php if (have_rows('faq_list')): ?>
     <script type="application/ld+json">
