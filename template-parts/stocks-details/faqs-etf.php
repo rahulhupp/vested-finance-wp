@@ -123,9 +123,15 @@
                         <p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
                         <?php if ($returns_data) : ?>
                             <ul>
-                                <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <?php if ($returns_data['current']['value']['1y']) : ?>
+                                    <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <?php endif ?>
+                                <?php if ($returns_data['current']['value']['3y']) : ?>
                                 <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
+                                <?php endif ?>
+                                <?php if ($returns_data['current']['value']['5y']) : ?>
                                 <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
+                                <?php endif ?>
                             </ul>
                         <?php endif ?>
                         <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>
@@ -238,9 +244,15 @@
                         "text": "<p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
                         <?php if ($returns_data) : ?>
                             <ul>
-                                <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <?php if ($returns_data['current']['value']['1y']) : ?>
+                                    <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
+                                <?php endif ?>
+                                <?php if ($returns_data['current']['value']['3y']) : ?>
                                 <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
+                                <?php endif ?>
+                                <?php if ($returns_data['current']['value']['5y']) : ?>
                                 <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
+                                <?php endif ?>
                             </ul>
                         <?php endif ?>
                         <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>"
