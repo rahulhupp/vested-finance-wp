@@ -374,7 +374,7 @@ a.btn_dark {
   background: none !important;
   margin: 0 10px !important;
   border-radius: 6px;
-  box-shadow: 0px 8px 40px 0px rgba(0, 40, 82, 0.08);
+  box-shadow: 10px 8px 40px 0px rgba(0, 40, 82, 0.08);
   position: relative;
   overflow: hidden;
   margin-bottom: 16px !important;
@@ -384,6 +384,8 @@ h2.alert_danger{
   color: #58151c;
     font-size: 1rem;
     background-color: #f8d7da;
+
+    
     padding: 1.5rem;
     border: 1px solid #58151c;
     border-radius: 5px;
@@ -2308,11 +2310,11 @@ input[type="range"]::-webkit-slider-runnable-track {
   margin-left: 8px;
 }
 
-.bond_portfolio_slider .slick-list {
+/* .bond_portfolio_slider .slick-list {
   box-shadow: 0px 8px 40px 0px rgba(0, 40, 82, 0.08);
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-}
+} */
 
 .bond_portfolio_slider .slick-track {
   padding-top: 0;

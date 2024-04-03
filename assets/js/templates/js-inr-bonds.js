@@ -204,6 +204,7 @@ jQuery(document).ready(function ($) {
     percentTime = 0;
     tick = setInterval(interval, 10);
   }
+	
 
   function interval() {
     if (
@@ -280,7 +281,7 @@ jQuery(document).ready(function ($) {
       j.preventDefault();
     });
   });
-
+  
   if ($(window).width() <= 767) {
     $(".module_chapter_list").slick({
       slidesToShow: 1,
@@ -415,12 +416,14 @@ jQuery(document).ready(function($){
     var extraAmount = newselectedBonds - newbankFixedDeposit;
 
     document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit);
-    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds);
-    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
+    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('extra_amount').textContent = Math.round(extraAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   });
-
 });
+
+
+
