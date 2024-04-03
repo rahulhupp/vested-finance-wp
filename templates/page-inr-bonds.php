@@ -10,46 +10,56 @@ get_header(); ?>
                 <div class="bonds_banner_content">
                     <div class="sub_heading">
                         <div class="sub_heading_icon">
-                        <?php
-                                            $image = get_field('banner_sub_heading_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                            <?php
+                            $image = get_field('banner_sub_heading_icon');
+                            if (!empty($image)): ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                            <?php endif; ?>
                         </div>
-                        <h3><?php the_field('banner_sub_heading'); ?></h3>
+                        <h3>
+                            <?php the_field('banner_sub_heading'); ?>
+                        </h3>
                     </div>
-                    <h1><?php the_field('banner_heading'); ?></h1>
-                    <?php if (have_rows('banner_bonds_list')) : ?>
+                    <h1>
+                        <?php the_field('banner_heading'); ?>
+                    </h1>
+                    <?php if (have_rows('banner_bonds_list')): ?>
                         <ul class="banner_list">
-                            <?php while (have_rows('banner_bonds_list')) : the_row(); ?>
-                                <li><?php the_sub_field('banner_single_bond_list') ?></li>
+                            <?php while (have_rows('banner_bonds_list')):
+                                the_row(); ?>
+                                <li>
+                                    <?php the_sub_field('banner_single_bond_list') ?>
+                                </li>
                             <?php endwhile; ?>
                         </ul>
                     <?php endif; ?>
                     <div class="banner_buttons">
                         <div class="btn">
-                            <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('banner_button_one_text'); ?></a>
+                            <a href="<?php the_field('banner_button_one_url'); ?>" class="btn_dark" target="_blank">
+                                <?php the_field('banner_button_one_text'); ?>
+                            </a>
                         </div>
                         <?php $button_text = get_field('banner_button_two_text'); ?>
-                        <?php 
+                        <?php
                         if (!empty($button_text)) {
                             ?>
                             <div class="btn">
-                                <a href="<?php the_field('banner_button_two_url'); ?>" class="btn_link"><?php the_field('banner_button_two_text'); ?></a>
+                                <a href="<?php the_field('banner_button_two_url'); ?>" class="btn_link">
+                                    <?php the_field('banner_button_two_text'); ?>
+                                </a>
                             </div>
                             <?php
-                        } 
+                        }
                         ?>
                     </div>
                 </div>
                 <div class="bonds_banner_img">
-                <?php
-                                            $image = get_field('banner_banner_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                    <?php
+                    $image = get_field('banner_banner_image');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -59,65 +69,78 @@ get_header(); ?>
             <div class="explore_bonds_wrap">
                 <div class="explore_bonds_img mobile_hide">
                     <?php
-                                            $image = get_field('explore_bonds_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                    $image = get_field('explore_bonds_image');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
                 </div>
                 <div class="explore_bonds_content">
-                    <h2 class="section_title align_left mobile_hide"><span><?php the_field('explore_bonds_heading'); ?></span></h2>
-                    <h2 class="section_title align_left desktop_hide"><span><?php the_field('explore_bonds_heading_mobile'); ?></span></h2>
-                     <?php
-                                            $image = get_field('explore_bonds_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide"/>
-                                            <?php endif; ?>
-                    <?php if (have_rows('explore_corporate_bonds_list')) : ?>
+                    <h2 class="section_title align_left mobile_hide"><span>
+                            <?php the_field('explore_bonds_heading'); ?>
+                        </span></h2>
+                    <h2 class="section_title align_left desktop_hide"><span>
+                            <?php the_field('explore_bonds_heading_mobile'); ?>
+                        </span></h2>
+                    <?php
+                    $image = get_field('explore_bonds_image');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
+                            class="desktop_hide" />
+                    <?php endif; ?>
+                    <?php if (have_rows('explore_corporate_bonds_list')): ?>
                         <div class="explore_bonds_list mobile_hide">
-                            <?php while (have_rows('explore_corporate_bonds_list')) : the_row(); ?>
+                            <?php while (have_rows('explore_corporate_bonds_list')):
+                                the_row(); ?>
                                 <div class="single_bond_list">
                                     <div class="single_bond_icon">
-                                         <?php
-                                            $image = get_sub_field('corporate_bonds_list_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                        <?php
+                                        $image = get_sub_field('corporate_bonds_list_icon');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
                                     </div>
-                                    <p><?php the_sub_field('corporate_bonds_list_text') ?></p>
+                                    <p>
+                                        <?php the_sub_field('corporate_bonds_list_text') ?>
+                                    </p>
                                 </div>
                             <?php endwhile; ?>
                         </div>
 
                     <?php endif; ?>
-                    <?php if (have_rows('explore_corporate_bonds_list_mobile')) : ?>
+                    <?php if (have_rows('explore_corporate_bonds_list_mobile')): ?>
                         <div class="explore_bonds_list desktop_hide">
-                            <?php while (have_rows('explore_corporate_bonds_list_mobile')) : the_row(); ?>
+                            <?php while (have_rows('explore_corporate_bonds_list_mobile')):
+                                the_row(); ?>
                                 <div class="single_bond_list">
                                     <div class="single_bond_icon">
-                                         <?php
-                                            $image = get_sub_field('corporate_bonds_list_icon_mobile');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                        <?php
+                                        $image = get_sub_field('corporate_bonds_list_icon_mobile');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
                                     </div>
-                                    <p><?php the_sub_field('corporate_bonds_list_text_mobile') ?></p>
+                                    <p>
+                                        <?php the_sub_field('corporate_bonds_list_text_mobile') ?>
+                                    </p>
                                 </div>
                             <?php endwhile; ?>
                         </div>
                     <?php endif; ?>
                     <div class="explore_bonds_buttons">
-                        <a href="<?php the_field('explore_bonds_button_one_url'); ?>" class="btn_dark" target="_blank"><?php the_field('explore_bonds_button_one_text'); ?></a>
+                        <a href="<?php the_field('explore_bonds_button_one_url'); ?>" class="btn_dark" target="_blank">
+                            <?php the_field('explore_bonds_button_one_text'); ?>
+                        </a>
                         <?php $button_text = get_field('explore_bonds_button_two_text'); ?>
-                        <?php 
-                        if (!empty($button_text)) {                            
-                            ?>
-                        <a href="<?php the_field('explore_bonds_button_two_url'); ?>" class="btn_link"><?php the_field('explore_bonds_button_two_text'); ?></a>
                         <?php
-                        } 
+                        if (!empty($button_text)) {
+                            ?>
+                            <a href="<?php the_field('explore_bonds_button_two_url'); ?>" class="btn_link">
+                                <?php the_field('explore_bonds_button_two_text'); ?>
+                            </a>
+                            <?php
+                        }
                         ?>
                     </div>
                 </div>
@@ -125,80 +148,83 @@ get_header(); ?>
         </div>
     </section>
     <?php /*
-    <section class="gold_bonds">
-        <div class="container">
-            <div class="gold_bond_wrap">
-                <div class="gold_bond_img mobile_hide">
-                    <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>">
-                </div>
-                <div class="gold_bond_content">
-                    <h2 class="section_title align_left light"><span><?php the_field('gold_bond_heading'); ?></span></h2>
-                    <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>" class="desktop_hide">
-                    <?php if (have_rows('gold_bond_list')) : ?>
-                        <div class="gold_bond_list">
-                            <?php while (have_rows('gold_bond_list')) : the_row(); ?>
-                                <div class="single_gold_bond_list">
-                                    <div class="gold_bond_icon">
-                                        <img src="<?php the_sub_field('gold_bond_list_icon') ?>" alt="<?php the_sub_field('gold_bond_list_text') ?>">
-                                    </div>
-                                    <p><?php the_sub_field('gold_bond_list_text') ?></p>
-                                </div>
-                            <?php endwhile; ?>
-                        </div>
-                    <?php endif; ?>
-                    <div class="gold_bond_buttons">
-                        <a href="<?php the_field('gold_bond_button_one_url'); ?>" class="btn_light"><?php the_field('gold_bond_button_one_text'); ?></a>
-                        <a href="<?php the_field('gold_bond_button_two_url'); ?>" class="btn_link light"><?php the_field('gold_bond_button_two_text'); ?></a>
-                    </div>
+<section class="gold_bonds">
+   <div class="container">
+       <div class="gold_bond_wrap">
+           <div class="gold_bond_img mobile_hide">
+               <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>">
+           </div>
+           <div class="gold_bond_content">
+               <h2 class="section_title align_left light"><span><?php the_field('gold_bond_heading'); ?></span></h2>
+               <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>" class="desktop_hide">
+               <?php if (have_rows('gold_bond_list')) : ?>
+                   <div class="gold_bond_list">
+                       <?php while (have_rows('gold_bond_list')) : the_row(); ?>
+                           <div class="single_gold_bond_list">
+                               <div class="gold_bond_icon">
+                                   <img src="<?php the_sub_field('gold_bond_list_icon') ?>" alt="<?php the_sub_field('gold_bond_list_text') ?>">
+                               </div>
+                               <p><?php the_sub_field('gold_bond_list_text') ?></p>
+                           </div>
+                       <?php endwhile; ?>
+                   </div>
+               <?php endif; ?>
+               <div class="gold_bond_buttons">
+                   <a href="<?php the_field('gold_bond_button_one_url'); ?>" class="btn_light"><?php the_field('gold_bond_button_one_text'); ?></a>
+                   <a href="<?php the_field('gold_bond_button_two_url'); ?>" class="btn_link light"><?php the_field('gold_bond_button_two_text'); ?></a>
+               </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
-    */ ?>
-    <?php 
-    if (have_rows('portfolio_list')) : ?>
+           </div>
+       </div>
+   </div>
+</section>
+*/ ?>
+    <?php
+    if (have_rows('portfolio_list')): ?>
         <section class="portfolio_slider_sec">
             <div class="container">
-                <h2 class="section_title"><span><?php the_field('diversify_heading'); ?></span></h2>
+                <h2 class="section_title"><span>
+                        <?php the_field('diversify_heading'); ?>
+                    </span></h2>
                 <div class="portfolio_slider_wrap">
                     <div class="tab-menu">
                         <ul>
-                            <li><a href="javascript:void(0)" class="tab-a active-a" data-id="tabcorporate">Corporate Bonds</a></li>
-                            <li><a href="javascript:void(0)" class="tab-a" data-id="tabsgbs">SGBs</a></li>
-                            <li><a href="javascript:void(0)" class="tab-a" data-id="tabgovt">Gsecs</a></li>
+                            <li><a href="javascript:void(0)" class="tab-a active-a" data-id="tabcorporate">Corporate
+                                    Bonds</a></li>
+                            <!-- <li><a href="javascript:void(0)" class="tab-a" data-id="tabsgbs">SGBs</a></li> -->
+                            <li><a href="javascript:void(0)" class="tab-a" data-id="tabgovt">Govt Bonds</a></li>
                         </ul>
                     </div>
                     <!--end of tab-menu-->
                     <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
                         <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
-                        
+
                         <div class="bond_slider_wrap" id="corporateBondSlider">
-                        <div class="sub_title">
-                        <a href="#">
-                        What are corporate bonds?
-                    </a>
-                    </div>
+                            <div class="sub_title">
+                                <a href="#">
+                                    What are corporate bonds?
+                                </a>
+                            </div>
                             <!-- Placeholder for corporate bond data -->
                         </div>
                     </div>
 
-                    <div class="tab" data-id="tabsgbs" id="tabsgbs">
+                    <!-- <div class="tab" data-id="tabsgbs" id="tabsgbs">
                     <div class="sub_title">
                         <a href="#" class="p-lg">
                         What are SGBs bonds?
                     </a>
                     </div>
                        <h2 class="alert_danger">There are no SGBs bonds available.</h2>
-                    </div>
+                    </div> -->
 
                     <div class="tab" data-id="tabgovt" id="tabgovt">
                         <!-- <a href="#" class="btn_link">What are gsecs?</a> -->
                         <div class="sub_title">
-                        <a href="#" class="p-lg">
-                        What are Gsecs bonds?
-                    </a>
-                    </div>
+                            <a href="#" class="p-lg">
+                                What are Govt Bonds?
+                            </a>
+                        </div>
                         <div class="bond_slider_wrap" id="govtBondSlider">
                             <!-- Placeholder for government bond data -->
                         </div>
@@ -207,12 +233,14 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    
+
     <section class="returns_calc">
         <div class="container">
             <div class="returns-cal_wrap">
-                <h2 class="section_title align_left mobile_hide"><span>Your potential returns compared to a FD</span></h2>
-                <h2 class="section_title align_left desktop_hide"><span>Your returns compared to a Fixed Deposit</span></h2>
+                <h2 class="section_title align_left mobile_hide"><span>Your potential returns compared to a FD</span>
+                </h2>
+                <h2 class="section_title align_left desktop_hide"><span>Your returns compared to a Fixed Deposit</span>
+                </h2>
 
                 <div class="return_calc_wrap">
                     <div class="bond_select_col">
@@ -232,14 +260,17 @@ get_header(); ?>
                                 <p class="desktop_hide">Select number of units</p>
                                 <div class="qty_btn" input_value="0">
                                     <div class="plus_qty desktop_hide">+</div>
-                                    <input type="text" id="units" value="0" min="0" max="1000" onkeypress='return restrictAlphabets(event)'>
+                                    <input type="text" id="units" value="0" min="0" max="1000"
+                                        onkeypress='return restrictAlphabets(event)'>
                                     <div class="minus_qty desktop_hide">-</div>
                                 </div>
                             </div>
                             <div class="range mobile_hide">
                                 <input type="range" min="0" max="1000" id="unit_range" value="1">
                                 <div class="ticks">
-                                    <span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span><span class="tick"></span>
+                                    <span class="tick"></span><span class="tick"></span><span class="tick"></span><span
+                                        class="tick"></span><span class="tick"></span><span class="tick"></span><span
+                                        class="tick"></span><span class="tick"></span>
                                 </div>
                             </div>
                         </div>
@@ -262,9 +293,10 @@ get_header(); ?>
                                 <div class="left_part">
                                     <p>Bank Fixed Deposit</p>
                                     <div class="return_flex">
-                                     <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00</div>
-                                    </h3>
-                                    <span id="fd_bond_return">(6% Returns)</span>
+                                        <h3 id="bond_invest_amt">₹ <div maturity_months="0" id="bank_fixed_deposit">0.00
+                                            </div>
+                                        </h3>
+                                        <span id="fd_bond_return">(6% Returns)</span>
                                     </div>
                                 </div>
                                 <div class="progressed">
@@ -275,9 +307,9 @@ get_header(); ?>
                                 <div class="left_part">
                                     <p>Selected Bonds</p>
                                     <div class="return_flex">
-                                    <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div>
-                                    </h3>
-                                    <span id="fd_bond_return">(<span id="yield_returns">12</span>% Returns)</span>
+                                        <h3 id="bond_invest_amt">₹ <div sum_cash_flow="0" id="selected_bond">0.00</div>
+                                        </h3>
+                                        <span id="fd_bond_return">(<span id="yield_returns">12</span>% Returns)</span>
                                     </div>
                                 </div>
                                 <div class="progressed">
@@ -286,7 +318,9 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="result_note">
-                            <h3>₹ <div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5 years<div>
+                            <h3>₹ <div id="result_note_investment_amount">0.00</div> invested would earn you <span>₹<div
+                                        id="extra_amount">0.00</div> extra</span> in <div id="maturity_in_months">5
+                                    years<div>
                             </h3>
                         </div>
 
@@ -299,18 +333,21 @@ get_header(); ?>
     <section class="vested_edge_list">
         <div class="container">
             <div class="edge_list_row">
-                <h2 class="section_title light"><?php the_field('edge_heading'); ?></h2>
+                <h2 class="section_title light">
+                    <?php the_field('edge_heading'); ?>
+                </h2>
                 <div class="edge_list_content">
                     <div class="edge_list_wrap">
-                        <?php while (have_rows('edge_list')) : the_row(); ?>
+                        <?php while (have_rows('edge_list')):
+                            the_row(); ?>
                             <div class="single_edge_list">
                                 <div class="edge_list_icon">
-                                      <?php
-                                            $image = get_sub_field('edge_list_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                    <?php
+                                    $image = get_sub_field('edge_list_icon');
+                                    if (!empty($image)): ?>
+                                        <img src="<?php echo esc_url($image['url']); ?>"
+                                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                                    <?php endif; ?>
                                 </div>
                                 <p class="edge_content mobile_hide">
                                     <?php the_sub_field('edge_list_description') ?>
@@ -326,36 +363,43 @@ get_header(); ?>
 
         </div>
     </section>
-    <?php if (have_rows('portfolio_slider')) : ?>
+    <?php if (have_rows('portfolio_slider')): ?>
         <section class="portfolio_slider_sec steps_slides">
             <div class="container">
                 <h2 class="section_title">
-                    <span><?php the_field('portfolio_heading'); ?></span>
+                    <span>
+                        <?php the_field('portfolio_heading'); ?>
+                    </span>
                 </h2>
                 <div class="portfolio_slider_wrap">
                     <div class="portfolio_slider slider single-item">
-                        <?php while (have_rows('portfolio_slider')) : the_row(); ?>
+                        <?php while (have_rows('portfolio_slider')):
+                            the_row(); ?>
                             <div class="single_portfolio_slider">
-                                 <?php
-                                            $image = get_sub_field('slider_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('slider_image');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
 
                             </div>
                         <?php endwhile; ?>
                     </div>
-                    <?php if (have_rows('portfolio_slider')) : ?>
+                    <?php if (have_rows('portfolio_slider')): ?>
                         <div class="portfolio_slider_content">
-                            <?php while (have_rows('portfolio_slider')) : the_row(); ?>
+                            <?php while (have_rows('portfolio_slider')):
+                                the_row(); ?>
                                 <div class="single_portfolio_slider_content">
                                     <div class="portfolio_slider_content_inner">
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
                                         <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
                                         <div class="portfolio_slider_inner_content">
-                                            <span class="slider_index">0<?php echo get_row_index(); ?></span>
-                                            <h3><?php the_sub_field('slider_title') ?></h3>
+                                            <span class="slider_index">0
+                                                <?php echo get_row_index(); ?>
+                                            </span>
+                                            <h3>
+                                                <?php the_sub_field('slider_title') ?>
+                                            </h3>
                                             <p class="single_slider_desc">
                                                 <?php the_sub_field('slider_description') ?>
                                             </p>
@@ -371,18 +415,28 @@ get_header(); ?>
     <?php endif; ?>
     <section class="invest_wisely_sec">
         <div class="container">
-            <h2 class="section_title"><span><?php the_field('invest_wisely_heading'); ?></span></h2>
-            <?php if (have_rows('learning_list')) : ?>
+            <h2 class="section_title"><span>
+                    <?php the_field('invest_wisely_heading'); ?>
+                </span></h2>
+            <?php if (have_rows('learning_list')): ?>
                 <div class="invest_wisely_wrap">
-                    <?php while (have_rows('learning_list')) : the_row(); ?>
+                    <?php while (have_rows('learning_list')):
+                        the_row(); ?>
                         <div class="single_wisely_list">
                             <div class="single_wisely_img">
-                                <img src="<?php the_sub_field('learning_image') ?>" alt="<?php the_sub_field('learning_title') ?>">
+                                <img src="<?php the_sub_field('learning_image') ?>"
+                                    alt="<?php the_sub_field('learning_title') ?>">
                             </div>
                             <div class="single_wisely_content">
-                                <h3><?php the_sub_field('learning_title') ?></h3>
-                                <p><?php the_sub_field('learning_description') ?></p>
-                                <a href="<?php the_sub_field('learning_cta_url') ?>" class="btn_dark"><?php the_sub_field('learning_cta_text') ?></a>
+                                <h3>
+                                    <?php the_sub_field('learning_title') ?>
+                                </h3>
+                                <p>
+                                    <?php the_sub_field('learning_description') ?>
+                                </p>
+                                <a href="<?php the_sub_field('learning_cta_url') ?>" class="btn_dark">
+                                    <?php the_sub_field('learning_cta_text') ?>
+                                </a>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -402,41 +456,49 @@ get_header(); ?>
                     'tax_query' => array(
                         array(
                             'taxonomy' => 'modules_category',
-                            'field'    => 'slug', // Use 'slug' or 'id' depending on your preference
-                            'terms'    => $term, // Use $term->term_id if you have the ID instead of slug
+                            'field' => 'slug', // Use 'slug' or 'id' depending on your preference
+                            'terms' => $term, // Use $term->term_id if you have the ID instead of slug
                         ),
                     ),
                 );
 
                 $query = new WP_Query($args);
 
-                if ($query->have_posts()) : ?>
+                if ($query->have_posts()): ?>
                     <div class="invest_wisely_wrap module_chapter_list">
-                        <?php while ($query->have_posts()) :
+                        <?php while ($query->have_posts()):
                             $query->the_post();
                             $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
                             $author_image_url = get_avatar_url(get_the_author_meta('user_email'));
                             $reading_time = calculate_reading_time(get_the_content());
                             $post_date = get_the_date();
-                        ?>
+                            ?>
                             <div class="single_module_list">
                                 <div class="single_module_img">
                                     <img src="<?php echo $featured_image_url; ?>" alt="">
                                 </div>
                                 <div class="single_module_content">
                                     <div class="module_date">
-                                        <span><?php echo $post_date; ?></span>
+                                        <span>
+                                            <?php echo $post_date; ?>
+                                        </span>
                                     </div>
-                                    <h4><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                    <h4><a href="<?php echo the_permalink(); ?>">
+                                            <?php the_title(); ?>
+                                        </a></h4>
                                     <div class="author_info">
                                         <div class="reading_time">
-                                            <h5><?php echo $reading_time; ?> mins read</h5>
+                                            <h5>
+                                                <?php echo $reading_time; ?> mins read
+                                            </h5>
                                         </div>
                                         <div class="author_meta">
                                             <div class="author_img">
                                                 <img src="<?php echo $author_image_url; ?>" alt="Author">
                                             </div>
-                                            <p class="author_name"><?php the_author(); ?></p>
+                                            <p class="author_name">
+                                                <?php the_author(); ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -446,20 +508,23 @@ get_header(); ?>
                         wp_reset_postdata(); // Reset the post data 
                         ?>
                     </div>
-                <?php else : ?>
+                <?php else: ?>
                     <p class="no_post_msg">No Post Found !!!</p>
                 <?php endif;
                 ?>
             </div>
         </div>
     </section>
-     <?php if (have_rows('faq_list')) : ?>
+    <?php if (have_rows('faq_list')): ?>
         <section class="home_page_faqs">
             <div class="container">
-                <h2 class="section_title"><span><?php the_field('faqs_heading'); ?></span></h2>
+                <h2 class="section_title"><span>
+                        <?php the_field('faqs_heading'); ?>
+                    </span></h2>
 
                 <div class="home_page_faq_wrap">
-                    <?php while (have_rows('faq_list')) : the_row(); ?>
+                    <?php while (have_rows('faq_list')):
+                        the_row(); ?>
                         <div class="single_faq">
                             <div class="faq_que">
                                 <h4>
@@ -477,17 +542,17 @@ get_header(); ?>
     <?php endif; ?>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const corporateApiUrl = "https://yield-api-test.vestedfinance.com/bonds";
         const corporateContainerId = "corporateBondSlider";
         const govtContainerId = "govtBondSlider";
         const apiDataDropdown = document.getElementById("bond_selector");
         // Make an API request using the Fetch API
         fetch(corporateApiUrl, {
-                headers: {
-                    'User-Agent': 'Vested_M#8Dfz$B-8W6'
-                }
-            })
+            headers: {
+                'User-Agent': 'Vested_M#8Dfz$B-8W6'
+            }
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -505,12 +570,12 @@ get_header(); ?>
                     apiDataDropdown.appendChild(option);
                 });
                 // on load select first option and trigger it
-                    var selectElement = document.getElementById("bond_selector");
-                    if (selectElement && selectElement.options.length > 0) {
-                        selectElement.options[0].selected = true;
-                        var event = new Event('change');
-                        selectElement.dispatchEvent(event);
-                    }
+                var selectElement = document.getElementById("bond_selector");
+                if (selectElement && selectElement.options.length > 0) {
+                    selectElement.options[0].selected = true;
+                    var event = new Event('change');
+                    selectElement.dispatchEvent(event);
+                }
                 // on load select first option and trigger it
             })
             .catch(error => {
@@ -524,10 +589,10 @@ get_header(); ?>
             const selectedOptionMinVal = bondSelector.options[bondSelector.selectedIndex].getAttribute("minValue");
             const apiOfferingId = `https://yield-api-test.vestedfinance.com/bond-details?offeringId=${selectedOptionId}`;
             fetch(apiOfferingId, {
-                    headers: {
-                        'User-Agent': 'Vested_M#8Dfz$B-8W6'
-                    }
-                })
+                headers: {
+                    'User-Agent': 'Vested_M#8Dfz$B-8W6'
+                }
+            })
                 .then(response => {
                     // Check if the response status is in the 200-299 range (indicating success)
                     if (response.ok) {
@@ -594,6 +659,13 @@ get_header(); ?>
                     const months = periodInYearMonths % 12;
                     const maxValue = 1000;
                     const unitVal = document.getElementById('units');
+
+                    // Round to two decimal places
+
+                  // Assuming investmentAmount is already declared somewhere else in your code
+
+
+
                     // unitVal.setAttribute("min", data.bondDetails.minimumQty);
 
                     // const bankFixedDeposit (Math.pow(initialPortfolioPrice, Periods) -1) * 100;
@@ -606,7 +678,6 @@ get_header(); ?>
                     document.getElementById('investment_amount').textContent = Math.round(investmentAmount);
                     document.getElementById('result_note_investment_amount').textContent = Math.round(investmentAmount);
                     document.getElementById('extra_amount').textContent = Math.round(extraAmount);
-
                     document.querySelector('.qty_btn').setAttribute("input_value", minimumQuantity);
                     document.getElementById('investment_amount').setAttribute("newPrice", newPrice);
                     document.getElementById('bank_fixed_deposit').setAttribute("maturity_months", periodInYears);
@@ -621,20 +692,14 @@ get_header(); ?>
                     const investProgress = document.getElementById('invest_amt_progress');
                     const fdProgress = document.getElementById('bond_amt_progress');
                     const bondProgress = document.getElementById('selected_bond_progress');
-
                     const maxVal = Math.max(fdAmt, investedVal, selectedBondVal);
-
                     const fdAmtPercent = (fdAmt / maxVal) * 100;
                     const investedValPercent = (investedVal / maxVal) * 100;
                     const selectedBondValPercent = (selectedBondVal / maxVal) * 100;
-
-
+                    
                     investProgress.style.width = investedValPercent + '%';
                     fdProgress.style.width = fdAmtPercent + '%';
                     bondProgress.style.width = selectedBondValPercent + '%';
-
-
-
 
                     if (months <= 0) {
                         document.getElementById('maturity_in_months').textContent = years + ' Years ';
@@ -683,6 +748,7 @@ get_header(); ?>
 
             const img = document.createElement('img');
             img.src = bondData.logo;
+            img.className = 'bond_image';
             slideCion.appendChild(img);
             slideIconWrap.appendChild(slideCion);
 
@@ -699,16 +765,12 @@ get_header(); ?>
 
 
             const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            pathElement.setAttribute("d", "M58.8057 26.7612C57.6787 25.4407 57.3159 23.6266 57.8528 21.9772C58.6122 19.6408 57.5577 17.1013 55.3713 15.984C53.8234 15.1955 52.798 13.6572 52.6625 11.9255C52.469 9.47788 50.5245 7.53333 48.0769 7.33985C46.3452 7.20441 44.807 6.17892 44.0185 4.63101C42.9012 2.4446 40.3617 1.39008 38.0253 2.14952C36.371 2.68646 34.5619 2.32366 33.2414 1.19659C31.3742 -0.399678 28.6219 -0.399678 26.7548 1.19659C25.4342 2.32366 23.6203 2.68646 21.9708 2.14952C19.6393 1.39008 17.095 2.4446 15.9824 4.63101C15.194 6.17892 13.6558 7.20441 11.9241 7.33985C9.47644 7.53333 7.53191 9.47788 7.33842 11.9255C7.20298 13.6572 6.17751 15.1955 4.62962 15.984C2.44323 17.1013 1.38873 19.6408 2.14816 21.9772C2.68509 23.6315 2.3223 25.4407 1.19524 26.7612C-0.401017 28.6284 -0.401017 31.3807 1.19524 33.2478C2.3223 34.5685 2.68509 36.3824 2.14816 38.0319C1.38873 40.3634 2.44323 42.903 4.62962 44.0204C6.17751 44.8088 7.20298 46.347 7.33842 48.0787C7.53191 50.5263 9.47644 52.471 11.9241 52.6645C13.6558 52.7999 15.194 53.8254 15.9824 55.3733C17.0998 57.5597 19.6393 58.6141 21.9757 57.8547C23.63 57.3178 25.439 57.6806 26.7596 58.8076C28.6267 60.4039 31.3791 60.4039 33.2462 58.8076C34.5668 57.6806 36.3807 57.3178 38.0301 57.8547C40.3665 58.6141 42.906 57.5597 44.0234 55.3733C44.8118 53.8254 46.35 52.7999 48.0817 52.6645C50.5293 52.471 52.4739 50.5263 52.6674 48.0787C52.8028 46.347 53.8283 44.8088 55.3762 44.0204C57.5626 42.903 58.6171 40.3634 57.8576 38.027C57.3207 36.3727 57.6835 34.5636 58.8105 33.243C60.3971 31.3759 60.3971 28.6284 58.8057 26.7612ZM30.0005 54.5413C16.4468 54.5413 5.46161 43.556 5.46161 30.0021C5.46161 16.4483 16.4468 5.46301 30.0005 5.46301C43.5542 5.46301 54.5393 16.4483 54.5393 30.0021C54.5393 43.556 43.5542 54.5413 30.0005 54.5413Z" );
+            pathElement.setAttribute("d", "M58.8057 26.7612C57.6787 25.4407 57.3159 23.6266 57.8528 21.9772C58.6122 19.6408 57.5577 17.1013 55.3713 15.984C53.8234 15.1955 52.798 13.6572 52.6625 11.9255C52.469 9.47788 50.5245 7.53333 48.0769 7.33985C46.3452 7.20441 44.807 6.17892 44.0185 4.63101C42.9012 2.4446 40.3617 1.39008 38.0253 2.14952C36.371 2.68646 34.5619 2.32366 33.2414 1.19659C31.3742 -0.399678 28.6219 -0.399678 26.7548 1.19659C25.4342 2.32366 23.6203 2.68646 21.9708 2.14952C19.6393 1.39008 17.095 2.4446 15.9824 4.63101C15.194 6.17892 13.6558 7.20441 11.9241 7.33985C9.47644 7.53333 7.53191 9.47788 7.33842 11.9255C7.20298 13.6572 6.17751 15.1955 4.62962 15.984C2.44323 17.1013 1.38873 19.6408 2.14816 21.9772C2.68509 23.6315 2.3223 25.4407 1.19524 26.7612C-0.401017 28.6284 -0.401017 31.3807 1.19524 33.2478C2.3223 34.5685 2.68509 36.3824 2.14816 38.0319C1.38873 40.3634 2.44323 42.903 4.62962 44.0204C6.17751 44.8088 7.20298 46.347 7.33842 48.0787C7.53191 50.5263 9.47644 52.471 11.9241 52.6645C13.6558 52.7999 15.194 53.8254 15.9824 55.3733C17.0998 57.5597 19.6393 58.6141 21.9757 57.8547C23.63 57.3178 25.439 57.6806 26.7596 58.8076C28.6267 60.4039 31.3791 60.4039 33.2462 58.8076C34.5668 57.6806 36.3807 57.3178 38.0301 57.8547C40.3665 58.6141 42.906 57.5597 44.0234 55.3733C44.8118 53.8254 46.35 52.7999 48.0817 52.6645C50.5293 52.471 52.4739 50.5263 52.6674 48.0787C52.8028 46.347 53.8283 44.8088 55.3762 44.0204C57.5626 42.903 58.6171 40.3634 57.8576 38.027C57.3207 36.3727 57.6835 34.5636 58.8105 33.243C60.3971 31.3759 60.3971 28.6284 58.8057 26.7612ZM30.0005 54.5413C16.4468 54.5413 5.46161 43.556 5.46161 30.0021C5.46161 16.4483 16.4468 5.46301 30.0005 5.46301C43.5542 5.46301 54.5393 16.4483 54.5393 30.0021C54.5393 43.556 43.5542 54.5413 30.0005 54.5413Z");
             pathElement.setAttribute("fill", background_color);
-
 
             svgElement.appendChild(pathElement);
 
-
             slideCerti.appendChild(svgElement);
-
-
 
             const sliderRating = document.createElement('p');
             sliderRating.className = 'slider_rating';
@@ -723,7 +785,7 @@ get_header(); ?>
             slideInfo.className = 'slide_info';
 
             const h4 = document.createElement('h4');
-            h4.textContent = bondData.name;
+            h4.textContent = bondData.displayName;
 
             const p = document.createElement('p');
             p.textContent = bondData.issuerName;
@@ -744,23 +806,47 @@ get_header(); ?>
                 const singleSlideInfo = document.createElement('div');
                 singleSlideInfo.className = 'single_slide_info';
 
+
                 const infoTitle = document.createElement('p');
                 infoTitle.className = 'info_title';
                 infoTitle.textContent = title;
 
                 const infoDesc = document.createElement('p');
                 infoDesc.className = 'info_desc';
-                infoDesc.textContent = data;
+
+
+                // Function to capitalize the first letter of each word
+                function capitalizeEachWord(str) {
+                    return str.toLowerCase().replace(/\b\w/g, function (char) {
+                        return char.toUpperCase();
+                    });
+                }
+                // Assuming 'data' contains the text you want to capitalize
+                infoDesc.textContent = capitalizeEachWord(data);
+
 
                 singleSlideInfo.appendChild(infoTitle);
                 singleSlideInfo.appendChild(infoDesc);
                 slideInvestmentInfo.appendChild(singleSlideInfo);
             }
 
-            createInvestmentInfo('Min investment', `₹ ${bondData.minimumInvestment}`);
-            createInvestmentInfo('Yield', `${bondData.yield} %`);
+           
+            createInvestmentInfo('Min investment', `₹ ${bondData.minimumInvestment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`);
+            createInvestmentInfo('Yield', `${bondData.yield.toFixed(2)} %`);
+            function monthsToYearsAndMonth(months) {
+                const years = Math.floor(months / 12);
+                const remainingMonths = months % 12;
+                if (years === 0) {
+                    return `${remainingMonths}m`;
+                } else if (remainingMonths === 0) {
+                    return `${years}y`;
+                } else {
+                    return `${years}y ${remainingMonths}m`;
+                }
+            }
             const maturityInMonths = bondData.maturityInMonths;
             const convertedMaturity = monthsToYearsAndMonth(maturityInMonths);
+
 
             createInvestmentInfo('Matures in', convertedMaturity);
 
@@ -789,10 +875,10 @@ get_header(); ?>
 
         function fetchDataAndDisplay(apiUrl, containerId) {
             fetch(apiUrl, {
-                    headers: {
-                        'User-Agent': 'Vested_M#8Dfz$B-8W6'
-                    }
-                })
+                headers: {
+                    'User-Agent': 'Vested_M#8Dfz$B-8W6'
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const bondContainer = document.getElementById(containerId);
@@ -843,6 +929,7 @@ get_header(); ?>
                         } else {
                             bondPortfolioSlider.classList.remove('slide_wo_shadow');
                         }
+                        bondImages();
                     } else {
                         const noDataMessage = document.createElement('p');
                         noDataMessage.className = 'no-data-message';
@@ -859,32 +946,44 @@ get_header(); ?>
 
         fetchDataAndDisplay(corporateApiUrl, corporateContainerId);
         fetchDataAndDisplay(corporateApiUrl, govtContainerId);
-         
     });
-</script>
 
-<?php if (have_rows('faq_list')) : ?>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        <?php $rowCount = 0; ?>
-        <?php while (have_rows('faq_list')) : the_row(); ?>
-            {
-                "@type": "Question",
-                "name": "<?php the_sub_field('faq_question') ?>",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('faq_answer') ?>
-                    "
-                }
-            }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-        <?php endwhile; ?>
-    ]
-}
+
+    function bondImages() {
+        var bondImages = document.getElementsByClassName("bond_image");
+        if (bondImages.length > 0) {
+            for (var i = 0; i < bondImages.length; i++) {
+                bondImages[i].onerror = function() {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Corporate-Bonds.png";
+                };
+            }
+        }
+    }
 </script>
+<?php if (have_rows('faq_list')): ?>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            <?php $rowCount = 0; ?>
+            <?php while (have_rows('faq_list')):
+                the_row(); ?>
+                    {
+                        "@type": "Question",
+                        "name": "<?php the_sub_field('faq_question') ?>",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "
+                                <?php the_sub_field('faq_answer') ?>
+                            "
+                        }
+                    }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
+            <?php endwhile; ?>
+        ]
+    }
+    </script>
 <?php endif; ?>
 
 <?php get_footer(); ?>
