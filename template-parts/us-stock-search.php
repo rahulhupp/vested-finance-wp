@@ -304,7 +304,6 @@
                     } else if (object.type === 'etf') {
                         aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
                     }
-                    aElement.target = '_blank'; // Set the target attribute to open the link in a new tab
                     var divBoxElement = document.createElement('div');
                     divBoxElement.className = 'box';
                     var divExploreIconElement = document.createElement('div');
