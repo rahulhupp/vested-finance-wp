@@ -302,7 +302,7 @@
                     if (object.type === 'stock') {
                         aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
                     } else if (object.type === 'etf') {
-                        aElement.href = `https://vestedfinance.com/us-stocks/etf/${object.symbol}/${formattedText}-share-price/`;
+                        aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
                     }
                     aElement.target = '_blank'; // Set the target attribute to open the link in a new tab
                     var divBoxElement = document.createElement('div');
