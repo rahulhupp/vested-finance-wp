@@ -1387,7 +1387,7 @@ margin-top: 18px;
 .latest_articles .slick-next:before,
 .latest_articles .slick-prev:before{
   content: '' !important;
-  background-image: url('http://localhost/vested-testing/wp-content/uploads/2024/02/chevron-right-1.png');
+  background-image: url('http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/chevron-right-1.png');
   height: 50px;
   width: 50px;
   position: absolute;
