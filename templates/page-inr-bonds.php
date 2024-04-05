@@ -739,6 +739,13 @@ get_header(); ?>
             const bondDiv = document.createElement('div');
             bondDiv.className = 'single_portfolio_slide';
 
+            // Find the div with class name 'box_shadow'
+            const boxShadowDiv = document.querySelector('.box_shadow');
+
+            // Insert bondDiv before boxShadowDiv
+            boxShadowDiv.parentNode.insertBefore(bondDiv, boxShadowDiv);
+
+
             // Create and append elements with bond data
             const slideIconWrap = document.createElement('div');
             slideIconWrap.className = 'slide_icon_wrap';
