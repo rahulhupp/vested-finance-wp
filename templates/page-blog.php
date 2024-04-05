@@ -364,9 +364,96 @@ get_header(); ?>
     </section>
 <?php endif; ?>
 
+<section class="latest_articles">
+<div class="container">
+        <div class="head-part">
+                <div class="title">
+                    <h2><?php the_field('articles_heading'); ?></h2>
+                </div>
+                <span><?php the_field('articles_sub_heading'); ?></span>
+        </div>
+        <div class="articles-list">
+            <ul>
+                <?php
+
+                    $args = array(
+                        'post_type'      => 'post',
+                        'posts_per_page' => 10,
+                        'tax_query'      => array(
+                        ),
+                    );
+
+                    $custom_query = new WP_Query($args);
+
+                    if ($custom_query->have_posts()) :
+                        while ($custom_query->have_posts()) : $custom_query->the_post();
+                            // Display post content here
+                            ?>
+                            <li>
+                                <div class="featured-image">
+                                    <?php if (has_post_thumbnail()) : ?>   
+                                        <a href="<?php the_permalink(); ?>">                                    
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>    
+                                    <?php endif; ?>
+                                </div>
+                                <div class="content articles-wrap">
+                                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                  
+                                    <div class="meta-info">
+                                        <span class="post-author"><?php the_author(); ?></span>
+                                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                        endwhile;
+                        wp_reset_postdata(); // Restore the global post data
+                    else :
+                        echo 'No posts found';
+                    endif;
+                ?>
+            </ul>
+        </div>
+    </div>
+</section>
+
 <section class="newsletter-section">
     <?php get_template_part('template-parts/newsletter'); ?>
 </section>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.articles-list ul').slick({
+            slidesToShow: 3, 
+            slidesToScroll: 1,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 1000, 
+            arrows: true, 
+            responsive: [{
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
 
 </div>
 <?php get_footer(); ?>
