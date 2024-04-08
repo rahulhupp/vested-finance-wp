@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>Lumpsum Calculator</h1>
-			<p>An Lumpsumcalculator is a tool that helps calculate the maturity value of their investments made through the Lumpsum.</p>
+			<p>A lump sum calculator is a tool that helps to estimate the future value of a single, one-time investment over a specified period.</p>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">
