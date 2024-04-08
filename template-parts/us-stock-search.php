@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://app.vestedfinance.com/stocks/BWX">
+                    <a href="https://vestedfinance.com/us-stocks/etf/bwx/spdr-bbg-barclays-international-treasury-bond-etf-share-price/">
                         <div class="box">
                             <div class="explore-icon">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr"/>
@@ -302,9 +302,8 @@
                     if (object.type === 'stock') {
                         aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
                     } else if (object.type === 'etf') {
-                        aElement.href = `https://app.vestedfinance.com/etfs/${object.symbol}`;
+                        aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
                     }
-                    aElement.target = '_blank'; // Set the target attribute to open the link in a new tab
                     var divBoxElement = document.createElement('div');
                     divBoxElement.className = 'box';
                     var divExploreIconElement = document.createElement('div');

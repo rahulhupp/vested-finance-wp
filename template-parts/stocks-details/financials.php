@@ -3,7 +3,7 @@
     $balance_sheet_data = $args['balance_sheet_data'];
     $cash_flow_data = $args['cash_flow_data'];
 ?>
-<?php if ($income_statement_data && $balance_sheet_data && $cash_flow_data) { ?>
+<?php if($income_statement_data && $balance_sheet_data && $cash_flow_data) { ?>
     <div id="financials_tab" class="tab_content">
         <div class="stock_details_box">
             <h2 class="heading">Financials</h2>

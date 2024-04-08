@@ -1,4 +1,4 @@
-<script defer>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         if (!localStorage.getItem("stocks_list_db_connected")) {
             callStocksInstrumentsTokenApi();

@@ -1,5 +1,28 @@
 <script>
-    window.onload = function() {
+    // News JS Start
+
+    var visibleCount = 3;
+    var increment = 3;
+    var items = document.querySelectorAll('.news_list .news_item');
+    var loadMoreBtn = document.getElementById('load_more_btn');
+
+    function loadMore() {
+        for (var i = visibleCount; i < visibleCount + increment && i < items.length; i++) {
+            items[i].style.display = 'flex';
+        }
+        visibleCount += increment;
+        if (visibleCount >= items.length) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    loadMoreBtn.addEventListener('click', loadMore);
+
+    // News JS End
+
+    // Financial JS Start
+
+    document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.querySelectorAll('.trend_chart').forEach(function(cell) {
                 var trendData = JSON.parse(cell.textContent);
@@ -54,7 +77,8 @@
                 }
             });
         }, 500); 
-    };
+    });
+
 
     const valueTypeSelect = document.getElementById("value_type_select");
     const dataTypeSelect = document.getElementById("data_type_select");
@@ -92,6 +116,8 @@
             display.classList.add("hidden");
         });
     }
+    
+    // Financial JS End
 
 </script>
 
