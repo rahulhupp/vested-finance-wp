@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>Lumpsum Calculator</h1>
-			<p>A lump sum calculator is a tool that helps to estimate the future value of a single, one-time investment over a specified period.</p>
+			<?php the_field('description'); ?>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">

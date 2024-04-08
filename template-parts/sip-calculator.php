@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>SIP Calculator</h1>
-			<p>A SIP calculator is a tool that helps investors calculate the maturity value of their investments made through the Systematic Investment Plan (SIP) route.</p>
+			<?php the_field('description'); ?>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">
