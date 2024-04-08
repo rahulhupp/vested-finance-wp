@@ -33,6 +33,11 @@
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
             wp_enqueue_script('edge-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-edge.js');
         }
+
+        if (is_page_template('templates/page-calculators.php')) {
+            wp_enqueue_style('culators-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-calculators.css', false, '', '');
+        
+        }
         if (is_page_template('templates/page-edge.php')) {
             wp_enqueue_style('edge-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-edge.css', false, '', '');
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
@@ -56,8 +61,10 @@
         }
         if (is_page_template('templates/page-us-stock-global.php')) {
             wp_enqueue_style('us-stock-global-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-us-stocks-global.css', false, '', '');
+            wp_enqueue_style('select2-style', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', false, '', '');
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
             wp_enqueue_script('us-stock-global-page-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-us-stocks-global.js');
+            wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
         }
         if (is_page_template('templates/page-pricing-global.php') || is_page_template('templates/page-pricing-india.php')) {
             wp_enqueue_style('pricing-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-pricing.css', false, '', '');
@@ -70,6 +77,9 @@
         if (is_page_template('templates/page-solar.php')) {
             wp_enqueue_style('solar-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-solar.css', false, '', '');
             wp_enqueue_script('solar-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-solar.js');
+        }
+        if (is_page_template('templates/page-calculator-sip-lumpsum.php')) {
+            wp_enqueue_style('sip-lumpsum-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-sip-lumpsum-calculator.css', false, '', '');
         }
     }
 
