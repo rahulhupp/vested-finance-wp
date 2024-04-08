@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>Lumpsum Calculator</h1>
-			<p>An Lumpsumcalculator is a tool that helps calculate the maturity value of their investments made through the Lumpsum.</p>
+			<?php the_field('description'); ?>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">
