@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>SIP Calculator</h1>
-			<?php the_field('description'); ?>
+			<p>A SIP calculator is a tool that helps investors calculate the maturity value of their investments made through the Systematic Investment Plan (SIP) route.</p>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">
@@ -24,7 +24,7 @@
 						<div class="investment_range_container">
 							<input type="range" min="500" max="100000" value="25000" id="monthlyInvestmentRange" class="calculation_range_input" />
 							<div class="investment_range_wrapper">
-								<h6>₹500</h6>
+								<h6 id="minMonthlyInvestment">₹500</h6>
 								<div class="investment_range_steps">
 									<span></span>
 									<span></span>
@@ -35,7 +35,7 @@
 									<span></span>
 									<span></span>
 								</div>
-								<h6>₹1L</h6>
+								<h6 id="maxMonthlyInvestment">₹1L</h6>
 							</div>
 						</div>
 					</div>
@@ -142,20 +142,64 @@
 </section>
 
 <script>
+	console.log('Hello');
 	function updateCurrencySymbol() {
 		const currencySymbol = document.getElementById('currencySymbol');
 		const selectedCurrency = document.querySelector('input[name="currency"]:checked').value;
 		currencySymbol.textContent = selectedCurrency === 'INR' ? '₹' : '$';
-		calculateSIP();
+
+		const monthlyInvestmentRange = document.getElementById("monthlyInvestmentRange");
+    	const monthlyInvestment = document.getElementById("monthlyInvestment");
+
+		if (selectedCurrency === 'USD') {
+			setRangeValues(monthlyInvestmentRange, 10, 10000, 2500);
+			setAttributeValues(monthlyInvestment, 10, 10000, 2500);
+		} else {
+			setRangeValues(monthlyInvestmentRange, 500, 100000, 25000);
+			setAttributeValues(monthlyInvestment, 500, 100000, 25000);
+		}
+		
+		updateGradient(monthlyInvestmentRange);
+    	calculateSIP();
 	}
+
+	function setRangeValues(element, min, max, value) {
+		element.min = min;
+		element.max = max;
+		element.value = value;
+	}
+
+	function setAttributeValues(element, min, max, value) {
+		element.setAttribute("min", min);
+		element.setAttribute("max", max);
+		element.value = value;
+	}
+
+	function convertToShortForm(number) {
+		if (number === 100000) {
+			return '1L';
+		} else if (number >= 1000000) {
+			return (number / 1000000).toFixed(0) + 'M';
+		} else if (number >= 1000) {
+			return (number / 1000).toFixed(0) + 'K';
+		} else {
+			return number;
+		}
+	}
+
 
 	calculateSIP();
 
 	function calculateSIP() {
-		const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value);
+		const monthlyInvestmentId = document.getElementById('monthlyInvestment');
+		const monthlyInvestment = parseFloat(monthlyInvestmentId.value);
 		const expectedReturns = parseFloat(document.getElementById('expectedReturns').value) / 100;
 		const timePeriod = parseFloat(document.getElementById('timePeriod').value);
 		const currencySymbol = document.getElementById('currencySymbol').textContent;
+		const minValue = parseFloat(monthlyInvestmentId.getAttribute('min'));
+		const maxValue = parseFloat(monthlyInvestmentId.getAttribute('max'));
+		document.getElementById('minMonthlyInvestment').textContent = `${currencySymbol}${minValue}`;
+		document.getElementById('maxMonthlyInvestment').textContent = `${currencySymbol}${convertToShortForm(maxValue)}`;
 
 		let totalValue = 0;
 		let investedAmount = 0;
@@ -168,9 +212,7 @@
 		const estimatedReturns = totalValue - investedAmount;
 		const investmentPercentage = (investedAmount / totalValue) * 100;
 		const returnPercentage = (estimatedReturns / totalValue) * 100;
-
-		console.log("Percentage of Investment Amount:", investmentPercentage.toFixed(2) + "%");
-		console.log("Percentage of Return Value:", returnPercentage.toFixed(2) + "%");
+		
 		updateInvestedDashOffset(investmentPercentage.toFixed(2));
 		updateEstimatedDashOffset(returnPercentage.toFixed(2));
 
@@ -201,55 +243,37 @@
 		return ((totalValue - investedAmount) / investedAmount) * 100;
 	}
 
-	document.getElementById('monthlyInvestment').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
-		
-		const rangeValue = document.getElementById('monthlyInvestmentRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
+	function addRangeInputListener(inputId, rangeId) {
+		const input = document.getElementById(inputId);
+		const range = document.getElementById(rangeId);
+		const minValue = parseFloat(input.getAttribute('min'));
+		const maxValue = parseFloat(input.getAttribute('max'));
 
-	document.getElementById('expectedReturns').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
+		input.addEventListener('input', function () {
+			let value = parseFloat(this.value);
+			if (isNaN(value) || value < minValue) {
+				value = minValue;
+			} else if (value > maxValue) {
+				value = maxValue;
+			}
 
-		const rangeValue = document.getElementById('expectedReturnsRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
+			this.value = value;
+			range.value = value;
+			console.log('range', range);
+			updateGradient(range);
+			calculateSIP();
+		});
 
-	document.getElementById('timePeriod').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
+		range.addEventListener('input', function () {
+			input.value = this.value;
+			calculateSIP();
+		});
+	}
 
-		const rangeValue = document.getElementById('timePeriodRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
-
-	document.getElementById('monthlyInvestmentRange').addEventListener('input', function () {
-		document.getElementById('monthlyInvestment').value = this.value;
-		calculateSIP();
-	});
-
-	document.getElementById('expectedReturnsRange').addEventListener('input', function () {
-		document.getElementById('expectedReturns').value = this.value;
-		calculateSIP();
-	});
-
-	document.getElementById('timePeriodRange').addEventListener('input', function () {
-		document.getElementById('timePeriod').value = this.value;
-		calculateSIP();
+	window.addEventListener('DOMContentLoaded', function () {
+		addRangeInputListener('monthlyInvestment', 'monthlyInvestmentRange');
+		addRangeInputListener('expectedReturns', 'expectedReturnsRange');
+		addRangeInputListener('timePeriod', 'timePeriodRange');
 	});
 
 	document.querySelectorAll('input[name="currency"]').forEach(function (radio) {

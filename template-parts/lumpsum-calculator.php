@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="calculator_wrapper">
 			<h1>Lumpsum Calculator</h1>
-			<?php the_field('description'); ?>
+			<p>A lump sum calculator is a tool that helps to estimate the future value of a single, one-time investment over a specified period.</p>
 			<div class="calculator_box_container">
 				<div class="calculator_box_calculation">
 					<div class="calculation_tabs">
@@ -13,7 +13,7 @@
 						<label>Total Investments</label>
 						<div class="investment_input_group">
 							<span id="currencySymbol">₹</span>
-							<input type="number" id="totalInvestment" min="500" max="100000" value="25000" class="calculation_input" />
+							<input type="number" id="totalInvestment" min="5000" max="1000000" value="25000" class="calculation_input" />
 							<div class="currency_switcher">
 								<input type="radio" id="inr" name="currency" value="INR" checked>
 								<label for="inr">INR</label>
@@ -22,9 +22,9 @@
 							</div>
 						</div>
 						<div class="investment_range_container">
-							<input type="range" min="500" max="100000" value="25000" id="totalInvestmentRange" class="calculation_range_input" />
+							<input type="range" min="5000" max="1000000" value="25000" id="totalInvestmentRange" class="calculation_range_input" />
 							<div class="investment_range_wrapper">
-								<h6>₹500</h6>
+								<h6 id="minTotalInvestment">₹5000</h6>
 								<div class="investment_range_steps">
 									<span></span>
 									<span></span>
@@ -35,7 +35,7 @@
 									<span></span>
 									<span></span>
 								</div>
-								<h6>₹1L</h6>
+								<h6 id="maxTotalInvestment">₹10L</h6>
 							</div>
 						</div>
 					</div>
@@ -146,26 +146,72 @@
 		const currencySymbol = document.getElementById('currencySymbol');
 		const selectedCurrency = document.querySelector('input[name="currency"]:checked').value;
 		currencySymbol.textContent = selectedCurrency === 'INR' ? '₹' : '$';
+
+		const totalInvestmentRange = document.getElementById("totalInvestmentRange");
+		const totalInvestment = document.getElementById("totalInvestment");
+
+		if (selectedCurrency === 'USD') {
+			setRangeValues(totalInvestmentRange, 100, 50000, 2500);
+			setAttributeValues(totalInvestment, 100, 50000, 2500);
+		} else {
+			setRangeValues(totalInvestmentRange, 5000, 1000000, 25000);
+			setAttributeValues(totalInvestment, 5000, 1000000, 25000);
+		}
+		
+		updateGradient(totalInvestmentRange);
 		calculateSIP();
 	}
+
+	function setRangeValues(element, min, max, value) {
+		element.min = min;
+		element.max = max;
+		element.value = value;
+	}
+
+	function setAttributeValues(element, min, max, value) {
+		element.setAttribute("min", min);
+		element.setAttribute("max", max);
+		element.value = value;
+	}
+
+	function convertToShortForm(number) {
+		if (number === 100000) {
+			return '1L';
+		} else if (number === 1000000) {
+			return '10L';
+		} else if (number >= 1000) {
+			return (number / 1000).toFixed(0) + 'K';
+		} else {
+			return number;
+		}
+	}
+
 
 	calculateSIP();
 
 	function calculateSIP() {
-		const totalInvestment = parseFloat(document.getElementById('totalInvestment').value);
+		const totalInvestmentId = document.getElementById('totalInvestment');
+		const totalInvestment = parseFloat(totalInvestmentId.value);
 		const expectedReturns = parseFloat(document.getElementById('expectedReturns').value) / 100;
 		const timePeriod = parseFloat(document.getElementById('timePeriod').value);
 		const currencySymbol = document.getElementById('currencySymbol').textContent;
+		const minValue = parseFloat(totalInvestmentId.getAttribute('min'));
+		const maxValue = parseFloat(totalInvestmentId.getAttribute('max'));
+		document.getElementById('minTotalInvestment').textContent = `${currencySymbol}${minValue}`;
+		document.getElementById('maxTotalInvestment').textContent = `${currencySymbol}${convertToShortForm(maxValue)}`;
 
-		let totalValue = totalInvestment * Math.pow((1 + expectedReturns / 1), 1 * timePeriod);
+		let totalValue = 0;
+		let investedAmount = 0;
 
-        const investedAmount = totalInvestment;
+		for (let i = 1; i <= timePeriod * 12; i++) {
+			totalValue = (totalValue + totalInvestment) * (1 + expectedReturns / 12);
+			investedAmount += totalInvestment;
+		}
+
 		const estimatedReturns = totalValue - investedAmount;
 		const investmentPercentage = (investedAmount / totalValue) * 100;
 		const returnPercentage = (estimatedReturns / totalValue) * 100;
-
-		console.log("Percentage of Investment Amount:", investmentPercentage.toFixed(2) + "%");
-		console.log("Percentage of Return Value:", returnPercentage.toFixed(2) + "%");
+		
 		updateInvestedDashOffset(investmentPercentage.toFixed(2));
 		updateEstimatedDashOffset(returnPercentage.toFixed(2));
 
@@ -196,55 +242,37 @@
 		return ((totalValue - investedAmount) / investedAmount) * 100;
 	}
 
-	document.getElementById('totalInvestment').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
-		
-		const rangeValue = document.getElementById('totalInvestmentRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
+	function addRangeInputListener(inputId, rangeId) {
+		const input = document.getElementById(inputId);
+		const range = document.getElementById(rangeId);
+		const minValue = parseFloat(input.getAttribute('min'));
+		const maxValue = parseFloat(input.getAttribute('max'));
 
-	document.getElementById('expectedReturns').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
+		input.addEventListener('input', function () {
+			let value = parseFloat(this.value);
+			if (isNaN(value) || value < minValue) {
+				value = minValue;
+			} else if (value > maxValue) {
+				value = maxValue;
+			}
 
-		const rangeValue = document.getElementById('expectedReturnsRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
+			this.value = value;
+			range.value = value;
+			console.log('range', range);
+			updateGradient(range);
+			calculateSIP();
+		});
 
-	document.getElementById('timePeriod').addEventListener('input', function () {
-		var maxValue = parseFloat(this.getAttribute('max'));
-		if (parseFloat(this.value) > maxValue) {
-			this.value = maxValue;
-		}
+		range.addEventListener('input', function () {
+			input.value = this.value;
+			calculateSIP();
+		});
+	}
 
-		const rangeValue = document.getElementById('timePeriodRange');
-		rangeValue.value = this.value;
-		updateGradient(rangeValue);
-		calculateSIP();
-	});
-
-	document.getElementById('totalInvestmentRange').addEventListener('input', function () {
-		document.getElementById('totalInvestment').value = this.value;
-		calculateSIP();
-	});
-
-	document.getElementById('expectedReturnsRange').addEventListener('input', function () {
-		document.getElementById('expectedReturns').value = this.value;
-		calculateSIP();
-	});
-
-	document.getElementById('timePeriodRange').addEventListener('input', function () {
-		document.getElementById('timePeriod').value = this.value;
-		calculateSIP();
+	window.addEventListener('DOMContentLoaded', function () {
+		addRangeInputListener('totalInvestment', 'totalInvestmentRange');
+		addRangeInputListener('expectedReturns', 'expectedReturnsRange');
+		addRangeInputListener('timePeriod', 'timePeriodRange');
 	});
 
 	document.querySelectorAll('input[name="currency"]').forEach(function (radio) {
@@ -283,4 +311,5 @@
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return parts.join('.');
 	}
+
 </script>
