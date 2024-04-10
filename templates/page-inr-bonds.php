@@ -149,34 +149,34 @@ get_header(); ?>
     </section>
     <?php /*
 <section class="gold_bonds">
-   <div class="container">
-       <div class="gold_bond_wrap">
-           <div class="gold_bond_img mobile_hide">
-               <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>">
-           </div>
-           <div class="gold_bond_content">
-               <h2 class="section_title align_left light"><span><?php the_field('gold_bond_heading'); ?></span></h2>
-               <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>" class="desktop_hide">
-               <?php if (have_rows('gold_bond_list')) : ?>
-                   <div class="gold_bond_list">
-                       <?php while (have_rows('gold_bond_list')) : the_row(); ?>
-                           <div class="single_gold_bond_list">
-                               <div class="gold_bond_icon">
-                                   <img src="<?php the_sub_field('gold_bond_list_icon') ?>" alt="<?php the_sub_field('gold_bond_list_text') ?>">
-                               </div>
-                               <p><?php the_sub_field('gold_bond_list_text') ?></p>
-                           </div>
-                       <?php endwhile; ?>
-                   </div>
-               <?php endif; ?>
-               <div class="gold_bond_buttons">
-                   <a href="<?php the_field('gold_bond_button_one_url'); ?>" class="btn_light"><?php the_field('gold_bond_button_one_text'); ?></a>
-                   <a href="<?php the_field('gold_bond_button_two_url'); ?>" class="btn_link light"><?php the_field('gold_bond_button_two_text'); ?></a>
-               </div>
+<div class="container">
+<div class="gold_bond_wrap">
+ <div class="gold_bond_img mobile_hide">
+     <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>">
+ </div>
+ <div class="gold_bond_content">
+     <h2 class="section_title align_left light"><span><?php the_field('gold_bond_heading'); ?></span></h2>
+     <img src="<?php the_field('gold_bond_image'); ?>" alt="<?php the_field('gold_bond_heading'); ?>" class="desktop_hide">
+     <?php if (have_rows('gold_bond_list')) : ?>
+         <div class="gold_bond_list">
+             <?php while (have_rows('gold_bond_list')) : the_row(); ?>
+                 <div class="single_gold_bond_list">
+                     <div class="gold_bond_icon">
+                         <img src="<?php the_sub_field('gold_bond_list_icon') ?>" alt="<?php the_sub_field('gold_bond_list_text') ?>">
+                     </div>
+                     <p><?php the_sub_field('gold_bond_list_text') ?></p>
+                 </div>
+             <?php endwhile; ?>
+         </div>
+     <?php endif; ?>
+     <div class="gold_bond_buttons">
+         <a href="<?php the_field('gold_bond_button_one_url'); ?>" class="btn_light"><?php the_field('gold_bond_button_one_text'); ?></a>
+         <a href="<?php the_field('gold_bond_button_two_url'); ?>" class="btn_link light"><?php the_field('gold_bond_button_two_text'); ?></a>
+     </div>
 
-           </div>
-       </div>
-   </div>
+ </div>
+</div>
+</div>
 </section>
 */ ?>
     <?php
@@ -198,35 +198,55 @@ get_header(); ?>
                     <!--end of tab-menu-->
                     <div class="tab tab-active" data-id="tabcorporate" id="tabcorporate">
                         <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
-
                         <div class="bond_slider_wrap" id="corporateBondSlider">
                             <div class="sub_title">
-                                <a href="#">
+                                <a href="#" id="corporate_bonds_link">
                                     What are corporate bonds?
                                 </a>
                             </div>
                             <!-- Placeholder for corporate bond data -->
                         </div>
                     </div>
-
-                    <!-- <div class="tab" data-id="tabsgbs" id="tabsgbs">
-                    <div class="sub_title">
-                        <a href="#" class="p-lg">
-                        What are SGBs bonds?
-                    </a>
-                    </div>
-                       <h2 class="alert_danger">There are no SGBs bonds available.</h2>
-                    </div> -->
-
-                    <div class="tab" data-id="tabgovt" id="tabgovt">
-                        <!-- <a href="#" class="btn_link">What are gsecs?</a> -->
-                        <div class="sub_title">
-                            <a href="#" class="p-lg">
-                                What are Govt Bonds?
+                    <div class="overlay" id="overlaycorporate"></div>
+                    <div class="Bond_popup" id="corporatepopup">
+                        <div class="bond_heading">
+                            <h2> <?php the_field('bonds_heading'); ?></h2>
+                        </div>
+                        <div class="bond_description">
+                            <?php the_field('bonds_description'); ?>
+                        </div>
+                        <div class="submit_btn">
+                            <a href="<?php the_field('bond_button_url'); ?>" class="btn_dark" target="_blank">
+                                <?php the_field('bond_button_text'); ?>
                             </a>
                         </div>
+                    </div>
+
+
+
+                    <div class="tab" data-id="tabgovt" id="tabgovt">
+                        <!-- <a href="#" class="btn_link">What are corporate bonds?</a> -->
                         <div class="bond_slider_wrap" id="govtBondSlider">
-                            <!-- Placeholder for government bond data -->
+                            <div class="sub_title">
+                                <a href="#" id="govt_bonds_link">
+                                    What are Govt Bonds?
+                                </a>
+                            </div>
+                            <!-- Placeholder for corporate bond data -->
+                        </div>
+                    </div>
+                    <div class="overlay" id="overlaygovt"></div>
+                    <div class="Bond_popup" id="govtpopup">
+                        <div class="bond_heading">
+                            <h2> <?php the_field('gov_bond_heading'); ?></h2>
+                        </div>
+                        <div class="bond_description">
+                            <?php the_field('gov_bond_description'); ?>
+                        </div>
+                        <div class="submit_btn">
+                            <a href="<?php the_field('gov_button_url'); ?>" class="btn_dark" target="_blank">
+                                <?php the_field('gov_button_text'); ?>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -277,7 +297,7 @@ get_header(); ?>
                     </div>
 
                     <div class="bond_result_col blur">
-                         <div class="bond_result_wrap">
+                        <div class="bond_result_wrap">
                             <div class="bond_result_single">
                                 <div class="left_part">
                                     <p>Investment amount</p>
@@ -540,7 +560,9 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 </div>
+
 <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         const corporateApiUrl = "https://yield-api-test.vestedfinance.com/bonds";
         const corporateContainerId = "corporateBondSlider";
@@ -562,8 +584,8 @@ get_header(); ?>
                 // Populate the dropdown with data
                 data.bonds.forEach(item => {
                     const option = document.createElement("option");
-                    option.value = item.name; // Set the value for the option
-                    option.text = item.name; // Set the text to display in the dropdown
+                    option.value = item.displayName; // Set the value for the option
+                    option.text = item.displayName; // Set the text to display in the dropdown
                     option.setAttribute("id", item.offeringId);
                     option.setAttribute("minValue", item.minimumQty);
                     apiDataDropdown.appendChild(option);
@@ -661,7 +683,7 @@ get_header(); ?>
 
                     // Round to two decimal places
 
-                  // Assuming investmentAmount is already declared somewhere else in your code
+                    // Assuming investmentAmount is already declared somewhere else in your code
 
 
 
@@ -695,7 +717,7 @@ get_header(); ?>
                     const fdAmtPercent = (fdAmt / maxVal) * 100;
                     const investedValPercent = (investedVal / maxVal) * 100;
                     const selectedBondValPercent = (selectedBondVal / maxVal) * 100;
-                    
+
                     investProgress.style.width = investedValPercent + '%';
                     fdProgress.style.width = fdAmtPercent + '%';
                     bondProgress.style.width = selectedBondValPercent + '%';
@@ -748,11 +770,12 @@ get_header(); ?>
             slideCion.className = 'slide_cion';
 
             const img = document.createElement('img');
-            if (bondData.bondCategory === 'GOVT') {
-                img.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Government-Bonds.png";
-            } else {
-                img.src = bondData.logo;
-            }
+            // if (bondData.bondCategory === 'GOVT') {
+            //     img.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Government-Bonds.png"; // when api img is not avalabel//
+            // } else {
+            //     img.src = bondData.logo;
+            // }
+            img.src = bondData.logo;
             img.className = 'bond_image';
             slideCion.appendChild(img);
             slideIconWrap.appendChild(slideCion);
@@ -800,7 +823,6 @@ get_header(); ?>
             investVal.textContent = bondData.minimumInvestment;
 
             slideInfo.appendChild(h4);
-            slideInfo.appendChild(p);
             bondDiv.appendChild(slideInfo);
 
             const slideInvestmentInfo = document.createElement('div');
@@ -907,26 +929,6 @@ get_header(); ?>
 
                         bondContainer.appendChild(bondPortfolioSlider);
 
-                        // jQuery(`#${containerId} .bond_portfolio_slider`).slick({
-                        //     infinite: false,
-                        //     arrows: true,
-                        //     dots: false,
-                        //     autoplay: false,
-                        //     speed: 800,
-                        //     slidesToShow: 2,
-                        //     slidesToScroll: 1,
-                        //     centerMode: false,
-                        //     nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-                        //     prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-                        //     responsive: [{
-                        //         breakpoint: 768,
-                        //         settings: {
-                        //             slidesToShow: 1,
-                        //             slidesToScroll: 1,
-                        //         },
-                        //     }],
-                        // });
-
                         const singleSlides = bondContainer.querySelectorAll('.single_portfolio_slide');
                         if (singleSlides.length < 3) {
                             bondPortfolioSlider.classList.add('slide_wo_shadow');
@@ -954,7 +956,7 @@ get_header(); ?>
         var bondImages = document.getElementsByClassName("bond_image");
         if (bondImages.length > 0) {
             for (var i = 0; i < bondImages.length; i++) {
-                bondImages[i].onerror = function() {
+                bondImages[i].onerror = function () {
                     // If the image fails to load (i.e., returns 404), replace it with a default image
                     this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Corporate-Bonds.png";
                 };
@@ -962,31 +964,57 @@ get_header(); ?>
         }
     }
 
+    // Bonds popup model //
+    jQuery(document).ready(function () {
+        jQuery('#corporate_bonds_link').click(function (e) {
+            e.preventDefault();
+            jQuery('#overlaycorporate').fadeIn();
+            jQuery('#corporatepopup').fadeIn();
+        });
+
+        jQuery('#overlaycorporate').click(function () {
+            jQuery('#overlaycorporate').fadeOut();
+            jQuery('#corporatepopup').fadeOut();
+        });
+    });
+
+    jQuery(document).ready(function () {
+        jQuery('#govt_bonds_link').click(function (e) {
+            e.preventDefault();
+            jQuery('#overlaygovt').fadeIn();
+            jQuery('#govtpopup').fadeIn();
+        });
+
+        jQuery('#overlaygovt').click(function () {
+            jQuery('#overlaygovt').fadeOut();
+            jQuery('#govtpopup').fadeOut();
+        });
+    });
+    // end Bonds popup model //
 
 </script>
 <?php if (have_rows('faq_list')): ?>
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            <?php $rowCount = 0; ?>
-            <?php while (have_rows('faq_list')):
-                the_row(); ?>
-                    {
-                        "@type": "Question",
-                        "name": "<?php the_sub_field('faq_question') ?>",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "
-                                <?php the_sub_field('faq_answer') ?>
-                            "
-                        }
-                    }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-            <?php endwhile; ?>
-        ]
-    }
-    </script>
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    <?php $rowCount = 0; ?>
+                    <?php while (have_rows('faq_list')):
+                        the_row(); ?>
+                                    {
+                                        "@type": "Question",
+                                        "name": "<?php the_sub_field('faq_question') ?>",
+                                        "acceptedAnswer": {
+                                            "@type": "Answer",
+                                            "text": "
+                                                <?php the_sub_field('faq_answer') ?>
+                                            "
+                                        }
+                                    }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
+                    <?php endwhile; ?>
+                ]
+            }
+            </script>
 <?php endif; ?>
-
 <?php get_footer(); ?>
