@@ -739,12 +739,6 @@ get_header(); ?>
             const bondDiv = document.createElement('div');
             bondDiv.className = 'single_portfolio_slide';
 
-            // Find the div with class name 'box_shadow'
-            const boxShadowDiv = document.querySelector('.box_shadow');
-
-            // Insert bondDiv before boxShadowDiv
-            boxShadowDiv.parentNode.insertBefore(bondDiv, boxShadowDiv);
-
 
             // Create and append elements with bond data
             const slideIconWrap = document.createElement('div');
@@ -755,7 +749,7 @@ get_header(); ?>
 
             const img = document.createElement('img');
             if (bondData.bondCategory === 'GOVT') {
-                img.src = "http://localhost/vested-testing/wp-content/uploads/2024/04/Government-Bonds.png";
+                img.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Government-Bonds.png";
             } else {
                 img.src = bondData.logo;
             }

@@ -39,6 +39,54 @@ get_header(); ?>
     </div>
 </section>
 
+<section class="fresh-reads-post">
+    <div class="container">
+        <div class="fresh-reads-post-title">
+            <h3>Fresh Reads </h3>
+            <p>Stay up to date with the latest articles and news in the market</p>
+        </div>
+        <div class="inner-row">
+    
+        <?php
+        $latest_post = new WP_Query(array(
+            'post_type' => 'post',
+            'posts_per_page' => 8,
+            'order' => 'DESC',
+            'orderby' => 'date'
+        ));
+
+        if ($latest_post->have_posts()) :
+            while ($latest_post->have_posts()) : $latest_post->the_post();
+                ?>
+                <div class="fresh-reads-blog">
+                    <div class="latest-post">
+                        <?php if (has_post_thumbnail()) : ?>
+                            <a href="<?php the_permalink(); ?>">
+                            <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" alt="<?php the_title(); ?>">
+                        </a>
+                        <?php endif; ?>
+                        <h6>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                        </h6>
+                        <div class="post-content">
+                            <p><?php the_excerpt(); ?></p>
+                        </div>
+                        <div class="meta-info">
+                            <span class="post-author"><?php the_author(); ?></span>
+                            <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                        </div>
+                    </div>
+                </div>    
+            <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+       </div>
+    </div>
+</section>
+
 <section class="first-blog">
     <div class="container">
         <div class="inner-row">
@@ -169,7 +217,7 @@ get_header(); ?>
                         <img src="<?php the_field('subscriber_image'); ?>" />
                     </div>
                     <div class="newsletter-form">
-                        <?php echo do_shortcode('[moengage_newsletter id="1" name="newsletter-subscriber" message="Thank You! You have been added to the waitlist." button_text="Subscribe"]'); ?>
+                        <?php echo do_shortcode('[moengage_newsletter id="1" name="newsletter-subscriber" message="Thank you! You have successfully subscribed to our blog." button_text="Subscribe"]'); ?>
                     </div>
                 </div>
             </div>
@@ -364,9 +412,105 @@ get_header(); ?>
     </section>
 <?php endif; ?>
 
+<section class="latest_articles">
+<div class="container">
+        <div class="head-part">
+                <div class="title">
+                    <h2><?php the_field('articles_heading'); ?></h2>
+                </div>
+                <span><?php the_field('articles_sub_heading'); ?></span>
+        </div>
+        <div class="articles-list">
+            <ul>
+                <?php
+
+                    $args = array(
+                        'post_type'      => 'post',
+                        'posts_per_page' => 10,
+                        'tax_query'      => array(
+                        ),
+                    );
+
+                    $custom_query = new WP_Query($args);
+
+                    if ($custom_query->have_posts()) :
+                        while ($custom_query->have_posts()) : $custom_query->the_post();
+                            // Display post content here
+                            ?>
+                            <li>
+                                <div class="featured-image">
+                                    <?php if (has_post_thumbnail()) : ?>   
+                                        <a href="<?php the_permalink(); ?>">                                    
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>    
+                                    <?php endif; ?>
+                                </div>
+                                <div class="content articles-wrap">
+                                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                  
+                                    <div class="meta-info">
+                                        <span class="post-author"><?php the_author(); ?></span>
+                                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                        endwhile;
+                        wp_reset_postdata(); // Restore the global post data
+                    else :
+                        echo 'No posts found';
+                    endif;
+                ?>
+            </ul>
+        </div>
+    </div>
+</section>
+
 <section class="newsletter-section">
     <?php get_template_part('template-parts/newsletter'); ?>
 </section>
 
 </div>
+
+<script>
+    window.onload = function() {
+        // Get the input element by its ID
+        var myInput = document.querySelector('.search-field');
+
+        // Set the placeholder attribute
+        myInput.placeholder = 'Search all blogs';
+    };
+</script>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.articles-list ul').slick({
+            slidesToShow: 3, 
+            slidesToScroll: 1,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 1000, 
+            arrows: true, 
+            responsive: [{
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
 <?php get_footer(); ?>

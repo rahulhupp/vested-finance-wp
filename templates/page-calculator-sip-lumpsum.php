@@ -45,6 +45,29 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
+    <?php if (have_rows('sip_faqs_list')) : ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        <?php $rowCount = 0; ?>
+        <?php while (have_rows('sip_faqs_list')) : the_row(); ?>
+            {
+                "@type": "Question",
+                "name": "<?php the_sub_field('sip_faqs_list_question') ?>",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "
+                        <?php the_sub_field('sip_faqs_list_answer') ?>
+                    "
+                }
+            }<?php echo (++$rowCount === count(get_field('sip_faqs_list'))) ? '' : ','; ?>
+        <?php endwhile; ?>
+    ]
+}
+</script>
+<?php endif; ?>
 
     <script>
         jQuery(function ($) {
@@ -106,6 +129,30 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
+
+<?php if (have_rows('lumpsum_faqs_list')) : ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        <?php $rowCount = 0; ?>
+        <?php while (have_rows('lumpsum_faqs_list')) : the_row(); ?>
+            {
+                "@type": "Question",
+                "name": "<?php the_sub_field('lumpsum_faqs_list_question') ?>",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "
+                        <?php the_sub_field('lumpsum_faqs_list_answer') ?>
+                    "
+                }
+            }<?php echo (++$rowCount === count(get_field('lumpsum_faqs_list'))) ? '' : ','; ?>
+        <?php endwhile; ?>
+    ]
+}
+</script>
+<?php endif; ?>
 
     <script>
         jQuery(function ($) {

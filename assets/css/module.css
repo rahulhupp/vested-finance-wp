@@ -1578,6 +1578,12 @@ body.single.single-module {
 }
 
 @media (max-width: 521px) {
+	.post_faqs_section .single_faq .faq_que h4{
+		font-size: 16px !important;
+	}
+	.post_faqs_section .section_title{
+		font-size: 18px !important;
+	}
 	.single_module_share_block {
 		flex-direction: column;
 		margin: 10px 0;
@@ -1874,10 +1880,6 @@ a.chapter_back_btn:hover {
 	margin-bottom: 24px;
 }
 
-.single_module_post_content .content p.form-submit {
-    margin-bottom: 0;
-}
-
 .single_module_post_content .content figure {
 	margin: 24px 0;
 }
@@ -1917,18 +1919,9 @@ a.chapter_back_btn:hover {
 	justify-content: space-between;
 }
 
-.ast-comment-formwrap.ast-row .g-recaptcha {
-    width: 100%;
-    margin-bottom: 20px;
-}
-.ast-comment-formwrap.ast-row .g-recaptcha div {
-    max-width: 100%;
-}
-
 .single_module_post_content .comment-form-cookies-consent label {
 	margin-left: 5px;
 }
-
 
 
 .single_module_feature_image .premium_tag_icon {
@@ -2046,7 +2039,6 @@ a.chapter_back_btn:hover {
 	}
 }
 
-
 /*post faqs */
 
 .faq_content {
@@ -2072,42 +2064,50 @@ a.chapter_back_btn:hover {
 	cursor: pointer;
 }
 
-.faq_que:after {
+.post_faqs_section .faq_que:after {
 	content: "\f078";
 	font-family: "FontAwesome";
 	position: absolute;
 	top: 0;
 	right: 0px;
-	color: #212529;
+	color: #002852;
 	transition: transform 0.3s;
 }
 .post_faqs_section .section_title{
 	padding-bottom: 10px !important;
-    border-top: 1px solid #3e3535;
+    border-top: 1px solid rgb(62 53 53 / 10%);
     margin-top: 40px;
-	padding-top: 30px;
-}
-.post_faqs_section .section_title span{
-	font-size: 20px;
+    padding-top: 44px;
+    padding-left: 0;
+    padding-right: 0;
     color: #191C1F;
+    font-weight: 600;
     line-height: 150%;
-    
+    font-size: 20px;
 }
+
 
 .post_faqs_section .single_faq {
 	padding: 25px 16px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-left: 0;
+	padding-right: 0;
 }
 .post_faqs_section .single_faq .faq_que h4{
 	margin-bottom: 0 !important;
-	font-size: 18px;
-	color: #191C1F;
+    font-size: 18px;
+    color: #212529;
+    font-weight: 500;
+	margin-right: 20px;
+	line-height: 150%;
 }
 .post_faqs_section .single_faq .faq_content p{
 	margin-bottom: 0 !important;
-    color: #212529;
-    font-size: 18px !important;
-    line-height: 25px;
+    color: #1E2022;
+    font-size: 16px !important;
+	font-weight: 400;
+	line-height: 140%;
+    
 }
 
 .post_faqs_section .faq_content {
@@ -2145,6 +2145,7 @@ a.chapter_back_btn:hover {
 
 .blog_page_faqs .container {
 	max-width: 1230px;
+	padding: 0;
 }
 
 .blog_page_faq_wrap {
