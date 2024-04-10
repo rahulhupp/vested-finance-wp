@@ -290,6 +290,7 @@ footer .footer_wrap .site_info_wrap a {
   margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
+  row-gap: 11px;
 }
 
 .others_links_wrap a {
