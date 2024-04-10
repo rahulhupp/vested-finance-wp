@@ -246,10 +246,10 @@
 	function addRangeInputListener(inputId, rangeId) {
 		const input = document.getElementById(inputId);
 		const range = document.getElementById(rangeId);
-		const minValue = parseFloat(input.getAttribute('min'));
-		const maxValue = parseFloat(input.getAttribute('max'));
-
-		input.addEventListener('input', function () {
+		
+		input.addEventListener('blur', function () {
+			const minValue = parseFloat(input.getAttribute('min'));
+			const maxValue = parseFloat(input.getAttribute('max'));
 			let value = parseFloat(this.value);
 			if (isNaN(value) || value < minValue) {
 				value = minValue;
@@ -259,7 +259,6 @@
 
 			this.value = value;
 			range.value = value;
-			console.log('range', range);
 			updateGradient(range);
 			calculateSIP();
 		});
