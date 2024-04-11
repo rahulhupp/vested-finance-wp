@@ -226,7 +226,7 @@ function custom_wpseo_sitemap_index($sitemap_index) {
     $last_modified = date('c');
     $custom_urls = array(
         '<sitemap><loc>' . home_url('/us-stocks-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
-        // '<sitemap><loc>' . home_url('/us-stocks-etf-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>'
+        '<sitemap><loc>' . home_url('/us-stocks-etf-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>'
     );
     
     // Append each custom URL to the sitemap index
