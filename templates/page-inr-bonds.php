@@ -208,7 +208,7 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="overlay" id="overlaycorporate"></div>
-                    <div class="Bond_popup" id="corporatepopup">
+                    <div class="bond_popup" id="corporatepopup">
                         <div class="bond_heading">
                             <h2> <?php the_field('bonds_heading'); ?></h2>
                         </div>
@@ -236,7 +236,7 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="overlay" id="overlaygovt"></div>
-                    <div class="Bond_popup" id="govtpopup">
+                    <div class="bond_popup" id="govtpopup">
                         <div class="bond_heading">
                             <h2> <?php the_field('gov_bond_heading'); ?></h2>
                         </div>
@@ -649,7 +649,6 @@ get_header(); ?>
                             document.getElementById('unit_range').min = selectedOptionMinVal
                             document.getElementById('unit_range').style.background = 'linear-gradient(90deg, rgba(0, 40, 52, 1) 0%, rgba(229, 231, 235, 1) 0%)';
                             document.querySelector('.bond_result_col').classList.add('blur');
-                            console.log(document.getElementById('unit_range').value);
                         }
                     }
 
@@ -658,11 +657,9 @@ get_header(); ?>
                     document.getElementById('units').addEventListener('input', handleResult);
                     let sumCashFlow = 0;
 
-                    data.bondDetails.cashflows.forEach(item => {
-                        sumCashFlow = sumCashFlow + item.amount;
-                    });
-
-                    // console.log('data', data);
+                    // data.bondDetails.cashflows.forEach(item => {
+                    //     sumCashFlow = sumCashFlow + item.amount;
+                    // });
 
                     const fristCashFlowPrice = data.bondDetails.cashflows[0].amount;
                     const faceValue = data.bondDetails.faceValue;
@@ -673,7 +670,36 @@ get_header(); ?>
                     const investmentAmount = minimumQuantity * data.bondDetails.newPrice;
                     const periodInYears = data.bondDetails.maturityInMonths / 12;
                     const bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-                    const selectedBonds = sumCashFlow * minimumQuantity;
+                    
+
+                    const accruedInterest = (Number(data.bondDetails.accruedInterest) || 0) * data.bondDetails.minimumQty;
+	                const principalAmount = (Number(data.bondDetails.principalAmount) || 0) * data.bondDetails.minimumQty;
+                    const totalInvestment = accruedInterest + principalAmount;
+                    
+                    const interestEarned =
+                        (data.bondDetails.cashflows.reduce((acc, curr) => {
+                            if (curr.type === 'interest') {
+                                return acc + curr.amount;
+                            }
+                            return acc;
+                        }, 0) +
+                        (Number(data.bondDetails.faceValue) - Number(data.bondDetails.newPrice))) *
+                        data.bondDetails.minimumQty;
+                        
+                    const totalReceivable = totalInvestment + interestEarned;
+                    console.log('2 data', data);
+                    console.log('accruedInterest', accruedInterest);
+                    console.log('principalAmount', principalAmount);
+                    console.log('interestEarned', interestEarned);
+                    console.log('totalReceivable', totalReceivable);
+                    console.log('data.bondDetails.accruedInterest', data.bondDetails.accruedInterest);
+                    console.log('data.bondDetails.principalAmount', data.bondDetails.principalAmount);
+                    console.log('data.bondDetails.minimumQty', data.bondDetails.minimumQty);
+                    console.log('data.bondDetails.cashflows', data.bondDetails.cashflows);
+                    // const selectedBonds = sumCashFlow * minimumQuantity;
+                    const selectedBonds = totalReceivable;
+                    sumCashFlow = totalReceivable;
+                    console.log('selectedBonds', selectedBonds);
                     const extraAmount = selectedBonds - bankFixedDeposit;
                     const periodInYearMonths = data.bondDetails.maturityInMonths;
                     const years = Math.floor(periodInYearMonths / 12);
@@ -757,7 +783,6 @@ get_header(); ?>
         }
 
         function createBondElements(bondData) {
-            console.log(bondData);
             const bondDiv = document.createElement('div');
             bondDiv.className = 'single_portfolio_slide';
 
