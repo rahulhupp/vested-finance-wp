@@ -1,143 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
-	// sliderSlide();
-});
-function sliderSlide() {
-	var slider = document.getElementById("unit_range");
-	var sliderVal = document.getElementById("units");
-	var color =
-		"linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-	slider.style.background = color;
-	var minValue = slider.getAttribute('min');
-	var maxValue = 1000;
-	var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-	var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-	var color =
-		"linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-		newValue +
-		"%, rgba(229, 231, 235, 1)" +
-		newValue +
-		"%)";
-	slider.style.background = color;
-	if (newValue > 40 && newValue <= 85) {
-		slider.classList.add("ahead");
-	} else if (newValue > 85) {
-		slider.classList.remove("ahead");
-		slider.classList.add("end");
-	} else {
-		slider.classList.remove("ahead");
-		slider.classList.remove("end");
+function initializeSlickSlider(tabId) {
+	console.log('tabId', tabId);
+	console.log('#' + tabId + ' .bonds_slider');
+	jQuery('#' + tabId + ' .bonds_slider').slick({
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		autoplay: false,
+		autoplaySpeed: 2000,
+		dots: false,
+		arrows: true,
+		centerMode: false,
+		infinite: false,
+		nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+		prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+		responsive: [{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 1
+			}
+		}]
+	});
+}
+
+function openTab(tabId) {
+	var tabContents = document.getElementsByClassName("bonds_tab_content");
+	for (var i = 0; i < tabContents.length; i++) {
+		tabContents[i].classList.remove("active");
 	}
+
+	var tabButtons = document.getElementsByClassName("bonds_tab_button");
+	for (var i = 0; i < tabButtons.length; i++) {
+		tabButtons[i].classList.remove("active");
+	}
+
+	document.getElementById(tabId).classList.add("active");
+	event.currentTarget.classList.add("active");
+
+	initializeSlickSlider(tabId);
 }
 
 jQuery(document).ready(function ($) {
-	$(".bond_portfolio_slider").each(function () {
-		var $tabContainer = $(this).closest(".tab");
-		var $singleSlides = $tabContainer.find(".single_portfolio_slide");
-
-		if ($singleSlides.length < 3) {
-			$(this).addClass("slide_wo_shadow");
-		} else {
-			$(this).removeClass("slide_wo_shadow");
-		}
-	});
-
-	var activeTab = null;
-
-	// Initialize Slick slider for the active tab
-	function initializeSlickSlider(tabId) {
-		$("#" + tabId + " .bond_portfolio_slider").slick({
-			infinite: false,
-			arrows: true,
-			dots: false,
-			autoplay: false,
-			speed: 800,
-			slidesToShow: 2,
-			slidesToScroll: 1,
-			centerMode: false,
-			nextArrow:
-				'<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-			prevArrow:
-				'<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 1,
-						slidesToScroll: 1,
-					},
-				},
-			],
-		});
-	}
-
-	// Function to handle tab click
-	function handleTabClick(clickedTab) {
-		$(".tab").removeClass("tab-active");
-		$(".tab[data-id='" + clickedTab.attr("data-id") + "']").addClass(
-			"tab-active"
-		);
-		$(".tab-a").removeClass("active-a");
-		clickedTab.addClass("active-a");
-
-		if (activeTab !== null) {
-			$("#" + activeTab + " .bond_portfolio_slider").slick("unslick");
-		}
-
-		var tabId = clickedTab.data("id");
-		activeTab = tabId;
-
-		initializeSlickSlider(tabId);
-	}
-
-	$(".tab-a").click(function () {
-		handleTabClick($(this));
-	});
-
-	initializeSlickSlider($(".tab-a.active-a").data("id"));
-
-	$(".tab-active .bond_slider_wrap .bond_portfolio_slider").slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		autoplay: false,
-		speed: 800,
-		slidesToShow: 2,
-		slidesToScroll: 1,
-		centerMode: false,
-		nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-		prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-				},
-			},
-		],
-	});
-
-	$(".bond_prev").click(function () {
-		$(".bond_portfolio_slider").slick("slickPrev");
-	});
-
-	$(".bond_next").click(function () {
-		$(".bond_portfolio_slider").slick("slickNext");
-	});
-	$(".bond_prev").addClass("slick-disabled");
-	$(".bond_portfolio_slider").on("afterChange", function () {
-		if ($(".slick-prev").hasClass("slick-disabled")) {
-			$(".bond_prev").addClass("slick-disabled");
-		} else {
-			$(".bond_prev").removeClass("slick-disabled");
-		}
-		if ($(".slick-next").hasClass("slick-disabled")) {
-			$(".bond_next").addClass("slick-disabled");
-		} else {
-			$(".bond_next").removeClass("slick-disabled");
-		}
-	});
-
+	initializeSlickSlider('corporate_bonds');
 	$(".portfolio_slider").slick({
 		infinite: true,
 		arrows: false,
@@ -180,6 +82,7 @@ jQuery(document).ready(function ($) {
 					asNavFor: ".portfolio_slider",
 					vertical: false,
 					dots: true,
+					dotsClass: "slider-dots"
 				},
 			},
 		],
@@ -206,16 +109,8 @@ jQuery(document).ready(function ($) {
 	}
 
 	function interval() {
-		if (
-			$(
-				'.portfolio_slider .slick-track div[data-slick-index="' +
-				progressBarIndex +
-				'"]'
-			).attr("aria-hidden") === "true"
-		) {
-			progressBarIndex = $(
-				'.portfolio_slider .slick-track div[aria-hidden="false"]'
-			).data("slickIndex");
+		if ($('.portfolio_slider .slick-track div[data-slick-index="' + progressBarIndex + '"]').attr("aria-hidden") === "true") {
+			progressBarIndex = $('.portfolio_slider .slick-track div[aria-hidden="false"]').data("slickIndex");
 			startProgressbar();
 		} else {
 			percentTime += 1 / (time + 4);
@@ -259,168 +154,61 @@ jQuery(document).ready(function ($) {
 		$(".single-item").slick("slickGoTo", goToThisIndex, false);
 		startProgressbar();
 	});
-	jQuery(function ($) {
-		$(".faq_que").click(function (j) {
-			var dropDown = $(this).closest(".single_faq").find(".faq_content");
-			$(this)
-				.closest(".home_page_faq_wrap")
-				.find(".faq_content")
-				.not(dropDown)
-				.slideUp();
-			if ($(this).hasClass("active")) {
-				$(this).removeClass("active");
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+	const faqItems = document.querySelectorAll('.faq_item');
+
+	faqItems.forEach(item => {
+		const question = item.querySelector('.faq_question');
+		const answer = item.querySelector('.faq_answer');
+		const icon = item.querySelector('.faq_icon');
+
+		question.addEventListener('click', () => {
+			// Toggle active class for answer and icon
+			answer.classList.toggle('active');
+			icon.classList.toggle('active');
+
+			// Check if answer is active
+			if (answer.classList.contains('active')) {
+				answer.style.maxHeight = answer.scrollHeight + "px";
 			} else {
-				$(this)
-					.closest(".home_page_faq_wrap")
-					.find(".faq_que.active")
-					.removeClass("active");
-				$(this).addClass("active");
+				answer.style.maxHeight = "0";
 			}
-			dropDown.stop(false, true).slideToggle();
-			j.preventDefault();
+
+			// Collapse other answers
+			faqItems.forEach(otherItem => {
+				if (otherItem !== item) {
+					const otherAnswer = otherItem.querySelector('.faq_answer');
+					const otherIcon = otherItem.querySelector('.faq_icon');
+
+					otherAnswer.classList.remove('active');
+					otherIcon.classList.remove('active');
+					otherAnswer.style.maxHeight = "0";
+				}
+			});
 		});
 	});
 
-
-
-	if ($(window).width() <= 767) {
-		$(".module_chapter_list").slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			infinite: true,
-			autoplay: true,
-			autoplaySpeed: 2000,
-			arrows: true,
-			centerMode: true,
+	document.getElementById('cb_modal_button').addEventListener('click', function () {
+		document.getElementById('cb_modal').style.display = 'flex';
+	});
+	
+	document.getElementById('gb_modal_button').addEventListener('click', function () {
+		document.getElementById('gb_modal').style.display = 'flex';
+	});
+	
+	document.querySelectorAll('.close').forEach(function (closeBtn) {
+		closeBtn.addEventListener('click', function () {
+			this.closest('.modal').style.display = 'none';
 		});
-	}
-
-	$(".minus_qty").click(function () {
-		let $input = $("#units");
-		var val = parseInt($input.val());
-		if (val > 0) {
-			$input.val(val - 1).change();
+	});
+	
+	window.onclick = function (event) {
+		if (event.target.classList.contains('modal')) {
+			event.target.style.display = 'none';
 		}
-	});
-	$(".plus_qty").click(function () {
-		let $input = $("#units");
-		var val = parseInt($input.val());
-		$input.val(val + 1).change();
-	});
+	};
 });
 
-function restrictAlphabets(e) {
-	var x = e.which || e.keycode;
-	if ((x >= 48 && x <= 57))
-		return true;
-	else
-		return false;
-}
 
-jQuery(document).ready(function ($) {
-	$("#units").on("input change", function (event) {
-		var latestAmt = $("#units").val();
-		$("#unit_range").val(latestAmt);
-
-		var investmentAmount = $('#investment_amount').attr('newPrice');
-		var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
-		var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-		var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
-		// var selectedBonds = totalCashFlow * minimumQuantity;
-
-		var slider = document.getElementById("unit_range");
-		var sliderVal = document.getElementById("units");
-		slider.style.background = color;
-		var minValue = slider.getAttribute('min');
-		var maxValue = 1000;
-		// var selectedValue = jQuery('#bond_selector').attr('minvalue');
-		// console.log ('test', selectedValue);
-		// console.log ('sd', minValue);
-		// if (maxValue <= minValue) {
-		//   console.log ('test', minValue);
-		//   jQuery(this).val(minValue);
-		// }
-
-		var x = parseFloat(latestAmt);
-		var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-		var color =
-			"linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-			newValue +
-			"%, rgba(229, 231, 235, 1)" +
-			newValue +
-			"%)";
-		slider.style.background = color;
-		if (newValue > 40 && newValue <= 85) {
-			slider.classList.add("ahead");
-		} else if (newValue > 85) {
-			slider.classList.remove("ahead");
-			slider.classList.add("end");
-		} else {
-			slider.classList.remove("ahead");
-			slider.classList.remove("end");
-		}
-
-		var newinvestmentAmount = investmentAmount * newValue;
-		var newbankFixedDeposit = bankFixedDeposit * newValue;
-		var newselectedBonds = totalCashFlow * newValue;
-		var extraAmount = newselectedBonds - newbankFixedDeposit;
-
-		document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-		document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('selected_bond').textContent = Math.round(newselectedBonds).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('extra_amount').textContent = Math.round(extraAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-	});
-
-	$("#unit_range").on("input change", function () {
-
-		var slider = document.getElementById("unit_range");
-		var sliderVal = document.getElementById("units");
-		$("#units").val(slider.value);
-
-
-		var investmentAmount = $('#investment_amount').attr('newPrice');
-		var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
-		var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-		var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
-		// var selectedBonds = totalCashFlow * minimumQuantity;
-
-		var color =
-			"linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-		slider.style.background = color;
-		var minValue = slider.getAttribute('min');
-		var maxValue = 1000;
-		var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-		var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-		var color =
-			"linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-			newValue +
-			"%, rgba(229, 231, 235, 1)" +
-			newValue +
-			"%)";
-		slider.style.background = color;
-		if (newValue > 40 && newValue <= 85) {
-			slider.classList.add("ahead");
-		} else if (newValue > 85) {
-			slider.classList.remove("ahead");
-			slider.classList.add("end");
-		} else {
-			slider.classList.remove("ahead");
-			slider.classList.remove("end");
-		}
-
-		var newinvestmentAmount = investmentAmount * newValue;
-		var newbankFixedDeposit = bankFixedDeposit * newValue;
-		var newselectedBonds = totalCashFlow * newValue;
-		var extraAmount = newselectedBonds - newbankFixedDeposit;
-
-		document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-		document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('selected_bond').textContent = Math.round(newselectedBonds).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById('extra_amount').textContent = Math.round(extraAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	});
-});
