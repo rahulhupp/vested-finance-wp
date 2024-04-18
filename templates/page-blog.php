@@ -41,9 +41,14 @@ get_header(); ?>
 
 <section class="fresh-reads-post">
     <div class="container">
-        <div class="fresh-reads-post-title">
-            <h3>Fresh Reads </h3>
-            <p>Stay up to date with the latest articles and news in the market</p>
+        <div class="head-part">
+            <div class="heading">
+                <div class="title">
+                    <h2>Fresh Reads</h2>
+                    <a href="<?php echo get_home_url(); ?>/blog/all-articles">View all articles</a>
+                </div>
+                <span>Stay up to date with the latest articles and news in the market</span>
+            </div>
         </div>
         <div class="inner-row">
     
