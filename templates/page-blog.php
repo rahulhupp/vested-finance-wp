@@ -45,7 +45,7 @@ get_header(); ?>
             <div class="heading">
                 <div class="title">
                     <h2>Fresh Reads</h2>
-                    <a href="<?php echo get_home_url(); ?>/blog/articles">View all articles</a>
+                    <a href="<?php echo get_home_url(); ?>/blog/all">View all articles</a>
                 </div>
                 <span>Stay up to date with the latest articles and news in the market</span>
             </div>
