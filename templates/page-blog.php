@@ -12,7 +12,7 @@ get_header(); ?>
             <h1><?php the_field('blog_title'); ?></h1>
             <p><?php the_field('blog_content'); ?></p>
         </div>
-    </div>
+    </div>  
 </section>
 
 <section class="filter-tab">
@@ -45,7 +45,7 @@ get_header(); ?>
             <div class="heading">
                 <div class="title">
                     <h2>Fresh Reads</h2>
-                    <a href="<?php echo get_home_url(); ?>/blog/all-articles">View all articles</a>
+                    <a href="<?php echo get_home_url(); ?>/blog/articles">View all articles</a>
                 </div>
                 <span>Stay up to date with the latest articles and news in the market</span>
             </div>
@@ -55,7 +55,7 @@ get_header(); ?>
         <?php
         $latest_post = new WP_Query(array(
             'post_type' => 'post',
-            'posts_per_page' => 8,
+            'posts_per_page' => 4,
             'order' => 'DESC',
             'orderby' => 'date'
         ));

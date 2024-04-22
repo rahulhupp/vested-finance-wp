@@ -8,7 +8,7 @@ get_header(); ?>
     <div class="container">
         <ul>
             <li><a href="<?php echo get_home_url(); ?>/blog">Blog</a></li>
-            <li class="active"><a href="#">Articles</a></li>						
+            <li class="active"><a href="#">All Articles</a></li>						
         </ul>
     </div>
 </div>
