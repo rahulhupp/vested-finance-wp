@@ -2,6 +2,10 @@
 
 /* Banner section */
 
+.ast-container {
+    padding: 0;
+}
+
 .container {
 	max-width: 1230px;
 }
@@ -154,10 +158,6 @@
 		font-size: 14px;
 		line-height: 19.6px;
 		font-weight: 400;
-	}
-
-	.cal_card_warap .card_content a {
-		padding-top: 0 !important;
 	}
 
 	.cal_card_warap .card_content {
