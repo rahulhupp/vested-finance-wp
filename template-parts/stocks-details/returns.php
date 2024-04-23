@@ -20,7 +20,7 @@
                                     if ($get_path[2] == 'etf') {
                                         if(isset($returns_data['timeFrames']['value']) && isset($returns_data['current']['value']) && isset($returns_data['sp500']['value'])) {
                                             echo "<table id='ab_returns_table'>";
-                                            echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sp500']['label']}</th></tr>";
+                                            echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>".htmlspecialchars($returns_data['sp500']['label'])."</th></tr>";
                                         
                                             foreach ($returns_data['timeFrames']['value'] as $timeFrame) {
                                                 $key = $timeFrame['key'];
@@ -38,7 +38,7 @@
                                     } else {
                                         if(isset($returns_data['timeFrames']['value']) && isset($returns_data['current']['value']) && isset($returns_data['sector']['value']) && isset($returns_data['sp500']['value'])) {
                                             echo "<table id='ab_returns_table'>";
-                                            echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sector']['label']}</th><th>{$returns_data['sp500']['label']}</th></tr>";
+                                            echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sector']['label']}</th><th>".htmlspecialchars($returns_data['sp500']['label'])."</th></tr>";
                                         
                                             foreach ($returns_data['timeFrames']['value'] as $timeFrame) {
                                                 $key = $timeFrame['key'];
@@ -96,7 +96,7 @@
                                         }
                                         
                                         echo "<table id='an_returns_table'>";
-                                        echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sp500']['label']}</th></tr>";
+                                        echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>".htmlspecialchars($returns_data['sp500']['label'])."</th></tr>";
                                         
                                         foreach ($returns_data['timeFrames']['value'] as $timeFrame) {
                                             $key = $timeFrame['key'];
@@ -145,7 +145,7 @@
                                         }
                                         
                                         echo "<table id='an_returns_table'>";
-                                        echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sector']['label']}</th><th>{$returns_data['sp500']['label']}</th></tr>";
+                                        echo "<tr><th>{$returns_data['timeFrames']['label']}</th><th>{$returns_data['current']['label']}</th><th>{$returns_data['sector']['label']}</th><th>".htmlspecialchars($returns_data['sp500']['label'])."</th></tr>";
                                         
                                         foreach ($returns_data['timeFrames']['value'] as $timeFrame) {
                                             $key = $timeFrame['key'];
