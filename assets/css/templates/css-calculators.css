@@ -79,30 +79,36 @@
 
 .cal_card_warap .card_content .card_description .card_calculate_btn a {
 	color: #002852;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 24px;
-	word-wrap: break-word;
-	padding-top: 8px !important;
-	padding-bottom: 8px;
-	max-width: 96px;
-	max-height: 40px;
-	display: flex;
-	align-items: center;
-	position: relative;
-
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 6px;
+    max-width: 96px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #f2f4f6;
 }
 
 .cal_card_warap .card_content .card_description .card_calculate_btn a::after{
 	content: "";
     background: url("../../images/chevron-right.svg");
-    width: 16px;
+	width: 16px;
     height: 16px;
-    position: absolute;
     background-repeat: no-repeat;
-    top: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
+    transition: all .2s linear;
+}
+
+.cal_card_warap .card_content .card_description .card_calculate_btn a:hover {
+    background-color: #002852;
+    color: #fff;
+}
+
+.cal_card_warap .card_content .card_description .card_calculate_btn a:hover::after {
+    filter: brightness(0) invert(1);
 }
 
 .cal_card_warap .card_content .card_description h4 {
