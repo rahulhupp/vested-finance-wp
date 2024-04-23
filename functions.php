@@ -279,3 +279,14 @@ function custom_get_mtags_field($object, $field_name, $request) {
 
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
+
+
+add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
+
+function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
+    $excluded_page_ids = array( 7224, 7536, 7538, 7615 ); // Add your page IDs here
+    if ( in_array( $object->ID, $excluded_page_ids ) ) {
+        return '';
+    }
+    return $url;
+}
