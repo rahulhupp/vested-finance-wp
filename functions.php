@@ -379,3 +379,13 @@ function load_more_posts() {
 
     die();
 }
+
+add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
+
+function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
+    $excluded_page_ids = array( 7224, 7536, 7538, 7615 ); // Add your page IDs here
+    if ( in_array( $object->ID, $excluded_page_ids ) ) {
+        return '';
+    }
+    return $url;
+}

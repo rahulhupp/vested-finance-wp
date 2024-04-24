@@ -145,7 +145,6 @@ jQuery(document).ready(function ($) {
 		clearInterval(tick);
 	}
 	startProgressbar();
-	// End ticking machine
 
 	$(".single_portfolio_slider_content").click(function () {
 		clearInterval(tick);
@@ -165,18 +164,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		const icon = item.querySelector('.faq_icon');
 
 		question.addEventListener('click', () => {
-			// Toggle active class for answer and icon
 			answer.classList.toggle('active');
 			icon.classList.toggle('active');
 
-			// Check if answer is active
 			if (answer.classList.contains('active')) {
 				answer.style.maxHeight = answer.scrollHeight + "px";
 			} else {
 				answer.style.maxHeight = "0";
 			}
 
-			// Collapse other answers
 			faqItems.forEach(otherItem => {
 				if (otherItem !== item) {
 					const otherAnswer = otherItem.querySelector('.faq_answer');
