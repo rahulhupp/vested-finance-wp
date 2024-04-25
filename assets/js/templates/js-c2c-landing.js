@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
     $('.earn-block-grid').slick({
         slidesToShow: 4,
+        infinite: false,
         responsive: [
             {
                 breakpoint: 991,
