@@ -17,7 +17,7 @@ get_header(); ?>
                         <?php the_field('autopilot_content'); ?>
                         <p><?php the_field('refer_and_earn_content'); ?></p>
                         <div class="hero-btn">
-                            <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" class="hero-blue-btn"><?php the_field('autopilot_label'); ?></a>
+                            <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" class="hero-blue-btn" target="_blank"><?php the_field('autopilot_label'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="super-easy-btn">
-                <a href="#" class="hero-blue-btn"><?php the_field('easy_btn'); ?></a>
+                <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" target="_blank" class="hero-blue-btn"><?php the_field('easy_btn'); ?></a>
                 <p><?php the_field('easy_faq_content'); ?></p>
             </div>
         </div>
@@ -118,7 +118,7 @@ get_header(); ?>
                 </div>
                 <div class="landing-network-right">
                     <div class="network-btn">
-                        <a href="#" class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
+                        <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" target="_blank" class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
                     </div>
                 </div>
             </div>
