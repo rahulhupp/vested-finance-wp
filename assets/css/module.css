@@ -1578,6 +1578,12 @@ body.single.single-module {
 }
 
 @media (max-width: 521px) {
+	.post_faqs_section .single_faq .faq_que h4{
+		font-size: 16px !important;
+	}
+	.post_faqs_section .section_title{
+		font-size: 18px !important;
+	}
 	.single_module_share_block {
 		flex-direction: column;
 		margin: 10px 0;
@@ -1995,6 +2001,125 @@ a.chapter_back_btn:hover {
 .premium_inner_content {
     position: relative;
 }
+
+
+/*post faqs */
+
+.faq_content {
+	display: none;
+}
+
+.blog_page_faqs .section_title {
+	padding: 24px 16px;
+	margin-bottom: 0;
+}
+
+.faq_que h3 {
+	color: #212529;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: normal;
+	margin-bottom: 0;
+	padding-right: 15px;
+}
+
+.faq_que {
+	position: relative;
+	cursor: pointer;
+}
+
+.post_faqs_section .faq_que:after {
+	content: "\f078";
+	font-family: "FontAwesome";
+	position: absolute;
+	top: 0;
+	right: 0px;
+	color: #002852;
+	transition: transform 0.3s;
+}
+.post_faqs_section .section_title{
+	padding-bottom: 10px !important;
+    border-top: 1px solid rgb(62 53 53 / 10%);
+    margin-top: 40px;
+    padding-top: 44px;
+    padding-left: 0;
+    padding-right: 0;
+    color: #191C1F;
+    font-weight: 600;
+    line-height: 150%;
+    font-size: 20px;
+}
+
+
+.post_faqs_section .single_faq {
+	padding: 25px 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-left: 0;
+	padding-right: 0;
+}
+.post_faqs_section .single_faq .faq_que h4{
+	margin-bottom: 0 !important;
+    font-size: 18px;
+    color: #212529;
+    font-weight: 500;
+	margin-right: 20px;
+	line-height: 150%;
+}
+.post_faqs_section .single_faq .faq_content p{
+	margin-bottom: 0 !important;
+    color: #1E2022;
+    font-size: 16px !important;
+	font-weight: 400;
+	line-height: 140%;
+    
+}
+
+.post_faqs_section .faq_content {
+	margin-top: 22px;
+}
+
+.faq_content p {
+	margin-bottom: 15px;
+	color: #1e2022;
+	font-size: 22px !important;
+	font-weight: 400;
+	line-height: 130%;
+}
+
+.faq_content a {
+	color: #1e2022;
+}
+
+.faq_content ul {
+    margin: 20px 30px;
+}
+
+.faq_content ul li {
+    margin-bottom: 10px;
+    color: #1e2022;
+    font-size: 22px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+}
+
+.faq_que.active:after {
+	transform: rotate(180deg);
+}
+
+.blog_page_faqs .container {
+	max-width: 1230px;
+	padding: 0;
+}
+
+.blog_page_faq_wrap {
+	padding: 0px;
+}
+
+.post_faqs_section .blog_page_faqs {
+	padding-bottom: 100px;
+}
+
 
 @media (max-width: 767px) {
 	.premium_box .premium_box_content .premium_tag {

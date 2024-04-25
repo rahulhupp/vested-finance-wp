@@ -164,10 +164,45 @@ while (have_posts()) :
 										</div>
 									<?php endif; ?>
 									<?php the_content(); ?>
-									<?php if (get_field('takeaways')) : ?>
+									<?php if (get_field('takeaways')): ?>
 										<div class="takeways">
+											<span class="ez-toc-section" id="Key_Takeaways" ez-toc-data-id="#Key_Takeaways"></span>
 											<h2>Key Takeaways </h2>
+											<span class="ez-toc-section-end"></span>
 											<?php the_field('takeaways'); ?>
+										</div>
+									<?php endif; ?>
+
+									<!-- fqs-section -->
+									<?php if (have_rows('faqs_list')): ?>
+										<div class="post_faqs_section">
+											<section class="blog_page_faqs">
+												<div class="container">
+													<span class="ez-toc-section" id="FAQs" ez-toc-data-id="#FAQs"></span>
+													<h2 class="section_title">
+														<span>
+															<?php the_field('faqs_title'); ?>
+														</span>
+													</h2>
+													<span class="ez-toc-section-end"></span>
+
+													<div class="blog_page_faq_wrap">
+														<?php while (have_rows('faqs_list')):
+															the_row(); ?>
+															<div class="single_faq">
+																<div class="faq_que">
+																	<h4>
+																		<?php the_sub_field('faq_question') ?>
+																	</h4>
+																</div>
+																<div class="faq_content">
+																	<?php the_sub_field('faq_answer') ?>
+																</div>
+															</div>
+														<?php endwhile; ?>
+													</div>
+												</div>
+											</section>
 										</div>
 									<?php endif; ?>
 								</div>
@@ -399,6 +434,18 @@ $post_id = get_the_ID();
 		var ul = document.querySelector('.ez-toc-list');
 		ul.appendChild(newLi);
 	}
+	if (document.querySelector('.blog_page_faqs')) {
+		var newLi = document.createElement('li');
+		newLi.className = 'ez-toc-page-1 ez-toc-heading-level-2';
+		var newLink = document.createElement('a');
+		newLink.className = 'ez-toc-link ez-toc-heading-2';
+		newLink.href = '#FAQs';
+		newLink.title = 'FAQs';
+		newLink.textContent = 'FAQs';
+		newLi.appendChild(newLink);
+		var ul = document.querySelector('.ez-toc-list');
+		ul.appendChild(newLi);
+	}
 </script>
 <?php endwhile; ?>
 <script>
@@ -507,4 +554,46 @@ $post_id = get_the_ID();
        }
      });
 </script>
+<?php if (have_rows('faqs_list')): ?>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				<?php $rowCount = 0; ?>
+				<?php while (have_rows('faqs_list')):
+					the_row(); ?>
+								{
+									"@type": "Question",
+									"name": "<?php the_sub_field('faq_question') ?>",
+									"acceptedAnswer": {
+										"@type": "Answer",
+										"text": "
+											<?php the_sub_field('faq_answer') ?>
+										"
+									}
+								}<?php echo (++$rowCount === count(get_field('faqs_list'))) ? '' : ','; ?>
+				<?php endwhile; ?>
+			]
+		}
+	</script>
+	<script>
+		jQuery(function ($) {
+			$('.faq_que').click(function (j) {
+				var dropDown = $(this).closest('.single_faq').find('.faq_content');
+				$(this).closest('.blog_page_faq_wrap').find('.faq_content').not(dropDown).slideUp();
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+				} else {
+					$(this).closest('.blog_page_faq_wrap').find('.faq_que.active').removeClass('active');
+					$(this).addClass('active');
+				}
+				dropDown.stop(false, true).slideToggle();
+				j.preventDefault();
+			});
+		});
+
+	</script>
+<?php endif; ?>
+
 <?php get_footer(); ?>
