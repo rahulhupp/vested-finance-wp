@@ -207,19 +207,25 @@ while (have_posts()):
 										<?php endif; ?>
 										<?php the_content(); ?>
 										<?php if (get_field('takeaways')): ?>
-											<div class="takeways" id="Key_Takeaways">
+											<div class="takeways">
+												<span class="ez-toc-section" id="Key_Takeaways" ez-toc-data-id="#Key_Takeaways"></span>
 												<h2>Key Takeaways </h2>
+												<span class="ez-toc-section-end"></span>
 												<?php the_field('takeaways'); ?>
 											</div>
 										<?php endif; ?>
 										<!-- fqs-section -->
 										<div class="post_faqs_section">
 											<?php if (have_rows('faq_blogs_items')): ?>
-												<section class="blog_page_faqs" id="FAQs">
+												<section class="blog_page_faqs">
 													<div class="container">
-														<h2 class="section_title"><span>
+														<span class="ez-toc-section" id="FAQs" ez-toc-data-id="#FAQs"></span>
+														<h2 class="section_title">
+															<span>
 																<?php the_field('faqs_heading'); ?>
-															</span></h2>
+															</span>
+														</h2>
+														<span class="ez-toc-section-end"></span>
 
 														<div class="blog_page_faq_wrap">
 															<?php while (have_rows('faq_blogs_items')):
