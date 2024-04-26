@@ -2065,13 +2065,16 @@ a.chapter_back_btn:hover {
 	margin-right: 20px;
 	line-height: 150%;
 }
-.post_faqs_section .single_faq .faq_content p{
+.post_faqs_section .single_faq .faq_content p, .post_faqs_section .single_faq .faq_content li{
 	margin-bottom: 0 !important;
     color: #1E2022;
     font-size: 16px !important;
 	font-weight: 400;
 	line-height: 140%;
-    
+}
+
+.post_faqs_section .single_faq .faq_content li {
+    margin-bottom: 10px !important;
 }
 
 .post_faqs_section .faq_content {
