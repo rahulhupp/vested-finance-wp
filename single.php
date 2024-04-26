@@ -208,37 +208,43 @@ while (have_posts()):
 										<?php the_content(); ?>
 										<?php if (get_field('takeaways')): ?>
 											<div class="takeways">
+												<span class="ez-toc-section" id="Key_Takeaways" ez-toc-data-id="#Key_Takeaways"></span>
 												<h2>Key Takeaways </h2>
+												<span class="ez-toc-section-end"></span>
 												<?php the_field('takeaways'); ?>
 											</div>
 										<?php endif; ?>
 										<!-- fqs-section -->
 										<div class="post_faqs_section">
-										<?php if (have_rows('faq_blogs_items')): ?>
-											<section class="blog_page_faqs">
-												<div class="container">
-													<h2 class="section_title"><span>
-															<?php the_field('faqs_heading'); ?>
-														</span></h2>
+											<?php if (have_rows('faq_blogs_items')): ?>
+												<section class="blog_page_faqs">
+													<div class="container">
+														<span class="ez-toc-section" id="FAQs" ez-toc-data-id="#FAQs"></span>
+														<h2 class="section_title">
+															<span>
+																<?php the_field('faqs_heading'); ?>
+															</span>
+														</h2>
+														<span class="ez-toc-section-end"></span>
 
-													<div class="blog_page_faq_wrap">
-														<?php while (have_rows('faq_blogs_items')):
-															the_row(); ?>
-															<div class="single_faq">
-																<div class="faq_que">
-																	<h4>
-																		<?php the_sub_field('faq_blogs_questions') ?>
-																	</h4>
+														<div class="blog_page_faq_wrap">
+															<?php while (have_rows('faq_blogs_items')):
+																the_row(); ?>
+																<div class="single_faq">
+																	<div class="faq_que">
+																		<h4>
+																			<?php the_sub_field('faq_blogs_questions') ?>
+																		</h4>
+																	</div>
+																	<div class="faq_content">
+																		<?php the_sub_field('faqs_blogs_ans') ?>
+																	</div>
 																</div>
-																<div class="faq_content">
-																	<?php the_sub_field('faqs_blogs_ans') ?>
-																</div>
-															</div>
-														<?php endwhile; ?>
+															<?php endwhile; ?>
+														</div>
 													</div>
-												</div>
-											</section>
-										<?php endif; ?>
+												</section>
+											<?php endif; ?>
 										</div>
 									</div>
 								</div>
@@ -476,6 +482,18 @@ while (have_posts()):
 			newLink.href = '#Key_Takeaways';
 			newLink.title = 'Key Takeaways';
 			newLink.textContent = 'Key Takeaways';
+			newLi.appendChild(newLink);
+			var ul = document.querySelector('.ez-toc-list');
+			ul.appendChild(newLi);
+		}
+		if (document.querySelector('.blog_page_faqs')) {
+			var newLi = document.createElement('li');
+			newLi.className = 'ez-toc-page-1 ez-toc-heading-level-2';
+			var newLink = document.createElement('a');
+			newLink.className = 'ez-toc-link ez-toc-heading-2';
+			newLink.href = '#FAQs';
+			newLink.title = 'FAQs';
+			newLink.textContent = 'FAQs';
 			newLi.appendChild(newLink);
 			var ul = document.querySelector('.ez-toc-list');
 			ul.appendChild(newLi);
