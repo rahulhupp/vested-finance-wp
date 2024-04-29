@@ -625,7 +625,7 @@ while (have_posts()):
 										"acceptedAnswer": {
 											"@type": "Answer",
 											"text": "
-												<?php $faqs_blogs_ans; ?>
+												<?php echo $faqs_blogs_ans; ?>
 											"
 										}
 									}<?php echo (++$rowCount === count(get_field('faq_blogs_items'))) ? '' : ','; ?>
