@@ -615,14 +615,17 @@ while (have_posts()):
 				"mainEntity": [
 					<?php $rowCount = 0; ?>
 					<?php while (have_rows('faq_blogs_items')):
-						the_row(); ?>
+						the_row(); 
+						$faqs_blogs_ans = get_sub_field('faqs_blogs_ans');
+						$faqs_blogs_ans = str_replace('"', "'", $faqs_blogs_ans);
+						?>
 									{
 										"@type": "Question",
-										"name": "<?php the_sub_field('faq_blogs_questions') ?>",
+										"name": "<?php the_sub_field('faq_blogs_questions'); ?>",
 										"acceptedAnswer": {
 											"@type": "Answer",
 											"text": "
-												<?php the_sub_field('faqs_blogs_ans') ?>
+												<?php $faqs_blogs_ans; ?>
 											"
 										}
 									}<?php echo (++$rowCount === count(get_field('faq_blogs_items'))) ? '' : ','; ?>
