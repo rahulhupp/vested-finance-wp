@@ -563,15 +563,15 @@ $post_id = get_the_ID();
 				<?php $rowCount = 0; ?>
 				<?php while (have_rows('faqs_list')):
 					the_row(); 
-					$faqs_blogs_ans = get_sub_field('faqs_blogs_ans');
-					$faqs_blogs_ans = str_replace('"', "'", $faqs_blogs_ans);
+					$faq_answer = get_sub_field('faq_answer');
+					$faq_answer = str_replace('"', "'", $faq_answer);
 					?>
 						{
 							"@type": "Question",
 							"name": "<?php the_sub_field('faq_question') ?>",
 							"acceptedAnswer": {
 								"@type": "Answer",
-								"text": "<?php echo $faqs_blogs_ans; ?>"
+								"text": "<?php echo $faq_answer; ?>"
 							}
 						}<?php echo (++$rowCount === count(get_field('faqs_list'))) ? '' : ','; ?>
 				<?php endwhile; ?>
