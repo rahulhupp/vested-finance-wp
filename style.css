@@ -69,6 +69,10 @@ Template: astra
 .alpha-list-item > li {
     list-style: lower-alpha;
 }
+.entry-content {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
 
 
 @media (max-width: 1199px) {
