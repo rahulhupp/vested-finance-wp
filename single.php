@@ -609,27 +609,30 @@ while (have_posts()):
 
 <?php if (have_rows('faq_blogs_items')): ?>
 	<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "FAQPage",
-				"mainEntity": [
-					<?php $rowCount = 0; ?>
-					<?php while (have_rows('faq_blogs_items')):
-						the_row(); ?>
-									{
-										"@type": "Question",
-										"name": "<?php the_sub_field('faq_blogs_questions') ?>",
-										"acceptedAnswer": {
-											"@type": "Answer",
-											"text": "
-												<?php the_sub_field('faqs_blogs_ans') ?>
-											"
-										}
-									}<?php echo (++$rowCount === count(get_field('faq_blogs_items'))) ? '' : ','; ?>
-					<?php endwhile; ?>
-				]
-			}
-			</script>
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				<?php $rowCount = 0; ?>
+				<?php while (have_rows('faq_blogs_items')):
+					the_row(); 
+					$faqs_blogs_ans = get_sub_field('faqs_blogs_ans');
+					$faqs_blogs_ans = str_replace('"', "'", $faqs_blogs_ans);
+					?>
+								{
+									"@type": "Question",
+									"name": "<?php the_sub_field('faq_blogs_questions'); ?>",
+									"acceptedAnswer": {
+										"@type": "Answer",
+										"text": "
+											<?php echo $faqs_blogs_ans; ?>
+										"
+									}
+								}<?php echo (++$rowCount === count(get_field('faq_blogs_items'))) ? '' : ','; ?>
+				<?php endwhile; ?>
+			]
+		}
+	</script>
 <?php endif; ?>
 <script>
 	jQuery(function ($) {
