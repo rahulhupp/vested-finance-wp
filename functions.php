@@ -337,15 +337,15 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 //     add_action('pre_comment_on_post', 'verify_google_recaptcha'); 
 // }
 
-// add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
+add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
 
-// function yoast_seo_robots_modify_search( $robots ) {
-//   if ( is_search() ) {
-//     return "noindex, nofollow";
-//   } else {
-//     return $robots;
-//   }
-// }
+function yoast_seo_robots_modify_search( $robots ) {
+  if ( is_search() ) {
+    return "noindex, nofollow";
+  } else {
+    return $robots;
+  }
+}
 
 
 
