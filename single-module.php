@@ -570,6 +570,7 @@ endwhile; ?>
          document.getElementById("status").innerText = "Share not complete";
        }
      });
+     
 </script>
 <?php
 get_footer();
