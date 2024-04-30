@@ -337,6 +337,41 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 //     add_action('pre_comment_on_post', 'verify_google_recaptcha'); 
 // }
 
+add_filter('comment_post_redirect', 'redirect_after_comment');
+function redirect_after_comment($location)
+{
+return $_SERVER["HTTP_REFERER"];
+}
+
+function add_google_recaptcha_to_comment_form() {
+    echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+    echo '<div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>';
+}
+
+function verify_google_recaptcha_comment($commentdata) {
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+
+    $response = wp_remote_post(
+        'https://www.google.com/recaptcha/api/siteverify',
+        array(
+            'body' => array(
+                'secret'   => 'YOUR_SECRET_KEY',
+                'response' => $recaptcha_response,
+            ),
+        )
+    );
+
+    $data = json_decode(wp_remote_retrieve_body($response));
+
+    if (!$data->success) {
+        wp_die('reCAPTCHA verification failed. Please try again.');
+    }
+
+    return $commentdata;
+}
+
+add_action('comment_form', 'add_google_recaptcha_to_comment_form');
+add_filter('preprocess_comment', 'verify_google_recaptcha_comment');
 add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
 
 function yoast_seo_robots_modify_search( $robots ) {
