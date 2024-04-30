@@ -356,7 +356,7 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 function load_more_posts() {
     check_ajax_referer('load_more_posts', 'security');
 
-    $args = array(
+    $args = array(  
         'post_type' => 'post',
         'posts_per_page' => 8,
         'paged' => $_POST['page']
