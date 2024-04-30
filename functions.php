@@ -337,15 +337,15 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 //     add_action('pre_comment_on_post', 'verify_google_recaptcha'); 
 // }
 
-// add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
+add_filter( 'wpseo_robots', 'yoast_seo_robots_modify_search' );
 
-// function yoast_seo_robots_modify_search( $robots ) {
-//   if ( is_search() ) {
-//     return "noindex, nofollow";
-//   } else {
-//     return $robots;
-//   }
-// }
+function yoast_seo_robots_modify_search( $robots ) {
+  if ( is_search() ) {
+    return "noindex, nofollow";
+  } else {
+    return $robots;
+  }
+}
 
 
 
@@ -356,7 +356,7 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 function load_more_posts() {
     check_ajax_referer('load_more_posts', 'security');
 
-    $args = array(
+    $args = array(  
         'post_type' => 'post',
         'posts_per_page' => 8,
         'paged' => $_POST['page']

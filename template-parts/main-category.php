@@ -12,19 +12,21 @@
     <div class="container">
         <div class="inner-row">
             <div class="category-tab">
-                <?php if( have_rows('filter_list', 'category_' . $category->term_id) ): ?>
+                <?php if (have_rows('filter_list', 'category_' . $category->term_id)): ?>
                     <ul>
                         <li><a href="<?php echo home_url('blog'); ?>">All</a></li>
-                        <?php 
-                            global $wp;
-                                                            
-                            while( have_rows('filter_list', 'category_' . $category->term_id) ): the_row(); 
-                            $current_url = home_url( add_query_arg( array(), $wp->request ) );	
+                        <?php
+                        global $wp;
+
+                        while (have_rows('filter_list', 'category_' . $category->term_id)):
+                            the_row();
+                            $current_url = home_url(add_query_arg(array(), $wp->request));
                             $Link = get_sub_field('link', 'category_' . $category->term_id);
-                        ?>
-                        <li class="<?php echo ($current_url == $Link) ? 'active' : ''; ?>">
-                            <a href="<?php the_sub_field('link', 'category_' . $category->term_id); ?>"><?php the_sub_field('label', 'category_' . $category->term_id); ?></a>
-                        </li>
+                            ?>
+                            <li class="<?php echo ($current_url == $Link) ? 'active' : ''; ?>">
+                                <a
+                                    href="<?php the_sub_field('link', 'category_' . $category->term_id); ?>"><?php the_sub_field('label', 'category_' . $category->term_id); ?></a>
+                            </li>
                         <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>
@@ -39,38 +41,48 @@
 
 <section class="fresh-reads-post">
     <div class="container">
-        <div class="fresh-reads-post-title">
-            <h3>Fresh Reads </h3>
-            <p>Stay up to date with the latest articles and news in the market</p>
+        <div class="head-part">
+            <div class="heading">
+                <div class="title">
+                    <h2><?php the_field('blog_heading', 'category_' . $category->term_id); ?></h2>
+                    <a
+                        href="<?php the_field('blog_view_all_articles_link', 'category_' . $category->term_id); ?>"><?php the_field('blog_view_all_articles_text', 'category_' . $category->term_id); ?></a>
+                </div>
+                <span><?php the_field('blog_contents', 'category_' . $category->term_id); ?></span>
+            </div>
         </div>
         <div class="inner-row">
             <?php
 
-                 $latest_post = new WP_Query(array(
-                 'post_type' => 'post',
-                 'posts_per_page' => 8,
-                 'tax_query'      => array(
-                 array(
-                    'taxonomy' => 'master_categories', 
-                    'field'    => 'slug',
-                    'terms'    => 'us-stocks',
-                ),
-                ),
-            ));
-            if ($latest_post->have_posts()) :
-                while ($latest_post->have_posts()) : $latest_post->the_post();
+            $latest_post = new WP_Query(
+                array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 8,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'master_categories',
+                            'field' => 'slug',
+                            'terms' => 'us-stocks',
+                        ),
+                    ),
+                )
+            );
+            if ($latest_post->have_posts()):
+                while ($latest_post->have_posts()):
+                    $latest_post->the_post();
                     ?>
                     <div class="fresh-reads-blog">
                         <div class="latest-post">
-                            <?php if (has_post_thumbnail()) : ?>
+                            <?php if (has_post_thumbnail()): ?>
                                 <a href="<?php the_permalink(); ?>">
-                                <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" alt="<?php the_title(); ?>">
-                            </a>
+                                    <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>"
+                                        alt="<?php the_title(); ?>">
+                                </a>
                             <?php endif; ?>
                             <h6>
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_title(); ?>
-                            </a>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_title(); ?>
+                                </a>
                             </h6>
                             <div class="post-content">
                                 <p><?php the_excerpt(); ?></p>
@@ -80,7 +92,7 @@
                                 <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 <?php endwhile;
             endif;
             wp_reset_postdata();
@@ -94,42 +106,43 @@
         <div class="inner-row">
             <div class="single-blog">
                 <?php
-                    $single_post = get_field('single_post' , 'category_' . $category->term_id);
+                $single_post = get_field('single_post', 'category_' . $category->term_id);
 
-                    if ($single_post) {
-                        $single_image = get_the_post_thumbnail($single_post->ID, 'full'); 
-                        $single_title = esc_html($single_post->post_title);
-                        $single_content = esc_html($single_post->post_title);
-                        $post_content = apply_filters('the_content', $single_post->post_content);
-                        $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
-                        $publication_date = get_the_date('M j, Y', $single_post->ID);
-                        $post_excerpt = get_the_excerpt($single_post);
-                        echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
-                        echo '<div class="content">';
-                        echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
-                        echo '<p>' . $post_excerpt . '</p>';
-                        echo '<div class="meta-info">';
-                        echo '<span>' . $author_name . '</span>';
-                        echo '<span>' . $publication_date . '</span>';
-                        echo '</div>';
-                        echo '</div>';
+                if ($single_post) {
+                    $single_image = get_the_post_thumbnail($single_post->ID, 'full');
+                    $single_title = esc_html($single_post->post_title);
+                    $single_content = esc_html($single_post->post_title);
+                    $post_content = apply_filters('the_content', $single_post->post_content);
+                    $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
+                    $publication_date = get_the_date('M j, Y', $single_post->ID);
+                    $post_excerpt = get_the_excerpt($single_post);
+                    echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
+                    echo '<div class="content">';
+                    echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
+                    echo '<p>' . $post_excerpt . '</p>';
+                    echo '<div class="meta-info">';
+                    echo '<span>' . $author_name . '</span>';
+                    echo '<span>' . $publication_date . '</span>';
+                    echo '</div>';
+                    echo '</div>';
 
-                    }
+                }
                 ?>
             </div>
             <div class="featured-article">
                 <div class="title">
                     <h2><?php the_field('featured_title', 'category_' . $category->term_id); ?></h2>
                 </div>
-                <?php if( have_rows('featured_articles', 'category_' . $category->term_id) ): ?>
+                <?php if (have_rows('featured_articles', 'category_' . $category->term_id)): ?>
                     <ul>
-                        <?php while( have_rows('featured_articles', 'category_' . $category->term_id) ): the_row(); ?>
+                        <?php while (have_rows('featured_articles', 'category_' . $category->term_id)):
+                            the_row(); ?>
                             <?php $post_object = get_sub_field('item', 'category_' . $category->term_id); ?>
-                            <?php if( $post_object ): ?>
+                            <?php if ($post_object): ?>
                                 <?php // override $post
-                                $post = $post_object;
-                                setup_postdata( $post );
-                                ?>
+                                            $post = $post_object;
+                                            setup_postdata($post);
+                                            ?>
                                 <li>
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     <div class="meta-info">
@@ -147,15 +160,16 @@
     </div>
     <div class="container">
         <ul class="blog-list">
-            <?php while( have_rows('blog_list', 'category_' . $category->term_id) ): the_row(); ?>
+            <?php while (have_rows('blog_list', 'category_' . $category->term_id)):
+                the_row(); ?>
                 <?php $post_object = get_sub_field('item', 'category_' . $category->term_id); ?>
-                <?php if( $post_object ): ?>
+                <?php if ($post_object): ?>
                     <?php // override $post
-                    $post = $post_object;
-                    setup_postdata( $post );
-                    ?>
+                            $post = $post_object;
+                            setup_postdata($post);
+                            ?>
                     <li>
-                        <?php if (has_post_thumbnail()) : ?>
+                        <?php if (has_post_thumbnail()): ?>
                             <div class="featured-image">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php the_post_thumbnail('full'); // You can specify the image size here ?>
@@ -171,7 +185,7 @@
                     </li>
                     <?php wp_reset_postdata(); ?>
                 <?php endif; ?>
-            <?php endwhile; ?>                   
+            <?php endwhile; ?>
         </ul>
     </div>
 </section>
@@ -180,22 +194,23 @@
     <div class="container">
         <div class="head-part">
             <div class="left-part">
-                <div class="stock-label">                  
+                <div class="stock-label">
                     <?php the_field('us_stock_title', 'category_' . $category->term_id); ?>
                 </div>
-            </div>          
+            </div>
             <!-- <a href="<?php the_field('view_all_link', 'category_' . $category->term_id); ?> "><?php the_field('view_all_text', 'category_' . $category->term_id); ?></a>                      -->
         </div>
         <div class="inner-row">
             <div class="blog-list">
                 <ul>
-                    <?php while( have_rows('us-stock-blog', 'category_' . $category->term_id) ): the_row(); ?>
+                    <?php while (have_rows('us-stock-blog', 'category_' . $category->term_id)):
+                        the_row(); ?>
                         <?php $post_object = get_sub_field('item', 'category_' . $category->term_id); ?>
-                        <?php if( $post_object ): ?>
+                        <?php if ($post_object): ?>
                             <?php // override $post
-                            $post = $post_object;
-                            setup_postdata( $post );
-                            ?>
+                                    $post = $post_object;
+                                    setup_postdata($post);
+                                    ?>
                             <li>
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 <?php the_excerpt(); ?>
@@ -206,7 +221,7 @@
                             </li>
                             <?php wp_reset_postdata(); ?>
                         <?php endif; ?>
-                    <?php endwhile; ?>                   
+                    <?php endwhile; ?>
                 </ul>
             </div>
             <!-- <div class="mobile-view-all-btn">
@@ -236,7 +251,8 @@
             <div class="heading">
                 <div class="title">
                     <h2><?php the_field('vested_shorts_heading', 'category_' . $category->term_id); ?></h2>
-                    <a href="<?php the_field('vested_shorts_view_all_button_link', 'category_' . $category->term_id); ?>"><?php the_field('vested_shorts_view_all_button', 'category_' . $category->term_id); ?></a>
+                    <a
+                        href="<?php the_field('vested_shorts_view_all_button_link', 'category_' . $category->term_id); ?>"><?php the_field('vested_shorts_view_all_button', 'category_' . $category->term_id); ?></a>
                 </div>
                 <span><?php the_field('vested_shorts_sub_heading', 'category_' . $category->term_id); ?></span>
             </div>
@@ -244,47 +260,48 @@
         <div class="post-list">
             <ul>
                 <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 5,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
-                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
-                                'terms'    => 'vested-shorts', // Replace with the term you want to display
-                            ),
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 5,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
+                            'field' => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
+                            'terms' => 'vested-shorts', // Replace with the term you want to display
                         ),
-                    );
+                    ),
+                );
 
-                    $custom_query = new WP_Query($args);
+                $custom_query = new WP_Query($args);
 
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post();
-                            // Display post content here
-                            ?>
-                            <li>
-                                <div class="featured-image">
-                                    <?php if (has_post_thumbnail()) : ?> 
-                                        <a href="<?php the_permalink(); ?>">                                      
-                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
-                                        </a>
-                                    <?php endif; ?>
+                if ($custom_query->have_posts()):
+                    while ($custom_query->have_posts()):
+                        $custom_query->the_post();
+                        // Display post content here
+                        ?>
+                        <li>
+                            <div class="featured-image">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <a href="<?php the_permalink(); ?>">
+                                        <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="content">
+                                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                <?php the_excerpt(); ?>
+                                <div class="meta-info">
+                                    <span class="post-author"><?php the_author(); ?></span>
+                                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
                                 </div>
-                                <div class="content">
-                                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                                    <?php the_excerpt(); ?>
-                                    <div class="meta-info">
-                                        <span class="post-author"><?php the_author(); ?></span>
-                                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php
-                        endwhile;
-                        wp_reset_postdata(); // Restore the global post data
-                    else :
-                        echo 'No posts found';
-                    endif;
+                            </div>
+                        </li>
+                        <?php
+                    endwhile;
+                    wp_reset_postdata(); // Restore the global post data
+                else:
+                    echo 'No posts found';
+                endif;
                 ?>
             </ul>
         </div>
@@ -298,55 +315,58 @@
                 <img src="<?php the_field('heading_icon', 'category_' . $category->term_id); ?>" />
             </div>
             <div class="heading">
-                <div class="title"><h2><?php the_field('sport_light_heading', 'category_' . $category->term_id); ?></h2></div>
+                <div class="title">
+                    <h2><?php the_field('sport_light_heading', 'category_' . $category->term_id); ?></h2>
+                </div>
                 <span><?php the_field('sport_light_sub_heading', 'category_' . $category->term_id); ?></span>
             </div>
         </div>
         <div class="inner-row">
             <div class="single-blog">
                 <?php
-                    $single_post = get_field('sport_light_single_post', 'category_' . $category->term_id);
+                $single_post = get_field('sport_light_single_post', 'category_' . $category->term_id);
 
-                    if ($single_post) {
-                        $single_image = get_the_post_thumbnail($single_post->ID, 'full'); 
-                        $single_title = esc_html($single_post->post_title);
-                        $single_content = esc_html($single_post->post_title);
-                        $post_content = apply_filters('the_content', $single_post->post_content);
-                        $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
-                        $publication_date = get_the_date('M j, Y', $single_post->ID);
-                        $post_excerpt = get_the_excerpt($single_post);
-                        echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
-                        echo '<div class="content">';
-                        echo '<div class="inner">';
-                        echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
-                        echo '<p>'. $post_excerpt .'</p>';
-                        echo '<div class="meta-info">';
-                        echo '<span>' . $author_name . '</span>';
-                        echo '<span>' . $publication_date . '</span>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
+                if ($single_post) {
+                    $single_image = get_the_post_thumbnail($single_post->ID, 'full');
+                    $single_title = esc_html($single_post->post_title);
+                    $single_content = esc_html($single_post->post_title);
+                    $post_content = apply_filters('the_content', $single_post->post_content);
+                    $author_name = get_the_author_meta('display_name', $single_post->post_author); // Get author's display name
+                    $publication_date = get_the_date('M j, Y', $single_post->ID);
+                    $post_excerpt = get_the_excerpt($single_post);
+                    echo '<a href="' . get_permalink($single_post->ID) . '">' . $single_image . '</a>';
+                    echo '<div class="content">';
+                    echo '<div class="inner">';
+                    echo '<h3><a href="' . esc_url(get_permalink($single_post->ID)) . '">' . $single_title . '</a></h3>';
+                    echo '<p>' . $post_excerpt . '</p>';
+                    echo '<div class="meta-info">';
+                    echo '<span>' . $author_name . '</span>';
+                    echo '<span>' . $publication_date . '</span>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
 
-                    }
+                }
                 ?>
             </div>
             <div class="blog-list">
-                <?php if( have_rows('sport_light_list_post', 'category_' . $category->term_id) ): ?>
+                <?php if (have_rows('sport_light_list_post', 'category_' . $category->term_id)): ?>
                     <ul>
-                        <?php while( have_rows('sport_light_list_post', 'category_' . $category->term_id) ): the_row(); ?>
+                        <?php while (have_rows('sport_light_list_post', 'category_' . $category->term_id)):
+                            the_row(); ?>
                             <?php $post_object = get_sub_field('item', 'category_' . $category->term_id); ?>
-                            <?php if( $post_object ): ?>
+                            <?php if ($post_object): ?>
                                 <?php // override $post
-                                $post = $post_object;
-                                setup_postdata( $post );
-                                ?>
+                                            $post = $post_object;
+                                            setup_postdata($post);
+                                            ?>
                                 <li>
                                     <div class="featured-image">
-                                    <?php if (has_post_thumbnail()) : ?>      
-                                        <a href="<?php the_permalink(); ?>">                                 
-                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
-                                        </a>	
-                                    <?php endif; ?>
+                                        <?php if (has_post_thumbnail()): ?>
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="content">
                                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -363,8 +383,8 @@
                     </ul>
                 <?php endif; ?>
             </div>
-        <div>
-    </div>
+            <div>
+            </div>
 </section>
 
 <section class="parent-category vested-edge-blog">
@@ -378,22 +398,23 @@
             </div>
         </div>
         <div class="inner-row">
-            <?php if( have_rows('vested_edge_post', 'category_' . $category->term_id) ): ?>
+            <?php if (have_rows('vested_edge_post', 'category_' . $category->term_id)): ?>
                 <ul>
-                    <?php while( have_rows('vested_edge_post', 'category_' . $category->term_id) ): the_row(); ?>
+                    <?php while (have_rows('vested_edge_post', 'category_' . $category->term_id)):
+                        the_row(); ?>
                         <?php $post_object = get_sub_field('item', 'category_' . $category->term_id); ?>
-                        <?php if( $post_object ): ?>
+                        <?php if ($post_object): ?>
                             <?php // override $post
-                            $post = $post_object;
-                            setup_postdata( $post );
-                            ?>
+                                        $post = $post_object;
+                                        setup_postdata($post);
+                                        ?>
                             <li>
                                 <div class="featured-image">
-                                <?php if (has_post_thumbnail()) : ?>    
-                                    <a href="<?php the_permalink(); ?>">                                   
-                                        <?php the_post_thumbnail('full'); // You can specify the image size here ?>
-                                    </a>
-                                <?php endif; ?>
+                                    <?php if (has_post_thumbnail()): ?>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="content">
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
