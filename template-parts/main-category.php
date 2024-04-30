@@ -57,7 +57,7 @@
             $latest_post = new WP_Query(
                 array(
                     'post_type' => 'post',
-                    'posts_per_page' => 8,
+                    'posts_per_page' => 4,
                     'tax_query' => array(
                         array(
                             'taxonomy' => 'master_categories',
