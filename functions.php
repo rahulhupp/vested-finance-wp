@@ -347,40 +347,6 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 //   }
 // }
 
-function verify_google_recaptcha() {
-    $recaptcha = $_POST['g-recaptcha-response'];
-    if (empty($recaptcha)) {
-        wp_die(__("<b>ERROR: </b><b>Please click the captcha checkbox.</b><p><a href='javascript:history.back()'>« Back</a></p>"));
-    } elseif (!is_valid_advanced_captcha_response($recaptcha)) {
-        wp_die(__("<b>Sorry, spam detected!</b>"));
-    }
-}
-
-function is_valid_advanced_captcha_response($captcha) {
-    // Perform validation of the advanced reCAPTCHA response here
-    // This function should return true if the response is valid, false otherwise
-    // Example validation code:
-    $response = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', [
-        'body' => [
-            'secret'   => 'YOUR_ADVANCED_RECAPTCHA_SECRET_KEY',
-            'response' => $captcha,
-            'remoteip' => $_SERVER['REMOTE_ADDR'],
-        ],
-    ]);
-
-    if (is_wp_error($response)) {
-        return false; // Error occurred
-    }
-
-    $body = wp_remote_retrieve_body($response);
-    $data = json_decode($body);
-
-    return isset($data->success) && $data->success === true;
-}
-
-if (!is_user_logged_in()) {
-    add_action('pre_comment_on_post', 'verify_google_recaptcha');
-}
 
 
 
