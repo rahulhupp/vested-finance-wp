@@ -283,14 +283,14 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 /** 
  * Google reCAPTCHA: Add widget before the submit button 
  */ 
-function add_google_recaptcha($submit_field) { 
-    $submit_field['submit_field'] = '<div class="g-recaptcha" data-sitekey="6LeGMSAlAAAAAOCpi_3SLw_Z_eLxE4W5XhW3C6zF"></div>'.$submit_field['submit_field']; 
-    return $submit_field; 
-} 
+// function add_google_recaptcha($submit_field) { 
+//     $submit_field['submit_field'] = '<div class="g-recaptcha" data-sitekey="6LeGMSAlAAAAAOCpi_3SLw_Z_eLxE4W5XhW3C6zF"></div>'.$submit_field['submit_field']; 
+//     return $submit_field; 
+// } 
  
-if (!is_user_logged_in()) { 
-    add_filter('comment_form_defaults', 'add_google_recaptcha'); 
-} 
+// if (!is_user_logged_in()) { 
+//     add_filter('comment_form_defaults', 'add_google_recaptcha'); 
+// } 
  
 /** 
  * Google reCAPTCHA: verify response and validate comment submission 
