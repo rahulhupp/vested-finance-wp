@@ -124,8 +124,7 @@ get_header(); ?>
 														<div class="bonds_slider_item_wrapper">
 															<div class="bonds_slider_item_head">
 																<div class="bond_image">
-																	<!-- <img src="<?php echo $bond['logo']; ?>" class="bond_image" /> -->
-                                                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Corporate-Bonds.png" />
+																	<img src="<?php echo $bond['logo']; ?>" class="corporate_bond_image" />
 																</div>
 																<div class="bond_rating" style="background-color: <?php echo explode(",",$bond['ratingColorCode'])[0]; ?>">
 																	<span style="color: <?php echo explode(",",$bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>
@@ -193,7 +192,7 @@ get_header(); ?>
 														<div class="bonds_slider_item_wrapper">
 															<div class="bonds_slider_item_head">
 																<div class="bond_image">
-																	<img src="<?php echo $bond['logo']; ?>" class="bond_image" />
+																	<img src="<?php echo $bond['logo']; ?>" class="government_bond_image" />
 																</div>
 																<div class="bond_rating" style="background-color: <?php echo explode(",",$bond['ratingColorCode'])[0]; ?>">
 																	<span style="color: <?php echo explode(",",$bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>

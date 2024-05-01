@@ -208,12 +208,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	bondImages();
 	function bondImages() {
-        var bondImages = document.getElementsByClassName("bond_image");
-        if (bondImages.length > 0) {
-            for (var i = 0; i < bondImages.length; i++) {
-                bondImages[i].onerror = function () {
+        var corporateBondImages = document.getElementsByClassName("corporate_bond_image");
+        if (corporateBondImages.length > 0) {
+            for (var i = 0; i < corporateBondImages.length; i++) {
+                corporateBondImages[i].onerror = function () {
                     // If the image fails to load (i.e., returns 404), replace it with a default image
                     this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Corporate-Bonds.png";
+                };
+            }
+        }
+
+		var governmentBondImages = document.getElementsByClassName("government_bond_image");
+        if (governmentBondImages.length > 0) {
+            for (var i = 0; i < governmentBondImages.length; i++) {
+                governmentBondImages[i].onerror = function () {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Government-Bonds.png";
                 };
             }
         }
