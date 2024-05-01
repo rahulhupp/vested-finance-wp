@@ -3,12 +3,7 @@
 Template name: Page - INR Bonds
 */
 get_header(); ?>
-<?php 
-	$inr_bonds_data = fetch_inr_bonds_api_data();
-	echo "<pre>";
-	print_r($inr_bonds_data);
-	echo "</pre>";
-?>
+<?php $inr_bonds_data = fetch_inr_bonds_api_data(); ?>
 	<div id="content" role="main" class="inr-bonds-page">
 		<section class="bonds_banner_section">
 			<div class="container">
@@ -271,7 +266,7 @@ get_header(); ?>
 			</div>
 		</div>
 		
-		<?php get_template_part('template-parts/inr-bonds-calculator', null, array('inr_bonds_data' => $inr_bonds_data)); ?>
+		<?php // get_template_part('template-parts/inr-bonds-calculator', null, array('inr_bonds_data' => $inr_bonds_data)); ?>
 		
 		<section class="features_section">
 			<div class="features_section_inner">
