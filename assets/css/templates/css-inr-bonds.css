@@ -91,10 +91,11 @@ a.btn_dark {
 
 .bonds_banner_wrapper {
 	display: flex;
-	align-items: flex-end;
 	flex-wrap: wrap;
 }
-
+.page-template-page-inr-bonds .portfolio_slider img {
+	height: 494px;
+}
 .bonds_banner_content {
 	/* max-width: 600px; */
 	width: 50%;
@@ -170,8 +171,8 @@ a.btn_dark {
 }
 
 .bonds_banner_image img {
-	max-width: 520px;
-	margin-left: auto;
+    height: 630px;
+    object-fit: cover;
 }
 
 
@@ -981,6 +982,9 @@ a.btn_dark {
     border-radius: 6px;
     display: block;
     margin-left: auto;
+}
+.page-template-page-inr-bonds .bonds_calculator_section {
+    display: none;
 }
 
 @keyframes fadeInOut {
