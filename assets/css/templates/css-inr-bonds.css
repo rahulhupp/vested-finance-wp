@@ -1018,6 +1018,7 @@ a.btn_dark {
 	
 	.bonds_banner_image img {
 		max-width: 100%;
+		margin-left: inherit;
 	}
 	
 	.banner_buttons {
