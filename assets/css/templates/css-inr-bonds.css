@@ -171,8 +171,8 @@ a.btn_dark {
 }
 
 .bonds_banner_image img {
-    height: 630px;
-    object-fit: cover;
+	max-width: 520px;
+    margin-left: auto;
 }
 
 
