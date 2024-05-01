@@ -345,6 +345,7 @@ a.btn_dark {
 	font-weight: 600;
 	line-height: 28px;
 	color: #002852;
+	height: 56px;
 }
 
 .bond_details_list {
@@ -665,7 +666,7 @@ a.btn_dark {
 
 .features_section {
 	background-color: #002852;
-	padding: 90px 0;
+	padding: 90px 0 130px;
 }
 
 .features_section_inner {
@@ -734,7 +735,7 @@ a.btn_dark {
 
 
 .portfolio_slider_sec {
-	padding: 100px 0 137px;
+	padding: 53px 0 56px;
 }
 
 .steps_slides .portfolio_slider_wrap {
@@ -882,7 +883,7 @@ a.btn_dark {
 
 
 .faqs_section {
-	padding-bottom: 100px;
+	padding-bottom: 150px;
 
 }
 
@@ -985,7 +986,7 @@ a.btn_dark {
 }
 .page-template-page-inr-bonds .bonds_calculator_section {
     display: none;
-}
+}	
 
 @keyframes fadeInOut {
 	0% {
