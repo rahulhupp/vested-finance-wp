@@ -105,7 +105,7 @@ get_header(); ?>
 						<div class="bonds_tabs_buttons">
 							<button class="bonds_tab_button active" onclick="openTab('corporate_bonds')">Corporate Bonds</button>
 							<!-- <button class="bonds_tab_button" onclick="openTab('gold_bonds')">SGBs</button> -->
-							<button class="bonds_tab_button" onclick="openTab('government_bonds')">Gsecs</button>
+							<button class="bonds_tab_button" onclick="openTab('government_bonds')">Government Bonds</button>
 						</div>
 						<div class="bonds_tabs_content">
 							<div id="corporate_bonds" class="bonds_tab_content active">
