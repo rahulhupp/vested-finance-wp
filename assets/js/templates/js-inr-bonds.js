@@ -1,426 +1,233 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // sliderSlide();
-});
-function sliderSlide() {
-  var slider = document.getElementById("unit_range");
-  var sliderVal = document.getElementById("units");
-  var color =
-    "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-  slider.style.background = color;
-  var minValue = slider.getAttribute('min');
-  var maxValue = 1000;
-  var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-  var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-  var color =
-    "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-    newValue +
-    "%, rgba(229, 231, 235, 1)" +
-    newValue +
-    "%)";
-  slider.style.background = color;
-  if (newValue > 40 && newValue <= 85) {
-    slider.classList.add("ahead");
-  } else if (newValue > 85) {
-    slider.classList.remove("ahead");
-    slider.classList.add("end");
-  } else {
-    slider.classList.remove("ahead");
-    slider.classList.remove("end");
-  }
+function initializeSlickSlider(tabId) {
+	console.log('tabId', tabId);
+	console.log('#' + tabId + ' .bonds_slider');
+	jQuery('#' + tabId + ' .bonds_slider').slick({
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		autoplay: false,
+		autoplaySpeed: 2000,
+		dots: false,
+		arrows: true,
+		centerMode: false,
+		infinite: false,
+		nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
+		prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
+		responsive: [{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 1
+			}
+		}]
+	});
+}
+
+function openTab(tabId) {
+	var tabContents = document.getElementsByClassName("bonds_tab_content");
+	for (var i = 0; i < tabContents.length; i++) {
+		tabContents[i].classList.remove("active");
+	}
+
+	var tabButtons = document.getElementsByClassName("bonds_tab_button");
+	for (var i = 0; i < tabButtons.length; i++) {
+		tabButtons[i].classList.remove("active");
+	}
+
+	document.getElementById(tabId).classList.add("active");
+	event.currentTarget.classList.add("active");
+
+	initializeSlickSlider(tabId);
 }
 
 jQuery(document).ready(function ($) {
-  $(".bond_portfolio_slider").each(function () {
-    var $tabContainer = $(this).closest(".tab");
-    var $singleSlides = $tabContainer.find(".single_portfolio_slide");
+	initializeSlickSlider('corporate_bonds');
+	$(".portfolio_slider").slick({
+		infinite: true,
+		arrows: false,
+		dots: false,
+		autoplay: false,
+		speed: 800,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		vertical: true,
+		verticalSwiping: true,
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					asNavFor: ".portfolio_slider_content",
+					vertical: false,
+					verticalSwiping: false,
+				},
+			},
+		],
+	});
 
-    if ($singleSlides.length < 3) {
-      $(this).addClass("slide_wo_shadow");
-    } else {
-      $(this).removeClass("slide_wo_shadow");
-    }
-  });
+	$(".portfolio_slider_content").slick({
+		infinite: true,
+		arrows: false,
+		dots: false,
+		autoplay: false,
+		speed: 800,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		vertical: true,
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					asNavFor: ".portfolio_slider",
+					vertical: false,
+					dots: true,
+					dotsClass: "slider-dots"
+				},
+			},
+		],
+	});
 
-  var activeTab = null;
+	var percentTime;
+	var tick;
+	var time = 0.1;
+	var progressBarIndex = 0;
 
-  // Initialize Slick slider for the active tab
-  function initializeSlickSlider(tabId) {
-    $("#" + tabId + " .bond_portfolio_slider").slick({
-      infinite: false,
-      arrows: true,
-      dots: false,
-      autoplay: false,
-      speed: 800,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      centerMode: false,
-      nextArrow:
-        '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-      prevArrow:
-        '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    });
-  }
+	$(".portfolio_slider_content .progressBar").each(function (index) {
+		var progress = "<div class='inProgress inProgress" + index + "'></div>";
+		$(this).html(progress);
+	});
+	$(".slick-dots li").each(function (index) {
+		var progress = "<div class='inProgress inProgress" + index + "'></div>";
+		$(this).html(progress);
+	});
 
-  // Function to handle tab click
-  function handleTabClick(clickedTab) {
-    $(".tab").removeClass("tab-active");
-    $(".tab[data-id='" + clickedTab.attr("data-id") + "']").addClass(
-      "tab-active"
-    );
-    $(".tab-a").removeClass("active-a");
-    clickedTab.addClass("active-a");
+	function startProgressbar() {
+		resetProgressbar();
+		percentTime = 0;
+		tick = setInterval(interval, 10);
+	}
 
-    if (activeTab !== null) {
-      $("#" + activeTab + " .bond_portfolio_slider").slick("unslick");
-    }
+	function interval() {
+		if ($('.portfolio_slider .slick-track div[data-slick-index="' + progressBarIndex + '"]').attr("aria-hidden") === "true") {
+			progressBarIndex = $('.portfolio_slider .slick-track div[aria-hidden="false"]').data("slickIndex");
+			startProgressbar();
+		} else {
+			percentTime += 1 / (time + 4);
+			var $progressBar = $(".inProgress" + progressBarIndex);
+			var $progressbarMob = $(".slick-dots li .inProgress" + progressBarIndex);
 
-    var tabId = clickedTab.data("id");
-    activeTab = tabId;
+			$progressBar.css({
+				height: percentTime + "%",
+			});
+			$progressbarMob.css({
+				width: percentTime + "%",
+			});
 
-    initializeSlickSlider(tabId);
-  }
+			if (percentTime >= 100) {
+				$(".single-item").slick("slickNext");
+				progressBarIndex++;
+				if (progressBarIndex > 2) {
+					progressBarIndex = 0;
+				}
+				startProgressbar();
+			}
+		}
+	}
 
-  $(".tab-a").click(function () {
-    handleTabClick($(this));
-  });
+	function resetProgressbar() {
+		$(".inProgress").css({
+			height: 0 + "%",
+		});
+		$(".slick-dots li .inProgress").css({
+			width: 0 + "%",
+		});
+		clearInterval(tick);
+	}
+	startProgressbar();
 
-  initializeSlickSlider($(".tab-a.active-a").data("id"));
+	$(".single_portfolio_slider_content").click(function () {
+		clearInterval(tick);
+		var goToThisIndex = $(this).find("span").data("slickIndex");
+		goToThisIndex = goToThisIndex - 1;
+		$(".single-item").slick("slickGoTo", goToThisIndex, false);
+		startProgressbar();
+	});
+});
 
-  $(".tab-active .bond_slider_wrap .bond_portfolio_slider").slick({
-    infinite: true,
-    arrows: true,
-    dots: false,
-    autoplay: false,
-    speed: 800,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    centerMode: false,
-    nextArrow: '<div class="bond_next"><i class="fa fa-caret-right"></i></div>',
-    prevArrow: '<div class="bond_prev"><i class="fa fa-caret-left"></i></div>',
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
+document.addEventListener('DOMContentLoaded', (event) => {
+	const faqItems = document.querySelectorAll('.faq_item');
 
-  $(".bond_prev").click(function () {
-    $(".bond_portfolio_slider").slick("slickPrev");
-  });
+	faqItems.forEach(item => {
+		const question = item.querySelector('.faq_question');
+		const answer = item.querySelector('.faq_answer');
+		const icon = item.querySelector('.faq_icon');
 
-  $(".bond_next").click(function () {
-    $(".bond_portfolio_slider").slick("slickNext");
-  });
-  $(".bond_prev").addClass("slick-disabled");
-  $(".bond_portfolio_slider").on("afterChange", function () {
-    if ($(".slick-prev").hasClass("slick-disabled")) {
-      $(".bond_prev").addClass("slick-disabled");
-    } else {
-      $(".bond_prev").removeClass("slick-disabled");
-    }
-    if ($(".slick-next").hasClass("slick-disabled")) {
-      $(".bond_next").addClass("slick-disabled");
-    } else {
-      $(".bond_next").removeClass("slick-disabled");
-    }
-  });
+		question.addEventListener('click', () => {
+			answer.classList.toggle('active');
+			icon.classList.toggle('active');
 
-  $(".portfolio_slider").slick({
-    infinite: true,
-    arrows: false,
-    dots: false,
-    autoplay: false,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    vertical: true,
-    verticalSwiping: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          asNavFor: ".portfolio_slider_content",
-          vertical: false,
-          verticalSwiping: false,
-        },
-      },
-    ],
-  });
+			if (answer.classList.contains('active')) {
+				answer.style.maxHeight = answer.scrollHeight + "px";
+			} else {
+				answer.style.maxHeight = "0";
+			}
 
-  $(".portfolio_slider_content").slick({
-    infinite: true,
-    arrows: false,
-    dots: false,
-    autoplay: false,
-    speed: 800,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    vertical: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          asNavFor: ".portfolio_slider",
-          vertical: false,
-          dots: true,
-        },
-      },
-    ],
-  });
+			faqItems.forEach(otherItem => {
+				if (otherItem !== item) {
+					const otherAnswer = otherItem.querySelector('.faq_answer');
+					const otherIcon = otherItem.querySelector('.faq_icon');
 
-  var percentTime;
-  var tick;
-  var time = 0.1;
-  var progressBarIndex = 0;
+					otherAnswer.classList.remove('active');
+					otherIcon.classList.remove('active');
+					otherAnswer.style.maxHeight = "0";
+				}
+			});
+		});
+	});
 
-  $(".portfolio_slider_content .progressBar").each(function (index) {
-    var progress = "<div class='inProgress inProgress" + index + "'></div>";
-    $(this).html(progress);
-  });
-  $(".slick-dots li").each(function (index) {
-    var progress = "<div class='inProgress inProgress" + index + "'></div>";
-    $(this).html(progress);
-  });
+	document.getElementById('cb_modal_button').addEventListener('click', function () {
+		document.getElementById('cb_modal').style.display = 'flex';
+	});
+	
+	document.getElementById('gb_modal_button').addEventListener('click', function () {
+		document.getElementById('gb_modal').style.display = 'flex';
+	});
+	
+	document.querySelectorAll('.close').forEach(function (closeBtn) {
+		closeBtn.addEventListener('click', function () {
+			this.closest('.modal').style.display = 'none';
+		});
+	});
+	
+	window.onclick = function (event) {
+		if (event.target.classList.contains('modal')) {
+			event.target.style.display = 'none';
+		}
+	};
 
-  function startProgressbar() {
-    resetProgressbar();
-    percentTime = 0;
-    tick = setInterval(interval, 10);
-  }
-
-  function interval() {
-    if (
-      $(
-        '.portfolio_slider .slick-track div[data-slick-index="' +
-          progressBarIndex +
-          '"]'
-      ).attr("aria-hidden") === "true"
-    ) {
-      progressBarIndex = $(
-        '.portfolio_slider .slick-track div[aria-hidden="false"]'
-      ).data("slickIndex");
-      startProgressbar();
-    } else {
-      percentTime += 1 / (time + 4);
-      var $progressBar = $(".inProgress" + progressBarIndex);
-      var $progressbarMob = $(".slick-dots li .inProgress" + progressBarIndex);
-
-      $progressBar.css({
-        height: percentTime + "%",
-      });
-      $progressbarMob.css({
-        width: percentTime + "%",
-      });
-
-      if (percentTime >= 100) {
-        $(".single-item").slick("slickNext");
-        progressBarIndex++;
-        if (progressBarIndex > 2) {
-          progressBarIndex = 0;
+	bondImages();
+	function bondImages() {
+        var corporateBondImages = document.getElementsByClassName("corporate_bond_image");
+        if (corporateBondImages.length > 0) {
+            for (var i = 0; i < corporateBondImages.length; i++) {
+                corporateBondImages[i].onerror = function () {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Corporate-Bonds.png";
+                };
+            }
         }
-        startProgressbar();
-      }
+
+		var governmentBondImages = document.getElementsByClassName("government_bond_image");
+        if (governmentBondImages.length > 0) {
+            for (var i = 0; i < governmentBondImages.length; i++) {
+                governmentBondImages[i].onerror = function () {
+                    // If the image fails to load (i.e., returns 404), replace it with a default image
+                    this.src = "http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/04/Government-Bonds.png";
+                };
+            }
+        }
     }
-  }
-
-  function resetProgressbar() {
-    $(".inProgress").css({
-      height: 0 + "%",
-    });
-    $(".slick-dots li .inProgress").css({
-      width: 0 + "%",
-    });
-    clearInterval(tick);
-  }
-  startProgressbar();
-  // End ticking machine
-
-  $(".single_portfolio_slider_content").click(function () {
-    clearInterval(tick);
-    var goToThisIndex = $(this).find("span").data("slickIndex");
-    goToThisIndex = goToThisIndex - 1;
-    $(".single-item").slick("slickGoTo", goToThisIndex, false);
-    startProgressbar();
-  });
-  jQuery(function ($) {
-    $(".faq_que").click(function (j) {
-      var dropDown = $(this).closest(".single_faq").find(".faq_content");
-      $(this)
-        .closest(".home_page_faq_wrap")
-        .find(".faq_content")
-        .not(dropDown)
-        .slideUp();
-      if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
-      } else {
-        $(this)
-          .closest(".home_page_faq_wrap")
-          .find(".faq_que.active")
-          .removeClass("active");
-        $(this).addClass("active");
-      }
-      dropDown.stop(false, true).slideToggle();
-      j.preventDefault();
-    });
-  });
-
-  if ($(window).width() <= 767) {
-    $(".module_chapter_list").slick({
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      arrows: true,
-      centerMode: true,
-    });
-  }
-
-  $(".minus_qty").click(function () {
-    let $input = $("#units");
-    var val = parseInt($input.val());
-    if (val > 0) {
-      $input.val(val - 1).change();
-    }
-  });
-  $(".plus_qty").click(function () {
-    let $input = $("#units");
-    var val = parseInt($input.val());
-    $input.val(val + 1).change();
-  });
 });
 
-function restrictAlphabets(e) {
-  var x = e.which || e.keycode;
-  if ((x >= 48 && x <= 57))
-      return true;
-  else
-      return false;
-}
 
-jQuery(document).ready(function($){
-  $("#units").on("input change", function (event) {
-    var latestAmt = $("#units").val();
-    $("#unit_range").val(latestAmt);
-
-    var investmentAmount = $('#investment_amount').attr('newPrice');
-    var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
-    var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-    var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
-    // var selectedBonds = totalCashFlow * minimumQuantity;
-
-    var slider = document.getElementById("unit_range");
-    var sliderVal = document.getElementById("units");
-    slider.style.background = color;
-    var minValue = slider.getAttribute('min');
-    var maxValue = 1000;
-    // var selectedValue = jQuery('#bond_selector').attr('minvalue');
-    // console.log ('test', selectedValue);
-    // console.log ('sd', minValue);
-    // if (maxValue <= minValue) {
-    //   console.log ('test', minValue);
-    //   jQuery(this).val(minValue);
-    // }
-    
-    var x = parseFloat(latestAmt);
-    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-      newValue +
-      "%, rgba(229, 231, 235, 1)" +
-      newValue +
-      "%)";
-    slider.style.background = color;
-    if (newValue > 40 && newValue <= 85) {
-      slider.classList.add("ahead");
-    } else if (newValue > 85) {
-      slider.classList.remove("ahead");
-      slider.classList.add("end");
-    } else {
-      slider.classList.remove("ahead");
-      slider.classList.remove("end");
-    }
-
-    var newinvestmentAmount = investmentAmount * newValue;
-    var newbankFixedDeposit = bankFixedDeposit * newValue;
-    var newselectedBonds = totalCashFlow * newValue;
-    var extraAmount = newselectedBonds - newbankFixedDeposit;
-
-    document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit);
-    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds);
-    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
-
-  });
-  
-  $("#unit_range").on("input change", function () {
-    
-    var slider = document.getElementById("unit_range");
-    var sliderVal = document.getElementById("units");
-    $("#units").val(slider.value);
-    
-
-    var investmentAmount = $('#investment_amount').attr('newPrice');
-    var periodInYears = $('#bank_fixed_deposit').attr('maturity_months');
-    var bankFixedDeposit = investmentAmount * Math.pow(1.06, periodInYears);
-    var totalCashFlow = $('#selected_bond').attr('sum_cash_flow');
-    // var selectedBonds = totalCashFlow * minimumQuantity;
-
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1) 10%, rgba(229, 231, 235, 1) 10%)";
-    slider.style.background = color;
-    var minValue = slider.getAttribute('min');
-    var maxValue = 1000;
-    var x = parseFloat(sliderVal.value); // Parse the slider value to a floating-point
-    var newValue = ((x - minValue) / (maxValue - minValue)) * 99 + 1; // Map the value
-    var color =
-      "linear-gradient(90deg, rgba(0, 40, 52, 1)" +
-      newValue +
-      "%, rgba(229, 231, 235, 1)" +
-      newValue +
-      "%)";
-    slider.style.background = color;
-    if (newValue > 40 && newValue <= 85) {
-      slider.classList.add("ahead");
-    } else if (newValue > 85) {
-      slider.classList.remove("ahead");
-      slider.classList.add("end");
-    } else {
-      slider.classList.remove("ahead");
-      slider.classList.remove("end");
-    }
-    
-    var newinvestmentAmount = investmentAmount * newValue;
-    var newbankFixedDeposit = bankFixedDeposit * newValue;
-    var newselectedBonds = totalCashFlow * newValue;
-    var extraAmount = newselectedBonds - newbankFixedDeposit;
-
-    document.querySelector('.qty_btn').setAttribute("input_value", newValue);
-    document.getElementById('investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('result_note_investment_amount').textContent = Math.round(newinvestmentAmount);
-    document.getElementById('bank_fixed_deposit').textContent = Math.round(newbankFixedDeposit);
-    document.getElementById('selected_bond').textContent = Math.round(newselectedBonds);
-    document.getElementById('extra_amount').textContent = Math.round(extraAmount);
-
-  });
-
-});

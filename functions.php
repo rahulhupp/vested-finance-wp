@@ -21,6 +21,7 @@ require_once get_stylesheet_directory() . '/inc/acf-options.php';
 require_once get_stylesheet_directory() . '/inc/store-token.php';
 require_once get_stylesheet_directory() . '/inc/stocks-details-fucntions.php';
 require_once get_stylesheet_directory() . '/template-parts/stocks-details/fetch-stocks-api-data.php';
+require_once get_stylesheet_directory() . '/template-parts/fetch-inr-bonds-api-data.php';
 
 function add_custom_js_to_pages() {
     if (is_page()) { // You can specify conditions if needed
