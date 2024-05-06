@@ -281,8 +281,8 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 
 
 /** 
-//  * Google reCAPTCHA: Add widget before the submit button 
-// //  */
+ * * Google reCAPTCHA: Add widget before the submit button 
+ */
 function add_google_recaptcha($submit_field) { 
     function add_google_recaptcha($submit_field) {
         // Check if no comments exist on the post

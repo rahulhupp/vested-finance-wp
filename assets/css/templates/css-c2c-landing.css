@@ -122,25 +122,26 @@
 
 .earn-block-top h6 {
 	color: #fff;
-	font-size: 18px;
-	line-height: 27px;
+	font-size: 15px;
+	line-height: 17px;
 	font-weight: 700;
 	font-family: "Inter", sans-serif;
 }
 
 .earn-block-middle h6 {
 	color: #fff;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 21px;
 	font-weight: 700;
 	font-family: "Inter", sans-serif;
 	margin-bottom: 3px;
+	opacity: 0.9;
 }
 
 .earn-block-middle p {
 	color: #fff;
 	font-size: 13px;
-	line-height: 21px;
+	line-height: 22px;
 	font-weight: 400;
 	font-family: "Inter", sans-serif;
 	opacity: 0.9;
@@ -148,10 +149,11 @@
 }
 
 .earn-block-bottom h6 {
-	font-size: 14px;
+	font-size: 13px;
 	color: #fff;
-	line-height: 21px;
+	line-height: 20px;
 	font-weight: 700;
+	opacity: 0.9;
 	margin-bottom: 3px;
 	font-family: "Inter", sans-serif;
 }
@@ -159,7 +161,7 @@
 .earn-block-bottom p {
 	color: #fff;
 	font-size: 13px;
-	line-height: 21px;
+	line-height: 22px;
 	font-weight: 400;
 	font-family: "Inter", sans-serif;
 	opacity: 0.9;
