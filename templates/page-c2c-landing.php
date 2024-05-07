@@ -118,7 +118,7 @@ get_header(); ?>
                 </div>
                 <div class="landing-network-right">
                     <div class="network-btn">
-                        <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" target="_blank" class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
+                        <a href="<?php echo esc_attr( get_field('landing_network_btn_link') ); ?>" target="_blank" class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
                     </div>
                 </div>
             </div>
