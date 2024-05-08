@@ -36,23 +36,41 @@
         }
 
         var options = {
+            responsive: true,
             plugins: {
                 tooltip: false,
                 legend: {
-                    display: false
+                    display: false,
                 },
                 datalabels: {
-                    color: '#FFFFFF',
-                    textAlign: 'center',
+                    color: "#FFF",
+                    align: "bottom",
                     font: {
-                        lineHeight: 1.6,
-                        fontSize: '34px'
+                        size: 16,
                     },
-                    formatter: function(value, ctx) {
-                        return  value + '%' + '\n' + ctx.chart.data.labels[ctx.dataIndex];
-                    }
-                }
-            }
+                    padding: {
+                        bottom: 20,
+                    },
+                    display: true,
+                    labels: {
+                        title: {
+                            formatter: function (value, ctx) {
+                                return ctx.chart.data.labels[ctx.dataIndex];
+                            },
+                        },
+                        value: {
+                            align: "center",
+                            font: {
+                                size: 20,
+                                weight: 'bold',
+                            },
+                            formatter: function (value, ctx) {
+                                return value + '%';
+                            },
+                        },
+                    },
+                },
+            },
         };
 
         var pieChart = new Chart(forecastChart, {
