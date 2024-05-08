@@ -113,63 +113,67 @@ get_header(); ?>
 									<button id="cb_modal_button">What are corporate bonds?</button>
 									<div class="bonds_slider_container">
 										<div class="bonds_slider" id="corporate_bonds_slider">
-											<?php foreach ($inr_bonds_data as $bond): ?>
-												<?php if ($bond['bondCategory'] == 'CORPORATE' ): ?>
-													<div class="bonds_slider_item">
-														<div class="bonds_slider_item_wrapper">
-															<div class="bonds_slider_item_head">
-																<div class="bond_image">
-																	<img src="<?php echo $bond['logo']; ?>" class="corporate_bond_image" />
-																</div>
-																<div class="bond_rating" style="background-color: <?php echo explode(",",$bond['ratingColorCode'])[0]; ?>">
-																	<span style="color: <?php echo explode(",",$bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>
-																</div>
+											<?php
+											// Extract and sort bonds by minimum investment
+											$corporate_bonds = array_filter($inr_bonds_data, function ($bond) {
+												return $bond['bondCategory'] == 'CORPORATE';
+											});
+
+											usort($corporate_bonds, function ($a, $b) {
+												return $a['minimumInvestment'] - $b['minimumInvestment'];
+											});
+
+											// Iterate through sorted bonds
+											foreach ($corporate_bonds as $bond):
+												?>
+												<div class="bonds_slider_item">
+													<div class="bonds_slider_item_wrapper">
+														<div class="bonds_slider_item_head">
+															<div class="bond_image">
+																<img src="<?php echo $bond['logo']; ?>" class="corporate_bond_image" />
 															</div>
-															<h3><?php echo $bond['displayName']; ?></h3>
-															<div class="bond_details_list">
-																<div class="bond_detail_item">
-																	<span>Min investment</span>
-																	<strong>
-																		<?php
-																			$minimumInvestment = number_format($bond['minimumInvestment'], 0, '.', ',');
-																			echo '₹' . $minimumInvestment;
-																		?>
-																	</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Yield</span>
-																	<strong><?php echo number_format($bond['yield'], 2); ?>%</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Matures in</span>
-																	<strong>
-																		<?php
-																			$months = $bond['maturityInMonths'];
-																			$years = floor($months / 12);
-																			$remainingMonths = $months % 12;
-																			if ($years > 0 && $remainingMonths > 0) {
-																				$formattedString = $years . ' year' . ($years > 1 ? 's' : '') . ' ' . $remainingMonths . ' month' . ($remainingMonths > 1 ? 's' : '');
-																			} elseif ($years > 0) {
-																				$formattedString = $years . ' year' . ($years > 1 ? 's' : '');
-																			} else {
-																				$formattedString = $months . ' month' . ($months > 1 ? 's' : '');
-																			}
-																			echo $formattedString;
-																		?>
-																	</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Payment Frequency</span>
-																	<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
-																</div>
+															<div class="bond_rating" style="background-color: <?php echo explode(",", $bond['ratingColorCode'])[0]; ?>">
+																<span style="color: <?php echo explode(",", $bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>
 															</div>
-															<a href="https://app.vestedfinance.com/signup" class="btn_dark" target="_blank">
-																<span>Explore Now</span>
-																<i class="fa fa-chevron-right"></i>
-															</a>
 														</div>
+														<h3><?php echo $bond['displayName']; ?></h3>
+														<div class="bond_details_list">
+															<div class="bond_detail_item">
+																<span>Min investment</span>
+																<strong><?php echo '₹' . number_format($bond['minimumInvestment'], 0, '.', ','); ?></strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Yield</span>
+																<strong><?php echo number_format($bond['yield'], 2); ?>%</strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Matures in</span>
+																<strong><?php
+																$months = $bond['maturityInMonths'];
+																$years = floor($months / 12);
+																$remainingMonths = $months % 12;
+																if ($years > 0 && $remainingMonths > 0) {
+																	$formattedString = $years . ' year' . ($years > 1 ? 's' : '') . ' ' . $remainingMonths . ' month' . ($remainingMonths > 1 ? 's' : '');
+																} elseif ($years > 0) {
+																	$formattedString = $years . ' year' . ($years > 1 ? 's' : '');
+																} else {
+																	$formattedString = $months . ' month' . ($months > 1 ? 's' : '');
+																}
+																echo $formattedString;
+																?></strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Payment Frequency</span>
+																<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
+															</div>
+														</div>
+														<a href="https://app.vestedfinance.com/signup" class="btn_dark"
+															target="_blank">
+															<span>Explore Now</span>
+															<i class="fa fa-chevron-right"></i>
+														</a>
 													</div>
-												<?php endif; ?>
+												</div>
 											<?php endforeach; ?>
 										</div>
 									</div>		
@@ -181,64 +185,70 @@ get_header(); ?>
 									<button id="gb_modal_button">What are government bonds?</button>
 									<div class="bonds_slider_container">
 										<div class="bonds_slider" id="government_bonds_slider">
-											<?php foreach ($inr_bonds_data as $bond): ?>
-												<?php if ($bond['bondCategory'] == 'GOVT' ): ?>
-													<div class="bonds_slider_item">
-														<div class="bonds_slider_item_wrapper">
-															<div class="bonds_slider_item_head">
-																<div class="bond_image">
-																	<!-- <img src="<?php echo $bond['logo']; ?>" class="government_bond_image" /> -->
-																	<img src="https://vestedfinance.com/wp-content/uploads/2024/05/Government-Bonds.png" class="government_bond_image" />
-																</div>
-																<div class="bond_rating" style="background-color: <?php echo explode(",",$bond['ratingColorCode'])[0]; ?>">
-																	<span style="color: <?php echo explode(",",$bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>
-																</div>
+											<?php
+											$government_bonds = array_filter($inr_bonds_data, function ($bond) {
+												return $bond['bondCategory'] == 'GOVT';
+											});
+
+											usort($government_bonds, function ($a, $b) {
+												return $a['minimumInvestment'] - $b['minimumInvestment'];
+											});
+
+											foreach ($government_bonds as $bond):
+												?>
+												<div class="bonds_slider_item">
+													<div class="bonds_slider_item_wrapper">
+														<div class="bonds_slider_item_head">
+															<div class="bond_image">
+																<!-- <img src="<?php echo $bond['logo']; ?>" class="bond_image" /> -->
+																<img src="https://vestedfinance.com/wp-content/uploads/2024/05/Government-Bonds.png" class="government_bond_image" />
 															</div>
-															<h3><?php echo $bond['displayName']; ?></h3>
-															<div class="bond_details_list">
-																<div class="bond_detail_item">
-																	<span>Min investment</span>
-																	<strong>
-																		<?php
-																			$minimumInvestment = number_format($bond['minimumInvestment'], 0, '.', ',');
-																			echo '₹' . $minimumInvestment;
-																		?>
-																	</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Yield</span>
-																	<strong><?php echo number_format($bond['yield'], 2); ?>%</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Matures in</span>
-																	<strong>
-																		<?php
-																			$months = $bond['maturityInMonths'];
-																			$years = floor($months / 12);
-																			$remainingMonths = $months % 12;
-																			if ($years > 0 && $remainingMonths > 0) {
-																				$formattedString = $years . ' year' . ($years > 1 ? 's' : '') . ' ' . $remainingMonths . ' month' . ($remainingMonths > 1 ? 's' : '');
-																			} elseif ($years > 0) {
-																				$formattedString = $years . ' year' . ($years > 1 ? 's' : '');
-																			} else {
-																				$formattedString = $months . ' month' . ($months > 1 ? 's' : '');
-																			}
-																			echo $formattedString;
-																		?>
-																	</strong>
-																</div>
-																<div class="bond_detail_item">
-																	<span>Payment Frequency</span>
-																	<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
-																</div>
+															<div class="bond_rating"
+																style="background-color: <?php echo explode(",", $bond['ratingColorCode'])[0]; ?>">
+																<span
+																	style="color: <?php echo explode(",", $bond['ratingColorCode'])[1]; ?>"><?php echo $bond['rating']; ?></span>
 															</div>
-															<a href="https://app.vestedfinance.com/signup" class="btn_dark" target="_blank">
-																<span>Explore Now</span>
-																<i class="fa fa-chevron-right"></i>
-															</a>
 														</div>
+														<h3><?php echo $bond['displayName']; ?></h3>
+														<div class="bond_details_list">
+															<div class="bond_detail_item">
+																<span>Min investment</span>
+																<strong><?php echo '₹' . number_format($bond['minimumInvestment'], 0, '.', ','); ?></strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Yield</span>
+																<strong><?php echo number_format($bond['yield'], 2); ?>%</strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Matures in</span>
+																<strong>
+																	<?php
+																	$months = $bond['maturityInMonths'];
+																	$years = floor($months / 12);
+																	$remainingMonths = $months % 12;
+																	if ($years > 0 && $remainingMonths > 0) {
+																		$formattedString = $years . ' year' . ($years > 1 ? 's' : '') . ' ' . $remainingMonths . ' month' . ($remainingMonths > 1 ? 's' : '');
+																	} elseif ($years > 0) {
+																		$formattedString = $years . ' year' . ($years > 1 ? 's' : '');
+																	} else {
+																		$formattedString = $months . ' month' . ($months > 1 ? 's' : '');
+																	}
+																	echo $formattedString;
+																	?>
+																</strong>
+															</div>
+															<div class="bond_detail_item">
+																<span>Payment Frequency</span>
+																<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
+															</div>
+														</div>
+														<a href="https://app.vestedfinance.com/signup" class="btn_dark"
+															target="_blank">
+															<span>Explore Now</span>
+															<i class="fa fa-chevron-right"></i>
+														</a>
 													</div>
-												<?php endif; ?>
+												</div>
 											<?php endforeach; ?>
 										</div>
 									</div>		
