@@ -35,6 +35,10 @@
             return gradient;
         }
 
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
         var options = {
             responsive: true,
             plugins: {
@@ -45,11 +49,14 @@
                 datalabels: {
                     color: "#FFF",
                     align: "bottom",
-                    font: {
-                        size: 16,
+                    font: function (context) {
+                        var baseSize = isMobile() ? 10 : 16;
+                        return {
+                            size: baseSize,
+                        };
                     },
                     padding: {
-                        bottom: 20,
+                        bottom: isMobile() ? 2 : 15,
                     },
                     display: true,
                     labels: {
@@ -60,9 +67,12 @@
                         },
                         value: {
                             align: "center",
-                            font: {
-                                size: 20,
-                                weight: 'bold',
+                            font: function (context) {
+                                var baseSize = isMobile() ? 12 : 20;
+                                return {
+                                    size: baseSize,
+                                    weight: 'bold',
+                                };
                             },
                             formatter: function (value, ctx) {
                                 return value + '%';
