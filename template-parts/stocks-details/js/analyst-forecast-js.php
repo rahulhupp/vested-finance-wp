@@ -50,13 +50,13 @@
                     color: "#FFF",
                     align: "bottom",
                     font: function (context) {
-                        var baseSize = isMobile() ? 10 : 16;
+                        var baseSize = isMobile() ? 12 : 16;
                         return {
                             size: baseSize,
                         };
-                    },
+                    },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                     padding: {
-                        bottom: isMobile() ? 2 : 15,
+                        bottom: isMobile() ? 10 : 15, 
                     },
                     display: true,
                     labels: {
@@ -68,7 +68,7 @@
                         value: {
                             align: "center",
                             font: function (context) {
-                                var baseSize = isMobile() ? 12 : 20;
+                                var baseSize = isMobile() ? 16 : 20;
                                 return {
                                     size: baseSize,
                                     weight: 'bold',
@@ -82,7 +82,6 @@
                 },
             },
         };
-
         var pieChart = new Chart(forecastChart, {
             type: 'pie',
             data: forecastData,

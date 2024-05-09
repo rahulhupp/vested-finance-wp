@@ -6511,7 +6511,7 @@ td.holdings_stock_weight_td {
 	}
 
 	.analyst_forecast_chart_container {
-		max-width: 240px;
+		max-width: 320px;
 	}
 }
 
@@ -6540,7 +6540,7 @@ td.holdings_stock_weight_td {
 
 	.analyst_forecast_chart_container {
 		margin: 0 auto;
-		max-width: 200px;
+		max-width: 320px;
 	}
 
 	.stock_about_description {
