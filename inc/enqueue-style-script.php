@@ -81,6 +81,10 @@
         if (is_page_template('templates/page-calculator-sip-lumpsum.php')) {
             wp_enqueue_style('sip-lumpsum-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-sip-lumpsum-calculator.css', false, '', '');
         }
+        if (is_page_template('templates/page-c2c-landing.php')) {
+            wp_enqueue_style('c2c-landing-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-c2c-landing.css', false, '', '');
+            wp_enqueue_script('c2c-landing-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-c2c-landing.js');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
