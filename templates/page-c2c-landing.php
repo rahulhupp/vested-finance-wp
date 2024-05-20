@@ -71,7 +71,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="earn-terms">
-                <a href="#"><?php the_field('earn-team'); ?></a>
+                <a href="<?php echo esc_attr( get_field('earn_team_link') ); ?>" target="_blank"><?php the_field('earn-team'); ?></a>
             </div>
         </div>
 
