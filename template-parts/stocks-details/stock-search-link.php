@@ -176,10 +176,25 @@
 
 <script>
 
+    // function inputChangeCalc() {
+    //     var inputValue = document.querySelector(".dropdown_search").value;
+    //     console.log('1 inputValue', inputValue);
+    //     makeAPICallCalc(inputValue);
+    // }
+
+    var debounceTimer;
+
     function inputChangeCalc() {
         var inputValue = document.querySelector(".dropdown_search").value;
         console.log('1 inputValue', inputValue);
-        makeAPICallCalc(inputValue);
+
+        // Clear the previous timer
+        clearTimeout(debounceTimer);
+
+        // Set a new timer
+        debounceTimer = setTimeout(function () {
+            makeAPICallCalc(inputValue);
+        }, 100);
     }
 
     function makeAPICallCalc(inputValue) {
@@ -196,24 +211,50 @@
         }
     }
 
-    async function fetchResultCalc(stock_name) {
-        <?php
+    // async function fetchResultCalc(stock_name) {
+    //     <?php
+    //         global $wpdb;
+    //         $table_name = $wpdb->prefix . 'stocks_list';
+    //         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+    //     ?>
+    //     var dbStocksList = <?php echo json_encode($results); ?>;
+    //     // console.log('dbStocksList', dbStocksList);
+
+    //     var filteredStocks = dbStocksList.filter(function(stock) {
+    //         return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
+    //             stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+    //     });
+
+    //     console.log('filteredStocks', filteredStocks);
+    //     renderItemsCalc(filteredStocks);
+    // }
+
+    var debounceTimer;
+
+    function debounce(func, delay) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(func, delay);
+    }
+
+    function fetchResultCalc(stock_name) {
+        debounce(function () {
+            <?php
             global $wpdb;
             $table_name = $wpdb->prefix . 'stocks_list';
             $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-        ?>
-        var dbStocksList = <?php echo json_encode($results); ?>;
-        // console.log('dbStocksList', dbStocksList);
+            ?>
+            var dbStocksList = <?php echo json_encode($results); ?>;
+            // console.log('dbStocksList', dbStocksList);
 
-        var filteredStocks = dbStocksList.filter(function(stock) {
-            return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
-                stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
-        });
+            var filteredStocks = dbStocksList.filter(function (stock) {
+                return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) ||
+                    stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+            });
 
-        console.log('filteredStocks', filteredStocks);
-        renderItemsCalc(filteredStocks);
+            console.log('filteredStocks', filteredStocks);
+            renderItemsCalc(filteredStocks);
+        }, 300);
     }
-
     function showLoader() {
         document.getElementById('loader').style.display = 'block';
         document.querySelector(".static_options").style.display = 'none';

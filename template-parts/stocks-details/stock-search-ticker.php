@@ -169,10 +169,25 @@
 
 <script>
 
+    // function tickerInputChangeCalc() {
+    //     var inputValue = document.querySelector(".ticker_dropdown_search").value;
+    //     console.log('inputValue', inputValue);
+    //     tickerMakeAPICallCalc(inputValue);
+    // }
+
+    var debounceTimer;
+
     function tickerInputChangeCalc() {
         var inputValue = document.querySelector(".ticker_dropdown_search").value;
         console.log('inputValue', inputValue);
-        tickerMakeAPICallCalc(inputValue);
+
+        // Clear the previous timer
+        clearTimeout(debounceTimer);
+
+        // Set a new timer
+        debounceTimer = setTimeout(function () {
+            tickerMakeAPICallCalc(inputValue);
+        }, 100);
     }
     function tickerMakeAPICallCalc(inputValue) {
         var staticOptions = document.querySelector(".ticker_static_options");
@@ -187,22 +202,48 @@
         }
     }
     
+    // function tickerFetchResultCalction(stock_name) {
+    //     <?php
+    //         global $wpdb;
+    //         $table_name = $wpdb->prefix . 'stocks_list';
+    //         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+    //     ?>
+    //     var dbStocksList = <?php echo json_encode($results); ?>;
+    //     // console.log('dbStocksList', dbStocksList);
+
+    //     var filteredStocks = dbStocksList.filter(function(stock) {
+    //         return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
+    //             stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+    //     });
+
+    //     console.log('filteredStocks', filteredStocks);
+    //     tickerRenderItemsCalc(filteredStocks);
+    // }
+    var debounceTimer;
+
+    function debounce(func, delay) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(func, delay);
+    }
+
     function tickerFetchResultCalction(stock_name) {
-        <?php
+        debounce(function () {
+            <?php
             global $wpdb;
             $table_name = $wpdb->prefix . 'stocks_list';
             $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-        ?>
-        var dbStocksList = <?php echo json_encode($results); ?>;
-        // console.log('dbStocksList', dbStocksList);
+            ?>
+            var dbStocksList = <?php echo json_encode($results); ?>;
+            // console.log('dbStocksList', dbStocksList);
 
-        var filteredStocks = dbStocksList.filter(function(stock) {
-            return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
-                stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
-        });
+            var filteredStocks = dbStocksList.filter(function (stock) {
+                return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) ||
+                    stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
+            });
 
-        console.log('filteredStocks', filteredStocks);
-        tickerRenderItemsCalc(filteredStocks);
+            console.log('filteredStocks', filteredStocks);
+            tickerRenderItemsCalc(filteredStocks);
+        }, 300);
     }
 
     function tickerShowLoader() {
