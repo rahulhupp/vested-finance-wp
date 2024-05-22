@@ -179,11 +179,11 @@
 
 .earn-block-middle {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	height: 103px;
+	height: 125px;
 }
 
 .earn-terms {
-	text-align: center;
+	text-align: right;
 	margin-top: 16px;
 }
 
@@ -284,6 +284,7 @@
 	background: #002852;
 	padding-top: 122px;
 	padding-bottom: 122px;
+	display: none;
 }
 
 .landing-network-row {
