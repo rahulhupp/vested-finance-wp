@@ -32,7 +32,7 @@ get_header(); ?>
         <div class="banner_popup_overlay">
             <div class="banner_popup">
                 <div class="close_btn"><i class="fa fa-times"></i></div>
-                <p>Lifetime Rewards: The lifetime bonuses are limited to the duration the referral program is live. Vested reserves the right to pause or stop the program at any time. View our T&Cs for more details.</p>
+                <p>Lifetime Rewards: The lifetime bonuses are limited to the duration the referral program is live. Vested reserves the right to pause or stop the program at any time. View our <a href="https://vestedfinance.com/legal/referral-disclosure-referrer/?_gl=1*g2qtcp*_ga*MTY2NDMxNzg1MS4xNzEyNTU3MzIx*_ga_5NBVQLBS78*MTcxNjUyMzA2NC4zNy4xLjE3MTY1Mzk2MDguNTkuMC4w" target="_blank"> T&Cs </a> for more details.</p>
             </div>
         </div>
     </section>
