@@ -18,7 +18,8 @@ get_header(); ?>
                         <p><?php the_field('refer_and_earn_content'); ?></p>
                         <?php the_field('terms_and_conditions_content'); ?>
                         <div class="hero-btn">
-                            <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" class="hero-blue-btn" target="_blank"><?php the_field('autopilot_label'); ?></a>
+                            <a href="<?php echo esc_attr(get_field('invite_link')); ?>" class="hero-blue-btn"
+                                target="_blank"><?php the_field('autopilot_label'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +33,10 @@ get_header(); ?>
         <div class="banner_popup_overlay">
             <div class="banner_popup">
                 <div class="close_btn"><i class="fa fa-times"></i></div>
-                <p>Lifetime Rewards: The lifetime bonuses are limited to the duration the referral program is live. Vested reserves the right to pause or stop the program at any time. View our <a href="https://vestedfinance.com/legal/referral-disclosure-referrer/?_gl=1*g2qtcp*_ga*MTY2NDMxNzg1MS4xNzEyNTU3MzIx*_ga_5NBVQLBS78*MTcxNjUyMzA2NC4zNy4xLjE3MTY1Mzk2MDguNTkuMC4w" target="_blank"> T&Cs </a> for more details.</p>
+                <p>Lifetime Rewards: The lifetime bonuses are limited to the duration the referral program is live.
+                    Vested reserves the right to pause or stop the program at any time. View our <a
+                        href="https://vestedfinance.com/legal/referral-disclosure-referrer/?_gl=1*g2qtcp*_ga*MTY2NDMxNzg1MS4xNzEyNTU3MzIx*_ga_5NBVQLBS78*MTcxNjUyMzA2NC4zNy4xLjE3MTY1Mzk2MDguNTkuMC4w"
+                        target="_blank"> T&Cs </a> for more details.</p>
             </div>
         </div>
     </section>
@@ -51,9 +55,12 @@ get_header(); ?>
                             <div class="earn-block-content"
                                 style="background-color: <?php the_sub_field('block_background_color'); ?>;">
                                 <div class="earn-block-top">
-                                    <h6 style="color: <?php the_sub_field('text_color'); ?>;">
-                                        <?php the_sub_field('block_title'); ?>
-                                    </h6>
+                                    <div>
+                                        <h6 style="color: <?php the_sub_field('text_color'); ?>;">
+                                            <?php the_sub_field('block_title'); ?>
+                                        </h6>
+                                        <p><?php the_sub_field('block_sub_title'); ?></p>
+                                    </div>
                                     <img src="<?php the_sub_field('block_title_image'); ?>" />
                                 </div>
                                 <div class="earn-block-middle">
@@ -78,7 +85,8 @@ get_header(); ?>
                 </div>
             </div>
             <div class="earn-terms">
-                <a href="<?php echo esc_attr( get_field('earn_team_link') ); ?>" target="_blank"><?php the_field('earn-team'); ?></a>
+                <a href="<?php echo esc_attr(get_field('earn_team_link')); ?>"
+                    target="_blank"><?php the_field('earn-team'); ?></a>
             </div>
         </div>
 
@@ -110,7 +118,8 @@ get_header(); ?>
                 </div>
             </div>
             <div class="super-easy-btn">
-                <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" target="_blank" class="hero-blue-btn"><?php the_field('easy_btn'); ?></a>
+                <a href="<?php echo esc_attr(get_field('invite_link')); ?>" target="_blank"
+                    class="hero-blue-btn"><?php the_field('easy_btn'); ?></a>
                 <p><?php the_field('easy_faq_content'); ?></p>
             </div>
         </div>
@@ -125,7 +134,8 @@ get_header(); ?>
                 </div>
                 <div class="landing-network-right">
                     <div class="network-btn">
-                        <a href="<?php echo esc_attr( get_field('landing_network_btn_link') ); ?>" target="_blank" class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
+                        <a href="<?php echo esc_attr(get_field('landing_network_btn_link')); ?>" target="_blank"
+                            class="hero-white-btn"><?php the_field('landing_network_btn'); ?></a>
                     </div>
                 </div>
             </div>
