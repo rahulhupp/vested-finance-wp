@@ -152,6 +152,17 @@
   right: 15px;
 }
 
+.earn-block-top p {
+  color: #fff;
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: 200;
+  font-style: italic;
+  font-family: "Inter", sans-serif;
+  opacity: 0.9;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
 .banner_popup p a {
   border-bottom: 1px solid;
   color: #000;
