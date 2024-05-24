@@ -16,6 +16,7 @@ get_header(); ?>
                     <div class="hero-left-content">
                         <?php the_field('autopilot_content'); ?>
                         <p><?php the_field('refer_and_earn_content'); ?></p>
+                        <?php the_field('terms_and_conditions_content'); ?>
                         <div class="hero-btn">
                             <a href="<?php echo esc_attr( get_field('invite_link') ); ?>" class="hero-blue-btn" target="_blank"><?php the_field('autopilot_label'); ?></a>
                         </div>
@@ -26,6 +27,12 @@ get_header(); ?>
                         <img src="<?php the_field('autopilot_image'); ?>" />
                     <?php endif; ?>
                 </div>
+            </div>
+        </div>
+        <div class="banner_popup_overlay">
+            <div class="banner_popup">
+                <div class="close_btn"><i class="fa fa-times"></i></div>
+                <p>Lifetime Rewards: The lifetime bonuses are limited to the duration the referral program is live. Vested reserves the right to pause or stop the program at any time. View our T&Cs for more details.</p>
             </div>
         </div>
     </section>
