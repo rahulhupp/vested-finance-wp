@@ -361,6 +361,95 @@
 .mobile-device {
 	display: none;
 }
+.terms-link b {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  color: #505a64;
+  line-height: 130%;
+  font-family: "Inter", sans-serif;
+}
+.terms-link {
+  margin-top: 65px;
+}
+.banner_popup_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  display: none;
+}
+
+.banner_popup {
+  max-width: 540px;
+  padding: 29px 40px 45px 49px;
+  border-radius: 10px;
+  background: #eef5fc;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close_btn {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  color: #fff;
+  background: #3382d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+
+.earn-block-top p {
+  color: #fff;
+  font-size: 9.2px;
+  line-height: 10.12px;
+  font-weight: 200;
+  font-style: italic;
+  font-family: "Inter", sans-serif;
+  opacity: 0.9;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+.banner_popup p a {
+  border-bottom: 1px solid;
+  color: #000;
+}
+.banner_popup p a:hover {
+  color: #002852;
+}
+.banner_popup p {
+  color: #000;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 15px 18px 6px;
+}
+
+.disclosure-popup-open body {
+  overflow: hidden;
+  max-width: calc(100% - 15px);
+}
+.terms-link b a {
+  color: #505a64;
+  border-bottom: 1px solid;
+}
+.terms-link b a:hover {
+  color: #002852;
+}
 
 @media (max-width: 1199px) {}
 
@@ -583,12 +672,30 @@
 	.earn-block-grid .slick-dots li {
 		margin: 0;
 	}
+  .terms-link {
+    margin-top: 22px;
+  }
+  .banner_popup {
+    padding: 15px;
+    width: 500px;
+  }
+  .close_btn {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  .terms-link b {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 510px) {
 	.earn-block-content {
 		max-width: 350px;
 	}
+  .banner_popup {
+    width: 320px;
+  }
 }
 
 @media (max-width: 360px) {

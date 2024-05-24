@@ -19,4 +19,14 @@ jQuery(document).ready(function ($) {
 			}
 		]
 	});
+
+  $(".terms-link  b a").click(function () {
+    $(".banner_popup_overlay").show();
+    $("html").addClass("disclosure-popup-open");
+  });
+  
+  $(".banner_popup_overlay .close_btn").click(function () {
+    $(".banner_popup_overlay").hide();
+    $("html").removeClass("disclosure-popup-open");
+  });
 });
