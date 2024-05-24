@@ -103,6 +103,8 @@
 .earn-block-content {
   margin-right: 8px;
 }
+
+/*  ADD */
 .terms-link b {
   font-weight: 600;
   font-size: 16px;
@@ -192,6 +194,8 @@
 .terms-link b a:hover {
   color: #002852;
 }
+
+/*  ADD */
 
 /* .earn-block-grid {
     display: grid;
