@@ -104,66 +104,76 @@
   margin-right: 8px;
 }
 .terms-link b {
-	font-weight: 600;
-	font-size: 16px;
-	letter-spacing: -0.32px;
-	color: #505a64;
-	line-height: 130%;
-	font-family: "Inter", sans-serif;
-  }
-  .terms-link {
-	margin-top: 65px;
-  }
-  .banner_popup_overlay {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.3);
-	z-index: 99;
-	display: none;
-  }
-  
-  .banner_popup {
-	max-width: 540px;
-	padding: 29px 40px 45px 49px;
-	border-radius: 10px;
-	background: #eef5fc;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-  }
-  
-  .close_btn {
-	width: 33px;
-	height: 33px;
-	border-radius: 50%;
-	color: #fff;
-	background: #3382d1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	margin-left: auto;
-  }
-  
-  .banner_popup p {
-	color: #000;
-	text-align: center;
-	font-family: "Inter", sans-serif;
-	font-size: 16px !important;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	margin: 15 18px 6px;
-  }
-  
-  .disclosure-popup-open body {
-	overflow: hidden;
-	max-width: calc(100% - 15px);
-  }
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  color: #505a64;
+  line-height: 130%;
+  font-family: "Inter", sans-serif;
+}
+.terms-link {
+  margin-top: 65px;
+}
+.banner_popup_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  display: none;
+}
+
+.banner_popup {
+  max-width: 540px;
+  padding: 29px 40px 45px 49px;
+  border-radius: 10px;
+  background: #eef5fc;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close_btn {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  color: #fff;
+  background: #3382d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+
+.banner_popup p {
+  color: #000;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 15px 18px 6px;
+}
+
+.disclosure-popup-open body {
+  overflow: hidden;
+  max-width: calc(100% - 15px);
+}
+.terms-link b a {
+  color: #505a64;
+  border-bottom: 1px solid;
+}
+.terms-link b a:hover {
+  color: #002852;
+}
 
 /* .earn-block-grid {
     display: grid;
