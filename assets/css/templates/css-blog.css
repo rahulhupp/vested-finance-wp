@@ -2200,6 +2200,12 @@ margin-top: 18px;
   .fresh-reads-post .latest-post {
     padding-bottom: 15px;
   }
+  .fresh-reads-post .head-part .heading .title h2 {
+    font-size: 20px !important;
+  }
+  .fresh-reads-post .head-part a {
+    font-size: 18px;
+  }
 
 }
 

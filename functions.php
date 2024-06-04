@@ -281,6 +281,44 @@ function custom_get_mtags_field($object, $field_name, $request) {
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
 
+//  load_more_funcation
+
+add_action('wp_ajax_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+
+function load_more_posts() {
+    check_ajax_referer('load_more_posts', 'security');
+
+    $args = array(  
+        'post_type' => 'post',
+        'posts_per_page' => 8,
+        'paged' => $_POST['page']
+    );
+
+    $custom_query = new WP_Query($args);
+
+    if ($custom_query->have_posts()) :
+        while ($custom_query->have_posts()) : $custom_query->the_post();
+            ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display">
+            <div class="featured-image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('full'); ?>
+                                </a>
+                            </div>
+                            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <div class="meta-info">
+                                <span class="post-author"><?php the_author(); ?></span>
+                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                            </div>
+            </div>
+            <?php
+        endwhile;
+        wp_reset_postdata();
+    endif;
+
+    die();
+}
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 
