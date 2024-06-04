@@ -17,17 +17,21 @@
                         <li><a href="<?php echo home_url('blog'); ?>">All</a></li>
                         <?php
                         global $wp;
-
+                        $first_iteration = true; // Variable to track the first iteration
+                    
                         while (have_rows('filter_list', 'category_' . $category->term_id)):
                             the_row();
                             $current_url = home_url(add_query_arg(array(), $wp->request));
                             $Link = get_sub_field('link', 'category_' . $category->term_id);
                             ?>
-                            <li class="<?php echo ($current_url == $Link) ? 'active' : ''; ?>">
+                            <li class="<?php echo ($first_iteration) ? 'active' : ''; ?>">
                                 <a
                                     href="<?php the_sub_field('link', 'category_' . $category->term_id); ?>"><?php the_sub_field('label', 'category_' . $category->term_id); ?></a>
                             </li>
-                        <?php endwhile; ?>
+                            <?php
+                            $first_iteration = false; // Set to false after the first iteration
+                        endwhile;
+                        ?>
                     </ul>
                 <?php endif; ?>
             </div>
