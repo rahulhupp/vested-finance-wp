@@ -2201,12 +2201,27 @@ margin-top: 18px;
     padding-bottom: 15px;
   }
   .fresh-reads-post .head-part .heading .title h2 {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .fresh-reads-post .head-part a {
     font-size: 18px;
   }
-
+  .fresh-reads-post .head-part .heading span {
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .fresh-reads-post .latest-post h6 {
+    font-size: 16px;
+  }
+  .fresh-reads-post .latest-post h6 a {
+    display: block;
+  }
+  .fresh-reads-post .post-content p {
+    font-size: 14px !important;
+  }
+  .fresh-reads-post .latest-post .meta-info span {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 510px) {
