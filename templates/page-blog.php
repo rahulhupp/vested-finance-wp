@@ -39,6 +39,64 @@ get_header(); ?>
     </div>
 </section>
 
+<section class="fresh-reads-post">
+        <div class="container">
+            <div class="head-part">
+                <div class="heading">
+                    <div class="title">
+                        <h2><?php the_field('blog_heading'); ?></h2>
+                        <a
+                            href="<?php the_field('blog_view_all_articles_link'); ?>"><?php the_field('blog_view_all_articles_text'); ?></a>
+                    </div>
+                    <span><?php the_field('blog_contents'); ?></span>
+                </div>
+            </div>
+            <div class="inner-row">
+
+                <?php
+                $latest_post = new WP_Query(
+                    array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 4,
+                        'order' => 'DESC',
+                        'orderby' => 'date'
+                    )
+                );
+
+                if ($latest_post->have_posts()):
+                    while ($latest_post->have_posts()):
+                        $latest_post->the_post();
+                        ?>
+                        <div class="fresh-reads-blog">
+                            <div class="latest-post">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <a href="<?php the_permalink(); ?>">
+                                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>"
+                                            alt="<?php the_title(); ?>">
+                                    </a>
+                                <?php endif; ?>
+                                <h6>
+                                    <a href="<?php the_permalink(); ?>">
+                                        <?php the_title(); ?>
+                                    </a>
+                                </h6>
+                                <div class="post-content">
+                                    <p><?php the_excerpt(); ?></p>
+                                </div>
+                                <div class="meta-info">
+                                    <span class="post-author"><?php the_author(); ?></span>
+                                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endwhile;
+                endif;
+                wp_reset_postdata();
+                ?>
+            </div>
+        </div>
+    </section>
+
 <section class="first-blog">
     <div class="container">
         <div class="inner-row">

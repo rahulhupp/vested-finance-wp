@@ -15,17 +15,23 @@
                 <?php if( have_rows('filter_list', 'category_' . $category->term_id) ): ?>
                     <ul>
                         <li><a href="<?php echo home_url('blog'); ?>">All</a></li>
-                        <?php 
-                            global $wp;
-                                                            
-                            while( have_rows('filter_list', 'category_' . $category->term_id) ): the_row(); 
-                            $current_url = home_url( add_query_arg( array(), $wp->request ) );	
+                        <?php
+                        global $wp;
+                        $first_iteration = true; // Variable to track the first iteration
+                    
+                        while (have_rows('filter_list', 'category_' . $category->term_id)):
+                            the_row();
+                            $current_url = home_url(add_query_arg(array(), $wp->request));
                             $Link = get_sub_field('link', 'category_' . $category->term_id);
+                            ?>
+                            <li class="<?php echo ($first_iteration) ? 'active' : ''; ?>">
+                                <a
+                                    href="<?php the_sub_field('link', 'category_' . $category->term_id); ?>"><?php the_sub_field('label', 'category_' . $category->term_id); ?></a>
+                            </li>
+                            <?php
+                            $first_iteration = false; // Set to false after the first iteration
+                        endwhile;
                         ?>
-                        <li class="<?php echo ($current_url == $Link) ? 'active' : ''; ?>">
-                            <a href="<?php the_sub_field('link', 'category_' . $category->term_id); ?>"><?php the_sub_field('label', 'category_' . $category->term_id); ?></a>
-                        </li>
-                        <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>
             </div>
@@ -33,6 +39,68 @@
                 <?php // get_search_form(); ?>
                 <?php echo do_shortcode('[ivory-search id="4323" title="AJAX Search Form"]'); ?>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="fresh-reads-post">
+    <div class="container">
+        <div class="head-part">
+            <div class="heading">
+                <div class="title">
+                    <h2><?php the_field('blog_heading', 'category_' . $category->term_id); ?></h2>
+                    <a
+                        href="<?php the_field('blog_view_all_articles_link', 'category_' . $category->term_id); ?>"><?php the_field('blog_view_all_articles_text', 'category_' . $category->term_id); ?></a>
+                </div>
+                <span><?php the_field('blog_contents', 'category_' . $category->term_id); ?></span>
+            </div>
+        </div>
+        <div class="inner-row">
+            <?php
+
+            $latest_post = new WP_Query(
+                array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 4,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'master_categories',
+                            'field' => 'slug',
+                            'terms' => 'us-stocks',
+                        ),
+                    ),
+                )
+            );
+            if ($latest_post->have_posts()):
+                while ($latest_post->have_posts()):
+                    $latest_post->the_post();
+                    ?>
+                    <div class="fresh-reads-blog">
+                        <div class="latest-post">
+                            <?php if (has_post_thumbnail()): ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>"
+                                        alt="<?php the_title(); ?>">
+                                </a>
+                            <?php endif; ?>
+                            <h6>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_title(); ?>
+                                </a>
+                            </h6>
+                            <div class="post-content">
+                                <p><?php the_excerpt(); ?></p>
+                            </div>
+                            <div class="meta-info">
+                                <span class="post-author"><?php the_author(); ?></span>
+                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
         </div>
     </div>
 </section>
