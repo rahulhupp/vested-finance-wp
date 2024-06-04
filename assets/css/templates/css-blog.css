@@ -17,7 +17,6 @@
 
 .blog-info {
   background: #002852;
-  margin-bottom: 74px;
 }
 .blog-info .inner {
   text-align: center;
@@ -46,7 +45,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 28px;
 }
 .filter-tab .inner-row .category-tab {
   width: 50%;
