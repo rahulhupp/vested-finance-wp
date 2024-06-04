@@ -2222,6 +2222,9 @@ margin-top: 18px;
   .fresh-reads-post .latest-post .meta-info span {
     font-size: 14px;
   }
+  .blog-info {
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 510px) {
