@@ -408,7 +408,8 @@ $image = get_field('easy_access_image');
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='https://vestedfinance.com/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                    globalBanner.innerHTML = "<div class='content'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/alert-circle-icon.svg' /><p>Vested will never ask you to make any payments through WhatsApp for account creation or other services. Always ensure you are using our official website, mobile app, or referral links from trusted family or friends to create your Vested account. <a href='#' target='_blank' class='learn_more_btn'>Learn more</a></p></div>";
+                    globalBanner.classList.add('warning_banner');
                     console.log('show geolocation_banner');
                 } else {
                     globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
