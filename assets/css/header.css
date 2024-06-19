@@ -349,6 +349,45 @@ body.mega-menu-open .site-content:before {
     text-align: left;
 }
 
+.geolocation_banner.warning_banner {
+    background-color: #FEE2E2;
+    border: none;
+	padding: 14px 0;
+}
+
+.geolocation_banner.warning_banner .content {
+    max-width: 1240px;
+    margin: auto;
+    padding: 0 24px;
+	position: relative;
+    padding-left: 60px;
+}
+
+.geolocation_banner.warning_banner .content img {
+    position: absolute;
+    left: 24px;
+    top: 4px;
+}
+
+.geolocation_banner.warning_banner .content p {
+    letter-spacing: 0;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #7F1D1D;
+    font-size: 16px;
+}
+
+.geolocation_banner.warning_banner .content p a {
+    display: inline-block;
+    padding: 0;
+    color: #7F1D1D;
+    text-decoration: underline;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    letter-spacing: normal;
+}
+
 
 @media only screen and (max-width: 991px) {
 	body.mega-menu-open .site-content:before {
@@ -691,6 +730,28 @@ body.mega-menu-open .site-content:before {
         width: 17px;
         height: 17px;
     }
+	.geolocation_banner.warning_banner .content {
+		width: 100%;
+		padding-left: 50px;
+	}
+
+	.geolocation_banner.warning_banner .content img {
+		width: 14px;
+		height: 14px;
+		top: 2px;
+	}
+	
+	.geolocation_banner.warning_banner .content p {
+		font-size: 12px;
+	}
+	
+	.geolocation_banner.warning_banner .content p a {
+		font-size: 12px;
+	}
+	
+	.geolocation_banner.warning_banner {
+		padding: 10px 0;
+	}
 }
 
 section {
