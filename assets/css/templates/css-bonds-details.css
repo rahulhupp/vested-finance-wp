@@ -7151,6 +7151,7 @@ td.holdings_stock_weight_td {
     }
     .returns_qty_inner_wrap, .bond_investment_info, .ratings_tab {
         width: 100%;
+		justify-content: space-between;
     }
     
     .bonds_returns_note, .potential_chart_col {

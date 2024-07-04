@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, Indians can buy shares of <span class="faq-bond-name"></span> on Vested. To buy <?php echo $name; ?> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
+                        <p>The yield of <span class="faq-bond-name"></span> bond is approximately <span id="faq-yield"></span>%. Yield to Maturity or the IRR of the Bond is the total yield earned if the bond is held to maturity. It includes earning from coupon payments and capital appreciation.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What is the credit rating of <span class="faq-bond-name"></span> bond?</div>
@@ -44,8 +44,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, you can purchase fractional shares of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) via the Vested app. You can start investing
-                            in <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) with a minimum investment of $1.</p>
+                        <p>The credit rating of <span class="faq-bond-name"></span> bond indicates the issuer's creditworthiness and ability to meet its financial obligations. This is an independent opinion provided by rating agencies. It indicates the likeliness of a company to default. Rating scale ranges from AAA(being the highest) to D (lowest). A higher rating generally suggests lower risk.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How to redeem <span class="faq-bond-name"></span> bond?</div>
@@ -56,12 +55,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>You can invest in shares of <span class="faq-bond-name"></span> (<?php echo $ticker; ?>) via Vested in three simple steps:</p>
-                        <ul>
-                            <li>Click on Sign Up or Invest in <span class="faq-bond-name"></span> stock at the top of this page</li>
-                            <li>Breeze through our fully digital and secure KYC process and open your US Brokerage account in a few minutes</li>
-                            <li>Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
-                        </ul>
+                        <p>Upon reaching the maturity date, the funds are automatically credited to your linked bank account.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">Is <span class="faq-bond-name"></span> bond tax-free?</div>
@@ -72,8 +66,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The 52-week high price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span>$<?php echo $highRange; ?></span>. The 52-week low price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>)
-                            is <span>$<?php echo $lowRange; ?></span>.</p>
+                        <p>No, the interest income from <span class="faq-bond-name"></span> bonds is not tax-free. It is categorised as "income from other sources," and the applicable tax will be calculated based on your income tax slab. For detailed information on taxation, please refer to this article: <a href="#">here</a></p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How can I sell <span class="faq-bond-name"></span> bond before the maturity date?</div>
@@ -84,7 +77,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The price-to-earnings (P/E) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $peRatio; ?></span></p>
+                        <p>To sell <span class="faq-bond-name"></span> bond before its maturity date, please contact us at help@vestedfinance.co. Our dedicated support team will guide you through the process and assist you with selling your bond.</p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What are the benefits of investing in <span class="faq-bond-name"></span> bond?</div>
@@ -95,7 +88,14 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
+                        <p>Bond investments offer the below compelling benefits, making them a valuable addition to an investment portfolio.</p>
+                        <ul>
+                            <li><strong>Principal Protection: </strong>Bonds ensure your initial investment remains safe, and you receive fixed annual returns based on the coupon rate, making them a secure place to park extra income.</li>
+                            <li><strong>Stable Returns: </strong>Bonds provide a stable and predictable source of income, which is beneficial for those seeking regular earnings during career breaks or financial instability.</li>
+                            <li><strong>Predictable Growth: </strong>Unlike stocks, bonds offer steady financial growth without the volatility associated with market fluctuations. You can plan and achieve specific financial goals based on the known returns.</li>
+                            <li><strong>Safety and Performance: </strong>Bonds are generally safer than equity investments and can outperform certain debt mutual funds. In times of crisis, bondholders are prioritized for repayment, enhancing their security.</li>
+                            <li><strong>Tax Efficiency: </strong>Bonds often offer tax advantages over debt mutual funds, and their fixed returns till maturity are backed by regulations and law, providing a reliable income stream.</li>
+                        </ul>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What are the risks associated with investing in <span class="faq-bond-name"></span> bond?</div>
@@ -106,7 +106,12 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?></span></p>
+                        <p>Bonds are usually low-risk, similar to Fixed Deposits. But it's good to know about the risks involved:</p>
+                        <ul style="list-style: decimal">
+                            <li>Default Risk: This happens when the bond issuer can't repay the principal or interest. It could mean losses for us as investors.</li>
+                            <li>Liquidity Risk: Selling bonds before maturity might be tough if no buyers are there. We might have to sell at a discount, leading to potential losses.</li>
+                            <li>Interest-Rate Risk: Bond prices can change with interest rates. If rates go up, the bond value may decrease, and we might face losses if sold early. On the flip side, falling rates can mean higher bond prices and potential gains if sold at a premium to the purchase price.</li>
+                        </ul>
                     </div>
                 </div>
             </div>

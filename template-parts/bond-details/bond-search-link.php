@@ -132,41 +132,9 @@
             </svg>
         </div>
         <div class="dropdown_options">
-            <ul class="static_options">
-                <li data-value="AAPL" data-type="stock">
-                    <strong>Apple, Inc</strong>
-                    <span>AAPL</span>
-                </li>
-                <li data-value="SPY" data-type="etf">
-                    <strong>S&amp;P 500 ETF Trust SPDR</strong>
-                    <span>SPY</span>
-                </li>
-                <li data-value="GOOGL" data-type="stock">
-                    <strong>Alphabet Inc. - Class A Shares</strong>
-                    <span>GOOGL</span>
-                </li>
-                <li data-value="MSFT" data-type="stock">
-                    <strong>Microsoft Corporation</strong>
-                    <span>MSFT</span>
-                </li>
-                <li data-value="META" data-type="stock">
-                    <strong>Meta Platforms Inc</strong>
-                    <span>META</span>
-                </li>
-                <li data-value="NFLX" data-type="stock">
-                    <strong>Netflix, Inc.</strong>
-                    <span>NFLX</span>
-                </li>
-                <li data-value="AMZN" data-type="stock">
-                    <strong>Amazon.com Inc.</strong>
-                    <span>AMZN</span>
-                </li>
-                <li data-value="SPOT" data-type="stock">
-                    <strong>Spotify Technology SA</strong>
-                    <span>SPOT</span>
-                </li>
+            <ul class="options_result">
+            <li data-value="AAPL" data-type="stock"> <strong>Apple, Inc</strong> <span>AAPL</span> </li>
             </ul>
-            <ul class="dynamic_options"></ul>
         </div>
     </div>
 </div>
