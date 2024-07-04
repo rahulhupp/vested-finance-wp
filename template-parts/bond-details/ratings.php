@@ -10,7 +10,7 @@
         </div>
         <div class="separator_line"></div>
         <div class="learn_more_btn">
-            <a href="#">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a id="ratings-url" target="_blank">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
         </div>
     </div>
 </div>

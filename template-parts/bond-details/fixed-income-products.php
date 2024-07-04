@@ -18,7 +18,7 @@
                         Lend to verified borrowers in one-click. Diversify your investment across multiple RBI-registered partners.
                     </p>
 
-                    <a href="#" class="learn_more_btn">Learn more</a>
+                    <a href="<?php echo site_url(); ?>/in/vested-edge-p2p-lending" class="learn_more_btn">Learn more</a>
             </div>
             <div class="single_income_source">
                 <div class="source_icon">
@@ -34,7 +34,7 @@
                         Buy solar panels in rooftop projects. Vested takes care of the installation and maintenance of your panels.
                     </p>
 
-                    <a href="#" class="learn_more_btn">Learn more</a>
+                    <a href="<?php echo site_url(); ?>/in/solar-projects" class="learn_more_btn">Learn more</a>
             </div>
         </div>
 

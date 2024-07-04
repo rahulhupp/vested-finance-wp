@@ -10,7 +10,7 @@
                             <span>
                                 Face Value
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is a company’s total value as determined by the stock market. It is calculated by multiplying the total number of a company's outstanding shares by the current market price of one share.</div>
+                                <div class="info_text">Face value is the nominal amount that will be repaid to the bondholder at maturity. Also referred to as “par value”.</div>
                             </span>
                             <strong><span id="face-value">&#8377;</span></strong>
                         </div>
@@ -18,7 +18,7 @@
                             <span>
                                 Coupon
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is the ratio of a security’s current share price to its earnings per share. This ratio determines the relative value of a company’s share.</div>
+                                <div class="info_text">Coupon is the fixed interest rate paid annually or semi-annually to bondholders, expressed as a percentage of the face value.</div>
                             </span>
                             <strong><span><span id="coupon-rate"></span><span>,&nbsp;</span><span id="coupon-type"></span></span></strong>
                         </div>
@@ -27,7 +27,7 @@
                             <span>
                                 Security
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is the total number of shares traded during the most recent trading day.</div>
+                                <div class="info_text">Security indicates whether the bond is backed by specific assets (secured) or not (unsecured).</div>
                             </span>
                             <strong><span id="bond-secure"></span></strong>
                         </div>
@@ -35,7 +35,7 @@
                             <span>
                                 Seniority
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This is the average number of shares traded during the most recent 30 days.</div>
+                                <div class="info_text">Seniority is the order of priority in which bondholders are repaid in case of the issuer's bankruptcy, with senior bonds being repaid before junior ones.</div>
                             </span>
                             <strong><span id="seniority"></span></strong>
                         </div>
@@ -43,7 +43,7 @@
                             <span>
                                 Mode of Issue
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This ratio shows how much income you earn in dividend payouts per year for every dollar invested in the stock (or the stock’s annual dividend payment expressed as a percentage of its current price).</div>
+                                <div class="info_text">Mode of issue refers to the method of issuing bonds, such as through public offerings or private placements.</div>
                             </span>
                             <strong><span id="issue-mode"></span></strong>
                         </div>
@@ -51,17 +51,15 @@
                             <span>
                                 Tax Status
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This measures the expected move in a stock’s price relative to movements in the overall market. The market, such as the S&P 500 Index, has a beta of 1.0. If a stock has a Beta greater (or lower) than 1.0, it suggests that the stock is more (or less) volatile than the broader market.</div>
+                                <div class="info_text">Tax status is the tax treatment of bond interest payments, with some bonds offering tax-exempt interest under specific conditions.</div>
                             </span>
                             <strong id="tax-status"></strong>
                         </div>
                         <div class="stock_summary_item">
                             <span>
                                 Information Memorandum
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
-                                <div class="info_text">This measures the expected move in a stock’s price relative to movements in the overall market. The market, such as the S&P 500 Index, has a beta of 1.0. If a stock has a Beta greater (or lower) than 1.0, it suggests that the stock is more (or less) volatile than the broader market.</div>
                             </span>
-                            <strong><a href="#">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
+                            <strong><a id="im-url" target="_blank">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
                         </div>
                     </div>
                 </div>
