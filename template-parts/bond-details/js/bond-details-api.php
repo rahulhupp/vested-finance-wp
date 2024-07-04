@@ -47,11 +47,11 @@ async function initializePage() {
 function updatePageContent(data, bondNameSlug) {
     const minInvest = data.bondDetails.minimumInvestment.toFixed(2);
     const qtyInput = document.querySelector('.qty_stepper input[type=number]');
-
+    const bondRatings = data.bondDetails.rating.toLowerCase();
     qtyInput.setAttribute('min', data.bondDetails.minimumQty);
     qtyInput.setAttribute('max', data.bondDetails.maximumQty);
     qtyInput.value = data.bondDetails.minimumQty;
-
+    console.log(bondRatings);
     document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
     document.querySelector('#bond-name').innerHTML = data.bondDetails.displayName;
     document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
@@ -70,6 +70,8 @@ function updatePageContent(data, bondNameSlug) {
     document.querySelector('#bond-display').innerHTML = data.bondDetails.issuerName;
     document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
     document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield;
+    document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${bondRatings}.png`);
+    
 
     document.querySelectorAll('.faq-bond-name').forEach(element => {
         element.innerHTML = data.bondDetails.displayName;

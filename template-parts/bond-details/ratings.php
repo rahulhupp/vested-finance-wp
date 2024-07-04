@@ -6,7 +6,7 @@
         </div>
         <div class="separator_line"></div>
         <div class="ratings_wrap">
-            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/bond-ratings.png" alt="bond ratings">
+            <img src="" alt="bond ratings" id="bond_ratings">
         </div>
         <div class="separator_line"></div>
         <div class="learn_more_btn">
