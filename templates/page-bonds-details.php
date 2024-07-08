@@ -74,13 +74,13 @@ $bond_name_slug = get_query_var('bond_company');
                         'template-parts/bond-details/returns'); 
                 ?>
                 <div class="ratings_tab_wrap">
-                    <div class="ratings_tab">
+                    <div class="ratings_tab" id="ratings_tab_wrap">
                 <?php 
                     get_template_part(
                         'template-parts/bond-details/ratings'); 
                 ?>
                 </div>
-                <div class="ratings_tab">
+                <div class="ratings_tab" id="metrics_tab_wrap">
                 <?php 
                     get_template_part(
                         'template-parts/bond-details/metrics'); 

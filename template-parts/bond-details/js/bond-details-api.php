@@ -23,18 +23,22 @@ async function initializePage() {
     const url = new URL(currentUrl);
     const pathname = url.pathname;
     const pathSegments = pathname.split('/');
-    const bondNameSlug = pathSegments[pathSegments.length - 2];
+    const bondNameSlug = pathSegments[pathSegments.length - 3];
+    const bondIsin = pathSegments[pathSegments.length - 2];
     try {
         const data = await fetchBondData(apiUrl);
         bondsData = data.bonds;
-        const foundBond = bondsData.find(bond => toSlug(bond.displayName) === bondNameSlug);
+        const foundBond = bondsData.find(bond => 
+            bond.securityId.toLowerCase() === bondIsin.toLowerCase() &&
+            toSlug(bond.displayName) === bondNameSlug
+        );
 
         if (foundBond) {
             const bondOfferId = foundBond.offeringId;
             const singleBondApi = `https://yield-api-prod.vestedfinance.com/bond-details?offeringId=${bondOfferId}`;
             const bondDetails = await fetchBondData(singleBondApi);
 
-            updatePageContent(bondDetails, bondNameSlug);
+            updatePageContent(bondDetails, bondNameSlug, bondIsin);
         } else {
             redirectToNotFound();
         }
@@ -44,14 +48,13 @@ async function initializePage() {
     }
 }
 
-function updatePageContent(data, bondNameSlug) {
+function updatePageContent(data, bondNameSlug, bondIsin) {
     const minInvest = data.bondDetails.minimumInvestment.toFixed(2);
     const qtyInput = document.querySelector('.qty_stepper input[type=number]');
     const bondRatings = data.bondDetails.rating.toLowerCase();
     qtyInput.setAttribute('min', data.bondDetails.minimumQty);
     qtyInput.setAttribute('max', data.bondDetails.maximumQty);
     qtyInput.value = data.bondDetails.minimumQty;
-    console.log(bondRatings);
     document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
     document.querySelector('#bond-name').innerHTML = data.bondDetails.displayName;
     document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
@@ -68,9 +71,22 @@ function updatePageContent(data, bondNameSlug) {
     document.querySelector('#issue-mode').innerHTML = data.bondDetails.modeOfIssue;
     document.querySelector('#tax-status').innerHTML = data.bondDetails.seniority ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>';
     document.querySelector('#bond-display').innerHTML = data.bondDetails.issuerName;
-    document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
+    if(data.bondDetails.issuerDescription) {
+        document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
+    }
+    else {
+        document.querySelector('#about_tab').style.display = 'none';
+        document.querySelector('.tab_button[href="#about_tab"]').style.display = 'none';
+    }
+    
     document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield;
-    document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${bondRatings}.png`);
+    if(bondRatings) {
+        document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${bondRatings}.png`);
+    }
+    else {
+        document.querySelector('#ratings_tab_wrap').style.display = 'none';
+        document.querySelector('.tab_button[href="#rating_tab"]').style.display = 'none';
+    }
     
 
     document.querySelectorAll('.faq-bond-name').forEach(element => {
@@ -87,8 +103,11 @@ function redirectToNotFound() {
     window.location.replace('/bond-not-found');
 }
 
+// function toSlug(str) {
+//     return str.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-').trim();
+// }
 function toSlug(str) {
-    return str.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-').trim();
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 initializePage();
@@ -133,7 +152,8 @@ function updateDropdown(filteredBonds) {
     filteredBonds.forEach(bond => {
         const option = document.createElement('li');
         const optionSlug = bond.displayName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-').trim();
-        const bondUrl = `<?php echo site_url(); ?>/bond/${optionSlug}`;
+        const optionIsin = bond.securityId.toLowerCase();
+        const bondUrl = `<?php echo site_url(); ?>/bond/${optionSlug}/${optionIsin}`;
         option.classList.add('dropdown_option');
         option.innerHTML = `<strong>${bond.displayName}</strong> <span>${bond.securityId}</span>`;
         option.addEventListener('click', () => {
