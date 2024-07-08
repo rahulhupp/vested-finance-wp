@@ -1,4 +1,4 @@
-    <div id="returns_tab" class="tab_content">
+<div id="returns_tab" class="tab_content">
         <div class="stock_details_box stock_chart_container">
             <div class="stock_chart_header">
                 <h2 class="heading">Know Your Returns</h2>
