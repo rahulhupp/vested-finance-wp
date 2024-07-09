@@ -3,10 +3,10 @@ get_header();
 $bond_name_slug = get_query_var('bond_company');
 ?>
 
-<section class="stock_details_main">
+<div class="bond_details_main">
     <div class="container">
-        <div class="stock_details_wrapper">
-            <div class="stock_details_left_column">
+        <div class="bond_details_wrapper">
+            <div class="bond_details_left_column">
                 <div class="stocks_search_container">
                     <?php get_template_part('template-parts/bond-details/bond-search-link'); ?>
                 </div>
@@ -45,9 +45,6 @@ $bond_name_slug = get_query_var('bond_company');
                         </div>
                     </div>
                     <div class="stock_tags">
-                        <span>Industry: Technology Hardware</span>
-                        <span>Sector: Technology</span>
-                        <span>Large Cap</span>
                     </div>
                     <a href="#">
                         <button class="primary_button">
@@ -56,7 +53,7 @@ $bond_name_slug = get_query_var('bond_company');
                     </a>
                 </div>
             </div>
-            <div class="stock_details_right_column">
+            <div class="bond_details_right_column">
                 <div class="stock_tabs_menu_position"></div>
                 <div class="stock_tabs_menu">
                     <div class="stock_tabs_menu_wrapper">
@@ -102,7 +99,10 @@ $bond_name_slug = get_query_var('bond_company');
         </div>
         </div>
     </div>
-</section>
+</div>
+<div id="bond-loader">
+    <div class="bond_loader"></div>
+</div>
 <div id="copy_link_message">
     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
     <span>Link copied</span>

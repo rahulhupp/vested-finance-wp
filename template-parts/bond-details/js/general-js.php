@@ -65,21 +65,6 @@
     }
 
 
-    // document.addEventListener("DOMContentLoaded", function () {
-    //     var symbol = "<?php echo $symbol; ?>";
-    //     var stockBoxes = document.querySelectorAll('.box_warrp');
-    //     var hideLastDiv = true;
-    //     stockBoxes.forEach(function (box) {
-    //         if (box.getAttribute('data-symbol') === symbol) {
-    //             hideLastDiv = false;
-    //             box.style.display = 'none';
-    //         }
-    //     });
-    //     if (hideLastDiv) {
-    //         var lastDiv = stockBoxes[stockBoxes.length - 1];
-    //         lastDiv.style.display = 'none';
-    //     }
-    // });
 
     var stockTabsMenu = document.querySelector('.stock_tabs_menu');
     var stockTabsMenuPosition = document.querySelector('.stock_tabs_menu_position');
@@ -98,12 +83,10 @@
         // Get the elements to be moved
         var tabsMenu = document.querySelector('.stock_tabs_menu');
         var searchContainer = document.querySelector('.stocks_search_container');
-        var forecastContainer = document.querySelector('.stock_forecast_container');
         var metricsContainer = document.querySelector('.stock_metrics_container');
         var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         if (windowWidth < 1024) {
             searchContainer.parentNode.insertBefore(tabsMenu, searchContainer.nextSibling);
-            metricsContainer.parentNode.insertBefore(forecastContainer, metricsContainer.nextSibling);
         }
     }
 
@@ -187,17 +170,6 @@
                 disclosure.style.display = "none";
             });
         });
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
-        if (humburger) {
-            humburger.addEventListener("click", function() {
-                document.body.classList.toggle("menu-open");
-            });
-        } else {
-            console.error("Hamburger element not found!");
-        }
     });
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -287,7 +259,7 @@ qtyMinusBtn.addEventListener('click', function() {
 var chartOptions = {
     layout: {
                 padding: {
-                    top: 20 // Add padding to the top of the chart
+                    top: 20 
                 }
             },
 				scales: {

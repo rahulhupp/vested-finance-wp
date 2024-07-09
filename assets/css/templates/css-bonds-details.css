@@ -5177,30 +5177,30 @@ footer .extra_info ul li sup {
 	padding: 0;
 }
 
-.stock_details_main {
+.bond_details_main {
 	background: linear-gradient(0deg, rgba(0, 40, 82, 0.05) 0%, rgba(0, 40, 82, 0.05) 100%), #FFF;
 	padding: 24px 0;
 }
 
-.stock_details_main .container {
+.bond_details_main .container {
 	max-width: 1230px;
 }
 
-.stock_details_wrapper {
+.bond_details_wrapper {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 
-.stock_details_left_column {
+.bond_details_left_column {
 	width: 400px;
 	padding: 24px 12px 24px 24px;
 	position: sticky;
 	top: 0;
 }
 
-.stock_details_right_column {
+.bond_details_right_column {
 	width: calc(100% - 400px);
 	padding: 24px 24px 32px 12px;
 }
@@ -6070,6 +6070,29 @@ footer .extra_info ul li sup {
 .desktop_hide {
 	display: none;
 }
+
+div#bond-loader {
+    background: rgba(255,255,255,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bond_loader {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: transparent;
+	border: 4px solid #002652;
+	border-top-color: #15803D;
+	animation: 1s rotation linear infinite;
+}
+
 
 @keyframes rotation {
 	0% {
@@ -6943,12 +6966,12 @@ td.holdings_stock_weight_td {
 }
 
 @media screen and (max-width: 1199px) {
-	.stock_details_left_column {
+	.bond_details_left_column {
 		width: 320px;
 		padding-left: 0;
 	}
 
-	.stock_details_right_column {
+	.bond_details_right_column {
 		width: calc(100% - 320px);
 		padding-right: 0;
 	}
@@ -6969,13 +6992,13 @@ td.holdings_stock_weight_td {
 }
 
 @media (max-width: 1023px) {
-	.stock_details_left_column {
+	.bond_details_left_column {
 		width: 100%;
 		position: relative;
 		padding: 0;
 	}
 
-	.stock_details_right_column {
+	.bond_details_right_column {
 		width: 100%;
 		padding: 0;
 	}
@@ -7143,7 +7166,7 @@ td.holdings_stock_weight_td {
 
 	/* end model */
 
-	/* .stock_details_main {
+	/* .bond_details_main {
 		margin: 0 -0.54em;
 	} */
 

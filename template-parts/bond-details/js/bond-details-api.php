@@ -1,7 +1,14 @@
 <script>
     let bondsData = [];
     const apiUrl = 'https://yield-api-staging.vestedfinance.com/bonds';
+    function showLoader() {
+    document.getElementById('bond-loader').style.display = 'flex';
+    }
 
+    // Function to hide the loader
+    function hideLoader() {
+        document.getElementById('bond-loader').style.display = 'none';
+    }
     async function fetchBondData(apiUrl) {
         try {
             const response = await fetch(apiUrl, {
@@ -19,6 +26,7 @@
     }
 
     async function initializePage() {
+        showLoader();
         const currentUrl = window.location.href;
         const url = new URL(currentUrl);
         const pathname = url.pathname;
@@ -45,6 +53,9 @@
         } catch (error) {
             console.error('Error:', error);
             redirectToNotFound();
+        }
+        finally {
+            hideLoader();
         }
     }
 
