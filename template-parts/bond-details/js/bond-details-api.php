@@ -59,7 +59,7 @@ function updatePageContent(data, bondNameSlug, bondIsin) {
     document.querySelector('#bond-name').innerHTML = data.bondDetails.displayName;
     document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
     document.querySelector('#security-id').innerHTML = 'ISIN: ' + data.bondDetails.securityId;
-    document.querySelector('#bond-yield').innerHTML = data.bondDetails.yield + '%';
+    document.querySelector('#bond-yield').innerHTML = data.bondDetails.yield.toFixed(2) + '%';
     document.querySelector('#bond-mature').innerHTML = data.bondDetails.maturityInMonths;
     document.querySelector('#bond-investment').innerHTML = '₹' + minInvest;
     document.querySelector('#bond-interest').innerHTML = data.bondDetails.interestPayFreq;
@@ -69,8 +69,9 @@ function updatePageContent(data, bondNameSlug, bondIsin) {
     document.querySelector('#bond-secure').innerHTML = data.bondDetails.secureUnsecure;
     document.querySelector('#seniority').innerHTML = data.bondDetails.seniority;
     document.querySelector('#issue-mode').innerHTML = data.bondDetails.modeOfIssue;
-    document.querySelector('#tax-status').innerHTML = data.bondDetails.seniority ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>';
+    document.querySelector('#tax-status').innerHTML = data.bondDetails.isTaxfree ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>';
     document.querySelector('#bond-display').innerHTML = data.bondDetails.issuerName;
+
     if(data.bondDetails.issuerDescription) {
         document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
     }
@@ -79,7 +80,7 @@ function updatePageContent(data, bondNameSlug, bondIsin) {
         document.querySelector('.tab_button[href="#about_tab"]').style.display = 'none';
     }
     
-    document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield;
+    document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield.toFixed(2);
     if(bondRatings) {
         document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${bondRatings}.png`);
     }
@@ -97,10 +98,101 @@ function updatePageContent(data, bondNameSlug, bondIsin) {
     document.querySelector('#inform_data_url').setAttribute('href', `https://vestedfinance.typeform.com/to/W6VPlghm#bondname=${bondNameSlug}`);
     document.querySelector('#im-url').setAttribute('href', data.bondDetails.imDocUrl);
     document.querySelector('#ratings-url').setAttribute('href', data.bondDetails.ratingRationalUrl);
+
+    const unit = Number(qtyInput.value);
+    const accruedInterest = Number(((data.bondDetails.accruedInterest || 0) * unit).toFixed(2));
+    const principalAmount = Number(((Number(data.bondDetails.principalAmount) || 0) * unit).toFixed(2));
+    const totalInvestment = Number((accruedInterest + principalAmount).toFixed(2));
+    const interestEarned =
+		(data.bondDetails.cashflows.reduce((acc, curr) => {
+			if (curr.type === 'interest') {
+				return acc + curr.amount;
+			}
+			return acc;
+		}, 0) +
+			(Number(data.bondDetails.faceValue) - Number(data.bondDetails.newPrice))) *
+			unit -
+		accruedInterest;
+
+        let count = 0;
+	const avgIncome = data.bondDetails.cashflows.reduce((acc, curr) => {
+		if (curr.type === 'principal') {
+			count += 1;
+			return acc + (curr.amountPostDeduction || curr.amount) || 0;
+		}
+		return acc;
+	}, 0);
+	const averageInterestPayout  = Math.floor((avgIncome * unit) / count);
+    const finalInterestEarned = Number(interestEarned.toFixed(2));
+    const totalReceivable = Number((Number(totalInvestment) + finalInterestEarned).toFixed(2));
+    document.querySelector('#bond_invest_amt').innerHTML = '₹' + totalInvestment;
+    document.querySelector('#bond_receive_amt').innerHTML = '₹' + totalReceivable;
+    document.querySelector('#bond_avg_interest').innerHTML = '₹' + averageInterestPayout + ' ' + data.bondDetails.interestPayFreq;
+    document.querySelector('#interest_pay_frequency').innerHTML = data.bondDetails.interestPayFreq;
+
+    document.querySelectorAll('.bonds_return_amt').forEach(element => {
+        element.innerHTML = '₹' + finalInterestEarned;
+    });
+
+    document.querySelectorAll('.bonds_return_per').forEach(element => {
+        element.innerHTML = data.bondDetails.yield.toFixed(2) + '%';
+    });
+
+    const cashflowResult = data.bondDetails.cashflows.reduce((accumulator, current) => {
+    if (current.type === 'principal') {
+        accumulator.push({ date: current.date, amount: current.amount });
+    }
+    return accumulator;
+}, []);
+
+    const lastIndex = cashflowResult.length - 1;
+    const secondLastIndex = cashflowResult.length - 2;
+    const firstDate = cashflowResult[0].date;
+    const secondDate = cashflowResult[1].date;
+    const lastDate = cashflowResult[lastIndex].date;
+    const secondLastDate = cashflowResult[secondLastIndex].date;
+    const firstAmount = cashflowResult[0].amount;
+    const secondAmount = cashflowResult[1].amount;
+    const lastAmount = cashflowResult[lastIndex].amount;
+    const secondLastAmount = cashflowResult[secondLastIndex].amount;
+    const maturityInYears = Number((data.bondDetails.maturityInMonths / 12).toFixed(2));
+
+    document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
+    document.querySelector('#cashflow-pricipal').innerHTML = '₹' + principalAmount;
+    document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + accruedInterest;
+    document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
+    document.querySelector('#cashflow-payout').innerHTML = '₹' + totalInvestment;
+    document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
+
+
+    
+    document.querySelector('#cashflow-initial-date').innerHTML = formatDate(firstDate);
+    document.querySelector('#cashflow-first-date').innerHTML = formatDate(firstDate);
+    document.querySelector('#cashflow-first-interest').innerHTML = firstAmount.toFixed(2);
+    document.querySelector('#cashflow-second-date').innerHTML = formatDate(secondDate);
+    document.querySelector('#cashflow-second-interest').innerHTML = secondAmount.toFixed(2);
+    document.querySelector('#cashflow-second-last-date').innerHTML = formatDate(secondLastDate);
+    document.querySelector('#cashflow-second-last-interest').innerHTML = secondLastAmount.toFixed(2);
+    document.querySelector('#cashflow-last-date').innerHTML = formatDate(lastDate);
+    document.querySelector('#cashflow-last-interest').innerHTML = lastAmount.toFixed(2);
+    document.querySelectorAll('.bonds_returns_note .maturity').forEach(element => {
+        element.innerHTML = maturityInYears;
+    });
+    
+    console.log(cashflowResult.length, 'cashflowResult.length');
+
+    if(cashflowResult.length >= 4) {
+    
+    document.querySelector('.vertical_dashed_divider').style.display = 'block';
+}
+else {
+    document.querySelector('.vertical_dashed_divider').style.display = 'none';
+}
+
 }
 
 function redirectToNotFound() {
-    window.location.replace('/bond-not-found');
+    // window.location.replace('/bond-not-found');
 }
 
 // function toSlug(str) {
@@ -167,5 +259,21 @@ function updateDropdown(filteredBonds) {
 
 document.querySelector(".dropdown_search").addEventListener('input', inputChangeCalc);
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    
+    // Months list for conversion
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    // Extracting components from the date object
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
+    
+    // Formatting the date as required
+    const formattedDate = `${day} ${month} '${year}`;
+    
+    return formattedDate;
+}
 
 </script>

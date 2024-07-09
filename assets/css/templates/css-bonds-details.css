@@ -6039,6 +6039,37 @@ footer .extra_info ul li sup {
 	color: #15803D;
 }
 
+.chart_lables {
+    display: flex;
+    text-align: center;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.single_label p {
+    margin-bottom: 0 !important;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+.single_label h5 {
+    margin-top: 2px;
+    color: #065F46;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+}
+
+.single_label {
+    text-align: center;
+    width: 83px;
+}
+.desktop_hide {
+	display: none;
+}
+
 @keyframes rotation {
 	0% {
 		transform: rotate(0deg);
@@ -7111,9 +7142,9 @@ td.holdings_stock_weight_td {
 
 	/* end model */
 
-	.stock_details_main {
+	/* .stock_details_main {
 		margin: 0 -0.54em;
-	}
+	} */
 
 	.news_list .news_item .news_item_content h2 {
 		font-size: 16px !important;
@@ -7164,6 +7195,30 @@ td.holdings_stock_weight_td {
         padding: 6px 10px;
         font-size: 12px;
     }
+	.desktop_hide {
+		display: block;
+	}
+	.mobile_hide {
+		display: none;
+	}
+	.bonds_returns_note.desktop_hide {
+		margin: 24px 0;
+	}
+	.about_ntpc p {
+		line-height: 20px;
+	}
+	.single_income_source .source_icon {
+		margin-bottom: 16px;
+	}
+	.single_income_source h4.source_name {
+		font-size: 16px;
+		line-height: 24px;
+	}
+	
+	.single_income_source h4.source_returns {
+		line-height: 19.6px;
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 360px) {
