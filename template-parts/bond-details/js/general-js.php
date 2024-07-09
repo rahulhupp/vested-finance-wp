@@ -239,6 +239,12 @@ slideUp(cashflowContent);
 viewMoreBtn.addEventListener('click', function() {
     slideToggle(cashflowContent);
     viewMoreBtn.classList.toggle('collapsed');
+    if (document.querySelector('.view_more_btn span').innerHTML == 'View'){
+        document.querySelector('.view_more_btn span').innerHTML = 'Hide';
+    }
+    else {
+        document.querySelector('.view_more_btn span').innerHTML = 'View';
+    }
 });
 
 // function for qty plus minus
@@ -290,27 +296,24 @@ var chartOptions = {
 						grid: {
 							color: 'rgba(0,0,0,0)',
 							drawBorder: false,
-						}
+						},
+                        ticks: {
+                            display: false
+                        }
 					},
 					x: {
 						grid: {
 							color: 'rgba(0,0,0,0)',
 							drawBorder: false,
-						}
+						},
+                        ticks: {
+                            display: false
+                        }
 					},
 				},
 				plugins: {
                 tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const index = tooltipItems[0].dataIndex;
-                            const amounts = ['₹21,150', '₹22,150', '₹24,550'];
-                            return `${labels[index]}: ${amounts[index]}`;
-                        },
-                        label: function(tooltipItem) {
-                            return ''
-                        }
-                    }
+                    enabled: false
                 },
                 legend: {
                     display: false
@@ -323,7 +326,7 @@ var chartOptions = {
                         if (context.dataIndex === 0) {
                             return '';
                         }
-                        return value;
+                        return value + '%';
                     },
                     font: {
                         weight: 'bold',
@@ -332,11 +335,11 @@ var chartOptions = {
                     color: '#002852',
                 }
             },
-				animation: false
+				animation: true
 			};
 
-const labels = ['You Invest', 'Bank FD*', 'Bond'];
-        const data = [21150, 22150, 24550];
+        const labels = ['You Invest', 'Bank FD*', 'Bond'];
+        const data = [2, 7, 12];
         const colors = ['#335375', '#002852', '#047857'];
         const ctx = document.
         getElementById('chart1').
@@ -354,4 +357,21 @@ const labels = ['You Invest', 'Bank FD*', 'Bond'];
             plugins: [ChartDataLabels],
             options: chartOptions
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    var numberInput = document.querySelector('.qty_stepper input[type=number]');
+
+    numberInput.addEventListener('input', function() {
+        var min = parseInt(numberInput.getAttribute('min'), 10);
+        var max = parseInt(numberInput.getAttribute('max'), 10);
+        var value = parseInt(numberInput.value, 10);
+
+        if (value < min) {
+            numberInput.value = min;
+        } else if (value > max) {
+            numberInput.value = max;
+        }
+    });
+});
+
 </script>

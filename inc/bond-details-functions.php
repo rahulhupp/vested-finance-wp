@@ -21,7 +21,6 @@
         $bond_company = get_query_var('bond_company');
         $isin_code = get_query_var('isin');
 
-
         if ($custom_bond_request) {
             
             error_log("Custom bond request: $custom_bond_request, Bond company: $bond_company, ISIN code: $isin_code");
