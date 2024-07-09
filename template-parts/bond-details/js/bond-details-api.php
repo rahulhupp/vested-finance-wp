@@ -49,14 +49,18 @@
     }
 
     function updatePageContent(data, bondNameSlug, bondIsin) {
-        const minInvest = data.bondDetails.minimumInvestment.toFixed(2);
+        const minInvest = Number(data.bondDetails.minimumInvestment.toFixed(2)).toLocaleString('en-IN');
         const qtyInput = document.querySelector('.qty_stepper input[type=number]');
         const bondRatings = data.bondDetails.rating.toLowerCase();
+        const bondRatingsArray = ['a', 'a+', 'a-', 'aa', 'aa+', 'aa-', 'aaa', 'bb', 'bbb', 'bbb+', 'bbb-'];
+        const defaultRating = 'aa';
+        const validRating = bondRatingsArray.includes(bondRatings) ? bondRatings : defaultRating;
         const collections = data.bondDetails.collections;
         const stockTagsContainer = document.querySelector('.stock_tags');
         qtyInput.setAttribute('min', data.bondDetails.minimumQty);
         qtyInput.setAttribute('max', data.bondDetails.maximumQty);
         qtyInput.value = data.bondDetails.minimumQty;
+        const inputLength = qtyInput.value.length;
         document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
         document.querySelector('#bond-name').innerHTML = data.bondDetails.displayName;
         document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
@@ -83,7 +87,7 @@
 
         document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield.toFixed(2);
         if (bondRatings) {
-            document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${bondRatings}.png`);
+            document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${validRating}.png`);
         } else {
             document.querySelector('#ratings_tab_wrap').style.display = 'none';
             document.querySelector('.tab_button[href="#rating_tab"]').style.display = 'none';
@@ -99,21 +103,42 @@
         document.querySelector('#im-url').setAttribute('href', data.bondDetails.imDocUrl);
         document.querySelector('#ratings-url').setAttribute('href', data.bondDetails.ratingRationalUrl);
 
-
         const unit = Number(qtyInput.value);
         updateInvestmentDetails(data, unit);
+        adjustQtyStepperWidth(inputLength);
         qtyInput.addEventListener('input', () => {
             const newUnit = Number(qtyInput.value);
+            const inputLength = qtyInput.value.length;
             updateInvestmentDetails(data, newUnit);
+            adjustQtyStepperWidth(inputLength);
         });
         document.querySelector('.qty_button.qty_plus').addEventListener('click', () => {
             const newPlusUnit = Number(qtyInput.value);
+            const inputLength = qtyInput.value.length;
             updateInvestmentDetails(data, newPlusUnit);
+            adjustQtyStepperWidth(inputLength);
         });
         document.querySelector('.qty_button.qty_minus').addEventListener('click', () => {
             const newPlusUnit = Number(qtyInput.value);
+            const inputLength = qtyInput.value.length;
             updateInvestmentDetails(data, newPlusUnit);
+            adjustQtyStepperWidth(inputLength);
         });
+
+        function adjustQtyStepperWidth(inputLength) {
+            const stepperWidth = 100;
+            const qtyWidth = 32;
+
+            if (inputLength > 3) {
+                const newStepperWidth = stepperWidth + (inputLength * 5);
+                const newQtyWidth = qtyWidth + (inputLength * 5);
+                document.querySelector('.qty_stepper').style.width = `${newStepperWidth}px`;
+                document.querySelector('.qty_stepper input[type=number]').style.width = `${newQtyWidth}px`;
+            } else {
+                document.querySelector('.qty_stepper').style.width = `${stepperWidth}px`;
+                document.querySelector('.qty_stepper input[type=number]').style.width = `${qtyWidth}px`;
+            }
+        }
 
         stockTagsContainer.innerHTML = '';
 
@@ -223,11 +248,11 @@
         const averageInterestPayout = Math.floor((avgIncome * unit) / count);
         const finalInterestEarned = Number(interestEarned.toFixed(2));
         const totalReceivable = Number((Number(totalInvestment) + finalInterestEarned).toFixed(2));
-        document.querySelector('#bond_invest_amt').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#bond_receive_amt').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#bond_avg_interest').innerHTML = '₹' + averageInterestPayout + ' ' + capitalizeString(data.bondDetails.interestPayFreq);
-        document.querySelector('#chart_invest_val').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#chart_bond_val').innerHTML = '₹' + totalReceivable;
+        document.querySelector('#bond_invest_amt').innerHTML = '₹' + Number(totalInvestment).toLocaleString('en-IN');
+        document.querySelector('#bond_receive_amt').innerHTML = '₹' + Number(totalReceivable).toLocaleString('en-IN');
+        document.querySelector('#bond_avg_interest').innerHTML = '₹' + Number(averageInterestPayout).toLocaleString('en-IN') + ' ' + capitalizeString(data.bondDetails.interestPayFreq);
+        document.querySelector('#chart_invest_val').innerHTML = '₹' + Number(totalInvestment).toLocaleString('en-IN');
+        document.querySelector('#chart_bond_val').innerHTML = '₹' + Number(totalReceivable).toLocaleString('en-IN');
         document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.bondDetails.interestPayFreq);
         document.querySelectorAll('.bonds_return_amt').forEach(element => {
             element.innerHTML = '₹' + finalInterestEarned;
@@ -258,30 +283,21 @@
         const secondLastAmount = cashflowResult[secondLastIndex].amount * unit;
         const maturityInYears = Number((data.bondDetails.maturityInMonths / 12).toFixed(2));
 
-        document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#cashflow-pricipal').innerHTML = '₹' + principalAmount;
-        document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + accruedInterest;
-        document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#cashflow-payout').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
-        document.querySelectorAll('.bonds_returns_note .maturity').forEach(element => {
-            element.innerHTML = maturityInYears;
-        });
-        document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#cashflow-pricipal').innerHTML = '₹' + principalAmount;
-        document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + accruedInterest;
-        document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#cashflow-payout').innerHTML = '₹' + totalInvestment;
-        document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
+        document.querySelector('#cashflow-inveset').innerHTML = '₹' + Number(totalInvestment).toLocaleString('en-IN');
+        document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
+        document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + Number(accruedInterest).toLocaleString('en-IN');
+        document.querySelector('#cashflow-total-returns').innerHTML = '₹' + Number(totalReceivable).toLocaleString('en-IN');
+        document.querySelector('#cashflow-payout').innerHTML = '₹' + Number(totalInvestment).toLocaleString('en-IN');
+        document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + Number(finalInterestEarned).toLocaleString('en-IN');
         document.querySelector('#cashflow-initial-date').innerHTML = formatDate(firstDate);
         document.querySelector('#cashflow-first-date').innerHTML = formatDate(firstDate);
-        document.querySelector('#cashflow-first-interest').innerHTML = firstAmount.toFixed(2);
+        document.querySelector('#cashflow-first-interest').innerHTML = '₹' + Number(firstAmount.toFixed(2)).toLocaleString('en-IN');
         document.querySelector('#cashflow-second-date').innerHTML = formatDate(secondDate);
-        document.querySelector('#cashflow-second-interest').innerHTML = secondAmount.toFixed(2);
+        document.querySelector('#cashflow-second-interest').innerHTML = '₹' + Number(secondAmount.toFixed(2)).toLocaleString('en-IN');
         document.querySelector('#cashflow-second-last-date').innerHTML = formatDate(secondLastDate);
-        document.querySelector('#cashflow-second-last-interest').innerHTML = secondLastAmount.toFixed(2);
+        document.querySelector('#cashflow-second-last-interest').innerHTML = '₹' + Number(secondLastAmount.toFixed(2)).toLocaleString('en-IN');
         document.querySelector('#cashflow-last-date').innerHTML = formatDate(lastDate);
-        document.querySelector('#cashflow-last-interest').innerHTML = lastAmount.toFixed(2);
+        document.querySelector('#cashflow-last-interest').innerHTML = '₹' + Number(lastAmount.toFixed(2)).toLocaleString('en-IN');
         document.querySelector('#redemption-date').innerHTML = formatDate(data.bondDetails.redemptionDate);
         document.querySelectorAll('.bonds_returns_note .maturity').forEach(element => {
             element.innerHTML = maturityInYears;
