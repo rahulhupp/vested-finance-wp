@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="bonds_returns_note mobile_hide">
-                        <h3>Earn <span class="bonds_return_amt highlighted">₹3,400</span> in <span class="maturity">3</span> years at <span class="bonds_return_per">11.50%</span> p.a</h3>
+                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">-</span> years at <span class="bonds_return_per">-</span> p.a</h3>
                     </div>
                 </div>
                 <div class="bonds_returns_data">
@@ -24,19 +24,19 @@
                     <div class="bond_investment_info">
                         <div class="single_invest_info">
                             <p>You Invest</p>
-                            <h4 class="highlighted" id="bond_invest_amt">₹21,150</h4>
+                            <h4 class="highlighted" id="bond_invest_amt">-</h4>
                         </div>
                         <div class="single_invest_info">
                             <p>You Receive</p>
-                            <h4 class="highlighted" id="bond_receive_amt">₹24,550</h4>
+                            <h4 class="highlighted" id="bond_receive_amt">-</h4>
                         </div>
                         <div class="single_invest_info">
                             <p>Average. Interest Payout</p>
-                            <h4 class="highlighted" id="bond_avg_interest">₹850 monthly</h4>
+                            <h4 class="highlighted" id="bond_avg_interest">-</h4>
                         </div>
                     </div>
                     <div class="bonds_returns_note desktop_hide">
-                        <h3>Earn <span class="bonds_return_amt highlighted">₹3,400</span> in <span class="maturity">3</span> years at <span class="bonds_return_per">11.50%</span> p.a</h3>
+                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">3</span> years at <span class="bonds_return_per">-</span> p.a</h3>
                     </div>
                     <div class="potential_chart_col">
                         <div class="bond_chart_temp">
@@ -176,7 +176,7 @@
                                     <div class="single_cashflow">
                                         <div class="cashflow_single_name">
                                             <h4>Total Returns on</h4>
-                                            <p>10 Dec ‘25</p>
+                                            <p id="redemption-date">10 Dec ‘25</p>
                                         </div>
                                         <div class="cashflow_numbers">
                                             <h3 id="cashflow-total-returns">₹24,550</h3>
