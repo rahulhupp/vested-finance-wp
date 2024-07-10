@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="bonds_returns_note mobile_hide">
-                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">-</span> years at <span class="bonds_return_per">-</span> p.a</h3>
+                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">-</span> at <span class="bonds_return_per">-</span> p.a</h3>
                     </div>
                 </div>
                 <div class="bonds_returns_data">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="bonds_returns_note desktop_hide">
-                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">3</span> years at <span class="bonds_return_per">-</span> p.a</h3>
+                        <h3>Earn <span class="bonds_return_amt highlighted">-</span> in <span class="maturity">-</span> at <span class="bonds_return_per">-</span> p.a</h3>
                     </div>
                     <div class="potential_chart_col">
                         <div class="bond_chart_temp">
