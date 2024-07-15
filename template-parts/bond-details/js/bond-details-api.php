@@ -363,7 +363,7 @@
         if (years > 0) {
             result += ' ';
         }
-        result += `& ${remainingMonths}${longerFormat ? ` month${remainingMonths > 1 ? 's' : ''}` : 'm'}`;
+        result += ` ${remainingMonths}${longerFormat ? ` month${remainingMonths > 1 ? 's' : ''}` : 'm'}`;
     }
     return result;
 }
