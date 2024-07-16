@@ -55,9 +55,3 @@ jQuery(document).ready(function ($) {
 	});
 });
 
-jQuery(document).ready(function() {
-    jQuery("a.comment-reply-link").click(function(event) {
-        console.log('Prevent default action to stop smooth scrolling'); 
-        event.preventDefault();
-    });
-});
