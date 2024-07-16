@@ -54,3 +54,29 @@ jQuery(document).ready(function ($) {
 		}
 	});
 });
+
+jQuery(document).ready(function() {
+    jQuery("a.ez-toc-link").click(function(event) {
+        // Check if the clicked link is not a comment reply link
+        if (!jQuery(this).hasClass('comment-reply-link')) {
+            let t = jQuery(this).attr("href"),
+                e = jQuery("#wpadminbar"),
+                i = jQuery("header"),
+                o = 0;
+            if (eztoc_smooth_local.scroll_offset > 30) {
+                o = eztoc_smooth_local.scroll_offset;
+            }
+            if (e.length) {
+                o += e.height();
+            }
+            if ((i.length && "fixed" == i.css("position")) || "sticky" == i.css("position")) {
+                o += i.height();
+            }
+            if (jQuery('[ez-toc-data-id="' + decodeURI(t) + '"]').length > 0) {
+                o = jQuery('[ez-toc-data-id="' + decodeURI(t) + '"]').offset().top - o;
+            }
+            jQuery("html, body").animate({scrollTop: o}, 500);
+            event.preventDefault();
+        }
+    });
+});
