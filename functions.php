@@ -329,3 +329,70 @@ function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
     }
     return $url;
 }
+
+
+
+function custom_comment_reply_notification_to_fyno($comment_id, $comment_approved, $commentdata) {
+    // Check if the comment is a reply
+    $parent_id = $commentdata['comment_parent'];
+    if ($parent_id) {
+        // Get the parent comment
+        $parent_comment = get_comment($parent_id);
+
+        // Get the original comment author's name and email
+        $user_name = $parent_comment->comment_author;
+        $user_email = $parent_comment->comment_author_email;
+
+        // Get the post details
+        $post_id = $commentdata['comment_post_ID'];
+        $post_title = get_the_title($post_id);
+        $post_link = get_permalink($post_id);
+
+        // Get the sender details (assuming the sender is the admin)
+        $sender_name = 'Vested Finance';
+        $sender_email = get_option('admin_email');
+
+        // Get the reply comment text
+        $comment_text = $commentdata['comment_content'];
+
+        // Prepare the data to send to Fyno
+        $data = array(
+            'event' => 'Blog_Comment',
+            'to' => array(
+                'email' => $user_email
+            ),
+            'data' => array(
+                'user_name' => $user_name,
+                'post_title' => $post_title,
+                'response_link' => $post_link,
+                'message' => $comment_text,
+                'sender' => array(
+                    'name' => $sender_name,
+                    'email' => $sender_email
+                ),
+                'reply_to' => array(
+                    'email' => 'rahul@vestedfinance.co' // Replace with the appropriate email
+                )
+            )
+        );
+
+        // Send the data to Fyno
+        $response = wp_remote_post('https://api.fyno.io/v1/FYAP0CAC5F304IN/event', array(
+            'method'    => 'POST',
+            'body'      => json_encode($data),
+            'headers'   => array(
+                'Content-Type'  => 'application/json',
+                'Authorization' => 'Bearer LZkJG+K.FC8hskVHBHiCoRzUVmfAo36kiNL3v4Sn' // Replace with your actual Fyno API key
+            ),
+        ));
+
+        // Check for errors in the response
+        if (is_wp_error($response)) {
+            error_log('Fyno API request failed: ' . $response->get_error_message());
+        } else {
+            error_log('Fyno API request successful: ' . wp_remote_retrieve_body($response));
+        }
+    }
+}
+
+add_action('comment_post', 'custom_comment_reply_notification_to_fyno', 10, 3);
