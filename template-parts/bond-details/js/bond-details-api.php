@@ -170,7 +170,7 @@
     }
 
     function redirectToNotFound() {
-        window.location.replace('/bond-not-found');
+        // window.location.replace('/bond-not-found');
     }
 
     function toSlug(str) {
