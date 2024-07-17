@@ -242,7 +242,7 @@
 
     function callSinlgeBondApi(offeringID) {
         document.querySelector('.bonds_calculator_container').classList.add('loading');
-        const apiUrl = `https://yield-api-staging.vestedfinance.com/bond-details?offeringId=${offeringID}`;
+        const apiUrl = `https://yield-api-prod.vestedfinance.com/bond-details?offeringId=${offeringID}`;
         const headers = { 'User-Agent': 'Vested_M#8Dfz$B-8W6' };
 
         return fetch(apiUrl, { headers })
