@@ -236,18 +236,15 @@
     function updateInvestmentDetails(data, unit) {
         const accruedInterest = Number(((data.bondDetails.accruedInterest || 0) * unit).toFixed(2));
         const principalAmount = Number(((Number(data.bondDetails.principalAmount) || 0) * unit).toFixed(2));
-        const totalInvestmentRaw = (accruedInterest + principalAmount);
+        const totalInvestmentRaw = accruedInterest + principalAmount;
         const totalInvestment = formatNumber(totalInvestmentRaw);
-        const interestEarned =
-            (data.bondDetails.cashflows.reduce((acc, curr) => {
-                    if (curr.type === 'interest') {
-                        return acc + curr.amount;
-                    }
-                    return acc;
-                }, 0) +
-                (Number(data.bondDetails.faceValue) - Number(data.bondDetails.newPrice))) *
-            unit -
-            accruedInterest;
+        
+        const interestEarned = (data.bondDetails.cashflows.reduce((acc, curr) => {
+            if (curr.type === 'interest') {
+                return acc + curr.amount;
+            }
+            return acc;
+        }, 0) + (Number(data.bondDetails.faceValue) - Number(data.bondDetails.newPrice))) * unit - accruedInterest;
 
         let count = 0;
         const avgIncome = data.bondDetails.cashflows.reduce((acc, curr) => {
@@ -259,15 +256,27 @@
         }, 0);
         const averageInterestPayoutRaw = Math.floor((avgIncome * unit) / count);
         const averageInterestPayout = formatNumber(averageInterestPayoutRaw);
+
+        // Calculate FD interest with 7% annual interest rate
+        const annualRate = 0.07;
+        const rate = Math.floor(totalInvestmentRaw);
+        const fdInterestRaw = rate * annualRate;
+        const fdInterest =  Math.floor(fdInterestRaw);
+        const newTotal = rate + fdInterestRaw;
+        const fdNewTotal = Math.floor(newTotal);
+
         const finalInterestEarned = formatNumber(interestEarned);
-        const totalReceivableRaw = (totalInvestmentRaw + interestEarned);
+        const totalReceivableRaw = totalInvestmentRaw + interestEarned;
         const totalReceivable = formatNumber(totalReceivableRaw);
+
         document.querySelector('#bond_invest_amt').innerHTML = '₹' + totalInvestment;
         document.querySelector('#bond_receive_amt').innerHTML = '₹' + totalReceivable;
         document.querySelector('#bond_avg_interest').innerHTML = '₹' + averageInterestPayout + ' ' + capitalizeString(data.bondDetails.interestPayFreq);
         document.querySelector('#chart_invest_val').innerHTML = '₹' + totalInvestment;
+        document.querySelector('#chart_fd_val').innerHTML = '₹' + fdNewTotal;
         document.querySelector('#chart_bond_val').innerHTML = '₹' + totalReceivable;
         document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.bondDetails.interestPayFreq);
+
         document.querySelectorAll('.bonds_return_amt').forEach(element => {
             element.innerHTML = '₹' + finalInterestEarned;
         });
@@ -347,7 +356,7 @@
     }
 
     function formatNumber(value) {
-        const formattedValue = Math.round(Number(value.toFixed(2)));
+        const formattedValue = Math.floor(Number(value.toFixed(2)));
         return formattedValue.toLocaleString('en-IN');
     }
 
