@@ -1,7 +1,7 @@
 <?php
 function fetch_inr_bonds_api_data() {
     error_log("INR Bonds API Call");
-    $inr_bonds_api_url = 'https://yield-api-prod.vestedfinance.com/bonds';
+    $inr_bonds_api_url = 'https://yield-api-staging.vestedfinance.com/bonds';
     $headers = array(
         'User-Agent' => 'Vested_M#8Dfz$B-8W6'
     );
