@@ -24,7 +24,7 @@
         if ($custom_bond_request) {
             
             error_log("Custom bond request: $custom_bond_request, Bond company: $bond_company, ISIN code: $isin_code");
-            $api_url = 'https://yield-api-staging.vestedfinance.com/bonds';
+            $api_url = 'https://yield-api-prod.vestedfinance.com/bonds';
             $response = wp_remote_get($api_url);
             $body = wp_remote_retrieve_body($response);
             $data = json_decode($body, true);

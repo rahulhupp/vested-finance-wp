@@ -1,6 +1,6 @@
 <script>
     let bondsData = [];
-    const apiUrl = 'https://yield-api-staging.vestedfinance.com/bonds';
+    const apiUrl = 'https://yield-api-prod.vestedfinance.com/bonds';
     function showLoader() {
     document.getElementById('bond-loader').style.display = 'flex';
     }
@@ -43,7 +43,7 @@
 
             if (foundBond) {
                 const bondOfferId = foundBond.offeringId;
-                const singleBondApi = `https://yield-api-staging.vestedfinance.com/bond-details?offeringId=${bondOfferId}`;
+                const singleBondApi = `https://yield-api-prod.vestedfinance.com/bond-details?offeringId=${bondOfferId}`;
                 const bondDetails = await fetchBondData(singleBondApi);
 
                 updatePageContent(bondDetails, bondNameSlug, bondIsin);
