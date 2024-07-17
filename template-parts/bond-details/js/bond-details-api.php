@@ -263,7 +263,7 @@
         const fdInterestRaw = rate * annualRate;
         const fdInterest =  Math.floor(fdInterestRaw);
         const newTotal = rate + fdInterestRaw;
-        const fdNewTotal = Math.floor(newTotal);
+        const fdNewTotal = formatNumber(newTotal);
 
         const finalInterestEarned = formatNumber(interestEarned);
         const totalReceivableRaw = totalInvestmentRaw + interestEarned;
