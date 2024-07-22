@@ -277,6 +277,8 @@
         document.querySelector('#chart_bond_val').innerHTML = '₹' + totalReceivable;
         document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.bondDetails.interestPayFreq);
 
+        bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable);
+
         document.querySelectorAll('.bonds_return_amt').forEach(element => {
             element.innerHTML = '₹' + finalInterestEarned;
         });
@@ -375,6 +377,103 @@
         result += ` ${remainingMonths}${longerFormat ? ` month${remainingMonths > 1 ? 's' : ''}` : 'm'}`;
     }
     return result;
+}
+
+let bondReturnsBarChart; // Variable to track the chart instance
+
+function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) {
+    const totalInvestmentStr = totalInvestment.toString().replace(/,/g, '');
+    const fdNewTotalStr = fdNewTotal.toString().replace(/,/g, '');
+    const totalReceivableStr = totalReceivable.toString().replace(/,/g, '');
+
+    const ctx = document.getElementById('bondReturnsGraph').getContext('2d');
+
+    const data = {
+        labels: ['You Invest', 'Bank FD', 'Bond'],
+        datasets: [{
+            label: 'Potential Returns',
+            data: [totalInvestmentStr, fdNewTotalStr, totalReceivableStr],
+            backgroundColor: ['#2D3A6A', '#1D2F3C', '#007F3D'],
+            hoverBackgroundColor: ['#2D3A6A', '#1D2F3C', '#007F3D'],
+            borderColor: ['#2D3A6A', '#1D2F3C', '#007F3D'],
+            borderWidth: 1,
+            borderRadius: 8
+        }]
+    };
+
+    const options = {
+        scales: {
+            y: {
+                display: false,
+                grid: {
+                    color: 'rgba(0,0,0,0)',
+                    drawBorder: false,
+                },
+                ticks: {
+                    display: false
+                }
+            },
+            x: {
+                grid: {
+                    color: 'rgba(0,0,0,0)',
+                    drawBorder: false,
+                },
+                ticks: {
+                    display: false
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                enabled: false
+            }
+        }
+    };
+
+    const customPlugin = {
+        id: 'customPlugin',
+        afterDatasetsDraw: (chart) => {
+            const { ctx, chartArea: { top, bottom, width, height } } = chart;
+            ctx.save();
+
+            chart.data.datasets.forEach((dataset, i) => {
+                chart.getDatasetMeta(i).data.forEach((bar, index) => {
+                    const percent = [' ', '7%', '12%'];
+                    const value = dataset.data[index];
+                    const y = bar.y;
+                    const x = bar.x;
+                    const barHeight = y - bar.base; // Height of the bar
+
+                    // Draw percentage text
+                    ctx.fillStyle = '#002852';
+                    ctx.font = 'bold 12px Inter, sans-serif'; // Font weight and family
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillText(percent[index], x, y - 5);
+                });
+            });
+
+            ctx.restore();
+        }
+    };
+
+
+
+    // Destroy the existing chart if it exists
+    if (bondReturnsBarChart) {
+        bondReturnsBarChart.destroy();
+    }
+
+    // Create a new chart instance
+    bondReturnsBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+        plugins: [customPlugin]
+    });
 }
 
 </script>
