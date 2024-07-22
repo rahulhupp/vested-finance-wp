@@ -2,7 +2,9 @@
 get_header();
 $bond_name_slug = get_query_var('bond_company');
 ?>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <div class="bond_details_main">
     <div class="container">
         <div class="bond_details_wrapper">
@@ -108,9 +110,6 @@ $bond_name_slug = get_query_var('bond_company');
     <span>Link copied</span>
 </div>
 <?php get_template_part('template-parts/bond-details/js/bond-details-api'); ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <?php get_template_part('template-parts/bond-details/js/general-js'); ?>
 
 <?php get_footer(); ?>

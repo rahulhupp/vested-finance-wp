@@ -2,7 +2,6 @@
         <div class="stock_details_box stock_chart_container">
             <div class="stock_chart_header">
                 <h2 class="heading">Know Your Returns</h2>
-               
             </div>
             <div class="separator_line"></div>
             <div class="returns_unit_number">
@@ -42,7 +41,7 @@
                         <div class="bond_chart_temp">
                             <h3>Potential Returns</h3>
                             <div class="potential_returns_graph">
-                                <canvas id="chart1"
+                                <canvas id="bondReturnsGraph"
                                     width="324"
                                     height="105">
                                 </canvas>
