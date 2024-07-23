@@ -17,42 +17,58 @@ $bond_name_slug = get_query_var('bond_company');
                         <div class="stock_img">
                             <img src="" alt="" />
                         </div>
-                        <div class="share_icon" onclick="copyLink()">
+                        <h1 class="bond-name desktop_hide"></h1>
+                        <div class="share_icon mobile_hide" onclick="copyLink()">
                             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/share-icon.svg" alt="share-icon" />
                         </div>
                     </div>
-                    <h1 id="bond-name"></h1>
+                    <h1 class="bond-name mobile_hide"></h1>
                     <h2 id="issuer-name"></h2>
                     <h6 id="security-id"></h6>
-                    <div class="bond_details_box">
-                        <div class="bond_detail_col">
+                    <div class="bonds_info_box">
+                        <div class="bond_details_box">
+                            <div class="bond_detail_col">
+                                    <div class="bond_single_detail">
+                                        <p class="detail_info">Yield</p>
+                                        <h4 id="bond-yield" class="highlighted"></h4>
+                                    </div>
+                                    <div class="bond_single_detail">
+                                        <p class="detail_info">Matures in</p>
+                                        <h4 id="bond-mature"></h4>
+                                    </div>
+                            </div>
+                            <div class="bond_detail_col">
                                 <div class="bond_single_detail">
-                                    <p class="detail_info">Yield</p>
-                                    <h4 id="bond-yield" class="highlighted"></h4>
-                                </div>
-                                <div class="bond_single_detail">
-                                    <p class="detail_info">Matures in</p>
-                                    <h4 id="bond-mature"></h4>
-                                </div>
+                                        <p class="detail_info">Min. Investment</p>
+                                        <h4 id="bond-investment" class="highlighted"></h4>
+                                    </div>
+                                    <div class="bond_single_detail">
+                                        <p class="detail_info">Interest Payment</p>
+                                        <h4 id="bond-interest"></h4>
+                                    </div>
+                            </div>
                         </div>
-                        <div class="bond_detail_col">
-                            <div class="bond_single_detail">
-                                    <p class="detail_info">Min. Investment</p>
-                                    <h4 id="bond-investment" class="highlighted"></h4>
-                                </div>
-                                <div class="bond_single_detail">
-                                    <p class="detail_info">Interest Payment</p>
-                                    <h4 id="bond-interest"></h4>
-                                </div>
+                        <div class="stock_tags">
                         </div>
                     </div>
-                    <div class="stock_tags">
+                    <div class="stock_share_buttons">
+                        <a href="#">
+                            <button class="primary_button">
+                                Invest now
+                            </button>
+                        </a>
+                        <div class="share_icon desktop_hide" onclick="copyLink()">
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/share-icon.svg" alt="share-icon" />
+                        </div>
                     </div>
-                    <a href="#">
-                        <button class="primary_button">
-                            Invest now
-                        </button>
-                    </a>
+                    <div class="bond_certificate desktop_hide">
+                        <span id="certificate_rating">-</span>
+                        <div class="certificate_bg">
+                            <svg width="50" height="29" viewBox="0 0 50 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M56 4C56 1.79086 54.2091 0 52 0H13.1316C11.5345 0 10.0905 0.950035 9.45833 2.41668L0.406601 23.4167C-0.731503 26.0571 1.20466 29 4.0799 29H52C54.2091 29 56 27.2091 56 25V4Z" fill="#4ADE80"/>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="bond_details_right_column">

@@ -39,7 +39,7 @@
         border: 1px solid #D1D5DB;
         position: absolute;
         width: 100%;
-        z-index: 1;
+        z-index: 2;
         display: none;
     }
 
