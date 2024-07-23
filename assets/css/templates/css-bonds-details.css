@@ -5336,17 +5336,17 @@ footer .extra_info ul li sup {
 }
 
 .stock_img {
-	border-radius: 8px;
-	width: 52px;
-	height: 52px;
+    border-radius: 4px;
+    width: 52px;
+    height: 52px;
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.stock_img img {
-	width: 52px;
-	height: 52px;
-}
-
-.stock_info_icons .share_icon {
+.stock_details_box .share_icon {
 	border-radius: 6px;
 	background: linear-gradient(0deg, rgba(0, 40, 82, 0.04) 0%, rgba(0, 40, 82, 0.04) 100%), #FFF;
 	padding: 10px 20px 10px 16px;
@@ -6136,6 +6136,10 @@ div#bond-loader {
 
 
 .hidden {
+	display: none;
+}
+
+.desktop_hide {
 	display: none;
 }
 
@@ -7033,10 +7037,6 @@ td.holdings_stock_weight_td {
 		font-size: 16px !important;
 	}
 
-	.stock_tags {
-		display: none;
-	}
-
 	/* chart */
 	.stock_chart_header {
 		display: block;
@@ -7055,6 +7055,78 @@ td.holdings_stock_weight_td {
 
 	.stock_about_description {
 		margin-bottom: 0;
+	}
+
+	.desktop_hide {
+		display: block;
+	}
+
+	.mobile_hide {
+		display: none;
+	}
+
+	.stock_img {
+		border-radius: 6px;
+	}
+
+	.stock_img {
+		width: 42px;
+		height: 42px;
+	}
+
+	.stock_info_container h1.desktop_hide {
+		width: calc(100% - 54px);
+		font-size: 14px !important;
+		line-height: 20px;
+	}
+
+	.stock_details_box {
+		padding: 33px 20px 20px;
+		position: relative;
+	}
+
+	.stock_info_container h2 {
+		font-size: 12px !important;
+		line-height: 18px;
+	}
+
+	.stock_tags {
+		margin: 16px 0 4px;
+		order: 1;
+	}
+	
+	.bond_details_box {
+		order: 2;
+	}
+	
+	.bonds_info_box {
+		display: grid;
+	}
+
+	.bond_certificate {
+		position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+	}
+
+	.certificate_bg {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	#certificate_rating {
+		z-index: 1;
+		position: relative;
+		top: 4px;
+		left: 4px;
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: 500;
 	}
 
 	/* end chart */
@@ -7242,6 +7314,31 @@ td.holdings_stock_weight_td {
 	.single_income_source h4.source_returns {
 		line-height: 19.6px;
 		font-size: 14px;
+	}
+
+	.stock_info_icons {
+		flex-wrap: wrap;
+	}
+
+	.stock_details_box .share_icon {
+        max-width: 55px;
+        height: 100%;
+	}
+
+	.stock_share_buttons {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 4px;
+		align-items: center;
+	}
+	
+	.stock_share_buttons a {
+		width: calc(100% - 63px);
+	}
+	
+	.primary_button {
+		margin: 0;
+		max-width: 100%;
 	}
 }
 

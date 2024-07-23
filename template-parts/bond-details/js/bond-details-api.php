@@ -68,12 +68,19 @@
         const validRating = bondRatingsArray.includes(bondRatings) ? bondRatings : defaultRating;
         const collections = data.bondDetails.collections;
         const stockTagsContainer = document.querySelector('.stock_tags');
+        const ratingCodes = data.bondDetails.ratingColorCode;
+        const ratingCodesArray = ratingCodes.split(',');
+        const ratingBG = ratingCodesArray[0];
+        const ratingTextColor = ratingCodesArray[1];
         qtyInput.setAttribute('min', data.bondDetails.minimumQty);
         qtyInput.setAttribute('max', data.bondDetails.maximumQty);
         qtyInput.value = data.bondDetails.minimumQty;
         const inputLength = qtyInput.value.length;
+        const bondNamesHTML = document.querySelectorAll('.bond-name');
         document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
-        document.querySelector('#bond-name').innerHTML = data.bondDetails.displayName;
+        bondNamesHTML.forEach(bondName => {
+            bondName.innerHTML = data.bondDetails.displayName;
+        });
         document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
         document.querySelector('#security-id').innerHTML = 'ISIN: ' + data.bondDetails.securityId;
         document.querySelector('#bond-yield').innerHTML = data.bondDetails.yield.toFixed(2) + '%';
@@ -88,6 +95,16 @@
         document.querySelector('#issue-mode').innerHTML = data.bondDetails.modeOfIssue;
         document.querySelector('#tax-status').innerHTML = data.bondDetails.isTaxfree ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>';
         document.querySelector('#bond-display').innerHTML = data.bondDetails.issuerName;
+        if(bondRatingsArray.includes(bondRatings)) {
+            document.querySelector('#certificate_rating').innerHTML = validRating.toUpperCase();
+            document.querySelector('.bond_certificate svg path').style.fill = ratingBG;
+            document.querySelector('#certificate_rating').style.color = ratingTextColor;
+        }
+        else {
+            document.querySelector('.bond_certificate').style.display = 'none';
+            document.querySelector('.bond_certificate').style.opacity = '0';
+        }
+        
 
         if (data.bondDetails.issuerDescription) {
             document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
@@ -149,6 +166,15 @@
                 document.querySelector('.qty_stepper').style.width = `${stepperWidth}px`;
                 document.querySelector('.qty_stepper input[type=number]').style.width = `${qtyWidth}px`;
             }
+        }
+
+        if(data.bondDetails.isTaxfree) {
+            const chartWrapper = document.querySelector('.bond_chart_temp');
+            const postTax = document.createElement('span');
+            postTax.textContent = '**Assumes a 30% tax slab under the new tax regime.';
+            postTax.style.marginTop = '0';
+            chartWrapper.append(postTax);
+            document.querySelector('.bond_chart_temp h3').textContent = 'Potential Returns - post tax';
         }
 
         stockTagsContainer.innerHTML = '';
@@ -430,7 +456,13 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
             tooltip: {
                 enabled: false
             }
+        },
+    layout: {
+        padding: {
+            top: 20
         }
+    }
+        
     };
 
     const customPlugin = {
@@ -438,6 +470,7 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
         afterDatasetsDraw: (chart) => {
             const { ctx, chartArea: { top, bottom, width, height } } = chart;
             ctx.save();
+            const isSmallScreen = window.innerWidth < 768;
 
             chart.data.datasets.forEach((dataset, i) => {
                 chart.getDatasetMeta(i).data.forEach((bar, index) => {
@@ -448,11 +481,12 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
                     const barHeight = y - bar.base; // Height of the bar
 
                     // Draw percentage text
-                    ctx.fillStyle = '#002852';
+                    ctx.fillStyle = isSmallScreen ? '#ffffff' : '#002852';
                     ctx.font = 'bold 12px Inter, sans-serif'; // Font weight and family
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'bottom';
-                    ctx.fillText(percent[index], x, y - 5);
+                    const textYPosition = isSmallScreen ? y + 35 : y - 5;
+                    ctx.fillText(percent[index], x, textYPosition);
                 });
             });
 
