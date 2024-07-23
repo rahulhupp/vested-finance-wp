@@ -76,8 +76,18 @@
         qtyInput.setAttribute('max', data.bondDetails.maximumQty);
         qtyInput.value = data.bondDetails.minimumQty;
         const inputLength = qtyInput.value.length;
+        const corporateImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/Corporate-Bonds.png';
+        const goiImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/goi.png';
         const bondNamesHTML = document.querySelectorAll('.bond-name');
         document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
+        document.querySelector('.stock_img img').onerror = function(){
+            if(data.bondDetails.bondCategory === 'GOVT') {
+                document.querySelector('.stock_img img').setAttribute('src', goiImg);
+            }
+            else {
+                document.querySelector('.stock_img img').setAttribute('src', corporateImg);
+            }
+        }
         bondNamesHTML.forEach(bondName => {
             bondName.innerHTML = data.bondDetails.displayName;
         });
@@ -509,5 +519,7 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
         plugins: [customPlugin]
     });
 }
+
+
 
 </script>
