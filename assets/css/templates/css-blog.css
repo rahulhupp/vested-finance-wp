@@ -1498,6 +1498,11 @@ margin-top: 18px;
 .filter-tab {
   padding-top: 52px;
 }
+.label img {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}
 @media (max-width: 1199px) {
   div.is-ajax-search-result {
     max-width: calc(50% - 62px) !important;
