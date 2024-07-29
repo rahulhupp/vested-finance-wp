@@ -41,6 +41,8 @@
                 toSlug(bond.displayName) === bondNameSlug
             );
 
+            console.log('foundBond', foundBond);
+
             if (foundBond) {
                 const bondOfferId = foundBond.offeringId;
                 const singleBondApi = `https://yield-api-prod.vestedfinance.com/bond-details?offeringId=${bondOfferId}`;
@@ -64,7 +66,7 @@
         const qtyInput = document.querySelector('.qty_stepper input[type=number]');
         const bondRatings = data.bondDetails.rating.toLowerCase();
         const bondRatingsArray = ['a', 'a+', 'a-', 'aa', 'aa+', 'aa-', 'aaa', 'bb', 'bbb', 'bbb+', 'bbb-'];
-        const defaultRating = 'aa';
+        const defaultRating = 'a+';
         const validRating = bondRatingsArray.includes(bondRatings) ? bondRatings : defaultRating;
         const collections = data.bondDetails.collections;
         const stockTagsContainer = document.querySelector('.stock_tags');
@@ -78,33 +80,7 @@
         const inputLength = qtyInput.value.length;
         const corporateImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/Corporate-Bonds.png';
         const goiImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/goi.png';
-        const bondNamesHTML = document.querySelectorAll('.bond-name');
-        document.querySelector('.stock_img img').setAttribute('src', data.bondDetails.logo);
-        document.querySelector('.stock_img img').onerror = function(){
-            if(data.bondDetails.bondCategory === 'GOVT') {
-                document.querySelector('.stock_img img').setAttribute('src', goiImg);
-            }
-            else {
-                document.querySelector('.stock_img img').setAttribute('src', corporateImg);
-            }
-        }
-        bondNamesHTML.forEach(bondName => {
-            bondName.innerHTML = data.bondDetails.displayName;
-        });
-        document.querySelector('#issuer-name').innerHTML = data.bondDetails.issuerName;
-        document.querySelector('#security-id').innerHTML = 'ISIN: ' + data.bondDetails.securityId;
-        document.querySelector('#bond-yield').innerHTML = data.bondDetails.yield.toFixed(2) + '%';
-        document.querySelector('#bond-mature').innerHTML = convertMonthsToYearsAndMonths(data.bondDetails.maturityInMonths);
-        document.querySelector('#bond-investment').innerHTML = '₹' + minInvest;
-        document.querySelector('#bond-interest').innerHTML = capitalizeString(data.bondDetails.interestPayFreq);
-        document.querySelector('#face-value').innerHTML = '₹' + data.bondDetails.faceValue.toLocaleString('en-IN');
-        document.querySelector('#coupon-rate').innerHTML = data.bondDetails.couponRate + '%';
-        document.querySelector('#coupon-type').innerHTML = data.bondDetails.couponType;
-        document.querySelector('#bond-secure').innerHTML = data.bondDetails.secureUnsecure;
-        document.querySelector('#seniority').innerHTML = data.bondDetails.seniority;
-        document.querySelector('#issue-mode').innerHTML = data.bondDetails.modeOfIssue;
-        document.querySelector('#tax-status').innerHTML = data.bondDetails.isTaxfree ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>';
-        document.querySelector('#bond-display').innerHTML = data.bondDetails.issuerName;
+        
         if(bondRatingsArray.includes(bondRatings)) {
             document.querySelector('#certificate_rating').innerHTML = validRating.toUpperCase();
             document.querySelector('.bond_certificate svg path').style.fill = ratingBG;
@@ -114,32 +90,6 @@
             document.querySelector('.bond_certificate').style.display = 'none';
             document.querySelector('.bond_certificate').style.opacity = '0';
         }
-        
-
-        if (data.bondDetails.issuerDescription) {
-            document.querySelector('#issuer-desc').innerHTML = data.bondDetails.issuerDescription;
-        } else {
-            document.querySelector('#about_tab').style.display = 'none';
-            document.querySelector('.tab_button[href="#about_tab"]').style.display = 'none';
-        }
-
-        document.querySelector('#faq-yield').innerHTML = data.bondDetails.yield.toFixed(2);
-        if (bondRatings) {
-            document.querySelector('#bond_ratings').setAttribute('src', `<?php echo get_stylesheet_directory_uri() ?>/assets/images/ratings/ratings-${validRating}.png`);
-        } else {
-            document.querySelector('#ratings_tab_wrap').style.display = 'none';
-            document.querySelector('.tab_button[href="#rating_tab"]').style.display = 'none';
-        }
-
-
-        document.querySelectorAll('.faq-bond-name').forEach(element => {
-            element.innerHTML = data.bondDetails.displayName;
-        });
-
-        document.querySelector('#request_info_url').setAttribute('href', `https://vestedfinance.typeform.com/to/BuPt2Xwu#bondname=${bondNameSlug}`);
-        document.querySelector('#inform_data_url').setAttribute('href', `https://vestedfinance.typeform.com/to/W6VPlghm#bondname=${bondNameSlug}`);
-        document.querySelector('#im-url').setAttribute('href', data.bondDetails.imDocUrl);
-        document.querySelector('#ratings-url').setAttribute('href', data.bondDetails.ratingRationalUrl);
 
         const unit = Number(qtyInput.value);
         updateInvestmentDetails(data, unit);
@@ -214,59 +164,6 @@
     }
 
     initializePage();
-
-    // Bonds Dropdown Search
-
-
-    function inputChangeCalc() {
-        const inputValue = document.querySelector(".dropdown_search").value.trim();
-        makeAPICallCalc(inputValue);
-    }
-
-    function makeAPICallCalc(inputValue) {
-        const mainDropdown = document.querySelector('.select_box_new');
-        const dynamicOptions = document.querySelector(".options_result");
-
-        if (inputValue.length >= 1) {
-            const filteredBonds = filterBonds(inputValue);
-            updateDropdown(filteredBonds);
-            dynamicOptions.style.display = "block";
-            mainDropdown.classList.add("dropdown_collased");
-        } else {
-            dynamicOptions.style.display = "none";
-            // Ensure the dropdown is collapsed
-            mainDropdown.classList.remove("dropdown_collased");
-        }
-    }
-
-    function filterBonds(searchTerm) {
-        const lowerCasedTerm = searchTerm.toLowerCase();
-        var resultdata = bondsData.filter(bond =>
-            bond.displayName.toLowerCase().includes(lowerCasedTerm) ||
-            bond.securityId.toLowerCase().includes(lowerCasedTerm)
-        );
-        return resultdata;
-    }
-
-    function updateDropdown(filteredBonds) {
-        const optionsContainer = document.querySelector(".options_result");
-        optionsContainer.innerHTML = ''; // Clear previous options
-
-        filteredBonds.forEach(bond => {
-            const option = document.createElement('li');
-            const optionSlug = bond.displayName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-').trim();
-            const optionIsin = bond.securityId.toLowerCase();
-            const bondUrl = `<?php echo site_url(); ?>/bond/${optionSlug}/${optionIsin}`;
-            option.classList.add('dropdown_option');
-            option.innerHTML = `<strong>${bond.displayName}</strong> <span>${bond.securityId}</span>`;
-            option.addEventListener('click', () => {
-                document.querySelector(".dropdown_search").value = bond.displayName;
-                optionsContainer.style.display = "none";
-                window.location.href = bondUrl;
-            });
-            optionsContainer.appendChild(option);
-        });
-    }
 
 
     function updateInvestmentDetails(data, unit) {
@@ -371,8 +268,6 @@
             document.querySelector('.vertical_dashed_divider').style.display = 'none';
         }
     }
-
-    document.querySelector(".dropdown_search").addEventListener('input', inputChangeCalc);
 
     function formatDate(dateString) {
         const date = new Date(dateString);

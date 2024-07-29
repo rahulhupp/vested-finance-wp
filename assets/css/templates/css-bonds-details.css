@@ -7436,3 +7436,9 @@ td.holdings_stock_weight_td {
 		padding-right: 0;
 	}
 }
+
+.sold_out_bond_button .primary_button {
+    opacity: 0.6;
+    cursor: not-allowed;
+    display: block;
+}

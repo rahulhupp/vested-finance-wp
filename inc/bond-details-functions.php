@@ -23,22 +23,40 @@
 
         if ($custom_bond_request) {
             
-            error_log("Custom bond request: $custom_bond_request, Bond company: $bond_company, ISIN code: $isin_code");
-            $api_url = 'https://yield-api-prod.vestedfinance.com/bonds';
-            $response = wp_remote_get($api_url);
-            $body = wp_remote_retrieve_body($response);
-            $data = json_decode($body, true);
+            
+            // $api_url = 'https://yield-api-prod.vestedfinance.com/bonds';
+            // $response = wp_remote_get($api_url);
+            // $body = wp_remote_retrieve_body($response);
+            // $data = json_decode($body, true);
+            // $bond_found = false;
+            // if (isset($data['status']) && $data['status'] === 'SUCCESS' && isset($data['bonds']) && is_array($data['bonds'])) {
+            //     foreach ($data['bonds'] as $bond) {
+            //         $issuer_name_slug = sanitize_title($bond['displayName']);
+            //         $securityCode = strtolower($bond['securityId']);
+            //         if ($issuer_name_slug  == $bond_company && $securityCode == $isin_code) {
+            //             $bond_found = true;
+            //             break;
+            //         }
+            //     }
+            // }
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'bonds_list';
+
+            // Query to get bonds data from the database
+            $bonds = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+
             $bond_found = false;
-            if (isset($data['status']) && $data['status'] === 'SUCCESS' && isset($data['bonds']) && is_array($data['bonds'])) {
-                foreach ($data['bonds'] as $bond) {
-                    $issuer_name_slug = sanitize_title($bond['displayName']);
-                    $securityCode = strtolower($bond['securityId']);
-                    if ($issuer_name_slug  == $bond_company && $securityCode == $isin_code) {
-                        $bond_found = true;
-                        break;
-                    }
+
+            foreach ($bonds as $bond) {
+                $issuer_name_slug = sanitize_title($bond['displayName']);
+                $securityCode = strtolower($bond['securityId']);
+                if ($issuer_name_slug == $bond_company && $securityCode == $isin_code) {
+                    $bond_found = true;
+                    error_log("2 Custom bond request: $custom_bond_request, Bond company: $bond_company, ISIN code: $isin_code");
+                    break;
                 }
             }
+
             if ($bond_found) {
                 include get_stylesheet_directory() . '/templates/page-bonds-details.php';
             } else {
@@ -60,5 +78,23 @@
         
     }
     add_action('wp_enqueue_scripts', 'add_wanted_styles', 99999999999);
+
+    function formatIndianCurrency($num) {
+        // Convert the number to an integer to remove decimal points
+        $intPart = (int)$num;
+    
+        // Format the integer part according to the Indian numbering system
+        $lastThree = substr($intPart, -3);  // Last three digits
+        $remainingDigits = substr($intPart, 0, -3);  // Remaining digits
+    
+        if ($remainingDigits != '') {
+            $lastThree = ',' . $lastThree;
+        }
+    
+        // Add commas after every 2 digits from the end of the remaining digits
+        $formattedIntPart = preg_replace('/\B(?=(\d{2})+(?!\d))/', ',', $remainingDigits) . $lastThree;
+    
+        return '₹' . $formattedIntPart;  // Prepend the Rupee symbol
+    }
     
 ?>
