@@ -79,7 +79,6 @@ if($bond_isin) {
             setTimeout(() => {
             const newMinusUnit = Number(qtyInput.value);
             const inputLength = qtyInput.value.length;
-            console.log(newMinusUnit);
             updateInvestmentDetails(data, newMinusUnit);
             adjustQtyStepperWidth(inputLength);
         }, 0);

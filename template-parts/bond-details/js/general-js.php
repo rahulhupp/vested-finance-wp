@@ -82,7 +82,7 @@
     function moveElements() {
         // Get the elements to be moved
         var tabsMenu = document.querySelector('.stock_tabs_menu');
-        var searchContainer = document.querySelector('.stocks_search_container');
+        var searchContainer = document.querySelector('.bonds_search_container');
         var metricsContainer = document.querySelector('.stock_metrics_container');
         var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         if (windowWidth < 1024) {
