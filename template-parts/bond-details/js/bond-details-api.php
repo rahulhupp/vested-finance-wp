@@ -1,6 +1,24 @@
+<?php
+$bond_name_slug = get_query_var('bond_company');
+$bond_isin = get_query_var('isin');
+if($bond_isin) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'bonds_list';
+    $bond = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE securityId = %s", strtoupper($bond_isin)));
+    $collections = unserialize($bond->collections);
+    $cashflows = unserialize($bond->cashflows);
+    $collections_json = json_encode($collections);
+    $bond_json = json_encode($bond);
+    $cashflows_json = json_encode($cashflows);
+
+    if($bond->isTaxfree) {
+        $taxFree = 'true';
+    }
+    else {
+        $taxFree = 'false';
+    }
+?>
 <script>
-    let bondsData = [];
-    const apiUrl = 'https://yield-api-prod.vestedfinance.com/bonds';
     function showLoader() {
     document.getElementById('bond-loader').style.display = 'flex';
     }
@@ -9,77 +27,26 @@
     function hideLoader() {
         document.getElementById('bond-loader').style.display = 'none';
     }
-    async function fetchBondData(apiUrl) {
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'GET',
-                headers: {
-                    'User-Agent': 'Vested_M#8Dfz$B-8W6',
-                    'Content-Type': 'application/json'
-                }
-            });
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching bond data:', error);
-            throw error;
-        }
-    }
-
-    async function initializePage() {
-        showLoader();
-        const currentUrl = window.location.href;
-        const url = new URL(currentUrl);
-        const pathname = url.pathname;
-        const pathSegments = pathname.split('/');
-        const bondNameSlug = pathSegments[pathSegments.length - 3];
-        const bondIsin = pathSegments[pathSegments.length - 2];
-        try {
-            const data = await fetchBondData(apiUrl);
-            bondsData = data.bonds;
-            const foundBond = bondsData.find(bond =>
-                bond.securityId.toLowerCase() === bondIsin.toLowerCase() &&
-                toSlug(bond.displayName) === bondNameSlug
-            );
-
-            console.log('foundBond', foundBond);
-
-            if (foundBond) {
-                const bondOfferId = foundBond.offeringId;
-                const singleBondApi = `https://yield-api-prod.vestedfinance.com/bond-details?offeringId=${bondOfferId}`;
-                const bondDetails = await fetchBondData(singleBondApi);
-
-                updatePageContent(bondDetails, bondNameSlug, bondIsin);
-            } else {
-                redirectToNotFound();
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            redirectToNotFound();
-        }
-        finally {
-            hideLoader();
-        }
-    }
-
-    function updatePageContent(data, bondNameSlug, bondIsin) {
-        const minInvest = formatNumber(data.bondDetails.minimumInvestment);
-        const qtyInput = document.querySelector('.qty_stepper input[type=number]');
-        const bondRatings = data.bondDetails.rating.toLowerCase();
+    hideLoader();
+    function updatePageContent() {
+        const minInvest = formatNumber(<?php echo $bond->minimumInvestment; ?>);
+        var qtyInput = document.querySelector('.qty_stepper input[type=number]');
+        const bondRatingDB = '<?php echo $bond->rating; ?>';
+        const bondRatings = bondRatingDB.toLowerCase();
         const bondRatingsArray = ['a', 'a+', 'a-', 'aa', 'aa+', 'aa-', 'aaa', 'bb', 'bbb', 'bbb+', 'bbb-'];
         const defaultRating = 'a+';
         const validRating = bondRatingsArray.includes(bondRatings) ? bondRatings : defaultRating;
-        const collections = data.bondDetails.collections;
+        const collections = <?php echo $collections_json; ?>;
         const stockTagsContainer = document.querySelector('.stock_tags');
-        const ratingCodes = data.bondDetails.ratingColorCode;
+        const ratingCodes = '<?php echo $bond->ratingColorCode; ?>';
         const ratingCodesArray = ratingCodes.split(',');
         const ratingBG = ratingCodesArray[0];
         const ratingTextColor = ratingCodesArray[1];
-        qtyInput.setAttribute('min', data.bondDetails.minimumQty);
-        qtyInput.setAttribute('max', data.bondDetails.maximumQty);
-        qtyInput.value = data.bondDetails.minimumQty;
+        const data = <?php echo $bond_json; ?>;
+        qtyInput.setAttribute('min', <?php echo $bond->minimumQty; ?>);
+        qtyInput.setAttribute('max', <?php echo $bond->maximumQty; ?>);
+        qtyInput.value = <?php echo $bond->minimumQty; ?>;
         const inputLength = qtyInput.value.length;
-        const corporateImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/Corporate-Bonds.png';
-        const goiImg = '<?php echo get_stylesheet_directory_uri();?>/assets/images/goi.png';
         
         if(bondRatingsArray.includes(bondRatings)) {
             document.querySelector('#certificate_rating').innerHTML = validRating.toUpperCase();
@@ -101,16 +68,21 @@
             adjustQtyStepperWidth(inputLength);
         });
         document.querySelector('.qty_button.qty_plus').addEventListener('click', () => {
+            setTimeout(() => {
             const newPlusUnit = Number(qtyInput.value);
             const inputLength = qtyInput.value.length;
             updateInvestmentDetails(data, newPlusUnit);
             adjustQtyStepperWidth(inputLength);
+        }, 0);
         });
         document.querySelector('.qty_button.qty_minus').addEventListener('click', () => {
-            const newPlusUnit = Number(qtyInput.value);
+            setTimeout(() => {
+            const newMinusUnit = Number(qtyInput.value);
             const inputLength = qtyInput.value.length;
-            updateInvestmentDetails(data, newPlusUnit);
+            console.log(newMinusUnit);
+            updateInvestmentDetails(data, newMinusUnit);
             adjustQtyStepperWidth(inputLength);
+        }, 0);
         });
 
         function adjustQtyStepperWidth(inputLength) {
@@ -128,7 +100,7 @@
             }
         }
 
-        if(data.bondDetails.isTaxfree) {
+        if(<?php echo $taxFree; ?> === 'true') {
             const chartWrapper = document.querySelector('.bond_chart_temp');
             const postTax = document.createElement('span');
             postTax.textContent = '**Assumes a 30% tax slab under the new tax regime.';
@@ -154,33 +126,23 @@
         });
 
     }
-
-    function redirectToNotFound() {
-        // window.location.replace('/bond-not-found');
-    }
-
-    function toSlug(str) {
-        return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    }
-
-    initializePage();
+    // initializePage();
 
 
     function updateInvestmentDetails(data, unit) {
-        const accruedInterest = Number(((data.bondDetails.accruedInterest || 0) * unit).toFixed(2));
-        const principalAmount = Number(((Number(data.bondDetails.principalAmount) || 0) * unit).toFixed(2));
+        const accruedInterest = Number(((data.accruedInterest || 0) * unit).toFixed(2));
+        const principalAmount = Number(((Number(data.principalAmount) || 0) * unit).toFixed(2));
         const totalInvestmentRaw = accruedInterest + principalAmount;
         const totalInvestment = formatNumber(totalInvestmentRaw);
-        
-        const interestEarned = (data.bondDetails.cashflows.reduce((acc, curr) => {
+        const bondCashflows = <?php echo $cashflows_json; ?>;
+        const interestEarned = (bondCashflows.reduce((acc, curr) => {
             if (curr.type === 'interest') {
                 return acc + curr.amount;
             }
             return acc;
-        }, 0) + (Number(data.bondDetails.faceValue) - Number(data.bondDetails.newPrice))) * unit - accruedInterest;
-
+        }, 0) + (Number(data.faceValue) - Number(data.newPrice))) * unit - accruedInterest;
         let count = 0;
-        const avgIncome = data.bondDetails.cashflows.reduce((acc, curr) => {
+        const avgIncome = bondCashflows.reduce((acc, curr) => {
             if (curr.type === 'interest') {
                 count += 1;
                 return acc + (curr.amountPostDeduction || curr.amount) || 0;
@@ -201,25 +163,25 @@
         const finalInterestEarned = formatNumber(interestEarned);
         const totalReceivableRaw = totalInvestmentRaw + interestEarned;
         const totalReceivable = formatNumber(totalReceivableRaw);
-
+        const bondYield = Number(data.yield);
         document.querySelector('#bond_invest_amt').innerHTML = '₹' + totalInvestment;
         document.querySelector('#bond_receive_amt').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#bond_avg_interest').innerHTML = '₹' + averageInterestPayout + ' ' + capitalizeString(data.bondDetails.interestPayFreq);
+        document.querySelector('#bond_avg_interest').innerHTML = '₹' + averageInterestPayout + ' ' + capitalizeString(data.interestPayFreq);
         document.querySelector('#chart_invest_val').innerHTML = '₹' + totalInvestment;
         document.querySelector('#chart_fd_val').innerHTML = '₹' + fdNewTotal;
         document.querySelector('#chart_bond_val').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.bondDetails.interestPayFreq);
+        document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.interestPayFreq);
 
         bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable);
-
+        
         document.querySelectorAll('.bonds_return_amt').forEach(element => {
             element.innerHTML = '₹' + finalInterestEarned;
         });
         document.querySelectorAll('.bonds_return_per').forEach(element => {
-            element.innerHTML = data.bondDetails.yield.toFixed(2) + '%';
+            element.innerHTML = bondYield.toFixed(2) + '%';
         });
 
-        const cashflowResult = data.bondDetails.cashflows.reduce((accumulator, current) => {
+        const cashflowResult = bondCashflows.reduce((accumulator, current) => {
             if (current.type === 'interest') {
                 accumulator.push({
                     date: current.date,
@@ -239,7 +201,7 @@
         const secondAmount = cashflowResult[1].amount * unit;
         const lastAmount = cashflowResult[lastIndex].amount * unit;
         const secondLastAmount = cashflowResult[secondLastIndex].amount * unit;
-        const maturityInYears = convertMonthsToYearsAndMonths(data.bondDetails.maturityInMonths, true);
+        const maturityInYears = convertMonthsToYearsAndMonths(data.maturityInMonths, true);
 
         document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
@@ -256,7 +218,7 @@
         document.querySelector('#cashflow-second-last-interest').innerHTML = '₹' + formatNumber(secondLastAmount);
         document.querySelector('#cashflow-last-date').innerHTML = formatDate(lastDate);
         document.querySelector('#cashflow-last-interest').innerHTML = '₹' + formatNumber(lastAmount);
-        document.querySelector('#redemption-date').innerHTML = formatDate(data.bondDetails.redemptionDate);
+        document.querySelector('#redemption-date').innerHTML = formatDate(data.redemptionDate);
         document.querySelectorAll('.bonds_returns_note .maturity').forEach(element => {
             element.innerHTML = maturityInYears;
         });
@@ -415,6 +377,10 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
     });
 }
 
-
+updatePageContent();
 
 </script>
+
+<?php
+}
+?>
