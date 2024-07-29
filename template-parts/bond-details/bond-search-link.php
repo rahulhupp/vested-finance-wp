@@ -113,6 +113,7 @@
         margin: 0;
     }
 </style>
+<div class="bonds_search_container">
 <div class="select_box_new">
     <div class="selected_option" data-value="" id="resultsList">
         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" />
@@ -136,7 +137,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 
 
@@ -145,7 +146,6 @@
 
     function inputChangeCalc() {
         var inputValue = document.querySelector(".dropdown_search").value;
-        console.log('1 inputValue', inputValue);
 
         // Clear the previous timer
         clearTimeout(debounceTimer);
@@ -156,7 +156,6 @@
         }, 100);
     }
     function makeAPICallCalc(inputValue) {
-        console.log('makeAPICallCalc', inputValue);
         var dynamicOptions = document.querySelector(".dynamic_options");
         if (inputValue.length >= 1) {
             dynamicOptions.style.display = "block";
@@ -187,7 +186,6 @@
                     bond.displayName.toLowerCase().startsWith(bond_name.toLowerCase());
             });
 
-            console.log('filteredStocks', filteredStocks);
             renderItemsCalc(filteredStocks);
         }, 300);
     }
@@ -247,7 +245,6 @@
 
             var redirectToURL = '';
             redirectToURL = `<?php echo home_url(); ?>/bond/${formattedText}/${formattedValue}/`;
-            console.log('redirectToURL', redirectToURL);
             window.location.href = redirectToURL;
             
             searchValue.value = selectedText;

@@ -131,9 +131,11 @@ if ($bond_isin) {
                             <div class="stock_tabs_menu_wrapper">
                                 <a class="tab_button active" href="#returns_tab">Returns</a>
                                 <a class="tab_button" href="#rating_tab">Rating</a>
-                                <a class="tab_button" href="#metrics_tab">Key Metrics</a>
+                                <a class="tab_button mobile_hide" href="#metrics_tab">Key Metrics</a>
+                                <a class="tab_button desktop_hide" href="#metrics_tab">Metrics</a>
                                 <?php if ($bond->issuerDescription) :?>
-                                <a class="tab_button" href="#about_tab">About Issuer</a>
+                                <a class="tab_button mobile_hide" href="#about_tab">About Issuer</a>
+                                <a class="tab_button desktop_hide" href="#about_tab">About</a>
                                 <?php endif; ?>
                                 <!-- <a class="tab_button" href="#compare_tab">Compare</a> -->
                                 <a class="tab_button" href="#faqs_tab">FAQs</a>
