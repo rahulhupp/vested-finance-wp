@@ -1,5 +1,5 @@
 <style>
-    .stocks_search_container {
+    .bonds_search_container {
         position: relative;
     }
 
@@ -39,7 +39,7 @@
         border: 1px solid #D1D5DB;
         position: absolute;
         width: 100%;
-        z-index: 2;
+        z-index: 1;
         display: none;
     }
 
@@ -114,9 +114,9 @@
     }
 </style>
 <div class="select_box_new">
-    <div class="selected_option" data-value="" data-type="" id="resultsList">
+    <div class="selected_option" data-value="" id="resultsList">
         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" />
-        <input type="text" class="dropdown_search" placeholder="Search any bond name or ISIN" value="">
+        <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Search any bond name or ISIN" value="">
     </div>
     <div class="options_dropdown_wrap">
         <div id="loader" style="display: none;">
@@ -132,9 +132,137 @@
             </svg>
         </div>
         <div class="dropdown_options">
-            <ul class="options_result">
-            <li data-value="AAPL" data-type="stock"> <strong>Apple, Inc</strong> <span>AAPL</span> </li>
-            </ul>
+            <ul class="dynamic_options"></ul>
         </div>
     </div>
 </div>
+
+
+
+
+<script>
+    var debounceTimer;
+
+    function inputChangeCalc() {
+        var inputValue = document.querySelector(".dropdown_search").value;
+        console.log('1 inputValue', inputValue);
+
+        // Clear the previous timer
+        clearTimeout(debounceTimer);
+
+        // Set a new timer
+        debounceTimer = setTimeout(function () {
+            makeAPICallCalc(inputValue);
+        }, 100);
+    }
+    function makeAPICallCalc(inputValue) {
+        console.log('makeAPICallCalc', inputValue);
+        var dynamicOptions = document.querySelector(".dynamic_options");
+        if (inputValue.length >= 1) {
+            dynamicOptions.style.display = "block";
+            fetchResultCalc(inputValue);
+        } else {
+            dynamicOptions.style.display = "none";
+        }
+    }
+
+    var debounceTimer;
+
+    function debounce(func, delay) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(func, delay);
+    }
+
+    function fetchResultCalc(bond_name) {
+        debounce(function () {
+            <?php
+                global $wpdb;
+                $table_name = $wpdb->prefix . 'bonds_list';
+                $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+            ?>
+            var dbStocksList = <?php echo json_encode($results); ?>;
+
+            var filteredStocks = dbStocksList.filter(function (bond) {
+                return bond.securityId.toLowerCase().startsWith(bond_name.toLowerCase()) ||
+                    bond.displayName.toLowerCase().startsWith(bond_name.toLowerCase());
+            });
+
+            console.log('filteredStocks', filteredStocks);
+            renderItemsCalc(filteredStocks);
+        }, 300);
+    }
+
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+        document.querySelector(".dynamic_options").style.display = 'none';
+    }
+
+    // Add this function to hide the loader
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+        document.querySelector(".dynamic_options").style.display = 'block';
+    }
+
+    function renderItemsCalc(results) {
+        const dropdownOptions = document.querySelector('.dropdown_options ul.dynamic_options');
+        dropdownOptions.innerHTML = '';
+
+        if (results.length > 0) {
+            results.forEach(result => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${result.displayName}</strong><span>${result.securityId}</span>`;
+                listItem.dataset.value = result.securityId;
+                dropdownOptions.appendChild(listItem);
+            });
+        } else {
+            const listItem = document.createElement("p");
+            listItem.textContent = "No Result Found!";
+            dropdownOptions.appendChild(listItem);
+        }
+    }
+
+    document.querySelector('.selected_option').addEventListener("click", function() {
+        const mainDropdown = document.querySelector('.select_box_new');
+        mainDropdown.classList.add("dropdown_collased");
+    });
+
+
+    document.addEventListener('click', function(event) {
+        const clickedElement = event.target;
+        const mainDropdown = document.querySelector('.select_box_new');
+        if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
+
+            const mainValue = document.querySelector('.selected_option');
+            const searchValue = document.querySelector('.dropdown_search');
+
+            const selectedValue = clickedElement.dataset.value;
+            var selectedText = clickedElement.querySelector('strong').innerText;
+            var formattedText = selectedText.toLowerCase()
+                                            .replace(/ /g, '-')
+                                            .replace(/,/g, '-')
+                                            .replace(/[^a-zA-Z0-9\-]/g, '')
+                                            .replace(/-+/g, '-')
+                                            .replace(/^-+|-+$/g, '');
+            var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
+
+            var redirectToURL = '';
+            redirectToURL = `<?php echo home_url(); ?>/bond/${formattedText}/${formattedValue}/`;
+            console.log('redirectToURL', redirectToURL);
+            window.location.href = redirectToURL;
+            
+            searchValue.value = selectedText;
+            mainValue.dataset.value = selectedValue;
+
+            if (mainDropdown.classList.contains("dropdown_collased")) {
+                mainDropdown.classList.remove("dropdown_collased");
+            } else {
+                mainDropdown.classList.add("dropdown_collased");
+            }
+        }
+
+        if (!mainDropdown.contains(clickedElement)) {
+            mainDropdown.classList.remove("dropdown_collased");
+        }
+    });
+
+</script>
