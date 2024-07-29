@@ -10,7 +10,7 @@ if($bond_isin) {
     $collections_json = json_encode($collections);
     $bond_json = json_encode($bond);
     $cashflows_json = json_encode($cashflows);
-
+    $isTax = $bond->isTaxfree;
     if($bond->isTaxfree) {
         $taxFree = 'true';
     }
@@ -98,8 +98,7 @@ if($bond_isin) {
                 document.querySelector('.qty_stepper input[type=number]').style.width = `${qtyWidth}px`;
             }
         }
-
-        if(<?php echo $taxFree; ?> === 'true') {
+        if(<?php echo $isTax; ?>) {
             const chartWrapper = document.querySelector('.bond_chart_temp');
             const postTax = document.createElement('span');
             postTax.textContent = '**Assumes a 30% tax slab under the new tax regime.';
