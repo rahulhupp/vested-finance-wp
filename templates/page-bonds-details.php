@@ -46,6 +46,11 @@ if ($bond_isin) {
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
         <div class="bond_details_main">
             <div class="container">
+                <div class="bond_details_breadcrumb">
+                    <a href="<?php echo home_url(); ?>">Vested > </a>
+                    <a href="<?php echo home_url('/in/inr-bonds/'); ?>">INR Bonds ></a>
+                    <span><?php echo $bond->displayName; ?></span>
+                </div>
                 <div class="bond_details_wrapper">
                     <div class="bond_details_left_column">
                         <div class="bonds_search_container">
@@ -63,7 +68,7 @@ if ($bond_isin) {
                             </div>
                             <h1 class="mobile_hide"><?php echo $bond->displayName; ?></h1>
                             <h2><?php echo $bond->issuerName; ?></h2>
-                            <h6><?php echo $bond->securityId; ?></h6>
+                            <h6>ISIN: <?php echo $bond->securityId; ?></h6>
                             <div class="bonds_info_box">
                                 <div class="bond_details_box">
                                     <div class="bond_detail_col">
@@ -200,5 +205,33 @@ function capitalizeString($string) {
 </div>
 <?php get_template_part('template-parts/bond-details/js/bond-details-api'); ?>
 <?php get_template_part('template-parts/bond-details/js/general-js'); ?>
-
+<script type="application/ld+json">
+    <?php
+        $breadcrumb = [
+            "@context" => "https://schema.org",
+            "@type" => "BreadcrumbList",
+            "itemListElement" => [
+                [
+                    "@type" => "ListItem",
+                    "position" => 1,
+                    "name" => "Vested",
+                    "item" => home_url()
+                ],
+                [
+                    "@type" => "ListItem",
+                    "position" => 2,
+                    "name" => "INR Bonds",
+                    "item" => home_url('/in/inr-bonds/')
+                ],
+                [
+                    "@type" => "ListItem",
+                    "position" => 3,
+                    "name" => $bond->displayName,
+                    "item" => get_permalink()
+                ]
+            ]
+        ];
+        echo json_encode($breadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    ?>
+</script>
 <?php get_footer(); ?>

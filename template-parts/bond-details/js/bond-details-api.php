@@ -176,7 +176,7 @@ if($bond_isin) {
         document.querySelector('#chart_bond_val').innerHTML = '₹' + totalReceivable;
         document.querySelector('#interest_pay_frequency').innerHTML = capitalizeString(data.interestPayFreq);
 
-        bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable);
+        bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable, bondYield);
         
         document.querySelectorAll('.bonds_return_amt').forEach(element => {
             element.innerHTML = '₹' + finalInterestEarned;
@@ -278,7 +278,7 @@ if($bond_isin) {
 
 let bondReturnsBarChart; // Variable to track the chart instance
 
-function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) {
+function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable, bondYield) {
     const totalInvestmentStr = totalInvestment.toString().replace(/,/g, '');
     const fdNewTotalStr = fdNewTotal.toString().replace(/,/g, '');
     const totalReceivableStr = totalReceivable.toString().replace(/,/g, '');
@@ -351,7 +351,7 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable) 
             }
             chart.data.datasets.forEach((dataset, i) => {
                 chart.getDatasetMeta(i).data.forEach((bar, index) => {
-                    const percent = [' ', fdRate, '12%'];
+                    const percent = [' ', fdRate, bondYield.toFixed(2) + '%'];
                     const value = dataset.data[index];
                     const y = bar.y;
                     const x = bar.x;
