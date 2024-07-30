@@ -32,7 +32,7 @@ if ($bond_isin) {
     $bondCouponRate = $bond->couponRate;
     $isinCode = $bond->securityId;
     $maturityDate = $bond->redemptionDate;
-    $formattedDate = date('Y-m-d', strtotime($maturityDate));
+    $formattedDate = date('d-F-Y', strtotime($maturityDate));
     set_query_var('custom_bond_title_value', "$bondName");
     set_query_var('custom_bond_coupon_rate', "$bondCouponRate");
     set_query_var('custom_bond_security_id', "$isinCode");
