@@ -151,7 +151,13 @@ if($bond_isin) {
         const averageInterestPayout = formatNumber(averageInterestPayoutRaw);
 
         // Calculate FD interest with 7% annual interest rate
-        const annualRate = 0.07;
+        let annualRate;
+        if(<?php echo $isTax; ?> === 0) {
+            annualRate = 0.07;
+        }
+        else {
+            annualRate = 0.049;
+        }
         const rate = Math.floor(totalInvestmentRaw);
         const fdInterestRaw = rate * annualRate;
         const fdInterest =  Math.floor(fdInterestRaw);
@@ -336,10 +342,16 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable, 
             const { ctx, chartArea: { top, bottom, width, height } } = chart;
             ctx.save();
             const isSmallScreen = window.innerWidth < 768;
-
+            let fdRate;
+            if(<?php echo $isTax; ?> === 0) {
+                fdRate = '7%';
+            }
+            else {
+                fdRate = '4.9%'
+            }
             chart.data.datasets.forEach((dataset, i) => {
                 chart.getDatasetMeta(i).data.forEach((bar, index) => {
-                    const percent = [' ', '7%', bondYield.toFixed(2) + '%'];
+                    const percent = [' ', fdRate, bondYield.toFixed(2) + '%'];
                     const value = dataset.data[index];
                     const y = bar.y;
                     const x = bar.x;
