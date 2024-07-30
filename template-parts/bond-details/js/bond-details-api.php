@@ -1,6 +1,6 @@
 <?php
 $bond_name_slug = get_query_var('bond_company');
-$bond_isin = get_query_var('isin');
+$bond_isin = get_query_var('securityId');
 if($bond_isin) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'bonds_list';

@@ -1,12 +1,8 @@
 <?php
-get_header();
+
 $bond_name_slug = get_query_var('bond_company');
-$bond_isin = get_query_var('isin');
-?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-<?php
+$bond_isin = get_query_var('securityId');
+
 // echo strtoupper($bond_isin);
 
 if ($bond_isin) {
@@ -24,7 +20,6 @@ if ($bond_isin) {
         $statusCode = substr($headers[0], 9, 3);
         return in_array($statusCode, ['200']) ? true : false;
     }
-
     $bondImageURL = $bond->logo;
     if ($bond->bondCategory === 'CORPORATE') {
         $defaultURL = get_stylesheet_directory_uri() . '/assets/images/Corporate-Bonds.png';
@@ -33,8 +28,22 @@ if ($bond_isin) {
     }
     $isImageAccessible = checkImageURL($bondImageURL);
 
+    $bondName = capitalizeString($bond->issuerName);
+    $bondCouponRate = $bond->couponRate;
+    $isinCode = $bond->securityId;
+    $maturityDate = $bond->redemptionDate;
+    $formattedDate = date('Y-m-d', strtotime($maturityDate));
+    set_query_var('custom_bond_title_value', "$bondName");
+    set_query_var('custom_bond_coupon_rate', "$bondCouponRate");
+    set_query_var('custom_bond_security_id', "$isinCode");
+    set_query_var('custom_bond_description', "Invest in $bondName coupon rate $bondCouponRate%, Maturity date - $formattedDate, INE No - $isinCode , Explore its issue size, credit rating and more.");
+
     if ($bond) {
+        get_header();
 ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
         <div class="bond_details_main">
             <div class="container">
                 <div class="bond_details_wrapper">
@@ -173,6 +182,12 @@ if ($bond_isin) {
         </div>
 <?php
     }
+}
+
+function capitalizeString($string) {
+    $lowercaseString = strtolower($string);
+    $capitalizedString = ucwords($lowercaseString);
+    return $capitalizedString;
 }
 
 ?>
