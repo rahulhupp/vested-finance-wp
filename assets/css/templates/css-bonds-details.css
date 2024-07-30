@@ -7442,3 +7442,27 @@ td.holdings_stock_weight_td {
     cursor: not-allowed;
     display: block;
 }
+
+.bond_details_breadcrumb {
+	padding-left: 24px;
+}
+
+.bond_details_breadcrumb a {
+	font-size: 14px;
+	font-weight: 400;
+	list-style: 21px;
+	color: #6B7280;
+}
+.bond_details_breadcrumb span {
+	font-size: 14px;
+	font-weight: 500;
+	color: #374151;
+	text-transform: capitalize;
+}
+
+@media (max-width: 767px) {
+	.bond_details_breadcrumb {
+		padding-left: 0;
+		padding-bottom: 10px;
+	}
+}

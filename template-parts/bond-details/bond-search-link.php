@@ -208,8 +208,12 @@
         if (results.length > 0) {
             results.forEach(result => {
                 const listItem = document.createElement("li");
+                const bondType = result.bondCategory.toLowerCase();
+                const bondIssuer = result.issuerName.toLowerCase().replace(/ /g, '-');
                 listItem.innerHTML = `<strong>${result.displayName}</strong><span>${result.securityId}</span>`;
                 listItem.dataset.value = result.securityId;
+                listItem.setAttribute('data-bond', bondType);
+                listItem.setAttribute('data-issuer', bondIssuer);
                 dropdownOptions.appendChild(listItem);
             });
         } else {
@@ -235,16 +239,19 @@
 
             const selectedValue = clickedElement.dataset.value;
             var selectedText = clickedElement.querySelector('strong').innerText;
-            var formattedText = selectedText.toLowerCase()
-                                            .replace(/ /g, '-')
-                                            .replace(/,/g, '-')
-                                            .replace(/[^a-zA-Z0-9\-]/g, '')
-                                            .replace(/-+/g, '-')
-                                            .replace(/^-+|-+$/g, '');
+            var selectedBondType = clickedElement.getAttribute('data-bond');
+            var selectedIssuer = clickedElement.getAttribute('data-issuer');
+            var finalBondType;
+            if(selectedBondType === 'govt') {
+                finalBondType = 'government-bonds';
+            }
+            else {
+                finalBondType = 'corporate-bonds';
+            }
             var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
 
             var redirectToURL = '';
-            redirectToURL = `<?php echo home_url(); ?>/bond/${formattedText}/${formattedValue}/`;
+            redirectToURL = `<?php echo home_url(); ?>/in/inr-bonds/${finalBondType}/${selectedIssuer}/${formattedValue}`;
             window.location.href = redirectToURL;
             
             searchValue.value = selectedText;
