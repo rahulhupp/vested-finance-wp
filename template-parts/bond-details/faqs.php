@@ -238,7 +238,7 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "No, the interest income from <?php echo $bond->displayName; ?> bonds is not tax-free. It is
-                                categorised as "income from other sources," and the applicable tax will be calculated based on
+                                categorised as 'income from other sources,' and the applicable tax will be calculated based on
                                 your income tax slab. For detailed information on taxation, please refer to this article: here"
                     }
                 },
