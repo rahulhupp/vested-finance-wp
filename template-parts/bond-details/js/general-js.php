@@ -170,6 +170,22 @@
                 disclosure.style.display = "none";
             });
         });
+        document.querySelectorAll('.tab_button').forEach(function(tabButton) {
+            tabButton.addEventListener("click", function() {
+                var targetId = this.getAttribute('href');
+                var targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    var fixedHeaderHeight = document.querySelector('.stock_tabs_menu').offsetHeight;
+                    var targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - fixedHeaderHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     });
 
     document.addEventListener("DOMContentLoaded", function() {
