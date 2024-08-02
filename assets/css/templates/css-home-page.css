@@ -755,7 +755,15 @@ section.invest_wisely_sec .container {
 	display: none;
 }
 
+.page-template-page-home-page .geolocation_banner p {
+    display: flex;
+    align-items: center;
+}
 
+.page-template-page-home-page .geolocation_banner a {
+    width: auto;
+    margin-left: 10px;
+}
 
 @media (max-width: 1200px) {
 	.counters_wrap {
@@ -814,6 +822,19 @@ section.invest_wisely_sec .container {
 
 	.home_page_faq_wrap {
 		padding: 0 90px;
+	}
+
+	.page-template-page-home-page .geolocation_banner .content {
+		padding: 0;
+	}
+
+	.page-template-page-home-page .geolocation_banner p {
+		font-size: 16px;
+	}
+
+	.page-template-page-home-page .geolocation_banner a {
+		font-size: 16px;
+		padding: 6px 8px;
 	}
 }
 
