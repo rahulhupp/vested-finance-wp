@@ -1479,6 +1479,9 @@ section.invest_wisely_sec .container {
 		margin: 10px 0 0;
 		width: auto;
 	}
+	.page-template-page-home-page .geolocation_banner .content {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
