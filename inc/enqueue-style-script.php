@@ -88,6 +88,13 @@
          if (is_page_template('templates/page-partner-referral-landing.php')) {
             wp_enqueue_style('partner-referral-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partner-referral-landing.css', false, '', '');
         }
+        if (is_page_template('templates/page-solar-calculator.php')) {
+            wp_enqueue_style('solar-calculator-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-solar-calculator.css', false, '', '');
+            wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js@3.7.0');
+            wp_enqueue_script('chart-adapter-js', 'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js');
+            wp_enqueue_script('chart-plugin-js', 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels');
+            wp_enqueue_script('solar-calculator-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-solar-calculator.js');
+         }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
