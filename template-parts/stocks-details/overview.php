@@ -16,8 +16,30 @@
         $lowRange = isset($rangeItem['low']) ? $rangeItem['low'] : '';
         $highRange = isset($rangeItem['high']) ? $rangeItem['high'] : '';
         $price = $overview_data->price;
-        $rangePercentage = (($price - $lowRange) / ($highRange - $lowRange)) * 100;
-        $aboutTitle = 'About ' . $overview_data->name . ', ' . $overview_data->type;
+        $isValidValues = false;
+        
+        if(strlen($lowRange) === 0) {
+            $lowRange = 1;
+            $isValidValues = true;
+        }
+        if(strlen($highRange) === 0) {
+            $highRange = 1;
+            $isValidValues = true;
+        }
+        if ($highRange == $lowRange) {
+            $rangePercentage = 1;
+            $isValidValues = true;
+        } else {
+            $rangePercentage = (($price - $lowRange) / ($highRange - $lowRange)) * 100;
+            $isValidValues = false;
+        }
+        
+        if (is_infinite($rangePercentage)) {
+            $rangePercentage = 1;
+        }
+        if(strlen($overview_data->name) > 0){
+            $aboutTitle = 'About ' . $overview_data->name . ', ' . $overview_data->type;
+        }
         $limitedDescription = substr($overview_data->description, 0, 250); // Assuming 100 characters limit
         $aboutTagsHTML = '';
         foreach ($overview_data->tags as $tag) {
@@ -186,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="stock_metrics_range">
+                <div class="stock_metrics_range <?php if($isValidValues): echo 'hidden'; endif; ?>">
                     <h6>
                         <span>52-week Range</span>
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />

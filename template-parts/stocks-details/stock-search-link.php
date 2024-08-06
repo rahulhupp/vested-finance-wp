@@ -217,7 +217,7 @@
     //         $table_name = $wpdb->prefix . 'stocks_list';
     //         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
     //     ?>
-    //     var dbStocksList = <?php echo json_encode($results); ?>;
+
     //     // console.log('dbStocksList', dbStocksList);
 
     //     var filteredStocks = dbStocksList.filter(function(stock) {
