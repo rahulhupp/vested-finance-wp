@@ -67,12 +67,14 @@
                                         <?php echo $bond->isTaxfree ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>'; ?>
                                     </strong>
                                 </div>
+                                <?php if($bond->imDocUrl) : ?>
                                 <div class="stock_summary_item">
                                     <span>
                                         Information Memorandum
                                     </span>
                                     <strong><a href="<?php echo $bond->imDocUrl; ?>" target="_blank">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
                                 </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

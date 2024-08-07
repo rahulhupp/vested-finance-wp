@@ -201,12 +201,18 @@ if($bond_isin) {
         const secondDate = cashflowResult[1].date;
         const lastDate = cashflowResult[lastIndex].date;
         const secondLastDate = cashflowResult[secondLastIndex].date;
-        const firstAmount = cashflowResult[0].amount * unit;
-        const secondAmount = cashflowResult[1].amount * unit;
-        const lastAmount = cashflowResult[lastIndex].amount * unit;
-        const secondLastAmount = cashflowResult[secondLastIndex].amount * unit;
+        let firstAmount = cashflowResult[0].amount * unit;
+        let secondAmount = cashflowResult[1].amount * unit;
+        let lastAmount = cashflowResult[lastIndex].amount * unit;
+        let secondLastAmount = cashflowResult[secondLastIndex].amount * unit;
+        const deduction = firstAmount * 0.10;
         const maturityInYears = convertMonthsToYearsAndMonths(data.maturityInMonths, true);
-
+        if(<?php echo $isTax; ?> === 0) { 
+            firstAmount = firstAmount - deduction;
+            secondAmount = secondAmount - deduction;
+            lastAmount = lastAmount - deduction;
+            secondLastAmount = secondLastAmount - deduction;
+        }
         document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
         document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + formatNumber(accruedInterest);
