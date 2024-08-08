@@ -101,7 +101,9 @@
                                     <div class="interest_single_name">
                                         <h4>Interest Payment (<span id="interest_pay_frequency">Monthly</span>)</h4>
                                     </div>
+
                                 </div>
+                                <span id="tds_note">Note: The interest shown is after deducting 10% tds</span>
                                 <div class="single_interest_payment">
                                     <div class="interest_single_name">
                                         <p id="cashflow-first-date">10 Jun ‘24</p>

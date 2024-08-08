@@ -154,9 +154,11 @@ if($bond_isin) {
         let annualRate;
         if(<?php echo $isTax; ?> === 0) {
             annualRate = 0.07;
+            document.querySelector('#tds_note').style.display = 'block';
         }
         else {
             annualRate = 0.049;
+            document.querySelector('#tds_note').style.display = 'none';
         }
         const rate = Math.floor(totalInvestmentRaw);
         const fdInterestRaw = rate * annualRate;
@@ -220,7 +222,7 @@ if($bond_isin) {
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
         document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + formatNumber(accruedInterest);
         document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#cashflow-payout').innerHTML = '₹' + cashflowPayout;
+        document.querySelector('#cashflow-payout').innerHTML = '₹' + formatNumber(cashflowPayout);
         document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
         document.querySelector('#cashflow-initial-date').innerHTML = formatDate(firstDate);
         document.querySelector('#cashflow-first-date').innerHTML = formatDate(firstDate);
@@ -274,7 +276,7 @@ if($bond_isin) {
     let result = '';
 
     if (years > 0) {
-        result += `${years}${longerFormat ? ` year${years > 1 ? 's' : ''}` : 'y'}`;
+        result += years > 0 ? `${years}${longerFormat ? ` year${years > 1 ? 's' : ''}` : 'y'}` : '';
     }
     if (remainingMonths > 0) {
         if (years > 0) {
