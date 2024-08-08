@@ -5801,6 +5801,7 @@ footer .extra_info ul li sup {
     background: transparent;
 	padding: 0;
     text-align: center;
+	appearance: textfield;
 }
 .qty_stepper input[type=number]::-webkit-inner-spin-button {
     display: none;
