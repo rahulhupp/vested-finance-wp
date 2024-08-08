@@ -205,19 +205,22 @@ if($bond_isin) {
         let secondAmount = cashflowResult[1].amount * unit;
         let lastAmount = cashflowResult[lastIndex].amount * unit;
         let secondLastAmount = cashflowResult[secondLastIndex].amount * unit;
-        const deduction = firstAmount * 0.10;
+        let DeductedAmount = bondCashflows[bondCashflows.length - 1].amountPostDeduction;
+        const deduction = bondCashflows[0].amountPostDeduction;
         const maturityInYears = convertMonthsToYearsAndMonths(data.maturityInMonths, true);
+        let cashflowPayout = totalInvestment;
         if(<?php echo $isTax; ?> === 0) { 
-            firstAmount = firstAmount - deduction;
-            secondAmount = secondAmount - deduction;
-            lastAmount = lastAmount - deduction;
-            secondLastAmount = secondLastAmount - deduction;
+            firstAmount = unit * deduction;
+            secondAmount = unit * deduction;
+            lastAmount = unit * deduction;
+            secondLastAmount = unit * deduction;
+            cashflowPayout = unit * DeductedAmount;
         }
         document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
         document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + formatNumber(accruedInterest);
         document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#cashflow-payout').innerHTML = '₹' + totalInvestment;
+        document.querySelector('#cashflow-payout').innerHTML = '₹' + cashflowPayout;
         document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
         document.querySelector('#cashflow-initial-date').innerHTML = formatDate(firstDate);
         document.querySelector('#cashflow-first-date').innerHTML = formatDate(firstDate);
