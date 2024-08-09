@@ -6094,6 +6094,11 @@ div#bond-loader {
 	animation: 1s rotation linear infinite;
 }
 
+#tds_note {
+	font-size: 10px;
+	text-align: left;
+}
+
 
 @keyframes rotation {
 	0% {
