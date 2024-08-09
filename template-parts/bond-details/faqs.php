@@ -104,7 +104,7 @@ if ($bond) {
                     </div>
                     <div class="faq_answer">
                         <p>To sell <?php echo $bond->displayName; ?> bond before its maturity date, please contact us at
-                            help@vestedfinance.co. Our dedicated support team will guide you through the process and assist
+                        <a href="mailto:help-inrbonds@vestedfinance.co">help-inrbonds@vestedfinance.co</a>. Our dedicated support team will guide you through the process and assist
                             you with selling your bond.</p>
                     </div>
                     <div class="faq_item">
