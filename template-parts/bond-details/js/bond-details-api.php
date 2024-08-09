@@ -218,7 +218,7 @@ if($bond_isin) {
             secondLastAmount = unit * deduction;
             cashflowPayout = unit * DeductedAmount;
         }
-        
+        cashflowPayout = cashflowPayout.toLocaleString('en-IN');
         document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
         document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + formatNumber(accruedInterest);
@@ -270,7 +270,7 @@ if($bond_isin) {
     if (typeof value === 'string') {
         value = Math.floor(Number(value));
     }
-    
+
     let formattedValue = Math.floor(Number(value.toFixed(2)));
     return formattedValue.toLocaleString('en-IN');
 }
