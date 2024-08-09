@@ -82,7 +82,13 @@ if ($bond_isin) {
                                                 <?php
                                                 $years = intdiv($bond->maturityInMonths, 12);
                                                 $months = $bond->maturityInMonths % 12;
-                                                echo "{$years}y {$months}m";
+                                                if ($years > 0) {
+                                                    echo "{$years}y" . ($months > 0 ? " {$months}m" : '');
+                                                } elseif ($months > 0) {
+                                                    echo "{$months}m";
+                                                } else {
+                                                    echo '';
+                                                }
                                                 ?>
                                             </h4>
                                         </div>
