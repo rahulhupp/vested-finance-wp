@@ -218,11 +218,12 @@ if($bond_isin) {
             secondLastAmount = unit * deduction;
             cashflowPayout = unit * DeductedAmount;
         }
+        
         document.querySelector('#cashflow-inveset').innerHTML = '₹' + totalInvestment;
         document.querySelector('#cashflow-pricipal').innerHTML = '₹' + Number(principalAmount).toLocaleString('en-IN');
         document.querySelector('#cashflow-accured-interest').innerHTML = '₹' + formatNumber(accruedInterest);
         document.querySelector('#cashflow-total-returns').innerHTML = '₹' + totalReceivable;
-        document.querySelector('#cashflow-payout').innerHTML = '₹' + formatNumber(cashflowPayout);
+        document.querySelector('#cashflow-payout').innerHTML = '₹' + cashflowPayout;
         document.querySelector('#cashflow-interest-earned').innerHTML = '₹' + finalInterestEarned;
         document.querySelector('#cashflow-initial-date').innerHTML = formatDate(firstDate);
         document.querySelector('#cashflow-first-date').innerHTML = formatDate(firstDate);
@@ -266,9 +267,14 @@ if($bond_isin) {
     }
 
     function formatNumber(value) {
-        const formattedValue = Math.floor(Number(value.toFixed(2)));
-        return formattedValue.toLocaleString('en-IN');
+    if (typeof value === 'string') {
+        value = Math.floor(Number(value));
     }
+    
+    let formattedValue = Math.floor(Number(value.toFixed(2)));
+    return formattedValue.toLocaleString('en-IN');
+}
+
 
     function convertMonthsToYearsAndMonths(months, longerFormat = false) {
     const years = Math.floor(months / 12);
