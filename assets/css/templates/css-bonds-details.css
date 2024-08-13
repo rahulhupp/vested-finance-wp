@@ -6905,6 +6905,29 @@ td.holdings_stock_weight_td {
     line-height: 20px;
     font-weight: 400;
     color: #6B7280;
+	position: relative;
+}
+
+.pricipal_amt_row h4 .info_text {
+	position: absolute;
+    left: calc(100% - -30px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    padding: 16px;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 12px 0px rgba(0, 40, 82, 0.16);
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.6px;
+    display: none;
+}
+
+.pricipal_amt_row h4 img:hover + .info_text {
+	display: block;
+	z-index: 1;
 }
 
 .pricipal_amt_row:last-child {
@@ -6973,6 +6996,11 @@ td.holdings_stock_weight_td {
 
 .cashflow_content {
     overflow: hidden;
+}
+
+.govt_highlighted {
+	font-weight: 600;
+	color: #166534 !important;
 }
 
 @media screen and (max-width: 1199px) {

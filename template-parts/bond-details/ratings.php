@@ -9,8 +9,14 @@
                         <?php
                             $date = new DateTime($bond->ratingDate);
                             $ratingDate = $date->format('d M \'y');
+                            if($bond->bondCategory != 'GOVT') {
                         ?>
                         <p>Rated on <?php echo $ratingDate; ?> by <?php echo $bond->ratingAgency; ?></p>
+                        <?php
+                            } else { ?>
+                        <p class="govt_highlighted">Highly safe, backed by Gov of India</p>
+                            <?php }
+                        ?>
                     </div>
                     <div class="separator_line"></div>
                     <div class="ratings_wrap">
@@ -18,13 +24,20 @@
                             $validRatings = ['a', 'a+', 'a-', 'aa', 'aa+', 'aa-', 'aaa', 'bb', 'bbb', 'bbb+', 'bbb-'];
                             $rating = strtolower($bond->rating);
                             $imageFile = in_array($rating, $validRatings) ? "ratings-{$rating}.png" : "ratings-aa.png";
-                            echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/ratings/' . $imageFile . '" alt="">';
+                            if($bond->bondCategory === 'GOVT') {
+                                echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/ratings/sovereign-ratings.png" alt="">';    
+                            }
+                            else {
+                                echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/ratings/' . $imageFile . '" alt="">';
+                            }
                         ?>
                     </div>
+                    <?php if($bond->ratingRationalUrl) :?>
                     <div class="separator_line"></div>
                     <div class="learn_more_btn">
                         <a href="<?php echo $bond->ratingRationalUrl; ?>" target="_blank">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php

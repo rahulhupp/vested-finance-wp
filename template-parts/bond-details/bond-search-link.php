@@ -209,7 +209,8 @@
             results.forEach(result => {
                 const listItem = document.createElement("li");
                 const bondType = result.bondCategory.toLowerCase();
-                const bondIssuer = result.issuerName.toLowerCase().replace(/ /g, '-');
+                let bondIssuer = result.issuerName.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+                bondIssuer = bondIssuer.replace(/-+/g, '-').replace(/^-|-$/g, '');
                 listItem.innerHTML = `<strong>${result.displayName}</strong><span>${result.securityId}</span>`;
                 listItem.dataset.value = result.securityId;
                 listItem.setAttribute('data-bond', bondType);
@@ -253,6 +254,7 @@
             var redirectToURL = '';
             redirectToURL = `<?php echo home_url(); ?>/in/inr-bonds/${finalBondType}/${selectedIssuer}/${formattedValue}`;
             window.location.href = redirectToURL;
+            console.log(selectedIssuer);
             
             searchValue.value = selectedText;
             mainValue.dataset.value = selectedValue;

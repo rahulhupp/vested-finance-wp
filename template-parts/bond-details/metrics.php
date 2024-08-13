@@ -67,6 +67,14 @@
                                         <?php echo $bond->isTaxfree ? '<span class="highlighted">Tax Free</span>' : '<span>Taxable</span>'; ?>
                                     </strong>
                                 </div>
+                                <?php if($bond->ratingRationalUrl) : ?>
+                                <div class="stock_summary_item">
+                                    <span>
+                                        Latest Rating Rationale
+                                    </span>
+                                    <strong><a href="<?php echo $bond->ratingRationalUrl; ?>" target="_blank">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
+                                </div>
+                                <?php endif; ?>
                                 <?php if($bond->imDocUrl) : ?>
                                 <div class="stock_summary_item">
                                     <span>
