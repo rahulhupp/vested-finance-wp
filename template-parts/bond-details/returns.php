@@ -87,11 +87,19 @@
                             </div>
                             <div class="principal_amt_block">
                                 <div class="pricipal_amt_row">
-                                    <h4>Principal Amount(Last traded price) <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" /></h4>
+                                    <h4>Principal Amount(Last traded price) <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">
+                                            Principal amount is the price at which the bond was last bought or sold in the market.
+                                        </div>
+                                    </h4>
                                     <p id="cashflow-pricipal">₹20,150</p>
                                 </div>
                                 <div class="pricipal_amt_row">
-                                    <h4>Accrued Interest <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" /></h4>
+                                    <h4>Accrued Interest <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                        <div class="info_text">
+                                            Accrued interest is the interest that has built up on the bond since the last payment, but hasn’t been paid yet.
+                                        </div>
+                                    </h4>
                                     <p id="cashflow-accured-interest">₹1,000</p>
                                 </div>
                             </div>
@@ -186,11 +194,19 @@
                                 </div>
                                 <div class="principal_amt_block margin_b_none">
                                     <div class="pricipal_amt_row">
-                                        <h4>Principal Payout <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" /></h4>
+                                        <h4>Principal Payout <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                            <div class="info_text">
+                                                Principal payout is the amount of money you get back when the bond reaches its maturity date.
+                                            </div>
+                                        </h4>
                                         <p class="bolder" id="cashflow-payout">₹21,150</p>
                                     </div>
                                     <div class="pricipal_amt_row">
-                                        <h4>Total Interest Earned <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" /></h4>
+                                        <h4>Total Interest Earned <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
+                                            <div class="info_text">
+                                                Total interest earned is the total amount of interest you’ve received from the bond over its lifetime.
+                                            </div>
+                                        </h4>
                                         <p class="bolder" id="cashflow-interest-earned">₹3,400</p>
                                     </div>
                                 </div>
