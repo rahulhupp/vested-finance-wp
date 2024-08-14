@@ -7023,8 +7023,8 @@ td.holdings_stock_weight_td {
 
 .pdf_modal .close {
 	position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 15%;
 	cursor: pointer;
 }
 
