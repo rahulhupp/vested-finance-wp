@@ -7003,6 +7003,35 @@ td.holdings_stock_weight_td {
 	color: #166534 !important;
 }
 
+.pdf_modal {
+	width: 100%;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    top: 0;
+	z-index: -1;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.pdf_modal embed {
+	margin-top: 50px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pdf_modal .close {
+	position: absolute;
+    top: 0;
+    right: 0;
+	cursor: pointer;
+}
+
+.ast-off-canvas-active {
+	overflow: hidden;
+}
+
 @media screen and (max-width: 1199px) {
 	.bond_details_left_column {
 		width: 320px;
