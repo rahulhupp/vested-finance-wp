@@ -407,12 +407,13 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable, 
 updatePageContent();
 
 var modal = document.querySelector(".pdf_modal");
-var btn = document.querySelector(".pdf_viewer");
+var btns = document.querySelectorAll(".pdf_viewer");
 var span = document.getElementsByClassName("close")[0];
 var html = document.querySelector('html');
 var pdfEmbed = document.querySelector('#pdf_embed');
 
-btn.onclick = function(e) {
+btns.forEach(btn => {
+    btn.onclick = function(e) {
     e.preventDefault();
     modal.style.display = "block";
     modal.style.zIndex = "9999";
@@ -421,8 +422,9 @@ btn.onclick = function(e) {
     html.classList.add('ast-off-canvas-active');
     var pdfUrl = btn.getAttribute('href');
     // pdfEmbed.src = pdfUrl;
-
 }
+
+});
 
 span.onclick = function() {
     modal.style.display = "none";
