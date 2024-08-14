@@ -406,6 +406,32 @@ function bondReturnsGraphFunction(totalInvestment, fdNewTotal, totalReceivable, 
 
 updatePageContent();
 
+var modal = document.querySelector(".pdf_modal");
+var btn = document.querySelector(".pdf_viewer");
+var span = document.getElementsByClassName("close")[0];
+var html = document.querySelector('html');
+var pdfEmbed = document.querySelector('#pdf_embed');
+
+btn.onclick = function(e) {
+    e.preventDefault();
+    modal.style.display = "block";
+    modal.style.zIndex = "9999";
+    modal.style.visibility = "visible";
+    modal.style.opacity = "1";
+    html.classList.add('ast-off-canvas-active');
+    var pdfUrl = btn.getAttribute('href');
+    // pdfEmbed.src = pdfUrl;
+
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+    modal.style.zIndex = "-1";
+    modal.style.visibility = "hidden";
+    modal.style.opacity = "0";
+    html.classList.remove('ast-off-canvas-active');
+}
+
 </script>
 
 <?php

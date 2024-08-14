@@ -32,12 +32,10 @@
                             }
                         ?>
                     </div>
-                    <?php if($bond->ratingRationalUrl) :?>
                     <div class="separator_line"></div>
                     <div class="learn_more_btn">
-                        <a href="<?php echo $bond->ratingRationalUrl; ?>" target="_blank">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <a href="<?php echo $bond->ratingRationalUrl; ?>" target="_blank" class="pdf_viewer">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </div>
-                    <?php endif; ?>
                 </div>
             </div>
         <?php

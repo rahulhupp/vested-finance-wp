@@ -24,7 +24,7 @@ if ($bond_isin) {
     if ($bond->bondCategory === 'CORPORATE') {
         $defaultURL = get_stylesheet_directory_uri() . '/assets/images/Corporate-Bonds.png';
     } else {
-        $defaultURL = get_stylesheet_directory_uri() . '/assets/images/goi.png';
+        $defaultURL = 'https://d13dxy5z8now6z.cloudfront.net/img/GOVT-default.svg';
     }
     $isImageAccessible = checkImageURL($bondImageURL);
 
@@ -189,6 +189,12 @@ if ($bond_isin) {
                         <?php get_template_part('template-parts/bond-details/faqs', null, array('bond' => $bond)); ?>
                     </div>
                 </div>
+            </div>
+            <div class="pdf_modal">
+                <span class="close">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/close.png" alt="close">
+                </span>
+                <embed src="<?php echo get_stylesheet_directory_uri();?>/assets/94b89dfb-f949-4996-9345-0e89b429de53.pdf" type="application/pdf" width="70%" height="800px" id="pdf_embed">
             </div>
         </div>
 <?php
