@@ -89,8 +89,9 @@ if ($bond) {
                     <div class="faq_answer">
                         <p>No, the interest income from <?php echo $bond->displayName; ?> bonds is not tax-free. It is
                             categorised as "income from other sources," and the applicable tax will be calculated based on
-                            your income tax slab. For detailed information on taxation, please refer to this article: <a
-                                href="#">here</a></p>
+                            your income tax slab. 
+                            <!-- For detailed information on taxation, please refer to this article: <a href="#">here</a> -->
+                        </p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How can I sell <?php echo $bond->displayName; ?> bond before the maturity
