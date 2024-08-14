@@ -2,7 +2,7 @@
 $bond_name_slug = get_query_var('bond_company');
 $bond = $args['bond'];
 if ($bond) {
-    ?>
+?>
     <div id="faqs_tab" class="tab_content">
         <div class="stock_details_box">
             <h2 class="heading">FAQs</h2>
@@ -87,11 +87,15 @@ if ($bond) {
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>No, the interest income from <?php echo $bond->displayName; ?> bonds is not tax-free. It is
-                            categorised as "income from other sources," and the applicable tax will be calculated based on
-                            your income tax slab. 
-                            <!-- For detailed information on taxation, please refer to this article: <a href="#">here</a> -->
-                        </p>
+                        <?php if ($bond->isTaxfree) : ?>
+                            <p>Yes, <?php echo $bond->displayName; ?> bond is tax-free. Government Entities issue fixed-income securities which are tax-free bonds. They provide investors with the opportunity for yearly pre-fixed interest earnings and are a reasonably safe investment choice. In addition, the interest received is tax-free, allowing investors to increase their savings. The principal amount is payable upon maturity, similar to other bonds.</p>
+                        <?php else: ?>
+                            <p>No, the interest income from <?php echo $bond->displayName; ?> bonds is not tax-free. It is
+                                categorised as "income from other sources," and the applicable tax will be calculated based on
+                                your income tax slab.
+                                <!-- For detailed information on taxation, please refer to this article: <a href="#">here</a> -->
+                            </p>
+                        <?php endif; ?>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">How can I sell <?php echo $bond->displayName; ?> bond before the maturity
@@ -105,8 +109,9 @@ if ($bond) {
                     </div>
                     <div class="faq_answer">
                         <p>To sell <?php echo $bond->displayName; ?> bond before its maturity date, please contact us at
-                        <a href="mailto:help-inrbonds@vestedfinance.co">help-inrbonds@vestedfinance.co</a>. Our dedicated support team will guide you through the process and assist
-                            you with selling your bond.</p>
+                            <a href="mailto:help-inrbonds@vestedfinance.co">help-inrbonds@vestedfinance.co</a>. Our dedicated support team will guide you through the process and assist
+                            you with selling your bond.
+                        </p>
                     </div>
                     <div class="faq_item">
                         <div class="faq_question">What are the benefits of investing in <?php echo $bond->displayName; ?>
@@ -193,8 +198,7 @@ if ($bond) {
         {
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": [
-                {
+            "mainEntity": [{
                     "@type": "Question",
                     "name": "How to buy <?php echo $bond->displayName; ?> bond online?",
                     "acceptedAnswer": {
@@ -208,9 +212,10 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "The yield of <?php echo $bond->displayName; ?> bond is approximately
-                                <?php echo $bond->yield; ?>%. Yield to Maturity or the IRR of the Bond is the total yield earned
-                                if the bond is held to maturity. It includes earning from coupon payments and capital
-                                appreciation."
+                        <?php echo $bond->yield; ?> % .Yield to Maturity or the IRR of the Bond is the total yield earned
+                        if the bond is held to maturity.It includes earning from coupon payments and capital
+                        appreciation.
+                        "
                     }
                 },
                 {
@@ -219,9 +224,11 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "The credit rating of <?php echo $bond->displayName; ?> bond indicates the issuer's
-                                creditworthiness and ability to meet its financial obligations. This is an independent opinion
-                                provided by rating agencies. It indicates the likeliness of a company to default. Rating scale
-                                ranges from AAA(being the highest) to D (lowest). A higher rating generally suggests lower risk."
+                        creditworthiness and ability to meet its financial obligations.This is an independent opinion
+                        provided by rating agencies.It indicates the likeliness of a company to
+                        default.Rating scale
+                        ranges from AAA(being the highest) to D(lowest).A higher rating generally suggests lower risk.
+                        "
                     }
                 },
                 {
@@ -230,7 +237,8 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "Upon reaching the maturity date, the funds are automatically credited to your linked bank
-                        account."
+                        account.
+                        "
                     }
                 },
                 {
@@ -239,19 +247,22 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "No, the interest income from <?php echo $bond->displayName; ?> bonds is not tax-free. It is
-                                categorised as 'income from other sources,' and the applicable tax will be calculated based on
-                                your income tax slab. For detailed information on taxation, please refer to this article: here"
+                        categorised as 'income from other sources,'
+                        and the applicable tax will be calculated based on
+                        your income tax slab.For detailed information on taxation,
+                        please refer to this article: here "
                     }
                 },
                 {
                     "@type": "Question",
                     "name": "How can I sell <?php echo $bond->displayName; ?> bond before the maturity
-                    date?",
-                    "acceptedAnswer": {
+                    date ? ",
+                    "acceptedAnswer" : {
                         "@type": "Answer",
                         "text": "To sell <?php echo $bond->displayName; ?> bond before its maturity date, please contact us at
-                                help@vestedfinance.co. Our dedicated support team will guide you through the process and assist
-                                you with selling your bond."
+                        help @vestedfinance.co.Our dedicated support team will guide you through the process and assist
+                        you with selling your bond.
+                        "
                     }
                 },
                 {
@@ -260,18 +271,26 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "Bond investments offer the below compelling benefits, making them a valuable addition to an
-                        investment portfolio. Principal Protection: Bonds ensure your initial investment remains safe,
-                                    and you receive fixed annual returns based on the coupon rate, making them a secure place to
-                                    park extra income. Stable Returns: Bonds provide a stable and predictable source of income,
-                                    which is beneficial for those seeking regular earnings during career breaks or financial
-                                    instability.Predictable Growth: Unlike stocks, bonds offer steady financial growth
-                                    without the volatility associated with market fluctuations. You can plan and achieve
-                                    specific financial goals based on the known returns. Safety and Performance: Bonds are generally safer than equity investments
-                                    and can outperform certain debt mutual funds. In times of crisis, bondholders are
-                                    prioritized for repayment, enhancing their security.
-                                Tax Efficiency: Bonds often offer tax advantages over debt mutual funds,
-                                    and their fixed returns till maturity are backed by regulations and law, providing a
-                                    reliable income stream."
+                        investment portfolio.Principal Protection: Bonds ensure your initial investment remains safe,
+                        and you receive fixed annual returns based on the coupon rate,
+                        making them a secure place to
+                        park extra income.Stable Returns: Bonds provide a stable and predictable source of income,
+                        which is beneficial
+                        for those seeking regular earnings during career breaks or financial
+                        instability.Predictable Growth: Unlike stocks,
+                        bonds offer steady financial growth
+                        without the volatility associated with market fluctuations.You can plan and achieve
+                        specific financial goals based on the known returns.Safety and Performance: Bonds are generally safer than equity investments
+                        and can outperform certain debt mutual funds.In times of crisis,
+                        bondholders are
+                        prioritized
+                        for repayment,
+                        enhancing their security.
+                        Tax Efficiency: Bonds often offer tax advantages over debt mutual funds,
+                        and their fixed returns till maturity are backed by regulations and law,
+                        providing a
+                        reliable income stream.
+                        "
                     }
                 },
                 {
@@ -280,20 +299,28 @@ if ($bond) {
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "Bonds are usually low-risk, similar to Fixed Deposits. But it's good to know about the risks
-                        involved: Default Risk: This happens when the bond issuer can't repay the principal or interest. It
-                                    could mean losses for us as investors.
-                                Liquidity Risk: Selling bonds before maturity might be tough if no buyers are there. We
-                                    might have to sell at a discount, leading to potential losses.
-                                Interest-Rate Risk: Bond prices can change with interest rates. If rates go up, the bond
-                                    value may decrease, and we might face losses if sold early. On the flip side, falling rates
-                                    can mean higher bond prices and potential gains if sold at a premium to the purchase price.
-                                "
+                        involved: Default Risk: This happens when the bond issuer can 't repay the principal or interest. It
+                        could mean losses
+                        for us as investors.
+                        Liquidity Risk: Selling bonds before maturity might be tough
+                        if no buyers are there.We
+                        might have to sell at a discount,
+                        leading to potential losses.
+                        Interest - Rate Risk: Bond prices can change with interest rates.If rates go up,
+                        the bond
+                        value may decrease,
+                        and we might face losses
+                        if sold early.On the flip side,
+                        falling rates
+                        can mean higher bond prices and potential gains
+                        if sold at a premium to the purchase price.
+                        "
                     }
                 }
             ]
         }
-        </script>
+    </script>
 
-    <?php
+<?php
 }
 ?>
