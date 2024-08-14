@@ -421,7 +421,7 @@ btns.forEach(btn => {
     modal.style.opacity = "1";
     html.classList.add('ast-off-canvas-active');
     var pdfUrl = btn.getAttribute('href');
-    // pdfEmbed.src = pdfUrl;
+    pdfEmbed.src = pdfUrl;
 }
 
 });
