@@ -194,7 +194,7 @@ if ($bond_isin) {
                 <span class="close">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/close.png" alt="close">
                 </span>
-                <embed src="<?php echo get_stylesheet_directory_uri();?>/assets/94b89dfb-f949-4996-9345-0e89b429de53.pdf" type="application/pdf" width="70%" height="800px" id="pdf_embed">
+                <embed src="<?php echo get_stylesheet_directory_uri();?>/assets/7e4a754b-cc12-49d1-9951-a92e47540633.pdf" type="application/pdf" width="70%" height="800px" id="pdf_embed">
             </div>
         </div>
 <?php
