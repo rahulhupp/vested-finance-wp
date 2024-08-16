@@ -388,9 +388,9 @@ function custom_comment_reply_notification_to_fyno($comment_id, $comment_approve
 
         // Check for errors in the response
         if (is_wp_error($response)) {
-            error_log('Fyno API request failed: ' . $response->get_error_message());
+            // error_log('Fyno API request failed: ' . $response->get_error_message());
         } else {
-            error_log('Fyno API request successful: ' . wp_remote_retrieve_body($response));
+            // error_log('Fyno API request successful: ' . wp_remote_retrieve_body($response));
         }
     }
 }
