@@ -125,6 +125,9 @@ get_header(); ?>
 
 											// Iterate through sorted bonds
 											foreach ($corporate_bonds as $bond):
+												$bondIssuerName = strtolower(preg_replace('/[^\w]+/', '-', $bond['issuerName']));
+												$bondIssuerName = trim($bondIssuerName, '-');
+												$bondSecurityCode = strtolower($bond['securityId']);
 												?>
 												<div class="bonds_slider_item">
 													<div class="bonds_slider_item_wrapper">
@@ -167,9 +170,8 @@ get_header(); ?>
 																<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
 															</div>
 														</div>
-														<a href="https://app.vestedfinance.com/signup" class="btn_dark"
-															target="_blank">
-															<span>Explore Now</span>
+														<a href="<?php echo home_url();?>/in/inr-bonds/corporate-bonds/<?php echo $bondIssuerName . '/' . $bondSecurityCode; ?>" class="btn_dark">
+														<span>Explore Now</span>
 															<i class="fa fa-chevron-right"></i>
 														</a>
 													</div>
@@ -195,6 +197,9 @@ get_header(); ?>
 											});
 
 											foreach ($government_bonds as $bond):
+												$bondIssuerName = strtolower(preg_replace('/[^\w]+/', '-', $bond['issuerName']));
+												$bondIssuerName = trim($bondIssuerName, '-');
+												$bondSecurityCode = strtolower($bond['securityId']);
 												?>
 												<div class="bonds_slider_item">
 													<div class="bonds_slider_item_wrapper">
@@ -242,8 +247,7 @@ get_header(); ?>
 																<strong><?php echo ucwords(strtolower($bond['interestPayFreq'])); ?></strong>
 															</div>
 														</div>
-														<a href="https://app.vestedfinance.com/signup" class="btn_dark"
-															target="_blank">
+														<a href="<?php echo home_url();?>/in/inr-bonds/government-bonds/<?php echo $bondIssuerName . '/' . $bondSecurityCode; ?>" class="btn_dark">
 															<span>Explore Now</span>
 															<i class="fa fa-chevron-right"></i>
 														</a>
