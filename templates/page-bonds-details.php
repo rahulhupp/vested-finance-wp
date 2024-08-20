@@ -67,7 +67,7 @@ if ($bond_isin) {
                                 </div>
                             </div>
                             <h1 class="mobile_hide"><?php echo $bond->displayName; ?></h1>
-                            <h2><?php echo $bond->issuerName; ?></h2>
+                            <!-- <h2><?php // echo $bond->issuerName; ?></h2> -->
                             <h6>ISIN: <?php echo $bond->securityId; ?></h6>
                             <div class="bonds_info_box">
                                 <div class="bond_details_box">
