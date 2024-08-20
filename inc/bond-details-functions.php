@@ -34,7 +34,9 @@ function custom_bond_template_redirect()
         $bonds = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
 
         $bond_found = false;
-
+        echo '<pre>';
+        print_r($bonds);
+        echo '</pre>';
         foreach ($bonds as $bond) {
             $issuer_name_slug = sanitize_title($bond['issuerName']);
             $security_code = strtolower($bond['securityId']);
