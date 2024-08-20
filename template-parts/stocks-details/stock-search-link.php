@@ -175,13 +175,6 @@
 
 
 <script>
-
-    // function inputChangeCalc() {
-    //     var inputValue = document.querySelector(".dropdown_search").value;
-    //     console.log('1 inputValue', inputValue);
-    //     makeAPICallCalc(inputValue);
-    // }
-
     var debounceTimer;
 
     function inputChangeCalc() {
@@ -211,24 +204,6 @@
         }
     }
 
-    // async function fetchResultCalc(stock_name) {
-    //     <?php
-    //         global $wpdb;
-    //         $table_name = $wpdb->prefix . 'stocks_list';
-    //         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-    //     ?>
-
-    //     // console.log('dbStocksList', dbStocksList);
-
-    //     var filteredStocks = dbStocksList.filter(function(stock) {
-    //         return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
-    //             stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
-    //     });
-
-    //     console.log('filteredStocks', filteredStocks);
-    //     renderItemsCalc(filteredStocks);
-    // }
-
     var debounceTimer;
 
     function debounce(func, delay) {
@@ -244,7 +219,6 @@
             $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
             ?>
             var dbStocksList = <?php echo json_encode($results); ?>;
-            // console.log('dbStocksList', dbStocksList);
 
             var filteredStocks = dbStocksList.filter(function (stock) {
                 return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) ||
@@ -319,8 +293,6 @@
             const selectedType = clickedElement.dataset.type;
             var selectedText = clickedElement.querySelector('strong').innerText;
             console.log('2 selectedType', selectedType);
-            // var formattedText = selectedText.trim().toLowerCase().replace(/\s+/g, '-').replace(/\.$/, '');
-            // var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             var formattedText = selectedText.toLowerCase()
                                             .replace(/ /g, '-')
                                             .replace(/,/g, '-')

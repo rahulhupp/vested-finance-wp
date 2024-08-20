@@ -168,13 +168,6 @@
 </div>
 
 <script>
-
-    // function tickerInputChangeCalc() {
-    //     var inputValue = document.querySelector(".ticker_dropdown_search").value;
-    //     console.log('inputValue', inputValue);
-    //     tickerMakeAPICallCalc(inputValue);
-    // }
-
     var debounceTimer;
 
     function tickerInputChangeCalc() {
@@ -202,23 +195,6 @@
         }
     }
     
-    // function tickerFetchResultCalction(stock_name) {
-    //     <?php
-    //         global $wpdb;
-    //         $table_name = $wpdb->prefix . 'stocks_list';
-    //         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-    //     ?>
- 
-    //     // console.log('dbStocksList', dbStocksList);
-
-    //     var filteredStocks = dbStocksList.filter(function(stock) {
-    //         return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) || 
-    //             stock.name.toLowerCase().startsWith(stock_name.toLowerCase());
-    //     });
-
-    //     console.log('filteredStocks', filteredStocks);
-    //     tickerRenderItemsCalc(filteredStocks);
-    // }
     var debounceTimer;
 
     function debounce(func, delay) {
@@ -234,7 +210,6 @@
             $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
             ?>
             var dbStocksList = <?php echo json_encode($results); ?>;
-            // console.log('dbStocksList', dbStocksList);
 
             var filteredStocks = dbStocksList.filter(function (stock) {
                 return stock.symbol.toLowerCase().startsWith(stock_name.toLowerCase()) ||

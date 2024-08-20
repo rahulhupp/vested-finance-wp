@@ -71,13 +71,13 @@ if ($getfirstpath[1] == 'us-stocks') {
             }
         }
     } else {
-        error_log('Symbol not found');
+        // error_log('Symbol not found');
         $not_found_url = home_url("/stock-not-found");
         wp_redirect($not_found_url, 301);
         exit();
     }
 } else {
-    error_log('Not us-stocks');
+    // error_log('Not us-stocks');
 }
 
 function custom_redirect() {
@@ -301,7 +301,7 @@ function remove_unwanted_styles() {
         wp_dequeue_script('astra-theme-js');
         wp_deregister_script('astra-theme-js');
     } else {
-        error_log('Dequeue function Else');
+        // error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 99999999999);
