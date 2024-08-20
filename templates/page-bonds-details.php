@@ -87,7 +87,7 @@ if ($bond_isin) {
                                                 } elseif ($months > 0) {
                                                     echo "{$months}m";
                                                 } elseif ($months == 0) {
-                                                    echo "0m";
+                                                    echo "1m";
                                                 } else {
                                                     echo '';
                                                 }
@@ -123,7 +123,7 @@ if ($bond_isin) {
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="#">
+                                    <a href="https://app.vestedfinance.com/signup" target="_blank">
                                         <button class="primary_button">
                                             Invest now
                                         </button>

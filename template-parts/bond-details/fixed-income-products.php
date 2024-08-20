@@ -4,7 +4,7 @@
         <div class="separator_line"></div>
 
         <div class="fixed_products_wrap">
-            <div class="single_income_source">
+            <div class="single_income_source hidden">
                     <div class="source_icon">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/edge-icon.png" alt="Vested Edge">
                     </div>

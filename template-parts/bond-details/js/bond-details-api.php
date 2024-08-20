@@ -252,7 +252,7 @@ if ($bond_isin) {
                 document.querySelector('#redemption-date').innerHTML = formatDate(data.redemptionDate);
                 document.querySelectorAll('.bonds_returns_note .maturity').forEach(element => {
                     if (maturityInYears == '') {
-                        element.innerHTML = '0 month'
+                        element.innerHTML = '1 month'
                     } else {
                         element.innerHTML = maturityInYears;
                     }
