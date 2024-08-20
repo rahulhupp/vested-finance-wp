@@ -72,8 +72,8 @@
                                     <span>
                                         Information Memorandum
                                     </span>
-                                    <!-- <strong><a href="<?php echo $bond->imDocUrl; ?>" target="_blank" class="pdf_viewer">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong> -->
-                                    <strong><a href="<?php echo get_stylesheet_directory_uri();?>/assets/94b89dfb-f949-4996-9345-0e89b429de53.pdf" target="_blank" class="pdf_viewer">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
+                                    <strong><a href="<?php echo $bond->imDocUrl; ?>" target="_blank" class="pdf_viewer">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong>
+                                    <!-- <strong><a href="<?php // echo get_stylesheet_directory_uri();?>/assets/94b89dfb-f949-4996-9345-0e89b429de53.pdf" target="_blank" class="pdf_viewer">View  <i class="fa fa-chevron-right" aria-hidden="true"></i></a></strong> -->
                                 </div>
                                 <?php endif; ?>
                             </div>
