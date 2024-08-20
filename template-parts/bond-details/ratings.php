@@ -32,11 +32,14 @@
                             }
                         ?>
                     </div>
-                    <div class="separator_line"></div>
-                    <div class="learn_more_btn">
-                        <!-- <a href="<?php echo $bond->ratingRationalUrl; ?>" target="_blank" class="pdf_viewer">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a> -->
-                        <a href="<?php echo get_stylesheet_directory_uri();?>/assets/7e4a754b-cc12-49d1-9951-a92e47540633.pdf" target="_blank" class="pdf_viewer">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                    </div>
+                    <?php if ($bond->ratingRationalUrl) { ?>
+                        <div class="separator_line"></div>
+                        <div class="learn_more_btn">
+                            <!-- <a href="<?php // echo $bond->ratingRationalUrl; ?>" target="_blank" class="pdf_viewer">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a> -->
+                            <a href="<?php echo get_stylesheet_directory_uri();?>/assets/7e4a754b-cc12-49d1-9951-a92e47540633.pdf" target="_blank" class="pdf_viewer">Learn more about the rating <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        </div>
+                    <?php } ?>
+                    
                 </div>
             </div>
         <?php
