@@ -59,7 +59,7 @@ if ($bond_isin) {
                         <div class="stock_details_box stock_info_container">
                             <div class="stock_info_icons">
                                 <div class="stock_img">
-                                    <img src="<?php echo $isImageAccessible ? $bondImageURL : $defaultURL; ?>" alt="Bond Logo" />
+                                    <img src="<?php echo $bondImageURL; ?>" alt="Bond Logo" />
                                 </div>
                                 <h1 class="desktop_hide"><?php echo $bond->displayName; ?></h1>
                                 <div class="share_icon mobile_hide" onclick="copyLink()">
@@ -86,6 +86,8 @@ if ($bond_isin) {
                                                     echo "{$years}y" . ($months > 0 ? " {$months}m" : '');
                                                 } elseif ($months > 0) {
                                                     echo "{$months}m";
+                                                } elseif ($months == 0) {
+                                                    echo "1m";
                                                 } else {
                                                     echo '';
                                                 }
@@ -121,7 +123,7 @@ if ($bond_isin) {
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="#">
+                                    <a href="https://app.vestedfinance.com/signup" target="_blank">
                                         <button class="primary_button">
                                             Invest now
                                         </button>

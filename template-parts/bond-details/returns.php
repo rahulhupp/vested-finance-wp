@@ -127,8 +127,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="separator_line smaller_margins"></div>
-                                <div class="single_interest_payment">
+                                <div class="separator_line smaller_margins second"></div>
+                                <div class="single_interest_payment second">
                                     <div class="interest_single_name">
                                         <p id="cashflow-second-date">10 Jun ‘24</p>
                                     </div>
@@ -144,12 +144,12 @@
                                     </div>
                                 </div>
 
-                                <div class="vertical_dashed_divider">
+                                <div class="vertical_dashed_divider second_last">
                                     <svg width="2" height="21" viewBox="0 0 2 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <line x1="1" y1="1" x2="1" y2="20" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
                                     </svg>
                                 </div>
-                                <div class="single_interest_payment">
+                                <div class="single_interest_payment second_last">
                                     <div class="interest_single_name">
                                         <p id="cashflow-second-last-date">10 Nov ‘25</p>
                                     </div>
