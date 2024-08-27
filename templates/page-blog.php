@@ -422,6 +422,118 @@ get_header(); ?>
     </section>
 <?php endif; ?>
 
+<section class="vested-edge-blog" id="bonds">
+        <div class="container">
+            <div class="head-part">
+                <div class="vested-label">
+                    <div class="label">
+                        <img src="<?php the_field('bond_icon'); ?>" />
+                        <h2><?php the_field('bond_heading'); ?></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-row">
+                <ul>
+                    <?php
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 4,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'master_categories', 
+                                'field' => 'slug', 
+                                'terms' => 'bonds',
+                            ),
+                        ),
+                    );
+                    $bonds_query = new WP_Query($args);
+
+                    if ($bonds_query->have_posts()):
+                        while ($bonds_query->have_posts()):
+                            $bonds_query->the_post(); ?>
+                            <li>
+                                <div class="featured-image">
+                                    <?php if (has_post_thumbnail()): ?>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="content">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <?php the_excerpt(); ?>
+                                    <div class="meta-info">
+                                        <span class="post-author"><?php the_author(); ?></span>
+                                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endwhile;
+                        wp_reset_postdata();
+                    else: ?>
+                        <li><?php _e('No posts found in the Bonds category.'); ?></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="vested-edge-blog" id="solar">
+        <div class="container">
+            <div class="head-part">
+                <div class="vested-label">
+                    <div class="label">
+                        <img src="<?php the_field('solar_icon'); ?>" />
+                        <h2><?php the_field('solar_heading'); ?></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-row">
+                <ul>
+                    <?php
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 4,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'master_categories', 
+                                'field' => 'slug', 
+                                'terms' => 'solar',
+                            ),
+                        ),
+                    );
+                    $solar_query = new WP_Query($args);
+
+                    if ($solar_query->have_posts()):
+                        while ($solar_query->have_posts()):
+                            $solar_query->the_post(); ?>
+                            <li>
+                                <div class="featured-image">
+                                    <?php if (has_post_thumbnail()): ?>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail('full'); // You can specify the image size here ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="content">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <?php the_excerpt(); ?>
+                                    <div class="meta-info">
+                                        <span class="post-author"><?php the_author(); ?></span>
+                                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endwhile;
+                        wp_reset_postdata();
+                    else: ?>
+                        <li><?php _e('No posts found in the Solar category.'); ?></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 <section class="newsletter-section">
     <?php get_template_part('template-parts/newsletter'); ?>
 </section>
