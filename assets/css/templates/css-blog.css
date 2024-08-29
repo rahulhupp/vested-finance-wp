@@ -1521,7 +1521,7 @@ margin-top: 18px;
   text-decoration-line: underline;
 }
 
-.fresh-reads-post .head-part:before {
+/* .fresh-reads-post .head-part:before {
   content: "";
   position: absolute;
   left: 0;
@@ -1531,7 +1531,7 @@ margin-top: 18px;
   bottom: 0;
   top: 50%;
   z-index: -1;
-}
+} */
 
 .fresh-reads-post .head-part {
   display: flex;
