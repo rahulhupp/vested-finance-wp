@@ -348,45 +348,56 @@ function yoast_seo_robots_modify_search( $robots ) {
   }
 }
 
-
-
-
-add_action('wp_ajax_load_more_posts', 'load_more_posts');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
-
-function load_more_posts() {
+// Load More Posts AJAX Handler
+function load_more_posts_template() {
     check_ajax_referer('load_more_posts', 'security');
 
-    $args = array(  
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+    $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
-        'paged' => $_POST['page']
+        'paged' => $paged
     );
 
     $custom_query = new WP_Query($args);
 
     if ($custom_query->have_posts()) :
-        while ($custom_query->have_posts()) : $custom_query->the_post();
-            ?>
+        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
             <div id="post-<?php the_ID(); ?>" class="post-card display">
-            <div class="featured-image">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('full'); ?>
-                                </a>
-                            </div>
-                            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                            <div class="meta-info">
-                                <span class="post-author"><?php the_author(); ?></span>
-                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                            </div>
+                <div class="featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                    </a>
+                </div>
+                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <div class="meta-info">
+                    <span class="post-author"><?php the_author(); ?></span>
+                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                </div>
             </div>
-            <?php
-        endwhile;
+        <?php endwhile;
         wp_reset_postdata();
+    else :
+        echo ''; // No more posts
     endif;
 
-    die();
+    wp_die();
 }
+
+function enqueue_load_more_script() {
+    wp_enqueue_script('jquery');
+    wp_localize_script('jquery', 'ajax_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('load_more_posts')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
+
+
+add_action('wp_ajax_load_more_posts', 'load_more_posts_template');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_template');
+
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 
