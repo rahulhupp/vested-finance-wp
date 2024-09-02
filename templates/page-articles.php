@@ -20,7 +20,7 @@ get_header(); ?>
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
-        'paged' => 1 // Start with page 1
+        'paged' => 1
     );
     $custom_query = new WP_Query($args);
     ?>
@@ -60,12 +60,13 @@ get_header(); ?>
     <div class="load-more-btn">
         <a href="#" id="loadMore">Load More</a>
     </div>				
-</div>
+    </div>
     </section>
     <section class="newsletter-section">
-		<?php get_template_part('template-parts/newsletter'); ?>
+        <?php get_template_part('template-parts/newsletter'); ?>
     </section>
 </div>
+
 <script>
     jQuery(document).ready(function ($) {
         var page = 1;
@@ -82,56 +83,11 @@ get_header(); ?>
                 if(response) {
                     $('.post-item').append(response);
                 } else {
-                    // If no more posts, disable the Load More button
                     $('#loadMore').text('No more posts').prop('disabled', true);
                 }
             });
         });
     });
-
-    // AJAX handler in the page template
-    <?php
-    add_action('wp_ajax_load_more_posts', 'load_more_posts_template');
-    add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_template');
-
-    function load_more_posts_template() {
-        check_ajax_referer('load_more_posts', 'security');
-
-        $paged = $_POST['page'] ?? 1;
-
-        $args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 8,
-            'paged' => $paged
-        );
-
-        $custom_query = new WP_Query($args);
-
-        if ($custom_query->have_posts()) :
-            while ($custom_query->have_posts()) : $custom_query->the_post();
-                ?>
-                <div id="post-<?php the_ID(); ?>" class="post-card display">
-                    <div class="featured-image">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('full'); ?>
-                        </a>
-                    </div>
-                    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <div class="meta-info">
-                        <span class="post-author"><?php the_author(); ?></span>
-                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                    </div>
-                </div>
-                <?php
-            endwhile;
-            wp_reset_postdata();
-        else :
-            echo ''; // No more posts
-        endif;
-
-        wp_die();
-    }
-    ?>
 </script>
 
 <?php get_footer(); ?>
