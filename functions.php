@@ -284,27 +284,21 @@ add_action('rest_api_init', 'custom_add_mtags_field');
 add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
-function load_more_posts() {
-    // Security check
-    check_ajax_referer('load_more_posts', 'security');
 
-    // Get the current page from the AJAX request
-    $paged = isset($_POST['page']) ? $_POST['page'] : 1;
 
-    // Define the arguments for the query
+function load_more_posts_ajax_handler(){
+    $paged = $_POST['page'] + 1;
+
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
-        'paged' => $paged
+        'paged' => $paged,
     );
 
-    // Create a new query with updated page number
-    $custom_query = new WP_Query($args);
+    $query = new WP_Query( $args );
 
-    // Check if there are posts
-    if ($custom_query->have_posts()) :
-        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-
+    if( $query->have_posts() ) :
+        while( $query->have_posts() ): $query->the_post(); ?>
             <div id="post-<?php the_ID(); ?>" class="post-card display">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
@@ -317,18 +311,15 @@ function load_more_posts() {
                     <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
                 </div>
             </div>
-
         <?php endwhile;
-        wp_reset_postdata();
-    else :
-        // No more posts to load
-        wp_send_json(false);
     endif;
+    wp_reset_postdata();
 
-    // Always die after an AJAX request
     die();
 }
 
+add_action('wp_ajax_loadmore', 'load_more_posts_ajax_handler');
+add_action('wp_ajax_nopriv_loadmore', 'load_more_posts_ajax_handler');
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 

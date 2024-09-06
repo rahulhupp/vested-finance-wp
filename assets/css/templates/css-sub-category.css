@@ -56,7 +56,7 @@
   margin-bottom: 15px;
   text-align: center;
 }
-.load-more-btn a#loadMore {
+.load-more-btn #loadMore {
   padding: 16px 21px;
   border-radius: 5px;
   background: #002852;
@@ -68,7 +68,7 @@
   transition: all 0.3s;
   display: inline-block;
 }
-.load-more-btn a#loadMore:hover {
+.load-more-btn #loadMore:hover {
   color: #002852;
   background: transparent;
 }
@@ -413,7 +413,7 @@ div#is-ajax-search-result-4325 {
       font-size: 16px;
       margin: 0 10px;
   }
-  .load-more-btn a#loadMore {
+  .load-more-btn #loadMore {
       padding: 10px 21px;
       font-size: 16px;
   }
