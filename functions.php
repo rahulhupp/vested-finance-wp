@@ -282,21 +282,25 @@ function custom_get_mtags_field($object, $field_name, $request) {
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
 
-//  load_more_funcation
-
+// load more function
 function load_more_posts_template() {
+    // Check the security nonce
     check_ajax_referer('load_more_posts', 'security');
 
+    // Get the page number from AJAX request
     $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
+    // Arguments for WP_Query to load the next set of posts
     $args = array(
         'post_type' => 'post',
-        'posts_per_page' => 8,
-        'paged' => $paged
+        'posts_per_page' => 8, // Number of posts per page
+        'paged' => $paged      // Current page number
     );
 
+    // Custom query to get posts
     $custom_query = new WP_Query($args);
 
+    // Check if there are posts
     if ($custom_query->have_posts()) :
         while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
             <div id="post-<?php the_ID(); ?>" class="post-card display">
@@ -312,24 +316,31 @@ function load_more_posts_template() {
                 </div>
             </div>
         <?php endwhile;
-        wp_reset_postdata();
+        wp_reset_postdata(); // Reset post data after the loop
     else :
-        echo ''; // No more posts
+        echo ''; // No more posts found
     endif;
 
-    wp_die();
+    wp_die(); // Terminate AJAX request properly
 }
 
+// Enqueue scripts and localize AJAX URL and nonce
 function enqueue_load_more_script() {
-    wp_enqueue_script('jquery'); // Ensure jQuery is loaded
+    // Make sure jQuery is loaded
+    wp_enqueue_script('jquery');
+
+    // Localize script to pass ajax parameters to jQuery
     wp_localize_script('jquery', 'ajax_params', array(
         'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('load_more_posts')
+        'nonce' => wp_create_nonce('load_more_posts') // Nonce for security
     ));
 }
 add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
+
+// AJAX actions for logged in and non-logged in users
 add_action('wp_ajax_load_more_posts', 'load_more_posts_template');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_template');
+
 
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
