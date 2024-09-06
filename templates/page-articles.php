@@ -68,36 +68,46 @@ $query = new WP_Query($args);
 </div>
 
 <script>
-jQuery(function($){
+jQuery(function($) {
 
-$('#loadMore').on('click', function(){
+var loadedPosts = []; // Array to keep track of loaded post IDs
+
+// On click of the Load More button
+$('#loadMore').on('click', function() {
     var button = $(this);
-    var page = button.data('page');
+    var page = button.data('page'); // Get current page number
+
+    // Collect post IDs already loaded
+    $('.post-item').each(function() {
+        loadedPosts.push($(this).data('post-id')); // Get post ID from HTML data attribute
+    });
 
     $.ajax({
-        url : '<?php echo admin_url( 'admin-ajax.php' ); ?>', // Use admin_url to get ajax URL
-        type : 'POST',
-        data : {
-            action : 'loadmore', // Action defined in functions.php
-            page : page,
+        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>', // Use admin_url to get ajax URL
+        type: 'POST',
+        data: {
+            action: 'loadmore', // Action defined in functions.php
+            page: page, // Send the current page number
+            exclude: loadedPosts, // Send the list of already loaded post IDs
         },
-        beforeSend : function(){
+        beforeSend: function() {
             button.text('Loading...'); // Change button text while loading
         },
-        success : function(data){
-            if( data ) {
+        success: function(data) {
+            if (data) {
                 $('.post-item').append(data); // Append the new posts
                 button.data('page', page + 1); // Increment the page number
                 button.text('Load More'); // Reset button text
             } else {
                 button.text('No more posts'); // No more posts to load
-                button.attr('disabled', true);
+                button.attr('disabled', true); // Disable the button if no more posts
             }
         }
     });
 });
 
 });
+
 </script>
 
 <?php get_footer(); ?>
