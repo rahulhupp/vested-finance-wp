@@ -287,12 +287,17 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 
 function load_more_posts_ajax_handler(){
-    $paged = $_POST['page'] + 1;
+    if (isset($_POST['page'])) {
+        $paged = $_POST['page'] + 1; // Increment by 1 (because the first page is already displayed)
+    } else {
+        $paged = 1; // Default to page 1 if it's not set (safety fallback)
+    }
 
+    // Arguments for the query
     $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 8,
-        'paged' => $paged,
+        'post_type'      => 'post',
+        'posts_per_page' => 8, // Fetch 8 posts per request
+        'paged'          => $paged, // Use the paged variable
     );
 
     $query = new WP_Query( $args );
