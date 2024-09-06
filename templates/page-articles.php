@@ -68,28 +68,27 @@ get_header(); ?>
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
-        var page = 1; // Start at page 1
+jQuery(document).ready(function ($) {
+    var page = 1;
     $('#loadMore').on('click', function (e) {
-        e.preventDefault(); // Prevent default link behavior
-        page++; // Increment the page number
+        e.preventDefault();
+        page++;
+        var data = {
+            'action': 'load_more_posts',
+            'page': page,
+            'security': '<?php echo wp_create_nonce("load_more_posts"); ?>'
+        };
 
-        // Send AJAX request
-        $.post(ajax_params.ajax_url, {
-            action: 'load_more_posts', // The AJAX action hook
-            page: page,                // Pass the page number
-            security: ajax_params.nonce // Pass the security nonce
-        }, function (response) {
+        $.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function (response) {
             if (response) {
-                // Append new posts to the existing post items
                 $('.post-item').append(response);
             } else {
-                // If no response, no more posts
                 $('#loadMore').text('No more posts').prop('disabled', true);
             }
         });
     });
-    });
+});
+
 </script>
 
 <?php get_footer(); ?>
