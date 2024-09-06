@@ -294,7 +294,7 @@ function load_more_posts_ajax_handler(){
  
      $args = array(
          'post_type'      => 'post',
-         'posts_per_page' => 8,
+         'posts_per_page' => 12,
          'paged'          => $paged,
          'post__not_in'   => $excluded_ids,
      );

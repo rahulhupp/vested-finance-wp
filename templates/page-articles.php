@@ -19,7 +19,7 @@ get_header(); ?>
     <?php 
    $args = array(
     'post_type' => 'post',
-    'posts_per_page' => 8,
+    'posts_per_page' => 12,
     'paged' => 1,
 );
 $query = new WP_Query($args);
