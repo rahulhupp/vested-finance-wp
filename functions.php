@@ -475,37 +475,29 @@ function custom_comment_reply_notification_to_fyno($comment_id, $comment_approve
 add_action('comment_post', 'custom_comment_reply_notification_to_fyno', 10, 3);
 
 function add_nofollow_to_all_links($buffer) {
-    // Specify the domains you want to exclude from having 'nofollow'
     $excluded_domains = ['vestedfinance.com', '/in'];
 
-    // Use a regular expression to target all anchor tags in the entire page output
     $buffer = preg_replace_callback(
         '/<a(.*?)href=["\'](.*?)["\'](.*?)>/i',
         function ($matches) use ($excluded_domains) {
-            // Extract the URL from the anchor tag
             $url = $matches[2];
 
-            // Skip if the href is a '#' (in-page link)
             if ($url === '#' || strpos($url, '#') === 0) {
                 return $matches[0];
             }
 
-            // Check if the URL contains any of the excluded domains
             foreach ($excluded_domains as $domain) {
                 if (strpos($url, $domain) !== false) {
-                    // If the URL contains an excluded domain, return the anchor tag unchanged
                     return $matches[0];
                 }
             }
 
-            // If nofollow is not already present
             if (strpos($matches[1] . $matches[3], 'rel=') === false) {
                 return "<a" . $matches[1] . "href='" . $matches[2] . "'" . $matches[3] . " rel='nofollow'>";
             } elseif (strpos($matches[1] . $matches[3], 'nofollow') === false) {
-                // If 'rel' exists but 'nofollow' is not present, append it
                 return preg_replace('/rel=["\'](.*?)["\']/', "rel='$1 nofollow'", $matches[0]);
             }
-            return $matches[0]; // Return as is if nofollow is already present
+            return $matches[0];
         },
         $buffer
     );
@@ -513,11 +505,9 @@ function add_nofollow_to_all_links($buffer) {
     return $buffer;
 }
 
-// Buffer the output of the entire page to modify the final HTML
 function buffer_start() { ob_start('add_nofollow_to_all_links'); }
 function buffer_end() { ob_end_flush(); }
 
-// Start output buffering at the beginning of the HTML
 add_action('wp_head', 'buffer_start');
-// Flush the output buffer at the end of the HTML
+
 add_action('wp_footer', 'buffer_end');
