@@ -10,23 +10,35 @@ if ($bond_isin) {
     $table_name = $wpdb->prefix . 'bonds_list';
     $bond = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE securityId = %s", strtoupper($bond_isin)));
 
-    // function checkImageURL($url)
-    // {
-    //     $headers = @get_headers($url);
-    //     if ($headers === false) {
-    //         return false; // URL is not reachable
-    //     }
-
-    //     $statusCode = substr($headers[0], 9, 3);
-    //     return in_array($statusCode, ['200']) ? true : false;
-    // }
-    // $bondImageURL = $bond->logo;
-    // if ($bond->bondCategory === 'CORPORATE') {
-    //     $defaultURL = get_stylesheet_directory_uri() . '/assets/images/Corporate-Bonds.png';
-    // } else {
-    //     $defaultURL = 'https://d13dxy5z8now6z.cloudfront.net/img/GOVT-default.svg';
-    // }
-    // $isImageAccessible = checkImageURL($bondImageURL);
+    function checkImageURL($url)
+    {
+        if (empty($url)) {
+            return false;
+        }
+    
+        $headers = @get_headers($url);
+        if ($headers === false) {
+            return false;
+        }
+    
+        $statusCode = substr($headers[0], 9, 3);
+        return in_array($statusCode, ['200']) ? true : false;
+    }
+    
+    $bondImageURL = $bond->logo;
+    
+    if ($bond->bondCategory === 'CORPORATE') {
+        $defaultURL = get_stylesheet_directory_uri() . '/assets/images/Corporate-Bonds.png';
+    } else {
+        $defaultURL = 'https://d13dxy5z8now6z.cloudfront.net/img/GOVT-default.svg';
+    }
+    
+    $isImageAccessible = checkImageURL($bondImageURL);
+    
+    if (!$isImageAccessible) {
+        $bondImageURL = $defaultURL;
+    }
+    
 
     $bondName = capitalizeString($bond->issuerName);
     $bondCouponRate = $bond->couponRate;
