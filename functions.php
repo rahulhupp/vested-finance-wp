@@ -475,12 +475,16 @@ function custom_comment_reply_notification_to_fyno($comment_id, $comment_approve
 add_action('comment_post', 'custom_comment_reply_notification_to_fyno', 10, 3);
 
 function add_nofollow_to_all_links($buffer) {
-    $excluded_domains = ['vestedfinance.com'];
+    $excluded_domains = ['vestedfinance.com', '/in'];
 
     $buffer = preg_replace_callback(
         '/<a(.*?)href=["\'](.*?)["\'](.*?)>/i',
         function ($matches) use ($excluded_domains) {
             $url = $matches[2];
+
+            if ($url === '#' || strpos($url, '#') === 0) {
+                return $matches[0];
+            }
 
             foreach ($excluded_domains as $domain) {
                 if (strpos($url, $domain) !== false) {
