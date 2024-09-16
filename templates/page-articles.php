@@ -38,7 +38,7 @@ $query = new WP_Query($args);
         </header>
         <div class="post-item">
             <?php while ($query->have_posts()) : $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display">
+            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail('full'); ?>
@@ -70,44 +70,45 @@ $query = new WP_Query($args);
 <script>
 jQuery(function($) {
 
-var loadedPosts = []; // Array to keep track of loaded post IDs
-
-// On click of the Load More button
-$('#loadMore').on('click', function() {
-    var button = $(this);
-    var page = button.data('page'); // Get current page number
-
-    // Collect post IDs already loaded
-    $('.post-item').each(function() {
-        loadedPosts.push($(this).data('post-id')); // Get post ID from HTML data attribute
+var loadedPosts = [];
+$('.post-card').each(function() {
+        loadedPosts.push($(this).data('id'));
     });
 
+    
+$('#loadMore').on('click', function() {
+    var button = $(this);
+    var page = button.data('page');
+
+    
+    $('.post-card').each(function() {
+        loadedPosts.push($(this).data('id'));
+    }); 
     $.ajax({
-        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>', // Use admin_url to get ajax URL
+        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
         type: 'POST',
         data: {
-            action: 'loadmore', // Action defined in functions.php
-            page: page, // Send the current page number
-            exclude: loadedPosts, // Send the list of already loaded post IDs
+            action: 'loadmore',
+            page: page,
+            exclude: loadedPosts,
         },
         beforeSend: function() {
-            button.text('Loading...'); // Change button text while loading
+            button.text('Loading...');
         },
         success: function(data) {
             if (data) {
-                $('.post-item').append(data); // Append the new posts
-                button.data('page', page + 1); // Increment the page number
-                button.text('Load More'); // Reset button text
+                $('.post-item').append(data);
+                button.data('page', page + 1);
+                button.text('Load More');
             } else {
-                button.text('No more posts'); // No more posts to load
-                button.attr('disabled', true); // Disable the button if no more posts
+                button.text('No more posts');
+                button.attr('disabled', true);
             }
         }
     });
 });
 
 });
-
 </script>
 
 <?php get_footer(); ?>

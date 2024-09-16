@@ -303,7 +303,7 @@ function load_more_posts_ajax_handler(){
 
     if( $query->have_posts() ) :
         while( $query->have_posts() ): $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display">
+            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail('full'); ?>
