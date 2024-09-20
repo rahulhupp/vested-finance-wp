@@ -17,14 +17,14 @@ get_header(); ?>
     <section>
     <div class="container">
     <?php 
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 8,
-        'paged' => 1
-    );
-    $custom_query = new WP_Query($args);
+   $args = array(
+    'post_type' => 'post',
+    'posts_per_page' => 12,
+    'paged' => 1,
+);
+$query = new WP_Query($args);
     ?>
-    <?php if ($custom_query->have_posts()) : ?>
+    <?php if ($query->have_posts()) : ?>
         <header class="page-header">
             <div class="heading">
                 <h1 class="page-title"><?php the_title(); ?></h1>
@@ -37,20 +37,20 @@ get_header(); ?>
             </div>
         </header>
         <div class="post-item">
-            <?php while ($custom_query->have_posts()) :  $custom_query->the_post(); ?>
-                <div id="post-<?php the_ID(); ?>" class="post-card display">
-                    <div class="featured-image">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('full'); ?>
-                        </a>
-                    </div>
-                    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <div class="meta-info">
-                        <span class="post-author"><?php the_author(); ?></span>
-                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                    </div>
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
+                <div class="featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                    </a>
                 </div>
-            <?php endwhile; ?>
+                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <div class="meta-info">
+                    <span class="post-author"><?php the_author(); ?></span>
+                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                </div>
+            </div>
+        <?php endwhile; ?>
         </div>
         <?php wp_reset_postdata(); ?>
     <?php else : ?>
@@ -58,7 +58,7 @@ get_header(); ?>
     <?php endif; ?>
     
     <div class="load-more-btn">
-        <a href="#" id="loadMore">Load More</a>
+        <button id="loadMore" data-page="1">Load More</button>
     </div>				
     </div>
     </section>
@@ -68,26 +68,47 @@ get_header(); ?>
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
-        var page = 1;
-        $('#loadMore').on('click', function(e) {
-            e.preventDefault();
-            page++;
-            var data = {
-                'action': 'load_more_posts',
-                'page': page,
-                'security': '<?php echo wp_create_nonce("load_more_posts"); ?>'
-            };
+jQuery(function($) {
 
-            $.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-                if(response) {
-                    $('.post-item').append(response);
-                } else {
-                    $('#loadMore').text('No more posts').prop('disabled', true);
-                }
-            });
-        });
+var loadedPosts = [];
+$('.post-card').each(function() {
+        loadedPosts.push($(this).data('id'));
     });
+
+    
+$('#loadMore').on('click', function() {
+    var button = $(this);
+    var page = button.data('page');
+
+    
+    $('.post-card').each(function() {
+        loadedPosts.push($(this).data('id'));
+    }); 
+    $.ajax({
+        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
+        type: 'POST',
+        data: {
+            action: 'loadmore',
+            page: page,
+            exclude: loadedPosts,
+        },
+        beforeSend: function() {
+            button.text('Loading...');
+        },
+        success: function(data) {
+            if (data) {
+                $('.post-item').append(data);
+                button.data('page', page + 1);
+                button.text('Load More');
+            } else {
+                button.text('No more posts');
+                button.attr('disabled', true);
+            }
+        }
+    });
+});
+
+});
 </script>
 
 <?php get_footer(); ?>

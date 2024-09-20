@@ -464,6 +464,52 @@ footer .extra_info ul li sup {
   font-weight: 600;
 }
 
+
+.page.page-id-8868 .site-content > .ast-container {
+  max-width: 700px;
+}
+
+.new-contact-form .wpcf7-form-control-wrap[data-name="conset"] > span label {
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.new-contact-form .wpcf7-form-control-wrap[data-name="conset"] > span label input[type="checkbox"] {
+  height: auto;
+  margin-top: 5px;
+}
+
+.new-contact-form .wpcf7-form-control-wrap textarea {
+  height: 120px;
+  resize: none;
+}
+
+.new-contact-form .wpcf7-form-control-wrap[data-name="conset"] > span .wpcf7-list-item.first.last {
+  margin-left: 0;
+}
+
+.new-contact-form  .wpcf7-form-control.wpcf7-submit.has-spinner {
+  padding: 16px 21px;
+  border-radius: 5px;
+  background: #002852;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: 1px solid #002852;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.new-contact-form .wpcf7-form-control.wpcf7-submit.has-spinner:hover {
+  background: #fff;
+  color: #002852;
+} 
+
 @media (max-width: 1200px) and (min-width: 768px) {
   .footer_wrap {
     padding: 0 20px;

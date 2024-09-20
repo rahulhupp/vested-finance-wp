@@ -281,25 +281,29 @@ function custom_get_mtags_field($object, $field_name, $request) {
 
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
+add_action('wp_ajax_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
-//  load_more_funcation
 
-function load_more_posts_template() {
-    check_ajax_referer('load_more_posts', 'security');
 
-    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+function load_more_posts_ajax_handler(){
+     
+     $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
 
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 8,
-        'paged' => $paged
-    );
+     $excluded_ids = isset($_POST['exclude']) ? array_map('intval', $_POST['exclude']) : array();
+ 
+     $args = array(
+         'post_type'      => 'post',
+         'posts_per_page' => 12,
+         'paged'          => $paged,
+         'post__not_in'   => $excluded_ids,
+     );
 
-    $custom_query = new WP_Query($args);
+     $query = new WP_Query($args);
 
-    if ($custom_query->have_posts()) :
-        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display">
+    if( $query->have_posts() ) :
+        while( $query->have_posts() ): $query->the_post(); ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail('full'); ?>
@@ -312,25 +316,14 @@ function load_more_posts_template() {
                 </div>
             </div>
         <?php endwhile;
-        wp_reset_postdata();
-    else :
-        echo ''; // No more posts
     endif;
+    wp_reset_postdata();
 
-    wp_die();
+    die();
 }
 
-function enqueue_load_more_script() {
-    wp_enqueue_script('jquery'); // Ensure jQuery is loaded
-    wp_localize_script('jquery', 'ajax_params', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('load_more_posts')
-    ));
-}
-add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
-add_action('wp_ajax_load_more_posts', 'load_more_posts_template');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_template');
-
+add_action('wp_ajax_loadmore', 'load_more_posts_ajax_handler');
+add_action('wp_ajax_nopriv_loadmore', 'load_more_posts_ajax_handler');
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 
@@ -408,3 +401,44 @@ function custom_comment_reply_notification_to_fyno($comment_id, $comment_approve
 }
 
 add_action('comment_post', 'custom_comment_reply_notification_to_fyno', 10, 3);
+
+/* function to add nofollow for external links */
+
+
+function add_nofollow_to_all_links($buffer) {
+    $excluded_domains = ['vestedfinance.com', '/in'];
+
+    $buffer = preg_replace_callback(
+        '/<a(.*?)href=["\'](.*?)["\'](.*?)>/i',
+        function ($matches) use ($excluded_domains) {
+            $url = $matches[2];
+
+            if ($url === '#' || strpos($url, '#') === 0) {
+                return $matches[0];
+            }
+
+            foreach ($excluded_domains as $domain) {
+                if (strpos($url, $domain) !== false) {
+                    return $matches[0];
+                }
+            }
+
+            if (strpos($matches[1] . $matches[3], 'rel=') === false) {
+                return "<a" . $matches[1] . "href='" . $matches[2] . "'" . $matches[3] . " rel='nofollow'>";
+            } elseif (strpos($matches[1] . $matches[3], 'nofollow') === false) {
+                return preg_replace('/rel=["\'](.*?)["\']/', "rel='$1 nofollow'", $matches[0]);
+            }
+            return $matches[0];
+        },
+        $buffer
+    );
+
+    return $buffer;
+}
+
+function buffer_start() { ob_start('add_nofollow_to_all_links'); }
+function buffer_end() { ob_end_flush(); }
+
+add_action('wp_head', 'buffer_start');
+
+add_action('wp_footer', 'buffer_end');
