@@ -630,6 +630,7 @@
 	line-height: 120%;
 	letter-spacing: -1.52px;
 	margin: 0 0 25px 0;
+	text-align: center;
 }
 
 .post-type-list .post-listing {
@@ -656,7 +657,6 @@
 
 .post-listing .head .left-part a {
 	color: #002852;
-	font-family: Inter;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -676,7 +676,6 @@
 
 .post-listing .head .short-content p {
 	color: rgba(33, 37, 41, 0.8);
-	font-family: Inter;
 	font-size: 16px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -714,7 +713,6 @@
 	overflow: hidden;
 	color: #212529;
 	text-overflow: ellipsis;
-	font-family: Inter;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
@@ -794,7 +792,6 @@
 .sub_heading {
 	color: #505a64;
 	text-align: center;
-	font-family: Inter;
 	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 500;
@@ -847,7 +844,6 @@
 .section_title {
 	color: #002852;
 	text-align: center;
-	font-family: Inter;
 	font-size: 38px;
 	font-style: normal;
 	font-weight: 700;
@@ -971,7 +967,6 @@
 
 .faq_que h4 {
 	color: #212529;
-	font-family: Inter;
 	font-size: 22px;
 	font-style: normal;
 	font-weight: 500;
@@ -1006,7 +1001,6 @@
 .faq_content p {
 	margin-bottom: 15px;
 	color: #1e2022;
-	font-family: Inter;
 	font-size: 22px !important;
 	font-style: normal;
 	font-weight: 400;
@@ -1245,16 +1239,17 @@ div#vest_read_more i {
 	text-align: center;
 }
 
-.etf_stock_info_content {
+.eft_stock_info p {
 	margin-top: 24px;
 	margin-bottom: 0;
 	font-size: 18px;
 	line-height: 24px;
 	font-weight: 500;
 	color: #505A64;
+	text-align: left;
 }
 
-.etf_stock_info_content a {
+.eft_stock_info p a {
 	color: #3569E5;
 }
 
