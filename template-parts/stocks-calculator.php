@@ -16,7 +16,7 @@
     }
 
     .calculator {
-        padding: 42px 0;
+        padding: 60px 0;
     }
 
     .calculator .main_heading {
@@ -121,11 +121,10 @@
     /* end select 2 */
     .calculator .calc_form label {
         color: #464646;
-
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 21px;
         margin-bottom: 6px;
         display: inline-block;
     }
@@ -220,7 +219,7 @@
     }
 
     .calculator .submit_btn {
-        margin-top: 32px;
+        margin-top: 50px;
     }
 
     .calculator .field_row {
@@ -294,46 +293,50 @@
     .calculator .invested_val.list {
         padding-bottom: 18px;
         border-bottom: 1px dashed rgb(6 52 98 / 30%);
-       
+
     }
-    .calculator .invested_val.list p{
+
+    .calculator .invested_val.list p {
         position: relative;
         padding-left: 30px;
     }
-    .calculator .invested_val.list p:before {
-  content: "";
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #b3d2f1;
-  border-radius: 50%;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.est_return.list p{
-    position: relative;
-    padding-left: 30px;
-}
 
-.est_return.list p:before {
-  content: "";
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #002852;
-  border-radius: 50%;
-  left:0px;
-  top: 50%;
-  transform: translateY(-50%);
-}   
-  .calculator .est_return.list {
+    .calculator .invested_val.list p:before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #b3d2f1;
+        border-radius: 50%;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .est_return.list p {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .est_return.list p:before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #002852;
+        border-radius: 50%;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .calculator .est_return.list {
         margin-top: 18px;
         padding-bottom: 29px;
         border-bottom: 1px solid rgb(6 52 98 / 30%);
-        
+
     }
- 
+
     .calculator .total_val.list {
         margin-top: 29px;
         padding-bottom: 16px;
@@ -402,6 +405,7 @@
         align-items: center;
         justify-content: center;
     }
+
     .calculator .cta_btn a span {
         display: block;
     }
@@ -522,12 +526,17 @@
         transition: all 0.5s ease;
     }
 
+    .calculator .submit_btn button span {
+        pointer-events: none;
+    }
+
 
     .calculator .submit_btn button svg {
         width: 0;
         height: 0;
         margin-right: 0;
         transition: all 0.5s ease;
+        pointer-events: none;
     }
 
     .calculator .submit_btn button svg.show_loader {
@@ -547,6 +556,7 @@
         margin-bottom: 0;
         border-radius: 4px;
         border: 1px solid #a9bdd0;
+        background: #fff;
     }
 
     .calculator .field_col:before {
@@ -572,7 +582,8 @@
         padding-top: 12px;
     }
 
-    .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+    .flatpickr-months .flatpickr-prev-month:hover svg,
+    .flatpickr-months .flatpickr-next-month:hover svg {
         fill: #002852;
     }
 
@@ -621,9 +632,9 @@
         outline: none;
     }
 
-    .cal_heading_wrap {
+    /* .cal_heading_wrap {
         max-width: 684px;
-    }
+    } */
 
     /* 18/12/23 */
 
@@ -693,7 +704,10 @@
         background-color: #fff;
     }
 
-    .selected_option .dropdown_search:focus, .selected_option .dropdown_search:active, .selected_option .dropdown_search:focus-within, .selected_option .dropdown_search:focus-visible {
+    .selected_option .dropdown_search:focus,
+    .selected_option .dropdown_search:active,
+    .selected_option .dropdown_search:focus-within,
+    .selected_option .dropdown_search:focus-visible {
         border: none;
         outline: none;
         box-shadow: none;
@@ -841,6 +855,7 @@
         .main_calc_wrap {
             flex-wrap: wrap;
         }
+
         .calc_col,
         .calc_result_col {
             width: 100%;
@@ -916,6 +931,7 @@
             font-size: 10px;
             line-height: 1;
         }
+
         .main_calc_wrap {
             border: none;
             padding: 0;
@@ -969,7 +985,7 @@
         }
 
         .calc_result_col {
-            margin-top: 24px;
+            margin-top: 36px;
         }
 
         .result_inner_col {
@@ -1005,7 +1021,8 @@
             padding-left: 0;
         }
 
-        .calculator .cagr_val.list h4, .calculator .total_val.list h4 {
+        .calculator .cagr_val.list h4,
+        .calculator .total_val.list h4 {
             font-size: 18px;
         }
 
@@ -1139,7 +1156,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
 
                         <div class="submit_btn">
-                            <button type="submit">
+                            <button type="submit" class="US_Stock_return_calculator">
                                 <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -1197,24 +1214,24 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 <div class="investment_cta">
                     <div class="cta_content_col">
                         <p>
-                            If you had invested 
+                            If you had invested
                             <span class="calc_currency">$</span>
-                            <span id="content_invest_amt">0</span> in 
-                            <span id="start_month">January 2021</span>, 
-                            it would be worth 
+                            <span id="content_invest_amt">0</span> in
+                            <span id="start_month">January 2021</span>,
+                            it would be worth
                             <strong>
                                 <span class="calc_currency">$</span>
                                 <span id="content_total_value">0</span>
-                            </strong> by 
-                            <span id="end_month">August 2023</span> with 
+                            </strong> by
+                            <span id="end_month">August 2023</span> with
                             <strong><span id="content_cagr">0</span>% CAGR</strong>
                         </p>
                     </div>
                     <div class="cta_btn">
                         <a href="https://app.vestedfinance.com/signup" target="_blank">
-                            <span>Start Investing</span> 
+                            <span>Start Investing</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
                     </div>
@@ -1232,12 +1249,12 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
 
 
-<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
+<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
     <div class="container">
         <div id="stocks_chart" class="blur">
             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
             <canvas id="calculatorChart" width="400" height="200"></canvas>
-            
+
             <div id="chartLoader" style="display: none;">
                 <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -1271,13 +1288,13 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         ],
         defaultDate: "February 2023",
         maxDate: "today",
-        onReady: function (selectedDates, dateStr, instance) {
+        onReady: function(selectedDates, dateStr, instance) {
             // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
             document.querySelector('#start_month').textContent = dateStr;
             var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
             callEndDate(formattedDate);
         },
-        onClose: function (selectedDates, dateStr, instance) {
+        onClose: function(selectedDates, dateStr, instance) {
             var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toISOString().slice(0, 7);
             var formattedDateEnd = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
             const startDate = document.getElementById('startMonth');
@@ -1299,10 +1316,10 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             defaultDate: "February 2024",
             minDate: minDate,
             maxDate: "today",
-            onReady: function (selectedDates, dateStr, instance) {
+            onReady: function(selectedDates, dateStr, instance) {
                 document.querySelector('#end_month').textContent = dateStr;
             },
-            onClose: function (selectedDates, dateStr, instance) {
+            onClose: function(selectedDates, dateStr, instance) {
                 var date = new Date(dateStr);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
@@ -1321,7 +1338,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
-        
+
         // Retrieve form values
         const stockSelector = document.getElementById('resultsList').dataset.value;
         const stockName = document.querySelector('.dropdown_search').value;
@@ -1356,7 +1373,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             })
             .catch(error => alert("Something went wrong!"));
     });
-      
+
     // Event handler for currency radio buttons
     document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
@@ -1367,7 +1384,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
             // Update the text based on the selected radio button
             const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-            
+
             document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
                 element.textContent = currencySymbol;
             });
@@ -1377,43 +1394,43 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
     //on page loaded function//
     document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            // Check which radio button is checked
-            document.querySelector('.calc_result_col').classList.add('blur');
-            document.querySelector('#stocks_chart').classList.add('blur');
-            var selectedOption = document.querySelector('input[name="currency"]:checked').value;
+        document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                // Check which radio button is checked
+                document.querySelector('.calc_result_col').classList.add('blur');
+                document.querySelector('#stocks_chart').classList.add('blur');
+                var selectedOption = document.querySelector('input[name="currency"]:checked').value;
 
-            // Update the text based on the selected radio button
-            const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-            
-            document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
-                element.textContent = currencySymbol;
+                // Update the text based on the selected radio button
+                const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
+
+                document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
+                    element.textContent = currencySymbol;
+                });
             });
         });
+
+
+        setTimeout(function() {
+
+            const stockSelector = document.getElementById('resultsList').dataset.value;
+            const investmentAmount = document.getElementById('invest_val').value;
+            const currency = document.querySelector('input[name="currency"]:checked').value;
+            const startDate = document.getElementById('startMonth').getAttribute('data-value');
+            const endDate = document.getElementById('endMonth').getAttribute('data-value');
+            // Trigger API and render chart
+            triggerAPI(stockSelector, startDate, endDate)
+                .then(data => {
+                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
+                })
+                .catch(error => alert("Something went wrong!"));
+        }, 500);
+
     });
 
-    
-    setTimeout(function() {
+    //end on page loaded function//
 
-       const stockSelector = document.getElementById('resultsList').dataset.value;
-        const investmentAmount = document.getElementById('invest_val').value;
-        const currency = document.querySelector('input[name="currency"]:checked').value;
-        const startDate = document.getElementById('startMonth').getAttribute('data-value');
-        const endDate = document.getElementById('endMonth').getAttribute('data-value');
-      // Trigger API and render chart
-      triggerAPI(stockSelector, startDate, endDate)
-            .then(data => {
-                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
-            })
-            .catch(error => alert("Something went wrong!"));
-          }, 500);
-
-});
-
-//end on page loaded function//
-
-// Function to update button status
+    // Function to update button status
     function btnStatus() {
         var startDate = document.getElementById('startMonth').getAttribute('data-value');
         var endDate = document.getElementById('endMonth').getAttribute('data-value');
@@ -1450,30 +1467,30 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     let yValues = [];
     let zValues = [];
     let bValues = [];
-    
+
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
         xValues = [];
         yValues = [];
         zValues = [];
         bValues = [];
-      
+
         const svgElement = document.querySelector('.calculator .submit_btn button svg');
         svgElement.classList.add('show_loader');
 
-        const apiUrl = `https://vested-woodpecker-staging.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
-        const sp500Api = `https://vested-woodpecker-staging.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
-        const niftyApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
-        const USDINRApi = `https://vested-woodpecker-staging.vestedfinance.com/instrument/USDINR.FOREX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const sp500Api = `https://vested-woodpecker-prod.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const niftyApi = `https://vested-woodpecker-prod.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
+        const USDINRApi = `https://vested-woodpecker-prod.vestedfinance.com/instrument/USDINR.FOREX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const fetchStockData = fetch(apiUrl).then(response => response.json());
         const fetchSP500Data = fetch(sp500Api).then(response => response.json());
         const fetchNiftyData = fetch(niftyApi).then(response => response.json());
         const fetchUSDINRData = fetch(USDINRApi).then(response => response.json());
-        
+
         return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData, fetchUSDINRData])
             .then(([stockData, sp500Data, niftyData, usdinrData]) => {
                 const selectedCurrency = document.querySelector('input[name="currency"]:checked');
-                
+
                 const startPrice = stockData.data[0].Adj_Close;
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
@@ -1500,7 +1517,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
                 const inrStartPrice = usdinrData.data[0].Adj_Close;
                 const inrEndPrice = usdinrData.data[usdinrData.data.length - 1].Adj_Close;
-                const inrStartStockQty = investmentAmount/(startPrice*inrStartPrice);
+                const inrStartStockQty = investmentAmount / (startPrice * inrStartPrice);
                 const inrLastPortfolioValue = parseFloat(inrStartStockQty * endPrice * inrEndPrice).toFixed(2);
 
                 const inrEstReturns = parseFloat(inrLastPortfolioValue - investmentAmount);
@@ -1518,7 +1535,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     if (adjClose) {
                         finalAmount *= adjClose;
                     }
-                    
+
                     const result = Math.round(finalAmount);
                     if (index < xValues.length) {
                         xValues[index] = currentDate;
@@ -1558,7 +1575,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     }
                 });
 
-                
+
                 const targetCurrency = selectedCurrency.value === "inr" ? "inr" : "usd";
 
                 document.getElementById('est_returns').textContent = Math.round(targetCurrency === "inr" ? inrEstReturns : estReturns).toLocaleString();
@@ -1597,8 +1614,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         // Define the datasets based on the condition
         let datasets;
         if (hideNifty) {
-            datasets = [
-                {
+            datasets = [{
                     label: `${stockName}`,
                     data: yValues,
                     borderColor: '#002852',
@@ -1614,8 +1630,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 }
             ];
         } else {
-            datasets = [
-                {
+            datasets = [{
                     label: `${stockName}`,
                     data: yValues,
                     borderColor: '#002852',
@@ -1661,7 +1676,11 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             title: function(tooltipItems) {
                                 var inputDateStr = tooltipItems[0].parsed.x;
                                 var inputDate = new Date(inputDateStr);
-                                var formattedDate = inputDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                                var formattedDate = inputDate.toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                });
                                 return formattedDate;
                             },
                             label: function(context) {
@@ -1686,27 +1705,27 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         }
                     },
                     x: {
-						type: 'timeseries',
+                        type: 'timeseries',
                         ticks: {
                             autoSkip: false,
                             minRotation: dateRange === 'year' ? 0 : 30
                         },
-						time: {
-							unit: dateRange,
-							displayFormats: {
-								'day': 'dd-MMM',
-								'year': 'MMM yyyy',
-							}                            
-						},
+                        time: {
+                            unit: dateRange,
+                            displayFormats: {
+                                'day': 'dd-MMM',
+                                'year': 'MMM yyyy',
+                            }
+                        },
                         min: minDate.toISOString().split('T')[0],
                         max: maxDate.toISOString().split('T')[0]
-					},
+                    },
                 }
             }
         });
     }
 
-    
+
 
     document.querySelector('.selected_option').addEventListener("click", function() {
         const mainDropdown = document.querySelector('.select_box_new');
@@ -1724,7 +1743,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
 
             const selectedValue = clickedElement.dataset.value;
-            
+
             searchValue.value = clickedElement.textContent;
             returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
             mainValue.dataset.value = selectedValue;

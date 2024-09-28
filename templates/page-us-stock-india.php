@@ -18,12 +18,12 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-image">
-                      <?php
-                      $image = get_field('stock_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                    <?php
+                    $image = get_field('stock_image');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -34,6 +34,8 @@ get_header(); ?>
             </div>
         </div>
     </section>
+
+    <?php get_template_part('template-parts/us-stock-search'); ?>
 
     <section class="tab-section">
         <div class="container">
@@ -74,29 +76,29 @@ get_header(); ?>
                                         <?php the_sub_field('content'); ?>
                                     </div>
                                     <div class="image">
-                                        <?php if( get_sub_field('mobile_image') ){ ?>
-                                         <?php
-                                           $image = get_sub_field('image');
+                                        <?php if (get_sub_field('mobile_image')) { ?>
+                                            <?php
+                                            $image = get_sub_field('image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide"/>
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_hide" />
                                             <?php endif; ?>
 
                                             <?php
-                                           $image = get_sub_field('mobile_image');
+                                            $image = get_sub_field('mobile_image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
                                             <?php endif; ?>
                                         <?php } else { ?>
                                             <?php
-                                           $image = get_sub_field('image');
+                                            $image = get_sub_field('image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
                                                     alt="<?php echo esc_attr($image['alt']); ?>" />
                                             <?php endif; ?>
                                         <?php } ?>
-                                        <?php if ($index == 1) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>  
+                                        <?php if ($index == 1) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -109,11 +111,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <?php get_template_part('template-parts/us-stock-search'); ?>
-
-    <?php get_template_part('template-parts/us-stock-vests'); ?>
-
-    
     <?php if (have_rows('stocks_slider')) : ?>
         <section class="stocks_slider_sec">
             <div class="container">
@@ -121,15 +118,16 @@ get_header(); ?>
                     <span><?php the_field('stocks_slider_heading'); ?></span>
                 </h2>
                 <div class="stocks_slider_wrap">
-                        
+
                     <div class="stocks_slider_inner">
                         <h2 class="section_title align_left mobile_hide">
                             <span><?php the_field('stocks_slider_heading'); ?></span>
                         </h2>
                         <div class="stocks_slider_content">
 
-                            <?php $currentIndexNo = 0; while (have_rows('stocks_slider')) : the_row();
-                            
+                            <?php $currentIndexNo = 0;
+                            while (have_rows('stocks_slider')) : the_row();
+
                             ?>
                                 <div class="single_portfolio_slider_content" data-curent-slide="<?php echo $currentIndexNo; ?>">
                                     <div class="portfolio_slider_content_inner">
@@ -144,18 +142,19 @@ get_header(); ?>
                                         </div>
                                     </div>
                                 </div>
-                            <?php $currentIndexNo++; endwhile; ?>
+                            <?php $currentIndexNo++;
+                            endwhile; ?>
                         </div>
                     </div>
                     <div class="us_stocks_slider stock-single-item">
                         <?php while (have_rows('stocks_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                            <?php
-                                            $image = get_sub_field('stocks_slider_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('stocks_slider_image');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
 
                             </div>
                         <?php endwhile; ?>
@@ -166,12 +165,12 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-
-    <?php
-        $chart = 'false';
-    ?>
-    <?php get_template_part('template-parts/stocks-calculator'); ?>
-
+    <section class="stock_chart_sec">
+        <?php
+        $chart = 'true';
+        ?>
+        <?php get_template_part('template-parts/stocks-calculator'); ?>
+    </section>
     <?php if (have_rows('portfolio_slider')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
@@ -182,13 +181,13 @@ get_header(); ?>
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                               
+
                                 <?php
-                                            $image = get_sub_field('slider_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                $image = get_sub_field('slider_image');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -216,113 +215,20 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
+    <?php get_template_part('template-parts/us-stock-vests'); ?>
+
+
     <?php get_template_part('template-parts/investors-slider'); ?>
 
     <section class="post-type-list">
         <div class="container">
-            <h2>Invest wisely with <br class="desktop_hide"> clarity and conviction</h2>
+            <h2>Invest with Confidence: Read our Blogs</h2>
             <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Under the Spotlight</h3>
-                        <a href="<?php echo home_url() ?>/blog/us-stocks/under-the-spotlight/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Deep-dive articles on the long-term prospects of U.S. companies, with our in-depth research.</p>
-                    </div>
-                </div>
                 <ul>
                     <?php
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
-                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
-                                'terms'    => 'under-the-spotlight', // Replace with the term you want to display
-                            ),
-                        ),
-                    );
-
-                    $custom_query = new WP_Query($args);
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_permalink() ?>">
-                                    <?php the_post_thumbnail(); ?>
-                                    <h4><?php the_title(); ?></h4>
-                                </a>
-                            </li>
-                    <?php endwhile;
-                        wp_reset_postdata();
-                    endif; ?>
-                </ul>
-            </div>
-            <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Vested Shorts</h3>
-                        <a href="<?php echo home_url() ?>/blog/us-stocks/vested-shorts/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Bite-sized insights on market updates and trends to stay ahead of the curve.</p>
-                    </div>
-                </div>
-                <ul>
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
-                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
-                                'terms'    => 'vested-shorts', // Replace with the term you want to display
-                            ),
-                        ),
-                    );
-
-                    $custom_query = new WP_Query($args);
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_permalink() ?>">
-                                    <?php the_post_thumbnail(); ?>
-                                    <h4><?php the_title(); ?></h4>
-                                </a>
-                            </li>
-                    <?php endwhile;
-                        wp_reset_postdata();
-                    endif; ?>
-                </ul>
-            </div>
-            <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Blogs</h3>
-                        <a href="<?php echo home_url() ?>/blog/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Learn more with regular insights that dive into the US Stock Markets.</p> 
-                    </div>
-                </div>
-                <ul>
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories',
-                                'field'    => 'slug',
-                                'terms'    => array('under-the-spotlight', 'vested-shorts'),
-                                'operator' => 'NOT IN',
-                            ),
-                        ),
                     );
 
                     $custom_query = new WP_Query($args);
@@ -350,15 +256,27 @@ get_header(); ?>
                 <div class="partners_wrap">
                     <?php while (have_rows('partners_list')) : the_row(); ?>
                         <div class="single_partner_block">
-                             <?php
-                                            $image = get_sub_field('partner_logo');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                            <?php
+                            $image = get_sub_field('partner_logo');
+                            if (!empty($image)): ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
+            <?php endif; ?>
+        </div>
+    </section>
+    <section class="eft_stock_info">
+        <div class="container">
+            <h2 class="section_title"><?php the_field('stock_eft_section_title'); ?></h2>
+            <?php $eftContent = get_field('stock_eft_description');
+            if ($eftContent) :
+            ?>
+                <p class="etf_stock_info_content">
+                    <?php echo $eftContent; ?>
+                </p>
             <?php endif; ?>
         </div>
     </section>
@@ -381,33 +299,35 @@ get_header(); ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
+                <div class="btn text-center">
+                    <a href="https://support.vestedfinance.com/portal/en/kb/vested-us-stocks" class="btn_dark" target="_blank">Explore All FAQs</a>
+                </div>
             </div>
         </section>
     <?php endif; ?>
 </div>
 
 <?php if (have_rows('faq_list')) : ?>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        <?php $rowCount = 0; ?>
-        <?php while (have_rows('faq_list')) : the_row(); ?>
-            {
-                "@type": "Question",
-                "name": "<?php the_sub_field('faq_question') ?>",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('faq_answer') ?>
-                    "
-                }
-            }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-        <?php endwhile; ?>
-    ]
-}
-</script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                <?php $rowCount = 0; ?>
+                <?php while (have_rows('faq_list')) : the_row(); ?> {
+                        "@type": "Question",
+                        "name": "<?php the_sub_field('faq_question') ?>",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "
+                            <?php the_sub_field('faq_answer') ?> "
+                        }
+                    }
+                    <?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
+                <?php endwhile; ?>
+            ]
+        }
+    </script>
 <?php endif; ?>
 
 <?php get_footer(); ?>
