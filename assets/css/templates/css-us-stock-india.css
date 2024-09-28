@@ -1251,6 +1251,7 @@ div#vest_read_more i {
 
 .eft_stock_info p a {
 	color: #3569E5;
+	text-decoration: underline;
 }
 
 .page-template-page-us-stock-india .container .btn.text-center {
