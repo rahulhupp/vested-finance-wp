@@ -2109,6 +2109,11 @@ div#vest_read_more i {
 		margin: 0 auto;
 	}
 
+	.eft_stock_info p {
+		font-size: 14px;
+		line-height: 24;
+	}
+
 	.faq_content p {
 		font-size: 12px !important;
 	}
