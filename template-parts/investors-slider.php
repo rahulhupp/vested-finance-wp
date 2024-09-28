@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="platform_icon">
                                         <a href="<?php the_sub_field('investor_link') ?>" target="_blank">
-                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.png" alt="Review Platform">
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.webp" alt="Review Platform">
                                         </a>
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
 	}
 
 	.investors_sec {
-		padding-top: 12px;
-		padding-bottom: 37px;
+		padding: 60px 0;
+		background: #eef5fc;
 	}
 
 	.investor_subtitle {
@@ -282,7 +282,8 @@
 
 	@media (max-width: 767px) {
 		.investors_slider {
-			margin-top: 38px;
+			margin-top: 30px;
+			padding: 0 30px;
 		}
 
 		.investor_subtitle {
@@ -291,9 +292,6 @@
 
 		.investor_desclaimer p {
 			font-size: 10px !important;
-		}
-		.investors_sec {
-			padding-top: 45px;
 		}
 		.investor_slide_inner {
 			min-height: 360px;
@@ -307,7 +305,7 @@
 			padding: 0 24px;
 		}
 		.investor_slider_nav {
-		    margin-bottom: 37px;
+		    margin-bottom: 45px;
 		}
 	}
 

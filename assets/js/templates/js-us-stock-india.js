@@ -35,6 +35,21 @@ jQuery(document).ready(function () {
 		jQuery(activeTabMobile).fadeIn();
 		return false;
 	});
+
+	jQuery('.vest_about_content').slideUp();
+
+	jQuery('#vest_read_more').click(function(){
+		jQuery('.vest_about_content').slideToggle();
+		jQuery(this).toggleClass('collapsed');
+		if(jQuery('#vest_read_more span').text() === 'More') {
+			jQuery('#vest_read_more span').text('Less');
+			jQuery(this).children('i').css('transform', 'rotate(180deg)');
+		}
+		else {
+			jQuery('#vest_read_more span').text('More');
+			jQuery(this).children('i').css('transform', 'rotate(0deg)');
+		}
+	});
 });
 
 
