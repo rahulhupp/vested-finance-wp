@@ -274,9 +274,7 @@ get_header(); ?>
             <?php $eftContent = get_field('stock_eft_description');
             if ($eftContent) :
             ?>
-                <p class="etf_stock_info_content">
-                    <?php echo $eftContent; ?>
-                </p>
+                <?php echo $eftContent; ?>
             <?php endif; ?>
         </div>
     </section>
