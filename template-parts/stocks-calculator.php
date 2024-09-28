@@ -9,7 +9,7 @@
     .main_calc_wrap {
         position: relative;
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         border-radius: 8px;
         border: 1px solid #b6c9db;
         overflow: hidden;
@@ -357,7 +357,7 @@
     }
 
     .calculator .investment_cta {
-        margin: 0 16px 16px 16px;
+        margin: 0 16px 0px 16px;
         border-radius: 6px;
         background: #002852;
         padding: 24px;
@@ -825,6 +825,34 @@
         animation: loaderamin 0.5s infinite;
     }
 
+    .read_more_chart {
+        padding: 12px 20px;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #E5E7EB;
+        margin-top: 14px;
+    }
+
+    .read_more_chart .chart_desc_btn {
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+        color: #002852;
+        font-weight: 500;
+    }
+
+    .read_more_chart .chart_desc_btn i {
+        color: inherit;
+    }
+
+    .read_more_chart .chart_desc {
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: left;
+        margin-top: 15px;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -1042,6 +1070,26 @@
         .calculator .sub_heading {
             font-size: 14px !important;
         }
+
+        .read_more_chart {
+		border: none;
+		padding: 0;
+		border-radius: 6px;
+		padding-bottom: 5px;
+	}
+	
+	.read_more_chart .chart_desc_btn {
+		font-size: 16px;
+		border: 1px solid #146045;
+		border-radius: 6px;
+		padding: 15px 24px;
+		overflow: hidden;
+	}
+	
+	.read_more_chart .chart_desc {
+		font-size: 10px;
+		line-height: 14px;
+	}
     }
 
     @keyframes loaderamin {
@@ -1237,6 +1285,10 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     </div>
                 </div>
 
+            </div>
+            <div class="read_more_chart">
+                <div class="chart_desc_btn">View Historical Performance Chart <i class="fa fa-chevron-down"></i></div>
+                <p class="chart_desc">This calculator utilizes dividend and split adjusted close price of third business day of start and end months to calculate returns. The total return, annualized return, and the hypothetical portfolio value of the investment amount are computed based on the first and last prices within the selected range.</p>
             </div>
         </div>
         <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
