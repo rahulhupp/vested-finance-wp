@@ -740,6 +740,7 @@
 
 .us_stocks_slider {
 	width: 306px;
+	position: relative;
 }
 
 .stocks_slider_inner {
@@ -872,6 +873,10 @@
 	background-color: transparent !important;
 	border: none !important;
 	padding: 10px 0px !important;
+}
+
+.single_portfolio_slider.slick-active.slick-current {
+	padding: 10px 0px 0px !important;
 }
 
 .portfolio_slider_content {
@@ -1048,8 +1053,10 @@
 	margin-bottom: 0;
 	text-align: center;
 	margin-top: 25px;
-	left: 70px;
-	position: relative;
+	left: 50%;
+    position: relative;
+    width: 100%;
+    transform: translateX(-50%);
 }
 
 .desktop_hide {
@@ -1068,14 +1075,15 @@
 	text-align: center;
 }
 
-.us_stocks_slider .slick-list:after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 1px;
-	background: #212529;
-	bottom: 10px;
-	z-index: -1;
+.us_stocks_slider .slick-list:after, .portfolio_slider .slick-list:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: #eef5fc;
+    bottom: 0px;
+    z-index: 0;
+    border-top: 1px solid #212529;
 }
 
 .banner_popup {
