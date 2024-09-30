@@ -119,7 +119,7 @@
         });
 
         // Display only the top 3 vests with the highest oneYearReturn
-        for (let i = 0; i < Math.min(4, vestsArray.length); i++) {
+        for (let i = 0; i < vestsArray.length; i++) {
             const vest = vestsArray[i];
             const li = document.createElement("li");
 
