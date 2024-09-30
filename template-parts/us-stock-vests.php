@@ -148,7 +148,7 @@
                     </div>
                     <div class="bottom">
                         <span>Recommended for</span>
-                        <p>${vest.shortBlurb}</p>
+                        <p>${vest.shortBlurb || vest.blurb}</p>
                     </div>
                 </a>
             `;
