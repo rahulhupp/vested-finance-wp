@@ -37,8 +37,8 @@ jQuery(document).ready(function () {
 	});
 
 	jQuery('.vest_about_content').slideUp();
-	jQuery('.chart_desc').slideUp();
-	
+	jQuery('.chart_desc_btn + .chart').slideUp();
+
 	jQuery('#vest_read_more').click(function(){
 		jQuery('.vest_about_content').slideToggle();
 		jQuery(this).toggleClass('collapsed');
@@ -53,7 +53,7 @@ jQuery(document).ready(function () {
 	});
 
 	jQuery('.chart_desc_btn').click(function(){
-		jQuery('.chart_desc').slideToggle();
+		jQuery('.chart_desc_btn + .chart').slideToggle();
 	});
 });
 

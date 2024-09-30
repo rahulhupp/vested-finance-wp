@@ -853,6 +853,15 @@
         margin-top: 15px;
     }
 
+    .chart_header {
+        background: #EEF5FC;
+        font-size: 38px;
+        line-height: 45.6px;
+        color: #002852;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -1072,24 +1081,24 @@
         }
 
         .read_more_chart {
-		border: none;
-		padding: 0;
-		border-radius: 6px;
-		padding-bottom: 5px;
-	}
-	
-	.read_more_chart .chart_desc_btn {
-		font-size: 16px;
-		border: 1px solid #146045;
-		border-radius: 6px;
-		padding: 15px 24px;
-		overflow: hidden;
-	}
-	
-	.read_more_chart .chart_desc {
-		font-size: 10px;
-		line-height: 14px;
-	}
+            border: none;
+            padding: 0;
+            border-radius: 6px;
+            padding-bottom: 5px;
+        }
+
+        .read_more_chart .chart_desc_btn {
+            font-size: 16px;
+            border: 1px solid #146045;
+            border-radius: 6px;
+            padding: 15px 24px;
+            overflow: hidden;
+        }
+
+        .read_more_chart .chart_desc {
+            font-size: 10px;
+            line-height: 14px;
+        }
     }
 
     @keyframes loaderamin {
@@ -1288,7 +1297,32 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </div>
             <div class="read_more_chart">
                 <div class="chart_desc_btn">View Historical Performance Chart <i class="fa fa-chevron-down"></i></div>
-                <p class="chart_desc">This calculator utilizes dividend and split adjusted close price of third business day of start and end months to calculate returns. The total return, annualized return, and the hypothetical portfolio value of the investment amount are computed based on the first and last prices within the selected range.</p>
+
+
+                <section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
+                    <div class="container">
+                        <div id="stocks_chart" class="blur">
+                            <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
+                            <h3 class="chart_header">Historical Performance for <span id="selected_chart_val"></span></h3>
+                            <canvas id="calculatorChart" width="400" height="200"></canvas>
+
+                            <div id="chartLoader" style="display: none;">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
             </div>
         </div>
         <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
@@ -1297,32 +1331,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </p>
         <?php endif; ?>
     </div>
-</section>
-
-
-
-<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
-    <div class="container">
-        <div id="stocks_chart" class="blur">
-            <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-            <canvas id="calculatorChart" width="400" height="200"></canvas>
-
-            <div id="chartLoader" style="display: none;">
-                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </div>
-
-    </div>
-
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
@@ -1657,7 +1665,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
     function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
         const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
-
+        document.querySelector('#selected_chart_val').innerHTML = stockName;
         // Check if a chart instance already exists
         if (chartInstance) {
             chartInstance.destroy(); // Destroy the existing chart instance

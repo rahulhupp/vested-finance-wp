@@ -813,7 +813,7 @@
 
 .single_partner_block {
 	width: 181px;
-	height: 142px;
+	height: 154px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1257,6 +1257,10 @@ div#vest_read_more i {
 .page-template-page-us-stock-india .container .btn.text-center {
 	text-align: center;
 	margin-top: 48px;
+}
+
+.partners .btn.text-center {
+    margin-top: 40px !important;
 }
 
 /* Linkedin slider */

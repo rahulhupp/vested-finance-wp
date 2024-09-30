@@ -229,6 +229,13 @@ get_header(); ?>
                     $args = array(
                         'post_type'      => 'post',
                         'posts_per_page' => 4,
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'master_categories',
+                                'field'    => 'slug',
+                                'terms'    => array('us-stocks'),
+                            ),
+                        ),
                     );
 
                     $custom_query = new WP_Query($args);
@@ -266,6 +273,9 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
+            <div class="btn text-center">
+                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become a Partner</a>
+            </div>
         </div>
     </section>
     <section class="eft_stock_info">
