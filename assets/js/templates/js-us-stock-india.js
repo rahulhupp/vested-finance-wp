@@ -341,7 +341,7 @@ jQuery(document).ready(function ($) {
 
 	// mobile slider for vests
 
-	setTimeout(checkForVests, 4000);
+	setTimeout(checkForVests, 2000);
 
 	function checkForVests() {
 		var vestsValue = localStorage.getItem("vests");
