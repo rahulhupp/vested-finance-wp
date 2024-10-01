@@ -360,13 +360,13 @@ jQuery(document).ready(function ($) {
 					{
 						breakpoint: 1199,
 						settings: {
-							slidesToShow: 3, // Adjusted this to 3 based on the next breakpoint
+							slidesToShow: 3,
 						}
 					},
 					{
 						breakpoint: 992,
 						settings: {
-							slidesToShow: 2,
+							slidesToShow: 2,  // This will now apply properly for screens smaller than 992px
 						}
 					},
 					{
@@ -382,7 +382,7 @@ jQuery(document).ready(function ($) {
 						}
 					}
 				]
-			});			
+			});					
 			localStorage.removeItem("vests");
 		} else {
 			console.log('No vests');
