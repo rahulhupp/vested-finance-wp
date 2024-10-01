@@ -1378,6 +1378,13 @@ div#vest_read_more i {
 		right: 40px;
 		max-width: 500px;
 	}
+	.defult_vest {
+		width: 222px;
+	}
+	
+	.build-foundation .foundation-list ul {
+		width: calc(100% - 222px);
+	}
 }
 
 
