@@ -1385,6 +1385,10 @@ div#vest_read_more i {
 	.build-foundation .foundation-list ul {
 		width: calc(100% - 222px);
 	}
+
+	.build-foundation .foundation-list ul li {
+		padding-left: 22px;
+	}
 }
 
 
@@ -1423,9 +1427,6 @@ div#vest_read_more i {
 		font-size: 12px !important;
 	}
 
-	.build-foundation .foundation-list ul li {
-		padding-left: 10px;
-	}
 
 	.build-foundation .foundation-list ul li .inner {
 		padding: 15px;
