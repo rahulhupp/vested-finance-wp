@@ -112,8 +112,9 @@
         }
 
         var vestsResultsList = document.getElementById("vestsResultsList");
+        var vestsListContainer = document.getElementsByClassName("vests_list_conatiner")[0]
         var skeletonMainElement = document.getElementsByClassName('skeleton_main')[0];
-        vestsResultsList.style.display = "flex";
+        vestsListContainer.style.display = "flex";
         skeletonMainElement.style.display = "none";
         localStorage.setItem("vests", true);
 
