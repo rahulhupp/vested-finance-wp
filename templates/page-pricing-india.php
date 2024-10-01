@@ -51,7 +51,7 @@ get_header(); ?>
                     <h2><?php the_field('basic_plan_heading'); ?></h2>
                     <span><?php the_field('basic_plan_price'); ?></span>
                     <div class="basic-plan-selection">
-                        <label for="pay-once">Pay Once</label>
+                        <label for="pay-once" style="opacity: 0;">Pay Once</label>
                     </div>
                     <a href="<?php the_field('basic_plan_button_link'); ?>"><?php the_field('basic_plan_button_label'); ?></a>
                 </div>
