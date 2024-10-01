@@ -341,7 +341,7 @@ jQuery(document).ready(function ($) {
 
 	// mobile slider for vests
 
-	setTimeout(checkForVests, 6000);
+	setTimeout(checkForVests, 4000);
 
 	function checkForVests() {
 		var vestsValue = localStorage.getItem("vests");
@@ -358,11 +358,13 @@ jQuery(document).ready(function ($) {
 				arrows: false,
 				responsive: [
 					{
+						breakpoint: 992,
+						settings: {
+							slidesToShow: 3,
+						},
 						breakpoint: 767,
 						settings: {
-							infinite: true,
 							slidesToShow: 2,
-							slidesToScroll: 1,
 						},
 						breakpoint: 600,
 						settings: {
@@ -376,12 +378,6 @@ jQuery(document).ready(function ($) {
 			console.log('No vests');
 			setTimeout(checkForVests, 1000); // Check again in 1 second
 		}
-	}
-
-	if ($(window).width() <= 992) {
-		console.log('992px');
-		localStorage.removeItem("vests");
-		checkForVests();
 	}
 
 	if ($(window).width() <= 767) {
