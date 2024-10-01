@@ -360,7 +360,7 @@ jQuery(document).ready(function ($) {
 					{
 						breakpoint: 1199,
 						settings: {
-							slidesToShow: 3,
+							slidesToShow: 2,
 						},
 						breakpoint: 992,
 						settings: {
