@@ -1396,6 +1396,13 @@ div#vest_read_more i {
 	.stocks_slider_content .single_portfolio_slider_content {
 		width: 100% !important;
 	}
+	.defult_vest {
+		width: 222px;
+	}
+	
+	.build-foundation .foundation-list ul {
+		width: calc(100% - 222px);
+	}
 }
 
 @media (min-width: 993px) {
