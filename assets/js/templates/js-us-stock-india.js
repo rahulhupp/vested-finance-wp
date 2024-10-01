@@ -342,12 +342,13 @@ jQuery(document).ready(function ($) {
 	// mobile slider for vests
 
 	checkForVests();
-	
+
 	function checkForVests() {
 		var vestsValue = localStorage.getItem("vests");
 
 		if (vestsValue === "true") {
-			$(".foundation-list ul").slick({
+			console.log('vests');
+			$("#vestsResultsList").slick({
 				slidesToShow: 3,
 				slidesToScroll: 1,
 				infinite: true,
@@ -372,6 +373,7 @@ jQuery(document).ready(function ($) {
 			});
 			localStorage.removeItem("vests");
 		} else {
+			console.log('No vests');
 			setTimeout(checkForVests, 1000); // Check again in 1 second
 		}
 	}
