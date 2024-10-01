@@ -98,9 +98,9 @@ get_header(); ?>
                                                     alt="<?php echo esc_attr($image['alt']); ?>" />
                                             <?php endif; ?>
                                         <?php } ?>
-                                        <?php if ($index == 3) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>
+                                        <?php if ($index === 3) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>
                                     </div>
-                                    <?php if ($index == 1) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>
+                                    <?php if ($index === 1) : ?><p class="img_source mt-0">Source: Bloomberg and CNBC<?php endif; ?></p>
                                 </div>
                             </div>
                             <?php $index++; ?>

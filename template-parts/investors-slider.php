@@ -201,7 +201,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 32px;
+		margin-bottom: 51px;
 	}
 
 	.investors_slider {
