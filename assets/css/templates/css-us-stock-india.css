@@ -1747,6 +1747,17 @@ div#vest_read_more i {
 	.stock-info .stock-row .stock-content,
 	.stock-info .stock-row .stock-image {
 		width: 100%;
+		padding-left: 0;
+	}
+
+	.stock-info .stock-row .stock-image img {
+		max-width: 100%;
+	}
+
+	.us_stocks_slider .slick-list:after, .portfolio_slider .slick-list:after {
+		width: 80%;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.stock-info {
