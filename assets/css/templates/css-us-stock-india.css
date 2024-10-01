@@ -621,7 +621,7 @@
 }
 
 .build-foundation .foundation-list ul {
-	width: 80%;
+	width: calc(80% - -20px);
 }
 
 .defult_vest .inner {
