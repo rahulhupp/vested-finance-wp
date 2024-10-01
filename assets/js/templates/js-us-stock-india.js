@@ -157,6 +157,18 @@ jQuery(document).ready(function ($) {
 
 	}
 
+	$("#vestsResultsList").slick({
+		infinite: true,
+		arrows: false,
+		dots: false,
+		autoplay: true,
+		speed: 800,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		vertical: true,
+		verticalSwiping: true,
+	});
+
 	//ticking machine
 	var percentTime;
 	var tick;
