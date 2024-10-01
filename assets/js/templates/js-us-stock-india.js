@@ -349,7 +349,7 @@ jQuery(document).ready(function ($) {
 		if (vestsValue === "true") {
 			console.log('vests');
 			$("#vestsResultsList").slick({
-				slidesToShow: 3,
+				slidesToShow: 4,
 				slidesToScroll: 1,
 				infinite: true,
 				autoplay: true,

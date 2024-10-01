@@ -32,7 +32,20 @@
                     </div>
                 </div>
             </div>
-            <ul id="vestsResultsList"></ul>
+            <div class="vests_list_conatiner">
+                <ul id="vestsResultsList"></ul>
+                <div class="defult_vest">
+                    <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
+                        <div class="plus-icon">
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.webp" alt="plus-icon" />
+                        </div>
+                        <div class="content">
+                            <strong>Create Your Own </strong>
+                            <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="btn">
                 <a class="btn_dark" href="https://app.vestedfinance.com/vests" target="_blank">Explore All Vests</a>
             </div>
@@ -157,21 +170,12 @@
             vestsResultsList.appendChild(li);
         }
 
-        const defaultBox = document.createElement("li");
-        defaultBox.className = "box";
-        defaultBox.innerHTML = `
-            <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
-                <div class="plus-icon">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.webp" alt="plus-icon" />
-                </div>
-                <div class="content">
-                    <strong>Create Your Own </strong>
-                    <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.</p>
-                </div>
-            </a>
-        </li>`;
+        // const defaultBox = document.createElement("li");
+        // defaultBox.className = "box";
+        // defaultBox.innerHTML = `
+        //     `;
 
-        vestsResultsList.appendChild(defaultBox);
+        // vestsResultsList.appendChild(defaultBox);
 
     }
 </script>
