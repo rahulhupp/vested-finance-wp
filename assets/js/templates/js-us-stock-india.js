@@ -157,18 +157,6 @@ jQuery(document).ready(function ($) {
 
 	}
 
-	$("#vestsResultsList").slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		autoplay: true,
-		speed: 800,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: true,
-	});
-
 	//ticking machine
 	var percentTime;
 	var tick;
@@ -353,6 +341,8 @@ jQuery(document).ready(function ($) {
 
 	// mobile slider for vests
 
+	checkForVests();
+	
 	function checkForVests() {
 		var vestsValue = localStorage.getItem("vests");
 
