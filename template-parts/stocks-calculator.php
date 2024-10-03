@@ -1234,7 +1234,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3 id="returnBreakdownTitle">Return Breakdown of S&P 500 ETF Trust SPDR</h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown of INVESCO NASDAQ 100 ETF</h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
                             <div class="fd_result" id="fd_results">
@@ -1304,7 +1304,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     <div class="container">
                         <div id="stocks_chart" class="blur">
                             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-                            <h3 class="chart_header">Historical Performance for <span id="selected_chart_val"></span></h3>
+                            <h3 class="chart_header">Historical Performance for <span id="selected_chart_val">INVESCO NASDAQ 100 ETF</span></h3>
                             <canvas id="calculatorChart" width="400" height="200"></canvas>
 
                             <div id="chartLoader" style="display: none;">
@@ -1482,7 +1482,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             // Trigger API and render chart
             triggerAPI(stockSelector, startDate, endDate)
                 .then(data => {
-                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
+                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "INVESCO NASDAQ 100 ETF", "month");
                 })
                 .catch(error => alert("Something went wrong!"));
         }, 500);
@@ -1802,11 +1802,12 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             const mainValue = document.querySelector('.selected_option');
             const searchValue = document.querySelector('.dropdown_search');
             const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
-
+            const chartDropdownText = document.querySelector('#selected_chart_val');
             const selectedValue = clickedElement.dataset.value;
 
             searchValue.value = clickedElement.textContent;
             returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
+            chartDropdownText.textContent = clickedElement.textContent;
             mainValue.dataset.value = selectedValue;
 
             document.querySelector('.calc_result_col').classList.add('blur');
