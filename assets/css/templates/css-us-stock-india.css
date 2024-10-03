@@ -398,6 +398,7 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	word-break: break-all;
 }
 
 .explore-stock .explore-image ul li .explore-icon {
@@ -2309,6 +2310,11 @@ div#vest_read_more i {
 
 .clear_icon i {
 	cursor: pointer;
+}
+
+.explore-stock .clear_icon {
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 
