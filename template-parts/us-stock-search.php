@@ -126,6 +126,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <script>
+    const cache = {};
+
     if (sessionStorage.getItem('last_api_call_timestamp')) {
         const current_time = Math.floor(Date.now() / 1000);
         const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
@@ -142,45 +144,57 @@
     }
 
     function usstockapi() {
-        callInstrumentsTokenApi();
-        const current_time = Math.floor(Date.now() / 1000); // Current time in seconds
+        const cacheKey = 'instruments';
+        const current_time = Math.floor(Date.now() / 1000);
+
+        if (cache[cacheKey] && (current_time - cache[cacheKey].timestamp < 3600)) {
+            storeStockList(cache[cacheKey].data);
+        } else {
+            callInstrumentsTokenApi();
+        }
+
         sessionStorage.setItem('last_api_call_timestamp', current_time);
     }
 
     function callInstrumentsTokenApi() {
-        const firstApiUrl = 'https://vested-api-prod.vestedfinance.com/get-partner-token'; // Replace with the actual URL of the first API
+        const firstApiUrl = 'https://vested-api-prod.vestedfinance.com/get-partner-token';
         const headers = {
             'partner-id': '7bcc5a97-3a00-45f0-bb7d-2df254a467c4',
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
             'instrument-list-access': true,
         };
+
         fetch(firstApiUrl, {
                 method: 'GET',
                 headers: headers
             })
             .then(response => response.text())
             .then(token => {
-                callInstrumentsApi(token);
+                return callInstrumentsApi(token).then(data => {
+                    const cacheKey = 'instruments';
+                    const current_time = Math.floor(Date.now() / 1000);
+                    cache[cacheKey] = {
+                        data,
+                        timestamp: current_time
+                    };
+                });
             })
             .catch(error => console.error('Error:', error));
     }
 
     function callInstrumentsApi(token) {
-        const instrumentsApiUrl = 'https://vested-api-prod.vestedfinance.com/v1/partner/instruments-list'; // Replace with the actual URL of the second API
-
+        const instrumentsApiUrl = 'https://vested-api-prod.vestedfinance.com/v1/partner/instruments-list';
         const headers = {
             'partner-authentication-token': token,
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
         };
 
-        fetch(instrumentsApiUrl, {
+        return fetch(instrumentsApiUrl, {
                 method: 'GET',
                 headers: headers
             })
             .then(response => response.json())
-            .then(data => {
-                storeStockList(data.instruments);
-            })
+            .then(data => storeStockList(data.instruments))
             .catch(error => console.error('Error:', error));
     }
 
@@ -210,7 +224,7 @@
             name: dbName,
             tables: [tblstocks],
             version: 2
-        }
+        };
         const isDbCreated = await connection.initDb(database);
         if (isDbCreated === true) {
             console.log("db created");
@@ -224,30 +238,25 @@
     }
 
     async function storeStockList(instruments) {
-        indexedDBConnection();
-        var rowsDeleted = await connection.remove({
+        await indexedDBConnection();
+        await connection.remove({
             from: 'stocks'
         });
-        var insertCount = await connection.insert({
+
+        const insertCount = await connection.insert({
             into: 'stocks',
             values: instruments
         });
-        var results = await connection.select({
-            from: 'stocks'
-        });
+
+        console.log(`Inserted ${insertCount} stocks.`);
     }
 
-    // Debounce function: Input as function which needs to be debounced and delay is the debounced time in milliseconds
     var timerId;
     var debounceFunction = function(func, delay) {
-        // Cancels the setTimeout method execution
-        clearTimeout(timerId)
+        clearTimeout(timerId);
+        timerId = setTimeout(func, delay);
+    };
 
-        // Executes the func after delay time.
-        timerId = setTimeout(func, delay)
-    }
-
-    // This represents a very heavy method. Which takes a lot of time to execute
     function makeAPICall() {
         var inputValue = document.getElementById("searchInput").value;
         fetchResult(inputValue);
@@ -256,10 +265,8 @@
     function inputChange() {
         var inputValue = document.getElementById("searchInput").value;
         var inputClearbtn = document.querySelector('.clear_icon');
-        let timeout;
 
-        // Debounces makeAPICall method
-        debounceFunction(makeAPICall, 500)
+        debounceFunction(makeAPICall, 500);
 
         if (inputValue.length > 0) {
             inputClearbtn.style.display = 'flex';
@@ -268,28 +275,21 @@
         }
     }
 
-
     async function fetchResult(stock_name) {
         try {
-            if (stock_name.length == 0) {
-                var ulElement = document.getElementById('stocksResultsList');
+            var ulElement = document.getElementById('stocksResultsList');
+            if (stock_name.length === 0) {
                 ulElement.nextElementSibling.style.display = 'flex';
                 ulElement.style.display = 'none';
                 return;
             }
-            if (stock_name.length > 0) {
-                var ulElement = document.getElementById('stocksResultsList');
-                ulElement.nextElementSibling.style.display = 'none';
-                ulElement.style.display = 'flex';
-            }
+
+            ulElement.nextElementSibling.style.display = 'none';
+            ulElement.style.display = 'flex';
 
             const regex = new RegExp(`\\b${stock_name}`, 'i');
             const results = await connection.select({
                 from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
                 where: {
                     symbol: {
                         like: `${stock_name}%`
@@ -301,8 +301,31 @@
                     }
                 }
             });
-            renderItems(results);
-            console.log('renderItems results', results);
+
+            const sortedResults = results.sort((a, b) => {
+                const searchTerm = stock_name.toLowerCase();
+
+                const aName = a.name.toLowerCase();
+                const bName = b.name.toLowerCase();
+                const aSymbol = a.symbol.toLowerCase();
+                const bSymbol = b.symbol.toLowerCase();
+
+                const aExactMatch = aName === searchTerm || aSymbol === searchTerm;
+                const bExactMatch = bName === searchTerm || bSymbol === searchTerm;
+
+                if (aExactMatch && !bExactMatch) return -1;
+                if (!aExactMatch && bExactMatch) return 1;
+
+                const aStartsWith = aName.startsWith(searchTerm) || aSymbol.startsWith(searchTerm);
+                const bStartsWith = bName.startsWith(searchTerm) || bSymbol.startsWith(searchTerm);
+
+                if (aStartsWith && !bStartsWith) return -1;
+                if (!aStartsWith && bStartsWith) return 1;
+
+                return aName.localeCompare(bName);
+            });
+
+            renderItems(sortedResults);
         } catch (err) {
             console.log(err);
         }
@@ -311,46 +334,59 @@
     async function renderItems(dataArray) {
         var ulElement = document.getElementById('stocksResultsList');
         ulElement.innerHTML = '';
+
         if (dataArray.length === 0) {
             var messageElement = document.createElement('p');
             messageElement.textContent = 'No stocks to display.';
             ulElement.appendChild(messageElement);
-            return; // Exit the function
+            return;
         }
 
         var limit = 10;
         var count = 0;
-        dataArray.forEach(function(object) {
-            if (count < limit) {
-                var liElement = document.createElement('li');
-                var aElement = document.createElement('a'); // Create an anchor element
-                var selectedText = object.name;
-                var selectedValue = object.symbol;
-                var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-                var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
-                if (object.type === 'stock') {
-                    aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
-                } else if (object.type === 'etf') {
-                    aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
-                }
-                var divBoxElement = document.createElement('div');
-                divBoxElement.className = 'box';
-                var divExploreIconElement = document.createElement('div');
-                divExploreIconElement.className = 'explore-icon';
-                var imgElement = document.createElement('img');
-                imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${object.symbol}.png`;
-                var spanElement = document.createElement('span');
-                spanElement.textContent = object.name;
-                divExploreIconElement.appendChild(imgElement);
-                divBoxElement.appendChild(divExploreIconElement);
-                divBoxElement.appendChild(spanElement);
-                aElement.appendChild(divBoxElement); // Append the .box element to the anchor
-                liElement.appendChild(aElement); // Append the anchor to the list item
-                ulElement.appendChild(liElement);
-                count++;
-            }
-        });
 
+        requestAnimationFrame(() => {
+            dataArray.forEach(object => {
+                if (count < limit) {
+                    var liElement = createStockListItem(object);
+                    ulElement.appendChild(liElement);
+                    count++;
+                }
+            });
+        });
+    }
+
+    function createStockListItem(object) {
+        var liElement = document.createElement('li');
+        var aElement = document.createElement('a');
+        var selectedText = object.name;
+        var selectedValue = object.symbol;
+        var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
+
+        aElement.href = object.type === 'stock' ?
+            `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/` :
+            `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
+
+        var divBoxElement = document.createElement('div');
+        divBoxElement.className = 'box';
+
+        var divExploreIconElement = document.createElement('div');
+        divExploreIconElement.className = 'explore-icon';
+
+        var imgElement = document.createElement('img');
+        imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${object.symbol}.png`;
+
+        var spanElement = document.createElement('span');
+        spanElement.textContent = object.name;
+
+        divExploreIconElement.appendChild(imgElement);
+        divBoxElement.appendChild(divExploreIconElement);
+        divBoxElement.appendChild(spanElement);
+        aElement.appendChild(divBoxElement);
+        liElement.appendChild(aElement);
+
+        return liElement;
     }
 
     function inputClear() {

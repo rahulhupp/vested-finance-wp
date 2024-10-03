@@ -21,10 +21,9 @@
 
     .calculator .main_heading {
         color: #002852;
-
         font-size: 38px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 800;
         line-height: 110%;
         letter-spacing: -1.28px;
         margin-bottom: 10px;
