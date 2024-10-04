@@ -1072,6 +1072,7 @@
 
         .calculator .sub_heading {
             font-size: 14px !important;
+            text-align: left;
         }
 
         .read_more_chart {
@@ -1116,7 +1117,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
-            <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
+            <h1 class="main_heading section_title"><?php the_field('main_heading'); ?></h1>
             <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
         </div>
 
