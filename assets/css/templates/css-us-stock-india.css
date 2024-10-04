@@ -129,14 +129,15 @@
 }
 
 .stock-info .stock-row .stock-content ul li {
-	font-size: 18px;
 	color: #505a64;
-	line-height: 130%;
-	letter-spacing: -0.36px;
-	margin: 0 0 16px 0;
-	position: relative;
-	padding-left: 30px;
-	font-family: "Inter", sans-serif;
+    margin: 0 0 15px 0;
+    position: relative;
+    padding-left: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23.4px;
+    letter-spacing: -0.02em;
 }
 
 .stock-info .stock-row .stock-content ul li:before {
@@ -151,12 +152,12 @@
 }
 
 .stock-info .stock-row .stock-content b {
-	font-weight: 600;
-	font-size: 16px;
-	letter-spacing: -0.32px;
 	color: #505a64;
-	line-height: 130%;
-	font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20.8px;
+    letter-spacing: -0.02em;
 }
 
 .stock-info .stock-row .stock-content b a {
@@ -2026,8 +2027,7 @@ div#vest_read_more i {
 		padding: 50px 0;
 	}
 
-	section.eft_stock_info h2.section_title {
-		font-size: 32px !important;
+	.eft_stock_info .section_title {
 		text-align: left;
 	}
 

@@ -31,14 +31,12 @@
 
     .calculator .sub_heading {
         margin-bottom: 32px;
-        color: rgba(33, 37, 41, 0.6);
-        font-size: 16px !important;
+        color: #505A64;
+        font-size: 18px !important;
         font-style: normal;
-        font-weight: 400;
-        line-height: 140%;
-        letter-spacing: -0.32px;
-        text-align: left;
         max-width: 100%;
+        font-weight: 500;
+        line-height: 21.6px;
     }
 
     .calculator .calc_form select {
@@ -854,9 +852,6 @@
 
     .chart_header {
         background: #EEF5FC;
-        font-size: 38px;
-        line-height: 45.6px;
-        color: #002852;
         padding: 20px;
         margin-bottom: 40px;
     }
@@ -1303,7 +1298,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     <div class="container">
                         <div id="stocks_chart" class="blur">
                             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-                            <h3 class="chart_header">Historical Performance for <span id="selected_chart_val">INVESCO NASDAQ 100 ETF</span></h3>
+                            <h3 class="chart_header section_title">Historical Performance for <span id="selected_chart_val">INVESCO NASDAQ 100 ETF</span></h3>
                             <canvas id="calculatorChart" width="400" height="200"></canvas>
 
                             <div id="chartLoader" style="display: none;">
