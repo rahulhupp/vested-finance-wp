@@ -253,6 +253,9 @@ get_header(); ?>
                     endif; ?>
                 </ul>
             </div>
+            <div class="btn text-center">
+                <a href="<?php echo home_url(); ?>/blog/us-stocks/" class="btn_dark" target="_blank">Read All Blogs</a>
+            </div>
         </div>
     </section>
 
