@@ -37,6 +37,8 @@ get_header(); ?>
 
     <?php get_template_part('template-parts/us-stock-search'); ?>
 
+    <?php get_template_part('template-parts/us-stock-vests'); ?>
+
     <section class="tab-section">
         <div class="container">
             <div class="tabs">
@@ -215,8 +217,6 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-
-    <?php get_template_part('template-parts/us-stock-vests'); ?>
 
 
     <?php get_template_part('template-parts/investors-slider'); ?>
