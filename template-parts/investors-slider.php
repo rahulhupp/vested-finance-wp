@@ -250,12 +250,12 @@
 	}
 
 	.investor_desclaimer p {
-		color: rgba(33, 37, 41, 0.7);
-		font-family: Inter;
-		font-size: 16px;
+		color: rgba(33, 37, 41, 0.6);
+		font-family: "Inter", sans-serif;
+		font-size: 18px !important;
 		font-style: normal;
 		font-weight: 400;
-		line-height: normal;
+		line-height: 130%;
 		margin-bottom: 0;
 	}
 

@@ -31,12 +31,13 @@
 
     .calculator .sub_heading {
         margin-bottom: 32px;
-        color: #505A64;
+        color: rgba(33, 37, 41, 0.6);
+        font-family: "Inter", sans-serif;
         font-size: 18px !important;
         font-style: normal;
-        max-width: 100%;
-        font-weight: 500;
-        line-height: 21.6px;
+        font-weight: 400;
+        line-height: 130%;
+        text-align: center;
     }
 
     .calculator .calc_form select {
@@ -469,21 +470,22 @@
     .calc_desc {
         margin-bottom: 0;
         margin-top: 34px;
-        color: rgba(33, 37, 41, 0.7);
-
-        font-size: 16px;
+        color: rgba(33, 37, 41, 0.6);
+        font-family: "Inter", sans-serif;
+        font-size: 18px !important;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 130%;
     }
 
     .sub_heading {
-        color: #505a64;
-        text-align: center;
+        color: rgba(33, 37, 41, 0.6);
+        font-family: "Inter", sans-serif;
         font-size: 18px !important;
         font-style: normal;
-        font-weight: 500;
-        line-height: 120%;
+        font-weight: 400;
+        line-height: 130%;
+        text-align: center;
         margin-top: 10px;
         max-width: 807px;
         margin-left: auto;
@@ -1198,7 +1200,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             <div class="field_row">
                                 <div class="field_col">
                                     <label for="startMonth">Start Month</label>
-                                    <input type="text" id="startMonth" data-value="<?php echo $startMonthDefaultValue; ?>" />
+                                    <input type="text" id="startMonth" data-value="2010-01" />
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
@@ -1342,7 +1344,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 dateFormat: "F Y",
             })
         ],
-        defaultDate: "February 2023",
+        defaultDate: "January 2010",
         maxDate: "today",
         onReady: function(selectedDates, dateStr, instance) {
             // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
@@ -1369,7 +1371,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     dateFormat: "F Y",
                 })
             ],
-            defaultDate: "February 2024",
+            defaultDate: "January 2024",
             minDate: minDate,
             maxDate: "today",
             onReady: function(selectedDates, dateStr, instance) {
