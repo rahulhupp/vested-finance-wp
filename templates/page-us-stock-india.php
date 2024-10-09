@@ -278,7 +278,7 @@ get_header(); ?>
                 </div>
             <?php endif; ?>
             <div class="btn text-center">
-                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become a Partner</a>
+                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become A Partner</a>
             </div>
         </div>
     </section>
