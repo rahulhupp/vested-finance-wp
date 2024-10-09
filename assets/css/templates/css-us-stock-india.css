@@ -95,7 +95,7 @@
 	line-height: 17.6px;
 	letter-spacing: -0.64px;
 	font-family: "Inter", sans-serif;
-	text-transform: uppercase;
+	font-weight: 500;
 }
 
 .stock-info .stock-row .stock-content span small {
@@ -1060,7 +1060,7 @@
 .faq_content p {
 	margin-bottom: 15px;
 	color: #1e2022;
-	font-size: 22px !important;
+	font-size: 18px !important;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
