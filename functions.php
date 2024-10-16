@@ -442,3 +442,57 @@ function buffer_end() { ob_end_flush(); }
 add_action('wp_head', 'buffer_start');
 
 add_action('wp_footer', 'buffer_end');
+
+
+// Function to handle load more posts via REST API
+function custom_load_more_posts() {
+    $page = isset($_GET['page']) ? absint($_GET['page']) : 1;
+    $posts_per_page = 8;
+
+    // Query for the posts
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $page,
+    );
+    $custom_query = new WP_Query($args);
+
+    if ($custom_query->have_posts()) {
+        ob_start();
+
+        while ($custom_query->have_posts()) : $custom_query->the_post();
+        ?>
+        <div id="post-<?php the_ID(); ?>" class="post-card display">
+    <div class="featured-image">
+        <a href="<?php the_permalink(); ?>">
+            <?php the_post_thumbnail('full'); ?>
+        </a>
+    </div>
+    <h2 class="entry-title">
+        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+    </h2>
+    <div class="meta-info">
+        <span class="post-author"><?php the_author(); ?></span>
+        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+    </div>
+</div>
+      <?php  endwhile;
+
+        wp_reset_postdata();
+        $posts_html = ob_get_clean();
+
+        wp_send_json_success($posts_html);
+    } else {
+        wp_send_json_success(''); // No more posts
+    }
+
+    wp_die(); // To prevent further execution
+}
+
+// Register the custom REST route
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/load-more-posts', array(
+        'methods' => 'GET',
+        'callback' => 'custom_load_more_posts',
+    ));
+});
