@@ -853,7 +853,7 @@
 }
 
 .partners_wrap {
-	margin-top: 66px;
+	margin-top: 46px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -863,7 +863,7 @@
 
 .single_partner_block {
 	width: 181px;
-	height: 154px;
+	height: 80px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
