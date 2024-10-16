@@ -1112,7 +1112,7 @@
 $chart = isset($GLOBALS['chart']) ? $GLOBALS['chart'] : 'false';
 $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_data';
 $currentDate = date('Y-m');
-$startMonthDefaultValue = date('Y-m', strtotime('-1 year', strtotime($currentDate)));
+$startMonthDefaultValue = '2010-01';
 $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 ?>
 
@@ -1127,105 +1127,104 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             <div class="calc_col">
 
                 <div class="calc_form_wrap">
-                    <form action="" class="calc_form" id="chart_form">
+                <form action="" class="calc_form" id="chart_form">
 
-                        <div class="field_group">
-                            <label for="stockSelector">Select any US Stock or ETF</label>
-                            <div class="select_box_new">
-                                <div class="selected_option" data-value="QQQM" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="INVESCO NASDAQ 100 ETF">
-                                </div>
-                                <div class="options_dropdown_wrap">
-                                    <div id="loader" style="display: none;">
-                                        <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                                    <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
-                                                </g>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <div class="dropdown_options">
-                                        <ul class="static_options">
-                                            <li data-value="QQQM">INVESCO NASDAQ 100 ETF</li>
-                                            <li data-value="SPY">S&P 500 ETF Trust SPDR</li>
-                                            <li data-value="AAPL">Apple</li>
-                                            <li data-value="GOOGL">Google</li>
-                                            <li data-value="AGPXX">Invesco</li>
-                                            <li data-value="MSFT">Microsoft</li>
-                                            <li data-value="TSLA">Tesla</li>
-                                            <li data-value="META">Meta</li>
-                                            <li data-value="NFLX">Netflix</li>
-                                            <li data-value="BWX">SPDR</li>
-                                            <li data-value="AMZN">Amazon</li>
-                                            <li data-value="SPOT">Spotify</li>
-                                        </ul>
-                                        <ul class="dynamic_options"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="field_group">
+    <label for="stockSelector">Select any US Stock or ETF</label>
+    <div class="select_box_new">
+        <div class="selected_option" data-value="QQQM" id="resultsList">
+            <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="INVESCO NASDAQ 100 ETF">
+        </div>
+        <div class="options_dropdown_wrap">
+            <div id="loader" style="display: none;">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <g>
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="dropdown_options">
+                <ul class="static_options">
+                    <li data-value="SPY">INVESCO NASDAQ 100 ETF</li>
+                    <li data-value="AAPL">Apple</li>
+                    <li data-value="GOOGL">Google</li>
+                    <li data-value="AGPXX">Invesco</li>
+                    <li data-value="MSFT">Microsoft</li>
+                    <li data-value="TSLA">Tesla</li>
+                    <li data-value="META">Meta</li>
+                    <li data-value="NFLX">Netflix</li>
+                    <li data-value="BWX">SPDR</li>
+                    <li data-value="AMZN">Amazon</li>
+                    <li data-value="SPOT">Spotify</li>
+                </ul>
+                <ul class="dynamic_options"></ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <div class="field_group">
-                            <label for="invest_val">Enter Investment Amount</label>
+<div class="field_group">
+    <label for="invest_val">Enter Investment Amount</label>
 
-                            <div class="inner_field">
-                                <span class="currency">$</span>
-                                <input type="text" id="invest_val" value="1,000" maxlength="10" />
+    <div class="inner_field">
+        <span class="currency">$</span>
+        <input type="text" id="invest_val" value="1,000" maxlength="10" />
 
-                                <div class="currency_select">
-                                    <div>
-                                        <input type="radio" name="currency" id="usd_currency" value="usd" checked>
-                                        <label for="usd_currency">USD</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="currency" id="inr_currency" value="inr">
-                                        <label for="inr_currency">INR</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field_note">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
-                            </div>
-                        </div>
-                        <div class="field_group">
-                            <div class="field_row">
-                                <div class="field_col">
-                                    <label for="startMonth">Start Month</label>
-                                    <input type="text" id="startMonth" data-value="2010-01" />
-                                </div>
-                                <div class="field_col">
-                                    <label for="endMonth">End Month</label>
-                                    <input type="text" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
-                                </div>
-                            </div>
-                        </div>
+        <div class="currency_select">
+            <div>
+                <input type="radio" name="currency" id="usd_currency" value="usd" checked>
+                <label for="usd_currency">USD</label>
+            </div>
+            <div>
+                <input type="radio" name="currency" id="inr_currency" value="inr">
+                <label for="inr_currency">INR</label>
+            </div>
+        </div>
+    </div>
+    <div class="field_note">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+            <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
+    </div>
+</div>
+<div class="field_group">
+    <div class="field_row">
+        <div class="field_col">
+            <label for="startMonth">Start Month</label>
+            <input type="text" id="startMonth" data-value="<?php echo $startMonthDefaultValue; ?>" />
+        </div>
+        <div class="field_col">
+            <label for="endMonth">End Month</label>
+            <input type="text" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
+        </div>
+    </div>
+</div>
 
 
-                        <div class="submit_btn">
-                            <button type="submit" class="US_Stock_return_calculator">
-                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <g>
-                                            <path fill="none" d="M0 0h24v24H0z"></path>
-                                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <span>Calculate</span>
-                            </button>
-                        </div>
-                    </form>
+<div class="submit_btn">
+    <button type="submit" class="US_Stock_return_calculator">
+        <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <g>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                </g>
+            </g>
+        </svg>
+        <span>Calculate</span>
+    </button>
+</div>
+</form>
                 </div>
 
             </div>
@@ -1346,13 +1345,13 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         ],
         defaultDate: "January 2010",
         maxDate: "today",
-        onReady: function(selectedDates, dateStr, instance) {
+        onReady: function (selectedDates, dateStr, instance) {
             // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
             document.querySelector('#start_month').textContent = dateStr;
             var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
             callEndDate(formattedDate);
         },
-        onClose: function(selectedDates, dateStr, instance) {
+        onClose: function (selectedDates, dateStr, instance) {
             var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toISOString().slice(0, 7);
             var formattedDateEnd = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
             const startDate = document.getElementById('startMonth');
@@ -1371,13 +1370,13 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     dateFormat: "F Y",
                 })
             ],
-            defaultDate: "January 2024",
+            defaultDate: "February 2024",
             minDate: minDate,
             maxDate: "today",
-            onReady: function(selectedDates, dateStr, instance) {
+            onReady: function (selectedDates, dateStr, instance) {
                 document.querySelector('#end_month').textContent = dateStr;
             },
-            onClose: function(selectedDates, dateStr, instance) {
+            onClose: function (selectedDates, dateStr, instance) {
                 var date = new Date(dateStr);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
@@ -1396,7 +1395,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     // Add an event listener to the form for the "submit" event
     document.getElementById('chart_form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
-
+        
         // Retrieve form values
         const stockSelector = document.getElementById('resultsList').dataset.value;
         const stockName = document.querySelector('.dropdown_search').value;
@@ -1411,6 +1410,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         const differenceEndDate = new Date(document.getElementById('endMonth').getAttribute('data-value'));
 
         const differenceInMonths = (differenceEndDate.getFullYear() - differenceStartDate.getFullYear()) * 12 + differenceEndDate.getMonth() - differenceStartDate.getMonth();
+
+console.log(startDate, "startDate");
 
         let dateRange;
 
@@ -1431,7 +1432,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             })
             .catch(error => alert("Something went wrong!"));
     });
-
+      
     // Event handler for currency radio buttons
     document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
@@ -1442,7 +1443,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
             // Update the text based on the selected radio button
             const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-
+            
             document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
                 element.textContent = currencySymbol;
             });
@@ -1452,43 +1453,43 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
     //on page loaded function//
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                // Check which radio button is checked
-                document.querySelector('.calc_result_col').classList.add('blur');
-                document.querySelector('#stocks_chart').classList.add('blur');
-                var selectedOption = document.querySelector('input[name="currency"]:checked').value;
+    document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Check which radio button is checked
+            document.querySelector('.calc_result_col').classList.add('blur');
+            document.querySelector('#stocks_chart').classList.add('blur');
+            var selectedOption = document.querySelector('input[name="currency"]:checked').value;
 
-                // Update the text based on the selected radio button
-                const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-
-                document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
-                    element.textContent = currencySymbol;
-                });
+            // Update the text based on the selected radio button
+            const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
+            
+            document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
+                element.textContent = currencySymbol;
             });
         });
-
-
-        setTimeout(function() {
-
-            const stockSelector = document.getElementById('resultsList').dataset.value;
-            const investmentAmount = document.getElementById('invest_val').value;
-            const currency = document.querySelector('input[name="currency"]:checked').value;
-            const startDate = document.getElementById('startMonth').getAttribute('data-value');
-            const endDate = document.getElementById('endMonth').getAttribute('data-value');
-            // Trigger API and render chart
-            triggerAPI(stockSelector, startDate, endDate)
-                .then(data => {
-                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "INVESCO NASDAQ 100 ETF", "month");
-                })
-                .catch(error => alert("Something went wrong!"));
-        }, 500);
-
     });
 
-    //end on page loaded function//
+    
+    setTimeout(function() {
 
-    // Function to update button status
+       const stockSelector = document.getElementById('resultsList').dataset.value;
+        const investmentAmount = document.getElementById('invest_val').value;
+        const currency = document.querySelector('input[name="currency"]:checked').value;
+        const startDate = document.getElementById('startMonth').getAttribute('data-value');
+        const endDate = document.getElementById('endMonth').getAttribute('data-value');
+      // Trigger API and render chart
+      triggerAPI(stockSelector, startDate, endDate)
+            .then(data => {
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "INVESCO NASDAQ 100 ETF", "month");
+            })
+            .catch(error => alert("Something went wrong!"));
+          }, 500);
+
+});
+
+//end on page loaded function//
+
+// Function to update button status
     function btnStatus() {
         var startDate = document.getElementById('startMonth').getAttribute('data-value');
         var endDate = document.getElementById('endMonth').getAttribute('data-value');
@@ -1525,14 +1526,14 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     let yValues = [];
     let zValues = [];
     let bValues = [];
-
+    
     // Define the URL of the API you want to call
     function triggerAPI(stockSelector, startDate, endDate) {
         xValues = [];
         yValues = [];
         zValues = [];
         bValues = [];
-
+      
         const svgElement = document.querySelector('.calculator .submit_btn button svg');
         svgElement.classList.add('show_loader');
 
@@ -1544,11 +1545,11 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         const fetchSP500Data = fetch(sp500Api).then(response => response.json());
         const fetchNiftyData = fetch(niftyApi).then(response => response.json());
         const fetchUSDINRData = fetch(USDINRApi).then(response => response.json());
-
+        
         return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData, fetchUSDINRData])
             .then(([stockData, sp500Data, niftyData, usdinrData]) => {
                 const selectedCurrency = document.querySelector('input[name="currency"]:checked');
-
+                
                 const startPrice = stockData.data[0].Adj_Close;
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
@@ -1575,7 +1576,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
                 const inrStartPrice = usdinrData.data[0].Adj_Close;
                 const inrEndPrice = usdinrData.data[usdinrData.data.length - 1].Adj_Close;
-                const inrStartStockQty = investmentAmount / (startPrice * inrStartPrice);
+                const inrStartStockQty = investmentAmount/(startPrice*inrStartPrice);
                 const inrLastPortfolioValue = parseFloat(inrStartStockQty * endPrice * inrEndPrice).toFixed(2);
 
                 const inrEstReturns = parseFloat(inrLastPortfolioValue - investmentAmount);
@@ -1593,7 +1594,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     if (adjClose) {
                         finalAmount *= adjClose;
                     }
-
+                    
                     const result = Math.round(finalAmount);
                     if (index < xValues.length) {
                         xValues[index] = currentDate;
@@ -1633,7 +1634,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     }
                 });
 
-
+                
                 const targetCurrency = selectedCurrency.value === "inr" ? "inr" : "usd";
 
                 document.getElementById('est_returns').textContent = Math.round(targetCurrency === "inr" ? inrEstReturns : estReturns).toLocaleString();
@@ -1663,7 +1664,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
     function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
         const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
-        document.querySelector('#selected_chart_val').innerHTML = stockName;
+        
         // Check if a chart instance already exists
         if (chartInstance) {
             chartInstance.destroy(); // Destroy the existing chart instance
@@ -1672,7 +1673,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         // Define the datasets based on the condition
         let datasets;
         if (hideNifty) {
-            datasets = [{
+            datasets = [
+                {
                     label: `${stockName}`,
                     data: yValues,
                     borderColor: '#002852',
@@ -1688,7 +1690,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 }
             ];
         } else {
-            datasets = [{
+            datasets = [
+                {
                     label: `${stockName}`,
                     data: yValues,
                     borderColor: '#002852',
@@ -1734,11 +1737,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             title: function(tooltipItems) {
                                 var inputDateStr = tooltipItems[0].parsed.x;
                                 var inputDate = new Date(inputDateStr);
-                                var formattedDate = inputDate.toLocaleDateString('en-US', {
-                                    month: 'short',
-                                    day: 'numeric',
-                                    year: 'numeric'
-                                });
+                                var formattedDate = inputDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                                 return formattedDate;
                             },
                             label: function(context) {
@@ -1763,27 +1762,27 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         }
                     },
                     x: {
-                        type: 'timeseries',
+						type: 'timeseries',
                         ticks: {
                             autoSkip: false,
                             minRotation: dateRange === 'year' ? 0 : 30
                         },
-                        time: {
-                            unit: dateRange,
-                            displayFormats: {
-                                'day': 'dd-MMM',
-                                'year': 'MMM yyyy',
-                            }
-                        },
+						time: {
+							unit: dateRange,
+							displayFormats: {
+								'day': 'dd-MMM',
+								'year': 'MMM yyyy',
+							}                            
+						},
                         min: minDate.toISOString().split('T')[0],
                         max: maxDate.toISOString().split('T')[0]
-                    },
+					},
                 }
             }
         });
     }
 
-
+    
 
     document.querySelector('.selected_option').addEventListener("click", function() {
         const mainDropdown = document.querySelector('.select_box_new');
@@ -1799,12 +1798,13 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             const mainValue = document.querySelector('.selected_option');
             const searchValue = document.querySelector('.dropdown_search');
             const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
-            const chartDropdownText = document.querySelector('#selected_chart_val');
-            const selectedValue = clickedElement.dataset.value;
+            const chartTitle = document.getElementById('selected_chart_val');
 
+            const selectedValue = clickedElement.dataset.value;
+            
             searchValue.value = clickedElement.textContent;
             returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
-            chartDropdownText.textContent = clickedElement.textContent;
+            chartTitle.textContent = clickedElement.textContent
             mainValue.dataset.value = selectedValue;
 
             document.querySelector('.calc_result_col').classList.add('blur');
