@@ -1132,8 +1132,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 <div class="field_group">
     <label for="stockSelector">Select any US Stock or ETF</label>
     <div class="select_box_new">
-        <div class="selected_option" data-value="QQQM" id="resultsList">
-            <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="INVESCO NASDAQ 100 ETF">
+        <div class="selected_option" data-value="QQQ" id="resultsList">
+            <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="Invesco QQQ Trust Series 1">
         </div>
         <div class="options_dropdown_wrap">
             <div id="loader" style="display: none;">
@@ -1230,7 +1230,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3 id="returnBreakdownTitle">Return Breakdown of INVESCO NASDAQ 100 ETF</h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown of Invesco QQQ Trust Series 1</h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
                             <div class="fd_result" id="fd_results">
@@ -1300,7 +1300,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     <div class="container">
                         <div id="stocks_chart" class="blur">
                             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-                            <h3 class="chart_header section_title">Historical Performance for <span id="selected_chart_val">INVESCO NASDAQ 100 ETF</span></h3>
+                            <h3 class="chart_header section_title">Historical Performance for <span id="selected_chart_val">Invesco QQQ Trust Series 1</span></h3>
                             <canvas id="calculatorChart" width="400" height="200"></canvas>
 
                             <div id="chartLoader" style="display: none;">
@@ -1480,7 +1480,7 @@ console.log(startDate, "startDate");
       // Trigger API and render chart
       triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
-                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "INVESCO NASDAQ 100 ETF", "month");
+                renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "Invesco QQQ Trust Series 1", "month");
             })
             .catch(error => alert("Something went wrong!"));
           }, 500);
