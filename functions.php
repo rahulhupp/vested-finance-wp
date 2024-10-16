@@ -286,24 +286,23 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 
 
-function load_more_posts_ajax_handler(){
-     
-     $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
+// Load More Posts AJAX Handler
+function load_more_posts_template() {
+    check_ajax_referer('load_more_posts', 'security');
 
-     $excluded_ids = isset($_POST['exclude']) ? array_map('intval', $_POST['exclude']) : array();
- 
-     $args = array(
-         'post_type'      => 'post',
-         'posts_per_page' => 12,
-         'paged'          => $paged,
-         'post__not_in'   => $excluded_ids,
-     );
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
-     $query = new WP_Query($args);
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 8,
+        'paged' => $paged
+    );
 
-    if( $query->have_posts() ) :
-        while( $query->have_posts() ): $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
+    $custom_query = new WP_Query($args);
+
+    if ($custom_query->have_posts()) :
+        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail('full'); ?>
@@ -316,14 +315,26 @@ function load_more_posts_ajax_handler(){
                 </div>
             </div>
         <?php endwhile;
+        wp_reset_postdata();
+    else :
+        echo ''; // No more posts
     endif;
-    wp_reset_postdata();
 
-    die();
+    wp_die();
 }
 
-add_action('wp_ajax_loadmore', 'load_more_posts_ajax_handler');
-add_action('wp_ajax_nopriv_loadmore', 'load_more_posts_ajax_handler');
+function enqueue_load_more_script() {
+    wp_enqueue_script('jquery');
+    wp_localize_script('jquery', 'ajax_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('load_more_posts')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
+
+
+add_action('wp_ajax_load_more_posts', 'load_more_posts_template');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_template');
 
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 
