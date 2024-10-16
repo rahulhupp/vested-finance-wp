@@ -74,30 +74,36 @@ get_header(); ?>
             e.preventDefault();
             var button = $(this);
             var paged = button.data('paged');
-            var maxPages = <?php echo $custom_query->max_num_pages; ?>; // Get the max number of pages
+            var maxPages = <?php echo $custom_query->max_num_pages; ?>;
             
-            if (paged <= maxPages) {
-                $.ajax({
-                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                    type: 'POST',
-                    data: {
-                        action: 'load_more_posts',
-                        paged: paged
-                    },
-                    beforeSend: function() {
-                        // button.text('Loading...'); // Change button text while loading
-                    },
-                    success: function(response) {
-                        if (response) {
-                            $('.post-item').append(response); // Append new posts
-                            button.data('paged', paged + 1); // Increment page number
-                        } else {
-                            button.text('No more posts to load.'); // No more posts
-                            button.prop('disabled', true); // Disable the button
-                        }
-                    }
-                });
+            if (paged > maxPages) {
+                return;
             }
+
+            $.ajax({
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                type: 'POST',
+                data: {
+                    action: 'load_more_posts',
+                    paged: paged
+                },
+                beforeSend: function() {
+                    button.text('Loading...');
+                },
+                success: function(response) {
+                    if (response) {
+                        $('.post-item').append(response);
+                        button.data('paged', paged + 1);
+                        button.text('Load More');
+                    } else {
+                        button.text('No more posts to load.');
+                        button.prop('disabled', true);
+                    }
+                },
+                error: function() {
+                    button.text('Error loading more posts.');
+                }
+            });
         });
     });
 </script>
