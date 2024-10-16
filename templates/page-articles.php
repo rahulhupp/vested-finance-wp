@@ -16,11 +16,12 @@ get_header(); ?>
 <div id="content" role="main" class="sub-category-page">
     <section>
     <div class="container">
-    <?php 
+    <?php
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
-        'paged' => 1
+        'paged' => $paged
     );
     $custom_query = new WP_Query($args);
     ?>
@@ -58,7 +59,7 @@ get_header(); ?>
     <?php endif; ?>
     
     <div class="load-more-btn">
-        <a href="#" id="loadMore">Load More</a>
+        <a href="#" id="loadMore" data-paged="2">Load More</a>
     </div>				
     </div>
     </section>
@@ -68,24 +69,35 @@ get_header(); ?>
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
-        var page = 1;
+    jQuery(document).ready(function($) {
         $('#loadMore').on('click', function(e) {
             e.preventDefault();
-            page++;
-            var data = {
-                'action': 'load_more_posts',
-                'page': page,
-                'security': '<?php echo wp_create_nonce("load_more_posts"); ?>'
-            };
-
-            $.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-                if(response) {
-                    $('.post-item').append(response);
-                } else {
-                    $('#loadMore').text('No more posts').prop('disabled', true);
-                }
-            });
+            var button = $(this);
+            var paged = button.data('paged');
+            var maxPages = <?php echo $custom_query->max_num_pages; ?>; // Get the max number of pages
+            
+            if (paged <= maxPages) {
+                $.ajax({
+                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                    type: 'POST',
+                    data: {
+                        action: 'load_more_posts',
+                        paged: paged
+                    },
+                    beforeSend: function() {
+                        // button.text('Loading...'); // Change button text while loading
+                    },
+                    success: function(response) {
+                        if (response) {
+                            $('.post-item').append(response); // Append new posts
+                            button.data('paged', paged + 1); // Increment page number
+                        } else {
+                            button.text('No more posts to load.'); // No more posts
+                            button.prop('disabled', true); // Disable the button
+                        }
+                    }
+                });
+            }
         });
     });
 </script>
