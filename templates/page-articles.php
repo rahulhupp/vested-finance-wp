@@ -8,7 +8,7 @@ get_header(); ?>
     <div class="container">
         <ul>
             <li><a href="<?php echo get_home_url(); ?>/blog">Blog</a></li>
-            <li class="active"><a href="#">All Articles</a></li>						
+            <li class="active"><a href="#">All Articles</a></li>
         </ul>
     </div>
 </div>
@@ -34,15 +34,28 @@ get_header(); ?>
                 // Initial post loading (first page)
                 $args = array(
                     'post_type' => 'post',
-                    'posts_per_page' => 8,
+                    'posts_per_page' => 12,
                     'paged' => 1
                 );
                 $custom_query = new WP_Query($args);
 
                 if ($custom_query->have_posts()) :
-                    while ($custom_query->have_posts()) : $custom_query->the_post();
-                        get_template_part('template-parts/post-card');
-                    endwhile;
+                    while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+                        <div id="post-<?php the_ID(); ?>" class="post-card display">
+                            <div class="featured-image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('full'); ?>
+                                </a>
+                            </div>
+                            <h2 class="entry-title">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h2>
+                            <div class="meta-info">
+                                <span class="post-author"><?php the_author(); ?></span>
+                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                            </div>
+                        </div>
+                <?php endwhile;
                     wp_reset_postdata();
                 else :
                     echo '<p>No posts found.</p>';
@@ -63,8 +76,8 @@ get_header(); ?>
 </div>
 
 <script>
-    jQuery(document).ready(function ($) {
-        $('#loadMore').on('click', function (e) {
+    jQuery(document).ready(function($) {
+        $('#loadMore').on('click', function(e) {
             e.preventDefault();
 
             var page = $(this).data('page');
@@ -72,7 +85,9 @@ get_header(); ?>
             button.text('Loading...').prop('disabled', true);
 
             // Fetch posts via REST API
-            $.get('<?php echo get_rest_url(null, '/custom/v1/load-more-posts'); ?>', { page: page + 1 }, function (response) {
+            $.get('<?php echo get_rest_url(null, '/custom/v1/load-more-posts'); ?>', {
+                page: page + 1
+            }, function(response) {
                 if (response.success && response.data) {
                     $('.post-item').append(response.data);
                     button.data('page', page + 1).text('Load More').prop('disabled', false);
@@ -84,7 +99,7 @@ get_header(); ?>
                 } else {
                     button.text('No more posts').prop('disabled', true);
                 }
-            }).fail(function () {
+            }).fail(function() {
                 button.text('Error, try again').prop('disabled', false);
             });
         });
