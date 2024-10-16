@@ -410,7 +410,6 @@ function load_more_posts() {
     if (isset($_POST['paged'])) {
         $paged = intval($_POST['paged']);
 
-        
         $args = array(
             'post_type' => 'post',
             'posts_per_page' => 8,

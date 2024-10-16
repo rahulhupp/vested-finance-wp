@@ -69,7 +69,23 @@ get_header(); ?>
 </div>
 
 <script>
-    jQuery(document).ready(function($) {
+   jQuery(document).ready(function($) {
+        var displayedPostIds = []; 
+
+        function gatherDisplayedPostIds() {
+            $('#postContainer .post-card').each(function() {
+                var postId = $(this).attr('id'); 
+                if (postId) { 
+                    postId = postId.replace('post-', ''); 
+                    if (!displayedPostIds.includes(postId)) {
+                        displayedPostIds.push(postId); 
+                    }
+                }
+            });
+        }
+
+        gatherDisplayedPostIds();
+
         $('#loadMore').on('click', function(e) {
             e.preventDefault();
             var button = $(this);
@@ -88,15 +104,34 @@ get_header(); ?>
                     paged: paged
                 },
                 beforeSend: function() {
-                    button.text('Loading...');
+                    button.text('Loading...'); 
                 },
                 success: function(response) {
                     if (response) {
-                        $('.post-item').append(response);
-                        button.data('paged', paged + 1);
+                        var $response = $(response);
+                        var newPostsAdded = false;
+
+                        $response.each(function() {
+                            var postId = $(this).attr('id'); 
+                            if (postId) {
+                                postId = postId.replace('post-', '');
+                                if (!displayedPostIds.includes(postId)) {
+                                    $('.post-item').append(this);
+                                    displayedPostIds.push(postId);
+                                    newPostsAdded = true;
+                                }
+                            }
+                        });
+
+                        if (newPostsAdded) {
+                            button.data('paged', paged + 1);
+                        } else {
+                            button.text('No more posts to load.');
+                            button.prop('disabled', true);
+                        }
                         button.text('Load More');
                     } else {
-                        button.text('No more posts to load.');
+                        button.text('No more posts to load.'); 
                         button.prop('disabled', true);
                     }
                 },
