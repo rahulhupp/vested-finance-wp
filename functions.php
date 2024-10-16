@@ -450,7 +450,7 @@ function custom_load_more_posts() {
     $page = isset($_GET['page']) ? absint($_GET['page']) : 1;
     $exclude = isset($_GET['exclude']) ? array_map('absint', $_GET['exclude']) : [];
 
-    $posts_per_page = 8;
+    $posts_per_page = 12;
 
     // Query for the posts, excluding already loaded posts
     $args = array(
