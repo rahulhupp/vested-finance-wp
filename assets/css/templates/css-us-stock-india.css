@@ -1636,7 +1636,7 @@ div#vest_read_more i {
 	.explore_vest_desc,
 	.vest_about_content {
 		margin-top: 20px;
-		font-size: 14px;
+		font-size: 14px !important;
 		line-height: 18.2px;
 	}
 
@@ -2216,7 +2216,7 @@ div#vest_read_more i {
 	}
 
 	.eft_stock_info p {
-		font-size: 14px;
+		font-size: 14px !important;
 		line-height: 24px;
 	}
 
