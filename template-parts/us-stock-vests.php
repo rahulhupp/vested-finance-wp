@@ -1,7 +1,7 @@
 <section class="build-foundation">
     <div class="container">
         <div class="explore_vest_head">
-            <h2>Build a solid foundation with Vests</h2>
+            <h2>Build a Solid Foundation With Vests</h2>
             <p class="explore_vest_desc">Vests are expert-built investment baskets built with a specific purpose. Each basket contains curated US Stocks and ETFs, built to target specific goals.</p>
 
             <div class="explore_vest_about_content">
