@@ -83,7 +83,8 @@ $('#loadMore').on('click', function() {
     
     $('.post-card').each(function() {
         loadedPosts.push($(this).data('id'));
-    }); 
+    });
+    console.log(loadedPosts, "loadedPosts");
     $.ajax({
         url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
         type: 'POST',
