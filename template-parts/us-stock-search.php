@@ -308,6 +308,13 @@
             const aName = a.name.toLowerCase();
             const bName = b.name.toLowerCase();
 
+            // Check for exact matches first (e.g., "Apple, Inc." for "AAPL")
+            const aExactMatch = aName === searchTerm;
+            const bExactMatch = bName === searchTerm;
+
+            if (aExactMatch && !bExactMatch) return -1;
+            if (!aExactMatch && bExactMatch) return 1;
+
             // Prioritize items that start with the search term in their name
             const aStartsWith = aName.startsWith(searchTerm);
             const bStartsWith = bName.startsWith(searchTerm);
