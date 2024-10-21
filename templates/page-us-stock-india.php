@@ -170,7 +170,7 @@ get_header(); ?>
     <?php
         $chart = 'false';
     ?>
-    <?php get_template_part('template-parts/stocks-calculator'); ?>
+    <?php get_template_part('template-parts/stocks-calculator-india'); ?>
 
     <?php if (have_rows('portfolio_slider')) : ?>
         <section class="portfolio_slider_sec">
