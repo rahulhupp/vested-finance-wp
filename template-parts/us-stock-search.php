@@ -307,32 +307,31 @@
 
             const aName = a.name.toLowerCase();
             const bName = b.name.toLowerCase();
-            const aSymbol = a.symbol.toLowerCase();
-            const bSymbol = b.symbol.toLowerCase();
 
-            const aStartsWith = aName.startsWith(searchTerm) || aSymbol.startsWith(searchTerm);
-            const bStartsWith = bName.startsWith(searchTerm) || bSymbol.startsWith(searchTerm);
+            // Prioritize items that start with the search term in their name
+            const aStartsWith = aName.startsWith(searchTerm);
+            const bStartsWith = bName.startsWith(searchTerm);
 
-            // Prioritize items that start with the search term
             if (aStartsWith && !bStartsWith) return -1;
             if (!aStartsWith && bStartsWith) return 1;
 
-            // If both or neither start with the search term, check if they contain the term
-            const aContains = aName.includes(searchTerm) || aSymbol.includes(searchTerm);
-            const bContains = bName.includes(searchTerm) || bSymbol.includes(searchTerm);
+            // If neither or both start with the search term, check if they contain it in their name
+            const aContains = aName.includes(searchTerm);
+            const bContains = bName.includes(searchTerm);
 
             if (aContains && !bContains) return -1;
             if (!aContains && bContains) return 1;
 
-            // Fallback: Alphabetical comparison if both are equal in previous checks
+            // Fallback: Alphabetical comparison by name
             return aName.localeCompare(bName);
         });
-        console.log('sortedResults: ', sortedResults);
+
         renderItems(sortedResults);
     } catch (err) {
         console.log(err);
     }
 }
+
 
     async function renderItems(dataArray) {
         var ulElement = document.getElementById('stocksResultsList');
