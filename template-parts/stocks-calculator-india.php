@@ -1337,42 +1337,60 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 <script>
     var start_date = flatpickr("#startMonth", {
-        plugins: [
-            new monthSelectPlugin({
-                shorthand: true,
-                dateFormat: "F Y",
-            })
-        ],
-        defaultDate: "January 2010",
-        maxDate: "today",
-        onReady: function(selectedDates, dateStr, instance) {
-            // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
+    plugins: [
+        new monthSelectPlugin({
+            shorthand: true,
+            dateFormat: "F Y",
+        })
+    ],
+    defaultDate: "January 2010",
+    maxDate: "today",
+    onReady: function(selectedDates, dateStr, instance) {
+        var parts = dateStr.split(' ');
+        var monthName = parts[0];
+        var year = parseInt(parts[1], 10);
 
-            var parts = dateStr.split(' ');
-            var monthName = parts[0];
-            var year = parseInt(parts[1], 10);
+        var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
 
-            var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
-            var date = new Date(year, monthIndex, 1);
+        var date = new Date(year, monthIndex, 1);
 
-            date.setMonth(date.getMonth() + 2);
+        date.setMonth(date.getMonth() + 2);
 
-            var formattedDate = date.toISOString().slice(0, 7);
-            document.querySelector('#start_month').textContent = dateStr;
 
-            // var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
-            callEndDate(formattedDate);
-        },
-        onClose: function(selectedDates, dateStr, instance) {
-            var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toISOString().slice(0, 7);
-            var formattedDateEnd = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
-            const startDate = document.getElementById('startMonth');
-            startDate.setAttribute('data-value', formattedDate);
-            callEndDate(formattedDateEnd);
-            document.querySelector('#start_month').textContent = dateStr;
-        },
-        disableMobile: "true"
-    });
+        var formattedDate = date.toISOString().slice(0, 7);
+
+        document.querySelector('#start_month').textContent = dateStr;
+
+        callEndDate(formattedDate);
+    },
+    onClose: function(selectedDates, dateStr, instance) {
+
+        var parts = dateStr.split(' ');
+        var monthName = parts[0];
+        var year = parseInt(parts[1], 10);
+
+        var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
+
+        var date = new Date(year, monthIndex, 1);
+
+        
+        var nextMonthDate = new Date(date);
+        nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+        var formattedDate = nextMonthDate.toISOString().slice(0, 7);
+
+        var endMonthDate = new Date(date);
+        endMonthDate.setMonth(endMonthDate.getMonth() + 2);
+        var formattedDateEnd = endMonthDate.toISOString().slice(0, 7);
+
+        const startDate = document.getElementById('startMonth');
+        startDate.setAttribute('data-value', formattedDate);
+
+        document.querySelector('#start_month').textContent = dateStr;
+        callEndDate(formattedDateEnd);
+    },
+    disableMobile: "true"
+});
+
 
     function callEndDate(minDate) {
         var end_month = flatpickr("#endMonth", {
