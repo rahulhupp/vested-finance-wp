@@ -220,96 +220,8 @@ get_header(); ?>
 
     <section class="post-type-list">
         <div class="container">
-            <h2>Invest wisely with <br class="desktop_hide"> clarity and conviction</h2>
+            <h2>Invest with Confidence: Read our Blogs</h2>
             <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Under the Spotlight</h3>
-                        <a href="<?php echo home_url() ?>/blog/us-stocks/under-the-spotlight/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Deep-dive articles on the long-term prospects of U.S. companies, with our in-depth research.</p>
-                    </div>
-                </div>
-                <ul>
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
-                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
-                                'terms'    => 'under-the-spotlight', // Replace with the term you want to display
-                            ),
-                        ),
-                    );
-
-                    $custom_query = new WP_Query($args);
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_permalink() ?>">
-                                    <?php the_post_thumbnail(); ?>
-                                    <h4><?php the_title(); ?></h4>
-                                </a>
-                            </li>
-                    <?php endwhile;
-                        wp_reset_postdata();
-                    endif; ?>
-                </ul>
-            </div>
-            <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Vested Shorts</h3>
-                        <a href="<?php echo home_url() ?>/blog/us-stocks/vested-shorts/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Bite-sized insights on market updates and trends to stay ahead of the curve.</p>
-                    </div>
-                </div>
-                <ul>
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories', // Replace with your actual taxonomy name
-                                'field'    => 'slug', // Change to 'term_id', 'name', or 'slug' as needed
-                                'terms'    => 'vested-shorts', // Replace with the term you want to display
-                            ),
-                        ),
-                    );
-
-                    $custom_query = new WP_Query($args);
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_permalink() ?>">
-                                    <?php the_post_thumbnail(); ?>
-                                    <h4><?php the_title(); ?></h4>
-                                </a>
-                            </li>
-                    <?php endwhile;
-                        wp_reset_postdata();
-                    endif; ?>
-                </ul>
-            </div>
-            <div class="post-listing">
-                <div class="head">
-                    <div class="left-part">
-                        <h3>Blogs</h3>
-                        <a href="<?php echo home_url() ?>/blog/">View All</a>
-
-                    </div>
-                    <div class="short-content">
-                        <p>Learn more with regular insights that dive into the US Stock Markets.</p> 
-                    </div>
-                </div>
                 <ul>
                     <?php
                     $args = array(
@@ -319,8 +231,7 @@ get_header(); ?>
                             array(
                                 'taxonomy' => 'master_categories',
                                 'field'    => 'slug',
-                                'terms'    => array('under-the-spotlight', 'vested-shorts'),
-                                'operator' => 'NOT IN',
+                                'terms'    => array('us-stocks'),
                             ),
                         ),
                     );
@@ -338,6 +249,9 @@ get_header(); ?>
                         wp_reset_postdata();
                     endif; ?>
                 </ul>
+            </div>
+            <div class="btn text-center">
+                <a href="<?php echo home_url(); ?>/blog/us-stocks/" class="btn_dark" target="_blank">Read All Blogs</a>
             </div>
         </div>
     </section>
@@ -350,15 +264,28 @@ get_header(); ?>
                 <div class="partners_wrap">
                     <?php while (have_rows('partners_list')) : the_row(); ?>
                         <div class="single_partner_block">
-                             <?php
-                                            $image = get_sub_field('partner_logo');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                            <?php
+                            $image = get_sub_field('partner_logo');
+                            if (!empty($image)): ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
+            <?php endif; ?>
+            <div class="btn text-center">
+                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become A Partner</a>
+            </div>
+        </div>
+    </section>
+    <section class="eft_stock_info">
+        <div class="container">
+            <h2 class="section_title"><?php the_field('stock_eft_section_title'); ?></h2>
+            <?php $eftContent = get_field('stock_eft_description');
+            if ($eftContent) :
+            ?>
+                <?php echo $eftContent; ?>
             <?php endif; ?>
         </div>
     </section>
@@ -380,6 +307,9 @@ get_header(); ?>
                             </div>
                         </div>
                     <?php endwhile; ?>
+                </div>
+                <div class="btn text-center">
+                    <a href="https://support.vestedfinance.com/portal/en/kb/vested-us-stocks" class="btn_dark" target="_blank">Explore All FAQs</a>
                 </div>
             </div>
         </section>
