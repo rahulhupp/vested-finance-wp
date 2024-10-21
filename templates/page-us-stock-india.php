@@ -35,6 +35,8 @@ get_header(); ?>
         </div>
     </section>
 
+    <?php get_template_part('template-parts/us-stock-search'); ?>
+
     <section class="tab-section">
         <div class="container">
             <div class="tabs">
@@ -108,8 +110,6 @@ get_header(); ?>
             <p class="desc">Disclosure: Returns shown are based on historical performance. Past Performance does not guarantee future results.</p>
         </div>
     </section>
-
-    <?php get_template_part('template-parts/us-stock-search'); ?>
 
     <?php get_template_part('template-parts/us-stock-vests'); ?>
 
