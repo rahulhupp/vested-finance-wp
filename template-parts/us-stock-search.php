@@ -1,8 +1,8 @@
 <section class="explore-stock">
     <div class="container">
         <div class="head">
-            <h2>Explore any US Stock</h2>
-            <p>Discover the world of 5,000+ US Stocks and ETFs</p>
+            <h2>Explore US Stocks</h2>
+            <p>Discover the world of 10,000+ US Stocks and ETFs</p>
             <!-- <p class="desktop_hide">Issued by top rated companies with high <br>CRISIL ratings</p> -->
         </div>
         <form>
@@ -119,7 +119,7 @@
             <a class="btn_dark" href="https://app.vestedfinance.com/us-stocks-etfs">Explore ALL US Stocks</a>
         </div>
         <div class="bottom-content">
-            <p>Disclosure: This list is representative of stocks available on Vested but is not intended to recommend any investment.</p>
+            <p>Disclosure: This list is representative of stocks available but is not intended to recommend any investment.</p>
         </div>
     </div>
 </section>
