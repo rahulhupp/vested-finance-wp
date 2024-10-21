@@ -276,60 +276,63 @@
     }
 
     async function fetchResult(stock_name) {
-        try {
-            var ulElement = document.getElementById('stocksResultsList');
-            if (stock_name.length === 0) {
-                ulElement.nextElementSibling.style.display = 'flex';
-                ulElement.style.display = 'none';
-                return;
-            }
+    try {
+        var ulElement = document.getElementById('stocksResultsList');
+        if (stock_name.length === 0) {
+            ulElement.nextElementSibling.style.display = 'flex';
+            ulElement.style.display = 'none';
+            return;
+        }
 
-            ulElement.nextElementSibling.style.display = 'none';
-            ulElement.style.display = 'flex';
+        ulElement.nextElementSibling.style.display = 'none';
+        ulElement.style.display = 'flex';
 
-            const regex = new RegExp(`\\b${stock_name}`, 'i');
-            const results = await connection.select({
-                from: 'stocks',
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            regex: regex
-                        }
+        const regex = new RegExp(`\\b${stock_name}`, 'i');
+        const results = await connection.select({
+            from: 'stocks',
+            where: {
+                symbol: {
+                    like: `${stock_name}%`
+                },
+                or: {
+                    name: {
+                        regex: regex
                     }
                 }
-            });
+            }
+        });
 
-            const sortedResults = results.sort((a, b) => {
-                const searchTerm = stock_name.toLowerCase();
+        const sortedResults = results.sort((a, b) => {
+            const searchTerm = stock_name.toLowerCase();
 
-                const aName = a.name.toLowerCase();
-                const bName = b.name.toLowerCase();
-                const aSymbol = a.symbol.toLowerCase();
-                const bSymbol = b.symbol.toLowerCase();
+            const aName = a.name.toLowerCase();
+            const bName = b.name.toLowerCase();
+            const aSymbol = a.symbol.toLowerCase();
+            const bSymbol = b.symbol.toLowerCase();
 
-                const aExactMatch = aName === searchTerm || aSymbol === searchTerm;
-                const bExactMatch = bName === searchTerm || bSymbol === searchTerm;
+            const aStartsWith = aName.startsWith(searchTerm) || aSymbol.startsWith(searchTerm);
+            const bStartsWith = bName.startsWith(searchTerm) || bSymbol.startsWith(searchTerm);
 
-                if (aExactMatch && !bExactMatch) return -1;
-                if (!aExactMatch && bExactMatch) return 1;
+            // Prioritize items that start with the search term
+            if (aStartsWith && !bStartsWith) return -1;
+            if (!aStartsWith && bStartsWith) return 1;
 
-                const aStartsWith = aName.startsWith(searchTerm) || aSymbol.startsWith(searchTerm);
-                const bStartsWith = bName.startsWith(searchTerm) || bSymbol.startsWith(searchTerm);
+            // If both or neither start with the search term, check if they contain the term
+            const aContains = aName.includes(searchTerm) || aSymbol.includes(searchTerm);
+            const bContains = bName.includes(searchTerm) || bSymbol.includes(searchTerm);
 
-                if (aStartsWith && !bStartsWith) return -1;
-                if (!aStartsWith && bStartsWith) return 1;
+            if (aContains && !bContains) return -1;
+            if (!aContains && bContains) return 1;
 
-                return aName.localeCompare(bName);
-            });
-
-            renderItems(sortedResults);
-        } catch (err) {
-            console.log(err);
-        }
+            // Fallback: Alphabetical comparison if both are equal in previous checks
+            return aName.localeCompare(bName);
+        });
+        console.log('sortedResults: ', sortedResults);
+        renderItems(sortedResults);
+    } catch (err) {
+        console.log(err);
     }
+}
 
     async function renderItems(dataArray) {
         var ulElement = document.getElementById('stocksResultsList');
