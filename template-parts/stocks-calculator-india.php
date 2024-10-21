@@ -9,22 +9,21 @@
     .main_calc_wrap {
         position: relative;
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         border-radius: 8px;
         border: 1px solid #b6c9db;
         overflow: hidden;
     }
 
     .calculator {
-        padding: 42px 0;
+        padding: 60px 0;
     }
 
     .calculator .main_heading {
         color: #002852;
-
         font-size: 38px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 800;
         line-height: 110%;
         letter-spacing: -1.28px;
         margin-bottom: 10px;
@@ -33,13 +32,12 @@
     .calculator .sub_heading {
         margin-bottom: 32px;
         color: rgba(33, 37, 41, 0.6);
-        font-size: 16px !important;
+        font-family: "Inter", sans-serif;
+        font-size: 18px !important;
         font-style: normal;
         font-weight: 400;
-        line-height: 140%;
-        letter-spacing: -0.32px;
-        text-align: left;
-        max-width: 100%;
+        line-height: 130%;
+        text-align: center;
     }
 
     .calculator .calc_form select {
@@ -121,11 +119,10 @@
     /* end select 2 */
     .calculator .calc_form label {
         color: #464646;
-
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 21px;
         margin-bottom: 6px;
         display: inline-block;
     }
@@ -220,7 +217,7 @@
     }
 
     .calculator .submit_btn {
-        margin-top: 32px;
+        margin-top: 50px;
     }
 
     .calculator .field_row {
@@ -358,7 +355,7 @@
     }
 
     .calculator .investment_cta {
-        margin: 0 16px 16px 16px;
+        margin: 0 16px 0px 16px;
         border-radius: 6px;
         background: #002852;
         padding: 24px;
@@ -473,21 +470,22 @@
     .calc_desc {
         margin-bottom: 0;
         margin-top: 34px;
-        color: rgba(33, 37, 41, 0.7);
-
-        font-size: 16px;
+        color: rgba(33, 37, 41, 0.6);
+        font-family: "Inter", sans-serif;
+        font-size: 18px !important;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
+        line-height: 130%;
     }
 
     .sub_heading {
-        color: #505a64;
-        text-align: center;
+        color: rgba(33, 37, 41, 0.6);
+        font-family: "Inter", sans-serif;
         font-size: 18px !important;
         font-style: normal;
-        font-weight: 500;
-        line-height: 120%;
+        font-weight: 400;
+        line-height: 130%;
+        text-align: center;
         margin-top: 10px;
         max-width: 807px;
         margin-left: auto;
@@ -557,6 +555,7 @@
         margin-bottom: 0;
         border-radius: 4px;
         border: 1px solid #a9bdd0;
+        background: #fff;
     }
 
     .calculator .field_col:before {
@@ -632,9 +631,9 @@
         outline: none;
     }
 
-    .cal_heading_wrap {
+    /* .cal_heading_wrap {
         max-width: 684px;
-    }
+    } */
 
     /* 18/12/23 */
 
@@ -825,6 +824,40 @@
         animation: loaderamin 0.5s infinite;
     }
 
+    .read_more_chart {
+        padding: 12px 20px;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #E5E7EB;
+        margin-top: 14px;
+    }
+
+    .read_more_chart .chart_desc_btn {
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+        color: #002852;
+        font-weight: 500;
+    }
+
+    .read_more_chart .chart_desc_btn i {
+        color: inherit;
+    }
+
+    .read_more_chart .chart_desc {
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: left;
+        margin-top: 15px;
+    }
+
+    .chart_header {
+        background: #EEF5FC;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
     @media (max-width: 1200px) {
 
         .calc_col,
@@ -985,7 +1018,7 @@
         }
 
         .calc_result_col {
-            margin-top: 24px;
+            margin-top: 36px;
         }
 
         .result_inner_col {
@@ -1041,6 +1074,27 @@
 
         .calculator .sub_heading {
             font-size: 14px !important;
+            text-align: left;
+        }
+
+        .read_more_chart {
+            border: none;
+            padding: 0;
+            border-radius: 6px;
+            padding-bottom: 5px;
+        }
+
+        .read_more_chart .chart_desc_btn {
+            font-size: 16px;
+            border: 1px solid #146045;
+            border-radius: 6px;
+            padding: 15px 24px;
+            overflow: hidden;
+        }
+
+        .read_more_chart .chart_desc {
+            font-size: 10px;
+            line-height: 14px;
         }
     }
 
@@ -1065,7 +1119,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
-            <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
+            <h1 class="main_heading section_title"><?php the_field('main_heading'); ?></h1>
             <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
         </div>
 
@@ -1078,8 +1132,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         <div class="field_group">
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
-                                <div class="selected_option" data-value="SPY" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="S&P 500 ETF Trust SPDR">
+                                <div class="selected_option" data-value="QQQ" id="resultsList">
+                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="Invesco QQQ Trust Series 1">
                                 </div>
                                 <div class="options_dropdown_wrap">
                                     <div id="loader" style="display: none;">
@@ -1096,7 +1150,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                                     </div>
                                     <div class="dropdown_options">
                                         <ul class="static_options">
-                                            <li data-value="SPY">S&P 500 ETF Trust SPDR</li>
+                                            <li data-value="SPY">INVESCO NASDAQ 100 ETF</li>
                                             <li data-value="AAPL">Apple</li>
                                             <li data-value="GOOGL">Google</li>
                                             <li data-value="AGPXX">Invesco</li>
@@ -1149,7 +1203,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
-                                    <input type="text" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
+                                    <input type="text" class="flatpickr-input" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
                                 </div>
                             </div>
                         </div>
@@ -1176,7 +1230,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
-                    <h3 id="returnBreakdownTitle">Return Breakdown of S&P 500 ETF Trust SPDR</h3>
+                    <h3 id="returnBreakdownTitle">Return Breakdown of Invesco QQQ Trust Series 1</h3>
                     <div class="result_breakdown_wrap">
                         <div class="result_graph_col">
                             <div class="fd_result" id="fd_results">
@@ -1238,6 +1292,35 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 </div>
 
             </div>
+            <div class="read_more_chart">
+                <div class="chart_desc_btn">View Historical Performance Chart <i class="fa fa-chevron-down"></i></div>
+
+
+                <section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
+                    <div class="container">
+                        <div id="stocks_chart" class="blur">
+                            <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
+                            <h3 class="chart_header section_title">Historical Performance for <span id="selected_chart_val">Invesco QQQ Trust Series 1</span></h3>
+                            <canvas id="calculatorChart" width="400" height="200"></canvas>
+
+                            <div id="chartLoader" style="display: none;">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+            </div>
         </div>
         <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
             <p class="calc_desc">
@@ -1245,32 +1328,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             </p>
         <?php endif; ?>
     </div>
-</section>
-
-
-
-<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
-    <div class="container">
-        <div id="stocks_chart" class="blur">
-            <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-            <canvas id="calculatorChart" width="400" height="200"></canvas>
-
-            <div id="chartLoader" style="display: none;">
-                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 0 0-7-7V3z"></path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </div>
-
-    </div>
-
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
@@ -1387,6 +1444,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
         const differenceInMonths = (differenceEndDate.getFullYear() - differenceStartDate.getFullYear()) * 12 + differenceEndDate.getMonth() - differenceStartDate.getMonth();
 
+        console.log(startDate, "startDate");
+
         let dateRange;
 
         if (differenceInMonths < 6) {
@@ -1454,7 +1513,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             // Trigger API and render chart
             triggerAPI(stockSelector, startDate, endDate)
                 .then(data => {
-                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
+                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "Invesco QQQ Trust Series 1", "month");
                 })
                 .catch(error => alert("Something went wrong!"));
         }, 500);
@@ -1774,11 +1833,13 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             const mainValue = document.querySelector('.selected_option');
             const searchValue = document.querySelector('.dropdown_search');
             const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
+            const chartTitle = document.getElementById('selected_chart_val');
 
             const selectedValue = clickedElement.dataset.value;
 
             searchValue.value = clickedElement.textContent;
             returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
+            chartTitle.textContent = clickedElement.textContent
             mainValue.dataset.value = selectedValue;
 
             document.querySelector('.calc_result_col').classList.add('blur');

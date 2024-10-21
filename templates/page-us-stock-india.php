@@ -37,7 +37,7 @@ get_header(); ?>
 
     <?php get_template_part('template-parts/us-stock-search'); ?>
 
-    <?php get_template_part('template-parts/us-stock-vests'); ?>
+    <?php get_template_part('template-parts/us-stock-vests-india'); ?>
 
     <section class="tab-section">
         <div class="container">
@@ -172,7 +172,7 @@ get_header(); ?>
         <?php
         $chart = 'true';
         ?>
-        <?php get_template_part('template-parts/stocks-calculator'); ?>
+        <?php get_template_part('template-parts/stocks-calculator-india'); ?>
     </section>
     <?php if (have_rows('portfolio_slider')) : ?>
         <section class="portfolio_slider_sec">
@@ -277,6 +277,9 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
+            <div class="btn text-center">
+                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become A Partner</a>
+            </div>
         </div>
     </section>
     <section class="eft_stock_info">

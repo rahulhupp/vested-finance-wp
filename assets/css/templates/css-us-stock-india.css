@@ -2260,6 +2260,7 @@ div#vest_read_more i {
 
 	.explore-stock .explore-image ul li {
 		min-height: 80px;
+		padding: 0 4px;
 	}
 
 	.explore-stock .explore-image ul li .explore-icon {

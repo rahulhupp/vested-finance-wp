@@ -1,37 +1,57 @@
 <section class="build-foundation">
     <div class="container">
-        <div class="head">
+        <div class="explore_vest_head">
             <h2>Build a solid foundation with Vests</h2>
-            <span>Curated investment portfolios for every investor</span>
+            <p class="explore_vest_desc">Vests are expert-built investment baskets built with a specific purpose. Each basket contains curated US Stocks and ETFs, built to target specific goals.</p>
+
+            <div class="explore_vest_about_content">
+                <p class="vest_about_content">
+                    If you want to invest but don't have the time to research individual stocks, Vests offer a solution. They come in various categories, each focusing on a different investment objective. For instance, a Vest might aim for growth potential while another prioritizes stability. Vests can also cater to specific interests. Let's say you're passionate about renewable energy. You could choose a Vest that concentrates on companies in that sector. Explore <a href="https://app.vestedfinance.com/vests" target="_blank">Vests</a> here.
+                </p>
+                <div id="vest_read_more">Read <span>More</span> <i class="fa fa-chevron-down"></i></div>
+            </div>
         </div>
         <div class="foundation-list">
             <div class="skeleton_main">
                 <div class="skeleton_wrapper">
-                <div class="skeleton_wrapper_figure">
-                    <span class="skeleton-box" style="width:100px;height:80px;"></span>
-                </div>
-                <div class="skeleton_wrapper_body">
-                    <div class="skeleton_main">
-                    <h3> <span class="skeleton-box" style="width:55%;"></span> </h3>
-                    <span class="skeleton-box" style="width:80%;"></span>
-                    <span class="skeleton-box" style="width:90%;"></span>
-                    <span class="skeleton-box" style="width:83%;"></span>
-                    <span class="skeleton-box" style="width:80%;"></span>
-                    <div class="blog-post__meta">
-                        <span class="skeleton-box" style="width:70px;"></span>
+                    <div class="skeleton_wrapper_figure">
+                        <span class="skeleton-box" style="width:100px;height:80px;"></span>
                     </div>
+                    <div class="skeleton_wrapper_body">
+                        <div class="skeleton_main">
+                            <h3> <span class="skeleton-box" style="width:55%;"></span> </h3>
+                            <span class="skeleton-box" style="width:80%;"></span>
+                            <span class="skeleton-box" style="width:90%;"></span>
+                            <span class="skeleton-box" style="width:83%;"></span>
+                            <span class="skeleton-box" style="width:80%;"></span>
+                            <div class="blog-post__meta">
+                                <span class="skeleton-box" style="width:70px;"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
-            <ul id="vestsResultsList"></ul>
+            <div class="vests_list_conatiner">
+                <ul id="vestsResultsList"></ul>
+                <div class="defult_vest">
+                    <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
+                        <div class="plus-icon">
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.webp" alt="plus-icon" />
+                        </div>
+                        <div class="content">
+                            <strong>Create Your Own </strong>
+                            <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="btn">
-                <a class="btn_dark" href="https://app.vestedfinance.com/vests"  target="_blank">Explore ALL Vests</a>
+                <a class="btn_dark" href="https://app.vestedfinance.com/vests" target="_blank">Explore All Vests</a>
             </div>
         </div>
-        <div class="bottom-content">
+        <!-- <div class="bottom-content">
             <p>Disclosure: Vests are powered by Vested Finance, Inc. an SEC registered Investment Advisor.</p>
-        </div>
+        </div> -->
 </section>
 <script>
     console.log('include vests');
@@ -48,10 +68,15 @@
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
             'vest-list-access': true,
         };
-        fetch(firstApiUrl, {  method: 'GET', headers: headers })
-        .then(response => response.text())
-        .then(token => { callVestsApi(token); })
-        .catch(error => console.error('Error:', error));
+        fetch(firstApiUrl, {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.text())
+            .then(token => {
+                callVestsApi(token);
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     function callVestsApi(token) {
@@ -62,10 +87,15 @@
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
         };
 
-        fetch(vestsApiUrl, { method: 'GET',  headers: headers })
-        .then(response => response.json())
-        .then(data => { getVestsList(data.vests); })
-        .catch(error => console.error('Error:', error));
+        fetch(vestsApiUrl, {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.json())
+            .then(data => {
+                getVestsList(data.vests);
+            })
+            .catch(error => console.error('Error:', error));
     }
 
 
@@ -81,8 +111,9 @@
         }
 
         var vestsResultsList = document.getElementById("vestsResultsList");
+        var vestsListContainer = document.getElementsByClassName("vests_list_conatiner")[0]
         var skeletonMainElement = document.getElementsByClassName('skeleton_main')[0];
-        vestsResultsList.style.display = "flex";
+        vestsListContainer.style.display = "flex";
         skeletonMainElement.style.display = "none";
         localStorage.setItem("vests", true);
 
@@ -101,14 +132,16 @@
         });
 
         // Display only the top 3 vests with the highest oneYearReturn
-        for (let i = 0; i < Math.min(4, vestsArray.length); i++) {
+        for (let i = 0; i < vestsArray.length; i++) {
             const vest = vestsArray[i];
             const li = document.createElement("li");
 
             li.innerHTML = `
                 <a href="https://app.vestedfinance.com/vest-details?vestId=${vest.vestId}" target="_blank" class="inner">
                     <div class="top">
-                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/${vest.vestId}.svg" alt="solid-foundations" />
+                        <div class="vest_img">
+                            <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/${vest.vestId}.svg" alt="solid-foundations" />
+                        </div>
                         <strong>${vest.name}</strong>
                     </div>
                     <div class="middle">
@@ -128,7 +161,7 @@
                     </div>
                     <div class="bottom">
                         <span>Recommended for</span>
-                        <p>${vest.shortBlurb}</p>
+                        <p>${vest.shortBlurb || vest.blurb}</p>
                     </div>
                 </a>
             `;
@@ -137,22 +170,12 @@
             vestsResultsList.appendChild(li);
         }
 
-        const defaultBox = document.createElement("li");
-        defaultBox.className = "box";
-        defaultBox.innerHTML = `
-            <a href="https://app.vestedfinance.com/diy-vests" target="_blank" class="inner">
-                <div class="plus-icon">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/plus-icon.webp" alt="plus-icon" />
-                </div>
-                <div class="content">
-                    <strong>Create Your Own </strong>
-                    <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.</p>
-                </div>
-            </a>
-        </li>`;
+        // const defaultBox = document.createElement("li");
+        // defaultBox.className = "box";
+        // defaultBox.innerHTML = `
+        //     `;
 
-        vestsResultsList.appendChild(defaultBox);
+        // vestsResultsList.appendChild(defaultBox);
 
     }
-    
 </script>
