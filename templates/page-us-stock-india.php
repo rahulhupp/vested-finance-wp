@@ -78,30 +78,31 @@ get_header(); ?>
                                         <?php the_sub_field('content'); ?>
                                     </div>
                                     <div class="image">
-                                        <?php if( get_sub_field('mobile_image') ){ ?>
-                                         <?php
-                                           $image = get_sub_field('image');
+                                        <?php if (get_sub_field('mobile_image')) { ?>
+                                            <?php
+                                            $image = get_sub_field('image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide"/>
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_hide" />
                                             <?php endif; ?>
 
                                             <?php
-                                           $image = get_sub_field('mobile_image');
+                                            $image = get_sub_field('mobile_image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
                                             <?php endif; ?>
                                         <?php } else { ?>
                                             <?php
-                                           $image = get_sub_field('image');
+                                            $image = get_sub_field('image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
                                                     alt="<?php echo esc_attr($image['alt']); ?>" />
                                             <?php endif; ?>
                                         <?php } ?>
-                                        <?php if ($index == 1) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>  
+                                        <?php if ($index === 3) : ?><p class="img_source">Source: Bloomberg and CNBC<?php endif; ?></p>
                                     </div>
+                                    <?php if ($index === 1) : ?><p class="img_source mt-0">Source: Bloomberg and CNBC<?php endif; ?></p>
                                 </div>
                             </div>
                             <?php $index++; ?>
