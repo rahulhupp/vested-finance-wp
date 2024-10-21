@@ -444,3 +444,13 @@ function load_more_posts() {
 }
 add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+
+function change_comment_order( $query ) {
+    if ( is_admin() ) {
+        return;
+    }
+
+    $query->query_vars['orderby'] = 'comment_date_gmt';
+    $query->query_vars['order'] = 'DESC';
+}
+add_action( 'pre_get_comments', 'change_comment_order' );
