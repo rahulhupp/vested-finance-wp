@@ -216,7 +216,7 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
-    <?php get_template_part('template-parts/investors-slider'); ?>
+    <?php get_template_part('template-parts/investors-slider-india'); ?>
 
     <section class="post-type-list">
         <div class="container">
