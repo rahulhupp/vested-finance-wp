@@ -18,12 +18,12 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-image">
-                      <?php
-                      $image = get_field('stock_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                    <?php
+                    $image = get_field('stock_image');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
