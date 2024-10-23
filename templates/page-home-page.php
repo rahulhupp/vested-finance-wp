@@ -84,14 +84,15 @@ $image = get_field('multi_asset_image_mobile');
 
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('easy_access_heading'); ?></h2>
-                         <?php
-                         $image = get_field('easy_access_image');
+
+                        <?php
+                                            $image = get_field('easy_access_image');
                                             if (!empty($image)): ?>
                                                 <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide"/>
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide"/>
                                             <?php endif; ?>
-                                            
-                                              <div class="easy_access_list">
+
+                        <div class="easy_access_list">
                             <?php while (have_rows('easy_access_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
@@ -127,54 +128,6 @@ $image = get_field('easy_access_image');
                     <?php echo esc_html(get_field('easy_disclosure')); ?>
                     </p>
                     </div>
-            </div>
-        </section>
-    <?php endif; ?>
-    <?php if (have_rows('edge_list')) : ?>
-        <section class="edge_section">
-            <div class="container">
-                <div class="edge_wrapper">
-                    <div class="edge_content">
-                        <h2 class="section_title align_left"><?php the_field('edge_heading'); ?></h2>
-                       
-                        <?php
-                                            $image = get_field('edge_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
-                                            <?php endif; ?>
-                        <div class="edge_list">
-                            <?php while (have_rows('edge_list')) : the_row(); ?>
-                                <div class="single_edge">
-                                    <div class="edge_icon">
-                                        
-                                        <?php
-                                            $image = get_sub_field('edge_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                               
-                                    </div>
-                                    <h4><?php the_sub_field('edge_title') ?></h4>
-                                </div>
-                            <?php endwhile; ?>
-                        </div>
-                        <div class="edge_btns">
-                            <a href="<?php the_field('edge_button_one_url'); ?>" class="btn_light"><?php the_field('edge_button_text'); ?></a>
-                            <a href="<?php the_field('edge_button_two_url'); ?>" class="link_dark"><?php the_field('edge_button_two_text'); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="edge_img mobile_hide">
-                       
-                        <?php
-                                            $image = get_field('edge_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                    </div>
-                </div>
             </div>
         </section>
     <?php endif; ?>
@@ -399,21 +352,18 @@ $image = get_field('easy_access_image');
 
     function getUserLocationByIP() {
         // Make a request to the ipinfo.io API to get user location based on IP
-        fetch('https://ipinfo.io/json')
+        fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
-            // Process the location information
-            console.log('User location based on IP:', data);
             var globalBanner = document.querySelector(".geolocation_banner");
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/alert-circle-icon.svg' /><p>Vested will never ask you to make any payments through WhatsApp for account creation or other services. Always ensure you are using our official website, mobile app, or referral links from trusted family or friends to create your Vested account. <a href='https://vestedfinance.com/blog/vested-updates/urgent-fraud-alert-beware-of-whatsapp-scams/' target='_blank' class='learn_more_btn'>Learn more</a></p></div>";
-                    globalBanner.classList.add('warning_banner');
+                    globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
+                    // globalBanner.classList.add('warning_banner');
                     console.log('show geolocation_banner');
                 } else {
                     globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
-                    console.log('hide geolocation_banner');
                 }
             }
             })
@@ -423,5 +373,3 @@ $image = get_field('easy_access_image');
     }
 </script>
 <?php get_footer(); ?>
-
-
