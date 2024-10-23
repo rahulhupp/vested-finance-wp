@@ -280,12 +280,14 @@ a.btn_light {
 	position: relative;
 }
 .section_title sup.sup_text{
-	position: absolute;
-	top: 50px;
-	right: 225px;
+	/* position: absolute; */
+	/* top: 7px;
+    right: -5px; */
 	font-size: 13px;
-	font-weight: 300;
-	color: #000;
+    font-weight: 300;
+    color: #000;
+    vertical-align: middle;
+    margin-left: 4px;
 }
 .disclosure p{
 	color: rgba(33, 37, 41, 0.7);
@@ -368,6 +370,21 @@ a.link_light {
     color: #212529;
 }
 
+.easy_access_list.new .single_easy-access h4 {
+	margin-left: 30px;
+	position: relative;
+}
+
+.easy_access_list.new .single_easy-access h4:before {
+	content: "";
+	background-image: url("data:image/webp;base64,UklGRrQAAABXRUJQVlA4WAoAAAAwAAAAGQAAGQAAQUxQSFIAAAABN0AQQBLC+8OslMEaERG8mYJRbKt13gwWwh4J/TwBBaIgCupfB2GXfUT/JwAnvGYrvXMNdtKlMADXIMqPQLpUv4spUZtyuWywXIm9qUsDizgtVlA4IDwAAACwAgCdASoaABoALnFOp1OiJaWlhYBwSzgGUALEdAAA/vc6D//1R/EO//1KY6V/tty/+rkB6L+qafGwAAA=");
+	width: 26px;
+	height: 26px;
+	display: inline-flex;
+	align-items: center;
+	position: absolute;
+	left: -30px;
+}
 
 .edge_section {
 	padding: 0 0 50px;
@@ -753,7 +770,15 @@ section.invest_wisely_sec .container {
 	display: none;
 }
 
+.page-template-page-home-page .geolocation_banner p {
+    display: flex;
+    align-items: center;
+}
 
+.page-template-page-home-page .geolocation_banner a {
+    width: auto;
+    margin-left: 10px;
+}
 
 @media (max-width: 1200px) {
 	.counters_wrap {
@@ -781,6 +806,18 @@ section.invest_wisely_sec .container {
 	}
 	.edge_img {
 		width: 49%;
+	}
+	.page-template-page-home-page .geolocation_banner .content {
+		padding: 0;
+	}
+
+	.page-template-page-home-page .geolocation_banner p {
+		font-size: 16px;
+	}
+
+	.page-template-page-home-page .geolocation_banner a {
+		font-size: 16px;
+		padding: 6px 8px;
 	}
 }
 
@@ -847,6 +884,9 @@ section.invest_wisely_sec .container {
 
 	.invest_wisely_wrap {
 		padding: 0 60px;
+	}
+	.page-template-page-home-page .geolocation_banner a {
+		width: 220px;
 	}
 }
 
@@ -1036,7 +1076,7 @@ section.invest_wisely_sec .container {
 
 	.home_banner:before {
 		left: 0;
-		background: url(../../images/home_banner_mobile.png);
+		background: url(../../images/home_banner_mobile.webp);
 		top: auto;
 		bottom: 31px;
 		width: 100%;
@@ -1446,6 +1486,17 @@ section.invest_wisely_sec .container {
 	.solar.inr_bond.easy_access .easy_access_btns a.link_light {
 		max-width: 155px;
 	}
+	.page-template-page-home-page .geolocation_banner p {
+		display: block;
+	}
+	
+	.page-template-page-home-page .geolocation_banner a {
+		margin: 10px 0 0;
+		width: auto;
+	}
+	.page-template-page-home-page .geolocation_banner .content {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
