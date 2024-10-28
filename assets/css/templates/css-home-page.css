@@ -370,6 +370,25 @@ a.link_light {
     color: #212529;
 }
 
+.easy_access_list.new .single_easy-access {
+	position: relative;
+}
+
+.easy_access_list.new .single_easy-access h4{
+	margin-left: 30px;
+}
+
+.easy_access_list.new .single_easy-access:after {
+	content: "";
+	background-image: url(../../images/check.webp);
+	width: 26px;
+	height: 26px;
+	display: inline-flex;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	z-index: 1;
+}
 
 .edge_section {
 	padding: 0 0 50px;

@@ -188,15 +188,6 @@ $image = get_field('easy_access_image');
                         <div class="easy_access_list">
                             <?php while (have_rows('solar_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
-                                    <div class="easy_access_icon">
-                                       
-                                        <?php
-                                            $image = get_sub_field('solar_bond_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                                    </div>
                                     <h4><?php the_sub_field('solar_bond_title') ?></h4>
                                 </div>
                             <?php endwhile; ?>
