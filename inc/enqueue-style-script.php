@@ -96,7 +96,7 @@
             wp_enqueue_script('solar-calculator-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-solar-calculator.js');
          }
 
-        if (is_page_template('templates/page-stock-collections.php') || (is_singular('stocks_collections'))) {
+        if (is_page_template('templates/page-stock-collections.php') || (is_singular('collections'))) {
             wp_enqueue_style('stock-collection-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-collections.css', false, '', '');
         }
     }
