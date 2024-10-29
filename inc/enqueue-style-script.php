@@ -95,6 +95,10 @@
             wp_enqueue_script('chart-plugin-js', 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels');
             wp_enqueue_script('solar-calculator-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-solar-calculator.js');
          }
+
+        if (is_page_template('templates/page-stock-collections.php') || (is_singular('stocks_collections'))) {
+            wp_enqueue_style('stock-collection-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-collections.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');

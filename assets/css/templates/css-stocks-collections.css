@@ -1,0 +1,510 @@
+.page-template-page-stock-collections .site-content > .ast-container, .stocks_collections-template-default .site-content > .ast-container {
+    max-width: 100%;
+    padding: 0;
+}
+.page-template-page-stock-collections .container {
+    max-width: 1200px;
+}
+.collection_page_banner {
+    padding: 63px 0 92px;
+}
+.collection_page_banner.smaller {
+    padding: 50px 0;
+}
+.banner_content_wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.banner_content_col {
+    width: 50%;
+}
+
+.banner_img_col {
+    max-width: 335px;
+}
+
+.banner_content_col .small_heading {
+    font-size: 17.78px;
+    color: #262626;
+    line-height: 28.89px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.banner_content_col .small_heading span {
+    width: 22px;
+    height: 22px;
+    background: #754FE1;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #fff;
+    position: relative;
+    top: -2px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.banner_content_col h1 {
+    margin: 24px 0;
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+    color: #002852;
+}
+
+.banner_content_col h1.mt_0 {
+    margin-top: 0;
+}
+
+.banner_content_col .banner_desc {
+    font-size: 18px;
+    line-height: 23.4px;
+    letter-spacing: -0.36px;
+    color: #505A64;
+    margin-bottom: 0;
+    max-width: 479px;
+}
+
+.stocks_list_collections {
+    background-color: #EEF5FC;
+    padding: 63px 0;
+}
+
+.stocks_list_collections .section_title {
+    color: #002852;
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+}
+
+.main_collections_list {
+    margin-top: 75px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 31px;
+    row-gap: 33px;
+}
+
+.main_collections_list .single_collection {
+    width: calc(33.33% - 20.66px);
+    background: #fff;
+    padding: 24px;
+    border-radius: 17.89px;
+    border: 1px solid #E5F4F2;
+}
+
+.main_collections_list .single_collection .single_collection_img {
+    width: 60px;
+    height: 60px;
+    background: #FEF2F2;
+    border-radius: 15px;
+}
+
+.main_collections_list .single_collection .single_collection_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main_collections_list .single_collection .single_collection_title {
+    margin: 8px 0 4px;
+    font-size: 24px;
+    line-height: 38px;
+    font-weight: 600;
+    color: #021930;
+}
+
+.main_collections_list .single_collection .single_collection_desc {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #737373;
+    margin: 0;
+}
+
+.main_collections_list .single_collection .collections_categories {
+    margin: 24px 0 0 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.main_collections_list .single_collection .collections_categories .single_collection_category {
+    display: inline-block;
+    padding: 1px 8px;
+    border: 1px solid #E5E9EE;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    transition: all .3s;
+    color: #262626;
+}
+
+.main_collections_list .single_collection .collections_categories .single_collection_category a {
+    color: inherit;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.main_collections_list .single_collection .collections_categories .single_collection_category:hover {
+    background: #002852;
+    color: #fff;
+}
+
+.btn_dark {
+    padding: 16px 21px;
+    border-radius: 5px;
+    background: #002852;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: 1px solid #002852;
+    transition: all 0.3s;
+    display: inline-block;
+    margin-top: 24px;
+}
+
+.btn_dark:hover {
+    background: #fff;
+    color: #002852;
+}
+
+.collection_breadcrumb p {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24.2px;
+    font-weight: 500;
+    color: #505A64;
+}
+
+.collection_breadcrumb p .divider {
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.collection_breadcrumb p a {
+    color: inherit;
+}
+
+.collection_breadcrumb p a:hover {
+    color: #002852;
+}
+
+.collection_breadcrumb p span.current_page {
+    color: #021930;
+}
+
+.explore_market_leaders {
+    padding: 50px 0;
+    background-color: #EEF5FC;
+}
+
+.market_leaders_row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.market_leaders_col {
+    width: 329px;
+}
+
+.market_table_col {
+    width: calc(100% - 413px);
+    margin-left: auto;
+}
+
+.market_leaders_col h2 {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+.market_leaders_col ul {
+    margin: 0;
+    padding: 0;
+}
+
+.market_leaders_col ul li {
+    list-style: none;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #262626;
+    transition: all .3s;
+}
+
+.market_leaders_col ul li a {
+    color: inherit;
+    padding: 12px;
+    display: block;
+    border-radius: 6px;
+    transition: all .3s;
+}
+
+.market_leaders_col ul li.current a {
+    background: #002852;
+    color: #fff;
+}
+
+.market_leaders_col ul li:hover a {
+    background: #002852;
+    color: #fff;
+}
+
+.stocks_collections-template-default .site-content > .ast-container .container {
+    max-width: 1210px;
+}
+
+.market_table_headings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 27px;
+}
+
+.market_table_name h3 {
+    font-size: 23px;
+    line-height: 29px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.market_table_name p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    color: #000;
+}
+
+.market_table_search {
+    max-width: 315px;
+    width: 100%;
+}
+
+.market_table_search input {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #99A9BA;
+    background: #fff;
+    outline: none !important;
+}
+
+.market_table_search input::placeholder {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #99A9BA;
+}
+
+.market_table_search input:focus {
+    border: 1px solid #D1D5DB !important;
+}
+
+.market_table_col_wrap {
+    background: #fff;
+    padding: 33px 27.5px;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+}
+
+#stocks-table {
+    border: none;
+}
+
+#stocks-table td {
+    border-right: none;
+    padding: 16px 10px;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+    font-weight: 400;
+    border-color: #D9D9D9 !important;
+}
+
+.stock_symbol_img {
+    width: 32px;
+    height: 32px;
+}
+
+.stock_symbol_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.stock_name {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 40px);
+}
+
+.stock_name p {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #000;
+}
+
+.stock_name span {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #737373;
+}
+
+.stock_symbol_wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#stocks-table th {
+    border-right: none;
+    text-align: left;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+    font-weight: 600;
+    padding: 14px 10px;
+    border-color: #D9D9D9 !important;
+}
+
+#stocks-table th:first-of-type,
+#stocks-table td:first-of-type {
+    width: 200px;
+}
+
+.stock_change  {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    color: #0CC81F;
+}
+
+strong.stock_change.minus_value {
+    color: #B92406;
+}
+
+#pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#pagination .page-link {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.88);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all .3s;
+}
+
+#pagination .page-link:hover, #pagination .page-link.active {
+    font-weight: 600;
+    color: #002852;
+    border-color: #002852;
+}
+
+#pagination .page-link.disabled:hover {
+    border-color: transparent;
+}
+
+@media (max-width: 767px) {
+    .collection_page_banner {
+        padding: 30px 0; 
+    }
+    .banner_content_col {
+        width: 100%;
+    }
+    .banner_img_col {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        display: none;
+    }
+    .banner_content_col .small_heading {
+        font-size: 12px;
+        line-height: 13.2px;
+        letter-spacing: -0.04em;
+        display: flex;
+        align-items: center;
+    }
+    .banner_content_col .small_heading span {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+    .banner_content_col h1 {
+        font-size: 32px;
+        line-height: 35.2px;
+        font-weight: 800;
+    }
+    
+    .banner_content_col .banner_desc {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .stocks_list_collections {
+        padding: 24px 9px;
+    }
+    
+    .stocks_list_collections .section_title {
+        text-align: center;
+        font-size: 22px;
+        line-height: 24.2px;
+        font-weight: 800;
+    }
+    
+    .main_collections_list {
+        margin-top: 24px;
+        row-gap: 24px;
+    }
+    
+    .main_collections_list .single_collection {
+        width: 100%;
+    }
+    
+    .main_collections_list .single_collection .single_collection_title {
+        font-size: 20px;
+        line-height: 32px;
+    }
+}
