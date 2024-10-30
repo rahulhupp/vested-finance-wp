@@ -99,6 +99,11 @@
         if (is_page_template('templates/page-stock-collections.php') || (is_singular('collections'))) {
             wp_enqueue_style('stock-collection-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-collections.css', false, '', '');
         }
+
+
+        if(is_page_template('templates/page-partners.php')) {
+            wp_enqueue_style('partners-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partners.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
