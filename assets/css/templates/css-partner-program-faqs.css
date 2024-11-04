@@ -1,4 +1,4 @@
-.page-template-page-partner-program-faqs .site-content .ast-container{
+.page-template-page-partner-program-faqs .site-content .ast-container {
     max-width: 100%;
     padding: 0;
     display: block;
@@ -54,6 +54,42 @@
     line-height: 130%;
 }
 
-.partner_program_faqs .faqs_wrap .single_faq .faq_content ul, .partner_program_faqs .faqs_wrap .single_faq .faq_content ol {
+.partner_program_faqs .faqs_wrap .single_faq .faq_content ul,
+.partner_program_faqs .faqs_wrap .single_faq .faq_content ol {
     margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+    .partner_program_faqs {
+        padding: 30px 0;
+    }
+
+    .partner_program_faqs .section_title {
+        font-size: 22px !important;
+        line-height: 28.6px;
+    }
+
+    .partner_program_faqs .faqs_wrap {
+        margin-top: 24px;
+    }
+
+    .partner_program_faqs .faqs_wrap .single_faq .faq_que h4 {
+        font-size: 18px;
+        line-height: 23px;
+        padding-right: 18px;
+    }
+
+    .partner_program_faqs .faqs_wrap .single_faq .faq_content * {
+        font-size: 16px !important;
+    }
+
+    .partner_program_faqs .faqs_wrap .single_faq .faq_content ul,
+    .partner_program_faqs .faqs_wrap .single_faq .faq_content ol {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .partner_program_faqs .faqs_wrap .single_faq {
+        padding: 18px 10px;
+    }
 }
