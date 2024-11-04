@@ -4,9 +4,19 @@ get_header();
 while (have_posts()) :
     the_post();
     $featured_image_url = get_the_post_thumbnail_url();
-    $stock_symbols = get_field('stock_symbols');
-    $sortBy = get_field('sort_by');
-    $sortOrder = get_field('sort_order');
+    $ticker_selected = get_field('ticker_list_type');
+    $sortBy = '';
+    $sortOrder = '';
+    if ($ticker_selected === 'manual') {
+        $sortByField = get_field('sort_by');
+        $sortOrderField = get_field('sort_order');
+
+        $sortBy = isset($sortByField['value']) ? $sortByField['value'] : '';
+        $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
+    } elseif ($ticker_selected === 'algorithm') {
+        $sortBy = 'price_change';
+        $sortOrder = 'desc';
+    }
 ?>  
 
     <div class="collection_page_banner smaller">
@@ -26,7 +36,7 @@ while (have_posts()) :
             </div>
         </div>
     </div>
-    <div class="explore_market_leaders" id="list_table" data-sort-by="<?php echo $sortBy['value']; ?>" data-sort-order="<?php echo $sortOrder['value']; ?>" data-post-num = "<?php the_field('no_of_stocks_to_display'); ?>">
+    <div class="explore_market_leaders" id="list_table" data-sort-by="<?php echo esc_attr($sortBy); ?>" data-sort-order="<?php echo esc_attr($sortOrder); ?>" data-post-num = "<?php the_field('no_of_stocks_to_display'); ?>">
         <div class="container">
             <div class="market_leaders_row">
                 <div class="market_leaders_col">
@@ -36,7 +46,7 @@ while (have_posts()) :
                     if ($terms && ! is_wp_error($terms)) :
                         $term_ids = wp_list_pluck($terms, 'term_id');
                         $args = array(
-                            'post_type' => 'collections',
+                            'post_type' => 'stocks_collections',
                             'tax_query' => array(
                                 array(
                                     'taxonomy' => 'stocks_collections_categories',
