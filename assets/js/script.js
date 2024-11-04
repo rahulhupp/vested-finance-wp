@@ -53,4 +53,18 @@ jQuery(document).ready(function ($) {
 			$(".investor_next").removeClass("slick-disabled");
 		}
 	});
+	jQuery(function ($) {
+		$('.faqs_sec .faq_que').click(function (j) {
+			var dropDown = $(this).closest('.single_faq').find('.faq_content');
+			$(this).closest('.faqs_wrap').find('.faq_content').not(dropDown).slideUp();
+			if ($(this).hasClass('active')) {
+				$(this).removeClass('active');
+			} else {
+				$(this).closest('.faqs_wrap').find('.faq_que.active').removeClass('active');
+				$(this).addClass('active');
+			}
+			dropDown.stop(false, true).slideToggle();
+			j.preventDefault();
+		});
+	});
 });
