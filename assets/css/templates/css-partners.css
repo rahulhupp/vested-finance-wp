@@ -4,7 +4,7 @@
 }
 
 .banner {
-    padding: 30px 0;
+    padding: 70px 0;
 }
 
 .banner_wrap {
@@ -81,7 +81,7 @@
 }
 
 .partners_sec {
-    padding: 50px 0;
+    padding: 70px 0;
 }
 
 .section_title {
@@ -141,7 +141,8 @@
 }
 
 .vested_partners {
-    padding: 50px 0;
+    padding: 70px 0;
+    background-color: #EEF5FC;
 }
 
 .vested_partners_wrap {
@@ -186,7 +187,7 @@
 
 
 .process_sec {
-    padding: 50px 0;
+    padding: 70px 0;
 }
 
 .process_wrap {
@@ -308,6 +309,56 @@ a.btn.btn_light:hover {
     display: none;
 }
 
+.unique_assets {
+    padding: 70px 0;
+    background-color: #EEF5FC;
+}
+
+.unique_assets_wrap {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.single_unique_asset {
+    width: calc(33.33% - 53.33px);
+    text-align: center;
+}
+
+.asset_icon {
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.asset_icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.asset_meta {
+    margin-top: 16px;
+}
+
+.asset_meta .asset_title {
+    font-size: 20px;
+    line-height: 26px;
+    color: #2D2D2D;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.asset_meta  .asset_desc {
+    font-size: 20px;
+    line-height: 30px;
+    color: #505A64;
+    margin-bottom: 0;
+}
+
 @media (max-width: 1024px) {
     .banner_content_col {
         width: calc(100% - 360px);
@@ -352,7 +403,7 @@ a.btn.btn_light:hover {
     }
     
     .banner {
-        padding: 16px 0;
+        padding: 24px 0;
     }
     
     .banner_subheadings {
@@ -362,10 +413,44 @@ a.btn.btn_light:hover {
     }
     
     .banner_heading {
-        font-size: 24px;
-        line-height: 31.2px;
+        font-size: 28px !important;
+        line-height: 36.4px;
         font-weight: 800;
         margin-bottom: 20px;
+    }
+
+    .unique_assets {
+        padding: 24px 0 26px;
+    }
+
+    .unique_assets_wrap {
+        margin-top: 24px;
+        max-width: 277px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .single_unique_asset {
+        width: 100%;
+    }
+    
+    .single_unique_asset:not(:first-of-type) {
+        margin-top: 20px;
+    }
+    
+    .asset_icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .asset_meta .asset_title {
+        font-size: 16px;
+        line-height: 20.8px;
+    }
+    
+    .asset_meta .asset_desc {
+        font-size: 14px;
+        line-height: 21px;
     }
 
     .partners_sec {
@@ -419,6 +504,10 @@ a.btn.btn_light:hover {
     .single_vested_partner:not(:first-of-type) {
         margin-top: 8px;
     }
+
+    .vested_partner_desc {
+        min-height: 67px;
+    }
     
     .vested_partner_img {
         width: 100px;
@@ -432,7 +521,7 @@ a.btn.btn_light:hover {
     }
 
     .process_sec {
-        padding: 16px 0;
+        padding: 24px 0;
     }
     
     .process_wrap {
@@ -458,7 +547,7 @@ a.btn.btn_light:hover {
     }
     
     .vested_partners {
-        padding: 16px 0 20px;
+        padding: 24px 0 29px;
     }
 
     .cta_query_col {
@@ -482,7 +571,7 @@ a.btn.btn_light:hover {
     
     .cta_query_col .query_main_que {
         font-size: 24px !important;
-        line-height: 31.3px;
+        line-height: 31.2px;
     }
     
     .cta {
