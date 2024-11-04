@@ -104,6 +104,10 @@
         if(is_page_template('templates/page-partners.php')) {
             wp_enqueue_style('partners-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partners.css', false, '', '');
         }
+
+        if(is_page_template('templates/page-partner-program-faqs.php')) {
+            wp_enqueue_style('partners-faqs-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partner-program-faqs.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
