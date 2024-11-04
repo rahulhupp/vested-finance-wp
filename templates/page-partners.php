@@ -37,6 +37,27 @@ get_header();
     </div>
 </section>
 
+<section class="unique_assets">
+    <div class="container">
+        <h2 class="section_title"><?php the_field('unique_asset_sec_heading'); ?></h2>
+        <?php if (have_rows('unique_assets_list')): ?>
+        <div class="unique_assets_wrap">
+        <?php while (have_rows('unique_assets_list')): the_row(); ?>
+            <div class="single_unique_asset">
+                <div class="asset_icon">
+                    <img src="<?php the_sub_field('asset_icon'); ?>" alt="<?php the_sub_field('asset_title'); ?>">
+                </div>
+                <div class="asset_meta">
+                    <h4 class="asset_title"><?php the_sub_field('asset_title'); ?></h4>
+                    <p class="asset_desc"><?php the_sub_field('asset_description'); ?></p>
+                </div>
+            </div>
+            <?php endwhile; ?>
+        </div>
+        <?php endif; ?>
+    </div>
+</section>
+
 <section class="partners_sec">
 
     <div class="container">
