@@ -536,12 +536,31 @@ function fetch_stocks_data()
     global $wpdb;
 
     $page_id = intval($_POST['page_id']);
-    $stocks_list = get_field('stock_symbols', $page_id); // acf field
-    $symbols = explode(',', $stocks_list); // Convert to array
+    $ticker_type = get_field('ticker_list_type', $page_id);
     $table_name = $wpdb->prefix . 'stocks_list_details';
-    $placeholders = implode(',', array_fill(0, count($symbols), '%s'));
-    $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders)", $symbols);
-    $results = $wpdb->get_results($query);
+    if($ticker_type === 'manual') {
+        $stocks_list = get_field('stock_symbols', $page_id); // acf field
+        $symbols = explode(',', $stocks_list); // Convert to array
+        $placeholders = implode(',', array_fill(0, count($symbols), '%s'));
+        $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders)", $symbols);
+        $results = $wpdb->get_results($query);
+    }
+    elseif ($ticker_type === 'algorithm') {
+        $algorithm_type = get_field('algorithm_select', $page_id);
+
+        if ($algorithm_type === 'gainers') {
+            
+            $query = "SELECT * FROM $table_name ORDER BY price_change DESC LIMIT 20";
+        } elseif ($algorithm_type === 'losers') {
+            
+            $query = "SELECT * FROM $table_name ORDER BY price_change ASC LIMIT 20";
+        }
+
+        
+        if (isset($query)) {
+            $results = $wpdb->get_results($query);
+        }
+    }
 
     $all_data = [];
     foreach ($results as $row) {
@@ -627,6 +646,9 @@ function enqueue_custom_pagination_script()
             } else if (sortBy === 'price') {
                 valueA = parseFloat(a.price) || 0;
                 valueB = parseFloat(b.price) || 0;
+            } else if(sortBy === 'price_change') {
+                valueA = parseFloat(a.price_change) || 0;
+                valueB = parseFloat(b.price_change) || 0;
             }
 
             // Sort ascending or descending based on the ACF 'sort_order'
