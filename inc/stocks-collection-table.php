@@ -36,9 +36,9 @@ function fetch_stocks_data()
         } elseif ($algorithm_type === 'microCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'oneYHigh') {
-            $query = "SELECT * FROM $table_name WHERE ((price - week_52_high) / week_52_high) * 100 <= 20 ORDER BY ((price - week_52_high) / week_52_high) * 100 DESC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 20 ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC LIMIT 20";
         } elseif ($algorithm_type === 'oneYLow') {
-            $query = "SELECT * FROM $table_name WHERE ((price - week_52_low) / week_52_low) * 100 <= 20 ORDER BY ((price - week_52_low) / week_52_low) * 100 DESC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 20 ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC LIMIT 20";
         }
 
 
@@ -55,6 +55,8 @@ function fetch_stocks_data()
             return round($market_cap / 1_000_000_000, 1) . 'B';
         } elseif ($market_cap >= 1_000_000) {
             return round($market_cap / 1_000_000, 1) . 'M';
+        } elseif ($market_cap >= 1_000) {  // Use 1000 for "K" condition
+            return round($market_cap / 1_000, 1) . 'K'; // Round to 1 decimal place
         } else {
             return number_format($market_cap);
         }
@@ -179,6 +181,8 @@ function enqueue_custom_pagination_script()
                     return (value / 1e9).toFixed(2) + 'B';
                 } else if (value >= 1e6) {
                     return (value / 1e6).toFixed(2) + 'M';
+                } else if (value >= 1e3) {
+                    return (value / 1e3).toFixed(2) + 'K';
                 } else {
                     return value.toString()
                 }
