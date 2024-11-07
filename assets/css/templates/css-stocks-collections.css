@@ -103,15 +103,18 @@
 .main_collections_list .single_collection .single_collection_img {
     width: 60px;
     height: 60px;
-    background: #FEF2F2;
+    background: #EFF6FF;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.main_collections_list .single_collection .single_collection_img img {
+/* .main_collections_list .single_collection .single_collection_img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+} */
 
 .main_collections_list .single_collection .single_collection_title {
     margin: 8px 0 4px;
@@ -1019,6 +1022,7 @@ h2.cta_title {
     
     .investment_term_col {
         width: 100%;
+        min-height: 165px;
     }
     
     .strategies_wrap .strategies_col .strategies_col_title {
@@ -1057,6 +1061,7 @@ h2.cta_title {
     
     .investment_term_col:first-of-type {
         padding-right: 17px;
+        padding-bottom: 20px;
     }
     
     .investment_term_col_wrap * {
@@ -1068,6 +1073,7 @@ h2.cta_title {
     .investment_term_col:nth-of-type(3) {
         margin-top: 38px;
         padding-left: 17px;
+        padding-top: 20px;
     }
     
     .versus_circle {
@@ -1116,7 +1122,15 @@ h2.cta_title {
     
     .post_listing {
         margin-top: 30px;
-        padding: 0 24px;
+        padding: 0 0 0 24px;
+    }
+
+    .post_listing .posts_wrap .slick-list {
+        padding: 0 7% 0 0;
+    }
+
+    .post_listing .posts_wrap .single_post {
+        padding-right: 24px;
     }
     
     .post_type_list .btn_dark {
