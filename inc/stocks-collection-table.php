@@ -199,33 +199,45 @@ function enqueue_custom_pagination_script()
 
                 // Populate table rows
                 currentData.forEach(function(stock) {
-                    if (stock.pe_ratio == null) {
+                    if(stock.pe_ratio == null) {
                         peRatio = 'N/A';
-                    } else {
+                    }
+                    else{
                         peRatio = stock.pe_ratio;
                     }
 
-                    if (stock.cagr_5_year == null) {
+                    if(stock.cagr_5_year == null) {
                         var cagr_5_year = 'N/A';
-                    } else {
+                    }
+                    else {
                         var cagr_5_year = stock.cagr_5_year + '%';
                     }
 
-                    if (stock.price == null) {
+                    if(stock.price == null) {
                         var stockPrice = 'N/A';
-                    } else {
+                    }
+                    else {
                         var stockPrice = '$' + stock.price;
                     }
 
-                    if (stock.price_change == null) {
+                    if(stock.price_change == null) {
                         var stockPriceChange = 'N/A';
-                    } else {
+                    }
+                    else {
                         var stockPriceChange = (stock.price_change < 0 ? '' : '+') + stock.price_change + '%';
                     }
                     var changeClass = '';
-                    if (stock.price_change == null || stock.price_change < 0) {
+                    if(stock.price_change == null || stock.price_change < 0) {
                         changeClass = 'minus_value';
                     }
+
+                    if(stock.one_year_returns == null) {
+                        var oneYearReturns = 'N/A';
+                    }
+                    else {
+                        var oneYearReturns = stock.one_year_returns + '%';
+                    }
+
                     $('#stocks-table tbody').append('<tr><td>' +
                         '<div class="stock_symbol_wrap"><div class="stock_symbol_img"><img src="https://d13dxy5z8now6z.cloudfront.net/symbol/' +
                         stock.symbol + '.png" alt="' + stock.symbol + '-img" /></div>' +
@@ -235,7 +247,7 @@ function enqueue_custom_pagination_script()
                         '<strong class="stock_change ' + changeClass + '">' + stockPriceChange + '</strong></td>' +
                         '<td>' + formatMarketCap(stock.market_cap) + '</td>' + // Use the formatting function here
                         '<td>' + peRatio + '</td>' +
-                        '<td>' + stock.one_year_returns + '%</td><td>' + cagr_5_year + '</td></tr>');
+                        '<td>'+ oneYearReturns +'</td><td>'+ cagr_5_year +'</td></tr>');
                 });
 
 
@@ -315,8 +327,8 @@ function enqueue_custom_pagination_script()
                     var aValue, bValue;
 
                     if (sortField === 'market_cap') {
-                        aValue = parseFloat(a.market_cap.replace(/,/g, '')) || 0;
-                        bValue = parseFloat(b.market_cap.replace(/,/g, '')) || 0;
+                        aValue = parseMarketCap(a.market_cap);
+                        bValue = parseMarketCap(b.market_cap);
                     } else if (sortField === 'pe_ratio') {
                         aValue = parseFloat(a.pe_ratio) || 0;
                         bValue = parseFloat(b.pe_ratio) || 0;
@@ -431,31 +443,42 @@ function enqueue_custom_pagination_script()
                 }
 
                 data.forEach(function(stock) {
-                    if (stock.pe_ratio == null) {
+                    if(stock.pe_ratio == null) {
                         var peRatio = 'N/A';
-                    } else {
+                    }
+                    else{
                         var peRatio = stock.pe_ratio;
                     }
-                    if (stock.cagr_5_year == null) {
+                    if(stock.cagr_5_year == null) {
                         var cagr_5_year = 'N/A';
-                    } else {
+                    }
+                    else {
                         var cagr_5_year = stock.cagr_5_year + '%';
                     }
 
-                    if (stock.price == null) {
+                    if(stock.price == null) {
                         var stockPrice = 'N/A';
-                    } else {
+                    }
+                    else {
                         var stockPrice = '$' + stock.price;
                     }
 
-                    if (stock.price_change == null) {
+                    if(stock.price_change == null) {
                         var stockPriceChange = 'N/A';
-                    } else {
+                    }
+                    else {
                         var stockPriceChange = (stock.price_change < 0 ? '' : '+') + stock.price_change + '%';
                     }
 
+                    if(stock.one_year_returns == null) {
+                        var oneYearReturns = 'N/A';
+                    }
+                    else {
+                        var oneYearReturns = stock.one_year_returns + '%';
+                    }
+
                     var changeClass = '';
-                    if (stock.price_change == null || stock.price_change < 0) {
+                    if(stock.price_change == null || stock.price_change < 0) {
                         changeClass = 'minus_value';
                     }
                     $('#stocks-table tbody').append('<tr><td>' +
@@ -467,7 +490,7 @@ function enqueue_custom_pagination_script()
                         '<strong class="stock_change ' + changeClass + '">' + stockPriceChange + '</strong></td>' +
                         '<td>' + formatMarketCap(stock.market_cap) + '</td>' + // Use the formatting function here
                         '<td>' + peRatio + '</td>' +
-                        '<td>' + stock.one_year_returns + '%</td><td>' + cagr_5_year + '</td></tr>');
+                        '<td>'+ oneYearReturns +'</td><td>'+ cagr_5_year +'</td></tr>');
                 });
             }
         });
