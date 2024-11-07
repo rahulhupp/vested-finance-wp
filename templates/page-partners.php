@@ -153,6 +153,7 @@ get_header();
             <?php endwhile; ?>
         </div>
         <?php endif; ?>
+        <p class="faq_query"><?php the_field('query_text');?></p>
     </div>
 </section>
 
