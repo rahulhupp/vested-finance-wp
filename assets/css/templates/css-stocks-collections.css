@@ -330,6 +330,10 @@
     border: 1px solid #D1D5DB !important;
 }
 
+.table_sort_overlay, .table_sort_options {
+	z-index: 999;
+}
+
 .market_table_col_wrap {
     background: #fff;
     padding: 33px 27.5px;
