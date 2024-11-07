@@ -22,9 +22,9 @@ function fetch_stocks_data()
         $algorithm_type = get_field('algorithm_select', $page_id);
 
         if ($algorithm_type === 'gainers') {
-            $query = "SELECT * FROM $table_name ORDER BY price_change DESC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 ORDER BY price_change DESC LIMIT 20";
         } elseif ($algorithm_type === 'losers') {
-            $query = "SELECT * FROM $table_name ORDER BY price_change ASC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 ORDER BY price_change ASC LIMIT 20";
         } elseif ($algorithm_type === 'megaCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'largeCap') {
