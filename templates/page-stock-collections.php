@@ -31,7 +31,7 @@ get_header();
             <?php
             foreach ($terms as $term) :
                 $term_args = array(
-                    'post_type' => 'stocks_collections',
+                    'post_type' => 'collections',
                     'tax_query' => array(
                         array(
                             'taxonomy' => $taxonomy,
