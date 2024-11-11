@@ -148,18 +148,17 @@ function enqueue_custom_pagination_script()
             // Default sorting logic based on ACF fields
             function applyDefaultSort() {
                 allData.sort(function(a, b) {
-                    var valueA, valueB;
-
+                    var valueA = 0, valueB = 0;
                     // Sorting by 'market_cap' or 'price' based on the ACF value
                     if (sortBy === 'market_cap') {
-                        valueA = parseFloat(a.market_cap.replace(/,/g, '')) || 0;
-                        valueB = parseFloat(b.market_cap.replace(/,/g, '')) || 0;
+                        valueA = a.market_cap ? parseFloat(a.market_cap.replace(/,/g, '')) : 0;
+                        valueB = b.market_cap ? parseFloat(b.market_cap.replace(/,/g, '')) : 0;
                     } else if (sortBy === 'price') {
-                        valueA = parseFloat(a.price) || 0;
-                        valueB = parseFloat(b.price) || 0;
+                        valueA = a.price ? parseFloat(a.price) : 0;
+                        valueB = b.price ? parseFloat(b.price) : 0;
                     } else if (sortBy === 'price_change') {
-                        valueA = parseFloat(a.price_change) || 0;
-                        valueB = parseFloat(b.price_change) || 0;
+                        valueA = a.price_change ? parseFloat(a.price_change) : 0;
+                        valueB = b.price_change ? parseFloat(b.price_change) : 0;
                     }
 
                     // Sort ascending or descending based on the ACF 'sort_order'
@@ -304,6 +303,18 @@ function enqueue_custom_pagination_script()
 
                 renderTable(currentPage);
             });
+
+            if($('.explore_market_leaders').data('sort-by') == 'price_change') {
+                $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
+            }
+
+            else if($('.explore_market_leaders').data('sort-by') == 'market_cap') {
+                $('.table_sort_options ul li[data-sort="market_cap"]').addClass('active');
+            }
+
+            else {
+                $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
+            }
 
             $('.table_sort_options ul li').click(function() {
                 var sortField = $(this).data('sort');
