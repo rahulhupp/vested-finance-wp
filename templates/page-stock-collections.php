@@ -13,9 +13,6 @@ get_header();
                 <h1><?php the_field('banner_heading'); ?></h1>
                 <p class="banner_desc"><?php the_field('banner_description', false, false); ?></p>
             </div>
-            <div class="banner_img_col">
-                <img src="<?php the_field('banner_image'); ?>" alt="<?php the_field('banner_heading'); ?>">
-            </div>
         </div>
     </div>
 </div>
