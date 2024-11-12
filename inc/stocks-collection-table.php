@@ -105,6 +105,12 @@ function enqueue_custom_pagination_script()
                 },
                 price: {
                     order: 'asc'
+                },
+                one_year_returns: {
+                    order: 'asc'
+                },
+                cagr_5_year: {
+                    order: 'asc'
                 }
             };
 
@@ -159,6 +165,12 @@ function enqueue_custom_pagination_script()
                     } else if (sortBy === 'price_change') {
                         valueA = a.price_change ? parseFloat(a.price_change) : 0;
                         valueB = b.price_change ? parseFloat(b.price_change) : 0;
+                    } else if (sortBy === 'one_year_returns') {
+                        valueA = a.one_year_returns ? parseFloat(a.one_year_returns) : 0;
+                        valueB = b.one_year_returns ? parseFloat(b.one_year_returns) : 0;
+                    } else if (sortBy === 'cagr_5_year') {
+                        valueA = a.cagr_5_year ? parseFloat(a.cagr_5_year) : 0;
+                        valueB = b.cagr_5_year ? parseFloat(b.cagr_5_year) : 0;
                     }
 
                     // Sort ascending or descending based on the ACF 'sort_order'
@@ -278,8 +290,20 @@ function enqueue_custom_pagination_script()
                 // Reset other sorting fields
                 if (sortField === 'market_cap') {
                     sortingState.peRatio.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 } else if (sortField === 'pe_ratio') {
                     sortingState.marketCap.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'one_year_returns') {
+                    sortingState.peRatio.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
+                    sortingState.marketCap.order = 'asc';
+                } else if (sortField === 'cagr_5_year') {
+                    sortingState.peRatio.order = 'asc';
+                    sortingState.marketCap.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
                 }
 
 
@@ -296,6 +320,12 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'pe_ratio') {
                         aValue = parseFloat(a.pe_ratio) || 0;
                         bValue = parseFloat(b.pe_ratio) || 0;
+                    } else if (sortField === 'one_year_returns') {
+                        aValue = parseFloat(a.one_year_returns) || 0;
+                        bValue = parseFloat(b.one_year_returns) || 0;
+                    } else if (sortField === 'cagr_5_year') {
+                        aValue = parseFloat(a.cagr_5_year) || 0;
+                        bValue = parseFloat(b.cagr_5_year) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
@@ -312,6 +342,14 @@ function enqueue_custom_pagination_script()
                 $('.table_sort_options ul li[data-sort="market_cap"]').addClass('active');
             }
 
+            else if($('.explore_market_leaders').data('sort-by') == 'one_year_returns') {
+                $('.table_sort_options ul li[data-sort="one_year_returns"]').addClass('active');
+            }
+
+            else if($('.explore_market_leaders').data('sort-by') == 'cagr_5_year') {
+                $('.table_sort_options ul li[data-sort="cagr_5_year"]').addClass('active');
+            }
+
             else {
                 $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
             }
@@ -326,11 +364,27 @@ function enqueue_custom_pagination_script()
                 if (sortField === 'market_cap') {
                     sortingState.peRatio.order = 'asc';
                     sortingState.price.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 } else if (sortField === 'pe_ratio') {
                     sortingState.marketCap.order = 'asc';
                     sortingState.price.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 } else if (sortField === 'price') {
                     sortingState.marketCap.order = 'asc';
+                    sortingState.peRatio.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'one_year_returns') {
+                    sortingState.cagr_5_year.order = 'asc';
+                    sortingState.marketCap.order = 'asc';
+                    sortingState.price.order = 'asc';
+                    sortingState.peRatio.order = 'asc';
+                } else if (sortField === 'cagr_5_year') {
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.marketCap.order = 'asc';
+                    sortingState.price.order = 'asc';
                     sortingState.peRatio.order = 'asc';
                 }
 
@@ -350,6 +404,12 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'price') {
                         aValue = parseFloat(a.price) || 0;
                         bValue = parseFloat(b.price) || 0;
+                    } else if (sortField === 'one_year_returns') {
+                        aValue = parseFloat(a.one_year_returns) || 0;
+                        bValue = parseFloat(b.one_year_returns) || 0;
+                    } else if (sortField === 'cagr_5_year') {
+                        aValue = parseFloat(a.cagr_5_year) || 0;
+                        bValue = parseFloat(b.cagr_5_year) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);

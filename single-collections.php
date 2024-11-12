@@ -52,7 +52,7 @@ while (have_posts()) :
                     if ($terms && ! is_wp_error($terms)) :
                         $term_ids = wp_list_pluck($terms, 'term_id');
                         $args = array(
-                            'post_type' => 'collections',
+                            'post_type' => 'stocks_collections',
                             'tax_query' => array(
                                 array(
                                     'taxonomy' => 'stocks_collections_categories',
@@ -99,11 +99,11 @@ while (have_posts()) :
                                     <h4 class="sort_title">Sort</h4>
 
                                     <ul>
-                                        <li data-sort="price" data-order="asc" class="active">Price</li>
+                                        <li data-sort="price" data-order="asc">Price</li>
                                         <li data-sort="market_cap" data-order="asc">Market Cap</li>
                                         <li data-sort="pe_ratio" data-order="asc">P/E Ratio</li>
-                                        <li>1Y Returns</li>
-                                        <li>5Y CAGR</li>
+                                        <li data-sort="one_year_returns" data-order="asc">1Y Returns</li>
+                                        <li data-sort="cagr_5_year" data-order="asc">5Y CAGR</li>
                                     </ul>
                                 </div>
                             </div>
@@ -133,8 +133,22 @@ while (have_posts()) :
                                                 </svg>
                                             </span>
                                         </th>
-                                        <th>1Y Returns</th>
-                                        <th>5Y CAGR</th>
+                                        <th data-sort="one_year_returns">1Y Returns
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                        <th data-sort="cagr_5_year">5Y CAGR
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
