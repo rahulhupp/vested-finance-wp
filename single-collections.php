@@ -52,7 +52,7 @@ while (have_posts()) :
                     if ($terms && ! is_wp_error($terms)) :
                         $term_ids = wp_list_pluck($terms, 'term_id');
                         $args = array(
-                            'post_type' => 'stocks_collections',
+                            'post_type' => 'collections',
                             'tax_query' => array(
                                 array(
                                     'taxonomy' => 'stocks_collections_categories',
