@@ -21,7 +21,7 @@ get_header();
     <div class="container">
         <h2 class="section_title">Explore US Stocks Collections</h2>
         <?php
-        $taxonomy = 'collections_categories';
+        $taxonomy = 'stocks_collections_categories';
         $terms = get_terms($taxonomy);
         ?>
         <div class="main_collections_list">
