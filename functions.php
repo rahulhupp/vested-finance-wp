@@ -525,3 +525,28 @@ function change_comment_order( $query ) {
 add_action( 'pre_get_comments', 'change_comment_order' );
 
 
+add_filter('acf/load_field/name=select_posts', 'acf_load_all_posts');
+
+function acf_load_all_posts($field)
+{
+    // Get all posts
+    $posts = get_posts(array(
+        'post_type'      => 'post',       // Replace with your custom post type if needed
+        'numberposts'    => -1,           // Retrieve all posts
+        'post_status'    => 'publish',    // Only show published posts
+    ));
+
+    // Initialize choices array
+    $field['choices'] = [];
+
+    // Loop through each post and add it to the choices array
+    if ($posts) {
+        foreach ($posts as $post) {
+            $field['choices'][$post->ID] = $post->post_title;
+        }
+    }
+
+    // Return the field
+    return $field;
+}
+

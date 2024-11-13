@@ -103,7 +103,7 @@
 .main_collections_list .single_collection .single_collection_img {
     width: 60px;
     height: 60px;
-    background: #EFF6FF;
+    overflow: hidden;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -224,11 +224,11 @@
 }
 
 .market_leaders_col {
-    width: 329px;
+    width: 275px;
 }
 
 .market_table_col {
-    width: calc(100% - 413px);
+    width: calc(100% - 330px);
     margin-left: auto;
 }
 
@@ -388,6 +388,10 @@
     overflow: hidden;
 }
 
+.stock_name p a {
+    color: inherit;
+}
+
 .stock_name span {
     font-size: 16px;
     line-height: 20px;
@@ -416,6 +420,7 @@
 #stocks-table th:first-of-type,
 #stocks-table td:first-of-type {
     min-width: 190px;
+    max-width: 200px;
 }
 
 #stocks-table th, #stocks-table td {

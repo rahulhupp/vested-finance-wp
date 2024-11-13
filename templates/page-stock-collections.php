@@ -21,14 +21,14 @@ get_header();
     <div class="container">
         <h2 class="section_title">Explore US Stocks Collections</h2>
         <?php
-        $taxonomy = 'stocks_collections_categories';
+        $taxonomy = 'collections_categories';
         $terms = get_terms($taxonomy);
         ?>
         <div class="main_collections_list">
             <?php
             foreach ($terms as $term) :
                 $term_args = array(
-                    'post_type' => 'collections',
+                    'post_type' => 'stocks_collections',
                     'tax_query' => array(
                         array(
                             'taxonomy' => $taxonomy,

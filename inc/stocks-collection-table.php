@@ -66,6 +66,7 @@ function fetch_stocks_data()
     foreach ($results as $row) {
         $all_data[] = [
             'name' => $row->name,
+            'type' => $row->type,
             'symbol' => $row->symbol,
             'price' => $row->price,
             'prev_close' => $row->previous_close,
@@ -89,6 +90,8 @@ function enqueue_custom_pagination_script()
             var page_id = '<?php echo get_the_ID(); ?>';
             var currentPage = 1;
             var allData = [];
+            var isSearching = false;
+            var filteredData = [];
             var stocksPerPage = $('#list_table').data('post-num') || -1;
 
 
@@ -212,8 +215,7 @@ function enqueue_custom_pagination_script()
                     $('#stocks-table tbody').html('<tr><td colspan="6">No results found</td></tr>');
                     $('#pagination').hide();
                     return;
-                }
-                else {
+                } else {
                     $('#pagination').show();
                 }
 
@@ -253,19 +255,43 @@ function enqueue_custom_pagination_script()
                         var oneYearReturns = stock.one_year_returns + '%';
                     }
 
-                    $('#stocks-table tbody').append('<tr><td>' +
-                        '<div class="stock_symbol_wrap"><div class="stock_symbol_img"><img src="https://d13dxy5z8now6z.cloudfront.net/symbol/' +
-                        stock.symbol + '.png" alt="' + stock.symbol + '-img" /></div>' +
-                        '<div class="stock_name"><p>' + stock.name + '</p>' +
-                        '<span>(' + stock.symbol + ')</span></div></div></td>' +
-                        '<td class="pricing_cols">' + stockPrice +
-                        '<strong class="stock_change ' + changeClass + '">' + stockPriceChange + '</strong></td>' +
-                        '<td>' + formatMarketCap(stock.market_cap) + '</td>' + // Use the formatting function here
-                        '<td>' + peRatio + '</td>' +
-                        '<td>' + oneYearReturns + '</td><td>' + cagr_5_year + '</td></tr>');
+                    var stockName = createSlug(stock.name);
+                    var stockSymbol = stock.symbol.toLowerCase();
+                    var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+
+                    // Append the row to the table body
+                    $('#stocks-table tbody').append(`
+                        <tr>
+                            <td>
+                                <div class="stock_symbol_wrap">
+                                    <div class="stock_symbol_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                    </div>
+                                    <div class="stock_name">
+                                        <p><a href="${stockUrl}">${stock.name}</a></p>
+                                        <span>(${stock.symbol})</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="pricing_cols">${stockPrice}
+                                <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
+                            </td>
+                            <td>${formatMarketCap(stock.market_cap)}</td> 
+                            <td>${peRatio}</td>
+                            <td>${oneYearReturns}</td>
+                            <td>${cagr_5_year}</td>
+                        </tr>
+                    `);
                 });
 
 
+            }
+
+            function createSlug(text) {
+                return text
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^\w\-]+/g, '');
             }
 
             function parseMarketCap(value) {
@@ -282,6 +308,8 @@ function enqueue_custom_pagination_script()
                 }
                 return parseFloat(value) || 0;
             }
+
+            var filteredData = allData;
 
             $('.sort_data').on('click', function() {
                 var sortField = $(this).closest('th').data('sort');
@@ -306,12 +334,18 @@ function enqueue_custom_pagination_script()
                     sortingState.one_year_returns.order = 'asc';
                 }
 
-
+                // Toggle the sorting order between 'asc' and 'desc'
                 currentOrder = (currentOrder === 'asc') ? 'desc' : 'asc';
                 $(this).data('order', currentOrder);
 
+                // If no search term, use allData for sorting; otherwise, use filteredData
+                if (filteredData.length > 0) {
+                    var dataToSort = filteredData;
+                } else {
+                    var dataToSort = allData;
+                }
 
-                allData.sort(function(a, b) {
+                dataToSort.sort(function(a, b) {
                     var aValue, bValue;
 
                     if (sortField === 'market_cap') {
@@ -331,8 +365,17 @@ function enqueue_custom_pagination_script()
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
                 });
 
-                renderTable(currentPage);
+                // Re-render table and pagination based on sorted data
+                renderFilteredTable(dataToSort.slice((currentPage - 1) * stocksPerPage, currentPage * stocksPerPage));
+                if (Math.ceil(dataToSort.length / stocksPerPage) > 1) {
+                    generatePagination(Math.ceil(dataToSort.length / stocksPerPage), currentPage);
+                    $('#pagination').show();
+                } else {
+                    $('#pagination').hide();
+                }
             });
+
+
 
             if ($('.explore_market_leaders').data('sort-by') == 'price_change') {
                 $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
@@ -427,26 +470,33 @@ function enqueue_custom_pagination_script()
             // Pagination functionality
             function generatePagination(totalPages, currentPage) {
                 var paginationHtml = '';
+
                 // Previous arrow
                 if (currentPage > 1) {
                     paginationHtml += '<a href="#" class="page-link" data-page="' + (currentPage - 1) + '"><svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.39846 1.9843V0.927467C7.39846 0.835866 7.29318 0.78528 7.22209 0.841334L1.05881 5.6552C1.00644 5.69592 0.964071 5.74807 0.934924 5.80766C0.905777 5.86725 0.890625 5.93271 0.890625 5.99905C0.890625 6.06539 0.905777 6.13085 0.934924 6.19044C0.964071 6.25003 1.00644 6.30217 1.05881 6.3429L7.22209 11.1568C7.29455 11.2128 7.39846 11.1622 7.39846 11.0706V10.0138C7.39846 9.9468 7.36701 9.88254 7.31506 9.84153L2.39318 5.99973L7.31506 2.15657C7.36701 2.11555 7.39846 2.0513 7.39846 1.9843Z" fill="black" fill-opacity="0.88"/></svg></a> ';
                 } else {
                     paginationHtml += '<span class="page-link disabled"><svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.39846 1.9843V0.927467C7.39846 0.835866 7.29318 0.78528 7.22209 0.841334L1.05881 5.6552C1.00644 5.69592 0.964071 5.74807 0.934924 5.80766C0.905777 5.86725 0.890625 5.93271 0.890625 5.99905C0.890625 6.06539 0.905777 6.13085 0.934924 6.19044C0.964071 6.25003 1.00644 6.30217 1.05881 6.3429L7.22209 11.1568C7.29455 11.2128 7.39846 11.1622 7.39846 11.0706V10.0138C7.39846 9.9468 7.36701 9.88254 7.31506 9.84153L2.39318 5.99973L7.31506 2.15657C7.36701 2.11555 7.39846 2.0513 7.39846 1.9843Z" fill="black" fill-opacity="0.25"/></svg></span> ';
                 }
+
+                // Generate the page numbers
                 if (totalPages <= 5) {
                     for (var i = 1; i <= totalPages; i++) {
                         paginationHtml += '<a href="#" class="page-link ' + (i === currentPage ? 'active' : '') + '" data-page="' + i + '">' + i + '</a> ';
                     }
                 } else {
                     paginationHtml += '<a href="#" class="page-link ' + (currentPage === 1 ? 'active' : '') + '" data-page="1">1</a> ';
+
+                    // Show ellipsis if the current page is further than 2 pages away from the first
                     if (currentPage > 3) {
                         paginationHtml += '<span class="ellipsis">...</span> ';
                     }
 
+                    // Add the surrounding pages
                     for (var i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
                         paginationHtml += '<a href="#" class="page-link ' + (i === currentPage ? 'active' : '') + '" data-page="' + i + '">' + i + '</a> ';
                     }
 
+                    // Show ellipsis if the current page is not near the last page
                     if (currentPage < totalPages - 2) {
                         paginationHtml += '<span class="ellipsis">...</span> ';
                     }
@@ -464,6 +514,8 @@ function enqueue_custom_pagination_script()
                 $('#pagination').html(paginationHtml);
             }
 
+
+
             $('#pagination').on('click', 'a.page-link', function(e) {
                 e.preventDefault();
 
@@ -472,21 +524,43 @@ function enqueue_custom_pagination_script()
                 if (newPage !== currentPage) {
                     currentPage = newPage;
 
-                    renderTable(currentPage);
-                    generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
+                    // If there's a search applied, use the filtered data for pagination
+                    if (isSearching) {
+                        renderFilteredTable(filteredData.slice((currentPage - 1) * stocksPerPage, currentPage * stocksPerPage));
+                    } else {
+                        renderTable(currentPage);
+                    }
+
+                    // Update the pagination based on the current filtered data or all data
+                    if (isSearching) {
+                        generatePagination(Math.ceil(filteredData.length / stocksPerPage), currentPage);
+                    } else {
+                        generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
+                    }
+
                 }
             });
+
 
             // Search functionality
             $('#stock-search').on('keyup', function() {
                 var searchTerm = $(this).val().toLowerCase();
+
+                // If the search term is empty, reset to all data and show pagination
                 if (searchTerm === "") {
+                    isSearching = false;
+                    filteredData = []; // Reset the filtered data to empty
                     renderTable(currentPage);
-                    $('#pagination').show();
                     generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
+                    $('#pagination').show();
+                    updateStockCount(allData.length);
                     return;
                 }
 
+                // If there is a search term, apply the filtering logic
+                isSearching = true;
+
+                // Filter the data based on the search term
                 var startMatches = allData.filter(function(stock) {
                     return stock.name.toLowerCase().startsWith(searchTerm) ||
                         stock.symbol.toLowerCase().startsWith(searchTerm);
@@ -499,17 +573,24 @@ function enqueue_custom_pagination_script()
                     );
                 });
 
-
-                var filteredData = startMatches.concat(partialMatches);
-
+                filteredData = startMatches.concat(partialMatches);
 
                 if (filteredData.length === 0) {
                     $('#stocks-table tbody').html('<tr><td colspan="6">No results found</td></tr>');
+                    updateStockCount(filteredData.length);
                     $('#pagination').hide();
                 } else {
-                    renderFilteredTable(filteredData.slice(0, stocksPerPage)); // Display first page
-                    $('#pagination').show();
-                    generatePagination(Math.ceil(filteredData.length / stocksPerPage), currentPage);
+                    renderFilteredTable(filteredData.slice(0, stocksPerPage)); // Display the first page of filtered data
+
+                    // Update the stock count with the number of filtered stocks
+                    updateStockCount(filteredData.length);
+
+                    if (filteredData.length > stocksPerPage) {
+                        $('#pagination').show();
+                        generatePagination(Math.ceil(filteredData.length / stocksPerPage), 1);
+                    } else {
+                        $('#pagination').hide();
+                    }
                 }
             });
 
@@ -521,14 +602,13 @@ function enqueue_custom_pagination_script()
                     $('#stocks-table tbody').html('<tr><td colspan="6">No results found</td></tr>');
                     $('#pagination').hide();
                     return;
-                }
-                else {
+                } else {
                     $('#pagination').show();
                 }
 
                 data.forEach(function(stock) {
                     if (stock.pe_ratio == null) {
-                        var peRatio = 'N/A';
+                        var peRatio = '0.00';
                     } else {
                         var peRatio = stock.pe_ratio;
                     }
@@ -560,16 +640,34 @@ function enqueue_custom_pagination_script()
                     if (stock.price_change == null || stock.price_change < 0) {
                         changeClass = 'minus_value';
                     }
-                    $('#stocks-table tbody').append('<tr><td>' +
-                        '<div class="stock_symbol_wrap"><div class="stock_symbol_img"><img src="https://d13dxy5z8now6z.cloudfront.net/symbol/' +
-                        stock.symbol + '.png" alt="' + stock.symbol + '-img" /></div>' +
-                        '<div class="stock_name"><p>' + stock.name + '</p>' +
-                        '<span>(' + stock.symbol + ')</span></div></div></td>' +
-                        '<td class="pricing_cols">' + stockPrice +
-                        '<strong class="stock_change ' + changeClass + '">' + stockPriceChange + '</strong></td>' +
-                        '<td>' + formatMarketCap(stock.market_cap) + '</td>' + // Use the formatting function here
-                        '<td>' + peRatio + '</td>' +
-                        '<td>' + oneYearReturns + '</td><td>' + cagr_5_year + '</td></tr>');
+
+                    var stockName = createSlug(stock.name);
+                    var stockSymbol = stock.symbol.toLowerCase();
+                    var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+
+                    // Append the row to the table body
+                    $('#stocks-table tbody').append(`
+                        <tr>
+                            <td>
+                                <div class="stock_symbol_wrap">
+                                    <div class="stock_symbol_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                    </div>
+                                    <div class="stock_name">
+                                        <p><a href="${stockUrl}">${stock.name}</a></p>
+                                        <span>(${stock.symbol})</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="pricing_cols">${stockPrice}
+                                <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
+                            </td>
+                            <td>${formatMarketCap(stock.market_cap)}</td> 
+                            <td>${peRatio}</td>
+                            <td>${oneYearReturns}</td>
+                            <td>${cagr_5_year}</td>
+                        </tr>
+                    `);
                 });
             }
         });

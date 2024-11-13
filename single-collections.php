@@ -1,6 +1,7 @@
 <?php
 get_header();
-
+global $wp;
+$current_url = home_url(add_query_arg(array(), $wp->request));
 while (have_posts()) :
     the_post();
     $featured_image_url = get_the_post_thumbnail_url();
@@ -240,23 +241,37 @@ while (have_posts()) :
             <div class="post_listing">
                 <div class="posts_wrap">
                     <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 3,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories',
-                                'field'    => 'slug',
-                                'terms'    => array('us-stocks'),
-                            ),
-                        ),
-                    );
+                    $selected_posts = get_field('select_posts');
 
+                    if ($selected_posts) {
+                        $args = array(
+                            'post_type'      => 'post',
+                            'posts_per_page' => 3,
+                            'post__in'       => $selected_posts,
+                            'orderby'        => 'post__in',
+                        );
+                    } else {
+                        $args = array(
+                            'post_type'      => 'post',
+                            'posts_per_page' => 3,
+                            'tax_query'      => array(
+                                array(
+                                    'taxonomy' => 'master_categories',
+                                    'field'    => 'slug',
+                                    'terms'    => array('us-stocks'),
+                                ),
+                            ),
+                        );
+                    }
+
+                    // The custom query
                     $custom_query = new WP_Query($args);
+
+                    // Start the loop
                     if ($custom_query->have_posts()) :
                         while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                             <div class="single_post">
-                                <a href="<?php echo get_permalink() ?>" class="single_post_wrap">
+                                <a href="<?php echo get_permalink(); ?>" class="single_post_wrap">
                                     <div class="single_post_img">
                                         <?php the_post_thumbnail(); ?>
                                     </div>
@@ -265,8 +280,13 @@ while (have_posts()) :
                             </div>
                     <?php endwhile;
                         wp_reset_postdata();
-                    endif; ?>
+                    else :
+                        // If no posts are found
+                        echo '<p>No posts found.</p>';
+                    endif;
+                    ?>
                 </div>
+
             </div>
             <div class="btn">
                 <a href="<?php echo home_url(); ?>/blog/us-stocks/" class="btn_dark" target="_blank">Read All Blogs</a>
@@ -296,4 +316,62 @@ while (have_posts()) :
     <?php endif; ?>
 <?php
 endwhile;
+?>
+<?php if (have_rows('faq_list')): ?>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                <?php
+                $faq_count = 0; // Initialize a counter to track the last FAQ item
+                while (have_rows('faq_list')): the_row();
+                    $faq_count++; // Increment the counter
+                ?> {
+                        "@type": "Question",
+                        "name": "<?php the_sub_field('faq_question'); ?>",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "<?php the_sub_field('faq_answer', false, false); ?>"
+                        }
+                    }
+                    <?php if ($faq_count < count(get_field('faq_list'))) echo ','; // Add a comma except for the last item 
+                    ?>
+                <?php endwhile; ?>
+            ]
+        }
+    </script>
+<?php endif; ?>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "<?php echo home_url(); ?>",
+                "name": "Home"
+            }
+        }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@id": "<?php echo home_url('/in/us-stocks/collections'); ?>",
+                "name": "US Stocks Collections"
+            }
+        }, {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@id": "<?php echo $current_url; ?>",
+                "name": "<?php the_title(); ?>"
+            }
+        }]
+    }
+</script>
+
+<?php
+
 get_footer();
