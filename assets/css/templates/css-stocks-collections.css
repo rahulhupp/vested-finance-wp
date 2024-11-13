@@ -323,6 +323,10 @@
     outline: none !important;
 }
 
+.market_table_search input:focus {
+    color: #99A9BA;
+}
+
 .market_table_search input::placeholder {
     font-size: 14px;
     line-height: 24px;
