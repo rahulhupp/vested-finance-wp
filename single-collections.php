@@ -117,7 +117,7 @@ while (have_posts()) :
                                     <tr>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        <th data-sort="market_cap">Market Cap.
+                                        <th data-sort="market_cap">Market Cap
                                             <span class="sort_data">
                                                 <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
@@ -229,7 +229,7 @@ while (have_posts()) :
     <div class="cta-sec">
         <div class="container">
             <div class="cta_wrapper">
-                <h2 class="cta_title">Start investing in Top <br /><?php the_title(); ?> with Vested</h2>
+                <h2 class="cta_title">Start investing in Top <br /><?php the_title(); ?> Stocks with Vested</h2>
                 <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
             </div>
         </div>
