@@ -109,7 +109,7 @@ while (have_posts()) :
                                 </div>
                             </div>
                             <div class="market_table_search">
-                                <input type="text" id="stock-search" placeholder="Search Any stock" />
+                                <input type="text" id="stock-search" placeholder="Search any stock" />
                             </div>
                         </div>
                         <div class="stocks_table_wrap">

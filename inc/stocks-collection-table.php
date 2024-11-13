@@ -92,7 +92,7 @@ function enqueue_custom_pagination_script()
             var allData = [];
             var isSearching = false;
             var filteredData = [];
-            $('.stock-search').val('');
+            $('.stock-search').attr('autocomplete', 'off');
             var stocksPerPage = $('#list_table').data('post-num') || -1;
 
 
@@ -340,7 +340,7 @@ function enqueue_custom_pagination_script()
                 $(this).data('order', currentOrder);
 
 
-                if (filteredData.length > 0) {
+                if (isSearching) {
                     var dataToSort = filteredData;
                 } else {
                     var dataToSort = allData;
