@@ -222,7 +222,7 @@ function enqueue_custom_pagination_script()
                 // Populate table rows
                 currentData.forEach(function(stock) {
                     if (stock.pe_ratio == null) {
-                        peRatio = 'N/A';
+                        peRatio = '0.00';
                     } else {
                         peRatio = stock.pe_ratio;
                     }
