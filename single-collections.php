@@ -16,12 +16,10 @@ while (have_posts()) :
         $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
     } elseif ($ticker_selected === 'algorithm') {
         $algorithmSelected = get_field('algorithm_select');
-        $sortBy = 'price_change';
-        $sortOrder = 'desc';
 
         if ($algorithmSelected === 'megaCap' || $algorithmSelected === 'largeCap' || $algorithmSelected === 'midCap' || $algorithmSelected === 'smallCap' || $algorithmSelected === 'microCap') {
             $sortBy = 'market_cap';
-            $sortOrder = 'asc';
+            $sortOrder = 'dsc';
         }
     }
 ?>
