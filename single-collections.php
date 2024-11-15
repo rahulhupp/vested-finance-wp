@@ -6,12 +6,9 @@ while (have_posts()) :
     the_post();
     $featured_image_url = get_the_post_thumbnail_url();
     $ticker_selected = get_field('ticker_list_type');
-    $sortBy = '';
-    $sortOrder = '';
+    $sortByField = get_field('sort_by');
+    $sortOrderField = get_field('sort_order');
     if ($ticker_selected === 'manual') {
-        $sortByField = get_field('sort_by');
-        $sortOrderField = get_field('sort_order');
-
         $sortBy = isset($sortByField['value']) ? $sortByField['value'] : '';
         $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
     } elseif ($ticker_selected === 'algorithm') {
