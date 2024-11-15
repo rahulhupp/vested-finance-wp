@@ -8,9 +8,9 @@ while (have_posts()) :
     $ticker_selected = get_field('ticker_list_type');
     $sortByField = get_field('sort_by');
     $sortOrderField = get_field('sort_order');
+    $sortBy = isset($sortByField['value']) ? $sortByField['value'] : '';
+    $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
     if ($ticker_selected === 'manual') {
-        $sortBy = isset($sortByField['value']) ? $sortByField['value'] : '';
-        $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
     } elseif ($ticker_selected === 'algorithm') {
         $algorithmSelected = get_field('algorithm_select');
 
