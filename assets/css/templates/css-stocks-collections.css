@@ -8,6 +8,9 @@
 .collection_page_banner {
     padding: 66px 0 189px;
 }
+.collection_page_banner.page_template_banner {
+    padding: 31px 0 0;
+}
 .collection_page_banner.smaller {
     padding: 50px 0;
 }
@@ -157,7 +160,7 @@
     color: inherit;
     font-size: 14px;
     line-height: 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .main_collections_list .single_collection .collections_categories .single_collection_category:hover {
@@ -189,8 +192,8 @@
 .collection_breadcrumb p {
     margin: 0;
     margin-bottom: 8px;
-    font-size: 20px;
-    line-height: 24.2px;
+    font-size: 18px;
+    line-height: 22.2px;
     font-weight: 500;
     color: #505A64;
 }
@@ -811,7 +814,7 @@ h2.cta_title {
         padding-left: 0;
         padding-right: 0;
     }
-    .collection_page_banner {
+    .collection_page_banner, .collection_page_banner.page_template_banner {
         padding: 30px 0; 
     }
     .banner_content_col {

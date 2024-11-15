@@ -217,7 +217,13 @@ function enqueue_custom_pagination_script()
                     $('#pagination').hide();
                     return;
                 } else {
-                    $('#pagination').show();
+                    if(currentData.length >= stocksPerPage) {
+                        $('#pagination').show();
+                    }
+                    else {
+                        $('#pagination').hide();
+                    }
+                    
                 }
 
                 // Populate table rows
@@ -266,7 +272,7 @@ function enqueue_custom_pagination_script()
                             <td>
                                 <div class="stock_symbol_wrap">
                                     <div class="stock_symbol_img">
-                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" alt="${stock.symbol}-img" />
                                     </div>
                                     <div class="stock_name">
                                         <p><a href="${stockUrl}">${stock.name}</a></p>
@@ -321,18 +327,27 @@ function enqueue_custom_pagination_script()
                     sortingState.peRatio.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'pe_ratio') {
                     sortingState.marketCap.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'one_year_returns') {
                     sortingState.peRatio.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
                     sortingState.marketCap.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'cagr_5_year') {
                     sortingState.peRatio.order = 'asc';
                     sortingState.marketCap.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
+                    sortingState.price_change.order = 'asc';
+                } else if (sortField === 'price_change') {
+                    sortingState.peRatio.order = 'asc';
+                    sortingState.marketCap.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 }
 
                 // Toggle the sorting order between 'asc' and 'desc'
@@ -361,6 +376,9 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'cagr_5_year') {
                         aValue = parseFloat(a.cagr_5_year) || 0;
                         bValue = parseFloat(b.cagr_5_year) || 0;
+                    } else if (sortField === 'price_change') {
+                        aValue = parseFloat(a.price_change) || 0;
+                        bValue = parseFloat(b.price_change) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
@@ -402,26 +420,37 @@ function enqueue_custom_pagination_script()
                     sortingState.price.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'pe_ratio') {
                     sortingState.marketCap.order = 'asc';
                     sortingState.price.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'price') {
                     sortingState.marketCap.order = 'asc';
                     sortingState.peRatio.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'one_year_returns') {
                     sortingState.cagr_5_year.order = 'asc';
                     sortingState.marketCap.order = 'asc';
                     sortingState.price.order = 'asc';
                     sortingState.peRatio.order = 'asc';
+                    sortingState.price_change.order = 'asc';
                 } else if (sortField === 'cagr_5_year') {
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.marketCap.order = 'asc';
                     sortingState.price.order = 'asc';
                     sortingState.peRatio.order = 'asc';
+                    sortingState.price_change.order = 'asc';
+                } else if (sortField === 'price_change') {
+                    sortingState.marketCap.order = 'asc';
+                    sortingState.peRatio.order = 'asc';
+                    sortingState.price.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 }
 
 
@@ -446,6 +475,9 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'cagr_5_year') {
                         aValue = parseFloat(a.cagr_5_year) || 0;
                         bValue = parseFloat(b.cagr_5_year) || 0;
+                    } else if (sortField === 'price_change') {
+                        aValue = parseFloat(a.price_change) || 0;
+                        bValue = parseFloat(b.price_change) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
@@ -652,7 +684,7 @@ function enqueue_custom_pagination_script()
                             <td>
                                 <div class="stock_symbol_wrap">
                                     <div class="stock_symbol_img">
-                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" alt="${stock.symbol}-img" />
                                     </div>
                                     <div class="stock_name">
                                         <p><a href="${stockUrl}">${stock.name}</a></p>
