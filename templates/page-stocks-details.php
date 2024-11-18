@@ -126,7 +126,8 @@
                         null, 
                         array(
                             'overview_data' => $overview_data,
-                            'get_path' => $get_path
+                            'get_path' => $get_path,
+                            'price_chart_data' => $price_chart_data
                         )
                     ); 
                 ?>
@@ -158,8 +159,16 @@
                     <?php get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data)); ?>
                     <?php get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data)); ?>
                 <?php else: ?>
-                    <?php get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data)); ?>
-                    <?php get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data)); ?>
+                    <?php
+                        if ($largest_holdings_data) {
+                            // get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
+                        }
+                    ?>
+                    <?php 
+                        if ($sector_breakdowns_data) {
+                            // get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
+                        }
+                    ?>
                 <?php endif; ?>
                 
                 <?php get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path)); ?>
@@ -176,7 +185,16 @@
                         ); 
                     ?>
                 <?php else: ?>
-                    <?php get_template_part('template-parts/stocks-details/faqs-etf', null, array('overview_data' => $overview_data,)); ?>
+                    <?php 
+                        get_template_part(
+                            'template-parts/stocks-details/faqs-etf', 
+                            null, 
+                            array(
+                                'returns_data' => $returns_data,
+                                'overview_data' => $overview_data
+                            )
+                        ); 
+                    ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -194,7 +212,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <?php get_template_part('template-parts/stocks-details/js/general-js'); ?>
-<?php get_template_part('template-parts/stocks-details/js/price-chart-js', null, array('price_chart_data' => $price_chart_data)); ?>
+<?php
+    if ($price_chart_data) {
+        get_template_part('template-parts/stocks-details/js/price-chart-js', null, array('price_chart_data' => $price_chart_data));
+    }
+?>
 
 <?php if ($get_path[2] !== 'etf'): ?>
     <?php get_template_part('template-parts/stocks-details/js/analyst-forecast-js', null, array('analysts_data' => $analysts_data)); ?>
