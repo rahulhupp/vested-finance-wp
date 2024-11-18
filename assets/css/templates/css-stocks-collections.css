@@ -679,6 +679,7 @@ h2.cta_title {
     line-height: 45px;
     font-weight: 400;
     color: #fff;
+    max-width: 60%;
 }
 
 .cta_btn {
@@ -700,7 +701,7 @@ h2.cta_title {
 }
 
 .post_type_list {
-    padding: 60px 0;
+    padding: 60px 0 40px;
 }
 
 .post_listing {margin-top: 75px;}
@@ -756,7 +757,7 @@ h2.cta_title {
 }
 
 .faqs_sec {
-    padding: 80px 0;
+    padding: 40px 0 80px;
 }
 
 .faqs_sec .sec_title {
@@ -807,6 +808,21 @@ h2.cta_title {
 
 .table_mobile_sort {
     display: none;
+}
+
+@media (max-width: 1024px) {
+    .cta_wrapper {
+        padding: 0 40px;
+    }
+    .cta_btn {
+        padding: 9px 35px;
+        font-size: 24px;
+        line-height: 32px;
+    }
+    h2.cta_title {
+        font-size: 30px;
+        line-height: 35px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -927,7 +943,8 @@ h2.cta_title {
     }
     
     .market_table_col_wrap {
-        padding: 33px 20px;
+        /* padding: 33px 20px; */
+        padding: 20px 14px;
     }
     
     .market_table_headings {
@@ -939,11 +956,49 @@ h2.cta_title {
         max-width: 100%;
     }
 
+    #stocks-table th:nth-child(1), #stocks-table td:nth-child(1) {
+        text-align: left;
+    }
+    
+    #stocks-table td {
+        padding: 10px 6px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    #stocks-table th {
+        padding: 10px 6px;
+    }
+
+    .stock_symbol_wrap {
+        align-items: flex-start;
+    }
+    
+    .stock_symbol_img {
+        margin-top: 3px;
+    }
+    
+    #stocks-table th, #stocks-table td {
+        text-align: end;
+    }
+    
+    .stock_change {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    
+    .stock_name span {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
     .stock_name p {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         overflow: hidden;
         -webkit-box-orient: vertical;
+        font-size: 14px;
+        line-height: 16px;
     }
 
     .table_mobile_sort {
@@ -1141,6 +1196,7 @@ h2.cta_title {
     h2.cta_title {
         font-size: 13px !important;
         line-height: 19px;
+        max-width: 100%;
     }
 
     h2.cta_title br {
@@ -1159,6 +1215,15 @@ h2.cta_title {
 
     .post_type_list {
         padding: 0;
+    }
+
+    .faqs_wrap .single_faq .faq_content {
+        margin-top: 15px;
+    }
+
+    .post_listing .posts_wrap .single_post h4 {
+        font-size: 16px;
+        line-height: 23px;
     }
 
     .post_type_list .sec_title {
