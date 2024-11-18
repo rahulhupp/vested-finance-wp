@@ -48,6 +48,7 @@ get_header();
 
                 $term_query = new WP_Query($term_args);
                 $post_count = $term_query->post_count;
+                $first_post_url = '';
             ?>
                 <div class="single_collection">
                     <div class="single_collection_img">
@@ -59,10 +60,16 @@ get_header();
                     <?php if ($post_count > 0) : ?>
                         <ul class="collections_categories">
                             <?php
+                            $is_first = true;
                             while ($term_query->have_posts()) :
                                 $term_query->the_post();
                                 $collection_name = get_the_title();
                                 $collection_slug = get_post_field('post_name', get_the_ID());
+                                $post_permalink = get_permalink();
+                                if ($is_first) {
+                                    $first_post_url = $post_permalink;
+                                    $is_first = false; // Mark as no longer the first post
+                                }
                             ?>
                                 <li class="single_collection_category">
                                     <a href="<?php echo esc_url(get_permalink()); ?>"><?php echo esc_html($collection_name); ?></a>
@@ -70,7 +77,7 @@ get_header();
                             <?php endwhile; ?>
                         </ul>
                     <?php endif; ?>
-
+                    <a href="<?php echo esc_url($first_post_url); ?>" class="first_cat_url"></a>
                     <?php wp_reset_postdata(); // Reset post data after each query 
                     ?>
                 </div>

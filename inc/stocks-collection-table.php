@@ -22,23 +22,23 @@ function fetch_stocks_data()
         $algorithm_type = get_field('algorithm_select', $page_id);
 
         if ($algorithm_type === 'gainers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 ORDER BY price_change DESC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change DESC";
         } elseif ($algorithm_type === 'losers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 ORDER BY price_change ASC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change ASC";
         } elseif ($algorithm_type === 'megaCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'largeCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 10000000000 AND market_cap <= 200000000000 ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 10000000000 AND market_cap <= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'midCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 2000000000 AND market_cap <= 10000000000 ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 2000000000 AND market_cap <= 10000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'smallCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 300000000 AND market_cap <= 2000000000 ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 300000000 AND market_cap <= 2000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'microCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'oneYHigh') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 20 ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 20 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
         } elseif ($algorithm_type === 'oneYLow') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 20 ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC LIMIT 20";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 20 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
         }
 
 

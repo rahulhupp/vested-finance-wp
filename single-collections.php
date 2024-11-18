@@ -49,6 +49,7 @@ while (have_posts()) :
                     <?php
                     $post_id = get_the_ID();
                     $terms = get_the_terms($post_id, 'stocks_collections_categories');
+                    $currentPageName = $terms[0]->name;
                     if ($terms && ! is_wp_error($terms)) :
                         $term_ids = wp_list_pluck($terms, 'term_id');
                         $args = array(
@@ -64,7 +65,7 @@ while (have_posts()) :
                         );
                         $related_posts = new WP_Query($args);
                         if ($related_posts->have_posts()) :
-                            echo '<h2>Explore Market Leaders</h2><ul>';
+                            echo '<h2>Explore '. $currentPageName .'</h2><ul>';
                             while ($related_posts->have_posts()) : $related_posts->the_post();
                                 $current_class = (get_the_ID() === $post_id) ? ' class="current"' : '';
                                 echo '<li' . $current_class . '><a href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></li>';
