@@ -30,7 +30,11 @@ while (have_posts()) :
                 <div class="banner_content_col">
                     <h1 class="mt_0"><?php the_title(); ?></h1>
                     <p class="banner_desc"><?php the_field('collection_description', false, false); ?></p>
-                    <a href="#" class="btn_dark">Invest in <?php the_title(); ?></a>
+                    <?php if (get_field('banner_button_url')): ?>
+                        <a href="<?php the_field('banner_button_url'); ?>" class="btn_dark"><?php the_field('banner_button_text'); ?></a>
+                    <?php else: ?>
+                        <a href="#" class="btn_dark">Invest in <?php the_title(); ?></a>
+                    <?php endif; ?>
                 </div>
                 <div class="banner_img_col">
                     <img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
@@ -201,32 +205,52 @@ while (have_posts()) :
             </div>
         </div>
     <?php endif; ?>
-    <?php if (get_field('strategies_long_term')): ?>
+    <?php if (get_field('long_term_strategies')): ?>
         <div class="investments_terms_sec">
             <div class="container">
                 <h2 class="sec_title">Long-Term vs. Short -Term Investment<br /> Strategies in <?php the_title(); ?></h2>
 
                 <div class="investment_terms_wrap">
                     <div class="investment_term_col">
-                        <div class="investment_term_col_wrap">
-                            <?php the_field('strategies_long_term'); ?>
-                        </div>
+                        <?php if (have_rows('long_term_strategies')): ?>
+                            <div class="investment_term_col_wrap">
+                                <?php while (have_rows('long_term_strategies')): the_row(); ?>
+                                    <p class="single_term"><?php the_sub_field('long_term_strategy'); ?></p>
+                                <?php endwhile; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="versus_circle">VS</div>
                     <div class="investment_term_col">
-                        <div class="investment_term_col_wrap">
-                            <?php the_field('strategies_short_term'); ?>
-                        </div>
+                        <?php if (have_rows('short_term_strategies')): ?>
+                            <div class="investment_term_col_wrap">
+                                <?php while (have_rows('short_term_strategies')): the_row(); ?>
+                                    <p class="single_term"><?php the_sub_field('short_term_strategy'); ?></p>
+                                <?php endwhile; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     <?php endif; ?>
+    <?php if (get_the_content()): ?>
+        <section class="main_content">
+            <div class="container">
+                <?php the_content(); ?>
+            </div>
+        </section>
+    <?php endif; ?>
     <div class="cta-sec">
         <div class="container">
             <div class="cta_wrapper">
-                <h2 class="cta_title">Start investing in Top <br /><?php the_title(); ?> Stocks with Vested</h2>
-                <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
+                <?php if (get_field('cta_heading')): ?>
+                    <h2 class="cta_title"><?php the_field('cta_heading'); ?></h2>
+                    <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
+                <?php else: ?>
+                    <h2 class="cta_title">Start investing in Top <br /><?php the_title(); ?> Stocks with Vested</h2>
+                    <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
