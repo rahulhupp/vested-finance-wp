@@ -14,7 +14,7 @@ function fetch_stocks_data()
     $table_name = $wpdb->prefix . 'stocks_list_details';
     if ($ticker_type === 'manual') {
         $stocks_list = get_field('stock_symbols', $page_id); // acf field
-        $symbols = explode(',', $stocks_list); // Convert to array
+        $symbols = array_map('trim', explode(',', $stocks_list)); // Split into array and trim spaces
         $placeholders = implode(',', array_fill(0, count($symbols), '%s'));
         $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders)", $symbols);
         $results = $wpdb->get_results($query);
@@ -114,6 +114,9 @@ function enqueue_custom_pagination_script()
                     order: 'asc'
                 },
                 cagr_5_year: {
+                    order: 'asc'
+                },
+                price_change: {
                     order: 'asc'
                 }
             };
