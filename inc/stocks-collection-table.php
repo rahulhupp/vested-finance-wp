@@ -583,7 +583,7 @@ function enqueue_custom_pagination_script()
 
 
             // Search functionality
-            $('#stock-search').on('keyup', function() {
+            $('#stock-search').on('input', function() {
                 var searchTerm = $(this).val().toLowerCase();
 
                 // If the search term is empty, reset to all data and show pagination
