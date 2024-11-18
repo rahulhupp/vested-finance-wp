@@ -268,6 +268,8 @@ function enqueue_custom_pagination_script()
                     var stockName = createSlug(stock.name);
                     var stockSymbol = stock.symbol.toLowerCase();
                     var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+                    
+                    var fallbackImageUrl = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
 
                     // Append the row to the table body
                     $('#stocks-table tbody').append(`
@@ -275,7 +277,9 @@ function enqueue_custom_pagination_script()
                             <td>
                                 <div class="stock_symbol_wrap">
                                     <div class="stock_symbol_img">
-                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                    <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
+                        alt="${stock.symbol}-img" 
+                        onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
                                     </div>
                                     <div class="stock_name">
                                         <p><a href="${stockUrl}">${stock.name}</a></p>
@@ -680,6 +684,7 @@ function enqueue_custom_pagination_script()
                     var stockName = createSlug(stock.name);
                     var stockSymbol = stock.symbol.toLowerCase();
                     var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+                    var fallbackImageUrl = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
 
                     // Append the row to the table body
                     $('#stocks-table tbody').append(`
@@ -687,7 +692,9 @@ function enqueue_custom_pagination_script()
                             <td>
                                 <div class="stock_symbol_wrap">
                                     <div class="stock_symbol_img">
-                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" alt="${stock.symbol}-img" />
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
+                            alt="${stock.symbol}-img" 
+                            onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
                                     </div>
                                     <div class="stock_name">
                                         <p><a href="${stockUrl}">${stock.name}</a></p>
