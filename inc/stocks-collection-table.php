@@ -567,15 +567,19 @@ function enqueue_custom_pagination_script()
                     // If there's a search applied, use the filtered data for pagination
                     if (isSearching) {
                         renderFilteredTable(filteredData.slice((currentPage - 1) * stocksPerPage, currentPage * stocksPerPage));
+                        $('#pagination').show();
                     } else {
                         renderTable(currentPage);
+                        $('#pagination').show();
                     }
 
                     // Update the pagination based on the current filtered data or all data
                     if (isSearching) {
                         generatePagination(Math.ceil(filteredData.length / stocksPerPage), currentPage);
+                        $('#pagination').show();
                     } else {
                         generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
+                        $('#pagination').show();
                     }
 
                 }
