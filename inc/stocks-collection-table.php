@@ -22,9 +22,9 @@ function fetch_stocks_data()
         $algorithm_type = get_field('algorithm_select', $page_id);
 
         if ($algorithm_type === 'gainers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change DESC";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change DESC LIMIT 100";
         } elseif ($algorithm_type === 'losers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change ASC";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change ASC LIMIT 100";
         } elseif ($algorithm_type === 'megaCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'largeCap') {
@@ -36,9 +36,9 @@ function fetch_stocks_data()
         } elseif ($algorithm_type === 'microCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'oneYHigh') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 20 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 10 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
         } elseif ($algorithm_type === 'oneYLow') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 20 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 10 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
         }
 
 
@@ -290,7 +290,7 @@ function enqueue_custom_pagination_script()
                             <td class="pricing_cols">${stockPrice}
                                 <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                             </td>
-                            <td>${formatMarketCap(stock.market_cap)}</td> 
+                            <td>$${formatMarketCap(stock.market_cap)}</td> 
                             <td>${peRatio}</td>
                             <td>${oneYearReturns}</td>
                             <td>${cagr_5_year}</td>
@@ -709,7 +709,7 @@ function enqueue_custom_pagination_script()
                             <td class="pricing_cols">${stockPrice}
                                 <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                             </td>
-                            <td>${formatMarketCap(stock.market_cap)}</td> 
+                            <td>$${formatMarketCap(stock.market_cap)}</td> 
                             <td>${peRatio}</td>
                             <td>${oneYearReturns}</td>
                             <td>${cagr_5_year}</td>

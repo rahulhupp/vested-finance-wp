@@ -790,9 +790,9 @@ h2.cta_title {
 
 .faqs_wrap .single_faq .faq_que h4 {
     color: #212529;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 26.63px;
+    line-height: 24px;
 }
 
 .faqs_wrap .single_faq .faq_que:after {
@@ -809,7 +809,7 @@ h2.cta_title {
     margin-bottom: 0;
     color: #1e2022;
     font-family: Inter;
-    font-size: 22px !important;
+    font-size: 18px !important;
     font-style: normal;
     font-weight: 400;
     line-height: 130%;
