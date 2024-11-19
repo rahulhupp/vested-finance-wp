@@ -285,46 +285,6 @@ add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 
-
-function load_more_posts_ajax_handler(){
-     
-     $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
-
-     $excluded_ids = isset($_POST['exclude']) ? array_map('intval', $_POST['exclude']) : array();
- 
-     $args = array(
-         'post_type'      => 'post',
-         'posts_per_page' => 12,
-         'paged'          => $paged,
-         'post__not_in'   => $excluded_ids,
-     );
-
-     $query = new WP_Query($args);
-
-    if( $query->have_posts() ) :
-        while( $query->have_posts() ): $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
-                <div class="featured-image">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('full'); ?>
-                    </a>
-                </div>
-                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <div class="meta-info">
-                    <span class="post-author"><?php the_author(); ?></span>
-                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                </div>
-            </div>
-        <?php endwhile;
-    endif;
-    wp_reset_postdata();
-
-    die();
-}
-
-add_action('wp_ajax_loadmore', 'load_more_posts_ajax_handler');
-add_action('wp_ajax_nopriv_loadmore', 'load_more_posts_ajax_handler');
-
 add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
 
 function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
@@ -442,3 +402,55 @@ function buffer_end() { ob_end_flush(); }
 add_action('wp_head', 'buffer_start');
 
 add_action('wp_footer', 'buffer_end');
+
+
+
+function load_more_posts() {
+    
+    if (isset($_POST['paged'])) {
+        $paged = intval($_POST['paged']);
+
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => 8,
+            'paged' => $paged
+        );
+
+        
+        $custom_query = new WP_Query($args);
+        
+        if ($custom_query->have_posts()) :
+            
+            while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+                <div id="post-<?php the_ID(); ?>" class="post-card display">
+                    <div class="featured-image">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('full'); ?>
+                        </a>
+                    </div>
+                    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <div class="meta-info">
+                        <span class="post-author"><?php the_author(); ?></span>
+                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                    </div>
+                </div>
+            <?php endwhile;
+            wp_reset_postdata();
+        else :
+            echo '';
+        endif;
+    }
+    wp_die();
+}
+add_action('wp_ajax_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+
+function change_comment_order( $query ) {
+    if ( is_admin() ) {
+        return;
+    }
+
+    $query->query_vars['orderby'] = 'comment_date_gmt';
+    $query->query_vars['order'] = 'DESC';
+}
+add_action( 'pre_get_comments', 'change_comment_order' );

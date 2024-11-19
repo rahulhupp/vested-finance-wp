@@ -131,54 +131,6 @@ $image = get_field('easy_access_image');
             </div>
         </section>
     <?php endif; ?>
-    <?php if (have_rows('edge_list')) : ?>
-        <section class="edge_section">
-            <div class="container">
-                <div class="edge_wrapper">
-                    <div class="edge_content">
-                        <h2 class="section_title align_left"><?php the_field('edge_heading'); ?></h2>
-                       
-                        <?php
-                                            $image = get_field('edge_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
-                                            <?php endif; ?>
-                        <div class="edge_list">
-                            <?php while (have_rows('edge_list')) : the_row(); ?>
-                                <div class="single_edge">
-                                    <div class="edge_icon">
-                                        
-                                        <?php
-                                            $image = get_sub_field('edge_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                               
-                                    </div>
-                                    <h4><?php the_sub_field('edge_title') ?></h4>
-                                </div>
-                            <?php endwhile; ?>
-                        </div>
-                        <div class="edge_btns">
-                            <a href="<?php the_field('edge_button_one_url'); ?>" class="btn_light"><?php the_field('edge_button_text'); ?></a>
-                            <a href="<?php the_field('edge_button_two_url'); ?>" class="link_dark"><?php the_field('edge_button_two_text'); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="edge_img mobile_hide">
-                       
-                        <?php
-                                            $image = get_field('edge_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
     <!--  -->
     <?php if (have_rows('inr_bond_list')) : ?>
         <section class="inr_bond easy_access">
@@ -197,15 +149,15 @@ $image = get_field('easy_access_image');
                         <div class="easy_access_list">
                             <?php while (have_rows('inr_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
-                                    <div class="easy_access_icon">
+                                <div class="easy_access_icon">
                                      
-                                        <?php
-                                            $image = get_sub_field('inr_bond_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
-                                    </div>
+                                     <?php
+                                         $image = get_sub_field('inr_bond_icon');
+                                         if (!empty($image)): ?>
+                                             <img src="<?php echo esc_url($image['url']); ?>"
+                                                 alt="<?php echo esc_attr($image['alt']); ?>" />
+                                         <?php endif; ?>
+                                 </div>
                                     <h4><?php the_sub_field('inr_bond_title') ?></h4>
                                 </div>
                             <?php endwhile; ?>
@@ -421,5 +373,3 @@ $image = get_field('easy_access_image');
     }
 </script>
 <?php get_footer(); ?>
-
-

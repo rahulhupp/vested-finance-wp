@@ -16,15 +16,16 @@ get_header(); ?>
 <div id="content" role="main" class="sub-category-page">
     <section>
     <div class="container">
-    <?php 
-   $args = array(
-    'post_type' => 'post',
-    'posts_per_page' => 12,
-    'paged' => 1,
-);
-$query = new WP_Query($args);
+    <?php
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 8,
+        'paged' => $paged
+    );
+    $custom_query = new WP_Query($args);
     ?>
-    <?php if ($query->have_posts()) : ?>
+    <?php if ($custom_query->have_posts()) : ?>
         <header class="page-header">
             <div class="heading">
                 <h1 class="page-title"><?php the_title(); ?></h1>
@@ -37,20 +38,20 @@ $query = new WP_Query($args);
             </div>
         </header>
         <div class="post-item">
-            <?php while ($query->have_posts()) : $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
-                <div class="featured-image">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('full'); ?>
-                    </a>
+            <?php while ($custom_query->have_posts()) :  $custom_query->the_post(); ?>
+                <div id="post-<?php the_ID(); ?>" class="post-card display">
+                    <div class="featured-image">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('full'); ?>
+                        </a>
+                    </div>
+                    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <div class="meta-info">
+                        <span class="post-author"><?php the_author(); ?></span>
+                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                    </div>
                 </div>
-                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <div class="meta-info">
-                    <span class="post-author"><?php the_author(); ?></span>
-                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                </div>
-            </div>
-        <?php endwhile; ?>
+            <?php endwhile; ?>
         </div>
         <?php wp_reset_postdata(); ?>
     <?php else : ?>
@@ -58,7 +59,7 @@ $query = new WP_Query($args);
     <?php endif; ?>
     
     <div class="load-more-btn">
-        <button id="loadMore" data-page="1">Load More</button>
+        <a href="#" id="loadMore" data-paged="2">Load More</a>
     </div>				
     </div>
     </section>
@@ -68,47 +69,78 @@ $query = new WP_Query($args);
 </div>
 
 <script>
-jQuery(function($) {
+   jQuery(document).ready(function($) {
+        var displayedPostIds = []; 
 
-var loadedPosts = [];
-$('.post-card').each(function() {
-        loadedPosts.push($(this).data('id'));
-    });
-
-    
-$('#loadMore').on('click', function() {
-    var button = $(this);
-    var page = button.data('page');
-
-    
-    $('.post-card').each(function() {
-        loadedPosts.push($(this).data('id'));
-    }); 
-    $.ajax({
-        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-        type: 'POST',
-        data: {
-            action: 'loadmore',
-            page: page,
-            exclude: loadedPosts,
-        },
-        beforeSend: function() {
-            button.text('Loading...');
-        },
-        success: function(data) {
-            if (data) {
-                $('.post-item').append(data);
-                button.data('page', page + 1);
-                button.text('Load More');
-            } else {
-                button.text('No more posts');
-                button.attr('disabled', true);
-            }
+        function gatherDisplayedPostIds() {
+            $('#postContainer .post-card').each(function() {
+                var postId = $(this).attr('id'); 
+                if (postId) { 
+                    postId = postId.replace('post-', ''); 
+                    if (!displayedPostIds.includes(postId)) {
+                        displayedPostIds.push(postId); 
+                    }
+                }
+            });
         }
-    });
-});
 
-});
+        gatherDisplayedPostIds();
+
+        $('#loadMore').on('click', function(e) {
+            e.preventDefault();
+            var button = $(this);
+            var paged = button.data('paged');
+            var maxPages = <?php echo $custom_query->max_num_pages; ?>;
+            
+            if (paged > maxPages) {
+                return;
+            }
+
+            $.ajax({
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                type: 'POST',
+                data: {
+                    action: 'load_more_posts',
+                    paged: paged
+                },
+                beforeSend: function() {
+                    button.text('Loading...'); 
+                },
+                success: function(response) {
+                    if (response) {
+                        var $response = $(response);
+                        var newPostsAdded = false;
+
+                        $response.each(function() {
+                            var postId = $(this).attr('id'); 
+                            if (postId) {
+                                postId = postId.replace('post-', '');
+                                if (!displayedPostIds.includes(postId)) {
+                                    $('.post-item').append(this);
+                                    displayedPostIds.push(postId);
+                                    newPostsAdded = true;
+                                }
+                            }
+                        });
+
+                        if (newPostsAdded) {
+                            button.data('paged', paged + 1);
+                        } else {
+                            button.text('No more posts to load.');
+                            button.prop('disabled', true);
+                        }
+                        button.text('Load More');
+                    } else {
+                        button.text('No more posts to load.'); 
+                        button.prop('disabled', true);
+                    }
+                },
+                error: function() {
+                    button.text('Error loading more posts.');
+                }
+            });
+        });
+    });
 </script>
 
 <?php get_footer(); ?>

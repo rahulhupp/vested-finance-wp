@@ -35,6 +35,26 @@ jQuery(document).ready(function () {
 		jQuery(activeTabMobile).fadeIn();
 		return false;
 	});
+
+	jQuery('.vest_about_content').slideUp();
+	jQuery('.chart_desc_btn + .chart').slideUp();
+
+	jQuery('#vest_read_more').click(function(){
+		jQuery('.vest_about_content').slideToggle();
+		jQuery(this).toggleClass('collapsed');
+		if(jQuery('#vest_read_more span').text() === 'More') {
+			jQuery('#vest_read_more span').text('Less');
+			jQuery(this).children('i').css('transform', 'rotate(180deg)');
+		}
+		else {
+			jQuery('#vest_read_more span').text('More');
+			jQuery(this).children('i').css('transform', 'rotate(0deg)');
+		}
+	});
+
+	jQuery('.chart_desc_btn').click(function(){
+		jQuery('.chart_desc_btn + .chart').slideToggle();
+	});
 });
 
 
@@ -327,8 +347,9 @@ jQuery(document).ready(function ($) {
 		var vestsValue = localStorage.getItem("vests");
 
 		if (vestsValue === "true") {
-			$(".foundation-list ul").slick({
-				slidesToShow: 3,
+			console.log('vests');
+			$("#vestsResultsList").slick({
+				slidesToShow: 4,
 				slidesToScroll: 1,
 				infinite: true,
 				autoplay: true,
@@ -337,29 +358,36 @@ jQuery(document).ready(function ($) {
 				arrows: false,
 				responsive: [
 					{
+						breakpoint: 1199,
+						settings: {
+							slidesToShow: 3,
+						}
+					},
+					{
+						breakpoint: 992,
+						settings: {
+							slidesToShow: 2,  // This will now apply properly for screens smaller than 992px
+						}
+					},
+					{
 						breakpoint: 767,
 						settings: {
-							infinite: true,
 							slidesToShow: 2,
-							slidesToScroll: 1,
-						},
+						}
+					},
+					{
 						breakpoint: 600,
 						settings: {
 							slidesToShow: 1,
 						}
-					},
-				],
-			});
+					}
+				]
+			});					
 			localStorage.removeItem("vests");
 		} else {
+			console.log('No vests');
 			setTimeout(checkForVests, 1000); // Check again in 1 second
 		}
-	}
-
-	if ($(window).width() <= 992) {
-		console.log('992px');
-		localStorage.removeItem("vests");
-		checkForVests();
 	}
 
 	if ($(window).width() <= 767) {
