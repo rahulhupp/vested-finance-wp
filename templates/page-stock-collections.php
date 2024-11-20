@@ -72,7 +72,10 @@ get_header();
                                 }
                             ?>
                                 <li class="single_collection_category">
-                                    <a href="<?php echo esc_url(get_permalink()); ?>"><?php echo esc_html($collection_name); ?></a>
+                                    <a href="<?php echo esc_url(get_permalink()); ?>"><?php echo esc_html($collection_name); ?> <svg width="15" height="15" viewBox="0 0 5 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.625 8.75L4.375 5L0.625 1.25" stroke="#B2BECB" stroke-width="0.9375" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
                                 </li>
                             <?php endwhile; ?>
                         </ul>
