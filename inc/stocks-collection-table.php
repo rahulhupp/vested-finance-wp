@@ -191,17 +191,17 @@ function enqueue_custom_pagination_script()
             }
 
             function formatMarketCap(value) {
-                if (value === null || value === undefined) {
+                if (value === null || value === undefined || value === '') {
                     return 'N/A';
                 }
                 if (value >= 1e12) {
-                    return (value / 1e12).toFixed(2) + 'T';
+                    return '$' + (value / 1e12).toFixed(2) + 'T';
                 } else if (value >= 1e9) {
-                    return (value / 1e9).toFixed(2) + 'B';
+                    return '$' + (value / 1e9).toFixed(2) + 'B';
                 } else if (value >= 1e6) {
-                    return (value / 1e6).toFixed(2) + 'M';
+                    return '$' + (value / 1e6).toFixed(2) + 'M';
                 } else if (value >= 1e3) {
-                    return (value / 1e3).toFixed(2) + 'K';
+                    return '$' + (value / 1e3).toFixed(2) + 'K';
                 } else {
                     return value.toString()
                 }
@@ -220,55 +220,38 @@ function enqueue_custom_pagination_script()
                     $('#pagination').hide();
                     return;
                 } else {
-                    if(currentData.length >= stocksPerPage) {
+                    if (currentData.length >= stocksPerPage) {
                         $('#pagination').show();
-                    }
-                    else {
+                    } else {
                         $('#pagination').hide();
                     }
-                    
+
                 }
 
                 // Populate table rows
                 currentData.forEach(function(stock) {
-                    if (stock.pe_ratio == null) {
-                        peRatio = '0.00';
-                    } else {
-                        peRatio = stock.pe_ratio;
-                    }
+                    var stockPrice = (stock.price == null) ? 'N/A' : '$' + parseFloat(stock.price).toFixed(2);
 
-                    if (stock.cagr_5_year == null) {
-                        var cagr_5_year = 'N/A';
-                    } else {
-                        var cagr_5_year = stock.cagr_5_year + '%';
-                    }
+                    // Price Change formatting
+                    var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
-                    if (stock.price == null) {
-                        var stockPrice = 'N/A';
-                    } else {
-                        var stockPrice = '$' + stock.price;
-                    }
+                    // P/E Ratio formatting
+                    var peRatio = (stock.pe_ratio == null) ? '0.00' : parseFloat(stock.pe_ratio).toFixed(2);
 
-                    if (stock.price_change == null) {
-                        var stockPriceChange = 'N/A';
-                    } else {
-                        var stockPriceChange = (stock.price_change < 0 ? '' : '+') + stock.price_change + '%';
-                    }
+                    // One Year Return formatting
+                    var oneYearReturns = (stock.one_year_returns == null) ? 'N/A' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
+
+                    // 5 Year CAGR formatting
+                    var cagr_5_year = (stock.cagr_5_year == null) ? 'N/A' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
+
                     var changeClass = '';
                     if (stock.price_change == null || stock.price_change < 0) {
                         changeClass = 'minus_value';
                     }
 
-                    if (stock.one_year_returns == null) {
-                        var oneYearReturns = 'N/A';
-                    } else {
-                        var oneYearReturns = stock.one_year_returns + '%';
-                    }
-
                     var stockName = createSlug(stock.name);
                     var stockSymbol = stock.symbol.toLowerCase();
                     var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
-                    
                     var fallbackImageUrl = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
 
                     // Append the row to the table body
@@ -290,7 +273,7 @@ function enqueue_custom_pagination_script()
                             <td class="pricing_cols">${stockPrice}
                                 <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                             </td>
-                            <td>$${formatMarketCap(stock.market_cap)}</td> 
+                            <td>${formatMarketCap(stock.market_cap)}</td> 
                             <td>${peRatio}</td>
                             <td>${oneYearReturns}</td>
                             <td>${cagr_5_year}</td>
@@ -651,34 +634,22 @@ function enqueue_custom_pagination_script()
                 }
 
                 data.forEach(function(stock) {
-                    if (stock.pe_ratio == null) {
-                        var peRatio = '0.00';
-                    } else {
-                        var peRatio = stock.pe_ratio;
-                    }
-                    if (stock.cagr_5_year == null) {
-                        var cagr_5_year = 'N/A';
-                    } else {
-                        var cagr_5_year = stock.cagr_5_year + '%';
-                    }
+                    // Handle null or undefined values and format them to two decimal places
 
-                    if (stock.price == null) {
-                        var stockPrice = 'N/A';
-                    } else {
-                        var stockPrice = '$' + stock.price;
-                    }
+                    // Price formatting
+                    var stockPrice = (stock.price == null) ? 'N/A' : '$' + parseFloat(stock.price).toFixed(2);
 
-                    if (stock.price_change == null) {
-                        var stockPriceChange = 'N/A';
-                    } else {
-                        var stockPriceChange = (stock.price_change < 0 ? '' : '+') + stock.price_change + '%';
-                    }
+                    // Price Change formatting
+                    var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
-                    if (stock.one_year_returns == null) {
-                        var oneYearReturns = 'N/A';
-                    } else {
-                        var oneYearReturns = stock.one_year_returns + '%';
-                    }
+                    // P/E Ratio formatting
+                    var peRatio = (stock.pe_ratio == null) ? '0.00' : parseFloat(stock.pe_ratio).toFixed(2);
+
+                    // One Year Return formatting
+                    var oneYearReturns = (stock.one_year_returns == null) ? 'N/A' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
+
+                    // 5 Year CAGR formatting
+                    var cagr_5_year = (stock.cagr_5_year == null) ? 'N/A' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
 
                     var changeClass = '';
                     if (stock.price_change == null || stock.price_change < 0) {
@@ -692,29 +663,29 @@ function enqueue_custom_pagination_script()
 
                     // Append the row to the table body
                     $('#stocks-table tbody').append(`
-                        <tr>
-                            <td>
-                                <div class="stock_symbol_wrap">
-                                    <div class="stock_symbol_img">
-                                        <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
+            <tr>
+                <td>
+                    <div class="stock_symbol_wrap">
+                        <div class="stock_symbol_img">
+                            <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
                             alt="${stock.symbol}-img" 
                             onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
-                                    </div>
-                                    <div class="stock_name">
-                                        <p><a href="${stockUrl}">${stock.name}</a></p>
-                                        <span>(${stock.symbol})</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pricing_cols">${stockPrice}
-                                <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
-                            </td>
-                            <td>$${formatMarketCap(stock.market_cap)}</td> 
-                            <td>${peRatio}</td>
-                            <td>${oneYearReturns}</td>
-                            <td>${cagr_5_year}</td>
-                        </tr>
-                    `);
+                        </div>
+                        <div class="stock_name">
+                            <p><a href="${stockUrl}">${stock.name}</a></p>
+                            <span>(${stock.symbol})</span>
+                        </div>
+                    </div>
+                </td>
+                <td class="pricing_cols">${stockPrice}
+                    <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
+                </td>
+                <td>${formatMarketCap(stock.market_cap)}</td> 
+                <td>${peRatio}</td>
+                <td>${oneYearReturns}</td>
+                <td>${cagr_5_year}</td>
+            </tr>
+        `);
                 });
             }
         });
