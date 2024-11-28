@@ -16,13 +16,14 @@
 }
 .banner_content_wrap {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .banner_content_col {
     width: 50%;
+    margin-top: 30px;
 }
 
 .banner_img_col {
@@ -518,9 +519,9 @@ strong.stock_change.minus_value {
 }
 
 .sec_title {
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 800;
-    line-height: 45.6px;
+    line-height: 43.6px;
     text-align: center;
     color: #002852;
 }
@@ -651,8 +652,8 @@ c {
 }
 
 .investment_term_col_wrap * {
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 32px;
     font-weight: 500;
     color: #262626;
 }
@@ -850,6 +851,7 @@ h2.cta_title {
     }
     .banner_content_col {
         width: 100%;
+        margin-top: 0;
     }
     .banner_img_col {
         max-width: 100%;

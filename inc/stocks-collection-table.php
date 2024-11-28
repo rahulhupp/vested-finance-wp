@@ -260,9 +260,11 @@ function enqueue_custom_pagination_script()
                             <td>
                                 <div class="stock_symbol_wrap">
                                     <div class="stock_symbol_img">
+                                    <a href="${stockUrl}">
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
                         alt="${stock.symbol}-img" 
                         onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
+                        </a>
                                     </div>
                                     <div class="stock_name">
                                         <p><a href="${stockUrl}">${stock.name}</a></p>
@@ -667,9 +669,11 @@ function enqueue_custom_pagination_script()
                 <td>
                     <div class="stock_symbol_wrap">
                         <div class="stock_symbol_img">
+                            <a href="${stockUrl}">
                             <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
                             alt="${stock.symbol}-img" 
                             onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
+                            </a>
                         </div>
                         <div class="stock_name">
                             <p><a href="${stockUrl}">${stock.name}</a></p>
