@@ -11,34 +11,40 @@ function fetch_stocks_data()
 
     $page_id = intval($_POST['page_id']);
     $ticker_type = get_field('ticker_list_type', $page_id);
+    $total_stocks_acf = get_field('total_stocks_to_display', $page_id);
+    if ($total_stocks_acf) {
+        $total_stocks_display = $total_stocks_acf;
+    } else {
+        $total_stocks_display = 20;
+    }
     $table_name = $wpdb->prefix . 'stocks_list_details';
     if ($ticker_type === 'manual') {
         $stocks_list = get_field('stock_symbols', $page_id); // acf field
         $symbols = array_map('trim', explode(',', $stocks_list)); // Split into array and trim spaces
         $placeholders = implode(',', array_fill(0, count($symbols), '%s'));
-        $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders)", $symbols);
+        $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders) LIMIT $total_stocks_display", $symbols);
         $results = $wpdb->get_results($query);
     } elseif ($ticker_type === 'algorithm') {
         $algorithm_type = get_field('algorithm_select', $page_id);
 
         if ($algorithm_type === 'gainers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change DESC LIMIT 100";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'losers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change ASC LIMIT 100";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY price_change ASC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'megaCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'largeCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 10000000000 AND market_cap <= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 10000000000 AND market_cap <= 200000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'midCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 2000000000 AND market_cap <= 10000000000 AND type != 'etf' ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 2000000000 AND market_cap <= 10000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'smallCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 300000000 AND market_cap <= 2000000000 AND type != 'etf' ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 300000000 AND market_cap <= 2000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'microCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC";
+            $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'oneYHigh') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'oneYLow') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC LIMIT $total_stocks_display";
         }
 
 
