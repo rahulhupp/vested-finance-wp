@@ -1481,7 +1481,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             .then(data => {
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, showNifty, currencySymbol, stockName, dateRange);
             })
-            .catch(error => alert("Something went wrong!"));
+            .catch(error => console.log("Something went wrong!"));
     });
 
     // Event handler for currency radio buttons
@@ -1533,7 +1533,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 .then(data => {
                     renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "Invesco QQQ Trust Series 1", "month");
                 })
-                .catch(error => alert("Something went wrong!"));
+                .catch(error => console.log("Something went wrong!"));
         }, 500);
 
     });
@@ -1708,7 +1708,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     bValues
                 };
             })
-            .catch(error => alert("Something went wrong!"));
+            .catch(error => console.log("Something went wrong!"));
     }
 
     var chartInstance = null; // Declare a variable to hold the chart instance globally
