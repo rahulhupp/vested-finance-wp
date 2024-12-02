@@ -177,6 +177,7 @@
     font-weight: 500;
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 .main_collections_list .single_collection .collections_categories .single_collection_category:hover {
