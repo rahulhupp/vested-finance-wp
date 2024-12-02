@@ -65,7 +65,7 @@ while (have_posts()) :
                         );
                         $related_posts = new WP_Query($args);
                         if ($related_posts->have_posts()) :
-                            echo '<h2>Explore '. $currentPageName .'</h2><ul>';
+                            echo '<h2>Explore ' . $currentPageName . '</h2><ul>';
                             while ($related_posts->have_posts()) : $related_posts->the_post();
                                 $current_class = (get_the_ID() === $post_id) ? ' class="current"' : '';
                                 echo '<li' . $current_class . '><a href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></li>';
@@ -235,6 +235,40 @@ while (have_posts()) :
             </div>
         </div>
     <?php endif; ?>
+    <?php
+    if ($post_id = get_field('blog_to_display')):
+        $post = get_post($post_id);
+        if ($post):
+            $featured_image = get_the_post_thumbnail_url($post_id, 'full');
+            $excerpt = get_the_excerpt($post_id);
+            $categories = get_the_category($post_id);
+            $permalink = get_permalink($post_id);
+    ?>
+            <section class="selected_blog_info">
+                <div class="container">
+                    <div class="selected_blog_wrapper">
+                        <?php if ($featured_image): ?>
+                            <div class="selected_blog_img">
+                                <div class="img_wrap">
+                                    <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post->post_title); ?>">
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="selected_blog_meta">
+                            <div class="blog_meta_wrap">
+                                <h2><?php echo esc_html($post->post_title); ?></h2>
+                                <p class="blog_meta_excerpt"><?php echo $excerpt; ?></p>
+                                <a href="<?php echo esc_url($permalink); ?>" class="btn_dark cta_button">Read Blog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    <?php
+        endif;
+    endif;
+    wp_reset_postdata();
+    ?>
     <?php if (get_the_content()): ?>
         <section class="main_content">
             <div class="container">
