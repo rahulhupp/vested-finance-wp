@@ -526,7 +526,7 @@ add_action( 'pre_get_comments', 'change_comment_order' );
 
 
 add_filter('acf/load_field/name=select_posts', 'acf_load_all_posts');
-
+add_filter('acf/load_field/name=blog_to_display', 'acf_load_all_posts');
 function acf_load_all_posts($field)
 {
     // Get all posts
@@ -550,3 +550,9 @@ function acf_load_all_posts($field)
     return $field;
 }
 
+add_filter('excerpt_more', function ($more) {
+    if (is_singular('post') || is_page_template('single-collections.php')) {
+        return '';
+    }
+    return $more;
+});
