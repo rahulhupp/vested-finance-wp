@@ -198,7 +198,7 @@ function enqueue_custom_pagination_script()
 
             function formatMarketCap(value) {
                 if (value === null || value === undefined || value === '') {
-                    return 'N/A';
+                    return '-';
                 }
                 if (value >= 1e12) {
                     return '$' + (value / 1e12).toFixed(2) + 'T';
