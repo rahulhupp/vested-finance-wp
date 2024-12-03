@@ -242,13 +242,13 @@ function enqueue_custom_pagination_script()
                     var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
                     // P/E Ratio formatting
-                    var peRatio = (stock.pe_ratio == null) ? '0.00' : parseFloat(stock.pe_ratio).toFixed(2);
+                    var peRatio = (stock.pe_ratio == null || stock.pe_ratio == 0) ? '-' : parseFloat(stock.pe_ratio).toFixed(2);
 
                     // One Year Return formatting
-                    var oneYearReturns = (stock.one_year_returns == null) ? 'N/A' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
+                    var oneYearReturns = (stock.one_year_returns == null || stock.one_year_returns == 0) ? '-' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
 
                     // 5 Year CAGR formatting
-                    var cagr_5_year = (stock.cagr_5_year == null) ? 'N/A' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
+                    var cagr_5_year = (stock.cagr_5_year == null || stock.cagr_5_year == 0) ? '-' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
 
                     var changeClass = '';
                     if (stock.price_change == null || stock.price_change < 0) {
@@ -651,13 +651,13 @@ function enqueue_custom_pagination_script()
                     var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
                     // P/E Ratio formatting
-                    var peRatio = (stock.pe_ratio == null) ? '0.00' : parseFloat(stock.pe_ratio).toFixed(2);
+                    var peRatio = (stock.pe_ratio == null || stock.pe_ratio == 0) ? '-' : parseFloat(stock.pe_ratio).toFixed(2);
 
                     // One Year Return formatting
-                    var oneYearReturns = (stock.one_year_returns == null) ? 'N/A' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
+                    var oneYearReturns = (stock.one_year_returns == null || stock.one_year_returns == 0) ? '-' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
 
                     // 5 Year CAGR formatting
-                    var cagr_5_year = (stock.cagr_5_year == null) ? 'N/A' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
+                    var cagr_5_year = (stock.cagr_5_year == null || stock.cagr_5_year == 0) ? '-' : parseFloat(stock.cagr_5_year).toFixed(2) + '%';
 
                     var changeClass = '';
                     if (stock.price_change == null || stock.price_change < 0) {
