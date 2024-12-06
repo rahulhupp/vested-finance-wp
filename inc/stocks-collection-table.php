@@ -45,6 +45,74 @@ function fetch_stocks_data()
             $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'oneYLow') {
             $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC LIMIT $total_stocks_display";
+        } elseif ($algorithm_type === 'trendingStocks') {
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://metabase-partners.vestedfinance.com/api/card/100/query',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_HTTPHEADER => array(
+                    'x-api-key: mb_r6Zpg4+Ekt3SWy1rWgyq+VgQmDQc9feAGK6b70yUIqs=',
+                    'Content-Type: application/json',
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+            $responseData = json_decode($response, true);
+
+            $rows = $responseData['data']['rows'];
+
+            $tickers = array_map(function ($row) {
+                return $row[0];
+            }, $rows);
+
+            $tickerList = implode(',', array_fill(0, count($tickers), '%s'));
+
+            $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($tickerList) LIMIT $total_stocks_display", $tickers);
+        } elseif ($algorithm_type === 'popularOTC') {
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://metabase-partners.vestedfinance.com/api/card/101/query',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_HTTPHEADER => array(
+                    'x-api-key: mb_r6Zpg4+Ekt3SWy1rWgyq+VgQmDQc9feAGK6b70yUIqs=',
+                    'Content-Type: application/json',
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+            $responseData = json_decode($response, true);
+
+            $rows = $responseData['data']['rows'];
+
+            $tickers = array_map(function ($row) {
+                return $row[0];
+            }, $rows);
+
+            $tickerList = implode(',', array_fill(0, count($tickers), '%s'));
+
+            $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($tickerList) LIMIT $total_stocks_display", $tickers);
         }
 
 
