@@ -455,3 +455,45 @@ function change_comment_order( $query ) {
     $query->query_vars['order'] = 'DESC';
 }
 add_action( 'pre_get_comments', 'change_comment_order' );
+
+add_filter('acf/load_field/name=select_posts', 'acf_load_all_posts');
+add_filter('acf/load_field/name=blog_to_display', 'acf_load_all_posts');
+
+function acf_load_all_posts($field)
+{
+    // Get all posts
+    $posts = get_posts(array(
+        'post_type'      => 'post',       // Replace with your custom post type if needed
+        'numberposts'    => -1,           // Retrieve all posts
+        'post_status'    => 'publish',    // Only show published posts
+    ));
+
+    // Initialize choices array
+    $field['choices'] = [];
+
+    // Loop through each post and add it to the choices array
+    if ($posts) {
+        foreach ($posts as $post) {
+            $field['choices'][$post->ID] = $post->post_title;
+        }
+    }
+
+    // Return the field
+    return $field;
+}
+
+add_filter('excerpt_more', function ($more) {
+    if (is_singular('post') || is_page_template('single-collections.php')) {
+        return '';
+    }
+    return $more;
+});
+
+
+function preload_image($image_url)
+{
+    // Ensure the URL is not empty and it's a valid URL
+    if (!empty($image_url) && filter_var($image_url, FILTER_VALIDATE_URL)) {
+        echo '<link rel="preload" href="' . esc_url($image_url) . '" as="image" />';
+    }
+}
