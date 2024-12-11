@@ -22,7 +22,10 @@ function fetch_stocks_data()
         $stocks_list = get_field('stock_symbols', $page_id); // acf field
         $symbols = array_map('trim', explode(',', $stocks_list)); // Split into array and trim spaces
         $placeholders = implode(',', array_fill(0, count($symbols), '%s'));
-        $query = $wpdb->prepare("SELECT * FROM $table_name WHERE symbol IN ($placeholders) LIMIT $total_stocks_display", $symbols);
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE symbol IN ($placeholders) ORDER BY FIELD(symbol, $placeholders) LIMIT %d",
+            array_merge($symbols, $symbols, [$total_stocks_display])
+        );
         $results = $wpdb->get_results($query);
     } elseif ($ticker_type === 'algorithm') {
         $algorithm_type = get_field('algorithm_select', $page_id);
