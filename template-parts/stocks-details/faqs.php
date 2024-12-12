@@ -1,8 +1,11 @@
 <?php
     $overview_data = $args['overview_data'];
     $ratios_data = $args['ratios_data'];
-    $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
-    $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
+    if($ratios_data) {
+        $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
+        $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
+    }
+        
 
     if ($overview_data) {
         $name = $overview_data->name;
@@ -101,6 +104,7 @@
                     <div class="faq_answer">
                         <p>The price-to-earnings (P/E) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $peRatio; ?></span></p>
                     </div>
+                    <?php if ($ratios_data) { ?>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-book (P/B) ratio?</div>
                         <div class="faq_icon">
@@ -112,6 +116,7 @@
                     <div class="faq_answer">
                         <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
                     </div>
+                    <?php } ?>
                     <div class="faq_item">
                         <div class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</div>
                         <div class="faq_icon">
