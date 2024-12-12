@@ -32,9 +32,9 @@ function fetch_stocks_data()
         $stocks = [];
 
         if ($algorithm_type === 'gainers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY change_percent DESC";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' AND market_cap >= 2000000000 ORDER BY change_percent DESC";
         } elseif ($algorithm_type === 'losers') {
-            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' ORDER BY change_percent ASC";
+            $query = "SELECT * FROM $table_name WHERE price IS NOT NULL AND price > 0 AND type != 'etf' AND market_cap >= 2000000000 ORDER BY change_percent ASC";
         } elseif ($algorithm_type === 'megaCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap >= 200000000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'largeCap') {
@@ -46,9 +46,9 @@ function fetch_stocks_data()
         } elseif ($algorithm_type === 'microCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC";
         } elseif ($algorithm_type === 'oneYHigh') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' AND market_cap >= 2000000000 ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC";
         } elseif ($algorithm_type === 'oneYLow') {
-            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
+            $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_low) / week_52_low) * 100) < 5 AND type != 'etf' AND market_cap >= 2000000000 ORDER BY ABS(((price - week_52_low) / week_52_low) * 100) ASC";
         } elseif ($algorithm_type === 'trendingStocks') {
 
             $curl = curl_init();
