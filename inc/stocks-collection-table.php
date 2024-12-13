@@ -271,7 +271,7 @@ function enqueue_custom_pagination_script()
 
             function formatMarketCap(value) {
                 if (value === null || value === undefined || value === '') {
-                    return 'N/A';
+                    return '-';
                 }
                 if (value >= 1e12) {
                     return '$' + (value / 1e12).toFixed(2) + 'T';
@@ -309,10 +309,10 @@ function enqueue_custom_pagination_script()
 
                 // Populate table rows
                 currentData.forEach(function(stock) {
-                    var stockPrice = (stock.price == null) ? 'N/A' : '$' + parseFloat(stock.price).toFixed(2);
+                    var stockPrice = (stock.price == null) ? '-' : '$' + parseFloat(stock.price).toFixed(2);
 
                     // Price Change formatting
-                    var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
+                    var stockPriceChange = (stock.price_change == null) ? '-' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
                     // P/E Ratio formatting
                     var peRatio = (stock.pe_ratio == null || stock.pe_ratio == 0) ? '-' : parseFloat(stock.pe_ratio).toFixed(2);
@@ -718,10 +718,10 @@ function enqueue_custom_pagination_script()
                     // Handle null or undefined values and format them to two decimal places
 
                     // Price formatting
-                    var stockPrice = (stock.price == null) ? 'N/A' : '$' + parseFloat(stock.price).toFixed(2);
+                    var stockPrice = (stock.price == null) ? '-' : '$' + parseFloat(stock.price).toFixed(2);
 
                     // Price Change formatting
-                    var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
+                    var stockPriceChange = (stock.price_change == null) ? '-' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
                     // P/E Ratio formatting
                     var peRatio = (stock.pe_ratio == null || stock.pe_ratio == 0) ? '-' : parseFloat(stock.pe_ratio).toFixed(2);
