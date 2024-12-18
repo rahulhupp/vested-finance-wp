@@ -52,15 +52,22 @@ if ($overview_data) {
         }
     }
 
-    if (!empty($custom_title) && !empty($custom_description)) {
+    if (!empty($custom_title)) {
         set_query_var('custom_stock_title_value', $custom_title);
-        set_query_var('custom_stock_description_value', $custom_description);
     } else {
         if ($get_path[2] == 'etf') {
             set_query_var('custom_stock_title_value', "$ticker Stock Price, Invest in $name share today - Quotes & Returns");
-            set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
         } else {
             set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
+        }
+    }
+
+    if (!empty($custom_description)) {
+        set_query_var('custom_stock_description_value', $custom_description);
+    } else {
+        if ($get_path[2] == 'etf') {
+            set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
+        } else {
             set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
         }
     }
