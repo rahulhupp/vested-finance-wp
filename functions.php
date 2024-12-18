@@ -122,7 +122,15 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title'    => 'US Market Footer',
         'parent_slug'   => 'footer-settings',
     ));
-    
+
+    acf_add_options_page(array(
+        'page_title'    => 'Stocks Meta Settings',
+        'menu_title'    => 'Stocks Meta Settings',
+        'menu_slug'     => 'stocks-meta-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false,
+        'icon_url' => 'dashicons-admin-site',
+    ));
 }
 
 if (function_exists('acf_add_options_page')) {

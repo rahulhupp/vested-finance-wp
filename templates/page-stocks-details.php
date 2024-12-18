@@ -29,6 +29,7 @@ if ($get_path[2] == 'etf') {
 }
 
 if ($overview_data) {
+    $meta_settings = get_field('meta_settings', 'option');
     $ticker = $overview_data->ticker;
     $name = $overview_data->name;
     $formattedTicker = strtolower(str_replace(' ', '-', $ticker));
@@ -38,15 +39,22 @@ if ($overview_data) {
     $formattedName = preg_replace('/-+/', '-', $formattedName);
     $formattedName = trim($formattedName, '-');
     $homeURL = home_url();
-    if ($get_path[2] == 'etf') {
-        set_query_var('custom_stock_title_value', "$ticker Stock Price, Invest in $name share today - Quotes & Returns");
-        set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
-        set_query_var('custom_stock_url_value', "$homeURL$path");
+    $custom_title = '';
+    $custom_description = '';
+
+    if (!empty($custom_title) && !empty($custom_description)) {
+        set_query_var('custom_stock_title_value', $custom_title);
+        set_query_var('custom_stock_description_value', $custom_description);
     } else {
-        set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
-        set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
-        set_query_var('custom_stock_url_value', "$homeURL$path");
+        if ($get_path[2] == 'etf') {
+            set_query_var('custom_stock_title_value', "$ticker Stock Price, Invest in $name share today - Quotes & Returns");
+            set_query_var('custom_stock_description_value', "Get the live $name ($ticker) ETF stock quote, historical prices, returns, largest holdings, expense ratio, and more on Vested. Everything you need to invest in $name ($ticker) ETF and other US ETFs.");
+        } else {
+            set_query_var('custom_stock_title_value', "$name Share Price today - Invest in $ticker Stock  | Market Cap, Quote, Returns & More");
+            set_query_var('custom_stock_description_value', "Get the Live stock price of $name ($ticker), Check its Financials, Fundamental Data, Overview, Technicals, Returns & Earnings over the years and Key ratios & Market news about the stock. Start Investing in $name and other US Stocks with Vested.");
+        }
     }
+    set_query_var('custom_stock_url_value', "$homeURL$path");
     set_query_var('custom_stock_image_value', "https://d13dxy5z8now6z.cloudfront.net/symbol/$ticker.png");
 }
 
