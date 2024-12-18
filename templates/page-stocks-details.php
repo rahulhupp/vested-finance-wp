@@ -42,6 +42,16 @@ if ($overview_data) {
     $custom_title = '';
     $custom_description = '';
 
+    if ($meta_settings) {
+        foreach ($meta_settings as $meta_row) {
+            if (!empty($meta_row['ticker']) && strtolower($meta_row['ticker']) === strtolower($ticker)) {
+                $custom_title = $meta_row['meta_title'];
+                $custom_description = $meta_row['meta_description'];
+                break;
+            }
+        }
+    }
+
     if (!empty($custom_title) && !empty($custom_description)) {
         set_query_var('custom_stock_title_value', $custom_title);
         set_query_var('custom_stock_description_value', $custom_description);
