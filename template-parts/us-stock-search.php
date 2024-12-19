@@ -49,7 +49,7 @@
                     <a href="https://vestedfinance.com/us-stocks/msft/microsoft-corporation-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft" />
                             </div>
                             <span>Microsoft</span>
                         </div>
@@ -59,7 +59,7 @@
                     <a href="https://vestedfinance.com/us-stocks/tsla/tesla-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla" />
                             </div>
                             <span>Tesla</span>
                         </div>
@@ -69,7 +69,7 @@
                     <a href="https://vestedfinance.com/us-stocks/meta/meta-platforms-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta" />
                             </div>
                             <span>Meta</span>
                         </div>
@@ -79,7 +79,7 @@
                     <a href="https://vestedfinance.com/us-stocks/nflx/netflix-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix" />
                             </div>
                             <span>Netflix</span>
                         </div>
@@ -89,7 +89,7 @@
                     <a href="https://vestedfinance.com/us-stocks/etf/bwx/spdr-bbg-barclays-international-treasury-bond-etf-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr" />
                             </div>
                             <span>SPDR</span>
                         </div>
@@ -99,7 +99,7 @@
                     <a href="https://vestedfinance.com/us-stocks/amzn/amazoncom-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon" />
                             </div>
                             <span>Amazon</span>
                         </div>
@@ -109,14 +109,14 @@
                     <a href="https://vestedfinance.com/us-stocks/spot/spotify-technology-sa-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify"/>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify" />
                             </div>
                             <span>Spotify</span>
                         </div>
                     </a>
                 </li>
             </ul>
-            <a class="btn_dark" href="https://app.vestedfinance.com/us-stocks-etfs">Explore ALL US Stocks</a>
+            <a class="btn_dark" href="<?php echo home_url('/in/us-stocks/collections/'); ?>">Explore US Stock Collections</a>
         </div>
         <div class="bottom-content">
             <p>Disclosure: This list is representative of stocks available but is not intended to recommend any investment.</p>
@@ -131,7 +131,7 @@
         const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
         const time_difference = current_time - last_api_call_time;
         const cooldown_period = 3 * 60 * 60;
-        
+
         if (time_difference < cooldown_period) {
             indexedDBConnection();
         } else {
@@ -154,10 +154,15 @@
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
             'instrument-list-access': true,
         };
-        fetch(firstApiUrl, {  method: 'GET', headers: headers })
-        .then(response => response.text())
-        .then(token => { callInstrumentsApi(token); })
-        .catch(error => console.error('Error:', error));
+        fetch(firstApiUrl, {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.text())
+            .then(token => {
+                callInstrumentsApi(token);
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     function callInstrumentsApi(token) {
@@ -167,29 +172,47 @@
             'partner-authentication-token': token,
             'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
         };
-        
-        fetch(instrumentsApiUrl, { method: 'GET',  headers: headers })
-        .then(response => response.json())
-        .then(data => { storeStockList(data.instruments); })
-        .catch(error => console.error('Error:', error));
+
+        fetch(instrumentsApiUrl, {
+                method: 'GET',
+                headers: headers
+            })
+            .then(response => response.json())
+            .then(data => {
+                storeStockList(data.instruments);
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     var connection;
 
     async function indexedDBConnection() {
         connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
-        var dbName ='stocks_list';
+        var dbName = 'stocks_list';
         var tblstocks = {
             name: 'stocks',
             columns: {
-                id: { primaryKey: true, autoIncrement: true },
-                name: { notNull: true, dataType: "string" },
-                symbol: { notNull: true, dataType: "string" },
+                id: {
+                    primaryKey: true,
+                    autoIncrement: true
+                },
+                name: {
+                    notNull: true,
+                    dataType: "string"
+                },
+                symbol: {
+                    notNull: true,
+                    dataType: "string"
+                },
             }
         };
-        var database = { name: dbName, tables: [tblstocks], version: 2 }
+        var database = {
+            name: dbName,
+            tables: [tblstocks],
+            version: 2
+        }
         const isDbCreated = await connection.initDb(database);
-        if(isDbCreated === true){
+        if (isDbCreated === true) {
             console.log("db created");
             setTimeout(function() {
                 fetchResultAll('');
@@ -202,23 +225,30 @@
 
     async function storeStockList(instruments) {
         indexedDBConnection();
-        var rowsDeleted = await connection.remove({ from: 'stocks' });
-        var insertCount = await connection.insert({ into: 'stocks', values: instruments });
-        var results = await connection.select({ from: 'stocks' });
+        var rowsDeleted = await connection.remove({
+            from: 'stocks'
+        });
+        var insertCount = await connection.insert({
+            into: 'stocks',
+            values: instruments
+        });
+        var results = await connection.select({
+            from: 'stocks'
+        });
     }
 
     // Debounce function: Input as function which needs to be debounced and delay is the debounced time in milliseconds
-    var  timerId;
-    var  debounceFunction  =  function (func, delay) {
+    var timerId;
+    var debounceFunction = function(func, delay) {
         // Cancels the setTimeout method execution
         clearTimeout(timerId)
 
         // Executes the func after delay time.
-        timerId  =  setTimeout(func, delay)
+        timerId = setTimeout(func, delay)
     }
 
     // This represents a very heavy method. Which takes a lot of time to execute
-    function  makeAPICall() {
+    function makeAPICall() {
         var inputValue = document.getElementById("searchInput").value;
         fetchResult(inputValue);
     }
@@ -231,14 +261,13 @@
         // Debounces makeAPICall method
         debounceFunction(makeAPICall, 500)
 
-        if(inputValue.length > 0) {
+        if (inputValue.length > 0) {
             inputClearbtn.style.display = 'flex';
-        }
-        else {
+        } else {
             inputClearbtn.style.display = 'none';
         }
     }
-    
+
 
     async function fetchResult(stock_name) {
         try {
@@ -290,37 +319,37 @@
         }
 
         var limit = 10;
-            var count = 0;
-            dataArray.forEach(function(object) {
-                if (count < limit) {
-                    var liElement = document.createElement('li');
-                    var aElement = document.createElement('a'); // Create an anchor element
-                    var selectedText = object.name;
-                    var selectedValue = object.symbol;
-                    var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-                    var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
-                    if (object.type === 'stock') {
-                        aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
-                    } else if (object.type === 'etf') {
-                        aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
-                    }
-                    var divBoxElement = document.createElement('div');
-                    divBoxElement.className = 'box';
-                    var divExploreIconElement = document.createElement('div');
-                    divExploreIconElement.className = 'explore-icon';
-                    var imgElement = document.createElement('img');
-                    imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${object.symbol}.png`; 
-                    var spanElement = document.createElement('span');
-                    spanElement.textContent = object.name;
-                    divExploreIconElement.appendChild(imgElement);
-                    divBoxElement.appendChild(divExploreIconElement);
-                    divBoxElement.appendChild(spanElement);
-                    aElement.appendChild(divBoxElement); // Append the .box element to the anchor
-                    liElement.appendChild(aElement); // Append the anchor to the list item
-                    ulElement.appendChild(liElement);
-                    count++;
+        var count = 0;
+        dataArray.forEach(function(object) {
+            if (count < limit) {
+                var liElement = document.createElement('li');
+                var aElement = document.createElement('a'); // Create an anchor element
+                var selectedText = object.name;
+                var selectedValue = object.symbol;
+                var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+                var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
+                if (object.type === 'stock') {
+                    aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
+                } else if (object.type === 'etf') {
+                    aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
                 }
-            });
+                var divBoxElement = document.createElement('div');
+                divBoxElement.className = 'box';
+                var divExploreIconElement = document.createElement('div');
+                divExploreIconElement.className = 'explore-icon';
+                var imgElement = document.createElement('img');
+                imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${object.symbol}.png`;
+                var spanElement = document.createElement('span');
+                spanElement.textContent = object.name;
+                divExploreIconElement.appendChild(imgElement);
+                divBoxElement.appendChild(divExploreIconElement);
+                divBoxElement.appendChild(spanElement);
+                aElement.appendChild(divBoxElement); // Append the .box element to the anchor
+                liElement.appendChild(aElement); // Append the anchor to the list item
+                ulElement.appendChild(liElement);
+                count++;
+            }
+        });
 
     }
 
@@ -333,7 +362,7 @@
         inputClearbtn.style.display = 'none';
         var inputValue = inputElement.value;
 
-        if(timeout) {
+        if (timeout) {
             clearTimeout(timeout);
         }
 
@@ -366,12 +395,12 @@
             console.log(err);
         }
     }
-    
-    <?php
-        // Set the value for $stock_data
-        $stock_data = 'data from us-stock-search';
 
-        // Set the global variable for $stock_data
-        $GLOBALS['stock_data'] = $json_data;
+    <?php
+    // Set the value for $stock_data
+    $stock_data = 'data from us-stock-search';
+
+    // Set the global variable for $stock_data
+    $GLOBALS['stock_data'] = $json_data;
     ?>
 </script>
