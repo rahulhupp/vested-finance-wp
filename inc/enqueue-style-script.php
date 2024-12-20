@@ -109,6 +109,10 @@
         if(is_page_template('templates/page-partner-program-faqs.php')) {
             wp_enqueue_style('partners-faqs-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partner-program-faqs.css', false, '', '');
         }
+        if (is_page_template('templates/page-zebpay.php')) {
+            wp_enqueue_style('zebpay-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-zebpay.css', false, '', '');
+            wp_enqueue_script('zebpay-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-zebpay.js');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
