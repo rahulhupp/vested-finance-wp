@@ -129,7 +129,7 @@ get_header(); ?>
                 <div class="count">1</div>
                 <div class="step-content">
                     <div class="logo">
-                        <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/login.svg"
+                        <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/login.svg"
                             alt="Create an account with Vested">
                     </div>
                     <h3>Create an account with Vested</h3>
@@ -139,7 +139,7 @@ get_header(); ?>
                 <div class="count">2</div>
                 <div class="step-content">
                     <div class="logo">
-                        <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/login.svg"
+                        <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/login.svg"
                             alt="Create an account with Vested">
                     </div>
                     <h3>Fund your <br> account after KYC approval</h3>
@@ -149,7 +149,7 @@ get_header(); ?>
                 <div class="count">3</div>
                 <div class="step-content">
                     <div class="logo">
-                        <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/login.svg"
+                        <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/login.svg"
                             alt="Create an account with Vested">
                     </div>
                     <h3>Invest in the US stock market with confidence</h3>
@@ -197,7 +197,7 @@ get_header(); ?>
         </div>
         <div class="our-logo">
             <figure>
-                <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/vestedLargeLogo.svg"
+                <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/vestedLargeLogo.svg"
                     alt="vestedLargeLogo">
             </figure>
         </div>
@@ -211,7 +211,7 @@ get_header(); ?>
         <div class="grid-icon-cards">
             <div class="icon-card">
                 <div class="icon">
-                    <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/credit-card.svg"
+                    <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/credit-card.svg"
                         alt="Fractional investing">
                 </div>
                 <h3>Fractional investing</h3>
@@ -220,7 +220,7 @@ get_header(); ?>
             </div>
             <div class="icon-card">
                 <div class="icon">
-                    <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/onboarding.svg"
+                    <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/onboarding.svg"
                         alt="Easy and hassle-free digital onboarding">
                 </div>
                 <h3>Easy and hassle-free digital onboarding</h3>
@@ -234,7 +234,7 @@ get_header(); ?>
         <div class="section-title">
             <h2>Pricing</h2>
         </div>
-        < class="pricing-cards-grid">
+        <div class="pricing-cards-grid">
             <div class="pricing-card">
                 <h3>Simple Pricing</h3>
                 <p>Invest in your favorite US companies for 1.10% of the amount invested in stocks/ETFs annually.</p>
@@ -247,12 +247,11 @@ get_header(); ?>
                 <h3>Premium Support</h3>
                 <p>Receive help every step of the way so you can focus on US investing.</p>
             </div>
-            <div class="note">* Note: Other fees such as wire and FX conversion fees may still apply.</div>
-            <a href="#" class="continue-btn">Continue With Vested</a>
-    </div>
+        </div>
+        <div class="note">* Note: Other fees such as wire and FX conversion fees may still apply.</div>
+        <a href="#" class="continue-btn">Continue With Vested</a>
     </div>
 </section>
-
 <section class="investors-and-partners">
     <div class="container flex-box">
         <div class="content">
@@ -263,33 +262,34 @@ get_header(); ?>
         <div class="logo-grid">
             <div class="grid-item">
                 <figure>
-                    <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
+                    <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
                 </figure>
                 <h3>Techstars</h3>
             </div>
             <div class="grid-item">
                 <figure>
-                    <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
+                    <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
                 </figure>
                 <h3>Techstars</h3>
             </div>
             <div class="grid-item">
                 <figure>
-                    <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
+                    <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/techstars.png" alt="">
                 </figure>
                 <h3>Techstars</h3>
             </div>
         </div>
     </div>
 </section>
-
 <section class="about-mudrex">
     <div class="container flex-box">
         <div class="about-mudrex-image">
-            <img src="http://localhost/vested-testing/wp-content/uploads/2024/12/mudrex-1.png" alt="">
+            <figure>
+                <img src="http://localhost:8888/vested-testing/wp-content/uploads/2024/12/mudrex-1.png" alt="">
+            </figure>
         </div>
         <div class="about-mudrex-content">
-            <h2>about-mudrex</h2>
+            <h2>About <span>Mudrex</span></h2>
             <p>Mudrex is a US-headquartered and Bengaluru-based fintech start-up launched in early 2018 with the vision
                 of making crypto accessible to the masses so that ordinary investors can benefit from the massive wave
                 of wealth creation. Mudrex is a Series A funded startup backed by Y-combinator and funds like Village
@@ -302,7 +302,6 @@ get_header(); ?>
         </div>
     </div>
 </section>
-
 <section class="investing-faqs">
     <div class="container flex-box">
         <div class="section-title">
@@ -310,7 +309,7 @@ get_header(); ?>
         </div>
         <div class="accordionRow">
             <div class="accordion-item">
-                <div class="accordion-trigger flex align-center justify-between">
+                <div class="accordion-trigger">
                     <h3>Can investor from India invest in the US?</h3>
                     <div class="accordionIcon">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
@@ -327,7 +326,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-trigger flex align-center justify-between">
+                <div class="accordion-trigger">
                     <h3>Can investor from India invest in the US?</h3>
                     <div class="accordionIcon">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
@@ -346,17 +345,16 @@ get_header(); ?>
         </div>
     </div>
 </section>
-
 <section class="contact-us">
     <div class="container">
         <div class="inner-container">
-            <h2>Drop Us A Message</h2>
-            <p>We would love to answer any questions you may have</p>
+            <div class="section-info">
+                <h2>Drop Us A Message</h2>
+                <p>We would love to answer any questions you may have</p>
+            </div>
             <form action=""></form>
         </div>
     </div>
 </section>
-
-
 
 <?php get_footer(); ?>

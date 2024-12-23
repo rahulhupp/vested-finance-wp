@@ -27,4 +27,17 @@ jQuery(document).ready(function () {
       },
     ],
   });
+  if (jQuery(".accordion-trigger").length) {
+    jQuery(".accordion-trigger").click(function () {
+      var content = jQuery(this).next(".accordion-content");
+      jQuery(".accordion-content").not(content).slideUp();
+      content.slideToggle();
+      if (jQuery(this).hasClass("active")) {
+        jQuery(this).removeClass("active");
+      } else {
+        jQuery(".accordion-trigger").removeClass("active");
+        jQuery(this).addClass("active");
+      }
+    });
+  }
 });
