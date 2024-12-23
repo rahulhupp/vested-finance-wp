@@ -446,24 +446,9 @@ get_header(); ?>
 </section>
 <section class="footer-top-contact-info">
     <div class="container">
-        <?php 
-        $contact_email = get_field('contact_email', 'option'); // Assuming you set this field in Options page
-        $contact_phone = get_field('contact_phone', 'option'); 
-        ?>
-        <p>
-            <?php if ($contact_email): ?>
-                Feel free to reach out to us: 
-                <a href="mailto:<?php echo esc_attr($contact_email); ?>">
-                    <?php echo esc_html($contact_email); ?>
-                </a>
-            <?php endif; ?>
-            
-            <?php if ($contact_phone): ?>
-                | <a href="tel:<?php echo esc_attr($contact_phone); ?>">
-                    <?php echo esc_html($contact_phone); ?>
-                </a>
-            <?php endif; ?>
-        </p>
+        <?php if (get_field('footer_contact_info')): ?>
+            <p><?php the_field('footer_contact_info'); ?></p>
+        <?php endif; ?>
     </div>
 </section>
 <?php get_footer(); ?>
