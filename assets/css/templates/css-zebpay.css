@@ -1,0 +1,1048 @@
+:root {
+  --primary-font: "Inter", sans-serif;
+}
+
+img :not(header, footer) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.mudrex-vested {
+  padding: 100px 0 40px;
+}
+
+.mudrex-vested .stock-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.mudrex-vested h1 {
+  font: 700 30px/ 45px var(--primary-font);
+  color: #002852;
+  margin-bottom: 16px;
+}
+
+.mudrex-vested h1 span {
+  color: #4b2880;
+}
+
+.mudrex-vested .stock-content {
+  width: 48%;
+}
+
+.mudrex-vested .stock-content p {
+  font: 500 20px/ 24px var(--primary-font);
+  margin-bottom: 8px;
+  color: #595959;
+}
+
+.mudrex-vested .stock-content p span {
+  color: #002852;
+  font-weight: 600;
+}
+
+.mudrex-vested .stock-contact {
+  max-width: 345px;
+  margin-top: 22px;
+}
+
+.mudrex-vested .stock-contact p {
+  margin: 14px 0;
+  font: normal 10px / 16px var(--primary-font);
+  text-align: center;
+  color: #9dadbc;
+}
+
+.mudrex-vested .stock-contact p a {
+  cursor: pointer;
+  color: #9dadbc;
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+.mudrex-vested .stock-contact .btn_dark {
+  border-radius: 4px;
+  background-color: #008a5a;
+  font: 600 16px / normal var(--primary-font);
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.mudrex-vested .stock-image {
+  width: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mudrex-vested .stock-image figure {
+  max-width: 400px;
+}
+
+.mudrex-vested .logo-slider {
+  margin: 40px 0;
+}
+
+.mudrex-vested .logo-slider .slick-list {
+  margin: 0 -8px;
+}
+
+.mudrex-vested .logo-slider .slick-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 3.5rem 20px;
+  margin: 0 8px;
+}
+
+.mudrex-vested .logo-slider img {
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.mudrex-vested .disclosure {
+  text-align: center;
+  font: 400 16px/ 24px var(--primary-font);
+  color: #000000d9;
+}
+
+.our-offers {
+  padding: 40px 0;
+}
+
+.our-offers .our-offers-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.our-offers .our-offers-row .offers-future-image {
+  width: 47%;
+  display: flex;
+}
+
+.our-offers .offers-future-image figure {
+  max-width: 400px;
+  margin: auto;
+}
+
+.our-offers .our-offers-row .offers-content {
+  width: 50%;
+}
+
+.our-offers .offers-content h2 {
+  font: 600 24px / 36px var(--primary-font);
+  color: #262626;
+  margin-bottom: 24px;
+}
+
+.our-offers .offers-content ul {
+  margin-left: 0;
+  font: 600 20px / 30px var(--primary-font);
+  color: #595959;
+  margin-bottom: 24px;
+}
+
+.our-offers .offers-content li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.our-offers .offers-content li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.our-offers .offers-content li span {
+  flex: 1 1 auto;
+  width: calc(100% - 25px);
+}
+
+.our-offers .offers-content li::before {
+  content: "";
+  margin-top: 10px;
+  width: 12px;
+  height: 12px;
+  display: block;
+  background: center / 12px no-repeat
+    url('data:image/svg+xml,%3Csvg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"%3E%3C/path%3E%3C/svg%3E');
+}
+
+.invest-stock-market {
+  padding: 40px 0 75px;
+}
+
+.invest-stock-market .section-title {
+  margin-bottom: 30px;
+}
+
+.invest-stock-market h2 {
+  font: 600 30px / 45px var(--primary-font);
+  color: #262626;
+  text-align: center;
+}
+
+.invest-stock-market .stock-market-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 50px;
+  flex-wrap: wrap;
+}
+
+.invest-stock-market .stock-market-row .future-image {
+  width: 48%;
+  display: flex;
+}
+
+.invest-stock-market .stock-market-row .section-title {
+  display: none;
+}
+
+.invest-stock-market .future-image figure {
+  max-width: 480px;
+  margin: auto;
+}
+
+.invest-stock-market .stock-market-content-grid {
+  width: 47%;
+  --auto-grid-min-size: 10rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  gap: 36px 32px;
+}
+
+.invest-stock-market .stock-market-content-grid h3 {
+  font: 600 20px / 30px var(--primary-font);
+  color: #262626;
+}
+
+.invest-stock-market .stock-market-content-grid p {
+  font: 500 14px / 21px var(--primary-font);
+  color: #595959;
+  margin-bottom: 0;
+}
+
+.our-process {
+  padding: 75px 0;
+  background-color: #f0f7ff;
+}
+
+.our-process .section-title h2 {
+  font: 600 32px / 40px var(--primary-font);
+  color: #002852;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.our-process .process-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.our-process .process-step {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 27%;
+}
+
+.our-process .process-steps .count {
+  width: 58px;
+  font: 600 90px / 135px var(--primary-font);
+  color: #9dadbc;
+  margin-right: 14px;
+  margin-top: 14px;
+}
+
+.our-process .process-steps .step-content {
+  width: 65%;
+  flex: 1 1 auto;
+}
+
+.our-process .process-steps .logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.our-process .process-steps h3 {
+  font: 600 22px / 33px var(--primary-font);
+  color: #000000d9;
+  max-width: 203px;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+.about-vested {
+  padding: 95px 0 70px;
+}
+
+.about-vested .about-vested-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-vested .about-us-content {
+  width: 48%;
+}
+
+.about-vested .about-us-content h2 {
+  font: normal 30px / 45px var(--primary-font);
+  margin-bottom: 40px;
+}
+
+.about-vested .about-us-content p {
+  font: normal 16px / 24px var(--primary-font);
+  margin-bottom: 14px;
+}
+
+.about-vested .about-us-content ul {
+  margin: 40px 0 14px;
+  margin-left: 0;
+  list-style: none;
+}
+
+.about-vested .about-us-content li {
+  font: normal 16px / 24px var(--primary-font);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.about-vested .about-us-content svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 32px;
+}
+
+.about-vested .about-us-content li p {
+  width: 50%;
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+.about-vested .our-logo {
+  width: 48%;
+  display: flex;
+}
+
+.about-vested .our-logo figure {
+  margin: auto;
+  max-width: 256px;
+}
+
+.invest-through {
+  padding: 50px 0 50px;
+}
+
+.invest-through .container {
+  max-width: calc(1248px + 30px);
+}
+
+.invest-through .section-title h2 {
+  text-align: center;
+  font: 600 30px / 45px var(--primary-font);
+  color: #262626;
+  margin-bottom: 40px;
+}
+
+.invest-through .grid-icon-cards {
+  --auto-grid-min-size: 19rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  gap: 0 24px;
+}
+
+.invest-through .grid-icon-cards .icon-card {
+  padding: 72px 32px;
+}
+
+.invest-through .icon-card .icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 28px;
+  display: flex;
+}
+
+.invest-through .icon-card .icon img {
+  margin: auto;
+  object-fit: contain;
+}
+
+.invest-through .icon-card h3 {
+  font: 600 20px /30px var(--primary-font);
+  color: #262626;
+}
+
+.invest-through .icon-card p {
+  font: 500 14px/ 21px var(--primary-font);
+  color: #595959;
+  margin-bottom: 0;
+}
+
+.pricing {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.pricing .container {
+  max-width: calc(1248px + 30px);
+}
+
+.pricing .section-title h2 {
+  font: 600 30px/45px var(--primary-font);
+  color: #262626;
+  margin-bottom: 0;
+  padding-bottom: 30px;
+}
+
+.pricing .pricing-cards-grid {
+  --auto-grid-min-size: 19rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  gap: 24px;
+  margin: 50px 0 24px;
+}
+
+.pricing .pricing-cards-grid .pricing-card {
+  padding: 72px 32px;
+  background-color: #f0f7ff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+}
+
+.pricing .pricing-cards-grid h3 {
+  font: 600 20px /30px var(--primary-font);
+  color: #002852;
+}
+
+.pricing .pricing-cards-grid p {
+  font: 500 14px /21px var(--primary-font);
+  color: #002852;
+  margin-bottom: 0;
+}
+
+.pricing .note {
+  font: 600 16px /24px var(--primary-font);
+  color: #9dadbc;
+  padding-bottom: 16px;
+  margin-bottom: 0;
+}
+
+.pricing .continue-btn {
+  font: 600 22px /33px var(--primary-font);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #008a5a;
+  border-radius: 4px;
+  padding: 25px;
+  cursor: pointer;
+  max-width: 560px;
+  width: 100%;
+  margin: 30px auto 0;
+}
+
+.investors-and-partners {
+  padding: 48px 0 74px;
+}
+
+.investors-and-partners .flex-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.investors-and-partners .content {
+  width: 368px;
+}
+
+.investors-and-partners .content h2 {
+  font: 700 30px / 45px var(--primary-font);
+  color: #262626;
+  margin-bottom: 30px;
+}
+
+.investors-and-partners .content p {
+  font: 600 16px / 24px var(--primary-font);
+  color: #595959;
+  margin-bottom: 30px;
+}
+
+.investors-and-partners .logo-grid {
+  width: calc(100% - 368px);
+  max-width: 552px;
+  margin-left: auto;
+  --auto-grid-min-size: 9rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  gap: 36px 0;
+}
+
+.investors-and-partners .logo-grid .grid-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.investors-and-partners .grid-item figure {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.investors-and-partners .grid-item h3 {
+  font: 600 20px / 30px var(--primary-font);
+  color: #262626;
+}
+
+.about-mudrex {
+  padding: 74px 0 50px;
+}
+
+.about-mudrex .flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.about-mudrex .flex-box .about-mudrex-image {
+  width: 47%;
+  display: flex;
+}
+
+.about-mudrex .about-mudrex-image figure {
+  max-width: 400px;
+  margin: auto;
+}
+
+.about-mudrex .flex-box .about-mudrex-content {
+  width: 50%;
+}
+
+.about-mudrex .about-mudrex-content h2 {
+  font: 600 30px / 45px var(--primary-font);
+  color: #394955;
+  margin-bottom: 30px;
+}
+
+.about-mudrex .about-mudrex-content h2 span {
+  color: #4b2880;
+}
+
+.about-mudrex .about-mudrex-content p {
+  font: 500 16px / 30px var(--primary-font);
+  color: #394955;
+  margin-bottom: 16px;
+}
+
+.investing-faqs {
+  padding: 50px 0;
+}
+
+.investing-faqs .section-title h2 {
+  font: 600 30px/ 45px var(--primary-font);
+  margin-bottom: 30px;
+  text-align: center;
+  color: #000000d9;
+}
+
+.investing-faqs .accordionRow {
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px 40px;
+  flex-wrap: wrap;
+}
+
+.investing-faqs .accordionRow h3 {
+  font: normal 16px/ 24px var(--primary-font);
+  margin-bottom: 0;
+  color: #000000d9;
+  flex: 1 1 auto;
+}
+
+.investing-faqs .accordionRow p {
+  font: normal 16px/ 1.5715 var(--primary-font);
+  color: #000000d9;
+  margin-bottom: 0;
+}
+
+.investing-faqs .accordionRow p:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.investing-faqs .accordionRow .accordion-item {
+  width: calc(50% - 20px);
+}
+
+.investing-faqs .accordion-item .accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.investing-faqs .accordion-trigger .accordionIcon {
+  width: 16px;
+  height: 25px;
+}
+
+.investing-faqs .accordion-trigger .accordionIcon svg {
+  transition: all 0.4s ease-in-out;
+}
+
+.investing-faqs .accordion-trigger.active .accordionIcon svg {
+  transform: rotate(90deg);
+}
+
+.investing-faqs .accordion-content {
+  border-width: 1px;
+  border-style: solid;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+  border-color: rgb(255, 255, 255);
+  padding: 12px;
+  font-size: 16px;
+}
+
+.investing-faqs .accordion-content {
+  margin-bottom: 20px;
+  display: none;
+}
+
+.investing-faqs .accordion-content:last-child {
+  margin-bottom: 0px;
+}
+
+.contact-us {
+  padding: 50px 0;
+}
+
+.contact-us .inner-container {
+  max-width: 775px;
+  margin: 0 auto;
+  padding: 48px 36px 40px;
+  background-color: #f0f7ff;
+  border-radius: 4px;
+}
+
+.contact-us .inner-container .section-info {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.contact-us .section-info h2 {
+  font: 600 22px / 33px var(--primary-font);
+  color: #002852;
+  margin-bottom: 22px;
+}
+
+.contact-us .section-info p {
+  font: 500 16px / 33px var(--primary-font);
+  color: #002852;
+  padding-top: 22px;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .about-mudrex .flex-box .about-mudrex-image,
+  .investors-and-partners .logo-grid,
+  .about-vested .our-logo,
+  .invest-stock-market .stock-market-row .future-image,
+  .our-offers .our-offers-row .offers-future-image {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .mudrex-vested .stock-content,
+  .about-mudrex .flex-box .about-mudrex-content,
+  .investing-faqs .accordionRow .accordion-item,
+  .about-vested .about-us-content,
+  .investors-and-partners .content,
+  .invest-stock-market .stock-market-content-grid,
+  .our-offers .our-offers-row .offers-content {
+    width: 100%;
+  }
+
+  .mudrex-vested {
+    padding: 60px 0;
+  }
+
+  .mudrex-vested .stock-row {
+    padding: 0 10px;
+    flex-direction: column-reverse;
+  }
+
+  .mudrex-vested .stock-image {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .mudrex-vested h1 {
+    font-size: 24px !important;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+
+  .mudrex-vested .stock-content p {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .mudrex-vested .stock-contact {
+    margin: 24px auto 0;
+  }
+
+  .mudrex-vested .stock-contact p {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .mudrex-vested .logo-slider {
+    margin: 20px 0 30px;
+  }
+
+  .mudrex-vested .logo-slider .slick-list {
+    margin: 0;
+  }
+
+  .mudrex-vested .logo-slider .slick-slide {
+    padding: 2rem 15px;
+  }
+
+  .mudrex-vested .disclosure {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .mudrex-vested .disclosure p {
+    margin-bottom: 0;
+  }
+
+  .our-offers {
+    padding: 60px 0 40px;
+  }
+
+  .our-offers .our-offers-row .offers-future-image {
+    margin-bottom: 36px;
+  }
+
+  .our-offers .offers-content h2 {
+    font-size: 22px !important;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
+  .our-offers .offers-content li {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+  }
+
+  .our-offers .offers-content li:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  .invest-stock-market {
+    padding: 40px 0 70px;
+  }
+
+  .invest-stock-market .stock-market-row .section-title h2 {
+    font-size: 24px !important;
+    line-height: 36px;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .invest-stock-market .stock-market-row {
+    padding: 0 10px 0;
+  }
+
+  .invest-stock-market .stock-market-content-grid {
+    --auto-grid-min-size: 13rem;
+    gap: clamp(0.9375rem, 0.5169rem + 2.1029vw, 1.525rem);
+  }
+
+  .invest-stock-market .stock-market-content-grid h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #262626;
+  }
+
+  .invest-stock-market .stock-market-content-grid p {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    color: #595959;
+  }
+
+  .our-process {
+    padding: 60px 0;
+  }
+
+  .our-process .section-title h2 {
+    font-size: 28px;
+    line-height: 42px;
+    margin-bottom: 28px;
+  }
+
+  .our-process .process-steps {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .our-process .process-step {
+    width: 100%;
+    max-width: 248px;
+    margin: 0 auto;
+  }
+
+  .our-process .process-steps .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .our-process .process-steps .count {
+    width: 30px;
+    font-size: 45px;
+    line-height: 50px;
+    margin-top: 35px;
+  }
+
+  .our-process .process-steps h3 {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .about-vested {
+    padding: 60px 0 40px;
+  }
+
+  .about-vested .about-vested-row {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .about-vested .about-us-content {
+    padding: 0 17px;
+  }
+
+  .about-vested .about-us-content h2 {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 24px;
+  }
+
+  .about-vested .about-us-content ul {
+    margin: 30px 0 0px;
+  }
+
+  .about-vested .about-us-content li:last-child {
+    margin: 0;
+  }
+
+  .invest-through {
+    padding: 50px 0 40px;
+  }
+
+  .invest-through .grid-icon-cards .icon-card {
+    padding: 20px;
+  }
+
+  .invest-through .icon-card .icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 12px;
+  }
+
+  .invest-through .icon-card h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #262626;
+  }
+
+  .invest-through .icon-card p {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    color: #595959;
+  }
+
+  .pricing {
+    padding: 40px 0 20px;
+  }
+
+  .pricing .section-title h2 {
+    padding-bottom: 0;
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .pricing .pricing-cards-grid {
+    --auto-grid-min-size: 16rem;
+    padding: 0 17px;
+  }
+
+  .pricing .pricing-cards-grid .pricing-card {
+    padding: 47px 25px;
+  }
+
+  .pricing .note {
+    padding: 0 17px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .pricing .continue-btn {
+    padding: 25px 15px;
+    font-size: 20px;
+    margin-top: 40px;
+  }
+
+  .investors-and-partners .flex-box {
+    flex-direction: column;
+    padding: 0 34px;
+    text-align: center;
+  }
+
+  .investors-and-partners .content h2 {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .investors-and-partners .content p {
+    margin-bottom: 20px;
+  }
+
+  .investors-and-partners .grid-item figure {
+    width: 64px;
+    height: 64px;
+  }
+
+  .investors-and-partners .grid-item h3 {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .investors-and-partners .logo-grid {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .investors-and-partners .logo-grid .grid-item {
+    flex: 0 0 33.33333333%;
+    max-width: 33.33333333%;
+  }
+
+  .invest-stock-market .section-title {
+    display: none;
+  }
+
+  .our-offers .offers-content ul {
+    margin-bottom: 0;
+  }
+
+  .invest-stock-market .stock-market-row .section-title {
+    display: block;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  .about-mudrex {
+    padding: 30px 0 40px;
+  }
+
+  .about-mudrex .flex-box {
+    padding: 0 32px;
+  }
+
+  .about-mudrex .flex-box .about-mudrex-image {
+    margin-bottom: 20px;
+  }
+
+  .about-mudrex .about-mudrex-content h2 {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .investing-faqs {
+    padding: 40px 0;
+  }
+
+  .investing-faqs .container {
+    padding: 0 32px;
+  }
+
+  .investing-faqs .section-title h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .investing-faqs .accordionRow h3 {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 600;
+  }
+  .contact-us {
+    padding: 40px 0;
+  }
+  .contact-us .inner-container {
+    padding: 40px 24px;
+  }
+  .contact-us .section-info h2 {
+    font-size: 22px;
+    line-height: 33px;
+  }
+  .contact-us .section-info p {
+    font-size: 14px;
+    padding-top: 16px;
+    line-height: 22px;
+  }
+}
