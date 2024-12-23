@@ -156,7 +156,7 @@ img :not(header, footer) {
   width: 64px;
   height: 64px;
   display: block;
-  background: center / content no-repeat
+  background: center / contain no-repeat
     url("http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/12/sparkle.svg");
 }
 
@@ -290,8 +290,8 @@ img :not(header, footer) {
   background: center / contain no-repeat
     url("http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/12/dots.svg");
   position: absolute;
-  bottom: 0;
-  right: 100%;
+  top: 110px;
+  right: 102%;
 }
 
 .our-process .process-steps .step-content {
@@ -613,7 +613,7 @@ img :not(header, footer) {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px 40px;
+  gap: 0px 40px;
   flex-wrap: wrap;
 }
 
@@ -673,7 +673,7 @@ img :not(header, footer) {
 }
 
 .investing-faqs .accordion-trigger .accordionIcon svg {
-  transition: all 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .investing-faqs .accordion-trigger.active .accordionIcon svg {
@@ -690,6 +690,7 @@ img :not(header, footer) {
 
 .contact-us .formFlexBox .col-2 {
   width: 48%;
+  flex: 1 1 auto;
 }
 
 .contact-us .formFlexBox .col-full {
