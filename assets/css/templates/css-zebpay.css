@@ -277,10 +277,10 @@ img :not(header, footer) {
 
 .our-process .process-steps .count {
   width: 58px;
-  font: 600 90px / 135px var(--primary-font);
+  font: normal 90px / 135px var(--primary-font);
   color: #9dadbc;
   margin-right: 14px;
-  margin-top: 14px;
+  margin-top: 20px;
 }
 
 .our-process .process-step:not(:first-child)::before {
@@ -290,8 +290,8 @@ img :not(header, footer) {
   background: center / contain no-repeat
     url("http://wordpress-testing.vestedfinance.com/wp-content/uploads/2024/12/dots.svg");
   position: absolute;
-  top: 110px;
-  right: 102%;
+  top: 105px;
+  right: calc(100% + 20px);
 }
 
 .our-process .process-steps .step-content {
@@ -303,6 +303,7 @@ img :not(header, footer) {
   width: 120px;
   height: 120px;
   object-fit: contain;
+  margin-left: 5px;
 }
 
 .our-process .process-steps h3 {
@@ -310,7 +311,7 @@ img :not(header, footer) {
   color: #000000d9;
   max-width: 203px;
   margin-left: auto;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .about-vested {
@@ -334,6 +335,7 @@ img :not(header, footer) {
 .about-vested .about-us-content p {
   font: normal 16px / 24px var(--primary-font);
   margin-bottom: 14px;
+  color: #394955;
 }
 
 .about-vested .about-us-content ul {
@@ -355,7 +357,9 @@ img :not(header, footer) {
   margin-right: 32px;
 }
 
-.about-vested .about-us-content .benefit-icon {
+.about-vested .about-us-content .benefit-icon img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -463,6 +467,7 @@ img :not(header, footer) {
   justify-content: space-evenly;
   align-items: center;
   gap: 20px;
+  min-height: 280px;
 }
 
 .pricing .pricing-cards-grid h3 {
@@ -477,7 +482,7 @@ img :not(header, footer) {
 }
 
 .pricing .note {
-  font: 600 16px /24px var(--primary-font);
+  font: italic 600 16px /24px var(--primary-font);
   color: #9dadbc;
   padding-bottom: 16px;
   margin-bottom: 0;
@@ -762,6 +767,10 @@ img :not(header, footer) {
   margin-bottom: 0;
 }
 
+.contact-us .wpcf7-response-output {
+  text-align: center;
+}
+
 .investing-faqs .accordion-content {
   border-width: 1px;
   border-style: solid;
@@ -838,15 +847,15 @@ img :not(header, footer) {
   text-align: center;
 }
 
-.footer-top-contact-info p{
+.footer-top-contact-info p {
   margin-bottom: 0;
 }
 
-.footer-top-contact-info p a{
+.footer-top-contact-info p a {
   color: #ffffff;
 }
 
-.footer-top-contact-info p a:hover{
+.footer-top-contact-info p a:hover {
   text-decoration: underline;
 }
 
@@ -868,6 +877,15 @@ img :not(header, footer) {
   .invest-stock-market .stock-market-content-grid,
   .our-offers .our-offers-row .offers-content {
     width: 100%;
+  }
+
+  .our-offers .our-offers-row .offers-content {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .mudrex-vested .stock-content {
+    max-width: 430px;
   }
 
   .mudrex-vested {
@@ -933,10 +951,19 @@ img :not(header, footer) {
     margin-bottom: 36px;
   }
 
+  .our-offers .our-offers-row {
+    padding: 0 32px;
+  }
+
   .our-offers .offers-content h2 {
-    font-size: 22px !important;
-    line-height: 32px;
+    font-size: 16px !important;
+    line-height: 24px;
     margin-bottom: 24px;
+  }
+
+  .our-offers .offers-content h2::after {
+    width: 32px;
+    height: 32px;
   }
 
   .our-offers .offers-content li {
@@ -1077,7 +1104,7 @@ img :not(header, footer) {
   }
 
   .pricing {
-    padding: 40px 0 20px;
+    padding: 40px 0 10px;
   }
 
   .pricing .section-title h2 {
@@ -1093,6 +1120,7 @@ img :not(header, footer) {
 
   .pricing .pricing-cards-grid .pricing-card {
     padding: 47px 25px;
+    min-height: auto;
   }
 
   .pricing .note {
@@ -1114,7 +1142,7 @@ img :not(header, footer) {
   }
 
   .investors-and-partners .content h2 {
-    font-size: 20px;
+    font-size: 20px !important;
     line-height: 30px;
     text-align: center;
     margin-bottom: 8px;
@@ -1122,6 +1150,9 @@ img :not(header, footer) {
 
   .investors-and-partners .content p {
     margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
   }
 
   .investors-and-partners .grid-item figure {
@@ -1212,8 +1243,7 @@ img :not(header, footer) {
     line-height: 22px;
   }
 
-  .our-process .process-step:not(:first-child)::before,
-  .our-offers .offers-content h2::after {
+  .our-process .process-step:not(:first-child)::before {
     display: none;
   }
 }

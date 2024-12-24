@@ -30,7 +30,7 @@ jQuery(document).ready(function () {
   if (jQuery(".accordion-trigger").length) {
     jQuery(".accordion-trigger").click(function () {
       var content = jQuery(this).next(".accordion-content");
-      content.slideToggle();
+      content.toggle();
       jQuery(this).toggleClass("active");
     });
   }
