@@ -352,7 +352,7 @@ get_header(); ?>
             <?php endif; ?>
 
             <?php if (get_field('about_mudrex_description')): ?>
-                <p><?php the_field('about_mudrex_description'); ?></p>
+               <?php the_field('about_mudrex_description'); ?>
             <?php endif; ?>
         </div>
     </div>
