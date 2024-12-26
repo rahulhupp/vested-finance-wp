@@ -27,7 +27,7 @@ img :not(header, footer) {
 }
 
 .mudrex-vested h1 span {
-  color: #4b2880;
+  color: #2072EF;
 }
 
 .mudrex-vested .stock-content {
@@ -586,6 +586,10 @@ img :not(header, footer) {
   width: 50%;
 }
 
+.about-mudrex .flex-box .about-mudrex-content h5 {
+  margin-bottom: 10px;
+}
+
 .about-mudrex .about-mudrex-content h2 {
   font: 600 30px / 45px var(--primary-font);
   color: #394955;
@@ -593,7 +597,7 @@ img :not(header, footer) {
 }
 
 .about-mudrex .about-mudrex-content h2 span {
-  color: #4b2880;
+  color: #2072EF;
 }
 
 .about-mudrex .about-mudrex-content p {
