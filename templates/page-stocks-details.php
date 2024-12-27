@@ -192,7 +192,7 @@
                     ?>
                     <?php 
                         if ($sector_breakdowns_data) {
-                            get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
+                            // get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
                         }
                     ?>
                 <?php endif; ?>
