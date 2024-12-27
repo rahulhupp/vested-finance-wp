@@ -334,15 +334,6 @@ get_header(); ?>
                 </div>
             </div>
             <?php  endif; ?>
-
-            <?php if (get_field('pricing_note')): ?>
-                <div class="note"><?php the_field('pricing_note'); ?></div>
-            <?php endif; ?>
-            <?php if (get_field('continue_button_link') && get_field('continue_button_text')): ?>
-                <a href="<?php the_field('continue_button_link'); ?>" class="continue-btn">
-                    <?php the_field('continue_button_text'); ?>
-                </a>
-            <?php endif; ?>
         </div>
     </section>
     <section class="investors-and-partners">
