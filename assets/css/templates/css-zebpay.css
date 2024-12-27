@@ -2,7 +2,7 @@
   --primary-font: "Inter", sans-serif;
 }
 
-img :not(header, footer) {
+.lending-page img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -27,7 +27,7 @@ img :not(header, footer) {
 }
 
 .mudrex-vested h1 span {
-  color: #2072EF;
+  color: #2072ef;
 }
 
 .mudrex-vested .stock-content {
@@ -436,10 +436,6 @@ img :not(header, footer) {
   text-align: center;
 }
 
-.pricing .container {
-  max-width: calc(1248px + 30px);
-}
-
 .pricing .section-title h2 {
   font: 600 30px/45px var(--primary-font);
   color: #262626;
@@ -447,42 +443,121 @@ img :not(header, footer) {
   padding-bottom: 30px;
 }
 
-.pricing .pricing-cards-grid {
-  --auto-grid-min-size: 19rem;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--auto-grid-min-size), 1fr)
-  );
-  gap: 24px;
-  margin: 50px 0 24px;
-}
-
-.pricing .pricing-cards-grid .pricing-card {
-  padding: 72px 32px;
-  background-color: #f0f7ff;
-  border-radius: 4px;
+.pricing .pricing-cards {
   display: flex;
+  align-items: end;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.pricing .pricing-cards .pricing-info {
+  padding: clamp(0.3125rem, -0.0822rem + 1.9737vw, 1.25rem);
+  border-radius: 8px;
+  width: clamp(6.25rem, 2.3026rem + 19.7368vw, 15.625rem);
+  background-color: #ffffff;
+}
+
+.pricing .pricing-cards .pricing-info h6 {
+  font: 600 clamp(0.75rem, 0.5395rem + 1.0526vw, 1.25rem) /
+    clamp(1.125rem, 0.9671rem + 0.7895vw, 1.5rem) var(--primary-font);
+  color: #262626;
+}
+
+.pricing .pricing-cards .pricing-card {
+  padding: clamp(0.3125rem, -0.0822rem + 1.9737vw, 1.25rem)
+    clamp(0.625rem, 0.3618rem + 1.3158vw, 1.25rem);
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-align: center;
+  width: clamp(9.375rem, 5.6908rem + 18.4211vw, 18.125rem);
+}
+
+.pricing .pricing-cards .pricing-card .pricing-content {
+  justify-content: center;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 20px;
-  min-height: 280px;
+  flex-wrap: nowrap;
 }
 
-.pricing .pricing-cards-grid h3 {
-  font: 600 20px /30px var(--primary-font);
-  color: #002852;
+.pricing .pricing-cards .pricing-card .pricing-content h5 {
+  max-width: 250px;
 }
 
-.pricing .pricing-cards-grid p {
-  font: 500 14px /21px var(--primary-font);
-  color: #002852;
+.pricing .pricing-cards .pricing-card .pricing-content svg {
+  width: clamp(1.375rem, 1.0329rem + 1.7105vw, 2.1875rem);
+  height: clamp(1.375rem, 1.0329rem + 1.7105vw, 2.1875rem);
+  object-fit: contain;
+}
+
+.pricing .pricing-cards .pricing-card:last-child {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pricing .pricing-cards h3 {
+  font: 600 clamp(1rem, 0.6316rem + 1.8421vw, 1.875rem) /
+    clamp(1.5rem, 1.1842rem + 1.5789vw, 2.25rem) var(--primary-font);
+  color: #262626;
+  margin: clamp(0.9375rem, 0.6743rem + 1.3158vw, 1.5625rem) 0
+    clamp(0rem, -0.1316rem + 0.6579vw, 0.3125rem);
+}
+
+.pricing .pricing-cards .pricing-card .pricing-content:nth-child(2) h5 {
+  font: 600 clamp(1rem, 0.6316rem + 1.8421vw, 1.875rem) /
+    clamp(1.25rem, 0.8289rem + 2.1053vw, 2.25rem) var(--primary-font);
+  color: #2072ef;
+}
+
+.pricing .pricing-cards .pricing-card .pricing-content:nth-child(2) h5 span {
+  font: 600 clamp(0.8125rem, 0.7336rem + 0.3947vw, 1rem) /
+    clamp(0.9375rem, 0.8322rem + 0.5263vw, 1.1875rem) var(--primary-font);
+  color: #262626;
+}
+
+.pricing .pricing-cards h5 {
+  font: 600 clamp(0.8125rem, 0.523rem + 1.4474vw, 1.5rem) /
+    clamp(1rem, 0.6579rem + 1.7105vw, 1.8125rem) var(--primary-font);
+  color: #262626;
+}
+
+.pricing .pricing-cards p,
+.pricing .pricing-cards h5 span {
+  font: 500 clamp(0.6875rem, 0.6086rem + 0.3947vw, 0.875rem) /
+    clamp(0.875rem, 0.7961rem + 0.3947vw, 1.0625rem) var(--primary-font);
+  color: #8c8c8c;
   margin-bottom: 0;
 }
 
+.pricing .pricing-cards .pricing-content {
+  width: 100%;
+  height: clamp(4.0625rem, 3.273rem + 3.9474vw, 5.9375rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pricing .pricing-cards .pricing-cards-wapper {
+  width: calc(
+    100% -
+      (
+        clamp(6.25rem, 2.3026rem + 19.7368vw, 15.625rem) +
+          clamp(0.625rem, 0.0987rem + 2.6316vw, 1.875rem)
+      )
+  );
+  padding: 5px clamp(0.3125rem, 0.0493rem + 1.3158vw, 0.9375rem);
+  overflow: auto;
+  margin-bottom: -5px;
+}
+.pricing .pricing-cards .flex-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  width: 100%;
+  min-width: fit-content;
+  gap: clamp(0.3125rem, -0.1875rem + 2.5vw, 1.5rem);
+}
+
 .pricing .note {
-  font: italic 600 16px /24px var(--primary-font);
+  font: 600 16px /24px var(--primary-font);
   color: #9dadbc;
   padding-bottom: 16px;
   margin-bottom: 0;
@@ -597,7 +672,7 @@ img :not(header, footer) {
 }
 
 .about-mudrex .about-mudrex-content h2 span {
-  color: #2072EF;
+  color: #2072ef;
 }
 
 .about-mudrex .about-mudrex-content p {
@@ -682,7 +757,7 @@ img :not(header, footer) {
 }
 
 .investing-faqs .accordion-trigger .accordionIcon svg {
-  transition: transform 0.4s ease-in-out;
+  transition: unset;
 }
 
 .investing-faqs .accordion-trigger.active .accordionIcon svg {
@@ -881,6 +956,18 @@ img :not(header, footer) {
   .invest-stock-market .stock-market-content-grid,
   .our-offers .our-offers-row .offers-content {
     width: 100%;
+  }
+
+  .investing-faqs .accordionRow {
+    gap: 20px;
+  }
+
+  .invest-through .section-title h2 {
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
+    margin-bottom: 24px;
+    padding: 0 17px;
   }
 
   .our-offers .our-offers-row .offers-content {
