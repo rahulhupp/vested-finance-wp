@@ -397,10 +397,6 @@ get_header(); ?>
                     </figure>
                 <?php endif; ?>
             </div>
-<<<<<<< HEAD
-            <div class="form-container">
-                <?php echo do_shortcode('[contact-form-7 id="eec0d93" title="Zebpay contact form"]'); ?>
-=======
             <div class="about-mudrex-content">
                 <?php if (get_field('about_mudrex_title')): ?>
                     <h2><?php the_field('about_mudrex_title'); ?></h2>
@@ -409,7 +405,6 @@ get_header(); ?>
                 <?php if (get_field('about_mudrex_description')): ?>
                     <?php the_field('about_mudrex_description'); ?>
                 <?php endif; ?>
->>>>>>> aeecbe6163416c7740ec92325fdaa28266656a4b
             </div>
         </div>
     </section>
