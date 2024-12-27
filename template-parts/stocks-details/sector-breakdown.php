@@ -12,9 +12,6 @@
         for ($i = 0; $i < count($sector_breakdowns_data); $i++) {
             $sector_breakdowns_data[$i]['color'] = $colors[$i % count($colors)];
         }
-        echo '<pre>';
-        print_r($sector_breakdowns_data);
-        echo '</pre>';
     ?>
     <div id="sector_breakdown_tab" class="tab_content">
         <div class="stock_details_box">
