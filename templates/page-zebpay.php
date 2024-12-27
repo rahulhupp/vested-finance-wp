@@ -268,22 +268,72 @@ get_header(); ?>
                 </div>
             <?php endif; ?>
 
-            <?php if (have_rows('pricing_cards')): ?>
-                <div class="pricing-cards-grid">
-                    <?php while (have_rows('pricing_cards')):
-                        the_row(); ?>
-                        <div class="pricing-card">
-                            <?php if (get_sub_field('card_title')): ?>
-                                <h3><?php the_sub_field('card_title'); ?></h3>
-                            <?php endif; ?>
+            <?php  if (have_rows('plans')): ?>
+            <div class="pricing-cards">
+                <div class="pricing-info">
+                    <?php
+                    $features = [];
+                    if (have_rows('plans')):
+                        while (have_rows('plans')):
+                            the_row();
+                            if (have_rows('features')):
+                                while (have_rows('features')):
+                                    the_row();
+                                    $feature_name = get_sub_field('feature_name');
+                                    if (!in_array($feature_name, $features)) {
+                                        $features[] = $feature_name;
+                                    }
+                                endwhile;
+                            endif;
+                        endwhile;
+                    endif;
 
-                            <?php if (get_sub_field('card_description')): ?>
-                                <p><?php the_sub_field('card_description'); ?></p>
-                            <?php endif; ?>
+                    foreach ($features as $feature): ?>
+                        <div class="pricing-content">
+                            <h6><?php echo $feature; ?></h6>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
+
+                <div class="pricing-cards-wapper">
+                    <div class="flex-row">
+                        <?php if (have_rows('plans')): ?>
+                            <?php while (have_rows('plans')):
+                                the_row(); ?>
+                                <div class="pricing-card">
+                                    <h3><?php the_sub_field('plan_name'); ?></h3>
+                                    <?php
+                                    foreach ($features as $feature):
+                                        $feature_found = false;
+                                        if (have_rows('features')):
+                                            while (have_rows('features')):
+                                                the_row();
+                                                if (get_sub_field('feature_name') === $feature):
+                                                    $feature_value = get_sub_field('feature_value');
+                                                    $feature_found = true; ?>
+                                                    <div class="pricing-content">
+                                                        <h5><?php echo $feature_value; ?></h5>
+                                                    </div>
+                                                    <?php break;
+                                                endif;
+                                            endwhile;
+                                        endif;
+                                        if (!$feature_found): ?>
+                                            <div class="pricing-content">
+                                                <svg width="35" height="35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M25 10L10 25M10 10L25 25" stroke="#595959" stroke-width="3.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php  endif; ?>
 
             <?php if (get_field('pricing_note')): ?>
                 <div class="note"><?php the_field('pricing_note'); ?></div>
