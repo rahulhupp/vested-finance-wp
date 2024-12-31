@@ -149,11 +149,9 @@ while (have_posts()) :
                 <?php if (have_rows('process_steps')): ?>
                     <div class="process-steps">
                         <?php while (have_rows('process_steps')):
-                            the_row(); ?>
+                            the_row(); $rowIndex = get_row_index(); ?>
                             <div class="process-step">
-                                <?php if (get_sub_field('step_number')): ?>
-                                    <div class="count"><?php the_sub_field('step_number'); ?></div>
-                                <?php endif; ?>
+                                    <div class="count"><?php echo $rowIndex; ?></div>
 
                                 <div class="step-content">
                                     <?php
