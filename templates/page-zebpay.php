@@ -378,23 +378,23 @@ get_header(); ?>
         <div class="container flex-box">
             <div class="about-mudrex-image">
                 <?php
-                $about_mudrex_image = get_field('about_mudrex_image');
-                $about_mudrex_title = get_field('about_mudrex_title');
+                $about_partner_image = get_field('about_partner_image');
+                $about_partner_title = get_field('about_partner_title');
                 ?>
                 <?php if ($about_mudrex_image): ?>
                     <figure>
-                        <img src="<?php echo esc_url($about_mudrex_image['url']); ?>"
-                            alt="<?php echo esc_attr($about_mudrex_image['alt'] ?: $about_mudrex_title ?: 'About Mudrex Image'); ?>">
+                        <img src="<?php echo esc_url($about_partner_image['url']); ?>"
+                            alt="<?php echo esc_attr($about_partner_image['alt'] ?: $about_partner_title ?: 'About Mudrex Image'); ?>">
                     </figure>
                 <?php endif; ?>
             </div>
             <div class="about-mudrex-content">
-                <?php if (get_field('about_mudrex_title')): ?>
-                    <h2><?php the_field('about_mudrex_title'); ?></h2>
+                <?php if (get_field('about_partner_title')): ?>
+                    <h2><?php the_field('about_partner_title'); ?></h2>
                 <?php endif; ?>
 
-                <?php if (get_field('about_mudrex_description')): ?>
-                    <?php the_field('about_mudrex_description'); ?>
+                <?php if (get_field('about_partner_description')): ?>
+                    <?php the_field('about_partner_description'); ?>
                 <?php endif; ?>
             </div>
         </div>
