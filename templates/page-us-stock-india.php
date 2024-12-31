@@ -169,6 +169,7 @@ get_header(); ?>
 
     <?php
         $chart = 'false';
+        set_query_var('heading_tag', 'h2');
     ?>
     <?php get_template_part('template-parts/stocks-calculator-india'); ?>
 

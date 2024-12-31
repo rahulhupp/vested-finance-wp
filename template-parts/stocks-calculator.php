@@ -1060,12 +1060,13 @@ $stock_data = isset($GLOBALS['stock_data']) ? $GLOBALS['stock_data'] : 'default_
 $currentDate = date('Y-m');
 $startMonthDefaultValue = '2010-01';
 $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
+$heading_tag = get_query_var('heading_tag', 'h1');
 ?>
 
 <section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
-            <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
+            <<?php echo esc_html($heading_tag); ?> class="main_heading"><?php the_field('main_heading'); ?></<?php echo esc_html($heading_tag); ?>>
             <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
         </div>
 

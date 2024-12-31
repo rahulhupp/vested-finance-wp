@@ -119,6 +119,7 @@ $image = get_field('why_inveset_image_global');
 
     <?php
         $chart = 'false';
+        set_query_var('heading_tag', 'h2');
     ?>
     <?php get_template_part('template-parts/stocks-calculator'); ?>
     
