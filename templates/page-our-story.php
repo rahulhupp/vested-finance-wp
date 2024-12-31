@@ -25,7 +25,7 @@ $image = get_field('image_mobile');
   <div class="content">
     <div class="inner">
       <span><?php the_field('short_title'); ?></span>
-      <h1><?php the_field('banner_heading'); ?><h1>
+      <h1><?php the_field('banner_heading'); ?></h1>
     </div>
   </div>
 </section>
