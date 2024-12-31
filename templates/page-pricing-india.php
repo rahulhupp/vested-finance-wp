@@ -39,7 +39,7 @@ get_header(); ?>
     <div class="container">
         <div class="row">
             <div class="content">
-                <h2><?php the_field('pricing_info_title'); ?></h2>
+                <h1><?php the_field('pricing_info_title'); ?></h1>
                 <?php the_field('pricing_info_content'); ?>
             </div>
             <div class="mobile-tab">

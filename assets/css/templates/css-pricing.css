@@ -25,7 +25,7 @@
     width: 45%;
     padding-right: 19px;
 }
-.pricing-info .content h2 {
+.pricing-info .content h1 {
     color: #002852;
     font-size: 30px;
     font-weight: 800;
@@ -676,7 +676,7 @@
         padding-right: 0;
         text-align: center;
     }
-    .pricing-info .content h2 {
+    .pricing-info .content h1 {
         font-size: 32px;
         margin: 0 auto 15px;
         max-width: 320px;

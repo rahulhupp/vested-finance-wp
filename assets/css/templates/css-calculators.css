@@ -11,7 +11,7 @@
 	margin-top: 50px;
 }
 
-.cal_banner_warraper h2 {
+.cal_banner_warraper h2, .cal_banner_warraper h1 {
 	color: #002852;
 	font-size: 32px;
 	font-weight: 600;
@@ -146,7 +146,7 @@
 		margin-top: 30px;
 	}
 
-	.cal_banner_warraper h2 {
+	.cal_banner_warraper h2, .cal_banner_warraper h1 {
 		font-size: 24px;
 	}
 

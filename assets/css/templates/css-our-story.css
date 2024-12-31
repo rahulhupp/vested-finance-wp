@@ -48,7 +48,7 @@
     margin: 0 0 19px 0;
     display: block;
 }
-.our-story-banner .content h2 {
+.our-story-banner .content h2, .our-story-banner .content h1 {
     color: #FFF;
     
     font-size: 38px;
@@ -288,7 +288,7 @@
 }
 
 @media only screen and (max-width: 1199px) {
-    .our-story-banner .content h2 {
+    .our-story-banner .content h2, .our-story-banner .content h1 {
         font-size: 28px;
     }
     .our-story-banner .content span {
@@ -368,7 +368,7 @@
     .our-story-banner .content .inner {
         max-width: 274px;
     }
-    .our-story-banner .content h2 {
+    .our-story-banner .content h2, .our-story-banner .content h1 {
         font-size: 22px;
     }
     .our-story-info {

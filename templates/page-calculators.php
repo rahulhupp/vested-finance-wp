@@ -7,7 +7,7 @@ get_header(); ?>
 <section>
     <div class="container">
         <div class="cal_banner_warraper">
-            <h2><?php the_field('banner_heading'); ?></h2>
+            <h1><?php the_field('banner_heading'); ?></h1>
             <p><?php the_field('banner_description'); ?></p>
         </div>
     </div>

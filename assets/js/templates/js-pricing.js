@@ -38,8 +38,8 @@ jQuery(document).ready(function () {
 			jQuery('.info.annual').css('display', 'none');
 			jQuery('.pricing-info .plan-box .box span.annual').css('display', 'none');
 			jQuery('.pricing-info .plan-box .box span.quarterly').css('display', 'block');
-			jQuery('.pricing-sticky .sticky-plan .plan span.annual').css('display', 'none');
-			jQuery('.pricing-sticky .sticky-plan .plan span.quarterly').css('display', 'block');
+			jQuery(' .sticky-plan .plan span.annual').css('display', 'none');
+			jQuery(' .sticky-plan .plan span.quarterly').css('display', 'block');
 
 			if (window.matchMedia('(max-width: 991px)').matches) {
 				jQuery('.info.quarterly.second').css('display', 'flex');
@@ -54,8 +54,8 @@ jQuery(document).ready(function () {
 			jQuery('.info.quarterly').css('display', 'none');
 			jQuery('.pricing-info .plan-box .box span.annual').css('display', 'block');
 			jQuery('.pricing-info .plan-box .box span.quarterly').css('display', 'none');
-			jQuery('.pricing-sticky .sticky-plan .plan span.annual').css('display', 'block');
-			jQuery('.pricing-sticky .sticky-plan .plan span.quarterly').css('display', 'none');
+			jQuery(' .sticky-plan .plan span.annual').css('display', 'block');
+			jQuery(' .sticky-plan .plan span.quarterly').css('display', 'none');
 
 			if (window.matchMedia('(max-width: 991px)').matches) {
 				jQuery('.info.annual.second').css('display', 'flex');
@@ -65,12 +65,12 @@ jQuery(document).ready(function () {
 
 	// Show the first tab and hide the rest
 	jQuery('#tabs-nav li:first-child').addClass('active');
-	jQuery('.pricing-sticky .sticky-tab ul li:first-child').addClass('active');
+	jQuery(' .sticky-tab ul li:first-child').addClass('active');
 	jQuery('.tab-content').hide();
 	jQuery('.tab-content:first').show();
 
 	// Click function
-	jQuery('.pricing-sticky .sticky-tab ul li').click(function () {
+	jQuery(' .sticky-tab ul li').click(function () {
 
 		jQuery('.sticky-tab li').removeClass('active');
 		jQuery(this).addClass('active');
@@ -83,7 +83,7 @@ jQuery(document).ready(function () {
 		jQuery('#tabs-nav li').removeClass('active');
 		jQuery('a[href="' + activeTab + '"]').parent('li').addClass("active")
 
-		var getSitckyHeight = jQuery('.pricing-sticky').outerHeight();
+		var getSitckyHeight = jQuery('').outerHeight();
 		jQuery('html, body').animate({
 			scrollTop: jQuery(".pricing-table").offset().top - getSitckyHeight
 		}, 1000);
@@ -128,10 +128,10 @@ jQuery(document).ready(function () {
 	});
 	jQuery(window).scroll(function () {
 		if (jQuery(this).scrollTop() > 600) {
-			jQuery('.pricing-sticky').addClass("fixed");
+			jQuery('').addClass("fixed");
 		}
 		else {
-			jQuery('.pricing-sticky').removeClass("fixed");
+			jQuery('').removeClass("fixed");
 		}
 	});
 	jQuery('.pricing-table .pricing-tabs-content .item .heading img.info-icon').click(function () {
