@@ -8,7 +8,7 @@
         <form>
             <div class="field">
                 <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="inputChange()">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp">
+                <img alt="search icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp">
                 <div class="clear_icon" onclick="inputClear()"><i class="fa fa-times"></i></div>
             </div>
         </form>

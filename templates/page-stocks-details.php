@@ -228,7 +228,7 @@ get_header();
     </div>
 </div>
 <div id="copy_link_message">
-    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" alt="checkmark" />
     <span>Link copied</span>
 </div>
 
