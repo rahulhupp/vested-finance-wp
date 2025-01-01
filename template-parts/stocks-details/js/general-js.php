@@ -2,19 +2,31 @@
     document.addEventListener("DOMContentLoaded", () => {
         const allImages = document.querySelectorAll("img");
         allImages.forEach((img) => {
+            const setDimensions = () => {
             if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
-                img.setAttribute("width", img.naturalWidth || "auto");
-                img.setAttribute("height", img.naturalHeight || "auto");
+                const naturalWidth = img.naturalWidth;
+                const naturalHeight = img.naturalHeight;
+                if (naturalWidth && naturalHeight) {
+                img.setAttribute("width", naturalWidth);
+                img.setAttribute("height", naturalHeight);
+                }
+            }
+            };
+            if (img.complete) {
+            setDimensions();
+            } else {
+            img.addEventListener("load", setDimensions);
             }
             if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
-                const src = img.getAttribute("src");
-                if (src) {
-                    const filename = src.split("/").pop().split(".")[0];
-                    img.setAttribute("alt", filename.replace(/[-_]/g, " "));
-                }
+            const src = img.getAttribute("src");
+            if (src) {
+                const filename = src.split("/").pop().split(".")[0];
+                img.setAttribute("alt", filename.replace(/[-_]/g, " "));
+            }
             }
         });
     });
+
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
