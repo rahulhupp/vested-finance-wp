@@ -95,6 +95,10 @@
             wp_enqueue_style('stock-collection-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-collections.css', false, '', '');
             wp_enqueue_script('stock-collection-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-stock-collection.js');
         }
+        if (is_singular('partners')) {
+            wp_enqueue_style('partners-single-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-partner-single.css', false, '', '');
+            wp_enqueue_script('partners-single-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-partner-single.js');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
