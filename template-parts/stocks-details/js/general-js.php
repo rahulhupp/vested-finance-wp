@@ -1,12 +1,28 @@
 <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+        const allImages = document.querySelectorAll("img");
+        allImages.forEach((img) => {
+            if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
+                img.setAttribute("width", img.naturalWidth || "auto");
+                img.setAttribute("height", img.naturalHeight || "auto");
+            }
+            if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
+                const src = img.getAttribute("src");
+                if (src) {
+                    const filename = src.split("/").pop().split(".")[0];
+                    img.setAttribute("alt", filename.replace(/[-_]/g, " "));
+                }
+            }
+        });
+    });
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
+    anchorLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                anchorLinks.forEach(function(anchor) {
+                anchorLinks.forEach(function (anchor) {
                     anchor.classList.remove('active');
                 });
                 link.classList.add('active');
@@ -14,7 +30,7 @@
             }
         });
     });
-    
+
 
     const faqItems = document.querySelectorAll('.faq_item');
     faqItems.forEach(item => {
@@ -24,14 +40,14 @@
 
         item.addEventListener('click', () => {
             faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                const otherAnswer = otherItem.nextElementSibling;
-                const otherIcon = otherItem.querySelector('.faq_icon');
+                if (otherItem !== item) {
+                    const otherAnswer = otherItem.nextElementSibling;
+                    const otherIcon = otherItem.querySelector('.faq_icon');
 
-                otherAnswer.classList.remove('active');
-                otherIcon.classList.remove('active');
-                otherAnswer.style.maxHeight = "0";
-            }
+                    otherAnswer.classList.remove('active');
+                    otherIcon.classList.remove('active');
+                    otherAnswer.style.maxHeight = "0";
+                }
             });
             answer.classList.toggle('active');
             icon.classList.toggle('active');
@@ -84,12 +100,12 @@
     var stockTabsMenu = document.querySelector('.stock_tabs_menu');
     var stockTabsMenuPosition = document.querySelector('.stock_tabs_menu_position');
     function addClassOnScroll() {
-      var scrollPosition = window.scrollY;
-      if (scrollPosition >= stockTabsMenuPosition.offsetTop && scrollPosition >= 100) {
-        stockTabsMenu.classList.add('highlighted');
-      } else {
-        stockTabsMenu.classList.remove('highlighted');
-      }
+        var scrollPosition = window.scrollY;
+        if (scrollPosition >= stockTabsMenuPosition.offsetTop && scrollPosition >= 100) {
+            stockTabsMenu.classList.add('highlighted');
+        } else {
+            stockTabsMenu.classList.remove('highlighted');
+        }
     }
 
     window.addEventListener('scroll', addClassOnScroll);
@@ -133,30 +149,30 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function () {
         var singleTabHeadings = document.querySelectorAll('.single_tab_wrap:nth-child(1) .single_tab_heading');
-        singleTabHeadings.forEach(function(singleTabHeading) {
+        singleTabHeadings.forEach(function (singleTabHeading) {
             singleTabHeading.classList.add('collapsed');
         });
 
         var singleTabHeadingsAll = document.querySelectorAll(".single_tab_heading");
-        singleTabHeadingsAll.forEach(function(singleTabHeadingAll) {
-            singleTabHeadingAll.addEventListener("click", function() {
+        singleTabHeadingsAll.forEach(function (singleTabHeadingAll) {
+            singleTabHeadingAll.addEventListener("click", function () {
                 if (!this.classList.contains("collapsed")) {
                     var collapsedHeadings = document.querySelectorAll(".single_tab_heading.collapsed");
-                    collapsedHeadings.forEach(function(collapsedHeading) {
+                    collapsedHeadings.forEach(function (collapsedHeading) {
                         collapsedHeading.classList.remove("collapsed");
                     });
                     this.classList.add("collapsed");
                 } else {
                     var collapsedHeadings = document.querySelectorAll(".single_tab_heading.collapsed");
-                    collapsedHeadings.forEach(function(collapsedHeading) {
+                    collapsedHeadings.forEach(function (collapsedHeading) {
                         collapsedHeading.classList.remove("collapsed");
                     });
                 }
                 if (window.innerWidth > 767) {
                     var tabLinksWraps = document.querySelectorAll('.single_tab_wrap .tab_links_wrap');
-                    tabLinksWraps.forEach(function(tabLinksWrap) {
+                    tabLinksWraps.forEach(function (tabLinksWrap) {
                         var tabHeight = tabLinksWrap.offsetHeight;
                         var finaHeight = tabHeight - 17;
                         var parentElement = tabLinksWrap.closest('.single_tab_content');
@@ -167,8 +183,8 @@
         });
 
         var readMoreLinks = document.querySelectorAll('.read_more_link');
-        readMoreLinks.forEach(function(readMoreLink) {
-            readMoreLink.addEventListener("click", function() {
+        readMoreLinks.forEach(function (readMoreLink) {
+            readMoreLink.addEventListener("click", function () {
                 var disclosure = document.querySelector('.read_more_content');
                 readMoreLink.style.display = "none";
                 var readLessLink = document.querySelector('.read_less_link');
@@ -178,8 +194,8 @@
         });
 
         var readLessLinks = document.querySelectorAll('.read_less_link');
-        readLessLinks.forEach(function(readLessLink) {
-            readLessLink.addEventListener("click", function() {
+        readLessLinks.forEach(function (readLessLink) {
+            readLessLink.addEventListener("click", function () {
                 var disclosure = document.querySelector('.read_more_content');
                 readLessLink.style.display = "none";
                 var readMoreLink = document.querySelector('.read_more_link');
@@ -189,10 +205,10 @@
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
         if (humburger) {
-            humburger.addEventListener("click", function() {
+            humburger.addEventListener("click", function () {
                 document.body.classList.toggle("menu-open");
             });
         } else {
@@ -216,13 +232,13 @@
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         var images = document.getElementsByClassName("holdings_image");
 
         // Check if there are images with the class "image"
         if (images.length > 0) {
             for (var i = 0; i < images.length; i++) {
-                images[i].onerror = function() {
+                images[i].onerror = function () {
                     // If the image fails to load (i.e., returns 404), replace it with a default image
                     this.src = "https://vestedfinance.com/wp-content/uploads/2024/03/holdings-defult.svg";
                 };

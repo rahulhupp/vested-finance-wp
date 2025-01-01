@@ -224,7 +224,7 @@ function capitalizeString($string) {
     <div class="bond_loader"></div>
 </div>
 <div id="copy_link_message">
-    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" />
+    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/checkmark.png" alt="checkmark" />
     <span>Link copied</span>
 </div>
 <?php get_template_part('template-parts/bond-details/js/bond-details-api'); ?>
