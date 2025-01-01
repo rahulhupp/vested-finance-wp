@@ -8,7 +8,7 @@
         <form>
             <div class="field">
                 <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="inputChange()">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp" alt="search icon">
                 <div class="clear_icon" onclick="inputClear()"><i class="fa fa-times"></i></div>
             </div>
         </form>
@@ -19,7 +19,7 @@
                     <a href="https://vestedfinance.com/us-stocks/aapl/apple-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.webp" alt="Apple" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/apple.webp" alt="Apple logo" />
                             </div>
                             <span>Apple</span>
                         </div>
@@ -29,7 +29,7 @@
                     <a href="https://vestedfinance.com/us-stocks/googl/alphabet-inc-class-a-shares-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.webp" alt="Google" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/google.webp" alt="Google logo" />
                             </div>
                             <span>Google</span>
                         </div>
@@ -39,7 +39,7 @@
                     <a href="https://vestedfinance.com/us-stocks/ivz/invesco-ltd-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.webp" alt="Invesco" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/invesco.webp" alt="Invesco logo" />
                             </div>
                             <span>Invesco</span>
                         </div>
@@ -49,7 +49,7 @@
                     <a href="https://vestedfinance.com/us-stocks/msft/microsoft-corporation-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/microsoft.webp" alt="Microsoft logo" />
                             </div>
                             <span>Microsoft</span>
                         </div>
@@ -59,7 +59,7 @@
                     <a href="https://vestedfinance.com/us-stocks/tsla/tesla-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/tesla.webp" alt="Tesla logo" />
                             </div>
                             <span>Tesla</span>
                         </div>
@@ -69,7 +69,7 @@
                     <a href="https://vestedfinance.com/us-stocks/meta/meta-platforms-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/meta.webp" alt="Meta logo" />
                             </div>
                             <span>Meta</span>
                         </div>
@@ -79,7 +79,7 @@
                     <a href="https://vestedfinance.com/us-stocks/nflx/netflix-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/netflix.webp" alt="Netflix logo" />
                             </div>
                             <span>Netflix</span>
                         </div>
@@ -89,7 +89,7 @@
                     <a href="https://vestedfinance.com/us-stocks/etf/bwx/spdr-bbg-barclays-international-treasury-bond-etf-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spdr.webp" alt="Spdr logo" />
                             </div>
                             <span>SPDR</span>
                         </div>
@@ -99,7 +99,7 @@
                     <a href="https://vestedfinance.com/us-stocks/amzn/amazoncom-inc-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/amazon.webp" alt="Amazon logo" />
                             </div>
                             <span>Amazon</span>
                         </div>
@@ -109,7 +109,7 @@
                     <a href="https://vestedfinance.com/us-stocks/spot/spotify-technology-sa-share-price/">
                         <div class="box">
                             <div class="explore-icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify" />
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/spotify.webp" alt="Spotify logo" />
                             </div>
                             <span>Spotify</span>
                         </div>
