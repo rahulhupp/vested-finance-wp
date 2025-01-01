@@ -115,7 +115,7 @@
 </style>
 <div class="select_box_new">
     <div class="selected_option" data-value="" data-type="" id="resultsList">
-        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" />
+        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.svg" alt="search icon" />
         <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Search any stock or ETF" value="">
     </div>
     <div class="options_dropdown_wrap">

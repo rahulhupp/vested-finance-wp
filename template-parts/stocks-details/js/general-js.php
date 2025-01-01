@@ -1,4 +1,20 @@
 <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+        const allImages = document.querySelectorAll("img");
+        allImages.forEach((img) => {
+            if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
+                img.setAttribute("width", img.naturalWidth || "auto");
+                img.setAttribute("height", img.naturalHeight || "auto");
+            }
+            if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
+                const src = img.getAttribute("src");
+                if (src) {
+                    const filename = src.split("/").pop().split(".")[0];
+                    img.setAttribute("alt", filename.replace(/[-_]/g, " "));
+                }
+            }
+        });
+    });
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
