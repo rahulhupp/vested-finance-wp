@@ -1311,11 +1311,11 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         try {
             const endDate = parseDate(dateStr);
             const formattedDate = `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}`;
-            document.getElementById('endMonth')?.setAttribute('data-value', formattedDate)
-                || console.error('Element with id "endMonth" not found.');
-            document.querySelector('#end_month')
-                ? updateTextContent('#end_month', dateStr)
-                : console.error('Element with selector "#end_month" not found.');
+
+            const endMonthElement = document.getElementById('endMonth');
+            if (endMonthElement) endMonthElement.setAttribute('data-value', formattedDate);
+            const endMonthTextElement = document.querySelector('#end_month');
+            if (endMonthTextElement) updateTextContent('#end_month', dateStr);
         } catch (error) {
             console.error('Error in handleEndDateChange:', error);
         }
