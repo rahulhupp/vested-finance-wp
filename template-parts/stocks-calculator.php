@@ -1683,5 +1683,4 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     document.getElementById('invest_val').addEventListener('input', () => {
         document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
     });
-    console.log('US Stocks Returns Calculator');
 </script>
