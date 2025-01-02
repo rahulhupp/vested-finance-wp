@@ -1062,16 +1062,15 @@ $startMonthDefaultValue = '2010-01';
 $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 ?>
 
-<section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
+<section
+    class="calculator <?php if (is_page_template('templates/page-calculator.php')): ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
             <h1 class="main_heading"><?php the_field('main_heading'); ?></h1>
             <p class="sub_heading"><?php the_field('main_sub_heading'); ?></p>
         </div>
-
         <div class="main_calc_wrap">
             <div class="calc_col">
-
                 <div class="calc_form_wrap">
                     <form action="" class="calc_form" id="chart_form">
 
@@ -1079,13 +1078,16 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
                                 <div class="selected_option" data-value="SPY" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()" placeholder="Type any US stock or ETF" value="S&P 500 ETF Trust SPDR">
+                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()"
+                                        placeholder="Type any US stock or ETF" value="S&P 500 ETF Trust SPDR">
                                 </div>
                                 <div class="options_dropdown_wrap">
                                     <div id="loader" style="display: none;">
-                                        <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                        <svg width="32px" height="32px" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg" fill="#000000">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
                                             <g id="SVGRepo_iconCarrier">
                                                 <g>
                                                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -1113,14 +1115,11 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                                 </div>
                             </div>
                         </div>
-
                         <div class="field_group">
                             <label for="invest_val">Enter Investment Amount</label>
-
                             <div class="inner_field">
                                 <span class="currency">$</span>
                                 <input type="text" id="invest_val" value="1,000" maxlength="10" />
-
                                 <div class="currency_select">
                                     <div>
                                         <input type="radio" name="currency" id="usd_currency" value="usd" checked>
@@ -1133,31 +1132,39 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                                 </div>
                             </div>
                             <div class="field_note">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                    fill="none">
+                                    <path
+                                        d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z"
+                                        stroke="#002852" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
+                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based
+                                        on Google's 1 USD price.</span>
                             </div>
                         </div>
                         <div class="field_group">
                             <div class="field_row">
                                 <div class="field_col">
                                     <label for="startMonth">Start Month</label>
-                                    <input type="text" id="startMonth" data-value="<?php echo $startMonthDefaultValue; ?>" />
+                                    <input type="text" id="startMonth"
+                                        data-value="<?php echo $startMonthDefaultValue; ?>" />
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
-                                    <input type="text" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
+                                    <input type="text" id="endMonth"
+                                        data-value="<?php echo $endMonthDefaultValue; ?>" />
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="submit_btn">
                             <button type="submit" class="US_Stock_return_calculator">
-                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    fill="#ffffff" class="loader_svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -1172,7 +1179,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         </div>
                     </form>
                 </div>
-
             </div>
             <div class="calc_result_col blur">
                 <div class="result_inner_col">
@@ -1210,7 +1216,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                         </div>
                     </div>
                 </div>
-
                 <div class="investment_cta">
                     <div class="cta_content_col">
                         <p>
@@ -1230,8 +1235,10 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     <div class="cta_btn">
                         <a href="https://app.vestedfinance.com/signup" target="_blank">
                             <span>Start Investing</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                fill="none">
+                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
                     </div>
@@ -1239,24 +1246,22 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
             </div>
         </div>
-        <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
+        <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')): ?>
             <p class="calc_desc">
                 <?php the_field('calc_disclaimer'); ?>
             </p>
         <?php endif; ?>
     </div>
 </section>
-
-
-
-<section class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?> hidden <?php endif; ?>">
+<section
+    class="chart <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')): ?> hidden <?php endif; ?>">
     <div class="container">
         <div id="stocks_chart" class="blur">
             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
             <canvas id="calculatorChart" width="400" height="200"></canvas>
-
             <div id="chartLoader" style="display: none;">
-                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"
+                    class="loader_svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -1268,57 +1273,70 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 </svg>
             </div>
         </div>
-
     </div>
-
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 <script>
-    var start_date = flatpickr("#startMonth", {
-        plugins: [
-            new monthSelectPlugin({
-                shorthand: true,
-                dateFormat: "F Y",
-            })
-        ],
-        defaultDate: "January 2010",
-        maxDate: "today",
-        onReady: function(selectedDates, dateStr, instance) {
-            // var updatedDateStr = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toLocaleString('default', { month: 'long', year: 'numeric' });
-
-            var parts = dateStr.split(' ');
-            var monthName = parts[0];
-            var year = parseInt(parts[1], 10);
-
-            var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
-            var date = new Date(year, monthIndex, 1);
-
-            date.setMonth(date.getMonth() + 2);
-
-            var formattedDate = date.toISOString().slice(0, 7);
-            document.querySelector('#start_month').textContent = dateStr;
-
-            // var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
-            callEndDate(formattedDate);
-        },
-        onClose: function(selectedDates, dateStr, instance) {
-            var formattedDate = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 1)).toISOString().slice(0, 7);
-            var formattedDateEnd = new Date(new Date(dateStr).setMonth(new Date(dateStr).getMonth() + 2)).toISOString().slice(0, 7);
-            const startDate = document.getElementById('startMonth');
-            startDate.setAttribute('data-value', formattedDate);
-            callEndDate(formattedDateEnd);
-            document.querySelector('#start_month').textContent = dateStr;
-        },
-        disableMobile: "true"
-    });
-
-    function callEndDate(minDate) {
-        var end_month = flatpickr("#endMonth", {
+    function parseDate(dateStr) {
+        const [monthName, year] = dateStr.split(' ');
+        const monthIndex = new Date(Date.parse(`${monthName} 1, 2020`)).getMonth();
+        return new Date(parseInt(year, 10), monthIndex, 1);
+    }
+    function formatDateToISOString(date, offset = 0) {
+        const adjustedDate = new Date(date);
+        adjustedDate.setMonth(date.getMonth() + offset);
+        return adjustedDate.toISOString().slice(0, 7);
+    }
+    function updateTextContent(selector, text) {
+        document.querySelector(selector).textContent = text;
+    }
+    function initializeFlatpickr(selector, options) {
+        return flatpickr(selector, options);
+    }
+    function handleStartDateChange(selectedDates, dateStr) {
+        const startDate = parseDate(dateStr);
+        const nextMonth = formatDateToISOString(startDate, 1);
+        const twoMonthsAhead = formatDateToISOString(startDate, 2);
+        document.getElementById('startMonth').setAttribute('data-value', nextMonth);
+        updateTextContent('#start_month', dateStr);
+        initializeEndDatePicker(twoMonthsAhead);
+    }
+    function handleEndDateChange(selectedDates, dateStr) {
+        try {
+            const endDate = parseDate(dateStr);
+            const formattedDate = `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}`;
+            document.getElementById('endMonth')?.setAttribute('data-value', formattedDate)
+                || console.error('Element with id "endMonth" not found.');
+            document.querySelector('#end_month')
+                ? updateTextContent('#end_month', dateStr)
+                : console.error('Element with selector "#end_month" not found.');
+        } catch (error) {
+            console.error('Error in handleEndDateChange:', error);
+        }
+    }
+    function initializeStartDatePicker() {
+        initializeFlatpickr("#startMonth", {
+            plugins: [
+                new monthSelectPlugin({
+                    shorthand: true,
+                    dateFormat: "F Y",
+                })
+            ],
+            defaultDate: "January 2010",
+            maxDate: "today",
+            disableMobile: "true",
+            onReady: handleStartDateChange,
+            onClose: handleStartDateChange,
+        });
+    }
+    function initializeEndDatePicker(minDate) {
+        initializeFlatpickr("#endMonth", {
             plugins: [
                 new monthSelectPlugin({
                     shorthand: true,
@@ -1328,189 +1346,103 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             defaultDate: "February 2024",
             minDate: minDate,
             maxDate: "today",
-            onReady: function(selectedDates, dateStr, instance) {
-
-                var parts = dateStr.split(' ');
-                var monthName = parts[0];
-                var year = parseInt(parts[1], 10);
-
-                var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
-
-                var date = new Date(year, monthIndex, 1);
-
-                // Update the displayed end date
-                document.querySelector('#end_month').textContent = dateStr;
-            },
-            onClose: function(selectedDates, dateStr, instance) {
-
-                var parts = dateStr.split(' ');
-                var monthName = parts[0];
-                var year = parseInt(parts[1], 10);
-
-
-                var monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
-
-                var date = new Date(year, monthIndex, 1);
-
-                var yearStr = date.getFullYear();
-                var month = date.getMonth() + 1;
-                var monthStr = month < 10 ? '0' + month : month;
-                var formattedDate = yearStr + '-' + monthStr;
-
-
-                const endDate = document.getElementById('endMonth');
-                endDate.setAttribute('data-value', formattedDate);
-                document.querySelector('#end_month').textContent = dateStr;
-            },
-            disableMobile: "true"
+            disableMobile: "true",
+            onReady: handleEndDateChange,
+            onClose: handleEndDateChange,
         });
     }
-</script>
+    initializeStartDatePicker();
 
-<script>
-    // Add an event listener to the form for the "submit" event
-    document.getElementById('chart_form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    function addEvent(selector, event, handler) {
+        document.querySelectorAll(selector).forEach(element => {
+            element.addEventListener(event, handler);
+        });
+    }
+    function getCurrencySymbol(currency) {
+        return currency === "inr" ? "₹" : "$";
+    }
+    function updateCurrencySymbols(currency) {
+        const currencySymbol = getCurrencySymbol(currency);
+        document.querySelectorAll('.currency, .calc_currency').forEach(element => {
+            element.textContent = currencySymbol;
+        });
+    }
+    function calculateDateRange(startDate, endDate) {
+        const differenceInMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + endDate.getMonth() - startDate.getMonth();
 
-        // Retrieve form values
-        const stockSelector = document.getElementById('resultsList').dataset.value;
-        const stockName = document.querySelector('.dropdown_search').value;
-        const investmentAmount = document.getElementById('invest_val').value;
-        const currency = document.querySelector('input[name="currency"]:checked').value;
+        if (differenceInMonths < 6) return "week";
+        if (differenceInMonths >= 12 && differenceInMonths <= 36) return "month";
+        if (differenceInMonths > 36) return "year";
+        return "month";
+    }
+    function updateButtonStatus() {
         const startDate = document.getElementById('startMonth').getAttribute('data-value');
         const endDate = document.getElementById('endMonth').getAttribute('data-value');
-        const showNifty = (currency === "inr") ? false : true;
-        const currencySymbol = (currency === "inr") ? "₹" : "$";
-
-        const differenceStartDate = new Date(document.getElementById('startMonth').getAttribute('data-value'));
-        const differenceEndDate = new Date(document.getElementById('endMonth').getAttribute('data-value'));
-
-        const differenceInMonths = (differenceEndDate.getFullYear() - differenceStartDate.getFullYear()) * 12 + differenceEndDate.getMonth() - differenceStartDate.getMonth();
-
-        let dateRange;
-
-        if (differenceInMonths < 6) {
-            dateRange = "week";
-        } else if (differenceInMonths >= 12 && differenceInMonths <= 36) {
-            dateRange = "month";
-        } else if (differenceInMonths > 36) {
-            dateRange = "year";
-        } else {
-            dateRange = "month";
-        }
-
-        // Trigger API and render chart
+        const button = document.querySelector('.submit_btn button');
+        button.classList.toggle('btn-disabled', !startDate || !endDate);
+        document.querySelector('.calc_result_col').classList.add('blur');
+        document.querySelector('#stocks_chart').classList.add('blur');
+    }
+    function triggerAndRender(stockSelector, startDate, endDate, stockName, showNifty, currencySymbol, dateRange) {
         triggerAPI(stockSelector, startDate, endDate)
             .then(data => {
                 renderChart(data.xValues, data.yValues, data.zValues, data.bValues, showNifty, currencySymbol, stockName, dateRange);
             })
-            .catch(error => alert("Something went wrong!"));
+            .catch(error => console.log("Something went wrong!", error));
+    }
+    document.getElementById('chart_form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const stockSelector = document.getElementById('resultsList').dataset.value;
+        const stockName = document.querySelector('.dropdown_search').value;
+        const currency = document.querySelector('input[name="currency"]:checked').value;
+        const startDate = new Date(document.getElementById('startMonth').getAttribute('data-value'));
+        const endDate = new Date(document.getElementById('endMonth').getAttribute('data-value'));
+        const dateRange = calculateDateRange(startDate, endDate);
+        triggerAndRender(stockSelector, startDate, endDate, stockName, currency !== "inr", getCurrencySymbol(currency), dateRange);
     });
-
-    // Event handler for currency radio buttons
-    document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            // Check which radio button is checked
-            document.querySelector('.calc_result_col').classList.add('blur');
-            document.querySelector('#stocks_chart').classList.add('blur');
-            var selectedOption = document.querySelector('input[name="currency"]:checked').value;
-
-            // Update the text based on the selected radio button
-            const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-
-            document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
-                element.textContent = currencySymbol;
-            });
-        });
-    });
-
-
-    //on page loaded function//
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.currency_select input[type="radio"]').forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                // Check which radio button is checked
-                document.querySelector('.calc_result_col').classList.add('blur');
-                document.querySelector('#stocks_chart').classList.add('blur');
-                var selectedOption = document.querySelector('input[name="currency"]:checked').value;
-
-                // Update the text based on the selected radio button
-                const currencySymbol = (selectedOption === "inr") ? "₹" : "$";
-
-                document.querySelectorAll('.currency, .calc_currency').forEach(function(element) {
-                    element.textContent = currencySymbol;
-                });
-            });
-        });
-
-
-        setTimeout(function() {
-
-            const stockSelector = document.getElementById('resultsList').dataset.value;
-            const investmentAmount = document.getElementById('invest_val').value;
-            const currency = document.querySelector('input[name="currency"]:checked').value;
-            const startDate = document.getElementById('startMonth').getAttribute('data-value');
-            const endDate = document.getElementById('endMonth').getAttribute('data-value');
-            // Trigger API and render chart
-            triggerAPI(stockSelector, startDate, endDate)
-                .then(data => {
-                    renderChart(data.xValues, data.yValues, data.zValues, data.bValues, true, "$", "S&P 500 ETF Trust SPDR", "month");
-                })
-                .catch(error => alert("Something went wrong!"));
-        }, 500);
-
-    });
-
-    //end on page loaded function//
-
-    // Function to update button status
-    function btnStatus() {
-        var startDate = document.getElementById('startMonth').getAttribute('data-value');
-        var endDate = document.getElementById('endMonth').getAttribute('data-value');
-        document.querySelector('.submit_btn button').classList.toggle('btn-disabled', startDate === '' || endDate === '');
+    addEvent('.currency_select input[type="radio"]', 'change', function () {
+        const selectedCurrency = document.querySelector('input[name="currency"]:checked').value;
         document.querySelector('.calc_result_col').classList.add('blur');
         document.querySelector('#stocks_chart').classList.add('blur');
-    }
+        updateCurrencySymbols(selectedCurrency);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        addEvent('.currency_select input[type="radio"]', 'change', function () {
+            const selectedCurrency = document.querySelector('input[name="currency"]:checked').value;
+            document.querySelector('.calc_result_col').classList.add('blur');
+            document.querySelector('#stocks_chart').classList.add('blur');
+            updateCurrencySymbols(selectedCurrency);
+        });
+        setTimeout(() => {
+            const stockSelector = document.getElementById('resultsList').dataset.value;
+            const startDate = new Date(document.getElementById('startMonth').getAttribute('data-value'));
+            const endDate = new Date(document.getElementById('endMonth').getAttribute('data-value'));
 
-
-    // Event listeners for date input changes
-    document.getElementById('startMonth').addEventListener('input', btnStatus);
-    document.getElementById('endMonth').addEventListener('input', btnStatus);
-
-    var Per;
-    var bar = new ProgressBar.Circle(fd_results, {
+            triggerAndRender(stockSelector, startDate, endDate, "S&P 500 ETF Trust SPDR", true, "$", "month");
+        }, 500);
+    });
+    addEvent('#startMonth, #endMonth', 'input', updateButtonStatus);
+    const bar = new ProgressBar.Circle(fd_results, {
         strokeWidth: 11,
         easing: "easeInOut",
         duration: 1400,
         color: "#002852",
         trailColor: "#B3D2F1",
         trailWidth: 7,
-        svgStyle: null,
+        svgStyle: null
     });
-    bar.animate(0.5);
-    const generateRandomValues = (count, min, max) => {
-        const randomValues = [];
-        for (let i = 0; i < count; i++) {
-            const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-            randomValues.push(randomValue);
-        }
-        return randomValues;
-    };
-    let xValues = [];
-    let yValues = [];
-    let zValues = [];
-    let bValues = [];
-
-    // Define the URL of the API you want to call
+    bar.animate(0);
+    function generateRandomValues(count, min, max) {
+        return Array.from({ length: count }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+    let xValues = [], yValues = [], zValues = [], bValues = [];
     function triggerAPI(stockSelector, startDate, endDate) {
         xValues = [];
         yValues = [];
         zValues = [];
         bValues = [];
-
         const svgElement = document.querySelector('.calculator .submit_btn button svg');
         svgElement.classList.add('show_loader');
-
         const apiUrl = `https://vested-woodpecker-prod.vestedfinance.com/instrument/${stockSelector}/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const sp500Api = `https://vested-woodpecker-prod.vestedfinance.com/instrument/GSPC.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
         const niftyApi = `https://vested-woodpecker-prod.vestedfinance.com/instrument/NSEI.INDX/ohlcv?interval=daily&startDate=${startDate}&endDate=${endDate}`;
@@ -1523,7 +1455,6 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         return Promise.all([fetchStockData, fetchSP500Data, fetchNiftyData, fetchUSDINRData])
             .then(([stockData, sp500Data, niftyData, usdinrData]) => {
                 const selectedCurrency = document.querySelector('input[name="currency"]:checked');
-
                 const startPrice = stockData.data[0].Adj_Close;
                 const spStartPrice = sp500Data.data[0].Adj_Close;
                 const endPrice = stockData.data[stockData.data.length - 1].Adj_Close;
@@ -1546,13 +1477,10 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 const CAGR = ((Math.pow(totalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
                 Per = parseFloat(lastPortfolioValue / investmentAmount).toFixed(2);
                 const percentageEstimatedReturn = (estReturns / totalValue).toFixed(2);
-
-
                 const inrStartPrice = usdinrData.data[0].Adj_Close;
                 const inrEndPrice = usdinrData.data[usdinrData.data.length - 1].Adj_Close;
                 const inrStartStockQty = investmentAmount / (startPrice * inrStartPrice);
                 const inrLastPortfolioValue = parseFloat(inrStartStockQty * endPrice * inrEndPrice).toFixed(2);
-
                 const inrEstReturns = parseFloat(inrLastPortfolioValue - investmentAmount);
                 const inrTotalValue = parseFloat(Number(investmentAmount) + Number(inrEstReturns));
                 const inrCAGR = ((Math.pow(inrTotalValue / investmentAmount, 1 / differenceInYears) - 1) * 100).toFixed(2);
@@ -1561,68 +1489,48 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
                 stockData.data.forEach((item, index) => {
                     const currentDate = item.Date;
-                    const adjClose = selectedCurrency.value === "inr" ? (usdinrData.data[index]?.Adj_Close || null) : null;
-
-                    let finalAmount = selectedCurrency.value === "inr" ? inrStartStockQty * item.Adj_Close : item.Adj_Close * startStockQty;
-
-                    if (adjClose) {
-                        finalAmount *= adjClose;
-                    }
-
+                    const adjClose = selectedCurrency.value === "inr" ? usdinrData.data[index]?.Adj_Close : null;
+                    let finalAmount = inrStartStockQty * item.Adj_Close;
+                    if (selectedCurrency.value !== "inr") finalAmount = item.Adj_Close * startStockQty;
+                    if (adjClose) finalAmount *= adjClose;
                     const result = Math.round(finalAmount);
-                    if (index < xValues.length) {
-                        xValues[index] = currentDate;
-                        yValues[index] = result;
-                    } else {
-                        xValues.push(currentDate);
-                        yValues.push(result);
-                    }
+                    (xValues[index] = currentDate) && (yValues[index] = result) || (xValues.push(currentDate), yValues.push(result));
                 });
 
-                // Process sp500Data
                 sp500Data.data.forEach((item, index) => {
-                    const inrStockQty = investmentAmount / sp500Data.data[0].Adj_Close / usdinrData.data[0].Adj_Close;
                     const adjClose = usdinrData.data[index]?.Adj_Close || null;
-
-                    let spAmount = selectedCurrency.value === "inr" ? inrStockQty * item.Adj_Close * adjClose : item.Adj_Close * startSPQty;
-                    let spResult = Math.round(spAmount);
-
-                    if (index < zValues.length) {
-                        zValues[index] = spResult;
-                    } else {
-                        zValues.push(spResult);
-                    }
+                    const spAmount = selectedCurrency.value === "inr"
+                        ? (investmentAmount / sp500Data.data[0].Adj_Close / usdinrData.data[0].Adj_Close) * item.Adj_Close * adjClose
+                        : item.Adj_Close * startSPQty;
+                    const spResult = Math.round(spAmount);
+                    (index < zValues.length ? zValues : zValues.push(spResult))[index] = spResult;
                 });
 
                 niftyData.data.forEach((item, index) => {
                     const niftyqty = investmentAmount / niftyData.data[0].Adj_Close;
-                    const niftyValue = niftyqty * item.Adj_Close;
-                    if (index < bValues.length) {
-                        // Update existing values
-                        let niftyResult = Math.round(niftyValue);
-                        bValues[index] = niftyResult;
-                    } else {
-                        // Push new values
-                        let niftyResult = Math.round(niftyValue);
-                        bValues.push(niftyResult);
-                    }
+                    const niftyResult = Math.round(niftyqty * item.Adj_Close);
+                    index < bValues.length ? bValues[index] = niftyResult : bValues.push(niftyResult);
                 });
 
-
                 const targetCurrency = selectedCurrency.value === "inr" ? "inr" : "usd";
-
-                document.getElementById('est_returns').textContent = Math.round(targetCurrency === "inr" ? inrEstReturns : estReturns).toLocaleString();
-                document.getElementById('total_value').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
-                document.getElementById('content_total_value').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
-                document.getElementById('cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
-                document.getElementById('content_cagr').textContent = (targetCurrency === "inr" ? inrCAGR : CAGR).toLocaleString();
-                document.getElementById('invest_amt').textContent = finalInvestmentAmount;
-                document.getElementById('total_calc_val').textContent = Math.round(targetCurrency === "inr" ? inrTotalValue : totalValue).toLocaleString();
-                document.getElementById('content_invest_amt').textContent = finalInvestmentAmount;
-
+                const isINR = targetCurrency === "inr";
+                const values = {
+                    returns: Math.round(isINR ? inrEstReturns : estReturns).toLocaleString(),
+                    total: Math.round(isINR ? inrTotalValue : totalValue).toLocaleString(),
+                    cagr: (isINR ? inrCAGR : CAGR).toLocaleString(),
+                    investment: finalInvestmentAmount,
+                };
+                document.getElementById('est_returns').textContent = values.returns;
+                document.getElementById('total_value').textContent = values.total;
+                document.getElementById('content_total_value').textContent = values.total;
+                document.getElementById('cagr').textContent = values.cagr;
+                document.getElementById('content_cagr').textContent = values.cagr;
+                document.getElementById('invest_amt').textContent = values.investment;
+                document.getElementById('total_calc_val').textContent = values.total;
+                document.getElementById('content_invest_amt').textContent = values.investment;
                 document.querySelector('.calc_result_col').classList.remove('blur');
                 document.getElementById('stocks_chart').classList.remove('blur');
-                const percentageToAnimate = selectedCurrency.value === "inr" ? inrPercentageEstimatedReturn : percentageEstimatedReturn;
+                const percentageToAnimate = isINR ? inrPercentageEstimatedReturn : percentageEstimatedReturn;
                 bar.animate(Math.max(percentageToAnimate, 0));
                 return {
                     xValues,
@@ -1631,334 +1539,149 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     bValues
                 };
             })
-            .catch(error => alert("Something went wrong!"));
+            .catch(error => console.log("Something went wrong!"));
     }
-
-    var chartInstance = null; // Declare a variable to hold the chart instance globally
-
+    let chartInstance = null;
     function renderChart(xValues, yValues, zValues, bValues, hideNifty, currencySymbol, stockName, dateRange) {
         const calculatorChart = document.getElementById('calculatorChart').getContext('2d');
-
-        // Check if a chart instance already exists
-        if (chartInstance) {
-            chartInstance.destroy(); // Destroy the existing chart instance
-        }
-
-        // Define the datasets based on the condition
-        let datasets;
-        if (hideNifty) {
-            datasets = [{
-                    label: `${stockName}`,
-                    data: yValues,
-                    borderColor: '#002852',
-                    backgroundColor: '#002852',
-                    tension: 0.1,
-                },
-                {
-                    label: `S&P 500`,
-                    data: zValues,
-                    borderColor: '#ec9235',
-                    backgroundColor: '#ec9235',
-                    tension: 0.1,
-                }
-            ];
-        } else {
-            datasets = [{
-                    label: `${stockName}`,
-                    data: yValues,
-                    borderColor: '#002852',
-                    backgroundColor: '#002852',
-                    tension: 0.1,
-                },
-                {
-                    label: `S&P 500`,
-                    data: zValues,
-                    borderColor: '#ec9235',
-                    backgroundColor: '#ec9235',
-                    tension: 0.1,
-                },
-                {
-                    label: `Nifty`,
-                    data: bValues,
-                    borderColor: '#3861f6',
-                    backgroundColor: '#3861f6',
-                    tension: 0.1,
-                }
-            ];
-        }
-
-        const uniqueDates = [...new Set(xValues)];
-        const minDate = new Date(uniqueDates[0]);
-        const maxDate = new Date(uniqueDates[uniqueDates.length - 1]);
-        // Create the chart instance
+        if (chartInstance) chartInstance.destroy();
+        const datasets = [
+            { label: stockName, data: yValues, borderColor: '#002852', backgroundColor: '#002852', tension: 0.1 },
+            { label: 'S&P 500', data: zValues, borderColor: '#ec9235', backgroundColor: '#ec9235', tension: 0.1 },
+            ...(!hideNifty ? [{ label: 'Nifty', data: bValues, borderColor: '#3861f6', backgroundColor: '#3861f6', tension: 0.1 }] : [])
+        ];
         chartInstance = new Chart(calculatorChart, {
             type: 'line',
-            data: {
-                labels: uniqueDates,
-                datasets: datasets
-            },
+            data: { labels: [...new Set(xValues)], datasets },
             options: {
                 plugins: {
-                    datalabels: {
-                        display: true,
-                        align: 'end',
-                        color: 'red'
-                    },
                     tooltip: {
                         callbacks: {
-                            title: function(tooltipItems) {
-                                var inputDateStr = tooltipItems[0].parsed.x;
-                                var inputDate = new Date(inputDateStr);
-                                var formattedDate = inputDate.toLocaleDateString('en-US', {
-                                    month: 'short',
-                                    day: 'numeric',
-                                    year: 'numeric'
-                                });
-                                return formattedDate;
-                            },
-                            label: function(context) {
-                                var label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += currencySymbol + context.parsed.y;
-                                return label;
-                            }
+                            title: items => new Date(items[0].parsed.x).toLocaleDateString('en-US', {
+                                month: 'short', day: 'numeric', year: 'numeric'
+                            }),
+                            label: context => `${context.dataset.label}: ${currencySymbol}${context.parsed.y}`
                         }
                     }
                 },
                 scales: {
-                    y: {
-                        display: true,
-                        position: 'left',
-                        ticks: {
-                            callback: function(value) {
-                                return currencySymbol + value;
-                            }
-                        }
-                    },
+                    y: { ticks: { callback: value => `${currencySymbol}${value}` } },
                     x: {
                         type: 'timeseries',
-                        ticks: {
-                            autoSkip: false,
-                            minRotation: dateRange === 'year' ? 0 : 30
-                        },
-                        time: {
-                            unit: dateRange,
-                            displayFormats: {
-                                'day': 'dd-MMM',
-                                'year': 'MMM yyyy',
-                            }
-                        },
-                        min: minDate.toISOString().split('T')[0],
-                        max: maxDate.toISOString().split('T')[0]
-                    },
+                        ticks: { autoSkip: false, minRotation: dateRange === 'year' ? 0 : 30 },
+                        time: { unit: dateRange, displayFormats: { day: 'dd-MMM', year: 'MMM yyyy' } },
+                    }
                 }
             }
         });
     }
-
-
-
-    document.querySelector('.selected_option').addEventListener("click", function() {
-        const mainDropdown = document.querySelector('.select_box_new');
-        mainDropdown.classList.add("dropdown_collased");
+    document.querySelector('.selected_option').addEventListener('click', () => {
+        document.querySelector('.select_box_new').classList.add('dropdown_collased');
     });
-
-
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', event => {
+        const mainDropdown = document.querySelector('.select_box_new');
         const clickedElement = event.target;
-        const mainDropdown = document.querySelector('.select_box_new');
+
         if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
-
-            const mainValue = document.querySelector('.selected_option');
-            const searchValue = document.querySelector('.dropdown_search');
-            const returnBreakdownTitle = document.getElementById('returnBreakdownTitle');
-
-            const selectedValue = clickedElement.dataset.value;
-
-            searchValue.value = clickedElement.textContent;
-            returnBreakdownTitle.textContent = 'Return Breakdown of ' + clickedElement.textContent;
-            mainValue.dataset.value = selectedValue;
-
-            document.querySelector('.calc_result_col').classList.add('blur');
-            document.querySelector('#stocks_chart').classList.add('blur');
-
-            if (mainDropdown.classList.contains("dropdown_collased")) {
-                mainDropdown.classList.remove("dropdown_collased");
-            } else {
-                mainDropdown.classList.add("dropdown_collased");
-            }
+            const selectedOption = document.querySelector('.selected_option');
+            const searchInput = document.querySelector('.dropdown_search');
+            const returnTitle = document.getElementById('returnBreakdownTitle');
+            selectedOption.dataset.value = clickedElement.dataset.value;
+            searchInput.value = clickedElement.textContent;
+            returnTitle.textContent = `Return Breakdown of ${clickedElement.textContent}`;
+            document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
+            mainDropdown.classList.toggle('dropdown_collased');
         }
-
-        if (!mainDropdown.contains(clickedElement)) {
-            mainDropdown.classList.remove("dropdown_collased");
-        }
+        if (!mainDropdown.contains(clickedElement)) mainDropdown.classList.remove('dropdown_collased');
     });
-
 
     function fetchDataFromIndexedDB(searchTerm) {
-        let db;
-        const dbName = "stocks_list";
+        const request = indexedDB.open('stocks_list', 2);
 
-        const request = indexedDB.open(dbName, 2);
-
-        request.onsuccess = function(event) {
-            db = event.target.result;
-
-            populateDropdownOptions(searchTerm);
-        };
-
-        request.onerror = function(event) {
-            console.error("Error opening database:", event.target.error);
-        };
-
-        function populateDropdownOptions(searchTerm) {
-            const transaction = db.transaction(["stocks"], "readonly");
-            const objectStore = transaction.objectStore("stocks");
-
-            const cursorRequest = objectStore.openCursor();
-
-            const dropdownOptions = document.querySelector('.dropdown_options ul.dynamic_options');
-
-            dropdownOptions.innerHTML = '';
-
-            cursorRequest.onsuccess = function(event) {
-                const cursor = event.target.result;
-
-                if (cursor) {
-                    const symbol = cursor.value.symbol;
-                    const name = cursor.value.name;
-
+        request.onsuccess = event => {
+            const db = event.target.result;
+            const transaction = db.transaction(['stocks'], 'readonly');
+            const store = transaction.objectStore('stocks');
+            const cursor = store.openCursor();
+            const dropdown = document.querySelector('.dropdown_options ul.dynamic_options');
+            dropdown.innerHTML = '';
+            cursor.onsuccess = e => {
+                const item = e.target.result;
+                if (item) {
+                    const { symbol, name } = item.value;
                     if (name.toLowerCase().includes(searchTerm)) {
-                        const listItem = document.createElement("li");
-                        listItem.textContent = name;
-                        listItem.dataset.value = symbol;
-
-                        dropdownOptions.appendChild(listItem);
+                        const li = document.createElement('li');
+                        li.textContent = name;
+                        li.dataset.value = symbol;
+                        dropdown.appendChild(li);
                     }
-
-                    cursor.continue();
-                } else {
-                    db.close();
+                    item.continue();
                 }
             };
-
-            cursorRequest.onerror = function(event) {
-                console.error("Error opening cursor:", event.target.error);
-            };
-        }
+        };
     }
+    const debounce = (func, delay) => {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+    function handleInputChange() {
+        const inputValue = document.querySelector('.dropdown_search').value;
+        const staticOptions = document.querySelector('.static_options');
+        const dynamicOptions = document.querySelector('.dynamic_options');
 
-    /**/
-
-    var timerId;
-    var debounceFunctionCalc = function(func, delay) {
-        // Cancels the setTimeout method execution
-        clearTimeout(timerId)
-
-        // Executes the func after delay time.
-        timerId = setTimeout(func, delay)
-    }
-
-    // This represents a very heavy method. Which takes a lot of time to execute
-    function makeAPICallCalc() {
-        var inputValue = document.querySelector(".dropdown_search").value;
-        var staticOptions = document.querySelector(".static_options");
-        var dynamicOptions = document.querySelector(".dynamic_options");
         if (inputValue.length >= 1) {
-            staticOptions.style.display = "none";
-            dynamicOptions.style.display = "block";
-            fetchResultCalc(inputValue);
+            staticOptions.style.display = 'none';
+            dynamicOptions.style.display = 'block';
+            fetchDataFromIndexedDB(inputValue);
         } else {
-            staticOptions.style.display = "block";
-            dynamicOptions.style.display = "none";
+            staticOptions.style.display = 'block';
+            dynamicOptions.style.display = 'none';
         }
-
     }
-
-    function inputChangeCalc() {
-        var inputValue = document.querySelector(".dropdown_search").value;
-        let timeout;
-        debounceFunctionCalc(makeAPICallCalc, 500)
+    document.querySelector('.dropdown_search').addEventListener('input', debounce(handleInputChange, 500));
+    function toggleLoader(show) {
+        document.getElementById('loader').style.display = show ? 'block' : 'none';
+        document.querySelector('.static_options').style.display = show ? 'none' : 'block';
+        document.querySelector('.dynamic_options').style.display = show ? 'none' : 'block';
     }
-
-    function showLoader() {
-        document.getElementById('loader').style.display = 'block';
-        document.querySelector(".static_options").style.display = 'none';
-        document.querySelector(".dynamic_options").style.display = 'none';
-    }
-
-    // Add this function to hide the loader
-    function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
-        document.querySelector(".static_options").style.display = 'none';
-        document.querySelector(".dynamic_options").style.display = 'block';
-    }
-
-    async function fetchResultCalc(stock_name) {
+    async function fetchResults(stockName) {
         try {
-            showLoader();
+            toggleLoader(true);
             const results = await connection.select({
                 from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
+                order: { by: 'symbol', type: 'asc' },
                 where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            like: `${stock_name}%`
-                        }
-                    }
+                    symbol: { like: `${stockName}%` },
+                    or: { name: { like: `${stockName}%` } }
                 }
             });
-            renderItemsCalc(results);
+            renderResults(results);
         } catch (err) {
-            // console.log(err);
+            console.error(err);
         } finally {
-            hideLoader(); // Hide the loader regardless of success or error
+            toggleLoader(false);
         }
     }
-
-    function renderItemsCalc(results) {
-        const dropdownOptions = document.querySelector('.dropdown_options ul.dynamic_options');
-        dropdownOptions.innerHTML = '';
+    function renderResults(results) {
+        const dropdown = document.querySelector('.dropdown_options ul.dynamic_options');
+        dropdown.innerHTML = '';
 
         if (results.length > 0) {
-            results.forEach(result => {
-                const listItem = document.createElement("li");
-                listItem.textContent = result.name;
-                listItem.dataset.value = result.symbol;
-                dropdownOptions.appendChild(listItem);
+            results.forEach(({ name, symbol }) => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                li.dataset.value = symbol;
+                dropdown.appendChild(li);
             });
         } else {
-            // If there are no results and no input, display static options
-            const inputValue = document.querySelector(".dropdown_search").value;
-            if (inputValue.trim() === "") {
-                const staticOptions = document.querySelectorAll('.static_options');
-                staticOptions.forEach(staticOption => {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = staticOption.textContent;
-                    listItem.dataset.value = staticOption.dataset.value;
-                    dropdownOptions.appendChild(listItem);
-                });
-            } else {
-                // Display "No Result Found!" message when there are no matching API results
-                const listItem = document.createElement("p");
-                listItem.textContent = "No Result Found!";
-                dropdownOptions.appendChild(listItem);
-            }
+            dropdown.innerHTML = '<p>No Result Found!</p>';
         }
     }
-
-    document.getElementById('invest_val').addEventListener('input', function() {
-        // This function will be called whenever the input value changes
-        var inputValue = this.value;
-        document.querySelector('.calc_result_col').classList.add('blur');
-        document.querySelector('#stocks_chart').classList.add('blur');
+    document.getElementById('invest_val').addEventListener('input', () => {
+        document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
     });
+    console.log('US Stocks Returns Calculator');
 </script>
