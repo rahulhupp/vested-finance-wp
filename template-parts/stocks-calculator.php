@@ -1078,7 +1078,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
                                 <div class="selected_option" data-value="SPY" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()"
+                                    <input type="text" class="dropdown_search"
                                         placeholder="Type any US stock or ETF" value="S&P 500 ETF Trust SPDR">
                                 </div>
                                 <div class="options_dropdown_wrap">

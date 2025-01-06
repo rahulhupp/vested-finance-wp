@@ -1134,7 +1134,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
                                 <div class="selected_option" data-value="QQQ" id="resultsList">
-                                    <input type="text" class="dropdown_search" oninput="inputChangeCalc()"
+                                    <input type="text" class="dropdown_search"
                                         placeholder="Type any US stock or ETF" value="Invesco QQQ Trust Series 1">
                                 </div>
                                 <div class="options_dropdown_wrap">
