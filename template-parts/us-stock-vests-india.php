@@ -177,23 +177,30 @@
 
         // vestsResultsList.appendChild(defaultBox);
 
-        const vestsResultsListImages = vestsResultsList.querySelectorAll("img");
-        vestsResultsListImages.forEach((img) => {
-            img.onload = () => {
-                if (!img.hasAttribute("width")) {
-                    img.setAttribute("width", img.naturalWidth || "auto");
+        const buildFoundationImages = document.querySelectorAll("img");
+        buildFoundationImages.forEach((img) => {
+            const setDimensions = () => {
+            if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
+                const naturalWidth = img.naturalWidth;
+                const naturalHeight = img.naturalHeight;
+                if (naturalWidth && naturalHeight) {
+                img.setAttribute("width", naturalWidth);
+                img.setAttribute("height", naturalHeight);
                 }
-                if (!img.hasAttribute("height")) {
-                    img.setAttribute("height", img.naturalHeight || "auto");
-                }
-                if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
-                    const src = img.getAttribute("src");
-                    if (src) {
-                        const filename = src.split("/").pop().split(".")[0];
-                        img.setAttribute("alt", filename.replace(/[-_]/g, " "));
-                    }
-                }
+            }
             };
+            if (img.complete) {
+            setDimensions();
+            } else {
+            img.addEventListener("load", setDimensions);
+            }
+            if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
+            const src = img.getAttribute("src");
+            if (src) {
+                const filename = src.split("/").pop().split(".")[0];
+                img.setAttribute("alt", filename.replace(/[-_]/g, " "));
+            }
+            }
         });
     }
 </script>
