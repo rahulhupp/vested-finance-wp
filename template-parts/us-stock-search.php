@@ -116,7 +116,7 @@
                     </a>
                 </li>
             </ul>
-            <a class="btn_dark" href="<?php echo home_url('/in/us-stocks/collections/'); ?>">Explore US Stock Collections</a>
+            <a class="btn_dark" href="<?php echo home_url('/us-stocks/collections/'); ?>">Explore US Stock Collections</a>
         </div>
         <div class="bottom-content">
             <p>Disclosure: This list is representative of stocks available but is not intended to recommend any investment.</p>
