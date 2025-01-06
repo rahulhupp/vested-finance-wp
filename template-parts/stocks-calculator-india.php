@@ -1116,7 +1116,8 @@ $startMonthDefaultValue = '2010-01';
 $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 ?>
 
-<section class="calculator <?php if (is_page_template('templates/page-calculator.php')) : ?> calc_page_block <?php endif; ?>">
+<section
+    class="calculator <?php if (is_page_template('templates/page-calculator.php')): ?> calc_page_block <?php endif; ?>">
     <div class="container">
         <div class="cal_heading_wrap">
             <h2 class="main_heading section_title"><?php the_field('main_heading'); ?></h2>
@@ -1133,13 +1134,16 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                             <label for="stockSelector">Select any US Stock or ETF</label>
                             <div class="select_box_new">
                                 <div class="selected_option" data-value="QQQ" id="resultsList">
-                                    <input type="text" class="dropdown_search" placeholder="Type any US stock or ETF" value="Invesco QQQ Trust Series 1">
+                                    <input type="text" class="dropdown_search" placeholder="Type any US stock or ETF"
+                                        value="Invesco QQQ Trust Series 1">
                                 </div>
                                 <div class="options_dropdown_wrap">
                                     <div id="loader" style="display: none;">
-                                        <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                        <svg width="32px" height="32px" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg" fill="#000000">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
                                             <g id="SVGRepo_iconCarrier">
                                                 <g>
                                                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -1187,23 +1191,32 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                                 </div>
                             </div>
                             <div class="field_note">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                    fill="none">
+                                    <path
+                                        d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z"
+                                        stroke="#002852" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M10.5 13.5V10.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M10.5 7.5H10.5075" stroke="#002852" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based on Google's 1 USD price.</span>
+                                <span> Choose INR for adjusted returns considering INR<>USD conversion. FX rates based
+                                        on Google's 1 USD price.</span>
                             </div>
                         </div>
                         <div class="field_group">
                             <div class="field_row">
                                 <div class="field_col">
                                     <label for="startMonth">Start Month</label>
-                                    <input type="text" id="startMonth" data-value="<?php echo $startMonthDefaultValue; ?>" />
+                                    <input type="text" id="startMonth"
+                                        data-value="<?php echo $startMonthDefaultValue; ?>" />
                                 </div>
                                 <div class="field_col">
                                     <label for="endMonth">End Month</label>
-                                    <input type="text" class="flatpickr-input" id="endMonth" data-value="<?php echo $endMonthDefaultValue; ?>" />
+                                    <input type="text" class="flatpickr-input" id="endMonth"
+                                        data-value="<?php echo $endMonthDefaultValue; ?>" />
                                 </div>
                             </div>
                         </div>
@@ -1211,7 +1224,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 
                         <div class="submit_btn">
                             <button type="submit" class="US_Stock_return_calculator">
-                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="loader_svg">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    fill="#ffffff" class="loader_svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -1284,8 +1298,10 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                     <div class="cta_btn">
                         <a href="https://app.vestedfinance.com/signup" target="_blank">
                             <span>Start Investing</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                fill="none">
+                                <path d="M1 18.5L7 12.5L0.999999 6.5" stroke="#0CC886" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
                     </div>
@@ -1296,15 +1312,18 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 <div class="chart_desc_btn">View Historical Performance Chart <i class="fa fa-chevron-down"></i></div>
 
 
-                <section class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
+                <section
+                    class="chart <?php if (is_page_template('templates/page-us-stock-global.php')): ?> hidden <?php endif; ?>">
                     <div class="container">
                         <div id="stocks_chart" class="blur">
                             <!-- <canvas id="myChart" style="width:100%;max-width:1170px;z-index:9"></canvas> -->
-                            <h3 class="chart_header section_title">Historical Performance for <span id="selected_chart_val">Invesco QQQ Trust Series 1</span></h3>
+                            <h3 class="chart_header section_title">Historical Performance for <span
+                                    id="selected_chart_val">Invesco QQQ Trust Series 1</span></h3>
                             <canvas id="calculatorChart" width="400" height="200"></canvas>
 
                             <div id="chartLoader" style="display: none;">
-                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="loader_svg">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    fill="#000000" class="loader_svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -1322,7 +1341,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 </section>
             </div>
         </div>
-        <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')) : ?>
+        <?php if (is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-us-stock-india.php')): ?>
             <p class="calc_desc">
                 <?php the_field('calc_disclaimer'); ?>
             </p>
@@ -1331,7 +1350,8 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
@@ -1770,6 +1790,17 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     function handleInvestInput() {
         document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
     }
-    document.querySelector('.dropdown_search').addEventListener('input', debounce(handleInputChange, 500));
-    document.getElementById('invest_val').addEventListener('input', handleInvestInput);
+    document.addEventListener("DOMContentLoaded", () => {
+        const dropdownSearch = document.querySelector('.dropdown_search');
+        if (dropdownSearch) {
+            dropdownSearch.addEventListener('input', debounce(handleInputChange, 500));
+        }
+        const investInput = document.getElementById('invest_val');
+        if (investInput) {
+            investInput.addEventListener("input", function () {
+                const num = parseInt(this.value.replace(/\D/g, ""), 10) || "";
+                this.value = num ? num.toLocaleString() : "";
+            });
+        }
+    });
 </script>
