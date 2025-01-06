@@ -1651,56 +1651,87 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
     document.addEventListener('click', event => {
         const mainDropdown = document.querySelector('.select_box_new');
         const clickedElement = event.target;
-
         if (clickedElement.tagName === 'LI' && clickedElement.closest('.dropdown_options ul')) {
             const selectedOption = document.querySelector('.selected_option');
             const searchInput = document.querySelector('.dropdown_search');
             const returnTitle = document.getElementById('returnBreakdownTitle');
-            const chartTitle = document.getElementById('selected_chart_val');
             selectedOption.dataset.value = clickedElement.dataset.value;
             searchInput.value = clickedElement.textContent;
             returnTitle.textContent = `Return Breakdown of ${clickedElement.textContent}`;
-            chartTitle.textContent = clickedElement.textContent
             document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
             mainDropdown.classList.toggle('dropdown_collased');
         }
         if (!mainDropdown.contains(clickedElement)) mainDropdown.classList.remove('dropdown_collased');
     });
 
+    const cachedData = [];
     function fetchDataFromIndexedDB(searchTerm) {
-        const request = indexedDB.open('stocks_list', 2);
-
-        request.onsuccess = event => {
-            const db = event.target.result;
-            const transaction = db.transaction(['stocks'], 'readonly');
-            const store = transaction.objectStore('stocks');
-            const cursor = store.openCursor();
-            const dropdown = document.querySelector('.dropdown_options ul.dynamic_options');
-            dropdown.innerHTML = '';
-            cursor.onsuccess = e => {
-                const item = e.target.result;
-                if (item) {
-                    const { symbol, name } = item.value;
-                    if (name.toLowerCase().includes(searchTerm)) {
-                        const li = document.createElement('li');
-                        li.textContent = name;
-                        li.dataset.value = symbol;
-                        dropdown.appendChild(li);
+        if (!searchTerm) return;
+        const searchLower = searchTerm.toLowerCase();
+        const dropdown = document.querySelector('.dropdown_options ul.dynamic_options');
+        if (!dropdown) return;
+        dropdown.innerHTML = '';
+        if (cachedData.length > 0) {
+            const filteredData = filterData(cachedData, searchLower);
+            updateDropdown(filteredData, dropdown);
+        } else {
+            const request = indexedDB.open('stocks_list', 2);
+            request.onsuccess = event => {
+                const db = event.target.result;
+                const transaction = db.transaction(['stocks'], 'readonly');
+                const store = transaction.objectStore('stocks');
+                const cursor = store.openCursor();
+                const data = [];
+                cursor.onsuccess = e => {
+                    const result = e.target.result;
+                    if (result) {
+                        const { symbol, name } = result.value;
+                        data.push({ symbol, name });
+                        result.continue();
+                    } else {
+                        cachedData.push(...data);
+                        const filteredData = filterData(data, searchLower);
+                        updateDropdown(filteredData, dropdown);
                     }
-                    item.continue();
-                }
+                };
+                cursor.onerror = () => {
+                    console.error('Error accessing cursor in IndexedDB.');
+                };
             };
-        };
+            request.onerror = () => {
+                console.error('Failed to open IndexedDB.');
+            };
+        }
     }
-    const debounce = (func, delay) => {
+
+    function filterData(data, searchTerm) {
+        return data.filter(({ name }) => name.toLowerCase().startsWith(searchTerm));
+    }
+
+    function updateDropdown(data, dropdown) {
+        if (data.length === 0) {
+            dropdown.innerHTML = '<p>No Result Found!</p>';
+            return;
+        }
+        const fragment = document.createDocumentFragment();
+        data.forEach(({ symbol, name }) => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            li.dataset.value = symbol;
+            fragment.appendChild(li);
+        });
+        dropdown.appendChild(fragment);
+    }
+
+    function debounce(func, delay) {
         let timer;
-        return (...args) => {
+        return function (...args) {
             clearTimeout(timer);
             timer = setTimeout(() => func.apply(this, args), delay);
         };
-    };
+    }
     function handleInputChange() {
-        const inputValue = document.querySelector('.dropdown_search').value;
+        const inputValue = document.querySelector('.dropdown_search').value.trim();
         const staticOptions = document.querySelector('.static_options');
         const dynamicOptions = document.querySelector('.dynamic_options');
 
@@ -1713,7 +1744,7 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
             dynamicOptions.style.display = 'none';
         }
     }
-    document.querySelector('.dropdown_search').addEventListener('input', debounce(handleInputChange, 500));
+
     function toggleLoader(show) {
         document.getElementById('loader').style.display = show ? 'block' : 'none';
         document.querySelector('.static_options').style.display = show ? 'none' : 'block';
@@ -1727,12 +1758,12 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
                 order: { by: 'symbol', type: 'asc' },
                 where: {
                     symbol: { like: `${stockName}%` },
-                    or: { name: { like: `${stockName}%` } }
-                }
+                    or: { name: { like: `${stockName}%` } },
+                },
             });
             renderResults(results);
         } catch (err) {
-            console.error(err);
+            console.error('Error fetching results:', err);
         } finally {
             toggleLoader(false);
         }
@@ -1742,17 +1773,21 @@ $endMonthDefaultValue = date('Y-m', strtotime($currentDate));
         dropdown.innerHTML = '';
 
         if (results.length > 0) {
+            const fragment = document.createDocumentFragment();
             results.forEach(({ name, symbol }) => {
                 const li = document.createElement('li');
                 li.textContent = name;
                 li.dataset.value = symbol;
-                dropdown.appendChild(li);
+                fragment.appendChild(li);
             });
+            dropdown.appendChild(fragment);
         } else {
             dropdown.innerHTML = '<p>No Result Found!</p>';
         }
     }
-    document.getElementById('invest_val').addEventListener('input', () => {
+    function handleInvestInput() {
         document.querySelectorAll('.calc_result_col, #stocks_chart').forEach(el => el.classList.add('blur'));
-    });
+    }
+    document.querySelector('.dropdown_search').addEventListener('input', debounce(handleInputChange, 500));
+    document.getElementById('invest_val').addEventListener('input', handleInvestInput);
 </script>
