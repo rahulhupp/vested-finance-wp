@@ -81,6 +81,9 @@ if ($getfirstpath[1] == 'us-stocks') {
 
 function custom_redirect() {
     $requested_url = $_SERVER['REQUEST_URI'];
+    if (strpos($requested_url, '/us-stocks/collections/') !== false) {
+        return; // Exit the function without doing anything
+    }
     $home_url = parse_url(home_url(), PHP_URL_PATH);
     $path = substr($requested_url, strlen($home_url));
     $getfirstpath = explode("/", $path);
