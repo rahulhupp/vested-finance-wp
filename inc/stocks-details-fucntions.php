@@ -79,7 +79,7 @@ if ($getfirstpath[1] == 'us-stocks') {
     } else {
         $current_url_path = $_SERVER['REQUEST_URI'];
         error_log('ETF Not Current URL Path: ' . $current_url_path);
-        if ($current_url_path == '/vested-testing/us-stocks/collections/') {
+        if ($current_url_path == '/us-stocks/collections/') {
             error_log('ETF IF');
         } else {
             error_log('Symbol not found');
@@ -131,7 +131,7 @@ function custom_redirect()
         } else {
             $current_url_path = $_SERVER['REQUEST_URI'];
             error_log('ETF Not Current URL Path: ' . $current_url_path);
-            if ($current_url_path == '/vested-testing/us-stocks/collections/') {
+            if ($current_url_path == '/us-stocks/collections/') {
                 error_log('ETF IF');
             } else {
                 error_log('Symbol not found');
