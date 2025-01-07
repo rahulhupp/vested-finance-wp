@@ -25,7 +25,7 @@ while (have_posts()) :
     <div class="collection_page_banner smaller">
         <div class="container">
             <div class="collection_breadcrumb">
-                <p><a href="#">US Stocks</a><span class="divider"> > </span><a href="<?php echo home_url('/in/us-stocks/collections/'); ?>">All Collections</a><span class="divider"> > </span><span class="current_page"><?php the_title(); ?></span></p>
+                <p><a href="#">US Stocks</a><span class="divider"> > </span><a href="<?php echo home_url('/us-stocks/collections/'); ?>">All Collections</a><span class="divider"> > </span><span class="current_page"><?php the_title(); ?></span></p>
             </div>
             <div class="banner_content_wrap">
                 <div class="banner_content_col">
