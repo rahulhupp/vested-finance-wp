@@ -88,7 +88,7 @@ if ($getfirstpath[1] == 'us-stocks') {
                 return;
             }
         }
-        if ($is_valid_prefix) {
+        if ($is_valid_prefix || strpos($requested_url, '/vested-testing/us-stocks/collections/') === false || strpos($requested_url, '/vested-testing/in/us-stocks/collections/') === false) {
             error_log('ETF IF');
         } else {
             error_log('Symbol not found');
@@ -157,7 +157,7 @@ function custom_redirect()
         } else {
             $current_url_path = $_SERVER['REQUEST_URI'];
             error_log('ETF Not Current URL Path: ' . $current_url_path);
-            if ($is_valid_prefix) {
+            if ($is_valid_prefix || strpos($requested_url, '/vested-testing/us-stocks/collections/') === false || strpos($requested_url, '/vested-testing/in/us-stocks/collections/') === false) {
                 error_log('ETF IF');
             } else {
                 error_log('Symbol not found');
