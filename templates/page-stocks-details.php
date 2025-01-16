@@ -244,6 +244,37 @@ get_header();
                     ?>
 
                 </div>
+                <div class="stock_details_right_column">
+                    <div class="stock_tabs_menu_position">
+                        <div class="stock_tabs_menu">
+                            <div class="stock_tabs_menu_wrapper">
+                                <a class="tab_button active" href="#overview_tab">Overview</a>
+                                <a class="tab_button" href="#returns_tab">Returns</a>
+                                <?php if ($get_path[2] !== 'etf'): ?>
+                                    <a class="tab_button" href="#financials_tab">Financials</a>
+                                    <a class="tab_button" href="#ratios_tab">Ratios</a>
+                                    <a class="tab_button" href="#news_tab">News</a>
+                                <?php else: ?>
+                                    <a class="tab_button" href="#largest_holdings_tab">Holdings</a>
+                                    <a class="tab_button" href="#sector_breakdown_tab">Sector Breakdown</a>
+                                <?php endif; ?>
+                                <a class="tab_button" href="#faqs_tab">FAQs</a>
+                            </div>
+                        </div>
+
+                        <?php
+                        get_template_part(
+                            'template-parts/stocks-details/overview',
+                            null,
+                            array(
+                                'overview_data' => $overview_data,
+                                'get_path' => $get_path,
+                                'price_chart_data' => $price_chart_data
+                            )
+                        );
+                        ?>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>
