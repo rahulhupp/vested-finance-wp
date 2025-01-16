@@ -30,8 +30,8 @@ function custom_template_redirect()
     $custom_stock_request = get_query_var('custom_stock_request');
     $symbol = get_query_var('symbol');
     $company = get_query_var('company');
-    error_log('custom_stock_request');
     if ($custom_stock_request) {
+        set_query_var('custom_stock_title_value', $company);
         include get_stylesheet_directory() . '/templates/page-stocks-details.php';
         exit();
     }
