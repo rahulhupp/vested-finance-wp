@@ -27,11 +27,9 @@ add_action('init', 'custom_rewrite_rules');
 
 function custom_template_redirect()
 {
-    $requested_url = $_SERVER['REQUEST_URI'];
     $custom_stock_request = get_query_var('custom_stock_request');
     $symbol = get_query_var('symbol');
     $company = get_query_var('company');
-    error_log('requested url: ' . $requested_url);
 
     if ($custom_stock_request) {
         include get_stylesheet_directory() . '/templates/page-stocks-details.php';
@@ -47,11 +45,13 @@ $requested_url = $_SERVER['REQUEST_URI'];
 $home_url = parse_url(home_url(), PHP_URL_PATH);
 $path = substr($requested_url, strlen($home_url));
 $getfirstpath = explode("/", $path);
-
+error_log('$getfirstpath: ' . print_r($getfirstpath, true));
 $requestUri = $_SERVER['REQUEST_URI'];
+error_log('$requestUri: ' . $requestUri);
+error_log('$getfirstpath[1]: ' . $getfirstpath[1]);
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
-
+    error_log('$getfirstpath[2]: ' . $getfirstpath[2]);
     if ($getfirstpath[2] == 'etf') {
         $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
     } else {
@@ -75,13 +75,11 @@ if ($getfirstpath[1] == 'us-stocks') {
             }
         }
     } else {
-        // error_log('Symbol not found');
+        error_log('Symbol not found');
         $not_found_url = home_url("/stock-not-found");
         wp_redirect($not_found_url, 301);
         exit();
     }
-} else {
-    error_log('Not us-stocks');
 }
 
 function custom_redirect()
