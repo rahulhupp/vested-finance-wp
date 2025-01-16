@@ -24,31 +24,27 @@
                         <div class="stock_details_table_wrapper">
                             <div class="stock_details_table full_width_table">
                                 <table id="sectorBreakdownTable">
-                                    <thead>
+                                    <tr>
+                                        <th>Sector</th>
+                                        <th>Weight</th>
+                                    </tr>
+                                    <?php
+                                    foreach ($sector_breakdowns_data as $breakdown) {
+                                    ?>
                                         <tr>
-                                            <th>Sector</th>
-                                            <th>Weight</th>
+                                            <td>
+                                                <div class="sector_breakdown_name">
+                                                    <span style="background-color: <?php echo $breakdown['color']; ?>"></span>
+                                                    <?php echo $breakdown['name']; ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <?php echo number_format($breakdown['value'], 2); ?>%
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($sector_breakdowns_data as $breakdown) {
-                                        ?>
-                                            <tr>
-                                                <td>
-                                                    <div class="sector_breakdown_name">
-                                                        <span style="background-color: <?php echo $breakdown['color']; ?>"></span>
-                                                        <?php echo $breakdown['name']; ?>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <?php echo number_format($breakdown['value'], 2); ?>%
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    </tbody>
+                                    <?php
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
