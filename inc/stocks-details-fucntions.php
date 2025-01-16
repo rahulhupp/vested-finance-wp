@@ -1,6 +1,5 @@
 <?php
-function custom_query_vars($vars)
-{
+function custom_query_vars($vars) {
     $vars[] = 'custom_stock_request';
     $vars[] = 'symbol';
     $vars[] = 'company';
@@ -9,8 +8,7 @@ function custom_query_vars($vars)
 add_filter('query_vars', 'custom_query_vars');
 
 
-function custom_rewrite_rules()
-{
+function custom_rewrite_rules() {
     add_rewrite_rule(
         '^us-stocks/([^/]+)/([^/]+)/?$',
         'index.php?custom_stock_request=1&symbol=$matches[1]&company=$matches[2]',
@@ -25,8 +23,7 @@ function custom_rewrite_rules()
 add_action('init', 'custom_rewrite_rules');
 
 
-function custom_template_redirect()
-{
+function custom_template_redirect() {
     $custom_stock_request = get_query_var('custom_stock_request');
     $symbol = get_query_var('symbol');
     $company = get_query_var('company');
@@ -45,8 +42,12 @@ $requested_url = $_SERVER['REQUEST_URI'];
 $home_url = parse_url(home_url(), PHP_URL_PATH);
 $path = substr($requested_url, strlen($home_url));
 $getfirstpath = explode("/", $path);
+
+$requestUri = $_SERVER['REQUEST_URI'];
+
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
+
     if ($getfirstpath[2] == 'etf') {
         $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
     } else {
@@ -58,53 +59,34 @@ if ($getfirstpath[1] == 'us-stocks') {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
     $stocks_symbol = strtolower(trim($stocks_symbol));
-    if ($redirect_mappings[$stocks_symbol]['name'] ?? false) {
+    if ($redirect_mappings[$stocks_symbol]['name']?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
         if ($getfirstpath[2] == 'etf') {
             if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
             }
         } else {
-            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2])) {
+            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2]) ) {
                 custom_redirect();
             }
         }
     } else {
-        error_log('Symbol not found');
+        // error_log('Symbol not found');
         $not_found_url = home_url("/stock-not-found");
         wp_redirect($not_found_url, 301);
         exit();
     }
+} else {
+    // error_log('Not us-stocks');
 }
 
-function custom_redirect()
-{
+function custom_redirect() {
     $requested_url = $_SERVER['REQUEST_URI'];
-    $prefixes = [
-        '/us-stocks/collections/',
-        '/in/us-stocks/collections/',
-    ];
-    foreach ($prefixes as $prefix) {
-        if (strpos($requested_url, $prefix) === 0) {
-            return;
-        }
-    }
     $home_url = parse_url(home_url(), PHP_URL_PATH);
     $path = substr($requested_url, strlen($home_url));
     $getfirstpath = explode("/", $path);
 
     if ($getfirstpath[1] == 'us-stocks') {
-        $prefixes = [
-            '/us-stocks/collections/',
-            '/in/us-stocks/collections/',
-        ];
-        $is_valid_prefix = false;
-        foreach ($prefixes as $prefix) {
-            if (strpos($requested_url, $prefix) === 0) {
-                $is_valid_prefix = true;
-                return;
-            }
-        }
         $redirect_mappings = get_data_from_stocks_list();
         if ($getfirstpath[2] == 'etf') {
             $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
@@ -119,8 +101,8 @@ function custom_redirect()
             $stocks_symbol = strtolower($stocks_symbol_draft);
         }
         $stocks_symbol = strtolower(trim($stocks_symbol));
-
-        if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[2])) {
+        
+        if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[3])) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
@@ -131,20 +113,14 @@ function custom_redirect()
             wp_redirect($new_url, 301);
             exit();
         } else {
-            if ($is_valid_prefix || strpos($requested_url, '/us-stocks/collections/') === false || strpos($requested_url, '/in/us-stocks/collections/') === false) {
-                error_log('ETF IF');
-            } else {
-                error_log('Symbol not found');
-                $not_found_url = home_url("/stock-not-found");
-                wp_redirect($not_found_url, 301);
-                exit();
-            }
+            $not_found_url = home_url("/stock-not-found");
+            wp_redirect($not_found_url, 301);
+            exit();
         }
     }
 }
 
-function get_data_from_stocks_list()
-{
+function get_data_from_stocks_list() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'stocks_list';
     $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
@@ -157,7 +133,7 @@ function get_data_from_stocks_list()
         $name = preg_replace('/-+/', '-', $name);
         $name = trim($name, '-');
         $type = strtolower($row['type']);
-        $redirect_mappings[$symbol] = ['name' => $name, 'type' => $type];
+        $redirect_mappings[$symbol] = ['name'=>$name,'type'=>$type];
     }
     return $redirect_mappings;
 }
@@ -165,10 +141,9 @@ function get_data_from_stocks_list()
 
 // ============================================================================================
 
-function custom_wpseo_title($title)
-{
+function custom_wpseo_title($title) {
     $custom_stock_title_value = get_query_var('custom_stock_title_value');
-    if ($custom_stock_title_value) {
+    if ( $custom_stock_title_value ) {
         $title = $custom_stock_title_value;
     }
     return $title;
@@ -178,8 +153,7 @@ add_filter('wpseo_opengraph_title', 'custom_wpseo_title', 10, 1);
 add_filter('wpseo_twitter_title', 'custom_wpseo_title', 10, 1);
 add_filter('wpseo_twitter_image_alt', 'custom_wpseo_title', 10, 1);
 
-function custom_wpseo_metadesc($description)
-{
+function custom_wpseo_metadesc($description) {
     $stock_description_value = get_query_var('custom_stock_description_value');
     if ($stock_description_value) {
         $description = $stock_description_value;
@@ -190,8 +164,7 @@ add_filter('wpseo_metadesc', 'custom_wpseo_metadesc', 10, 1);
 // add_filter('wpseo_opengraph_description', 'custom_wpseo_metadesc', 10, 1);
 add_filter('wpseo_twitter_description', 'custom_wpseo_metadesc', 10, 1);
 
-function custom_wpseo_opengraph_url($url)
-{
+function custom_wpseo_opengraph_url($url) {
     $stock_url_value = get_query_var('custom_stock_url_value');
     if ($stock_url_value) {
         $url = $stock_url_value;
@@ -202,8 +175,7 @@ add_filter('wpseo_opengraph_url', 'custom_wpseo_opengraph_url', 10, 1);
 // add_filter('wpseo_canonical', 'custom_wpseo_opengraph_url', 10, 1);
 
 
-function custom_wpseo_opengraph_image($image)
-{
+function custom_wpseo_opengraph_image($image) {
     $stock_image_value = get_query_var('custom_stock_image_value');
     if ($stock_image_value) {
         $image = $stock_image_value;
@@ -213,70 +185,66 @@ function custom_wpseo_opengraph_image($image)
 // add_filter('wpseo_opengraph_image', 'custom_wpseo_opengraph_image', 10, 1);
 add_filter('wpseo_twitter_image', 'custom_wpseo_opengraph_image', 10, 1);
 
-function prefix_filter_canonical_example($canonical)
-{
+function prefix_filter_canonical_example( $canonical ) {
     $stock_url_value = get_query_var('custom_stock_url_value');
     if ($stock_url_value) {
         $canonical = $stock_url_value;
     }
-
+  
     return $canonical;
 }
-
-add_filter('wpseo_canonical', 'prefix_filter_canonical_example');
+  
+add_filter( 'wpseo_canonical', 'prefix_filter_canonical_example' );
 
 add_action('wpseo_head', 'add_extra_og', 10);
 
-function add_extra_og()
-{
+function add_extra_og() {
     $stock_image_value = get_query_var('custom_stock_image_value');
     if ($stock_image_value) {
         $image = $stock_image_value;
-        echo '<meta property="og:image" content="' . $image . '" />';
+        echo '<meta property="og:image" content="'. $image .'" />';
     }
     $stock_description_value = get_query_var('custom_stock_description_value');
     if ($stock_description_value) {
         $description = $stock_description_value;
-        echo '<meta property="og:description" content="' . $description . '" />';
+        echo '<meta property="og:description" content="'. $description .'" />';
     }
+    
 }
 
-function custom_wpseo_twitter_card_type($card_type)
-{
-    return 'summary';
+function custom_wpseo_twitter_card_type($card_type) {
+    return 'summary'; 
 }
 add_filter('wpseo_twitter_card_type', 'custom_wpseo_twitter_card_type', 10, 1);
 
-function custom_wpseo_twitter_site($site)
-{
+function custom_wpseo_twitter_site($site) {
     return '@Vested_finance';
 }
 add_filter('wpseo_twitter_site', 'custom_wpseo_twitter_site', 10, 1);
 
-function custom_wpseo_sitemap_index($sitemap_index)
-{
+function custom_wpseo_sitemap_index($sitemap_index) {
     $last_modified = date('c');
     $custom_urls = array(
         '<sitemap><loc>' . home_url('/us-stocks-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
         '<sitemap><loc>' . home_url('/us-stocks-etf-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
-        '<sitemap><loc>' . home_url('/calculators-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>'
+        '<sitemap><loc>' . home_url('/calculators-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
+        '<sitemap><loc>' . home_url('/inr-bonds-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>'
     );
-
+    
     // Append each custom URL to the sitemap index
     foreach ($custom_urls as $url) {
         $sitemap_index .= $url;
     }
-
+    
     return $sitemap_index;
 }
 add_filter('wpseo_sitemap_index', 'custom_wpseo_sitemap_index', 10, 1);
 
 
 
-function remove_unwanted_styles()
-{
+function remove_unwanted_styles() {
     $stock_title_value = get_query_var('custom_stock_title_value');
-    if ($stock_title_value) {
+    if ( $stock_title_value ) {
         wp_enqueue_style('stocks-details-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-stocks-details.css', false, '', '');
         wp_dequeue_style('slick-carousel');
         wp_deregister_style('slick-carousel');
@@ -334,7 +302,9 @@ function remove_unwanted_styles()
         wp_dequeue_script('astra-theme-js');
         wp_deregister_script('astra-theme-js');
     } else {
-        error_log('Dequeue function Else');
+        // error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 99999999999);
+
+?>
