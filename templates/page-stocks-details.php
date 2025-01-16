@@ -284,6 +284,13 @@ get_header();
                             )
                         );
                         ?>
+
+                        <?php
+                        if ($largest_holdings_data) {
+                            get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
+                        }
+                        ?>
+
                     </div>
                 </div>
             <?php endif; ?>
