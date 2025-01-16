@@ -105,67 +105,57 @@ function custom_redirect()
 {
     $requested_url = $_SERVER['REQUEST_URI'];
     $prefixes = [
-        '/us-stocks/collections/',
-        '/in/us-stocks/collections/',
+        '/vested-testing/us-stocks/collections/',
+        '/vested-testing/in/us-stocks/collections/',
     ];
+
+    // Check if URL starts with any of the prefixes
     foreach ($prefixes as $prefix) {
         if (strpos($requested_url, $prefix) === 0) {
             return;
         }
     }
+
     $home_url = parse_url(home_url(), PHP_URL_PATH);
     $path = substr($requested_url, strlen($home_url));
     $getfirstpath = explode("/", $path);
 
-    if ($getfirstpath[1] == 'us-stocks') {
-        $prefixes = [
-            '/us-stocks/collections/',
-            '/in/us-stocks/collections/',
-        ];
-        $is_valid_prefix = false;
-        foreach ($prefixes as $prefix) {
-            if (strpos($requested_url, $prefix) === 0) {
-                $is_valid_prefix = true;
-                return;
-            }
-        }
-        $redirect_mappings = get_data_from_stocks_list();
-        if ($getfirstpath[2] == 'etf') {
-            $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
-        } else {
-            $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
-        }
+    if ($getfirstpath[1] !== 'us-stocks') {
+        return;
+    }
 
-        $stocks_symbol = substr($requested_url, $start_pos_symbol);
-        $end_pos_symbol = strpos($stocks_symbol, '/');
-        if ($end_pos_symbol !== false) {
-            $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
-            $stocks_symbol = strtolower($stocks_symbol_draft);
-        }
-        $stocks_symbol = strtolower(trim($stocks_symbol));
+    $redirect_mappings = get_data_from_stocks_list();
+    $is_etf = ($getfirstpath[2] === 'etf');
 
-        if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[2])) {
-            $new_slug = $redirect_mappings[$stocks_symbol]['name'];
-            if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
-                $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
-            } else {
-                $new_url = home_url("/us-stocks/{$stocks_symbol}/{$new_slug}-share-price/");
-            }
+    $start_pos_symbol = strpos($requested_url, $is_etf ? '/us-stocks/etf/' : '/us-stocks/') + strlen($is_etf ? '/us-stocks/etf/' : '/us-stocks/');
+    $stocks_symbol = substr($requested_url, $start_pos_symbol);
 
-            wp_redirect($new_url, 301);
-            exit();
-        } else {
-            $current_url_path = $_SERVER['REQUEST_URI'];
-            error_log('ETF Not Current URL Path: ' . $current_url_path);
-            if ($is_valid_prefix || strpos($requested_url, '/us-stocks/collections/') === false || strpos($requested_url, '/in/us-stocks/collections/') === false) {
-                error_log('ETF IF');
-            } else {
-                error_log('Symbol not found');
-                $not_found_url = home_url("/stock-not-found");
-                wp_redirect($not_found_url, 301);
-                exit();
-            }
-        }
+    // Extract stock symbol
+    $end_pos_symbol = strpos($stocks_symbol, '/');
+    if ($end_pos_symbol !== false) {
+        $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
+    }
+    $stocks_symbol = strtolower(trim($stocks_symbol));
+
+    // Redirect logic
+    if (isset($redirect_mappings[$stocks_symbol]) || preg_match('/[A-Z]/', $getfirstpath[2])) {
+        $new_slug = $redirect_mappings[$stocks_symbol]['name'];
+        $redirect_type = $redirect_mappings[$stocks_symbol]['type'];
+
+        $new_url = home_url(
+            $redirect_type === 'etf'
+            ? "/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/"
+            : "/us-stocks/{$stocks_symbol}/{$new_slug}-share-price/"
+        );
+
+        wp_redirect($new_url, 301);
+        exit();
+    } else {
+        error_log('Symbol not found for URL: ' . $requested_url);
+
+        $not_found_url = home_url("/stock-not-found");
+        wp_redirect($not_found_url, 301);
+        exit();
     }
 }
 
