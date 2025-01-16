@@ -209,7 +209,7 @@ endwhile;
             "@type": "ListItem",
             "position": 2,
             "item": {
-                "@id": "<?php echo home_url('/in/us-stocks/collections'); ?>",
+                "@id": "<?php echo home_url('/us-stocks/collections'); ?>",
                 "name": "US Stocks Collections"
             }
         }, {
