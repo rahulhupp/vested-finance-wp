@@ -21,7 +21,7 @@ function custom_rewrite_rules()
         'index.php?custom_stock_request=1&symbol=$matches[1]&company=$matches[2]&is_etf=1',
         'top'
     );
-    $current_url_path = rtrim($_SERVER['REQUEST_URI'], '/'); // Remove trailing slash for consistency
+    $current_url_path = rtrim($_SERVER['REQUEST_URI']);
     error_log('Current URL Path: ' . $current_url_path);
 }
 add_action('init', 'custom_rewrite_rules');
