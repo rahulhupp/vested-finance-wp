@@ -111,31 +111,7 @@
                             <li>Navigate to <?php echo $ticker; ?> ticker page and set up your recurring investment</li>
                         </ul>
                     </div>
-                    <div class="faq_item">
-                        <div class="faq_question">What is the historical performance of <?php echo $name; ?> ETF?</div>
-                        <div class="faq_icon">
-                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="faq_answer">
-                        <p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
-                        <?php if ($returns_data) : ?>
-                            <ul>
-                                <?php if ($returns_data['current']['value']['1y']) : ?>
-                                    <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
-                                <?php endif ?>
-                                <?php if ($returns_data['current']['value']['3y']) : ?>
-                                <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
-                                <?php endif ?>
-                                <?php if ($returns_data['current']['value']['5y']) : ?>
-                                <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
-                                <?php endif ?>
-                            </ul>
-                        <?php endif ?>
-                        <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>
-                    </div>
+                    
                     <div class="faq_item">
                         <div class="faq_question">What is the expense ratio of <?php echo $name; ?>?</div>
                         <div class="faq_icon">
@@ -234,28 +210,6 @@
                             <li>Transfer funds to your US Stocks account</li>
                             <li>Navigate to <?php echo $ticker; ?> ticker page and set up your recurring investment</li>
                         </ul>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is the historical performance of <?php echo $name; ?> ETF?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "<p>Here is the historical performance of <?php echo $ticker; ?> on the Vested app.</p>
-                        <?php if ($returns_data) : ?>
-                            <ul>
-                                <?php if ($returns_data['current']['value']['1y']) : ?>
-                                    <li>1-Year Return: <?php echo $returns_data['current']['value']['1y']['value']; ?></li>
-                                <?php endif ?>
-                                <?php if ($returns_data['current']['value']['3y']) : ?>
-                                <li>3-Year Return: <?php echo $returns_data['current']['value']['3y']['value']; ?></li>
-                                <?php endif ?>
-                                <?php if ($returns_data['current']['value']['5y']) : ?>
-                                <li>5-Year Return: <?php echo $returns_data['current']['value']['5y']['value']; ?></li>
-                                <?php endif ?>
-                            </ul>
-                        <?php endif ?>
-                        <p>You can also access the top holdings, the expense ratio, and the sector breakdown for <?php echo $name; ?> on Vested.</p>"
                     }
                 },
                 {
