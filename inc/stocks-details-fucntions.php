@@ -45,61 +45,69 @@ add_action('template_redirect', 'custom_template_redirect');
 // Hook into the template_redirect action
 add_action('template_redirect', 'custom_redirect');
 
-$requested_url = $_SERVER['REQUEST_URI'];
-$home_url = parse_url(home_url(), PHP_URL_PATH);
-$path = substr($requested_url, strlen($home_url));
-$getfirstpath = explode("/", $path);
+function handle_us_stocks_redirect($requested_url)
+{
+    $home_url = parse_url(home_url(), PHP_URL_PATH);
+    $path = substr($requested_url, strlen($home_url));
+    $getfirstpath = explode("/", $path);
 
-$requestUri = $_SERVER['REQUEST_URI'];
-if ($getfirstpath[1] == 'us-stocks') {
-    $redirect_mappings = get_data_from_stocks_list();
-
-    if ($getfirstpath[2] == 'etf') {
-        $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
-    } else {
-        $start_pos_symbol = strpos($requested_url, '/us-stocks/') + strlen('/us-stocks/');
+    if ($getfirstpath[1] !== 'us-stocks') {
+        error_log('Not us-stocks');
+        return;
     }
+
+    $redirect_mappings = get_data_from_stocks_list();
+    $is_etf = ($getfirstpath[2] === 'etf');
+
+    $start_pos_symbol = strpos($requested_url, $is_etf ? '/us-stocks/etf/' : '/us-stocks/') + strlen($is_etf ? '/us-stocks/etf/' : '/us-stocks/');
     $stocks_symbol = substr($requested_url, $start_pos_symbol);
+
+    // Extract stock symbol
     $end_pos_symbol = strpos($stocks_symbol, '/');
     if ($end_pos_symbol !== false) {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
     $stocks_symbol = strtolower(trim($stocks_symbol));
-    if ($redirect_mappings[$stocks_symbol]['name'] ?? false) {
+
+    if (isset($redirect_mappings[$stocks_symbol]['name'])) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
-        if ($getfirstpath[2] == 'etf') {
+
+        if ($is_etf) {
             if ($getfirstpath[4] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[3])) {
                 custom_redirect();
             }
         } else {
-            if ($getfirstpath[3] !== $redirect_slug  || preg_match('/[A-Z]/', $getfirstpath[2])) {
+            if ($getfirstpath[3] !== $redirect_slug || preg_match('/[A-Z]/', $getfirstpath[2])) {
                 custom_redirect();
             }
         }
     } else {
-        $prefixes = [
-            '/us-stocks/collections/',
-            '/in/us-stocks/collections/',
-        ];
-        $is_valid_prefix = false;
-        foreach ($prefixes as $prefix) {
-            if (strpos($requested_url, $prefix) === 0) {
-                $is_valid_prefix = true;
-                return;
-            }
-        }
-        if ($is_valid_prefix || strpos($requested_url, '/us-stocks/collections/') === false || strpos($requested_url, '/in/us-stocks/collections/') === false) {
-            error_log('ETF IF');
-        } else {
-            error_log('Symbol not found');
-            $not_found_url = home_url("/stock-not-found");
-            wp_redirect($not_found_url, 301);
-            exit();
+        validate_and_handle_invalid_prefix($requested_url);
+    }
+}
+
+function validate_and_handle_invalid_prefix($requested_url)
+{
+    $prefixes = [
+        '/us-stocks/collections/',
+        '/in/us-stocks/collections/',
+    ];
+
+    foreach ($prefixes as $prefix) {
+        if (strpos($requested_url, $prefix) === 0) {
+            return;
         }
     }
-} else {
-    error_log('Not us-stocks');
+
+    error_log('Symbol not found');
+    $not_found_url = home_url("/stock-not-found");
+    wp_redirect($not_found_url, 301);
+    exit();
 }
+
+$requested_url = $_SERVER['REQUEST_URI'];
+handle_us_stocks_redirect($requested_url);
+
 
 function custom_redirect()
 {
