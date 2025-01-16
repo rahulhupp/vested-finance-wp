@@ -290,13 +290,20 @@ get_header();
                             get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
                         }
                         ?>
-                        
-                        <?php
-                        if ($sector_breakdowns_data) {
-                            get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
-                        }
-                        ?>
 
+                        <?php get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path)); ?>
+
+                        <?php
+                        get_template_part(
+                            'template-parts/stocks-details/faqs-etf',
+                            null,
+                            array(
+                                'returns_data' => $returns_data,
+                                'overview_data' => $overview_data
+                            )
+                        );
+                        ?>
+                        
                     </div>
                 </div>
             <?php endif; ?>
