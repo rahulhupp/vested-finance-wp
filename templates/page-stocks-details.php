@@ -228,7 +228,22 @@ get_header();
                     </div>
                 </div>
             <?php else: ?>
-                <h1>SPDR® Bloomberg International Treasury Bond ETF, ETF</h1>
+                <div class="stock_details_left_column">
+                    <div class="stocks_search_container">
+                        <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
+                    </div>
+                    <?php
+                    get_template_part(
+                        'template-parts/stocks-details/stock-info',
+                        null,
+                        array(
+                            'overview_data' => $overview_data,
+                            'get_path' => $get_path
+                        )
+                    );
+                    ?>
+
+                </div>
             <?php endif; ?>
         </div>
     </div>
