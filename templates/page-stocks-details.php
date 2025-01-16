@@ -210,17 +210,7 @@
                             )
                         ); 
                     ?>
-                <?php else: ?>
-                    <?php 
-                        get_template_part(
-                            'template-parts/stocks-details/faqs-etf', 
-                            null, 
-                            array(
-                                'returns_data' => $returns_data,
-                                'overview_data' => $overview_data
-                            )
-                        ); 
-                    ?>
+                <!-- etf faqs template here -->
                 <?php endif; ?>
             </div>
         </div>
