@@ -104,201 +104,115 @@ get_header();
 <div class="stock_details_main">
     <div class="container">
         <div class="stock_details_wrapper">
-            <?php if ($get_path[2] !== 'etf'): ?>
-                <div class="stock_details_left_column">
-                    <div class="stocks_search_container">
-                        <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
+            <div class="stock_details_left_column">
+                <div class="stocks_search_container">
+                    <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
+                </div>
+                <?php
+                get_template_part(
+                    'template-parts/stocks-details/stock-info',
+                    null,
+                    array(
+                        'overview_data' => $overview_data,
+                        'get_path' => $get_path
+                    )
+                );
+                ?>
+
+                <?php if ($get_path[2] !== 'etf'): ?>
+                    <div class="stock_details_box stock_forecast_container">
+                        <h2 class="heading">Analyst Forecast</h2>
+                        <div class="separator_line"></div>
+                        <div class="analyst_forecast_chart_container">
+                            <canvas id="analystForecastChart"></canvas>
+                        </div>
                     </div>
+                <?php endif; ?>
+
+            </div>
+            <div class="stock_details_right_column">
+                <div class="stock_tabs_menu_position">
+                    <div class="stock_tabs_menu">
+                        <div class="stock_tabs_menu_wrapper">
+                            <a class="tab_button active" href="#overview_tab">Overview</a>
+                            <a class="tab_button" href="#returns_tab">Returns</a>
+                            <?php if ($get_path[2] !== 'etf'): ?>
+                                <a class="tab_button" href="#financials_tab">Financials</a>
+                                <a class="tab_button" href="#ratios_tab">Ratios</a>
+                                <a class="tab_button" href="#news_tab">News</a>
+                            <?php else: ?>
+                                <a class="tab_button" href="#largest_holdings_tab">Holdings</a>
+                                <a class="tab_button" href="#sector_breakdown_tab">Sector Breakdown</a>
+                            <?php endif; ?>
+                            <a class="tab_button" href="#faqs_tab">FAQs</a>
+                        </div>
+                    </div>
+
                     <?php
                     get_template_part(
-                        'template-parts/stocks-details/stock-info',
+                        'template-parts/stocks-details/overview',
                         null,
                         array(
                             'overview_data' => $overview_data,
+                            'get_path' => $get_path,
+                            'price_chart_data' => $price_chart_data
+                        )
+                    );
+                    ?>
+
+                    <?php
+                    get_template_part(
+                        'template-parts/stocks-details/returns',
+                        null,
+                        array(
+                            'returns_data' => $returns_data,
                             'get_path' => $get_path
                         )
                     );
                     ?>
 
                     <?php if ($get_path[2] !== 'etf'): ?>
-                        <div class="stock_details_box stock_forecast_container">
-                            <h2 class="heading">Analyst Forecast</h2>
-                            <div class="separator_line"></div>
-                            <div class="analyst_forecast_chart_container">
-                                <canvas id="analystForecastChart"></canvas>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-                <div class="stock_details_right_column">
-                    <div class="stock_tabs_menu_position">
-                        <div class="stock_tabs_menu">
-                            <div class="stock_tabs_menu_wrapper">
-                                <a class="tab_button active" href="#overview_tab">Overview</a>
-                                <a class="tab_button" href="#returns_tab">Returns</a>
-                                <?php if ($get_path[2] !== 'etf'): ?>
-                                    <a class="tab_button" href="#financials_tab">Financials</a>
-                                    <a class="tab_button" href="#ratios_tab">Ratios</a>
-                                    <a class="tab_button" href="#news_tab">News</a>
-                                <?php else: ?>
-                                    <a class="tab_button" href="#largest_holdings_tab">Holdings</a>
-                                    <a class="tab_button" href="#sector_breakdown_tab">Sector Breakdown</a>
-                                <?php endif; ?>
-                                <a class="tab_button" href="#faqs_tab">FAQs</a>
-                            </div>
-                        </div>
-
                         <?php
                         get_template_part(
-                            'template-parts/stocks-details/overview',
+                            'template-parts/stocks-details/financials',
                             null,
                             array(
-                                'overview_data' => $overview_data,
-                                'get_path' => $get_path,
-                                'price_chart_data' => $price_chart_data
+                                'income_statement_data' => $income_statement_data,
+                                'balance_sheet_data' => $balance_sheet_data,
+                                'cash_flow_data' => $cash_flow_data
                             )
                         );
                         ?>
 
-                        <?php
-                        get_template_part(
-                            'template-parts/stocks-details/returns',
-                            null,
-                            array(
-                                'returns_data' => $returns_data,
-                                'get_path' => $get_path
-                            )
-                        );
-                        ?>
-
-                        <?php if ($get_path[2] !== 'etf'): ?>
-                            <?php
-                            get_template_part(
-                                'template-parts/stocks-details/financials',
-                                null,
-                                array(
-                                    'income_statement_data' => $income_statement_data,
-                                    'balance_sheet_data' => $balance_sheet_data,
-                                    'cash_flow_data' => $cash_flow_data
-                                )
-                            );
-                            ?>
-
-                            <?php get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data)); ?>
-                            <?php get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data)); ?>
-                        <?php else: ?>
-                            <?php
-                            if ($largest_holdings_data) {
-                                get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
-                            }
-                            ?>
-                            <?php
-                            if ($sector_breakdowns_data) {
-                                get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
-                            }
-                            ?>
-                        <?php endif; ?>
-
-                        <?php get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path)); ?>
-
-                        <?php if ($get_path[2] !== 'etf'): ?>
-                            <?php
-                            get_template_part(
-                                'template-parts/stocks-details/faqs',
-                                null,
-                                array(
-                                    'overview_data' => $overview_data,
-                                    'ratios_data' => $ratios_data
-                                )
-                            );
-                            ?>
-                        <?php else: ?>
-                            <?php
-                            get_template_part(
-                                'template-parts/stocks-details/faqs-etf',
-                                null,
-                                array(
-                                    'returns_data' => $returns_data,
-                                    'overview_data' => $overview_data
-                                )
-                            );
-                            ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php else: ?>
-                <div class="stock_details_left_column">
-                    <div class="stocks_search_container">
-                        <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
-                    </div>
-                    <?php
-                    get_template_part(
-                        'template-parts/stocks-details/stock-info',
-                        null,
-                        array(
-                            'overview_data' => $overview_data,
-                            'get_path' => $get_path
-                        )
-                    );
-                    ?>
-
-                </div>
-                <div class="stock_details_right_column">
-                    <div class="stock_tabs_menu_position">
-                        <div class="stock_tabs_menu">
-                            <div class="stock_tabs_menu_wrapper">
-                                <a class="tab_button active" href="#overview_tab">Overview</a>
-                                <a class="tab_button" href="#returns_tab">Returns</a>
-                                <?php if ($get_path[2] !== 'etf'): ?>
-                                    <a class="tab_button" href="#financials_tab">Financials</a>
-                                    <a class="tab_button" href="#ratios_tab">Ratios</a>
-                                    <a class="tab_button" href="#news_tab">News</a>
-                                <?php else: ?>
-                                    <a class="tab_button" href="#largest_holdings_tab">Holdings</a>
-                                    <a class="tab_button" href="#sector_breakdown_tab">Sector Breakdown</a>
-                                <?php endif; ?>
-                                <a class="tab_button" href="#faqs_tab">FAQs</a>
-                            </div>
-                        </div>
-
-                        <?php
-                        get_template_part(
-                            'template-parts/stocks-details/overview',
-                            null,
-                            array(
-                                'overview_data' => $overview_data,
-                                'get_path' => $get_path,
-                                'price_chart_data' => $price_chart_data
-                            )
-                        );
-                        ?>
-
-                        <?php
-                        get_template_part(
-                            'template-parts/stocks-details/returns',
-                            null,
-                            array(
-                                'returns_data' => $returns_data,
-                                'get_path' => $get_path
-                            )
-                        );
-                        ?>
-
+                        <?php get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data)); ?>
+                        <?php get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data)); ?>
+                    <?php else: ?>
                         <?php
                         if ($largest_holdings_data) {
                             get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
                         }
                         ?>
-
                         <?php
-                            if ($sector_breakdowns_data) {
-                                get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
-                            }
+                        if ($sector_breakdowns_data) {
+                            get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
+                        }
                         ?>
+                    <?php endif; ?>
 
-                        <?php get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path)); ?>
+                    <?php get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path)); ?>
 
+                    <?php if ($get_path[2] !== 'etf'): ?>
+                        <?php
+                        get_template_part(
+                            'template-parts/stocks-details/faqs',
+                            null,
+                            array(
+                                'overview_data' => $overview_data,
+                                'ratios_data' => $ratios_data
+                            )
+                        );
+                        ?>
+                    <?php else: ?>
                         <?php
                         get_template_part(
                             'template-parts/stocks-details/faqs-etf',
@@ -309,10 +223,9 @@ get_header();
                             )
                         );
                         ?>
-
-                    </div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
     </div>
     <div id="copy_link_message">
