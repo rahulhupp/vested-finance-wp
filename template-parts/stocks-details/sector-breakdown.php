@@ -12,6 +12,7 @@
         for ($i = 0; $i < count($sector_breakdowns_data); $i++) {
             $sector_breakdowns_data[$i]['color'] = $colors[$i % count($colors)];
         }
+
     ?>
     <div id="sector_breakdown_tab" class="tab_content">
         <div class="stock_details_box">
@@ -48,9 +49,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="sector_breakdown_chart_wrapper">
-                    <canvas id="sectorBreakdownChart" width="234" height="234"></canvas>
                 </div>
             </div>
         </div>
