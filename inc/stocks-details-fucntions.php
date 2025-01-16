@@ -77,25 +77,10 @@ if ($getfirstpath[1] == 'us-stocks') {
             }
         }
     } else {
-        $prefixes = [
-            '/us-stocks/collections/',
-            '/in/us-stocks/collections/',
-        ];
-        $is_valid_prefix = false;
-        foreach ($prefixes as $prefix) {
-            if (strpos($requested_url, $prefix) === 0) {
-                $is_valid_prefix = true;
-                return;
-            }
-        }
-        if ($is_valid_prefix || strpos($requested_url, '/us-stocks/collections/') === false || strpos($requested_url, '/in/us-stocks/collections/') === false) {
-            error_log('ETF IF');
-        } else {
-            error_log('Symbol not found');
-            $not_found_url = home_url("/stock-not-found");
-            wp_redirect($not_found_url, 301);
-            exit();
-        }
+        // error_log('Symbol not found');
+        $not_found_url = home_url("/stock-not-found");
+        wp_redirect($not_found_url, 301);
+        exit();
     }
 } else {
     error_log('Not us-stocks');
