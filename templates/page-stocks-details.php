@@ -273,6 +273,17 @@ get_header();
                             )
                         );
                         ?>
+
+                        <?php
+                        get_template_part(
+                            'template-parts/stocks-details/returns',
+                            null,
+                            array(
+                                'returns_data' => $returns_data,
+                                'get_path' => $get_path
+                            )
+                        );
+                        ?>
                     </div>
                 </div>
             <?php endif; ?>
