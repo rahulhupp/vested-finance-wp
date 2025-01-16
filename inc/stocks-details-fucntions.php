@@ -45,13 +45,8 @@ $requested_url = $_SERVER['REQUEST_URI'];
 $home_url = parse_url(home_url(), PHP_URL_PATH);
 $path = substr($requested_url, strlen($home_url));
 $getfirstpath = explode("/", $path);
-error_log('$getfirstpath: ' . print_r($getfirstpath, true));
-$requestUri = $_SERVER['REQUEST_URI'];
-error_log('$requestUri: ' . $requestUri);
-error_log('$getfirstpath[1]: ' . $getfirstpath[1]);
 if ($getfirstpath[1] == 'us-stocks') {
     $redirect_mappings = get_data_from_stocks_list();
-    error_log('$getfirstpath[2]: ' . $getfirstpath[2]);
     if ($getfirstpath[2] == 'etf') {
         $start_pos_symbol = strpos($requested_url, '/us-stocks/etf/') + strlen('/us-stocks/etf/');
     } else {
