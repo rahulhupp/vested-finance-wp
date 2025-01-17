@@ -56,7 +56,7 @@ input[type=number] {
 	background-color: #EEF5FC;
 	padding: 6px;
 	border-radius: 4px;
-	max-width: 174px;
+	max-width: 175px;
 	margin-bottom: 18px;
 }
 
@@ -129,7 +129,7 @@ input[type=number] {
 	background-color: #EEF5FC;
 	padding: 5px 6px;
 	border-radius: 4px;
-	max-width: 139px;
+	max-width: 140px;
 	height: calc(100% - 10px);
 	width: 100%;
 }
