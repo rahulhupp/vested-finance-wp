@@ -900,11 +900,11 @@ a.category-btn, a.read-button {
 }
 
 .pt-0 {
-	padding-top: 0;
+	padding-top: 0 !important;
 }
 
 .pb-0 {
-	padding-bottom: 0;
+	padding-bottom: 0 !important;
 }
 
 .single_module_table_content {
@@ -2158,5 +2158,14 @@ a.chapter_back_btn:hover {
 	
 	.premium_box .premium_box_content .premium_box_buttons a {
 		margin: 0 4px;
+	}
+
+	.single_module_post_content .content p.form-submit {
+		margin-bottom: 0;
+	}
+
+	.single_module_post_content .content p.form-submit input[type=submit] {
+		width: auto;
+		margin-top: 42px;
 	}
 }

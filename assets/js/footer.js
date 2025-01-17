@@ -1,5 +1,9 @@
 jQuery(document).ready(function($){
-    $('.single_tab_wrap:nth-child(1) .single_tab_heading').addClass('collapsed');
+    const firstTabWrap = $('.single_tab_wrap:nth-child(1)');
+    firstTabWrap.find('.single_tab_heading').addClass('collapsed');
+    const tabLinksWrap = firstTabWrap.find('.tab_links_wrap');
+    const defaultHeightFinal = tabLinksWrap.height() - 17;
+    tabLinksWrap.closest('.single_tab_content').css('margin-bottom', `${defaultHeightFinal}px`);
     $(".single_tab_heading").click(function () {
         if (!$(this).hasClass("collapsed")) {
             $(".single_tab_heading.collapsed").removeClass("collapsed");
@@ -12,7 +16,6 @@ jQuery(document).ready(function($){
                 var tabHeight = $(this).height();
                 var finaHeight = tabHeight - 17;
                 var parentElement = $(this).closest('.single_tab_content');
-                console.log(tabHeight);
                 parentElement.css('margin-bottom', finaHeight + 'px');
             });
         }
