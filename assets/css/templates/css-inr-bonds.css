@@ -95,6 +95,8 @@ a.btn_dark {
 }
 .page-template-page-inr-bonds .portfolio_slider img {
 	height: 494px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .bonds_banner_content {
 	/* max-width: 600px; */

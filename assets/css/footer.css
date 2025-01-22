@@ -734,7 +734,7 @@ footer .extra_info ul li sup {
   .single_tab_content {
     margin-top: 12px;
     padding: 0;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 
   .tab_links_wrap a {

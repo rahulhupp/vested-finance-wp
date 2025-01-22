@@ -273,6 +273,7 @@
         try {
             if (stock_name.length == 0) {
                 var ulElement = document.getElementById('stocksResultsList');
+                ulElement.innerHTML = '';
                 ulElement.nextElementSibling.style.display = 'flex';
                 ulElement.style.display = 'none';
                 return;
