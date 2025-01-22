@@ -155,6 +155,7 @@
                 defaultUl.style.display = 'flex';
                 noResultsMessage.style.display = 'none';
                 loader.style.display = 'none';
+                clearSearchInput();
             }
         }
 
@@ -173,7 +174,6 @@
             noResultsMessage.style.display = 'none';
             loader.style.display = 'none';
             resultUl.innerHTML = '';
-            clearSearchInput();
         }
 
         function fetchStockResults(stockName) {
