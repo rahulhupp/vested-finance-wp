@@ -245,6 +245,27 @@
 	bottom: 0;
 }
 
+#stock-loader {
+	width: 35px;
+	height: 35px;
+	border: 5px solid #c8e2fb;
+	border-top-color: #002852;
+	border-radius: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	animation: loaderAnim linear infinite 1s;
+}
+
+@keyframes loaderAnim {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .explore-stock .explore-image ul {
 	display: flex;
 	/* align-items: center; */

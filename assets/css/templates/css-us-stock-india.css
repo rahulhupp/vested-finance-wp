@@ -340,6 +340,27 @@
 	transform: translateY(-50%);
 }
 
+#stock-loader {
+	width: 35px;
+	height: 35px;
+	border: 5px solid #c8e2fb;
+	border-top-color: #002852;
+	border-radius: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	animation: loaderAnim linear infinite 1s;
+}
+
+@keyframes loaderAnim {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .explore-image {
 	max-width: 1000px;
 	margin-left: auto;

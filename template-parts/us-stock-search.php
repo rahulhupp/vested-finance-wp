@@ -7,14 +7,14 @@
         </div>
         <form>
             <div class="field">
-                <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="inputChange()">
+                <input placeholder="Search any US Stocks or ETF ..." type="text" id="searchInput" oninput="handleStockSearchInput()">
                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/search-icon.webp" alt="search icon">
-                <div class="clear_icon" onclick="inputClear()"><i class="fa fa-times"></i></div>
+                <div class="clear_icon" onclick="clearSearchInput()"><i class="fa fa-times"></i></div>
             </div>
         </form>
         <div class="explore-image">
             <ul id="stocksResultsList"></ul>
-            <ul>
+            <ul id="defaultList">
                 <li>
                     <a href="https://vestedfinance.com/us-stocks/aapl/apple-inc-share-price/">
                         <div class="box">
@@ -116,6 +116,8 @@
                     </a>
                 </li>
             </ul>
+            <p id="noResultsMessage" style="display: none; margin-bottom: 0;">No stocks to display.</p>
+            <p id="stock-loader" style="display: none; margin-bottom: 0;"></p>
             <a class="btn_dark" href="<?php echo home_url('/us-stocks/collections/'); ?>">Explore US Stock Collections</a>
         </div>
         <div class="bottom-content">
@@ -123,285 +125,160 @@
         </div>
     </div>
 </section>
-
-<script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 <script>
-    if (sessionStorage.getItem('last_api_call_timestamp')) {
-        const current_time = Math.floor(Date.now() / 1000);
-        const last_api_call_time = parseInt(sessionStorage.getItem('last_api_call_timestamp'), 10);
-        const time_difference = current_time - last_api_call_time;
-        const cooldown_period = 3 * 60 * 60;
+    (function() {
+        let debounceTimer;
 
-        if (time_difference < cooldown_period) {
-            indexedDBConnection();
-        } else {
-            usstockapi();
-        }
-    } else {
-        usstockapi();
-    }
+        function handleStockSearchInput() {
+            const inputElement = document.getElementById("searchInput");
+            const inputValue = inputElement.value.trim();
+            const clearButton = document.querySelector('.clear_icon');
+            const resultUl = document.querySelector('#stocksResultsList');
+            const defaultUl = document.querySelector('#defaultList');
+            const noResultsMessage = document.querySelector('#noResultsMessage');
+            const loader = document.querySelector('#stock-loader');
 
-    function usstockapi() {
-        callInstrumentsTokenApi();
-        const current_time = Math.floor(Date.now() / 1000); // Current time in seconds
-        sessionStorage.setItem('last_api_call_timestamp', current_time);
-    }
+            debounce(() => {
+                if (inputValue.length > 0) {
+                    loader.style.display = 'block';
+                    fetchStockResults(inputValue);
+                }
+            }, 300);
 
-    function callInstrumentsTokenApi() {
-        const firstApiUrl = 'https://vested-api-prod.vestedfinance.com/get-partner-token'; // Replace with the actual URL of the first API
-        const headers = {
-            'partner-id': '7bcc5a97-3a00-45f0-bb7d-2df254a467c4',
-            'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
-            'instrument-list-access': true,
-        };
-        fetch(firstApiUrl, {
-                method: 'GET',
-                headers: headers
-            })
-            .then(response => response.text())
-            .then(token => {
-                callInstrumentsApi(token);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function callInstrumentsApi(token) {
-        const instrumentsApiUrl = 'https://vested-api-prod.vestedfinance.com/v1/partner/instruments-list'; // Replace with the actual URL of the second API
-
-        const headers = {
-            'partner-authentication-token': token,
-            'partner-key': '4b766258-6495-40ed-8fa0-83182eda63c9',
-        };
-
-        fetch(instrumentsApiUrl, {
-                method: 'GET',
-                headers: headers
-            })
-            .then(response => response.json())
-            .then(data => {
-                storeStockList(data.instruments);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    var connection;
-
-    async function indexedDBConnection() {
-        connection = new JsStore.Connection(new Worker('<?php echo get_stylesheet_directory_uri(); ?>/assets/js/jsstore.worker.min.js'));
-        var dbName = 'stocks_list';
-        var tblstocks = {
-            name: 'stocks',
-            columns: {
-                id: {
-                    primaryKey: true,
-                    autoIncrement: true
-                },
-                name: {
-                    notNull: true,
-                    dataType: "string"
-                },
-                symbol: {
-                    notNull: true,
-                    dataType: "string"
-                },
+            if (inputValue.length > 0) {
+                clearButton.style.display = 'flex';
+                resultUl.style.display = 'flex';
+                defaultUl.style.display = 'none';
+            } else {
+                clearButton.style.display = 'none';
+                resultUl.style.display = 'none';
+                defaultUl.style.display = 'flex';
+                noResultsMessage.style.display = 'none';
+                loader.style.display = 'none';
             }
-        };
-        var database = {
-            name: dbName,
-            tables: [tblstocks],
-            version: 2
         }
-        const isDbCreated = await connection.initDb(database);
-        if (isDbCreated === true) {
-            console.log("db created");
-            setTimeout(function() {
-                fetchResultAll('');
-            }, 1000);
-        } else {
-            console.log("db opened");
-            fetchResultAll('');
+
+        function clearSearchInput() {
+            const inputElement = document.getElementById("searchInput");
+            const clearButton = document.querySelector('.clear_icon');
+            const resultUl = document.querySelector('#stocksResultsList');
+            const defaultUl = document.querySelector('#defaultList');
+            const noResultsMessage = document.querySelector('#noResultsMessage');
+            const loader = document.querySelector('#stock-loader');
+
+            inputElement.value = '';
+            clearButton.style.display = 'none';
+            resultUl.style.display = 'none';
+            defaultUl.style.display = 'flex';
+            noResultsMessage.style.display = 'none';
+            loader.style.display = 'none';
+            resultUl.innerHTML = '';
         }
-    }
 
-    async function storeStockList(instruments) {
-        indexedDBConnection();
-        var rowsDeleted = await connection.remove({
-            from: 'stocks'
-        });
-        var insertCount = await connection.insert({
-            into: 'stocks',
-            values: instruments
-        });
-        var results = await connection.select({
-            from: 'stocks'
-        });
-    }
+        function fetchStockResults(stockName) {
+            const limit = 10;
+            const resultUl = document.querySelector('#stocksResultsList');
+            const noResultsMessage = document.querySelector('#noResultsMessage');
+            const loader = document.querySelector('#stock-loader');
 
-    // Debounce function: Input as function which needs to be debounced and delay is the debounced time in milliseconds
-    var timerId;
-    var debounceFunction = function(func, delay) {
-        // Cancels the setTimeout method execution
-        clearTimeout(timerId)
+            resultUl.innerHTML = '';
+            noResultsMessage.style.display = 'none';
 
-        // Executes the func after delay time.
-        timerId = setTimeout(func, delay)
-    }
+            fetch(`/wp-json/api/stocks?query=${encodeURIComponent(stockName)}`)
+                .then(response => response.json())
+                .then(data => {
+                    loader.style.display = 'none';
+                    if (data.length === 0) {
 
-    // This represents a very heavy method. Which takes a lot of time to execute
-    function makeAPICall() {
-        var inputValue = document.getElementById("searchInput").value;
-        fetchResult(inputValue);
-    }
-
-    function inputChange() {
-        var inputValue = document.getElementById("searchInput").value;
-        var inputClearbtn = document.querySelector('.clear_icon');
-        let timeout;
-
-        // Debounces makeAPICall method
-        debounceFunction(makeAPICall, 500)
-
-        if (inputValue.length > 0) {
-            inputClearbtn.style.display = 'flex';
-        } else {
-            inputClearbtn.style.display = 'none';
-        }
-    }
-
-
-    async function fetchResult(stock_name) {
-        try {
-            if (stock_name.length == 0) {
-                var ulElement = document.getElementById('stocksResultsList');
-                ulElement.innerHTML = '';
-                ulElement.nextElementSibling.style.display = 'flex';
-                ulElement.style.display = 'none';
-                return;
-            }
-            if (stock_name.length > 0) {
-                var ulElement = document.getElementById('stocksResultsList');
-                ulElement.nextElementSibling.style.display = 'none';
-                ulElement.style.display = 'flex';
-            }
-
-            const regex = new RegExp(`\\b${stock_name}`, 'i');
-            const results = await connection.select({
-                from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            regex: regex
-                        }
+                        noResultsMessage.textContent = 'No stocks to display.';
+                        noResultsMessage.style.display = 'block';
+                        return;
                     }
-                }
-            });
-            renderItems(results);
-            console.log('renderItems results', results);
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
-    async function renderItems(dataArray) {
-        var ulElement = document.getElementById('stocksResultsList');
-        ulElement.innerHTML = '';
-        if (dataArray.length === 0) {
-            var messageElement = document.createElement('p');
-            messageElement.textContent = 'No stocks to display.';
-            ulElement.appendChild(messageElement);
-            return; // Exit the function
-        }
+                    data.sort((a, b) => {
+                        const aMatchScore = getMatchScore(stockName, a.name, a.symbol);
+                        const bMatchScore = getMatchScore(stockName, b.name, b.symbol);
+                        return bMatchScore - aMatchScore;
+                    });
 
-        var limit = 10;
-        var count = 0;
-        dataArray.forEach(function(object) {
-            if (count < limit) {
-                var liElement = document.createElement('li');
-                var aElement = document.createElement('a'); // Create an anchor element
-                var selectedText = object.name;
-                var selectedValue = object.symbol;
-                var formattedText = selectedText.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-                var formattedValue = selectedValue.toLowerCase().replace(/\s+/g, '-');
-                if (object.type === 'stock') {
-                    aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
-                } else if (object.type === 'etf') {
-                    aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
-                }
-                var divBoxElement = document.createElement('div');
-                divBoxElement.className = 'box';
-                var divExploreIconElement = document.createElement('div');
-                divExploreIconElement.className = 'explore-icon';
-                var imgElement = document.createElement('img');
-                imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${object.symbol}.png`;
-                var spanElement = document.createElement('span');
-                spanElement.textContent = object.name;
-                divExploreIconElement.appendChild(imgElement);
-                divBoxElement.appendChild(divExploreIconElement);
-                divBoxElement.appendChild(spanElement);
-                aElement.appendChild(divBoxElement); // Append the .box element to the anchor
-                liElement.appendChild(aElement); // Append the anchor to the list item
-                ulElement.appendChild(liElement);
-                count++;
-            }
-        });
 
-    }
+                    data.slice(0, limit).forEach(stock => {
+                        const liElement = document.createElement('li');
+                        const aElement = document.createElement('a');
 
-    function inputClear() {
-        var inputElement = document.getElementById("searchInput");
-        var inputClearbtn = document.querySelector('.clear_icon');
-        let timeout;
+                        const formattedText = stock.name.trim().toLowerCase()
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/^-+|-+$/g, '');
+                        const formattedValue = stock.symbol.toLowerCase().replace(/\s+/g, '-');
 
-        inputElement.value = '';
-        inputClearbtn.style.display = 'none';
-        var inputValue = inputElement.value;
-
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-
-        timeout = setTimeout(() => {
-            fetchResult(inputValue);
-        }, 500);
-    }
-
-    async function fetchResultAll(stock_name) {
-        try {
-            const results = await connection.select({
-                from: 'stocks',
-                order: {
-                    by: 'symbol',
-                    type: "asc"
-                },
-                where: {
-                    symbol: {
-                        like: `${stock_name}%`
-                    },
-                    or: {
-                        name: {
-                            like: `${stock_name}%`
+                        if (stock.type === 'stock') {
+                            aElement.href = `https://vestedfinance.com/us-stocks/${formattedValue}/${formattedText}-share-price/`;
+                        } else if (stock.type === 'etf') {
+                            aElement.href = `https://vestedfinance.com/us-stocks/etf/${formattedValue}/${formattedText}-share-price/`;
                         }
-                    }
-                }
-            });
-            console.log('results', results);
-        } catch (err) {
-            console.log(err);
+
+                        const divBox = document.createElement('div');
+                        divBox.className = 'box';
+
+                        const divIcon = document.createElement('div');
+                        divIcon.className = 'explore-icon';
+
+                        const imgElement = document.createElement('img');
+                        imgElement.src = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
+                        imgElement.alt = `${stock.name} logo`;
+
+                        imgElement.onerror = () => {
+                            imgElement.src = 'https://vested-wordpress-media-prod.s3.amazonaws.com/wp-content/uploads/2025/01/22081511/broken-image.png';
+                        };
+
+                        const spanElement = document.createElement('span');
+                        spanElement.textContent = stock.name;
+
+                        divIcon.appendChild(imgElement);
+                        divBox.appendChild(divIcon);
+                        divBox.appendChild(spanElement);
+                        aElement.appendChild(divBox);
+                        liElement.appendChild(aElement);
+                        resultUl.appendChild(liElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching stocks:', error);
+                    loader.style.display = 'none';
+
+                    resultUl.innerHTML = '<li class="error">Failed to load stock data. Please try again later.</li>';
+                });
         }
-    }
 
-    <?php
-    // Set the value for $stock_data
-    $stock_data = 'data from us-stock-search';
+        function getMatchScore(searchTerm, stockName, stockSymbol) {
 
-    // Set the global variable for $stock_data
-    $GLOBALS['stock_data'] = $json_data;
-    ?>
+            const searchLower = searchTerm.toLowerCase();
+            const nameLower = stockName.toLowerCase();
+            const symbolLower = stockSymbol.toLowerCase();
+
+            let score = 0;
+
+            if (nameLower.startsWith(searchLower)) {
+                score += 3;
+            } else if (nameLower.includes(searchLower)) {
+                score += 2;
+            }
+
+            if (symbolLower.startsWith(searchLower)) {
+                score += 2;
+            } else if (symbolLower.includes(searchLower)) {
+                score += 1;
+            }
+
+            return score;
+        }
+
+        function debounce(func, delay) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(func, delay);
+        }
+
+        window.handleStockSearchInput = handleStockSearchInput;
+        window.clearSearchInput = clearSearchInput;
+    })();
 </script>
