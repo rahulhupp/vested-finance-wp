@@ -225,7 +225,7 @@ while (have_posts()) :
 
                                 if (!$has_glossary_term) {
                                 ?>
-                                    <a href="<?php echo get_permalink($previous_post); ?>">
+                                    <a href="<?php echo get_permalink($previous_post); ?>" class="next">
                                         <span>Next article</span>
                                         <h6><?php echo get_the_title($previous_post); ?></h6>
                                     </a>

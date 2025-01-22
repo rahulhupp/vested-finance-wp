@@ -173,6 +173,7 @@
             noResultsMessage.style.display = 'none';
             loader.style.display = 'none';
             resultUl.innerHTML = '';
+            clearSearchInput();
         }
 
         function fetchStockResults(stockName) {
