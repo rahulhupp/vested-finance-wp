@@ -6,6 +6,7 @@
 
     function bindAnalystForecastData(data) {
         var distributionData = data.distribution;
+        console.log(distributionData);
         distributionData = combineLabels(distributionData, "Strong Buy", "Buy", "Buy");
         distributionData = combineLabels(distributionData, "Strong Sell", "Sell", "Sell");
 

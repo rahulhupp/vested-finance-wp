@@ -16,7 +16,9 @@
         }
     }
 
-    loadMoreBtn.addEventListener('click', loadMore);
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', loadMore);
+    }
 
     // News JS End
 
@@ -76,7 +78,7 @@
                     });
                 }
             });
-        }, 500); 
+        }, 500);
     });
 
 
@@ -116,8 +118,6 @@
             display.classList.add("hidden");
         });
     }
-    
+
     // Financial JS End
-
 </script>
-

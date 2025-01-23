@@ -163,6 +163,7 @@ function fetch_stocks_data()
 
 function enqueue_custom_pagination_script()
 {
+    if (is_singular('collections')) {
 ?>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -774,5 +775,6 @@ function enqueue_custom_pagination_script()
         });
     </script>
 <?php
+    }
 }
 add_action('wp_footer', 'enqueue_custom_pagination_script');
