@@ -3,26 +3,26 @@
         const allImages = document.querySelectorAll("img");
         allImages.forEach((img) => {
             const setDimensions = () => {
-            if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
-                const naturalWidth = img.naturalWidth;
-                const naturalHeight = img.naturalHeight;
-                if (naturalWidth && naturalHeight) {
-                img.setAttribute("width", naturalWidth);
-                img.setAttribute("height", naturalHeight);
+                if (!img.hasAttribute("width") && !img.hasAttribute("height")) {
+                    const naturalWidth = img.naturalWidth;
+                    const naturalHeight = img.naturalHeight;
+                    if (naturalWidth && naturalHeight) {
+                        img.setAttribute("width", naturalWidth);
+                        img.setAttribute("height", naturalHeight);
+                    }
                 }
-            }
             };
             if (img.complete) {
-            setDimensions();
+                setDimensions();
             } else {
-            img.addEventListener("load", setDimensions);
+                img.addEventListener("load", setDimensions);
             }
             if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
-            const src = img.getAttribute("src");
-            if (src) {
-                const filename = src.split("/").pop().split(".")[0];
-                img.setAttribute("alt", filename.replace(/[-_]/g, " "));
-            }
+                const src = img.getAttribute("src");
+                if (src) {
+                    const filename = src.split("/").pop().split(".")[0];
+                    img.setAttribute("alt", filename.replace(/[-_]/g, " "));
+                }
             }
         });
     });
@@ -38,11 +38,13 @@
                     anchor.classList.remove('active');
                 });
                 link.classList.add('active');
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
     });
-    
+
 
     const faqItems = document.querySelectorAll('.faq_item');
     faqItems.forEach(item => {
@@ -52,14 +54,14 @@
 
         item.addEventListener('click', () => {
             faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                const otherAnswer = otherItem.nextElementSibling;
-                const otherIcon = otherItem.querySelector('.faq_icon');
+                if (otherItem !== item) {
+                    const otherAnswer = otherItem.nextElementSibling;
+                    const otherIcon = otherItem.querySelector('.faq_icon');
 
-                otherAnswer.classList.remove('active');
-                otherIcon.classList.remove('active');
-                otherAnswer.style.maxHeight = "0";
-            }
+                    otherAnswer.classList.remove('active');
+                    otherIcon.classList.remove('active');
+                    otherAnswer.style.maxHeight = "0";
+                }
             });
             answer.classList.toggle('active');
             icon.classList.toggle('active');
@@ -87,17 +89,17 @@
     function displayMessage() {
         var copyMessage = document.getElementById("copy_link_message");
         copyMessage.classList.add('active');
-        setTimeout(function () {
+        setTimeout(function() {
             copyMessage.classList.remove('active');
         }, 2000);
     }
 
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         var symbol = "<?php echo $symbol; ?>";
         var stockBoxes = document.querySelectorAll('.box_warrp');
         var hideLastDiv = true;
-        stockBoxes.forEach(function (box) {
+        stockBoxes.forEach(function(box) {
             if (box.getAttribute('data-symbol') === symbol) {
                 hideLastDiv = false;
                 box.style.display = 'none';
@@ -111,13 +113,14 @@
 
     var stockTabsMenu = document.querySelector('.stock_tabs_menu');
     var stockTabsMenuPosition = document.querySelector('.stock_tabs_menu_position');
+
     function addClassOnScroll() {
-      var scrollPosition = window.scrollY;
-      if (scrollPosition >= stockTabsMenuPosition.offsetTop && scrollPosition >= 100) {
-        stockTabsMenu.classList.add('highlighted');
-      } else {
-        stockTabsMenu.classList.remove('highlighted');
-      }
+        var scrollPosition = window.scrollY;
+        if (scrollPosition >= stockTabsMenuPosition.offsetTop && scrollPosition >= 100) {
+            stockTabsMenu.classList.add('highlighted');
+        } else {
+            stockTabsMenu.classList.remove('highlighted');
+        }
     }
 
     window.addEventListener('scroll', addClassOnScroll);
@@ -161,7 +164,7 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function() {
         var singleTabHeadings = document.querySelectorAll('.single_tab_wrap:nth-child(1) .single_tab_heading');
         singleTabHeadings.forEach(function(singleTabHeading) {
             singleTabHeading.classList.add('collapsed');
@@ -219,6 +222,8 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         var humburger = document.querySelector("header .inner-header .site-primary-header-wrap .logo-menu .humburger");
+        var megaMenuSelectors = document.querySelectorAll('.mega-menu-item-has-children');
+        let activeMenu = null;
         if (humburger) {
             humburger.addEventListener("click", function() {
                 document.body.classList.toggle("menu-open");
@@ -226,9 +231,20 @@
         } else {
             console.error("Hamburger element not found!");
         }
+
+        megaMenuSelectors.forEach(megaMenu => {
+            megaMenu.addEventListener("click", function() {
+                if (activeMenu && activeMenu !== this) {
+                    activeMenu.classList.remove('mega-toggle-on');
+                }
+                this.classList.toggle('mega-toggle-on');
+
+                activeMenu = this.classList.contains('mega-toggle-on') ? this : null;
+            })
+        })
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         var content = document.getElementById("stock_about_description");
         var showMoreBtn = document.getElementById("show_more");
         var originalText = content.textContent;
@@ -238,7 +254,7 @@
             showMoreBtn.style.display = "inline-block";
         }
 
-        showMoreBtn.addEventListener("click", function () {
+        showMoreBtn.addEventListener("click", function() {
             content.textContent = originalText;
             showMoreBtn.style.display = "none";
         });
@@ -257,5 +273,4 @@
             }
         }
     });
-
 </script>
