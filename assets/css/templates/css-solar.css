@@ -1,5 +1,5 @@
 .solar-page {
-	padding-bottom: 60px;
+	/* padding-bottom: 60px; */
 }
 
 .btn_dark {
@@ -935,6 +935,50 @@ a.btn_dark {
 	top: 5px;
 }
 
+.solar-advantages {
+	padding: 100px 0;
+	margin-top: 60px;
+	background: #f0f7fe;
+}
+
+.solar-advantages h2 {
+	color: #002852;
+	text-align: center;
+	font-size: 38px;
+	font-weight: 800;
+	line-height: 110%;
+	margin: 0 0 47px 0;
+}
+
+.single-advantage-wrap h4 {
+	color: #002852;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 120%;
+	margin: 0 0 18px 0;
+}
+
+.single-advantage-wrap p {
+	color: #505a64;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 150%;
+	margin: 0;
+}
+
+.single-advantage-wrap h4 span {
+	font-weight: 400;
+}
+
+.single-advantage-wrap h4 span:after {
+	content: "|";
+	margin: 0 3px;
+}
+
+.single-advantage-wrap:not(:last-child) {
+	margin-bottom: 24px;
+}
+
 @media (max-width: 1199px) {
 	.solar_tabs .tabs .tab-content#tab1 .content_wrap .image {
 		position: unset;
@@ -1699,6 +1743,29 @@ a.btn_dark {
 		font-size: 16px;
 		line-height: 20.8px;
 		margin-top: 30px;
+	}
+	
+	.solar-advantages {
+		padding: 40px 0;
+	}
+
+	.solar-advantages h2 {
+		font-size: 22px !important;
+		margin: 0 0 37px 0;
+	}
+
+	.single-advantage-wrap h4 {
+		font-size: 20px;
+		margin: 0 0 14px 0;
+	}
+
+	.single-advantage-wrap p {
+		font-size: 16px;
+		line-height: 130%;
+	}
+
+	.single-advantage-wrap:not(:last-child) {
+		margin-bottom: 20px;
 	}
 }
 

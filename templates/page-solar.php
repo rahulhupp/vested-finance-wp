@@ -351,6 +351,26 @@ get_header(); ?>
     </section>
 <?php endif; ?> -->
 
+<?php if (have_rows('solar_advantages_list')) : ?>
+    <section class="solar-advantages">
+        <div class="container">
+            <h2><?php the_field('solar_advantages_heading'); ?></h2>
+
+            <div class="solar-advantages-list">
+                <?php while (have_rows('solar_advantages_list')) : the_row(); ?>
+                    <div class="single-advantage-wrap">
+                        <h4>
+                            <span>0<?php echo get_row_index(); ?>.</span>
+                            <?php the_sub_field('advantages_title') ?>
+                        </h4>
+                        <p><?php the_sub_field('advantages_description') ?></p>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
+
 </div>
 
 
