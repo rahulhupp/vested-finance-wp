@@ -102,31 +102,6 @@ function getValueByLabel($summaryMapping, $label)
 <?php
 $symbol = get_query_var('symbol');
 get_header(); ?>
-<style>
-    .stock_error_block {
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .stock_error_inner {
-        background-color: #fee2e2;
-        padding: 14px;
-        border-radius: 5px;
-        text-align: center;
-        max-width: 560px;
-    }
-
-    .stock_error_inner p {
-        letter-spacing: 0;
-        font-weight: 400;
-        line-height: 1.4;
-        color: #7f1d1d;
-        font-size: 16px;
-        margin-bottom: 0;
-    }
-</style>
 <?php
 if ($overview_data) {
     if (!isset($overview_data->error) || $overview_data->error != 1) { ?>
@@ -190,7 +165,7 @@ if ($overview_data) {
                             ?>
 
                             <?php
-                            if($returns_data) :
+                            if ($returns_data) :
                                 get_template_part(
                                     'template-parts/stocks-details/returns',
                                     null,
@@ -204,28 +179,28 @@ if ($overview_data) {
 
                             <?php if ($get_path[2] !== 'etf'): ?>
                                 <?php
-                                    if($income_statement_data && $balance_sheet_data && $cash_flow_data):
-                                        get_template_part(
-                                            'template-parts/stocks-details/financials',
-                                            null,
-                                            array(
-                                                'income_statement_data' => $income_statement_data,
-                                                'balance_sheet_data' => $balance_sheet_data,
-                                                'cash_flow_data' => $cash_flow_data
-                                            )
-                                        );
-                                    endif;
+                                if ($income_statement_data && $balance_sheet_data && $cash_flow_data):
+                                    get_template_part(
+                                        'template-parts/stocks-details/financials',
+                                        null,
+                                        array(
+                                            'income_statement_data' => $income_statement_data,
+                                            'balance_sheet_data' => $balance_sheet_data,
+                                            'cash_flow_data' => $cash_flow_data
+                                        )
+                                    );
+                                endif;
                                 ?>
 
-                                <?php 
-                                    if($ratios_data):
-                                        get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data));
-                                    endif;
+                                <?php
+                                if ($ratios_data):
+                                    get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data));
+                                endif;
                                 ?>
                                 <?php
-                                    if($news_data):
-                                        get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data));
-                                    endif;
+                                if ($news_data):
+                                    get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data));
+                                endif;
                                 ?>
                             <?php else: ?>
                                 <?php
@@ -241,36 +216,36 @@ if ($overview_data) {
                             <?php endif; ?>
 
                             <?php
-                                if($get_path):
-                                    get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path));
-                                endif;
+                            if ($get_path):
+                                get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path));
+                            endif;
                             ?>
 
                             <?php if ($get_path[2] !== 'etf'): ?>
                                 <?php
-                                    if($overview_data && $ratios_data):
-                                        get_template_part(
-                                            'template-parts/stocks-details/faqs',
-                                            null,
-                                            array(
-                                                'overview_data' => $overview_data,
-                                                'ratios_data' => $ratios_data
-                                            )
-                                        );
-                                    endif;
+                                if ($overview_data && $ratios_data):
+                                    get_template_part(
+                                        'template-parts/stocks-details/faqs',
+                                        null,
+                                        array(
+                                            'overview_data' => $overview_data,
+                                            'ratios_data' => $ratios_data
+                                        )
+                                    );
+                                endif;
                                 ?>
                             <?php else: ?>
                                 <?php
-                                    if ($overview_data && $ratios_data):
-                                        get_template_part(
-                                            'template-parts/stocks-details/faqs-etf',
-                                            null,
-                                            array(
-                                                'returns_data' => $returns_data,
-                                                'overview_data' => $overview_data
-                                            )
-                                        );
-                                    endif;
+                                if ($overview_data && $ratios_data):
+                                    get_template_part(
+                                        'template-parts/stocks-details/faqs-etf',
+                                        null,
+                                        array(
+                                            'returns_data' => $returns_data,
+                                            'overview_data' => $overview_data
+                                        )
+                                    );
+                                endif;
                                 ?>
                             <?php endif; ?>
                         </div>
@@ -308,7 +283,17 @@ if ($overview_data) {
         <?php } else { ?>
             <div class="stock_error_block">
                 <div class="stock_error_inner">
-                    <p><i class="fa fa-info-circle" aria-hidden="true"></i> Error Retrieving Data</p>
+                    <p>
+                        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <circle cx="12" cy="12" r="10" stroke="#002852" stroke-width="1.5"></circle>
+                                <path d="M12 17V11" stroke="#002852" stroke-width="1.5" stroke-linecap="round"></path>
+                                <circle cx="1" cy="1" r="1" transform="matrix(1 0 0 -1 11 9)" fill="#002852"></circle>
+                            </g>
+                        </svg> Stock details are not available, Please check after some time.
+                    </p>
                 </div>
             </div>
     <?php }
