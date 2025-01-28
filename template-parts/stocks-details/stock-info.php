@@ -3,6 +3,7 @@
     $get_path = $args['get_path'];
     // Check if response is successful
     if ($overview_data) {
+    if (isset($overview_data->price, $overview_data->change, $overview_data->previousClose, $overview_data->changePercent)) {
         $change = $overview_data->change;
         if ($change < 0) {
             $changeClass = 'negative';
@@ -62,6 +63,11 @@
     </div>
 
 <?php
+} else { ?>
+        <div class="stock_details_box stock_info_container">
+            <p>Price related data not available</p>
+        </div>
+<?php }
 } else {
     echo "Error retrieving data"; // Handle error
 }
