@@ -292,7 +292,7 @@ if ($overview_data) {
                                 <path d="M12 17V11" stroke="#002852" stroke-width="1.5" stroke-linecap="round"></path>
                                 <circle cx="1" cy="1" r="1" transform="matrix(1 0 0 -1 11 9)" fill="#002852"></circle>
                             </g>
-                        </svg> Stock details are not available, Please check after some time.
+                        </svg> Details for this stock/ETF are currently unavailable. Please try again in some time.
                     </p>
                 </div>
             </div>
