@@ -359,9 +359,9 @@ $image = get_field('easy_access_image');
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
+                    // globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
                     // globalBanner.classList.add('warning_banner');
-                    console.log('show geolocation_banner');
+                    // console.log('show geolocation_banner');
                 } else {
                     globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
                 }
