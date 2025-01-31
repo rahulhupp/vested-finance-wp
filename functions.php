@@ -564,3 +564,152 @@ add_filter('excerpt_more', function ($more) {
     }
     return $more;
 });
+
+
+// news sitemap
+
+function exclude_vested_shorts_from_post_sitemap($excluded_posts)
+{
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => -1,
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'master_categories',
+                'field'    => 'slug',
+                'terms'    => 'vested-shorts',
+            ),
+        ),
+    );
+
+    $query = new WP_Query($args);
+    $current_timestamp = current_time('timestamp');
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $post_date = get_the_date('Y-m-d H:i:s', $post_id);
+
+        $post_timestamp = strtotime($post_date);
+
+        if (($current_timestamp - $post_timestamp) <= 5 * 60) {
+            $excluded_posts[] = $post_id;
+        }
+    }
+
+    wp_reset_postdata();
+
+    return $excluded_posts;
+}
+add_filter('wpseo_exclude_from_sitemap_by_post_ids', 'exclude_vested_shorts_from_post_sitemap');
+
+
+function generate_news_sitemap()
+{
+    $news_sitemap_path = ABSPATH . 'news-sitemap.xml';
+
+    if (!is_writable(ABSPATH)) {
+        error_log('Cannot write to the root directory. Please check file permissions.');
+        return;
+    }
+
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => -1,
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'master_categories',
+                'field'    => 'slug',
+                'terms'    => 'vested-shorts',
+            ),
+        ),
+        'date_query'     => array(
+            array(
+                'after'     => '5 minutes ago',
+                'inclusive' => true,
+            ),
+        ),
+    );
+
+    $query = new WP_Query($args);
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $xml .= '<url>';
+            $xml .= '<loc>' . get_permalink() . '</loc>';
+            $xml .= '<lastmod>' . get_the_modified_date(DATE_W3C) . '</lastmod>';
+            $xml .= '</url>';
+        }
+    }
+
+    $xml .= '</urlset>';
+
+    file_put_contents($news_sitemap_path, $xml);
+    error_log('News sitemap updated at: ' . $news_sitemap_path);
+
+    wp_reset_postdata();
+}
+
+function schedule_news_sitemap_cron()
+{
+    if (!wp_next_scheduled('update_news_sitemap_cron')) {
+        wp_schedule_event(time(), 'five_minutes', 'update_news_sitemap_cron');
+    }
+}
+add_action('wp', 'schedule_news_sitemap_cron');
+
+function update_news_sitemap_cron_function()
+{
+    generate_news_sitemap();
+}
+add_action('update_news_sitemap_cron', 'update_news_sitemap_cron_function');
+
+
+function add_five_minutes_cron_interval($schedules)
+{
+    $schedules['five_minutes'] = array(
+        'interval' => 300, // 5 minutes
+        'display'  => __('Every 5 Minutes'),
+    );
+    return $schedules;
+}
+add_filter('cron_schedules', 'add_five_minutes_cron_interval');
+
+
+function trigger_news_sitemap_generation($post_id, $post, $update)
+{
+
+    if ($post->post_type === 'post') {
+        generate_news_sitemap();
+    }
+}
+add_action('save_post', 'trigger_news_sitemap_generation', 10, 3);
+
+
+function manage_sitemaps($post_id, $post, $update)
+{
+    $current_timestamp = current_time('timestamp');
+    $post_timestamp = get_the_date('U', $post_id);
+
+    if (($current_timestamp - $post_timestamp) <= 5 * 60) {
+        exclude_vested_shorts_from_post_sitemap([]);
+        generate_news_sitemap();
+    } else {
+        exclude_vested_shorts_from_post_sitemap([]);
+        generate_news_sitemap();
+    }
+}
+add_action('save_post', 'manage_sitemaps', 10, 3);
+
+
+schedule_news_sitemap_cron();
+
+function debug_cron_execution()
+{
+    error_log('✅ Cron job executed at: ' . date('Y-m-d H:i:s'));
+}
+add_action('update_news_sitemap_cron', 'debug_cron_execution');
