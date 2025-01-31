@@ -357,6 +357,7 @@ $image = get_field('why_inveset_image_global');
                 } else {
                     if (document.body.classList.contains('page-template-page-us-stock-global')) {
                         // globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='<?php home_url(); ?>/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                        globalBanner.style.display = "none";
                     }
                 }
             }
