@@ -230,16 +230,48 @@ get_header(); ?>
                 <h2><?php echo esc_html($blog_posts_section_title); ?></h2>
             </div>
             <div class="post-list">
-                <div class="post">
-                    <a href="" class="post-thumbnail">
-                        <img src="https://vested-wordpress-media-prod.s3.amazonaws.com/wp-content/uploads/2025/02/01115731/720-x-280-Budget-2025-Key-Updates.jpg"
-                            alt="" class="img-full" loading="lazy">
-                    </a>
-                    <div class="post-info">
-                        <h3><a href="">Ray Dalio Sees India's Growth Rate at 7% Over the Next 10 Years</a></h3>
-                        <div class="post-by">by Fortune India</div>
-                    </div>
-                </div>
+                <?php
+                $selected_posts = get_field('select_posts');
+                if (is_array($selected_posts) && !empty($selected_posts)) {
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 3,
+                        'post__in' => $selected_posts,
+                        'orderby' => 'post__in',
+                    );
+                } else {
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 3,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'master_categories',
+                                'field' => 'slug',
+                                'terms' => array('us-stocks'),
+                            ),
+                        ),
+                    );
+                }
+                $custom_query = new WP_Query($args);
+                if ($custom_query->have_posts()):
+                    while ($custom_query->have_posts()):
+                        $custom_query->the_post(); ?>
+                        <div class="post">
+                            <a href="<?php echo esc_url(get_permalink()); ?>" class="post-thumbnail">
+                                <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
+                                    alt="<?php echo esc_attr(get_the_title()); ?>" class="img-full" loading="lazy">
+                            </a>
+                            <div class="post-info">
+                                <h3><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></h3>
+                                <div class="post-by">by <?php the_author(); ?></div>
+                            </div>
+                        </div>
+                    <?php endwhile;
+                    wp_reset_postdata();
+                else:
+                    echo '<p>No posts found.</p>';
+                endif;
+                ?>
             </div>
             <a href="<?php echo esc_url($blog_posts_section_button_url) ?>"
                 class="mx_auto primaryBtn"><?php echo esc_html($blog_posts_section_button_text); ?></a>

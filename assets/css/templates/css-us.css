@@ -339,6 +339,10 @@ header.site-header {
   flex: 1 1 auto;
 }
 
+.county-info .chart-grid .card .chart img {
+  object-fit: contain;
+}
+
 .county-info .chart-grid .card:nth-child(3) {
   --add-w: -7%;
 }
