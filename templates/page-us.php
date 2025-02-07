@@ -235,14 +235,14 @@ get_header(); ?>
                 if (is_array($selected_posts) && !empty($selected_posts)) {
                     $args = array(
                         'post_type' => 'post',
-                        'posts_per_page' => 3,
+                        'posts_per_page' => 4,
                         'post__in' => $selected_posts,
                         'orderby' => 'post__in',
                     );
                 } else {
                     $args = array(
                         'post_type' => 'post',
-                        'posts_per_page' => 3,
+                        'posts_per_page' => 4,
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'master_categories',
