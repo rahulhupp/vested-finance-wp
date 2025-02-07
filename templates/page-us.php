@@ -295,6 +295,37 @@ get_header(); ?>
             <?php echo wp_kses_post($popover_title_description); ?>
         </div>
     </div>
+    <div class="custom-footer">
+        <div class="container">
+            <div class="footer_above">
+                <a href="<?php echo site_url() ?>">
+                    <?php
+                    $image = get_field('site_logo', 'option');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
+                </a>
+                <p class="footer_address"><?php echo esc_html(get_field('custom_footer_address')); ?></p>
+                <a href="<?php echo esc_url(get_field('custom__contact_us_url')); ?>" class="btn_url"
+                    target="_blank">Contact
+                    us</a>
+            </div>
+            <div class="footer_bottom">
+                <div class="disclosure_heading">
+                    <h3><?php echo esc_html(get_field('custom_footer_disclosure_title')); ?></h3>
+                    <?php
+                    $icon = get_field('custom_footer_disclosure_icon');
+                    if (!empty($icon)): ?>
+                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"
+                            width="27" height="27">
+                    <?php endif; ?>
+                </div>
+                <div class="disclosure_content">
+                    <?php echo wp_kses_post(get_field('custom_footer_disclosure_content')); ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php get_footer() ?>
