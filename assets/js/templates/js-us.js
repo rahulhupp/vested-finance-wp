@@ -1,6 +1,22 @@
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.to("#circle1", {
+    motionPath: "#animationPath",
+    duration: 3.5,
+    ease: "none",
+    delay: 0,
+    repeat: -1,
+  });
+  gsap.to("#circle2", {
+    motionPath: "#animationPath",
+    duration: 3.5,
+    ease: "none",
+    delay: 1,
+    repeat: -1,
+  });
+});
 jQuery(document).ready(function () {
   jQuery(".testimonials-slider").slick({
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 6000,
@@ -8,6 +24,13 @@ jQuery(document).ready(function () {
     dots: false,
     arrows: false,
     responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1250,
         settings: {

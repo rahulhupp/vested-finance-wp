@@ -81,14 +81,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	?>
 >
 	<?php
-	astra_header_before();
-
-	astra_header();
-
-	astra_header_after();
-
-	astra_content_before();
-	?>
+		$page_id = get_the_ID();
+		$page_template = get_page_template_slug($page_id);
+		if ($page_template !== 'templates/page-us.php') {
+			astra_header_before();
+			astra_header();
+			astra_header_after();
+		}
+		astra_content_before();
+		?>
 	<div id="content" class="site-content">
 		<div class="ast-container">
 		<?php astra_content_top(); ?>

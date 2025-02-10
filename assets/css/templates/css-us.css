@@ -195,12 +195,28 @@ footer {
 /* Custom Header */
 
 .hero-banner {
-  background: center / cover no-repeat var(--bg-img), #ffffff;
+  background: #ffffff;
   position: relative;
-  padding: clamp(5.625rem, 4.2231rem + 7.0093vw, 9.375rem) 0;
-  /* min-height: clamp(37rem, 31.8721rem + 20.3271vw, 46.8125rem); */
+  padding: clamp(5.625rem, 4.2231rem + 7.0093vw, 9.375rem) 0
+    clamp(11.25rem, 9.75rem + 7.5vw, 18.75rem);
   z-index: 1;
-  min-height: clamp(46.8125rem, -4rem + 56.4583vw, 63.75rem);
+  overflow: hidden;
+}
+
+.hero-banner .bg-animation {
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  left: 50%;
+  bottom: -20px;
+  transform: translate(-50%, 0);
+}
+
+.svg-full {
+  width: 100%;
+  object-fit: cover;
+  min-width: clamp(64rem, 52.8rem + 56vw, 120rem);
+  height: clamp(25rem, 19.8rem + 26vw, 51rem);
 }
 
 .hero-banner .inner-box {
@@ -640,11 +656,6 @@ footer {
 .custom-footer .footer_bottom {
   padding: 60px 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
-}
-@media (max-width: 1441px) {
-  .hero-banner {
-    min-height: clamp(37rem, 31.8721rem + 20.3271vw, 46.8125rem);
-  }
 }
 
 @media (max-width: 767px) {

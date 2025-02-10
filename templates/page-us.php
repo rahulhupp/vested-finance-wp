@@ -82,6 +82,103 @@ get_header(); ?>
                 </div>
             </div>
         </div>
+        <div class="bg-animation">
+            <svg class="svg-full" width="1920" height="816" viewBox="0 0 1920 816" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_229_905)">
+                    <rect width="1920" height="816" fill="white" />
+                    <path
+                        d="M0.5 665.5L195.5 628L347 647.5L500.5 600.5L653 617.5L806 570.5L958 583.5L1110 546L1263 463L1415 440L1568 352.5L1720 312.5L1920 249.5"
+                        stroke="#52A5EE" id="animationPath" />
+                    <path d="M196 -233.011V853" stroke="url(#paint0_linear_229_905)" />
+                    <path d="M347 -235.005V851.005" stroke="url(#paint1_linear_229_905)" />
+                    <path d="M501 -233.011V853" stroke="url(#paint2_linear_229_905)" />
+                    <path d="M653 -236.003V850.008" stroke="url(#paint3_linear_229_905)" />
+                    <path d="M806 -233.011V853" stroke="url(#paint4_linear_229_905)" />
+                    <path d="M958 -233.011V853" stroke="url(#paint5_linear_229_905)" />
+                    <path d="M1110 -237V849.011" stroke="url(#paint6_linear_229_905)" />
+                    <path d="M1263 -237V849.011" stroke="url(#paint7_linear_229_905)" />
+                    <path d="M1415 -237V849.011" stroke="url(#paint8_linear_229_905)" />
+                    <path d="M1568 -237V849.011" stroke="url(#paint9_linear_229_905)" />
+                    <g opacity="0.6" filter="url(#filter0_f_229_905)">
+                        <ellipse cx="960" cy="247" rx="441" ry="240" fill="white" />
+                    </g>
+                </g>
+                <circle id="circle1" cx="0" cy="0" r="4" fill="#0AD1FE" />
+                <circle id="circle2" cx="0" cy="0" r="4" fill="#0AD1FE" />
+                <defs>
+                    <filter id="filter0_f_229_905" x="487.5" y="-24.5" width="945" height="543"
+                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                        <feGaussianBlur stdDeviation="15.75" result="effect1_foregroundBlur_229_905" />
+                    </filter>
+                    <linearGradient id="paint0_linear_229_905" x1="196.5" y1="-233.011" x2="196.5" y2="850.008"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.794345" stop-color="#EEEEEE" />
+                        <stop offset="0.794672" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_229_905" x1="347.5" y1="-235.005" x2="347.5" y2="848.014"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.814265" stop-color="#EEEEEE" />
+                        <stop offset="0.814312" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint2_linear_229_905" x1="501.5" y1="-233.011" x2="501.5" y2="850.008"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.769228" stop-color="#EEEEEE" />
+                        <stop offset="0.769275" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint3_linear_229_905" x1="653.5" y1="-236.003" x2="653.5" y2="847.016"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.787293" stop-color="#EEEEEE" />
+                        <stop offset="0.787352" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint4_linear_229_905" x1="806.5" y1="-233.011" x2="806.5" y2="850.008"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.74157" stop-color="#EEEEEE" />
+                        <stop offset="0.74157" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint5_linear_229_905" x1="958.5" y1="-233.011" x2="958.5" y2="850.008"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.753383" stop-color="#EEEEEE" />
+                        <stop offset="0.753406" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint6_linear_229_905" x1="1110.5" y1="-237" x2="1110.5" y2="846.019"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.722375" stop-color="#EEEEEE" />
+                        <stop offset="0.722585" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint7_linear_229_905" x1="1263.5" y1="-237" x2="1263.5" y2="846.019"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.646066" stop-color="#EEEEEE" />
+                        <stop offset="0.646098" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint8_linear_229_905" x1="1415.5" y1="-237" x2="1415.5" y2="846.019"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.624364" stop-color="#EEEEEE" />
+                        <stop offset="0.624788" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="paint9_linear_229_905" x1="1568.5" y1="-237" x2="1568.5" y2="846.019"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0.544115" stop-color="#EEEEEE" />
+                        <stop offset="0.544586" stop-color="#52A5EE" />
+                        <stop offset="1" stop-color="#52A5EE" stop-opacity="0" />
+                    </linearGradient>
+                    <clipPath id="clip0_229_905">
+                        <rect width="1920" height="816" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
     </section>
 
     <?php
@@ -328,4 +425,6 @@ get_header(); ?>
     </div>
 </div>
 
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js"></script>
 <?php get_footer() ?>
