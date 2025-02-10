@@ -320,58 +320,44 @@ get_header(); ?>
     $blog_posts_section_title = get_field('blog_posts_section_title');
     $blog_posts_section_button_text = get_field('blog_posts_section_button_text');
     $blog_posts_section_button_url = get_field('blog_posts_section_button_url');
+    $blog_posts = get_field('blog_posts');
     ?>
     <section class="post-type-list">
         <div class="container">
-            <div class="text_center">
-                <h2><?php echo esc_html($blog_posts_section_title); ?></h2>
-            </div>
-            <div class="post-list">
-                <?php
-                $selected_posts = get_field('select_posts');
-                if (is_array($selected_posts) && !empty($selected_posts)) {
-                    $args = array(
-                        'post_type' => 'post',
-                        'posts_per_page' => 4,
-                        'post__in' => $selected_posts,
-                        'orderby' => 'post__in',
-                    );
-                } else {
-                    $args = array(
-                        'post_type' => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'master_categories',
-                                'field' => 'slug',
-                                'terms' => array('us-stocks'),
-                            ),
-                        ),
-                    );
-                }
-                $custom_query = new WP_Query($args);
-                if ($custom_query->have_posts()):
-                    while ($custom_query->have_posts()):
-                        $custom_query->the_post(); ?>
+            <?php if (!empty($blog_posts_section_title)): ?>
+                <div class="text_center">
+                    <h2><?php echo esc_html($blog_posts_section_title); ?></h2>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($blog_posts)): ?>
+                <div class="post-list">
+                    <?php foreach ($blog_posts as $card): ?>
                         <div class="post">
-                            <a href="<?php echo esc_url(get_permalink()); ?>" class="post-thumbnail">
-                                <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
-                                    alt="<?php echo esc_attr(get_the_title()); ?>" class="img-full" loading="lazy">
-                            </a>
+                            <?php if (!empty($card['blog_post_image']['url'])): ?>
+                                <figure class="post-thumbnail">
+                                    <img src="<?php echo esc_url($card['blog_post_image']['url']); ?>"
+                                        alt="<?php echo esc_attr($card['blog_post_title'] ?? 'Post image'); ?>" class="img-full"
+                                        loading="lazy">
+                                </figure>
+                            <?php endif; ?>
+
                             <div class="post-info">
-                                <h3><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></h3>
-                                <div class="post-by">by <?php the_author(); ?></div>
+                                <h3><?php echo esc_html($card['blog_post_title'] ?? 'Untitled Post'); ?></h3>
+                                <?php if (!empty($card['blog_post_author_name'])): ?>
+                                    <div class="post-by">by <?php echo esc_html($card['blog_post_author_name']); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
-                    <?php endwhile;
-                    wp_reset_postdata();
-                else:
-                    echo '<p>No posts found.</p>';
-                endif;
-                ?>
-            </div>
-            <a href="<?php echo esc_url($blog_posts_section_button_url) ?>"
-                class="mx_auto primaryBtn"><?php echo esc_html($blog_posts_section_button_text); ?></a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($blog_posts_section_button_text) && !empty($blog_posts_section_button_url)): ?>
+                <a href="<?php echo esc_url($blog_posts_section_button_url); ?>" class="mx_auto primaryBtn">
+                    <?php echo esc_html($blog_posts_section_button_text); ?>
+                </a>
+            <?php endif; ?>
         </div>
     </section>
 
