@@ -518,6 +518,9 @@ footer {
   display: flex;
   flex-direction: column;
 }
+.post-type-list .post-list .post.hidden {
+  display: none;
+}
 
 .post-type-list .post-list .post-thumbnail {
   display: block;

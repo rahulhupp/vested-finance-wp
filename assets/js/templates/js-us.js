@@ -13,6 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
     delay: 1,
     repeat: -1,
   });
+  let posts = document.querySelectorAll(".post-type-list .post");
+  let loadMoreBtn = document.getElementById("loadMorePost");
+  let postsPerClick = 4;
+  let hiddenPosts = Array.from(posts).filter((post) =>
+    post.classList.contains("hidden")
+  );
+  loadMoreBtn.addEventListener("click", function () {
+    let toShow = hiddenPosts.splice(0, postsPerClick);
+    toShow.forEach((post) => post.classList.remove("hidden"));
+    if (hiddenPosts.length === 0) {
+      loadMoreBtn.style.display = "none";
+    }
+  });
 });
 jQuery(document).ready(function () {
   jQuery(".testimonials-slider").slick({

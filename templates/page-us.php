@@ -35,7 +35,6 @@ get_header(); ?>
     </div>
 
     <?php
-    $hero_bg_image = get_field('hero_bg_image');
     $hero_title_before = get_field('hero_title_before');
     $hero_title_image = get_field('hero_title_image');
     $hero_title_after = get_field('hero_title_after');
@@ -44,7 +43,7 @@ get_header(); ?>
     $primary_button_link = get_field('primary_button_link');
     $secondary_button_text = get_field('secondary_button_text');
     ?>
-    <section class="hero-banner" style="--bg-img: url('<?php echo esc_url($hero_bg_image['url']); ?>');">
+    <section class="hero-banner">
         <div class="container flex flex_col align_center text_center">
             <div class="inner-box text_center">
                 <h1>
@@ -303,7 +302,8 @@ get_header(); ?>
                 <div class="col_2">
                     <h2><?php echo esc_html($join_the_waitlist_title); ?></h2>
                     <p><?php echo esc_html($join_the_waitlist_description); ?></p>
-                    <a href="<?php echo esc_url($cta_button_url) ?>" class="secondaryBtn" target="_blank" rel="noopener noreferrer">
+                    <a href="<?php echo esc_url($cta_button_url) ?>" class="secondaryBtn" target="_blank"
+                        rel="noopener noreferrer">
                         <span><?php echo esc_html($cta_button_text); ?></span>
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 17.5L17 7.5" stroke="#002852" stroke-width="2" stroke-linecap="round"
@@ -319,8 +319,6 @@ get_header(); ?>
 
     <?php
     $blog_posts_section_title = get_field('blog_posts_section_title');
-    $blog_posts_section_button_text = get_field('blog_posts_section_button_text');
-    $blog_posts_section_button_url = get_field('blog_posts_section_button_url');
     $blog_posts = get_field('blog_posts');
     ?>
     <section class="post-type-list">
@@ -330,21 +328,25 @@ get_header(); ?>
                     <h2><?php echo esc_html($blog_posts_section_title); ?></h2>
                 </div>
             <?php endif; ?>
-
             <?php if (!empty($blog_posts)): ?>
                 <div class="post-list">
-                    <?php foreach ($blog_posts as $card): ?>
-                        <div class="post">
+                    <?php foreach ($blog_posts as $index => $card): ?>
+                        <div class="post <?php echo $index >= 4 ? 'hidden' : ''; ?>">
                             <?php if (!empty($card['blog_post_image']['url'])): ?>
-                                <figure class="post-thumbnail">
+                                <a href="<?php echo esc_url($card['blog_post_link']) ?>" class="post-thumbnail" target="_blank"
+                                    rel="noopener noreferrer">
                                     <img src="<?php echo esc_url($card['blog_post_image']['url']); ?>"
                                         alt="<?php echo esc_attr($card['blog_post_title'] ?? 'Post image'); ?>" class="img-full"
                                         loading="lazy">
-                                </figure>
+                                </a>
                             <?php endif; ?>
-
                             <div class="post-info">
-                                <h3><?php echo esc_html($card['blog_post_title'] ?? 'Untitled Post'); ?></h3>
+                                <h3>
+                                    <a href="<?php echo esc_url($card['blog_post_link']) ?>" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <?php echo esc_html($card['blog_post_title'] ?? 'Untitled Post'); ?>
+                                    </a>
+                                </h3>
                                 <?php if (!empty($card['blog_post_author_name'])): ?>
                                     <div class="post-by">by <?php echo esc_html($card['blog_post_author_name']); ?></div>
                                 <?php endif; ?>
@@ -353,11 +355,8 @@ get_header(); ?>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-
-            <?php if (!empty($blog_posts_section_button_text) && !empty($blog_posts_section_button_url)): ?>
-                <a href="<?php echo esc_url($blog_posts_section_button_url); ?>" class="mx_auto primaryBtn">
-                    <?php echo esc_html($blog_posts_section_button_text); ?>
-                </a>
+            <?php if (count($blog_posts) > 4): ?>
+                <a href="javascript:void(0)" class="mx_auto primaryBtn" id="loadMorePost">View All</a>
             <?php endif; ?>
         </div>
     </section>
