@@ -514,6 +514,8 @@ footer {
   box-shadow: 0px 2px 4px 0px #0000001a;
   background-color: #ffffff;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-type-list .post-list .post-thumbnail {
@@ -533,6 +535,9 @@ footer {
 
 .post-type-list .post-list .post-info {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
 }
 
 .post-type-list .post-list .post-info h3 {
@@ -549,6 +554,7 @@ footer {
   font: 400 14px / 16px var(--primary-font);
   color: #000000;
   opacity: 0.6;
+  margin-top: auto;
 }
 
 .post-type-list .primaryBtn {
