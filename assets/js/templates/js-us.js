@@ -36,6 +36,7 @@ jQuery(document).ready(function () {
     spaceBetween: 24,
     dots: false,
     arrows: false,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 1440,
