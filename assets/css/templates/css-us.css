@@ -204,6 +204,7 @@ footer {
 }
 
 .hero-banner .bg-animation {
+  pointer-events: none;
   position: absolute;
   z-index: -1;
   overflow: hidden;
@@ -678,5 +679,12 @@ footer {
 
   .custom-footer .footer_bottom {
     padding: 40px 0 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .waitlist .inner-box {
+    padding-bottom: 150px;
+    background-position: bottom right;
   }
 }

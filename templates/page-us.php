@@ -58,7 +58,8 @@ get_header(); ?>
                 <p><?php echo esc_html($hero_description); ?></p>
                 <div class="cta-buttons flex flex_col align_center">
                     <?php if ($primary_button_text && $primary_button_link): ?>
-                        <a href="<?php echo esc_url($primary_button_link); ?>" class="primaryBtn">
+                        <a href="<?php echo esc_url($primary_button_link); ?>" class="primaryBtn" target="_blank"
+                            rel="noopener noreferrer">
                             <span><?php echo esc_html($primary_button_text); ?></span>
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 17.5L17 7.5" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -302,7 +303,7 @@ get_header(); ?>
                 <div class="col_2">
                     <h2><?php echo esc_html($join_the_waitlist_title); ?></h2>
                     <p><?php echo esc_html($join_the_waitlist_description); ?></p>
-                    <a href="<?php echo esc_url($cta_button_url) ?>" class="secondaryBtn">
+                    <a href="<?php echo esc_url($cta_button_url) ?>" class="secondaryBtn" target="_blank" rel="noopener noreferrer">
                         <span><?php echo esc_html($cta_button_text); ?></span>
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 17.5L17 7.5" stroke="#002852" stroke-width="2" stroke-linecap="round"
