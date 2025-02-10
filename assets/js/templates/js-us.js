@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
     slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3500,
     spaceBetween: 24,
     dots: false,
     arrows: false,
@@ -64,6 +64,7 @@ jQuery(document).ready(function () {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          autoplaySpeed: 2800,
         },
       },
       {

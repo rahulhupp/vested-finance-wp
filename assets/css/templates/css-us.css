@@ -241,7 +241,7 @@ footer {
   max-width: 558px;
   font: 400 clamp(0.875rem, 0.7815rem + 0.4673vw, 1.125rem) /
     clamp(1.125rem, 0.9542rem + 0.854vw, 1.581875rem) var(--primary-font);
-  margin-bottom: 15px;
+  margin: 0 auto 15px;
   color: #3b5877;
 }
 
@@ -263,6 +263,8 @@ footer {
   padding: 0 15px;
   overflow: hidden;
   margin: clamp(1.25rem, 1.25rem + 0vw, 1.25rem) 0 -15px;
+  display: flex;
+	flex-wrap: nowrap;
 }
 
 .testimonials .testimonials-slider .slick-track {
@@ -283,6 +285,7 @@ footer {
   gap: clamp(1.125rem, 0.9381rem + 0.9346vw, 1.625rem);
   margin-right: clamp(0.75rem, 0.4696rem + 1.4019vw, 1.5rem);
   width: clamp(14.375rem, 12.8563rem + 7.5935vw, 18.4375rem);
+  min-width: clamp(14.375rem, 12.8563rem + 7.5935vw, 18.4375rem);
   height: auto;
 }
 
