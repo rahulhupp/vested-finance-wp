@@ -665,19 +665,20 @@ add_action('wp', 'schedule_news_sitemap_cron');
 function update_news_sitemap_cron_function()
 {
     generate_news_sitemap();
+    exclude_vested_shorts_from_post_sitemap([]);
 }
 add_action('update_news_sitemap_cron', 'update_news_sitemap_cron_function');
 
 
-function add_five_minutes_cron_interval($schedules)
-{
-    $schedules['five_minutes'] = array(
-        'interval' => 300, // 5 minutes
-        'display'  => __('Every 5 Minutes'),
-    );
-    return $schedules;
-}
-add_filter('cron_schedules', 'add_five_minutes_cron_interval');
+// function add_five_minutes_cron_interval($schedules)
+// {
+//     $schedules['five_minutes'] = array(
+//         'interval' => 300, // 5 minutes
+//         'display'  => __('Every 5 Minutes'),
+//     );
+//     return $schedules;
+// }
+// add_filter('cron_schedules', 'add_five_minutes_cron_interval');
 
 
 function trigger_news_sitemap_generation($post_id, $post, $update)
@@ -706,7 +707,7 @@ function manage_sitemaps($post_id, $post, $update)
 add_action('save_post', 'manage_sitemaps', 10, 3);
 
 
-schedule_news_sitemap_cron();
+// schedule_news_sitemap_cron();
 
 function debug_cron_execution()
 {
