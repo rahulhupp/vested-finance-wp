@@ -28,12 +28,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 jQuery(document).ready(function () {
+  let stickyOffset = jQuery(".hero-banner").outerHeight();
+  let header = jQuery(".custom-header");
+  jQuery(window).scroll(function () {
+    let scrollTop = jQuery(this).scrollTop();
+
+    if (scrollTop >= stickyOffset) {
+      if (!header.hasClass("fixed")) {
+        header.removeClass("removing-fixed");
+        header.addClass("fixed").css({
+          position: "fixed",
+          top: "0",
+          backgroundColor: "white",
+          transition: "top 0.3s ease-in-out, background-color 0.3s ease-in-out",
+        });
+      }
+    } else {
+      if (header.hasClass("fixed")) {
+        header.addClass("removing-fixed");
+        setTimeout(() => {
+          header.removeClass("fixed removing-fixed").css({
+            position: "absolute",
+            backgroundColor: "transparent",
+          });
+        }, 500);
+      }
+    }
+  });
   jQuery(".us-testimonials-slider").slick({
     speed: 4000,
     autoplay: true,
     autoplaySpeed: 0,
     centerMode: true,
-    cssEase: 'linear',
+    cssEase: "linear",
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
