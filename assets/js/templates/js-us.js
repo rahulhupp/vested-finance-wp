@@ -41,6 +41,7 @@ jQuery(document).ready(function () {
     initialSlide: 1,
     arrows: false,
     buttons: false,
+    pauseOnHover: true,
 
     // slidesToShow: 6,
     // slidesToScroll: 1,
