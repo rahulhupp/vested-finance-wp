@@ -190,7 +190,7 @@ get_header(); ?>
             <h2><?php echo esc_html($testimonials_title); ?></h2>
         </div>
         <?php if ($testimonials): ?>
-            <div class="testimonials-slider">
+            <div class="us-testimonials-slider">
                 <?php foreach ($testimonials as $testimonial): ?>
                     <div class="testimonial-card">
                         <div class="description">

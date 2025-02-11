@@ -28,45 +28,58 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 jQuery(document).ready(function () {
-  jQuery(".testimonials-slider").slick({
-    slidesToShow: 6,
-    slidesToScroll: 1,
+  jQuery(".us-testimonials-slider").slick({
+    speed: 4000,
     autoplay: true,
-    autoplaySpeed: 3500,
-    spaceBetween: 24,
-    dots: false,
-    arrows: false,
+    autoplaySpeed: 0,
+    centerMode: true,
+    cssEase: 'linear',
+    slidesToShow: 1,
+    slidesToScroll: 1,
     variableWidth: true,
+    infinite: true,
+    initialSlide: 1,
+    arrows: false,
+    buttons: false,
+
+    // slidesToShow: 6,
+    // slidesToScroll: 1,
+    // autoplay: true,
+    // autoplaySpeed: 3500,
+    // spaceBetween: 24,
+    // dots: false,
+    // arrows: false,
+    // variableWidth: true,
     responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1250,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          autoplaySpeed: 2800,
-        },
-      },
+      // {
+      //   breakpoint: 1440,
+      //   settings: {
+      //     slidesToShow: 5,
+      //     slidesToScroll: 1,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1250,
+      //   settings: {
+      //     slidesToShow: 4,
+      //     slidesToScroll: 1,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1024,
+      //   settings: {
+      //     slidesToShow: 3,
+      //     slidesToScroll: 1,
+      //   },
+      // },
+      // {
+      //   breakpoint: 767,
+      //   settings: {
+      //     slidesToShow: 2,
+      //     slidesToScroll: 1,
+      //     autoplaySpeed: 2800,
+      //   },
+      // },
       {
         breakpoint: 600,
         settings: {
