@@ -564,26 +564,3 @@ add_filter('excerpt_more', function ($more) {
     }
     return $more;
 });
-
-// Hook into Yoast SEO sitemap generation
-add_filter('wpseo_sitemap_entry', 'custom_sitemap_entry', 10, 3);
-
-function custom_sitemap_entry($url, $post, $type) {
-    // Check if the post is in 'vested-shorts' category and is less than 3 minutes old
-    if (has_term('vested-shorts', 'master_categories', $post)) {
-        
-        // Get post date and compare with the current time
-        $post_date = strtotime($post->post_date);
-        $current_time = current_time('timestamp');
-        $time_diff = $current_time - $post_date;
-
-        // If the post is within the first 3 minutes, add it to the news-sitemap.xml
-        if ($time_diff < 3 * 60) { // 3 minutes
-            // Modify the URL for news-sitemap.xml
-            $url['loc'] = str_replace('post-sitemap.xml', 'news-sitemap.xml', $url['loc']);
-        }
-        // Otherwise, it should be in the post-sitemap.xml, no action needed
-    }
-    
-    return $url;
-}
