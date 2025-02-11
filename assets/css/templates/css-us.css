@@ -169,7 +169,7 @@ footer {
   width: 100%;
   background-color: transparent;
   z-index: 99;
-  padding: clamp(0.625rem, 0.4614rem + 0.8178vw, 1.0625rem) 0;
+  padding: 10px 0;
   transition: all 0.3s ease-in-out;
 }
 
@@ -204,8 +204,8 @@ footer {
 }
 
 .custom-header .siite-logo {
-  width: clamp(4.6875rem, 4.2202rem + 2.3364vw, 5.9375rem);
-  height: clamp(2.1875rem, 1.8137rem + 1.8692vw, 3.1875rem);
+  width: clamp(6.75rem, 5.9089rem + 4.2056vw, 9rem);
+  height: clamp(2.0625rem, 1.5485rem + 2.5701vw, 3.4375rem);
 }
 
 .custom-header .siite-logo img {
@@ -242,29 +242,6 @@ footer {
   left: 50%;
   bottom: -20px;
   transform: translate(-50%, 0);
-}
-
-.hero-banner .bg-animation::before,
-.hero-banner .bg-animation::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.hero-banner .bg-animation::before {
-  left: 0;
-}
-
-.hero-banner .bg-animation::after {
-  right: 0;
-  transform: rotate(180deg);
 }
 
 .svg-full {
@@ -693,13 +670,13 @@ footer {
   padding-left: 32px;
 }
 
-.popover-wrapper .popover-inner-box h3:not(:first-child) {
+.popover-wrapper .popover-inner-box h3:not(:nth-child(3)) {
   display: flex;
   align-items: start;
   gap: 8px;
 }
 
-.popover-wrapper .popover-inner-box h3:not(:first-child)::before {
+.popover-wrapper .popover-inner-box h3:not(:nth-child(3))::before {
   content: "";
   width: 8px;
   height: 8px;
