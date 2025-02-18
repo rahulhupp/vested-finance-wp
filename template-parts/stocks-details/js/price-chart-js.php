@@ -75,7 +75,7 @@
 						},
 						ticks: {
 							callback: function(value, index, ticks) {
-								return '$' + value;
+								return '$' + value.toFixed(2);
 							}
 						}
 					},
