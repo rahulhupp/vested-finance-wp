@@ -513,4 +513,15 @@ while (have_posts()) :
 
 <?php
 endwhile;
-get_footer();
+?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var signUpLink = "<?php the_field('cta_button_link'); ?>";
+        var signUpBtns = document.querySelectorAll('.account-menu .menu-wrapper .primary-btn a');
+
+        signUpBtns.forEach((btn) => {
+            btn.href = signUpLink;
+        });
+    });
+</script>
+<?php get_footer();
