@@ -144,8 +144,10 @@ function custom_redirect()
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
+                error_log('redirection url: ' . $new_url);
             } else {
                 $new_url = home_url("/us-stocks/{$stocks_symbol}/{$new_slug}-share-price/");
+                error_log('redirection url: ' . $new_url);
             }
 
             wp_redirect($new_url, 301);
