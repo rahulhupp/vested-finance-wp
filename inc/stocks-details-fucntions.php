@@ -57,6 +57,9 @@ if ($getfirstpath[1] == 'us-stocks') {
     if ($end_pos_symbol !== false) {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
+
+    error_log('stock symbol before lowercase convert: ' . $stocks_symbol);
+
     $stocks_symbol = strtolower(trim($stocks_symbol));
     if ($redirect_mappings[$stocks_symbol]['name'] ?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
