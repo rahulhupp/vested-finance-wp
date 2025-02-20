@@ -138,6 +138,8 @@ function custom_redirect()
         }
         $stocks_symbol = strtolower(trim($stocks_symbol));
 
+        error_log('stock symbol is: ' . $stocks_symbol);
+
         if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[2])) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
