@@ -507,3 +507,11 @@ function preload_image($image_url)
         echo '<link rel="preload" href="' . esc_url($image_url) . '" as="image" />';
     }
 }
+
+function enforce_lowercase_symbol($query)
+{
+    if (!is_admin() && isset($query->query_vars['symbol'])) {
+        $query->query_vars['symbol'] = strtolower($query->query_vars['symbol']);
+    }
+}
+add_action('parse_query', 'enforce_lowercase_symbol');
