@@ -58,8 +58,6 @@ if ($getfirstpath[1] == 'us-stocks') {
         $stocks_symbol = substr($stocks_symbol, 0, $end_pos_symbol);
     }
 
-    error_log('stock symbol before lowercase convert: ' . $stocks_symbol);
-
     $stocks_symbol = strtolower(trim($stocks_symbol));
     if ($redirect_mappings[$stocks_symbol]['name'] ?? false) {
         $redirect_slug = $redirect_mappings[$stocks_symbol]['name'] . '-share-price';
@@ -134,20 +132,17 @@ function custom_redirect()
         $end_pos_symbol = strpos($stocks_symbol, '/');
         if ($end_pos_symbol !== false) {
             $stocks_symbol_draft = substr($stocks_symbol, 0, $end_pos_symbol);
-            $stocks_symbol = strtolower($stocks_symbol_draft);
+            $stocks_symbol = $stocks_symbol_draft;
         }
         $stocks_symbol = strtolower(trim($stocks_symbol));
 
-        error_log('stock symbol is: ' . $stocks_symbol);
-
         if (array_key_exists($stocks_symbol, $redirect_mappings) || preg_match('/[A-Z]/', $getfirstpath[2])) {
             $new_slug = $redirect_mappings[$stocks_symbol]['name'];
+            $stocks_symbol = strtolower(trim($stocks_symbol));
             if ($redirect_mappings[$stocks_symbol]['type'] == 'etf') {
                 $new_url = home_url("/us-stocks/etf/{$stocks_symbol}/{$new_slug}-share-price/");
-                error_log('redirection url: ' . $new_url);
             } else {
                 $new_url = home_url("/us-stocks/{$stocks_symbol}/{$new_slug}-share-price/");
-                error_log('redirection url: ' . $new_url);
             }
 
             wp_redirect($new_url, 301);
