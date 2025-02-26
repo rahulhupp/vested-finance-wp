@@ -32,6 +32,7 @@ get_header(); ?>
                 </ul>
             </nav>
         </div>
+        <div class="geolocation_banner" style="display: none;"></div>
     </div>
 
     <?php
