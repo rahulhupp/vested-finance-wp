@@ -515,3 +515,13 @@ function enforce_lowercase_symbol($query)
     }
 }
 add_action('parse_query', 'enforce_lowercase_symbol');
+
+function news_wpseo_sitemap_index($sitemap_index)
+{
+    $last_modified = date('c');
+    $news_sitemap_url = '<sitemap><loc>' . home_url('/news-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>';
+    $sitemap_index .= $news_sitemap_url;
+
+    return $sitemap_index;
+}
+add_filter('wpseo_sitemap_index', 'news_wpseo_sitemap_index', 10, 1);
