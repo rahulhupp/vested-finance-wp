@@ -18,13 +18,13 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-image">
-                    
+
                     <?php
-$image = get_field('stock_image_global');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
-                          <?php endif; ?>
+                    $image = get_field('stock_image_global');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -49,13 +49,13 @@ $image = get_field('stock_image_global');
 
                     </div>
                     <div class="why_invest_img">
-                       
+
                         <?php
-$image = get_field('why_inveset_image_global');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
-                          <?php endif; ?>
+                        $image = get_field('why_inveset_image_global');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                        <?php endif; ?>
                         <p class="img_source"><?php the_field('why_inveset_img_source_global'); ?></p>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ $image = get_field('why_inveset_image_global');
     <?php get_template_part('template-parts/us-stock-search'); ?>
 
     <?php get_template_part('template-parts/us-stock-vests'); ?>
-    
+
     <?php if (have_rows('stocks_slider_global')) : ?>
         <section class="stocks_slider_sec">
             <div class="container">
@@ -101,12 +101,12 @@ $image = get_field('why_inveset_image_global');
                     <div class="us_stocks_slider stock-single-item">
                         <?php while (have_rows('stocks_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                 <?php
-                                            $image = get_sub_field('stocks_slider_image_global');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('stocks_slider_image_global');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -118,10 +118,10 @@ $image = get_field('why_inveset_image_global');
     <?php endif; ?>
 
     <?php
-        $chart = 'false';
+    $chart = 'false';
     ?>
     <?php get_template_part('template-parts/stocks-calculator'); ?>
-    
+
     <?php if (have_rows('portfolio_slider_global')) : ?>
         <section class="portfolio_slider_sec">
             <div class="container">
@@ -132,12 +132,12 @@ $image = get_field('why_inveset_image_global');
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                 <?php
-                                            $image = get_sub_field('slider_image_global');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('slider_image_global');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -209,7 +209,7 @@ $image = get_field('why_inveset_image_global');
                     endif; ?>
                 </ul>
             </div>
-            <div class="post-listing">  
+            <div class="post-listing">
                 <div class="head">
                     <div class="left-part">
                         <h3>Vested Shorts</h3>
@@ -243,7 +243,7 @@ $image = get_field('why_inveset_image_global');
                                     <h4><?php the_title(); ?></h4>
                                 </a>
                             </li>
-                        <?php endwhile;
+                    <?php endwhile;
                         wp_reset_postdata();
                     endif; ?>
                 </ul>
@@ -314,27 +314,26 @@ $image = get_field('why_inveset_image_global');
     <?php endif; ?>
 </div>
 <?php if (have_rows('faq_list_global')) : ?>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        <?php $rowCount = 0; ?>
-        <?php while (have_rows('faq_list_global')) : the_row(); ?>
-            {
-                "@type": "Question",
-                "name": "<?php the_sub_field('faq_question_global') ?>",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('faq_answer_global') ?>
-                    "
-                }
-            }<?php echo (++$rowCount === count(get_field('faq_list_global'))) ? '' : ','; ?>
-        <?php endwhile; ?>
-    ]
-}
-</script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                <?php $rowCount = 0; ?>
+                <?php while (have_rows('faq_list_global')) : the_row(); ?> {
+                        "@type": "Question",
+                        "name": "<?php the_sub_field('faq_question_global') ?>",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "
+                            <?php the_sub_field('faq_answer_global') ?> "
+                        }
+                    }
+                    <?php echo (++$rowCount === count(get_field('faq_list_global'))) ? '' : ','; ?>
+                <?php endwhile; ?>
+            ]
+        }
+    </script>
 <?php endif; ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -346,20 +345,20 @@ $image = get_field('why_inveset_image_global');
         fetch('https://ipinfo.io/json')
             .then(response => response.json())
             .then(data => {
-            // Process the location information
-            console.log('User location based on IP:', data);
-            var globalBanner = document.querySelector(".geolocation_banner");
-            if (globalBanner) {
-                globalBanner.style.display = "flex"; 
-                if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
-                    console.log('show geolocation_banner');
+                // Process the location information
+                console.log('User location based on IP:', data);
+                var globalBanner = document.querySelector(".geolocation_banner");
+                if (globalBanner) {
+                    globalBanner.style.display = "flex";
+                    if (data.country === "IN") {
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
+                        console.log('show geolocation_banner');
+                    } else {
+                        // globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='https://vestedfinance.com/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                        // console.log('hide geolocation_banner');
+                        globalBanner.style.display = "none";
+                    }
                 }
-                // else {
-                //     globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='https://vestedfinance.com/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
-                //     console.log('hide geolocation_banner');
-                // }
-            }
             })
             .catch(error => {
                 console.error('Error getting user location based on IP:', error);
