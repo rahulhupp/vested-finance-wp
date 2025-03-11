@@ -362,7 +362,7 @@ get_header(); ?>
                         // globalBanner.classList.add('warning_banner');
                         console.log('show geolocation_banner');
                     } else if (data.country === "US") {
-                        globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the USA website. <a href='<?php echo site_url() ?>' class='learn_more_btn tmp'>Visit USA Website</a></p></div>";
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the USA website. <a href='<?php echo site_url('/us/') ?>' class='learn_more_btn tmp'>Visit USA Website</a></p></div>";
                     } else {
                         globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php echo site_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
                     }
