@@ -32,6 +32,7 @@ get_header(); ?>
                 </ul>
             </nav>
         </div>
+        <div class="geolocation_banner" style="display: none;"></div>
     </div>
 
     <?php
@@ -413,4 +414,32 @@ get_header(); ?>
 
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        getUserLocationByIP();
+    });
+
+    function getUserLocationByIP() {
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('User location based on IP:', data);
+                var globalBanner = document.querySelector(".geolocation_banner");
+                if (globalBanner) {
+                    globalBanner.style.display = "flex";
+                    if (data.country === "IN") {
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our USA website. Visit the India website to explore our India-specific products.</p></div><a href='<?php echo home_url('/in') ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
+                    } else if (data.country === "US") {
+                        globalBanner.innerHTML = "<div class='content'><p>Looking for our US stocks offering? </p></div><a href='<?php echo site_url(); ?>'>Visit here</a>";
+                        console.log('hide geolocation_banner');
+                    } else {
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our USA website. Visit the Global website to explore our US Stocks offering.</p></div><a href='<?php echo home_url('/') ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Visit</a>";
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error getting user location based on IP:', error);
+            });
+    }
+</script>
 <?php get_footer() ?>
