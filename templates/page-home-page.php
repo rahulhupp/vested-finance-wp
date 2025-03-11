@@ -15,18 +15,18 @@ get_header(); ?>
                         <a href="<?php the_field('banner_button_1_url'); ?>" class="btn_dark"><?php the_field('banner_button_1_text'); ?></a>
                     </div>
                     <?php $button_text = get_field('banner_video_button_text'); ?>
-                    <?php 
+                    <?php
                     if (!empty($button_text)) {
-                        
-                        ?>
+
+                    ?>
                         <div class="btn">
                             <a href="<?php the_field('banner_video_button_url'); ?>" class="btn_light"><i class="fa fa-play" aria-hidden="true"></i> <?php echo $button_text; ?></a>
                             <span class="watch_time"><?php the_field('banner_video_watch_time'); ?> seconds watch</span>
                         </div>
-                        <?php
-                    } 
+                    <?php
+                    }
                     ?>
-                    
+
 
                 </div>
             </div>
@@ -62,18 +62,18 @@ get_header(); ?>
                 <?php the_field('multi_asset_heading'); ?>
             </h2>
             <div class="multi_asset_img">
-            <?php
-$image = get_field('multi_asset_image');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"  class="mobile_hide" />
-                          <?php endif; ?>
-                          <?php
-$image = get_field('multi_asset_image_mobile');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"  class="desktop_hide" />
-                          <?php endif; ?>
+                <?php
+                $image = get_field('multi_asset_image');
+                if (!empty($image)): ?>
+                    <img src="<?php echo esc_url($image['url']); ?>"
+                        alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_hide" />
+                <?php endif; ?>
+                <?php
+                $image = get_field('multi_asset_image_mobile');
+                if (!empty($image)): ?>
+                    <img src="<?php echo esc_url($image['url']); ?>"
+                        alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -86,23 +86,23 @@ $image = get_field('multi_asset_image_mobile');
                         <h2 class="section_title align_left"><?php the_field('easy_access_heading'); ?></h2>
 
                         <?php
-                                            $image = get_field('easy_access_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide"/>
-                                            <?php endif; ?>
+                        $image = get_field('easy_access_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" class="desktop_hide" />
+                        <?php endif; ?>
 
                         <div class="easy_access_list">
                             <?php while (have_rows('easy_access_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
-                                       
+
                                         <?php
-                                            $image = get_sub_field('easy_access_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                        $image = get_sub_field('easy_access_icon');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
                                     </div>
                                     <h4><?php the_sub_field('easy_access_title') ?></h4>
                                 </div>
@@ -114,20 +114,20 @@ $image = get_field('multi_asset_image_mobile');
                         </div>
                     </div>
                     <div class="easy_access_img mobile_hide">
-                      
+
                         <?php
-$image = get_field('easy_access_image');
-                          if (!empty($image)): ?>
-                              <img src="<?php echo esc_url($image['url']); ?>"
-                                  alt="<?php echo esc_attr($image['alt']); ?>"/>
-                          <?php endif; ?>
+                        $image = get_field('easy_access_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="disclosure">
-                   <p>
-                    <?php echo esc_html(get_field('easy_disclosure')); ?>
+                    <p>
+                        <?php echo esc_html(get_field('easy_disclosure')); ?>
                     </p>
-                    </div>
+                </div>
             </div>
         </section>
     <?php endif; ?>
@@ -139,25 +139,25 @@ $image = get_field('easy_access_image');
 
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('inr_bond_heading'); ?></h2>
-                           <?php
-                                            $image = get_field('inr_bond_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
-                                            <?php endif; ?>
-                        
+                        <?php
+                        $image = get_field('inr_bond_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
+                        <?php endif; ?>
+
                         <div class="easy_access_list">
                             <?php while (have_rows('inr_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
-                                <div class="easy_access_icon">
-                                     
-                                     <?php
-                                         $image = get_sub_field('inr_bond_icon');
-                                         if (!empty($image)): ?>
-                                             <img src="<?php echo esc_url($image['url']); ?>"
-                                                 alt="<?php echo esc_attr($image['alt']); ?>" />
-                                         <?php endif; ?>
-                                 </div>
+                                    <div class="easy_access_icon">
+
+                                        <?php
+                                        $image = get_sub_field('inr_bond_icon');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
+                                    </div>
                                     <h4><?php the_sub_field('inr_bond_title') ?></h4>
                                 </div>
                             <?php endwhile; ?>
@@ -168,12 +168,12 @@ $image = get_field('easy_access_image');
                         </div>
                     </div>
                     <div class="easy_access_img mobile_hide">
-                          <?php
-                                            $image = get_field('inr_bond_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                        <?php
+                        $image = get_field('inr_bond_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -187,24 +187,24 @@ $image = get_field('easy_access_image');
                 <div class="easy_access_wrap">
                     <div class="easy_access_content">
                         <h2 class="section_title align_left"><?php the_field('solar_bond_heading'); ?></h2>
-                       
+
                         <?php
-                                            $image = get_field('solar_bond_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
-                                            <?php endif; ?>
+                        $image = get_field('solar_bond_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" class="mobile_easy_access_img desktop_hide" />
+                        <?php endif; ?>
                         <div class="easy_access_list">
                             <?php while (have_rows('solar_bond_list')) : the_row(); ?>
                                 <div class="single_easy-access">
                                     <div class="easy_access_icon">
-                                       
+
                                         <?php
-                                            $image = get_sub_field('solar_bond_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                        $image = get_sub_field('solar_bond_icon');
+                                        if (!empty($image)): ?>
+                                            <img src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                                        <?php endif; ?>
                                     </div>
                                     <h4><?php the_sub_field('solar_bond_title') ?></h4>
                                 </div>
@@ -217,11 +217,11 @@ $image = get_field('easy_access_image');
                     </div>
                     <div class="easy_access_img mobile_hide">
                         <?php
-                                            $image = get_field('solar_bond_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                        $image = get_field('solar_bond_image');
+                        if (!empty($image)): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -238,12 +238,12 @@ $image = get_field('easy_access_image');
                     <div class="portfolio_slider slider single-item">
                         <?php while (have_rows('portfolio_slider')) : the_row(); ?>
                             <div class="single_portfolio_slider">
-                                 <?php
-                                            $image = get_sub_field('slider_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('slider_image');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -270,7 +270,7 @@ $image = get_field('easy_access_image');
             </div>
         </section>
     <?php endif; ?>
-    
+
     <?php get_template_part('template-parts/investors-slider'); ?>
 
     <?php if (have_rows('learning_list')) : ?>
@@ -281,12 +281,12 @@ $image = get_field('easy_access_image');
                     <?php while (have_rows('learning_list')) : the_row(); ?>
                         <div class="single_wisely_list">
                             <div class="single_wisely_img">
-                                 <?php
-                                            $image = get_sub_field('learning_image');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>
+                                <?php
+                                $image = get_sub_field('learning_image');
+                                if (!empty($image)): ?>
+                                    <img src="<?php echo esc_url($image['url']); ?>"
+                                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php endif; ?>
                             </div>
                             <div class="single_wisely_content">
                                 <h3><?php the_sub_field('learning_title') ?></h3>
@@ -323,27 +323,26 @@ $image = get_field('easy_access_image');
     <?php endif; ?>
 </div>
 <?php if (have_rows('faq_list')) : ?>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        <?php $rowCount = 0; ?>
-        <?php while (have_rows('faq_list')) : the_row(); ?>
-            {
-                "@type": "Question",
-                "name": "<?php the_sub_field('faq_question') ?>",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('faq_answer') ?>
-                    "
-                }
-            }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-        <?php endwhile; ?>
-    ]
-}
-</script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                <?php $rowCount = 0; ?>
+                <?php while (have_rows('faq_list')) : the_row(); ?> {
+                        "@type": "Question",
+                        "name": "<?php the_sub_field('faq_question') ?>",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "
+                            <?php the_sub_field('faq_answer') ?> "
+                        }
+                    }
+                    <?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
+                <?php endwhile; ?>
+            ]
+        }
+    </script>
 <?php endif; ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -355,18 +354,17 @@ $image = get_field('easy_access_image');
         fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
-            var globalBanner = document.querySelector(".geolocation_banner");
-            if (globalBanner) {
-                globalBanner.style.display = "flex"; 
-                if (data.country === "IN") {
-                    // globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
-                    // globalBanner.classList.add('warning_banner');
-                    // console.log('show geolocation_banner');
-                    globalBanner.style.display = "none";
-                } else {
-                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                var globalBanner = document.querySelector(".geolocation_banner");
+                if (globalBanner) {
+                    globalBanner.style.display = "flex";
+                    if (data.country === "IN") {
+                        globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
+                        // globalBanner.classList.add('warning_banner');
+                        console.log('show geolocation_banner');
+                    } else {
+                        globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                    }
                 }
-            }
             })
             .catch(error => {
                 console.error('Error getting user location based on IP:', error);
