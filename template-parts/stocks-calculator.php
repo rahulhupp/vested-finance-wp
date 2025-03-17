@@ -833,7 +833,7 @@
         }
 
         .calculator .result_breakdown_info {
-            width: 270px;
+            width: calc(100% - 222px);
         }
 
         .calculator .cta_btn {
@@ -842,9 +842,9 @@
     }
 
     @media (max-width: 1100px) {
-        .calculator .result_breakdown_info {
+        /* .calculator .result_breakdown_info {
             width: 248px;
-        }
+        } */
 
         .calculator .result_graph_col {
             width: 200px;
