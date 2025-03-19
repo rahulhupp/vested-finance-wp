@@ -38,9 +38,9 @@ function fetch_stocks_data()
         } elseif ($algorithm_type === 'midCap') {
             $query = "SELECT * FROM $table_name WHERE market_cap >= 2000000000 AND market_cap <= 10000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'smallCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap >= 300000000 AND market_cap <= 2000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
+            $query = "SELECT * FROM $table_name WHERE market_cap >= 250000000 AND market_cap <= 2000000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'microCap') {
-            $query = "SELECT * FROM $table_name WHERE market_cap <= 300000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
+            $query = "SELECT * FROM $table_name WHERE market_cap <= 250000000 AND type != 'etf' ORDER BY market_cap DESC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'oneYHigh') {
             $query = "SELECT * FROM $table_name WHERE ABS(((price - week_52_high) / week_52_high) * 100) < 5 AND type != 'etf' ORDER BY ABS(((price - week_52_high) / week_52_high) * 100) ASC LIMIT $total_stocks_display";
         } elseif ($algorithm_type === 'oneYLow') {
