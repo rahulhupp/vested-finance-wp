@@ -484,6 +484,7 @@ while (have_posts()) :
 
             </div>
         </section>
+        <?php if(get_field("contact_form_shortcode")): ?>
         <section class="contact-us">
             <div class="container">
                 <div class="inner-container">
@@ -502,13 +503,14 @@ while (have_posts()) :
                 </div>
             </div>
         </section>
-        <section class="footer-top-contact-info">
-            <div class="container">
-                <?php if (get_field('footer_contact_info')): ?>
+        <?php endif; ?>
+        <?php if (get_field('footer_contact_info')): ?>
+            <section class="footer-top-contact-info">
+                <div class="container">
                     <p><?php the_field('footer_contact_info'); ?></p>
-                <?php endif; ?>
-            </div>
-        </section>
+                </div>
+            </section>
+        <?php endif; ?>
     </div>
 
 <?php
