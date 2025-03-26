@@ -66,17 +66,24 @@
 }
 
 .mudrex-vested .stock-contact .btn_dark {
-    border-radius: 4px;
-    background-color: #008a5a;
-    font: 600 16px / normal var(--primary-font);
+    padding: 16px 21px;
+    border-radius: 5px;
+    background: #002852;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: 1px solid #002852;
+    transition: all .3s;
+    display: block;
     text-align: center;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+}
+
+.mudrex-vested .stock-contact .btn_dark:hover {
+    background: transparent;
+    color: #002852;
 }
 
 .mudrex-vested .stock-image {
