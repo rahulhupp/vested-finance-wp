@@ -1518,6 +1518,26 @@ div#vest_read_more i {
 	.stocks_slider_sec ol {
 		padding-left: 20px;
 	}
+
+	.stock-info .stock-row .stock-image img {
+		max-width: 100%;
+	}
+
+	.tab-section .tabs .main-tabs .tab-content .inner {
+		padding: 40px;
+	}
+
+	.tab-section .head {
+		padding: 59px 20px 14px;
+	}
+
+	.tab-section .head ul#tabs-nav {
+		margin-left: 0;
+	}
+
+	.tab-section .head ul#tabs-nav li {
+		margin: 0 40px;
+	}
 }
 
 /* @media (max-width: 1023px) {
@@ -1577,7 +1597,7 @@ div#vest_read_more i {
 	}
 
 	.stock-info {
-		padding: 60px 0 0 0;
+		padding: 60px 0 0;
 	}
 
 	.stock-info .stock-row .stock-content h1 {
