@@ -355,7 +355,7 @@ get_header(); ?>
                         globalBanner.innerHTML = "<div class='content'><p>You're on our Global website. Visit the India website to explore our India-specific products.</p></div><a href='<?php home_url() ?>/in'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/india.png'>India</a>";
                         console.log('show geolocation_banner');
                     } else if (data.country === "US") {
-                        globalBanner.innerHTML = "<div class='content'><p>Looking to invest in Indian Markets? Visit our US-specific website to learn more.</p></div><a href='<?php echo site_url('/us/') ?>' class='learn_more_btn tmp'>Visit Website</a>";
+                        globalBanner.innerHTML = "<div class='content'><p>Looking to invest in Indian Markets? Visit our US-specific website to learn more.</p></div><a href='<?php echo site_url('/us/') ?>' class='learn_more_btn tmp'>Visit USA Website</a>";
                     } else {
                         // globalBanner.innerHTML = "<div class='content'><p>Bitcoin ETFs available on Vested: Experience seamless, tax-efficient, and hassle-free Bitcoin investing!</p></div><a href='https://vestedfinance.com/blog/us-stocks/investing-in-spot-bitcoin-etfs-from-india-everything-you-need-to-know/' target='_blank' class='learn_more_btn'>Learn more</a>";
                         // console.log('hide geolocation_banner');
