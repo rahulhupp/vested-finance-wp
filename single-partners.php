@@ -392,6 +392,7 @@ while (have_posts()) :
         </section>
         <section class="about-mudrex">
             <div class="container flex-box">
+                <?php if(get_field('about_mudrex_image')): ?>
                 <div class="about-mudrex-image">
                     <?php
                     $about_mudrex_image = get_field('about_mudrex_image');
@@ -404,7 +405,8 @@ while (have_posts()) :
                         </figure>
                     <?php endif; ?>
                 </div>
-                <div class="about-mudrex-content">
+                <?php endif; ?>
+                <div class="about-mudrex-content<?php if(!get_field('about_mudrex_image')): ?> w-full<?php endif;?>">
                     <?php if (get_field('about_mudrex_title')): ?>
                         <h2><?php the_field('about_mudrex_title'); ?></h2>
                     <?php endif; ?>
