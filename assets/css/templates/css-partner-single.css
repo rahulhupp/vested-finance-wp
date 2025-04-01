@@ -650,6 +650,11 @@
     width: 50%;
 }
 
+.about-mudrex .flex-box .about-mudrex-content.w-full {
+    width: 100%;
+    text-align: center;
+}
+
 .about-mudrex .flex-box .about-mudrex-content h5 {
     margin-bottom: 10px;
 }
