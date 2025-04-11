@@ -1,4 +1,3 @@
-
 <script>
     // Extract data from the table
     const tableRows = document.querySelectorAll('#sectorBreakdownTable tbody tr');
@@ -20,44 +19,46 @@
     });
 
     // Create doughnut chart
-    const ctx = document.getElementById('sectorBreakdownChart').getContext('2d');
-        
-    const sectorBreakdownChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: sectors,
-            datasets: [{
-                label: 'Sector Weight',
-                data: weights,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false // Hide legend
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.label || '';
-                            if (label) {
-                                label += ': ';
+    if (document.getElementById('sectorBreakdownChart')) {
+        const ctx = document.getElementById('sectorBreakdownChart').getContext('2d');
+
+        const sectorBreakdownChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: sectors,
+                datasets: [{
+                    label: 'Sector Weight',
+                    data: weights,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false // Hide legend
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                const value = context.parsed.toFixed(2);
+                                return label + value + '%';
                             }
-                            const value = context.parsed.toFixed(2);
-                            return label + value + '%';
                         }
                     }
+                },
+                title: {
+                    display: true,
+                    text: 'Sector Weights'
                 }
-            },
-            title: {
-                display: true,
-                text: 'Sector Weights'
             }
-        }
-    });
+        });
+    }
 </script>
