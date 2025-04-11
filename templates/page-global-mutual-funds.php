@@ -77,24 +77,26 @@ get_header(); ?>
     </section>
     <section class="who-info">
         <div class="container">
-            <h2 class="section-title"><?php the_field('who_heading'); ?></h2>
-            <?php if (have_rows('who_list')): ?>
-            <div class="who-wrap">
-            <?php while (have_rows('who_list')): the_row(); ?>
-                <div class="who-list-item">
-                    <div class="icon">
-                        <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
+            <div class="who-info-inner">
+                <h2 class="section-title"><?php the_field('who_heading'); ?></h2>
+                <?php if (have_rows('who_list')): ?>
+                <div class="who-wrap">
+                <?php while (have_rows('who_list')): the_row(); ?>
+                    <div class="who-list-item">
+                        <div class="icon">
+                            <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
+                        </div>
+                        <div class="meta">
+                            <h4 class="title"><?php the_sub_field('title'); ?></h4>
+                            <p class="desc"><?php the_sub_field('description'); ?></p>
+                        </div>
                     </div>
-                    <div class="meta">
-                        <h4 class="title"><?php the_sub_field('title'); ?></h4>
-                        <p class="desc"><?php the_sub_field('description'); ?></p>
-                    </div>
+                    <?php endwhile; ?>
                 </div>
-                <?php endwhile; ?>
-            </div>
-            <?php endif; ?>
-            <div class="buttons">
-                <a class="btn_dark" href="<?php the_field('who_start_investing_link_global'); ?>"><?php the_field('who_start_investing_label_global'); ?></a>
+                <?php endif; ?>
+                <div class="buttons">
+                    <a class="btn_dark" href="<?php the_field('who_start_investing_link_global'); ?>"><?php the_field('who_start_investing_label_global'); ?></a>
+                </div>
             </div>
         </div>
     </section>

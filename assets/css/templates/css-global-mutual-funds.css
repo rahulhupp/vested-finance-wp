@@ -1,5 +1,5 @@
-.container {
-	max-width: 1240px;
+.page-template-page-global-mutual-funds .container {
+	max-width: 1108px;
 	padding: 0 24px;
 }
 .site-content .ast-container {
@@ -15,11 +15,11 @@
     flex-wrap: wrap;
 }
 .mutual-funds-info .funds-row .funds-content {
-    width: 50%;
-    padding-right: 87px;
+    width: 53%;
+    padding-right: 50px;
 }
 .mutual-funds-info .funds-row .funds-image {
-    width: 50%;
+    width: 47%;
 }
 .mutual-funds-info .funds-row .funds-content h1 {
     color: #002852;
@@ -174,7 +174,7 @@
     justify-content: space-between;
 }
 .who-wrap .who-list-item {
-    width: calc(33.33% - 16px);
+    width: calc(33.33% - 27px);
     text-align: center;
 }
 .who-wrap .who-list-item .icon {
@@ -199,7 +199,7 @@
     margin-bottom: 8px;
 }
 .who-wrap .who-list-item .meta p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 160%;
     color: #2D2D2D;
     margin-bottom: 0;
@@ -240,7 +240,7 @@
     justify-content: space-between;
 }
 .how-works-info .how-works-wrap .how-works-list-item {
-    width: calc(33.33% - 108px);
+    width: calc(33.33% - 72px);
     text-align: center;
     border-radius: 17.95px;
     padding: 32px 24px;
@@ -265,7 +265,7 @@
     height: 21px;
     background-size: contain;
     background-repeat: no-repeat;
-    right: -130px;
+    right: -104px;
 }
 .how-works-info .how-works-wrap .how-works-list-item:last-child:after {
     display: none;
@@ -388,7 +388,7 @@
     margin: 0;
     font-weight: 400;
     font-size: 14px;
-    line-height: 130%;
+    line-height: 120%;
     color: #212529;
     font-family: "Inter", sans-serif;
 }
@@ -403,7 +403,7 @@
     margin-bottom: 0;
 }
 .home_page_faq_wrap {
-    padding: 0 157px;
+    padding: 0 91px;
 }
 .single_faq {
     padding: 16px 16px;
@@ -488,3 +488,212 @@ a.btn.btn_light:hover {
     background: transparent;
     color: #fff;
 }
+
+@media screen and (max-width: 992px) {
+    .mutual-funds-info {
+        margin: 16px 0;
+    }
+    .page-template-page-global-mutual-funds .container {
+        padding: 0 16px;
+    }
+    .mutual-funds-info .funds-row .funds-content {
+        padding-right: 30px;
+    }
+    .why_wrap .why-list-item {
+        width: calc(25% - 6px);
+    }
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 32px !important;
+    }
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 16px;
+    }
+    .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
+        font-size: 16px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+    .advantages-info .advantages-detail h4.advantages-name {
+        font-size: 20px;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item {
+        width: calc(33.33% - 70px);
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:after {
+        right: -103px;
+    }
+    .testimonials-slider .slick-list {
+        padding: 80px 0 35px;
+    }
+    .home_page_faqs {
+        padding: 50px 0 70px;
+    }
+    .home_page_faqs .section-title {
+        padding: 0 16px 24px;
+        margin-bottom: 0;
+    }
+    .home_page_faq_wrap {
+        padding: 0 80px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mutual-funds-info .funds-row .funds-content, .mutual-funds-info .funds-row .funds-image {
+        padding-right: 0;
+        width: 100%;
+    }
+    .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
+        padding: 12px 20px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .mutual-funds-info .funds-row .funds-content .bottom .buttons, .advantages .advantages-slider-wrap {
+        margin-top: 16px;
+    }
+    .mutual-funds-info .funds-row .funds-image {
+        margin-top: 16px;
+    }
+    .why-info, .advantages, .who-info, .how-works-info, .home_page_faqs {
+        padding: 16px 0;
+        background-color: #FFFFFF;
+    }
+    .section-title {
+        font-size: 22px !important;
+        line-height: 130%;
+    }
+    .why_wrap {
+        margin-top: 16px;
+        background: #EEF5FC;
+        gap: 24px;
+        border-radius: 8px;
+        padding: 20px;
+    }
+    .why_wrap .why-list-item {
+        width: 100%;
+    }
+    .advantages-slider .slick-list {
+        padding: 0;
+        overflow: hidden;
+    }
+    .advantages-slider .advantages-slide .advantages-slide-inner {
+        padding: 24px 16px 50px;
+    }
+    .who-info .who-info-inner {
+        background: #EEF5FC;
+        padding: 24px;
+    }
+    .who-wrap .who-list-item {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .who-info .buttons {
+        margin-top: 0;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item {
+        width: 100%;
+        margin-bottom: 58px;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:last-child {
+        margin-bottom: 0;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:after {
+        background: url(../../images/down-arrow.png);
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        bottom: -54px;
+        width: 25px;
+        height: 50px;
+        top: initial;
+        transform: none;
+    }
+    .testimonials {
+        padding: 32px 0;
+    }
+    .testimonials .section-title {
+        font-size: 24px !important;
+        line-height: 150%;
+    }
+    .testimonials-slider .slick-list {
+        padding: 8px 0 10px;
+        margin: 0 -20px;
+    }
+    .testimonial-card.slick-slide {
+        margin: 20px;
+    }
+    .testimonial-card .testimonial-card-inner {
+        transform: none;
+        padding: 24px 28px 30px;
+        border-radius: 6.67px;
+    }
+    .testimonials-slider .testimonial-card.slick-current + .testimonial-card .testimonial-card-inner {
+        transform: none;
+        margin: 0;
+    }
+    .testimonial-next, .testimonial-prev {
+        height: 49px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info {
+        gap: 27px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .profile img {
+        width: 58px;
+        height: 58px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .details h3 {
+        font-size: 14.67px;
+        line-height: 22px;
+        margin: 0 0 2px;
+    }
+    .testimonial-card .testimonial-card-inner .description {
+        margin-top: 20px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .details p {
+        font-size: 8px;
+        line-height: 12px;
+    }
+    .testimonial-card .testimonial-card-inner .description p {
+        font-size: 10.67px;
+        line-height: 16px;
+    }
+    .home_page_faqs .section-title {
+        padding: 0 0 37px;
+    }
+    .home_page_faq_wrap {
+        padding: 0;
+    }
+    .faq_que h4 {
+        font-size: 14px;
+        padding-right: 18px;
+    }
+    .faq_content {
+        margin-top: 24px;
+    }
+    .faq_content p {
+        font-size: 12px !important;
+    }
+    .faq_que:after {
+        line-height: 100%;
+    }
+    .cta {
+        padding: 30px 0;
+    }
+    .cta_query_col, .cta_btn_col {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .cta_query_col .query_que {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    a.btn.btn_light {
+        padding: 12px 20px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .who-wrap .who-list-item .meta p {
+        font-size: 14px;
+    }
+} 
