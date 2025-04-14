@@ -260,7 +260,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: url(../../images/right-arrow.png);
+    background: url(../../images/right-arrow.svg);
     width: 100px;
     height: 21px;
     background-size: contain;
@@ -342,7 +342,7 @@
     padding: 36px 30px 60px;
     border-radius: 10px;
     position: relative;
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
     transform: scale(0.8);
     z-index: 0;
 }
@@ -618,7 +618,7 @@ a.btn.btn_light:hover {
         margin-bottom: 0;
     }
     .how-works-info .how-works-wrap .how-works-list-item:after {
-        background: url(../../images/down-arrow.png);
+        background: url(../../images/down-arrow.svg);
         right: 0;
         left: 0;
         margin: 0 auto;
