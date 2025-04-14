@@ -209,6 +209,7 @@ if ($overview_data) {
                             </div>
                         </div>
                     </div>
+                    <?php if (!$isValidValues): ?>
                     <div class="stock_metrics_range <?php if ($isValidValues): echo 'hidden';
                                                     endif; ?>">
                         <h6>
@@ -232,6 +233,7 @@ if ($overview_data) {
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
