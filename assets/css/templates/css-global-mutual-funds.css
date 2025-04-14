@@ -115,6 +115,7 @@
 }
 .advantages .advantages-slider-wrap {
     margin-top: 40px;
+    padding: 0 24px;
 }
 .advantages-slider .advantages-slide .advantages-slide-inner {
     border: 0.9px solid #0028524D;
@@ -126,6 +127,7 @@
 }
 .advantages-slider .slick-track {
     display: flex !important;
+    justify-content: center;
 }
 .advantages-info .advantages-img {
     display: flex;
@@ -156,13 +158,10 @@
 .advantages-slider .slick-slide {
     margin-right: 16px;
     height: inherit !important;
+    max-width: 342px;
 }
 .advantages-slider {
     margin-right: -16px;
-}
-.advantages-slider .slick-list {
-    padding:0 50px 0 0;
-    /* overflow: visible; */
 }
 .who-info {
     padding: 70px 0;
@@ -491,6 +490,18 @@ a.btn.btn_light:hover {
     color: #fff;
 }
 
+@media screen and (max-width: 1240px) {
+    .advantages-slider .slick-track {
+        justify-content: flex-start;
+    }
+    .advantages-slider .slick-slide {
+        max-width: unset;
+    }
+    .advantages .advantages-slider-wrap .slick-list {
+        padding: 0 50px 0 0;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .mutual-funds-info {
         margin: 16px 0;
@@ -581,7 +592,7 @@ a.btn.btn_light:hover {
     .why_wrap .why-list-item {
         width: 100%;
     }
-    .advantages-slider .slick-list {
+    .advantages .advantages-slider-wrap .slick-list {
         padding: 0;
         overflow: hidden;
     }

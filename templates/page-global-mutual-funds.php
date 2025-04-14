@@ -50,28 +50,28 @@ get_header(); ?>
     <section class="advantages">
         <div class="container">
             <h2 class="section-title"><?php the_field('advantages_title'); ?></h2>
-            <div class="advantages-slider-wrap">
-                <div class="advantages-slider">
-                    <?php while (have_rows('advantages_list')) : the_row(); ?>
-                        <div class="advantages-slide">
-                            <div class="advantages-slide-inner">
-                                <div class="advantages-info">
-                                    <div class="advantages-img">
-                                        <img src="<?php the_sub_field('advantages_image') ?>" alt="<?php the_sub_field('advantages_name') ?>">
-                                    </div>
-                                    <div class="advantages-detail">
-                                        <h4 class="advantages-name">
-                                            <?php the_sub_field('advantages_name') ?>
-                                        </h4>
-                                        <p class="advantages-designation">
-                                            <?php the_sub_field('advantages_designation') ?>
-                                        </p>
-                                    </div>
+        </div>
+        <div class="advantages-slider-wrap">
+            <div class="advantages-slider">
+                <?php while (have_rows('advantages_list')) : the_row(); ?>
+                    <div class="advantages-slide">
+                        <div class="advantages-slide-inner">
+                            <div class="advantages-info">
+                                <div class="advantages-img">
+                                    <img src="<?php the_sub_field('advantages_image') ?>" alt="<?php the_sub_field('advantages_name') ?>">
+                                </div>
+                                <div class="advantages-detail">
+                                    <h4 class="advantages-name">
+                                        <?php the_sub_field('advantages_name') ?>
+                                    </h4>
+                                    <p class="advantages-designation">
+                                        <?php the_sub_field('advantages_designation') ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile; ?>
-                </div>
+                    </div>
+                <?php endwhile; ?>
             </div>
         </div>
     </section>

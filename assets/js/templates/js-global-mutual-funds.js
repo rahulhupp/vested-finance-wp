@@ -1,16 +1,28 @@
 jQuery(document).ready(function ($) {
     $(".advantages-slider").slick({
-		infinite: true,
+		infinite: false,
 		arrows: false,
 		dots: false,
 		autoplay: true,
 		autoplaySpeed: 6000,
 		speed: 600,
-		slidesToShow: 3,
+		slidesToShow: 4,
 		slidesToScroll: 1,
         centerMode: false,
         adaptiveHeight: false,
 		responsive: [
+			{
+				breakpoint: 1240,
+				settings: {
+					slidesToShow: 3,
+				},
+			},
+			{
+				breakpoint: 991,
+				settings: {
+					slidesToShow: 2,
+				},
+			},
 			{
 				breakpoint: 768,
 				settings: {
@@ -27,7 +39,7 @@ jQuery(document).ready(function ($) {
 		infinite: true,
 		arrows: true,
 		dots: false,
-		autoplay: false,
+		autoplay: true,
 		speed: 800,
 		prevArrow: $(".testimonial-prev"),
     	nextArrow: $(".testimonial-next"),
