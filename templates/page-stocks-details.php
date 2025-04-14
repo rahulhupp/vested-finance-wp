@@ -236,7 +236,7 @@ if ($overview_data) {
                                 ?>
                             <?php else: ?>
                                 <?php
-                                if ($overview_data && $ratios_data):
+                                if ($overview_data && $returns_data):
                                     get_template_part(
                                         'template-parts/stocks-details/faqs-etf',
                                         null,
