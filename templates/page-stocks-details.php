@@ -113,14 +113,16 @@ if ($overview_data) {
                             <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
                         </div>
                         <?php
-                        get_template_part(
-                            'template-parts/stocks-details/stock-info',
-                            null,
-                            array(
-                                'overview_data' => $overview_data,
-                                'get_path' => $get_path
-                            )
-                        );
+                        if($symbol != 'bnkd') {
+                            get_template_part(
+                                'template-parts/stocks-details/stock-info',
+                                null,
+                                array(
+                                    'overview_data' => $overview_data,
+                                    'get_path' => $get_path
+                                )
+                            );
+                        }
                         ?>
 
                         <?php if ($get_path[2] !== 'etf'): ?>
