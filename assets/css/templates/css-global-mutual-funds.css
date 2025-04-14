@@ -23,7 +23,7 @@
 }
 .mutual-funds-info .funds-row .funds-content h1 {
     color: #002852;
-    font-size: 36px;
+    font-size: 40px;
     line-height: 130%;
     font-weight: 400;
     margin: 0 0 20px;
@@ -67,7 +67,7 @@
     background-color: #EEF5FC;
 }
 .section-title {
-    font-size: 38px;
+    font-size: 34px;
     line-height: 120%;
     font-weight: 800;
     color: #002852;
@@ -80,7 +80,7 @@
     justify-content: space-between;
 }
 .why_wrap .why-list-item {
-    width: calc(25% - 16px);
+    width: calc(25% - 25px);
     text-align: center;
 }
 .why_wrap .why-list-item .icon {
@@ -139,7 +139,7 @@
 }
 .advantages-info .advantages-detail h4.advantages-name {
     margin: 0 0 16px;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 130%;
     letter-spacing: -0.16px;
     font-weight: 600;
@@ -162,6 +162,7 @@
 }
 .advantages-slider .slick-list {
     padding:0 50px 0 0;
+    overflow: visible;
 }
 .who-info {
     padding: 70px 0;
@@ -285,7 +286,7 @@
     margin-top: 24px;
 }
 .how-works-info .how-works-list-item .meta .title {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 130%;
     color: #2D2D2D;
     font-weight: 600;
@@ -465,6 +466,7 @@
 .cta_query_col .query_que {
     color: #fff;
     text-align: left;
+    font-size: 38px;
 }
 .btn {
     display: inline-block;
@@ -539,6 +541,9 @@ a.btn.btn_light:hover {
 }
 
 @media screen and (max-width: 767px) {
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 14px;
+    }
     .mutual-funds-info .funds-row .funds-content, .mutual-funds-info .funds-row .funds-image {
         padding-right: 0;
         width: 100%;
@@ -547,6 +552,10 @@ a.btn.btn_light:hover {
         padding: 12px 20px;
         border-radius: 3px;
         font-size: 14px;
+        line-height: 15px;
+    }
+    .how-works-info .how-works-list-item .meta .title {
+        font-size: 24px;
     }
     .mutual-funds-info .funds-row .funds-content .bottom .buttons, .advantages .advantages-slider-wrap {
         margin-top: 16px;
