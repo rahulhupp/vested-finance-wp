@@ -422,7 +422,7 @@
     margin-bottom: 0;
 }
 .faq_que:after {
-    content: "\f106";
+    content: "\f078";
     font-family: "FontAwesome";
     position: absolute;
     top: 0;
@@ -430,7 +430,7 @@
     color: #002852;
     transition: transform 0.3s;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 12px;
 }
 .faq_content {
     margin-top: 28px;
