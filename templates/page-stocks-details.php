@@ -155,28 +155,32 @@ if ($overview_data) {
                             </div>
 
                             <?php
-                            get_template_part(
-                                'template-parts/stocks-details/overview',
-                                null,
-                                array(
-                                    'overview_data' => $overview_data,
-                                    'get_path' => $get_path,
-                                    'price_chart_data' => $price_chart_data
-                                )
-                            );
+                            if ($symbol != 'bnkd') {
+                                get_template_part(
+                                    'template-parts/stocks-details/overview',
+                                    null,
+                                    array(
+                                        'overview_data' => $overview_data,
+                                        'get_path' => $get_path,
+                                        'price_chart_data' => $price_chart_data
+                                    )
+                                );
+                            }
                             ?>
 
                             <?php
-                            if ($returns_data) :
-                                get_template_part(
-                                    'template-parts/stocks-details/returns',
-                                    null,
-                                    array(
-                                        'returns_data' => $returns_data,
-                                        'get_path' => $get_path
-                                    )
-                                );
-                            endif;
+                            if ($symbol != 'bnkd') {
+                                if ($returns_data) :
+                                    get_template_part(
+                                        'template-parts/stocks-details/returns',
+                                        null,
+                                        array(
+                                            'returns_data' => $returns_data,
+                                            'get_path' => $get_path
+                                        )
+                                    );
+                                endif;
+                            }
                             ?>
 
                             <?php if ($get_path[2] !== 'etf'): ?>
