@@ -113,16 +113,14 @@ if ($overview_data) {
                             <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
                         </div>
                         <?php
-                        if($symbol != 'bnkd') {
-                            get_template_part(
-                                'template-parts/stocks-details/stock-info',
-                                null,
-                                array(
-                                    'overview_data' => $overview_data,
-                                    'get_path' => $get_path
-                                )
-                            );
-                        }
+                        get_template_part(
+                            'template-parts/stocks-details/stock-info',
+                            null,
+                            array(
+                                'overview_data' => $overview_data,
+                                'get_path' => $get_path
+                            )
+                        );
                         ?>
 
                         <?php if ($get_path[2] !== 'etf'): ?>
@@ -155,32 +153,28 @@ if ($overview_data) {
                             </div>
 
                             <?php
-                            if ($symbol != 'bnkd') {
-                                get_template_part(
-                                    'template-parts/stocks-details/overview',
-                                    null,
-                                    array(
-                                        'overview_data' => $overview_data,
-                                        'get_path' => $get_path,
-                                        'price_chart_data' => $price_chart_data
-                                    )
-                                );
-                            }
+                            get_template_part(
+                                'template-parts/stocks-details/overview',
+                                null,
+                                array(
+                                    'overview_data' => $overview_data,
+                                    'get_path' => $get_path,
+                                    'price_chart_data' => $price_chart_data
+                                )
+                            );
                             ?>
 
                             <?php
-                            if ($symbol != 'bnkd') {
-                                if ($returns_data) :
-                                    get_template_part(
-                                        'template-parts/stocks-details/returns',
-                                        null,
-                                        array(
-                                            'returns_data' => $returns_data,
-                                            'get_path' => $get_path
-                                        )
-                                    );
-                                endif;
-                            }
+                            if ($returns_data) :
+                                get_template_part(
+                                    'template-parts/stocks-details/returns',
+                                    null,
+                                    array(
+                                        'returns_data' => $returns_data,
+                                        'get_path' => $get_path
+                                    )
+                                );
+                            endif;
                             ?>
 
                             <?php if ($get_path[2] !== 'etf'): ?>
@@ -199,42 +193,32 @@ if ($overview_data) {
                                 ?>
 
                                 <?php
-                                if ($symbol != 'bnkd') {
-                                    if ($ratios_data):
-                                        get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data));
-                                    endif;
-                                }
+                                if ($ratios_data):
+                                    get_template_part('template-parts/stocks-details/ratios', null, array('ratios_data' => $ratios_data));
+                                endif;
                                 ?>
                                 <?php
                                 if ($news_data):
-                                    if ($symbol != 'bnkd') {
-                                        get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data));
-                                    }
+                                    get_template_part('template-parts/stocks-details/news', null, array('news_data' => $news_data));
                                 endif;
                                 ?>
                             <?php else: ?>
                                 <?php
-                                if ($symbol != 'bnkd') {
-                                    if ($largest_holdings_data) {
-                                        get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
-                                    }
+                                if ($largest_holdings_data) {
+                                    get_template_part('template-parts/stocks-details/largest-holdings', null, array('largest_holdings_data' => $largest_holdings_data));
                                 }
                                 ?>
                                 <?php
-                                if ($symbol != 'bnkd') {
-                                    if ($sector_breakdowns_data) {
-                                        get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
-                                    }
+                                if ($sector_breakdowns_data) {
+                                    get_template_part('template-parts/stocks-details/sector-breakdown', null, array('sector_breakdowns_data' => $sector_breakdowns_data));
                                 }
                                 ?>
                             <?php endif; ?>
 
                             <?php
-                            if ($symbol != 'bnkd') {
-                                if ($get_path):
-                                    get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path));
-                                endif;
-                            }
+                            if ($get_path):
+                                get_template_part('template-parts/stocks-details/discover', null, array('get_path' => $get_path));
+                            endif;
                             ?>
 
                             <?php if ($get_path[2] !== 'etf'): ?>
@@ -252,18 +236,16 @@ if ($overview_data) {
                                 ?>
                             <?php else: ?>
                                 <?php
-                                if ($symbol != 'bnkd') {
-                                    if ($overview_data && $returns_data):
-                                        get_template_part(
-                                            'template-parts/stocks-details/faqs-etf',
-                                            null,
-                                            array(
-                                                'returns_data' => $returns_data,
-                                                'overview_data' => $overview_data
-                                            )
-                                        );
-                                    endif;
-                                }
+                                if ($overview_data && $returns_data):
+                                    get_template_part(
+                                        'template-parts/stocks-details/faqs-etf',
+                                        null,
+                                        array(
+                                            'returns_data' => $returns_data,
+                                            'overview_data' => $overview_data
+                                        )
+                                    );
+                                endif;
                                 ?>
                             <?php endif; ?>
                         </div>
