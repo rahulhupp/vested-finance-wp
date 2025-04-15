@@ -124,22 +124,22 @@ get_header(); ?>
         <div class="container">
             <h2 class="section-title"><?php the_field('testimonials_heading'); ?></h2>
             <div class="testimonials-wrap">
-                <?php if (have_rows('testimonial_slides')): ?>
+                <?php if (have_rows('investors_reviews', 'option')): ?>
                 <div class="testimonials-slider">
-                    <?php while (have_rows('testimonial_slides')) : the_row(); ?>
+                    <?php while (have_rows('investors_reviews', 'option')) : the_row(); ?>
                         <div class="testimonial-card">
                             <div class="testimonial-card-inner">
                                 <div class="leaders-info">
                                     <figure class="profile">
-                                        <img src="<?php the_sub_field('leaders_profile_image') ?>" alt="<?php the_sub_field('leaders_name') ?>">
+                                        <img src="<?php the_sub_field('investor_image') ?>" alt="<?php the_sub_field('investor_name') ?>">
                                     </figure>
                                     <div class="details">
-                                        <h3><?php the_sub_field('leaders_name') ?></h3>
-                                        <p><?php the_sub_field('leaders_info'); ?></p>
+                                        <h3><?php the_sub_field('investor_name') ?></h3>
+                                        <p><?php the_sub_field('investor_designation'); ?></p>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p><?php the_sub_field('leaders_description'); ?></p>
+                                    <p><?php the_sub_field('investor_review'); ?></p>
                                 </div>
                             </div>
                         </div>

@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
 		dots: false,
 		autoplay: true,
 		speed: 800,
+		adaptiveHeight: true,
 		prevArrow: $(".testimonial-prev"),
     	nextArrow: $(".testimonial-next"),
 		responsive: [
@@ -49,6 +50,7 @@ jQuery(document).ready(function ($) {
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
+					adaptiveHeight: false,
 				},
 			},
 		],
