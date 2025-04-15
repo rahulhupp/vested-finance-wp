@@ -231,7 +231,7 @@
     color: #002852;
 }
 .how-works-info {
-    padding: 50px 0;
+    padding: 70px 0;
 }
 .portfolio_slider_wrap {
 	margin-top: 50px;
@@ -316,10 +316,7 @@
 	font-weight: 400;
 	line-height: 120%;
 	letter-spacing: -0.36px;
-}
-
-.single_portfolio_slider_content.slick-active .single_slider_desc {
-	color: #212529;
+    opacity: 0.8;
 }
 .how-works-info .how-works-wrap {
     margin-top: 40px;
@@ -387,7 +384,8 @@
     margin-bottom: 0;
 }
 .testimonials {
-    padding: 50px 0;
+    padding: 70px 0;
+    background-color: #EEF5FC;
 }
 .testimonials .testimonials-wrap {
     margin-top: 0;
@@ -501,7 +499,7 @@
     padding: 70px 0;
 }
 .home_page_faqs .section-title {
-    padding: 24px 16px;
+    padding: 0 16px 24px;
     margin-bottom: 0;
 }
 .home_page_faq_wrap {
@@ -750,7 +748,14 @@ a.btn.btn_light:hover {
         transform: none;
     }
     .testimonials {
-        padding: 32px 0;
+        padding: 16px 0;
+        background-color: #FFFFFF;
+    }
+    .testimonials .testimonials-wrap {
+        margin-top: 16px;
+        background: #EEF5FC;
+        border-radius: 8px;
+        padding: 0 20px 20px;
     }
     .testimonials .section-title {
         font-size: 24px !important;
@@ -888,6 +893,9 @@ a.btn.btn_light:hover {
 	}
     .portfolio_slider_wrap {
         margin-top: 40px;
+    }
+    .portfolio_slider_content_inner {
+        width: 100%;
     }
 } 
 
