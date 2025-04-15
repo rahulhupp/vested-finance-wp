@@ -103,21 +103,39 @@ get_header(); ?>
     <section class="how-works-info">
         <div class="container">
             <h2 class="section-title"><?php the_field('how_works_heading'); ?></h2>
-            <?php if (have_rows('how_works_list')): ?>
-            <div class="how-works-wrap">
-            <?php while (have_rows('how_works_list')): the_row(); ?>
-                <div class="how-works-list-item">
-                    <div class="icon">
-                        <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
-                    </div>
-                    <div class="meta">
-                        <h4 class="title"><?php the_sub_field('title'); ?></h4>
-                        <p class="desc"><?php the_sub_field('description'); ?></p>
-                    </div>
+            <div class="portfolio_slider_wrap">
+                <div class="portfolio_slider slider single-item">
+                    <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
+                        <div class="single_portfolio_slider">
+                            <?php
+                            $image = get_sub_field('slider_image_global');
+                            if (!empty($image)): ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                            <?php endif; ?>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
-                <?php endwhile; ?>
+                <?php if (have_rows('portfolio_slider_global')) : ?>
+                    <div class="portfolio_slider_content">
+                        <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
+                            <div class="single_portfolio_slider_content">
+                                <div class="portfolio_slider_content_inner">
+                                    <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
+                                    <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
+                                    <div class="portfolio_slider_inner_content">
+                                        <span class="slider_index">0<?php echo get_row_index(); ?></span>
+                                        <h3><?php the_sub_field('slider_title_global') ?></h3>
+                                        <p class="single_slider_desc">
+                                            <?php the_sub_field('slider_description_global') ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
         </div>
     </section>
     <section class="testimonials">
