@@ -132,8 +132,10 @@
         var forecastContainer = document.querySelector('.stock_forecast_container');
         var metricsContainer = document.querySelector('.stock_metrics_container');
         var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var mobileTabContainer = document.querySelector('.mobile_tabs_container');
         if (windowWidth < 1024) {
-            searchContainer.parentNode.insertBefore(tabsMenu, searchContainer.nextSibling);
+            // searchContainer.parentNode.insertBefore(tabsMenu, searchContainer.nextSibling);
+            mobileTabContainer.appendChild(tabsMenu);
             metricsContainer.parentNode.insertBefore(forecastContainer, metricsContainer.nextSibling);
         }
     }

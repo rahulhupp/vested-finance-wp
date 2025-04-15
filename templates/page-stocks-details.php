@@ -112,6 +112,7 @@ if ($overview_data) {
                         <div class="stocks_search_container">
                             <?php get_template_part('template-parts/stocks-details/stock-search-link'); ?>
                         </div>
+                        <div class="mobile_tabs_container"></div>
                         <?php
                         get_template_part(
                             'template-parts/stocks-details/stock-info',

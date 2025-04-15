@@ -6511,6 +6511,10 @@ td.holdings_stock_weight_td {
 	.analyst_forecast_chart_container {
 		max-width: 240px;
 	}
+
+	.mobile_tabs_container {
+		min-height: 42px;
+	}
 }
 
 
