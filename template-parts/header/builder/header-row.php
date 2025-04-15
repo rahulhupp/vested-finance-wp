@@ -64,9 +64,12 @@ if ( Astra_Builder_Helper::is_row_empty( $astra_header_row, 'header', 'desktop' 
 							</div>
 						<?php } ?>
 						<div class="humburger">
-							<div class="inner">
+							<!-- <div class="inner">
 								<div class="icon"></div>
-							</div>
+							</div> -->
+							<span></span>
+							<span></span>
+							<span></span>
 						</div>
 						<div class="menu-overlay"></div>
 						<?php if ( Astra_Builder_Helper::has_side_columns( $astra_header_row ) ) { ?>
