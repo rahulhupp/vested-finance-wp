@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 jQuery(document).ready(function () {
-  jQuery(
-    "header .inner-header .site-primary-header-wrap .logo-menu .humburger"
-  ).click(function () {
-    jQuery("body").toggleClass("menu-open");
-  });
+    jQuery("header .inner-header .site-primary-header-wrap .logo-menu .humburger").click(function () {
+        requestAnimationFrame(() => {
+            jQuery("body").toggleClass("menu-open");
+        });
+    });
 });
