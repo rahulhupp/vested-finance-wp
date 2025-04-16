@@ -492,6 +492,9 @@
     color: #212529;
     font-family: "Inter", sans-serif;
 }
+.testimonials sup {
+    top: -3px;
+}
 .testimonials-slider .slick-list {
     padding: 80px 0 65px;
 }

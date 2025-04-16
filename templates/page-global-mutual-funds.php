@@ -157,7 +157,16 @@ get_header(); ?>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p><?php the_sub_field('investor_review'); ?></p>
+                                    <?php 
+                                        $review = get_sub_field('investor_review');
+                                        $review = rtrim($review);
+                                        if (substr($review, -4) === '</p>') {
+                                            $review = substr_replace($review, ' <sup>##</sup>', -4, 0);
+                                        } else {
+                                            $review .= ' <sup>##</sup>';
+                                        }
+                                        echo $review;
+                                    ?>
                                 </div>
                             </div>
                         </div>
