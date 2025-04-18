@@ -82,37 +82,41 @@ while (have_posts()) :
                         <div class="market_table_headings">
                             <div class="market_table_name">
                                 <h3><?php the_title(); ?></h3>
-                                <p id="stocks_count"></p>
-                            </div>
-                            <div class="table_mobile_sort">
-                                <div class="sort_icon">
-                                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0.5 6.30615C0.5 3.26859 2.96243 0.806152 6 0.806152H26C29.0376 0.806152 31.5 3.26859 31.5 6.30615V26.3062C31.5 29.3437 29.0376 31.8062 26 31.8062H6C2.96243 31.8062 0.5 29.3437 0.5 26.3062V6.30615Z" fill="white" />
-                                        <path d="M0.5 6.30615C0.5 3.26859 2.96243 0.806152 6 0.806152H26C29.0376 0.806152 31.5 3.26859 31.5 6.30615V26.3062C31.5 29.3437 29.0376 31.8062 26 31.8062H6C2.96243 31.8062 0.5 29.3437 0.5 26.3062V6.30615Z" stroke="#CCD4DC" />
-                                        <path d="M15.3333 19.6396L12.6667 22.3063L10 19.6396" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.666 22.3062V14.3062" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M21.9993 12.9728L19.3327 10.3062L16.666 12.9728" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M19.334 18.3062V10.3062" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <div class="table_sort_overlay"></div>
-                                <div class="table_sort_options">
-                                    <h4 class="sort_title">Sort</h4>
-
-                                    <ul>
-                                        <li data-sort="price" data-order="asc">Price</li>
-                                        <li data-sort="market_cap" data-order="asc">Market Cap</li>
-                                        <li data-sort="pe_ratio" data-order="asc">P/E Ratio</li>
-                                        <li data-sort="one_year_returns" data-order="asc">1Y Returns</li>
-                                        <li data-sort="cagr_5_year" data-order="asc">5Y CAGR</li>
-                                    </ul>
+                                <div class="tabs">
+                                    <button class="tab-button" data-target="#tab1">Stocks</button>
+                                    <button class="tab-button" data-target="#tab2">ETFs</button>
                                 </div>
                             </div>
                             <div class="market_table_search">
-                                <input type="text" id="stock-search" placeholder="Search any stock" />
+                                <input type="text" id="stock-search" data-type="" />
+                                <div class="table_mobile_sort">
+                                    <div class="sort_icon">
+                                        <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.5 6.30615C0.5 3.26859 2.96243 0.806152 6 0.806152H26C29.0376 0.806152 31.5 3.26859 31.5 6.30615V26.3062C31.5 29.3437 29.0376 31.8062 26 31.8062H6C2.96243 31.8062 0.5 29.3437 0.5 26.3062V6.30615Z" fill="white" />
+                                            <path d="M0.5 6.30615C0.5 3.26859 2.96243 0.806152 6 0.806152H26C29.0376 0.806152 31.5 3.26859 31.5 6.30615V26.3062C31.5 29.3437 29.0376 31.8062 26 31.8062H6C2.96243 31.8062 0.5 29.3437 0.5 26.3062V6.30615Z" stroke="#CCD4DC" />
+                                            <path d="M15.3333 19.6396L12.6667 22.3063L10 19.6396" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M12.666 22.3062V14.3062" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M21.9993 12.9728L19.3327 10.3062L16.666 12.9728" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M19.334 18.3062V10.3062" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="table_sort_overlay"></div>
+                                    <div class="table_sort_options">
+                                        <h4 class="sort_title">Sort</h4>
+
+                                        <ul>
+                                            <li data-sort="price" data-order="asc">Price</li>
+                                            <li data-sort="market_cap" data-order="asc">Market Cap</li>
+                                            <li data-sort="pe_ratio" data-order="asc">P/E Ratio</li>
+                                            <li data-sort="one_year_returns" data-order="asc">1Y Returns</li>
+                                            <li data-sort="cagr_5_year" data-order="asc">5Y CAGR</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="stocks_table_wrap">
+                        <p id="stocks_count"></p>
+                        <div class="stocks_table_wrap stocks_table">
                             <table id="stocks-table">
                                 <thead>
                                     <tr>
@@ -134,6 +138,37 @@ while (have_posts()) :
                                                 </svg>
                                             </span>
                                         </th>
+                                        <th data-sort="one_year_returns">1Y Returns
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                        <th data-sort="cagr_5_year">5Y CAGR
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="stocks_table_wrap">
+                            <table id="etf-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>AUM</th>
+                                        <th>Expense Ratio</th>
                                         <th data-sort="one_year_returns">1Y Returns
                                             <span class="sort_data">
                                                 <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
