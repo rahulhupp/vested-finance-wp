@@ -116,6 +116,58 @@ while (have_posts()) :
                             </div>
                         </div>
                         <p id="stocks_count"></p>
+                        <div class="skeleton-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th data-sort="market_cap">Market Cap
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                        <th data-sort="pe_ratio">P/E Ratio
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                        <th data-sort="one_year_returns">1Y Returns
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                        <th data-sort="cagr_5_year">5Y CAGR
+                                            <span class="sort_data">
+                                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.94188 4.57036L4.21022 0.0960542C4.1034 -0.0320181 3.89773 -0.0320181 3.78978 0.0960542L0.0581151 4.57036C-0.0805157 4.7372 0.0444792 4.9816 0.268334 4.9816H7.73167C7.95552 4.9816 8.08052 4.7372 7.94188 4.57036Z" fill="black" fill-opacity="0.25" />
+                                                    <path d="M7.73167 7.0184H0.268334C0.0444792 7.0184 -0.0805157 7.2628 0.0581151 7.42964L3.78978 11.9039C3.89659 12.032 4.10227 12.032 4.21022 11.9039L7.94188 7.42964C8.08052 7.2628 7.95552 7.0184 7.73167 7.0184Z" fill="black" fill-opacity="0.25" />
+                                                </svg>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="flex"><div class="skeleton skeleton-cell" style="width: 32px; height: 32px;"></div><div class="skeleton skeleton-cell" style="width: 75px; height: 38px;"></div></div></td>
+                                        <td><div class="skeleton skeleton-cell" style="width: 80px; margin-bottom: 2px;"></div><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+                                        <td><div class="skeleton skeleton-cell" style="width: 100px;"></div></td>
+                                        <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+                                        <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+                                        <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="stocks_table_wrap stocks_table">
                             <table id="stocks-table">
                                 <thead>
@@ -460,6 +512,23 @@ endwhile;
         }]
     }
 </script>
+
+<script>
+    const tbody = document.querySelector('.skeleton-table tbody');
+    for (let i = 0; i < 10; i++) {
+        tbody.innerHTML += `
+        <tr>
+            <td><div class="flex"><div class="skeleton skeleton-cell" style="width: 32px; height: 32px;"></div><div class="skeleton skeleton-cell" style="width: 75px; height: 38px;"></div></div></td>
+            <td><div class="skeleton skeleton-cell" style="width: 80px; margin-bottom: 2px;"></div><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+            <td><div class="skeleton skeleton-cell" style="width: 100px;"></div></td>
+            <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+            <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+            <td><div class="skeleton skeleton-cell" style="width: 80px;"></div></td>
+        </tr>
+        `;
+    }
+</script>
+
 
 <?php
 

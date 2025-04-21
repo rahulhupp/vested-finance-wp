@@ -397,11 +397,17 @@ p#stocks_count {
     border-radius: 8px;
 }
 
-#stocks-table, #etf-table {
+.skeleton-table {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+#stocks-table, #etf-table, .skeleton-table table {
     border: none;
 }
 
-#stocks-table td, #etf-table td {
+#stocks-table td, #etf-table td, .skeleton-table table td {
     border-right: none;
     padding: 16px 10px;
     font-size: 16px;
@@ -458,7 +464,7 @@ p#stocks_count {
     flex-wrap: wrap;
 }
 
-#stocks-table th, #etf-table th {
+#stocks-table th, #etf-table th, .skeleton-table table th {
     border-right: none;
     text-align: left;
     font-size: 14px;
@@ -472,20 +478,22 @@ p#stocks_count {
 #stocks-table th:first-of-type,
 #stocks-table td:first-of-type, 
 #etf-table th:first-of-type,
-#etf-table td:first-of-type {
+#etf-table td:first-of-type,
+.skeleton-table table th:first-of-type,
+.skeleton-table table td:first-of-type {
     min-width: 190px;
     max-width: 200px;
 }
 
-#stocks-table th, #stocks-table td, #etf-table th, #etf-table td {
+#stocks-table th, #stocks-table td, #etf-table th, #etf-table td, .skeleton-table table th, .skeleton-table table td {
     min-width: 100px;
 }
 
-#stocks-table th:nth-child(3), #stocks-table td:nth-child(3), #etf-table th:nth-child(3), #etf-table td:nth-child(3) {
+#stocks-table th:nth-child(3), #stocks-table td:nth-child(3), #etf-table th:nth-child(3), #etf-table td:nth-child(3), .skeleton-table table th:nth-child(3), .skeleton-table table td:nth-child(3) {
     min-width: 120px;
 }
 
-#stocks-table th:nth-child(4), #stocks-table td:nth-child(4), #etf-table th:nth-child(4), #etf-table td:nth-child(4) {
+#stocks-table th:nth-child(4), #stocks-table td:nth-child(4), #etf-table th:nth-child(4), #etf-table td:nth-child(4), .skeleton-table table th:nth-child(4), .skeleton-table table td:nth-child(4) {
     min-width: 100px;
 }
 
@@ -1053,17 +1061,17 @@ h2.cta_title {
         gap: 8px;
     }
 
-    #stocks-table th:nth-child(1), #stocks-table td:nth-child(1), #etf-table th:nth-child(1), #etf-table td:nth-child(1) {
+    #stocks-table th:nth-child(1), #stocks-table td:nth-child(1), #etf-table th:nth-child(1), #etf-table td:nth-child(1), .skeleton-table table th:nth-child(1), .skeleton-table table td:nth-child(1) {
         text-align: left;
     }
     
-    #stocks-table td, #etf-table td {
+    #stocks-table td, #etf-table td, .skeleton-table table td {
         padding: 10px 6px;
         font-size: 14px;
         line-height: 16px;
     }
     
-    #stocks-table th, #etf-table th {
+    #stocks-table th, #etf-table th, .skeleton-table table th {
         padding: 10px 6px;
     }
 
@@ -1075,7 +1083,7 @@ h2.cta_title {
         margin-top: 3px;
     }
     
-    #stocks-table th, #stocks-table td, #etf-table th, #etf-table td {
+    #stocks-table th, #stocks-table td, #etf-table th, #etf-table td, .skeleton-table table th, .skeleton-table table td {
         text-align: end;
     }
     
@@ -1179,7 +1187,7 @@ h2.cta_title {
         background-color: rgba(0,0,0,0.3);
     }
 
-    #stocks-table th, #stocks-table td, #etf-table th, #etf-table td {
+    #stocks-table th, #stocks-table td, #etf-table th, #etf-table td, .skeleton-table table th, .skeleton-table table td {
         min-width: 120px;
     }
 
@@ -1420,4 +1428,31 @@ h2.cta_title {
 
 .stocks_table_wrap table {
     display: none;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #F1EFEF 25%, #F9F8F8 50%, #E7E5E5 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-cell {
+    height: 19px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.skeleton-table .flex {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }

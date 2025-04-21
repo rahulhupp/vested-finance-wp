@@ -253,6 +253,7 @@ function enqueue_custom_pagination_script()
                             if (allData.length > 0) {
                                 $('.market_table_headings .tabs').show();
                                 $('#stocks-table').show();
+                                $('.skeleton-table').hide();
                                 $('.tabs [data-target="#tab1"]').addClass('active');
                                 renderTable(currentPage);
                                 generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
@@ -262,6 +263,7 @@ function enqueue_custom_pagination_script()
                             } else if (etfData.length > 0) {
                                 $('.market_table_headings .tabs').show();
                                 $('#etf-table').show();
+                                $('.skeleton-table').hide();
                                 $('.tabs [data-target="#tab2"]').addClass('active');
                                 renderETFTable(currentPage);
                                 generatePagination(Math.ceil(etfData.length / stocksPerPage), currentPage);
@@ -281,10 +283,12 @@ function enqueue_custom_pagination_script()
                                 $('#stock-search').attr('placeholder', 'Search Any Stock');
                                 $('#stock-search').data('type', 'Stocks');
                                 $('.stocks_table_wrap.stocks_table').html('<p>No results found</p>');
+                                $('.skeleton-table').hide();
                             }
                             
                         } else {
                             $('#stocks-table tbody').html('<tr><td colspan="6">Error loading data</td></tr>');
+                            $('.skeleton-table').hide();
                         }
                     }
                 });
