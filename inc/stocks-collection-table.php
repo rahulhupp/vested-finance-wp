@@ -496,7 +496,7 @@ function enqueue_custom_pagination_script()
 
                     var stockName = createSlug(stock.name);
                     var stockSymbol = stock.symbol.toLowerCase();
-                    var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+                    var stockUrl = `https://vestedfinance.com/us-stocks/etf/${stockSymbol}/${stockName}`;
                     var fallbackImageUrl = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
 
                     // Append the row to the table body
@@ -981,6 +981,7 @@ function enqueue_custom_pagination_script()
                     var stockName = createSlug(stock.name);
                     var stockSymbol = stock.symbol.toLowerCase();
                     var stockUrl = `https://vestedfinance.com/us-stocks/${stockSymbol}/${stockName}`;
+                    var etfUrl = `https://vestedfinance.com/us-stocks/etf/${stockSymbol}/${stockName}`;
                     var fallbackImageUrl = `https://d13dxy5z8now6z.cloudfront.net/symbol/${stock.symbol}.png`;
 
                     // Append the row to the table body
@@ -1017,14 +1018,14 @@ function enqueue_custom_pagination_script()
                                 <td>
                                     <div class="stock_symbol_wrap">
                                         <div class="stock_symbol_img">
-                                            <a href="${stockUrl}">
+                                            <a href="${etfUrl}">
                                             <img src="https://d13dxy5z8now6z.cloudfront.net/logos/${stock.symbol}.png" 
                                             alt="${stock.symbol}-img" 
                                             onerror="this.onerror=null; this.src='${fallbackImageUrl}'" />
                                             </a>
                                         </div>
                                         <div class="stock_name">
-                                            <p><a href="${stockUrl}">${stock.name}</a></p>
+                                            <p><a href="${etfUrl}">${stock.name}</a></p>
                                             <span>(${stock.symbol})</span>
                                         </div>
                                     </div>
@@ -1032,8 +1033,8 @@ function enqueue_custom_pagination_script()
                                 <td class="pricing_cols">${stockPrice}
                                     <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                                 </td>
-                                <td>${formatMarketCap(stock.market_cap)}</td> 
-                                <td>${peRatio}</td>
+                                <td>${stock.aum}</td> 
+                                <td>${parseFloat(stock.expense_ratio).toFixed(2)}</td>
                                 <td>${oneYearReturns}</td>
                                 <td>${cagr_5_year}</td>
                             </tr>
