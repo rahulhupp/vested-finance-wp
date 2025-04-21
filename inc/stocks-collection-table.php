@@ -520,7 +520,7 @@ function enqueue_custom_pagination_script()
                             <td class="pricing_cols">${stockPrice}
                                 <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                             </td>
-                            <td>${stock.aum}</td> 
+                            <td>${(stock.aum == null || stock.aum == 0) ? '-' : stock.aum}</td> 
                             <td>${peRatio}</td>
                             <td>${oneYearReturns}</td>
                             <td>${cagr_5_year}</td>
@@ -1033,7 +1033,7 @@ function enqueue_custom_pagination_script()
                                 <td class="pricing_cols">${stockPrice}
                                     <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                                 </td>
-                                <td>${stock.aum}</td> 
+                                <td>${(stock.aum == null || stock.aum == 0) ? '-' : stock.aum}</td> 
                                 <td>${parseFloat(stock.expense_ratio).toFixed(2)}</td>
                                 <td>${oneYearReturns}</td>
                                 <td>${cagr_5_year}</td>
