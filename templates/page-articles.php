@@ -67,12 +67,16 @@ get_header(); ?>
 <script>
     jQuery(document).ready(function($) {
         let currentPage = 1;
-        let postsPerPage = 8;
         let isLoading = false;
-
-        function loadPosts(initial = false) {
+        let postsPerPage = 8;
+        console.log('posts initialized');
+        
+        $('#loadMore').on('click', function(e) {
+            e.preventDefault();
             if (isLoading) return;
             isLoading = true;
+
+            currentPage++;
 
             $.ajax({
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -83,14 +87,11 @@ get_header(); ?>
                     posts_per_page: postsPerPage,
                 },
                 beforeSend: function() {
-                    if (!initial) {
-                        $('#loadMore').text('Loading...');
-                    }
+                    $('#loadMore').text('Loading...');
                 },
                 success: function(response) {
                     if (response.success && response.data) {
-                        $('#postContainer').append(response.data);
-                        currentPage++;
+                        $('.post-item').append(response.data);
                         $('#loadMore').text('Load More');
                     } else {
                         $('#loadMore').text('No more posts');
@@ -99,19 +100,10 @@ get_header(); ?>
                     isLoading = false;
                 },
                 error: function() {
-                    $('#loadMore').text('Error loading posts');
+                    $('#loadMore').text('Error loading');
                     isLoading = false;
                 }
             });
-        }
-
-        // Initial load
-        loadPosts(true);
-
-        // Load more on click
-        $('#loadMore').on('click', function(e) {
-            e.preventDefault();
-            loadPosts();
         });
     });
 </script>
