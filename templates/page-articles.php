@@ -28,6 +28,30 @@ get_header(); ?>
                 </div>
             </header>
             <div class="post-item" id="postContainer">
+                <?php
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 8,
+                );
+                $initial_query = new WP_Query($args);
+                if ($initial_query->have_posts()) :
+                    while ($initial_query->have_posts()) : $initial_query->the_post(); ?>
+                        <div id="post-<?php the_ID(); ?>" class="post-card display">
+                            <div class="featured-image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('full'); ?>
+                                </a>
+                            </div>
+                            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <div class="meta-info">
+                                <span class="post-author"><?php the_author(); ?></span>
+                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                            </div>
+                        </div>
+                <?php endwhile;
+                    wp_reset_postdata();
+                endif;
+                ?>
             </div>
 
             <div class="load-more-btn">
