@@ -4224,6 +4224,7 @@ body.mega-menu-open .site-content:before {
 		background: #002852;
 		display: block;
 		transition-duration: 0.2s;
+		will-change: transform;
 	}
 
 	.menu-open .humburger span:nth-of-type(1) {

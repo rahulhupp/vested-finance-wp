@@ -424,7 +424,8 @@ function load_more_posts() {
         $args = array(
             'post_type' => 'post',
             'posts_per_page' => 8,
-            'paged' => $paged
+            'paged' => $paged,
+            'post__not_in' => $exclude
         );
 
         
