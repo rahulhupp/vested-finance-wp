@@ -69,7 +69,8 @@ get_header(); ?>
         let currentPage = 1;
         let isLoading = false;
         let postsPerPage = 8;
-
+        console.log('posts initialized');
+        
         $('#loadMore').on('click', function(e) {
             e.preventDefault();
             if (isLoading) return;
