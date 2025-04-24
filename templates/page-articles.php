@@ -28,30 +28,6 @@ get_header(); ?>
                 </div>
             </header>
             <div class="post-item" id="postContainer">
-                <?php
-                $args = array(
-                    'post_type' => 'post',
-                    'posts_per_page' => 8,
-                );
-                $initial_query = new WP_Query($args);
-                if ($initial_query->have_posts()) :
-                    while ($initial_query->have_posts()) : $initial_query->the_post(); ?>
-                        <div id="post-<?php the_ID(); ?>" class="post-card display">
-                            <div class="featured-image">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('full'); ?>
-                                </a>
-                            </div>
-                            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                            <div class="meta-info">
-                                <span class="post-author"><?php the_author(); ?></span>
-                                <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                            </div>
-                        </div>
-                <?php endwhile;
-                    wp_reset_postdata();
-                endif;
-                ?>
             </div>
 
             <div class="load-more-btn">
@@ -67,16 +43,12 @@ get_header(); ?>
 <script>
     jQuery(document).ready(function($) {
         let currentPage = 1;
-        let isLoading = false;
         let postsPerPage = 8;
-        console.log('posts initialized');
-        
-        $('#loadMore').on('click', function(e) {
-            e.preventDefault();
+        let isLoading = false;
+
+        function loadPosts(initial = false) {
             if (isLoading) return;
             isLoading = true;
-
-            currentPage++;
 
             $.ajax({
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -87,11 +59,14 @@ get_header(); ?>
                     posts_per_page: postsPerPage,
                 },
                 beforeSend: function() {
-                    $('#loadMore').text('Loading...');
+                    if (!initial) {
+                        $('#loadMore').text('Loading...');
+                    }
                 },
                 success: function(response) {
                     if (response.success && response.data) {
-                        $('.post-item').append(response.data);
+                        $('#postContainer').append(response.data);
+                        currentPage++;
                         $('#loadMore').text('Load More');
                     } else {
                         $('#loadMore').text('No more posts');
@@ -100,10 +75,19 @@ get_header(); ?>
                     isLoading = false;
                 },
                 error: function() {
-                    $('#loadMore').text('Error loading');
+                    $('#loadMore').text('Error loading posts');
                     isLoading = false;
                 }
             });
+        }
+
+        // Initial load
+        loadPosts(true);
+
+        // Load more on click
+        $('#loadMore').on('click', function(e) {
+            e.preventDefault();
+            loadPosts();
         });
     });
 </script>

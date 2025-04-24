@@ -434,8 +434,11 @@ add_action('wp_head', 'buffer_start');
 add_action('wp_footer', 'buffer_end');
 
 
+add_action('wp_ajax_load_more_posts', 'load_more_posts_ajax');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_ajax');
 
-function load_more_posts()
+
+function load_more_posts_ajax()
 {
     $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
     $ppp = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
@@ -466,13 +469,11 @@ function load_more_posts()
         wp_reset_postdata();
         wp_send_json_success(ob_get_clean());
     else :
-        wp_send_json_error('No more posts');
+        wp_send_json_error();
     endif;
 
     wp_die();
 }
-add_action('wp_ajax_load_more_posts', 'load_more_posts');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function change_comment_order($query)
 {
