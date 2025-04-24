@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Astra Child Theme functions and definitions
  *
@@ -11,7 +12,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
+define('CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0');
 
 
 // Include your custom functions file from the "inc" folder
@@ -26,7 +27,8 @@ require_once get_stylesheet_directory() . '/inc/bond-details-functions.php';
 require_once get_stylesheet_directory() . '/inc/stocks-collection-table.php';
 require_once get_stylesheet_directory() . '/inc/stock-search-function.php';
 
-function add_custom_js_to_pages() {
+function add_custom_js_to_pages()
+{
     if (is_page()) { // You can specify conditions if needed
         echo '<script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
@@ -46,7 +48,8 @@ function add_custom_js_to_pages() {
 
 add_action('wp_footer', 'add_custom_js_to_pages');
 
-function monthsToYearsAndMonths($months) {
+function monthsToYearsAndMonths($months)
+{
     $years = floor($months / 12);
     $remainingMonths = $months % 12;
 
@@ -62,7 +65,8 @@ function monthsToYearsAndMonths($months) {
 }
 
 // function for custom meta field for footer selection
-function custom_page_meta_box() {
+function custom_page_meta_box()
+{
     add_meta_box(
         'footer-options',
         'Footer Options',
@@ -75,10 +79,11 @@ function custom_page_meta_box() {
 add_action('add_meta_boxes', 'custom_page_meta_box');
 
 
-function footer_meta_box($post) {
+function footer_meta_box($post)
+{
 
     $custom_page_meta_value = get_post_meta($post->ID, '_custom_page_meta_key', true);
-    ?>
+?>
     <p class="post-attributes-label-wrapper menu-order-label-wrapper">
         <label for="footer_options" class="post-attributes-label">Select Footer to display</label>
     </p>
@@ -92,7 +97,8 @@ function footer_meta_box($post) {
 
 
 // save selected footer option
-function save_custom_page_meta($post_id) {
+function save_custom_page_meta($post_id)
+{
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (isset($_POST['footer_options'])) {
         update_post_meta($post_id, '_custom_page_meta_key', sanitize_text_field($_POST['footer_options']));
@@ -101,8 +107,8 @@ function save_custom_page_meta($post_id) {
 add_action('save_post', 'save_custom_page_meta');
 
 
-if( function_exists('acf_add_options_page') ) {
-        
+if (function_exists('acf_add_options_page')) {
+
     acf_add_options_page(array(
         'page_title'    => 'Global Footer Settings',
         'menu_title'    => 'Footer',
@@ -111,7 +117,7 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false,
         'icon_url' => 'dashicons-screenoptions',
     ));
-    
+
     acf_add_options_sub_page(array(
         'page_title'    => 'India Market Footer',
         'menu_title'    => 'India Market Footer',
@@ -132,7 +138,6 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false,
         'icon_url' => 'dashicons-admin-site',
     ));
-    
 }
 
 if (function_exists('acf_add_options_page')) {
@@ -184,61 +189,64 @@ function calculate_total_reading_time_for_term($term_id)
 
     return $total_reading_time;
 }
-add_filter( 'astra_comment_form_default_fields_markup', 'wplogout_remove_comment_website_field', 20 );
+add_filter('astra_comment_form_default_fields_markup', 'wplogout_remove_comment_website_field', 20);
 
-function wplogout_remove_comment_website_field( $fields ) {
-    unset( $fields['url'] );
-    
+function wplogout_remove_comment_website_field($fields)
+{
+    unset($fields['url']);
+
     return $fields;
 }
 
 
-function comment_form_change_cookies_consent( $fields ) {
+function comment_form_change_cookies_consent($fields)
+{
     $commenter = wp_get_current_commenter();
-    $consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+    $consent   = empty($commenter['comment_author_email']) ? '' : ' checked="checked"';
     $fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' />' .
-                     '<label for="wp-comment-cookies-consent">Save my name and email in this browser for the next time I comment.</label></p>';
+        '<label for="wp-comment-cookies-consent">Save my name and email in this browser for the next time I comment.</label></p>';
     return $fields;
 }
-add_filter( 'comment_form_default_fields', 'comment_form_change_cookies_consent' );
+add_filter('comment_form_default_fields', 'comment_form_change_cookies_consent');
 
-function custom_comments_template($comment_template) {
+function custom_comments_template($comment_template)
+{
     return get_stylesheet_directory() . '/custom-comment.php';
 }
 
 add_filter('comments_template', 'custom_comments_template');
 
 
-function check_page_language() {
+function check_page_language()
+{
     $post_id = get_the_ID();
     $languages = get_the_terms($post_id, 'languages');
     if ($languages && !is_wp_error($languages)) {
         foreach ($languages as $language) {
             if ($language->slug === 'in') {
                 echo '<script>console.log("3 Page has \'in\' language.");</script>';
-                ?>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            var logoLink = document.querySelector(".custom-logo-link");
-                            var pricingLink = document.querySelector(".mega-menu-item-1140 a");
-                            var usStocksLink = document.querySelector(".us_stocks_link");
+    ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var logoLink = document.querySelector(".custom-logo-link");
+                        var pricingLink = document.querySelector(".mega-menu-item-1140 a");
+                        var usStocksLink = document.querySelector(".us_stocks_link");
 
-                            if (logoLink) { 
-                                logoLink.href = "<?php echo home_url(); ?>/in"; 
-                                console.log('logoLink');
-                            }
-                            if (pricingLink) { 
-                                pricingLink.href = "<?php echo home_url(); ?>/in/pricing"; 
-                                console.log('pricingLink');
-                            }
-                            if (usStocksLink) { 
-                                usStocksLink.href = "<?php echo home_url(); ?>/in/us-stocks"; 
-                                console.log('usStocksLink');
-                            }
-                        });
-
-                    </script>
-                <?php
+                        if (logoLink) {
+                            logoLink.href = "<?php echo home_url(); ?>/in";
+                            console.log('logoLink');
+                        }
+                        if (pricingLink) {
+                            pricingLink.href = "<?php echo home_url(); ?>/in/pricing";
+                            console.log('pricingLink');
+                        }
+                        if (usStocksLink) {
+                            usStocksLink.href = "<?php echo home_url(); ?>/in/us-stocks";
+                            console.log('usStocksLink');
+                        }
+                    });
+                </script>
+            <?php
                 break; // Exit the loop if "in" language is found
             }
         }
@@ -249,7 +257,8 @@ add_action('wp_footer', 'check_page_language');
 
 
 // Add custom field to WordPress REST API response for posts
-function custom_add_mtags_field() {
+function custom_add_mtags_field()
+{
     register_rest_field(
         'post', // Post type
         'mtags', // Field name in JSON response
@@ -262,7 +271,8 @@ function custom_add_mtags_field() {
 }
 
 // Callback function to retrieve the mtags data
-function custom_get_mtags_field($object, $field_name, $request) {
+function custom_get_mtags_field($object, $field_name, $request)
+{
     // Get the post ID
     $post_id = $object['id'];
 
@@ -296,11 +306,12 @@ add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 
-add_filter( 'wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3 );
+add_filter('wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3);
 
-function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
-    $excluded_page_ids = array( 7224, 7536, 7538, 7615 ); // Add your page IDs here
-    if ( in_array( $object->ID, $excluded_page_ids ) ) {
+function exclude_specific_pages_from_sitemap($url, $type, $object)
+{
+    $excluded_page_ids = array(7224, 7536, 7538, 7615); // Add your page IDs here
+    if (in_array($object->ID, $excluded_page_ids)) {
         return '';
     }
     return $url;
@@ -308,7 +319,8 @@ function exclude_specific_pages_from_sitemap( $url, $type, $object ) {
 
 
 
-function custom_comment_reply_notification_to_fyno($comment_id, $comment_approved, $commentdata) {
+function custom_comment_reply_notification_to_fyno($comment_id, $comment_approved, $commentdata)
+{
     // Check if the comment is a reply
     $parent_id = $commentdata['comment_parent'];
     if ($parent_id) {
@@ -376,7 +388,8 @@ add_action('comment_post', 'custom_comment_reply_notification_to_fyno', 10, 3);
 /* function to add nofollow for external links */
 
 
-function add_nofollow_to_all_links($buffer) {
+function add_nofollow_to_all_links($buffer)
+{
     $excluded_domains = ['vestedfinance.com', '/in'];
 
     $buffer = preg_replace_callback(
@@ -407,8 +420,14 @@ function add_nofollow_to_all_links($buffer) {
     return $buffer;
 }
 
-function buffer_start() { ob_start('add_nofollow_to_all_links'); }
-function buffer_end() { ob_end_flush(); }
+function buffer_start()
+{
+    ob_start('add_nofollow_to_all_links');
+}
+function buffer_end()
+{
+    ob_end_flush();
+}
 
 add_action('wp_head', 'buffer_start');
 
@@ -416,57 +435,55 @@ add_action('wp_footer', 'buffer_end');
 
 
 
-function load_more_posts() {
-    
-    if (isset($_POST['paged'])) {
-        $paged = intval($_POST['paged']);
-        $exclude = isset($_POST['exclude']) ? array_map('intval', $_POST['exclude']) : [];
-        
-        $args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 8,
-            'paged' => $paged,
-            'post__not_in' => $exclude
-        );
+function load_more_posts()
+{
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $ppp = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
 
-        
-        $custom_query = new WP_Query($args);
-        
-        if ($custom_query->have_posts()) :
-            
-            while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                <div id="post-<?php the_ID(); ?>" class="post-card display">
-                    <div class="featured-image">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('full'); ?>
-                        </a>
-                    </div>
-                    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <div class="meta-info">
-                        <span class="post-author"><?php the_author(); ?></span>
-                        <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                    </div>
+    $query = new WP_Query([
+        'post_type' => 'post',
+        'posts_per_page' => $ppp,
+        'paged' => $paged,
+    ]);
+
+    ob_start();
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post(); ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display">
+                <div class="featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                    </a>
                 </div>
-            <?php endwhile;
-            wp_reset_postdata();
-        else :
-            echo '';
-        endif;
-    }
+                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <div class="meta-info">
+                    <span class="post-author"><?php the_author(); ?></span>
+                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                </div>
+            </div>
+<?php endwhile;
+        wp_reset_postdata();
+        wp_send_json_success(ob_get_clean());
+    else :
+        wp_send_json_error('No more posts');
+    endif;
+
     wp_die();
 }
 add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
-function change_comment_order( $query ) {
-    if ( is_admin() ) {
+function change_comment_order($query)
+{
+    if (is_admin()) {
         return;
     }
 
     $query->query_vars['orderby'] = 'comment_date_gmt';
     $query->query_vars['order'] = 'DESC';
 }
-add_action( 'pre_get_comments', 'change_comment_order' );
+add_action('pre_get_comments', 'change_comment_order');
 
 add_filter('acf/load_field/name=select_posts', 'acf_load_all_posts');
 add_filter('acf/load_field/name=blog_to_display', 'acf_load_all_posts');
