@@ -33,6 +33,7 @@ get_header(); ?>
                 $args = array(
                     'post_type' => 'post',
                     'posts_per_page' => 8,
+                    'post_status' => 'publish',
                 );
                 $initial_query = new WP_Query($args);
                 if ($initial_query->have_posts()) :

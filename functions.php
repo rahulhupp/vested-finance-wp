@@ -513,6 +513,7 @@ function load_more_posts_callback() {
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
+        'post_status' => 'publish',
         'post__not_in' => $exclude_ids,
     );
 
