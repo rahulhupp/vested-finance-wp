@@ -29,14 +29,16 @@ get_header(); ?>
             </header>
             <div class="post-item" id="postContainer">
                 <?php
+                $post_ids = [];
                 $args = array(
                     'post_type' => 'post',
                     'posts_per_page' => 8,
                 );
                 $initial_query = new WP_Query($args);
                 if ($initial_query->have_posts()) :
-                    while ($initial_query->have_posts()) : $initial_query->the_post(); ?>
-                        <div id="post-<?php the_ID(); ?>" class="post-card display">
+                    while ($initial_query->have_posts()) : $initial_query->the_post();
+                        $post_ids[] = get_the_ID(); ?>
+                        <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
                             <div class="featured-image">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php the_post_thumbnail('full'); ?>
@@ -104,13 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('postContainer');
 
     loadBtn.addEventListener('click', function () {
-        let offset = document.querySelectorAll('.post-card').length;
-
+        let loadedIds = [...document.querySelectorAll('.post-card')].map(el => el.dataset.id);
         btnText.textContent = 'Loading...';
         spinner.style.display = 'inline-block';
         loadBtn.disabled = true;
 
-        fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=load_more_posts&offset=' + offset)
+        fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=load_more_posts&exclude=' + loadedIds.join(','))
             .then(res => res.text())
             .then(data => {
                 if (data.trim()) {

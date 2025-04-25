@@ -504,22 +504,22 @@ function news_wpseo_sitemap_index($sitemap_index)
 }
 add_filter('wpseo_sitemap_index', 'news_wpseo_sitemap_index', 10, 1);
 
-
 add_action('wp_ajax_load_more_posts', 'load_more_posts_callback');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_callback');
 
 function load_more_posts_callback() {
-    $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+    $exclude_ids = isset($_GET['exclude']) ? array_map('intval', explode(',', $_GET['exclude'])) : [];
+
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 8,
-        'offset' => $offset,
+        'post__not_in' => $exclude_ids,
     );
-    $query = new WP_Query($args);
 
+    $query = new WP_Query($args);
     if ($query->have_posts()) :
         while ($query->have_posts()) : $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display">
+            <div id="post-<?php the_ID(); ?>" class="post-card display" data-id="<?php the_ID(); ?>">
                 <div class="featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail('full'); ?>
@@ -534,5 +534,6 @@ function load_more_posts_callback() {
         <?php endwhile;
         wp_reset_postdata();
     endif;
+
     wp_die();
 }
