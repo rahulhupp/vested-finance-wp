@@ -302,8 +302,6 @@ function custom_get_mtags_field($object, $field_name, $request)
 
 // Hook to add the custom field to the REST API response
 add_action('rest_api_init', 'custom_add_mtags_field');
-add_action('wp_ajax_load_more_posts', 'load_more_posts');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 
 add_filter('wpseo_sitemap_entry', 'exclude_specific_pages_from_sitemap', 10, 3);
@@ -435,45 +433,6 @@ add_action('wp_footer', 'buffer_end');
 
 
 
-function load_more_posts()
-{
-    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $ppp = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
-
-    $query = new WP_Query([
-        'post_type' => 'post',
-        'posts_per_page' => $ppp,
-        'paged' => $paged,
-    ]);
-
-    ob_start();
-
-    if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" class="post-card display">
-                <div class="featured-image">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('full'); ?>
-                    </a>
-                </div>
-                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <div class="meta-info">
-                    <span class="post-author"><?php the_author(); ?></span>
-                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
-                </div>
-            </div>
-<?php endwhile;
-        wp_reset_postdata();
-        wp_send_json_success(ob_get_clean());
-    else :
-        wp_send_json_error('No more posts');
-    endif;
-
-    wp_die();
-}
-add_action('wp_ajax_load_more_posts', 'load_more_posts_ajax');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_ajax');
-
 function change_comment_order($query)
 {
     if (is_admin()) {
@@ -544,3 +503,36 @@ function news_wpseo_sitemap_index($sitemap_index)
     return $sitemap_index;
 }
 add_filter('wpseo_sitemap_index', 'news_wpseo_sitemap_index', 10, 1);
+
+
+add_action('wp_ajax_load_more_posts', 'load_more_posts_callback');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_callback');
+
+function load_more_posts_callback() {
+    $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 8,
+        'offset' => $offset,
+    );
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post(); ?>
+            <div id="post-<?php the_ID(); ?>" class="post-card display">
+                <div class="featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                    </a>
+                </div>
+                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <div class="meta-info">
+                    <span class="post-author"><?php the_author(); ?></span>
+                    <span class="post-date"><?php echo get_the_date('M j, Y'); ?></span>
+                </div>
+            </div>
+        <?php endwhile;
+        wp_reset_postdata();
+    endif;
+    wp_die();
+}

@@ -55,7 +55,10 @@ get_header(); ?>
             </div>
 
             <div class="load-more-btn">
-                <a href="#" id="loadMore" data-paged="1">Load More</a>
+                <button id="loadMoreBtn">
+                <span class="btn-text">Load More</span>
+                <span class="spinner"></span>
+                </button>
             </div>
         </div>
     </section>
@@ -63,49 +66,64 @@ get_header(); ?>
         <?php get_template_part('template-parts/newsletter'); ?>
     </section>
 </div>
+<style>
+#loadMoreBtn {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: none;
+    margin-left: 10px;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
 
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+</style>
 <script>
-    jQuery(document).ready(function($) {
-        let currentPage = 1;
-        let isLoading = false;
-        let postsPerPage = 8;
-        console.log('posts initialized');
-        
-        $('#loadMore').on('click', function(e) {
-            e.preventDefault();
-            if (isLoading) return;
-            isLoading = true;
+document.addEventListener('DOMContentLoaded', function () {
+    const loadBtn = document.getElementById('loadMoreBtn');
+    const btnText = loadBtn.querySelector('.btn-text');
+    const spinner = loadBtn.querySelector('.spinner');
+    const container = document.getElementById('postContainer');
 
-            currentPage++;
+    loadBtn.addEventListener('click', function () {
+        let offset = document.querySelectorAll('.post-card').length;
 
-            $.ajax({
-                url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                type: 'POST',
-                data: {
-                    action: 'load_more_posts',
-                    page: currentPage,
-                    posts_per_page: postsPerPage,
-                },
-                beforeSend: function() {
-                    $('#loadMore').text('Loading...');
-                },
-                success: function(response) {
-                    if (response.success && response.data) {
-                        $('.post-item').append(response.data);
-                        $('#loadMore').text('Load More');
-                    } else {
-                        $('#loadMore').text('No more posts');
-                        $('#loadMore').prop('disabled', true);
-                    }
-                    isLoading = false;
-                },
-                error: function() {
-                    $('#loadMore').text('Error loading');
-                    isLoading = false;
+        btnText.textContent = 'Loading...';
+        spinner.style.display = 'inline-block';
+        loadBtn.disabled = true;
+
+        fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=load_more_posts&offset=' + offset)
+            .then(res => res.text())
+            .then(data => {
+                if (data.trim()) {
+                    container.insertAdjacentHTML('beforeend', data);
+                    btnText.textContent = 'Load More';
+                    spinner.style.display = 'none';
+                    loadBtn.disabled = false;
+                } else {
+                    btnText.textContent = 'No more posts';
+                    spinner.style.display = 'none';
                 }
             });
-        });
     });
+});
 </script>
-
 <?php get_footer(); ?>
