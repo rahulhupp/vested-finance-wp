@@ -169,9 +169,9 @@ get_header(); ?>
                                         $review = get_sub_field('investor_review');
                                         $review = rtrim($review);
                                         if (substr($review, -4) === '</p>') {
-                                            $review = substr_replace($review, ' <sup>##</sup>', -4, 0);
+                                            $review = substr_replace($review, ' <sup></sup>', -4, 0);
                                         } else {
-                                            $review .= ' <sup>##</sup>';
+                                            $review .= ' <sup></sup>';
                                         }
                                         echo $review;
                                         ?>

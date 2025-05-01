@@ -323,6 +323,7 @@
     line-height: 100%;
     color: #212529;
     font-weight: 300;
+    margin: 36px 8px 0 28px;
 }
 
 .slider_index {
@@ -424,7 +425,6 @@
 }
 .testimonials {
     padding: 70px 0;
-    background-color: #EEF5FC;
 }
 .testimonials .testimonials-wrap {
     margin-top: 0;
@@ -720,7 +720,8 @@ a.btn.btn_light:hover {
         padding: 0 80px;
     }
     .portfolio_slider_content_wrap {
-        width: calc(50% - 16px);
+        width: 100%;
+        margin: 0;
     }
     .portfolio_slider_content {
         width: 100%;
@@ -874,7 +875,7 @@ a.btn.btn_light:hover {
         line-height: 16px;
     }
     .how_it_works_disclosure {
-        display: none;
+        margin: 36px 8px 0 0px;
     }
     .home_page_faqs .section-title {
         padding: 0 0 37px;
@@ -965,6 +966,9 @@ a.btn.btn_light:hover {
     }
     .portfolio_slider_content_inner {
         width: 100%;
+    }
+    .funds-disclosure {
+        margin: 20px 0 0;
     }
 } 
 
