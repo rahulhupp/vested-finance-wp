@@ -108,7 +108,7 @@ get_header(); ?>
                     </div>
                 <?php endif; ?>
                 <div class="buttons">
-                    <a class="btn_dark" href="<?php the_field('who_start_investing_link_global'); ?>"><?php the_field('who_start_investing_label_global'); ?></a>
+                    <a class="btn_dark" href="<?php the_field('who_start_investing_link_global'); ?>" target="_blank"><?php the_field('who_start_investing_label_global'); ?></a>
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@ get_header(); ?>
                     <h2 class="query_que section-title"><?php the_field('cta_heading'); ?></h2>
                 </div>
                 <div class="cta_btn_col">
-                    <a href="<?php the_field('cta_button_url'); ?>" class="btn btn_light"><?php the_field('cta_button_text'); ?></a>
+                    <a href="<?php the_field('cta_button_url'); ?>" class="btn btn_light" target="_blank"><?php the_field('cta_button_text'); ?></a>
                 </div>
             </div>
         </div>
