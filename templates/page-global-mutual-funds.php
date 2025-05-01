@@ -29,6 +29,13 @@ get_header(); ?>
                 <p class="funds-disclosure"><?php the_field('banner_disclosure'); ?></p>
             <?php endif; ?>
         </div>
+
+        <div class="banner_popup_overlay">
+            <div class="banner_popup">
+                <div class="close_btn"><i class="fa fa-times"></i></div>
+                <p>This page contains information on investing in US Stocks and ETFs via Vested. Securities mentioned on this page are offered through VF Securities, Inc. (member FINRA/SIPC). Alternative investment options outside of US Stocks and ETFs, that are offered on other sections of the website are not FINRA regulated and not protected by the SIPC. Stocks displayed are a representative sample of the watchlist feature and is not intended as a recommendation.</p>
+            </div>
+        </div>
     </section>
     <section class="why-info">
         <div class="container">
