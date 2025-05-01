@@ -556,7 +556,7 @@
     padding: 0 91px;
 }
 .single_faq {
-    padding: 16px 16px;
+    padding: 28px 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .faq_que {
@@ -566,6 +566,7 @@
 .faq_que h4 {
     color: #212529;
     font-size: 20px;
+    line-height: 100%;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -653,6 +654,10 @@ a.btn.btn_light {
 a.btn.btn_light:hover {
     background: transparent;
     color: #fff;
+}
+
+.cta_btn_col a.btn.btn_light {
+    padding: 16px;
 }
 
 @media screen and (max-width: 1240px) {
