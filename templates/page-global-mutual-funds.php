@@ -25,25 +25,28 @@ get_header(); ?>
                     <?php endif; ?>
                 </div>
             </div>
+            <?php if (get_field('banner_disclosure')): ?>
+                <p class="funds-disclosure"><?php the_field('banner_disclosure'); ?></p>
+            <?php endif; ?>
         </div>
     </section>
     <section class="why-info">
         <div class="container">
             <h2 class="section-title"><?php the_field('why_heading'); ?></h2>
             <?php if (have_rows('why_list')): ?>
-            <div class="why_wrap">
-            <?php while (have_rows('why_list')): the_row(); ?>
-                <div class="why-list-item">
-                    <div class="icon">
-                        <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
-                    </div>
-                    <div class="meta">
-                        <h4 class="title"><?php the_sub_field('title'); ?></h4>
-                        <p class="desc"><?php the_sub_field('description'); ?></p>
-                    </div>
+                <div class="why_wrap">
+                    <?php while (have_rows('why_list')): the_row(); ?>
+                        <div class="why-list-item">
+                            <div class="icon">
+                                <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
+                            </div>
+                            <div class="meta">
+                                <h4 class="title"><?php the_sub_field('title'); ?></h4>
+                                <p class="desc"><?php the_sub_field('description'); ?></p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
-                <?php endwhile; ?>
-            </div>
             <?php endif; ?>
         </div>
     </section>
@@ -80,19 +83,19 @@ get_header(); ?>
             <div class="who-info-inner">
                 <h2 class="section-title"><?php the_field('who_heading'); ?></h2>
                 <?php if (have_rows('who_list')): ?>
-                <div class="who-wrap">
-                <?php while (have_rows('who_list')): the_row(); ?>
-                    <div class="who-list-item">
-                        <div class="icon">
-                            <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
-                        </div>
-                        <div class="meta">
-                            <h4 class="title"><?php the_sub_field('title'); ?></h4>
-                            <p class="desc"><?php the_sub_field('description'); ?></p>
-                        </div>
+                    <div class="who-wrap">
+                        <?php while (have_rows('who_list')): the_row(); ?>
+                            <div class="who-list-item">
+                                <div class="icon">
+                                    <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>">
+                                </div>
+                                <div class="meta">
+                                    <h4 class="title"><?php the_sub_field('title'); ?></h4>
+                                    <p class="desc"><?php the_sub_field('description'); ?></p>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
                     </div>
-                    <?php endwhile; ?>
-                </div>
                 <?php endif; ?>
                 <div class="buttons">
                     <a class="btn_dark" href="<?php the_field('who_start_investing_link_global'); ?>"><?php the_field('who_start_investing_label_global'); ?></a>
@@ -116,25 +119,30 @@ get_header(); ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
-                <?php if (have_rows('portfolio_slider_global')) : ?>
-                    <div class="portfolio_slider_content">
-                        <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
-                            <div class="single_portfolio_slider_content">
-                                <div class="portfolio_slider_content_inner">
-                                    <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
-                                    <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
-                                    <div class="portfolio_slider_inner_content">
-                                        <span class="slider_index">0<?php echo get_row_index(); ?></span>
-                                        <h3><?php the_sub_field('slider_title_global') ?></h3>
-                                        <p class="single_slider_desc">
-                                            <?php the_sub_field('slider_description_global') ?>
-                                        </p>
+                <div class="portfolio_slider_content_wrap">
+                    <?php if (have_rows('portfolio_slider_global')) : ?>
+                        <div class="portfolio_slider_content">
+                            <?php while (have_rows('portfolio_slider_global')) : the_row(); ?>
+                                <div class="single_portfolio_slider_content">
+                                    <div class="portfolio_slider_content_inner">
+                                        <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBar"></span>
+                                        <span data-slick-index="<?php echo get_row_index(); ?>" class="progressBarMob"></span>
+                                        <div class="portfolio_slider_inner_content">
+                                            <span class="slider_index">0<?php echo get_row_index(); ?></span>
+                                            <h3><?php the_sub_field('slider_title_global') ?></h3>
+                                            <p class="single_slider_desc">
+                                                <?php the_sub_field('slider_description_global') ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endwhile; ?>
-                    </div>
-                <?php endif; ?>
+                            <?php endwhile; ?>
+                        </div>
+                        <?php endif; ?>
+                        <?php if (get_field('how_it_works_disclosure')) : ?>
+                            <p class="how_it_works_disclosure"><?php the_field('how_it_works_disclosure'); ?></p>
+                        <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>
@@ -143,21 +151,21 @@ get_header(); ?>
             <h2 class="section-title"><?php the_field('testimonials_heading'); ?></h2>
             <div class="testimonials-wrap">
                 <?php if (have_rows('investors_reviews', 'option')): ?>
-                <div class="testimonials-slider">
-                    <?php while (have_rows('investors_reviews', 'option')) : the_row(); ?>
-                        <div class="testimonial-card">
-                            <div class="testimonial-card-inner">
-                                <div class="leaders-info">
-                                    <figure class="profile">
-                                        <img src="<?php the_sub_field('investor_image') ?>" alt="<?php the_sub_field('investor_name') ?>">
-                                    </figure>
-                                    <div class="details">
-                                        <h3><?php the_sub_field('investor_name') ?></h3>
-                                        <p><?php the_sub_field('investor_designation'); ?></p>
+                    <div class="testimonials-slider">
+                        <?php while (have_rows('investors_reviews', 'option')) : the_row(); ?>
+                            <div class="testimonial-card">
+                                <div class="testimonial-card-inner">
+                                    <div class="leaders-info">
+                                        <figure class="profile">
+                                            <img src="<?php the_sub_field('investor_image') ?>" alt="<?php the_sub_field('investor_name') ?>">
+                                        </figure>
+                                        <div class="details">
+                                            <h3><?php the_sub_field('investor_name') ?></h3>
+                                            <p><?php the_sub_field('investor_designation'); ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="description">
-                                    <?php 
+                                    <div class="description">
+                                        <?php
                                         $review = get_sub_field('investor_review');
                                         $review = rtrim($review);
                                         if (substr($review, -4) === '</p>') {
@@ -166,12 +174,12 @@ get_header(); ?>
                                             $review .= ' <sup>##</sup>';
                                         }
                                         echo $review;
-                                    ?>
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
+                        <?php endwhile; ?>
+                    </div>
                 <?php endif; ?>
                 <div class="testimonial-slider-nav">
                     <div class="testimonial-prev">
@@ -186,6 +194,9 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
+            <?php if(get_field('testimonial_disclosure')): ?>
+            <p class="testimonial_disclosure"><?php the_field('testimonial_disclosure'); ?></p>
+            <?php endif; ?>
         </div>
     </section>
     <?php if (have_rows('faq_list_global')) : ?>
@@ -214,10 +225,10 @@ get_header(); ?>
         <div class="container">
             <div class="cta_wrap">
                 <div class="cta_query_col">
-                    <h2 class="query_que section-title"><?php the_field('cta_heading');?></h2>
+                    <h2 class="query_que section-title"><?php the_field('cta_heading'); ?></h2>
                 </div>
                 <div class="cta_btn_col">
-                    <a href="<?php the_field('cta_button_url');?>" class="btn btn_light"><?php the_field('cta_button_text');?></a>
+                    <a href="<?php the_field('cta_button_url'); ?>" class="btn btn_light"><?php the_field('cta_button_text'); ?></a>
                 </div>
             </div>
         </div>
