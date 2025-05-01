@@ -12,7 +12,7 @@ get_header(); ?>
                     <?php the_field('funds_content_global'); ?>
                     <div class="bottom">
                         <div class="buttons">
-                            <a class="btn_dark" href="<?php the_field('start_investing_link_global'); ?>"><?php the_field('start_investing_label_global'); ?></a>
+                            <a class="btn_dark" href="<?php the_field('start_investing_link_global'); ?>" target="_blank"><?php the_field('start_investing_label_global'); ?></a>
                         </div>
                     </div>
                 </div>
