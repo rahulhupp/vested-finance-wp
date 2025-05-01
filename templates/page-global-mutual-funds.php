@@ -70,6 +70,9 @@ get_header(); ?>
                                     <p class="advantages-designation">
                                         <?php the_sub_field('advantages_designation') ?>
                                     </p>
+                                    <?php if (get_sub_field('tax_disclosure')): ?>
+                                        <span class="tax_disclosure"><?php the_sub_field('tax_disclosure'); ?></span>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -138,10 +141,10 @@ get_header(); ?>
                                 </div>
                             <?php endwhile; ?>
                         </div>
-                        <?php endif; ?>
-                        <?php if (get_field('how_it_works_disclosure')) : ?>
-                            <p class="how_it_works_disclosure"><?php the_field('how_it_works_disclosure'); ?></p>
-                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if (get_field('how_it_works_disclosure')) : ?>
+                        <p class="how_it_works_disclosure"><?php the_field('how_it_works_disclosure'); ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -194,8 +197,8 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <?php if(get_field('testimonial_disclosure')): ?>
-            <p class="testimonial_disclosure"><?php the_field('testimonial_disclosure'); ?></p>
+            <?php if (get_field('testimonial_disclosure')): ?>
+                <p class="testimonial_disclosure"><?php the_field('testimonial_disclosure'); ?></p>
             <?php endif; ?>
         </div>
     </section>
