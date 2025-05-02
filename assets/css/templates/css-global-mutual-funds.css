@@ -1,5 +1,5 @@
 .page-template-page-global-mutual-funds .container {
-	max-width: 1108px;
+	max-width: 1240px;
 	padding: 0 24px;
 }
 .site-content .ast-container {
@@ -7,7 +7,7 @@
 	padding: 0;
 }
 .mutual-funds-info {
-    margin: 72px 0 42px;
+    margin: 130px 0;
 }
 .mutual-funds-info .funds-row {
     display: flex;
@@ -16,10 +16,10 @@
     flex-wrap: wrap;
 }
 .mutual-funds-info .funds-row .funds-content {
-    width: calc(100% - 525px);
+    width: calc(100% - 555px);
 }
 .mutual-funds-info .funds-row .funds-image {
-    width: 500px;
+    width: 530px;
 }
 
 .testimonial_disclosure {
@@ -33,7 +33,7 @@
 
 .funds-disclosure {
     margin: 41px 0 0;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 100%;
     font-weight: 300;
     color: #212529;
@@ -41,7 +41,7 @@
 
 .mutual-funds-info .funds-row .funds-content .small-desc {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20.8px;
     letter-spacing: -0.32px;
     margin-top: 16px;
@@ -55,7 +55,7 @@
 
 .mutual-funds-info .funds-row .funds-content h1 {
     color: #002852;
-    font-size: 40px;
+    font-size: 48px;
     line-height: 130%;
     font-weight: 400;
     margin: 0 0 20px;
@@ -718,6 +718,25 @@ a.btn.btn_light:hover {
     }
 }
 
+@media (max-width: 1100px) {
+    .mutual-funds-info .funds-row .funds-image {
+        width: 480px;
+    }
+
+    .mutual-funds-info .funds-row .funds-content {
+        width: calc(100% - 505px);
+        padding: 0;
+    }
+
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 44px;
+    }
+
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 1024px) {
     .mutual-funds-info .funds-row .funds-image {
         width: 450px;
@@ -736,7 +755,7 @@ a.btn.btn_light:hover {
         padding: 0 16px;
     }
     .mutual-funds-info {
-        margin: 40px 0;
+        margin: 80px 0;
     }
     .mutual-funds-info .funds-row .funds-image {
         width: 400px;
@@ -748,7 +767,7 @@ a.btn.btn_light:hover {
         width: calc(25% - 6px);
     }
     .mutual-funds-info .funds-row .funds-content h1 {
-        font-size: 32px !important;
+        font-size: 40px !important;
     }
     .mutual-funds-info .funds-row .funds-content p {
         font-size: 16px;
@@ -792,6 +811,10 @@ a.btn.btn_light:hover {
 }
 
 @media screen and (max-width: 767px) {
+
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 34px !important;
+    }
 
     .mutual-funds-info {
         margin: 16px 0;
