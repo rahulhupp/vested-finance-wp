@@ -152,7 +152,7 @@
 .advantages-slider .advantages-slide .advantages-slide-inner {
     border: 0.9px solid #0028524D;
     border-radius: 17.95px;
-    padding: 32px 24px 50px;
+    padding: 32px 24px 18px;
     text-align: center;
     height: 100%;
     width: 100%;
@@ -842,7 +842,7 @@ a.btn.btn_light:hover {
         overflow: hidden;
     }
     .advantages-slider .advantages-slide .advantages-slide-inner {
-        padding: 24px 16px 50px;
+        padding: 24px 16px 18px;
     }
     .who-info .who-info-inner {
         background: #EEF5FC;
