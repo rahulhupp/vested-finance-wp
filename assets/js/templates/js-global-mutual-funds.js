@@ -177,9 +177,9 @@ jQuery(document).ready(function ($) {
 			});
 
 			if (progressBarIndex === 1) {
-				$(".how_it_works_disclosure").show();
+				$(".how_it_works_disclosure").removeClass('hide');
 			} else {
-				$(".how_it_works_disclosure").hide();
+				$(".how_it_works_disclosure").addClass('hide');
 			}
 
 			if (percentTime >= 100) {
