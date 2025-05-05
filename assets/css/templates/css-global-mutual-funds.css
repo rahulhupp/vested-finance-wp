@@ -327,7 +327,14 @@
     line-height: 100%;
     color: #212529;
     font-weight: 300;
-    margin: 36px 8px 0 28px;
+    margin: 20px 8px 0 28px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.how_it_works_disclosure.hide {
+    opacity: 0;
+    transition: all 0.5s ease;
 }
 
 .slider_index {
