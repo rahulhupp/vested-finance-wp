@@ -428,6 +428,30 @@ jQuery(document).ready(function ($) {
 		$('.banner_popup_overlay').hide();
 		$('html').removeClass('disclosure-popup-open');
 	});
+
+	$('#applyCoupon').click(function () {
+		const validCoupons = ["WELCOME50", "INVEST100"];
+		const code = $('#coupon-code').val().trim();
+		const messageBox = $('#coupon-message');
+		if (validCoupons.includes(code)) {
+		  messageBox.html(`
+				<div class="message-inner" style="background-color: #DCFCE7; color: #14532D;">
+				<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2025/05/lj13u396ubnmab3iohr.svg" alt="Success Icon" />
+				<div>Coupon applied successfully</div>
+				</div>
+			`).show();
+			setTimeout(() => {
+				window.location.href = "https://app.vestedfinance.com/signup";
+			}, 1000);
+		} else {
+			messageBox.html(`
+				<div class="message-inner" style="background-color: #FEE2E2; color: #7F1D1D;">
+				<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2025/05/alert-circle.svg" alt="Error Icon" />
+				<div>Coupon code is invalid</div>
+				</div>
+			`).show();
+		}
+	});
 });
 
 
