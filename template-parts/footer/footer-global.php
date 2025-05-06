@@ -1,6 +1,14 @@
 <footer>
     <div class="container">
         <div class="footer_wrap">
+            <?php
+                $footer_disclaimer = get_field('footer_disclaimer');
+                if (!empty($footer_disclaimer)) :
+            ?>
+                <div class="footer-disclaimer">
+                    <?php echo $footer_disclaimer; ?>
+                </div>
+            <?php endif; ?>
             <div class="footer_above">
                 <div class="footer_above_wrap">
                     <div class="site_info_col">
