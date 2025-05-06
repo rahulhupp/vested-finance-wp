@@ -176,6 +176,12 @@ jQuery(document).ready(function ($) {
 				width: percentTime + "%",
 			});
 
+			if (progressBarIndex === 1) {
+				$(".how_it_works_disclosure").removeClass('hide');
+			} else {
+				$(".how_it_works_disclosure").addClass('hide');
+			}
+
 			if (percentTime >= 100) {
 				$(".single-item").slick("slickNext");
 				progressBarIndex++;
@@ -207,4 +213,15 @@ jQuery(document).ready(function ($) {
 	});
 
 	$(".single_portfolio_slider_content[data-slick-index='0']").addClass("slide-active");
+
+
+	$('.funds-content .small-desc a').click(function () {
+		$('.banner_popup_overlay').show();
+		$('html').addClass('disclosure-popup-open');
+	});
+
+	$('.banner_popup_overlay .close_btn').click(function () {
+		$('.banner_popup_overlay').hide();
+		$('html').removeClass('disclosure-popup-open');
+	});
 });
