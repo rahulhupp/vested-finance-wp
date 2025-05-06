@@ -1,0 +1,1073 @@
+.page-template-page-global-mutual-funds .container {
+	max-width: 1240px;
+	padding: 0 24px;
+}
+.site-content .ast-container {
+	max-width: 100%;
+	padding: 0;
+}
+.mutual-funds-info {
+    margin: 130px 0;
+}
+.mutual-funds-info .funds-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.mutual-funds-info .funds-row .funds-content {
+    width: calc(100% - 555px);
+}
+.mutual-funds-info .funds-row .funds-image {
+    width: 530px;
+}
+
+.testimonial_disclosure {
+    color: #212529;
+    font-size: 10px;
+    line-height: 100%;
+    font-weight: 300;
+    margin: 40px 0 0;
+    text-align: center;
+}
+
+.funds-disclosure {
+    margin: 41px 0 0;
+    font-size: 12px;
+    line-height: 100%;
+    font-weight: 300;
+    color: #212529;
+}
+
+.mutual-funds-info .funds-row .funds-content .small-desc {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20.8px;
+    letter-spacing: -0.32px;
+    margin-top: 16px;
+    padding: 4px 0 3px;
+}
+
+.mutual-funds-info .funds-row .funds-content .small-desc a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+.mutual-funds-info .funds-row .funds-content h1 {
+    color: #002852;
+    font-size: 48px;
+    line-height: 130%;
+    font-weight: 400;
+    margin: 0 0 20px;
+    font-family: "Inter", sans-serif;
+}
+.mutual-funds-info .funds-row .funds-content p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -0.32px;
+    color: #505a64;
+    font-family: "Inter", sans-serif;
+}
+.mutual-funds-info .funds-row .funds-content .bottom .buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+.mutual-funds-info .funds-row .funds-content .btn_dark {
+    padding: 16px 21px;
+    border-radius: 5px;
+    background: #002852;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: 1px solid #002852;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.mutual-funds-info .funds-row .funds-content .btn_dark:hover {
+    background: #fff;
+    color: #002852;
+}
+.why-info {
+    padding: 70px 0;
+    background-color: #EEF5FC;
+}
+.section-title {
+    font-size: 34px;
+    line-height: 120%;
+    font-weight: 800;
+    color: #002852;
+    text-align: center;
+}
+.why_wrap {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.why_wrap .why-list-item {
+    width: calc(25% - 25px);
+    text-align: center;
+}
+.why_wrap .why-list-item .icon {
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.why_wrap .why-list-item .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.why_wrap .why-list-item .meta {
+    margin-top: 16px;
+}
+.why_wrap .why-list-item .meta .title {
+    font-size: 20px;
+    line-height: 150%;
+    color: #002852;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.why_wrap .why-list-item .meta p {
+    font-size: 16px;
+    line-height: 160%;
+    color: #505A64;
+    margin-bottom: 0;
+}
+.advantages {
+    padding: 70px 0;
+}
+.advantages .advantages-slider-wrap {
+    margin-top: 40px;
+    padding: 0 24px;
+}
+.advantages-slider .advantages-slide .advantages-slide-inner {
+    border: 0.9px solid #0028524D;
+    border-radius: 17.95px;
+    padding: 32px 24px 18px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+.advantages-slider .slick-track {
+    display: flex !important;
+    justify-content: center;
+}
+.advantages-info .advantages-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+.advantages-info .advantages-img img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+.advantages-info .advantages-detail h4.advantages-name {
+    margin: 0 0 16px;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: -0.16px;
+    font-weight: 600;
+    color: #2D2D2D;
+}
+.advantages-info .advantages-detail p {
+    margin: 0;
+    color: #505A64;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+}
+.advantages-slide:nth-child(2) .advantages-info .advantages-detail p, .advantages-slide:nth-child(3) .advantages-info .advantages-detail p {
+    max-width: 220px;
+    margin: auto;
+}
+.advantages-slider .slick-slide {
+    margin-right: 16px;
+    height: inherit !important;
+    max-width: 342px;
+}
+.advantages-slider {
+    margin-right: -16px;
+}
+.who-info {
+    padding: 70px 0;
+    background-color: #EEF5FC;
+}
+.who-wrap {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.who-wrap .who-list-item {
+    width: calc(33.33% - 27px);
+    text-align: center;
+}
+.who-wrap .who-list-item .icon {
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.who-wrap .who-list-item .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.who-wrap .who-list-item .meta {
+    margin-top: 16px;
+}
+.who-wrap .who-list-item .meta .title {
+    font-size: 20px;
+    line-height: 150%;
+    color: #002852;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.who-wrap .who-list-item .meta p {
+    font-size: 16px;
+    line-height: 160%;
+    color: #2D2D2D;
+    margin-bottom: 0;
+}
+.who-info .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    width: 100%;
+}
+.who-info .btn_dark {
+    padding: 16px 21px;
+    border-radius: 5px;
+    background: #002852;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: 1px solid #002852;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.who-info .btn_dark:hover {
+    background: #fff;
+    color: #002852;
+}
+.how-works-info {
+    padding: 70px 0;
+}
+.portfolio_slider_wrap {
+	margin-top: 50px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+    align-items: center;
+}
+
+.portfolio_slider {
+	width: 291px !important;
+}
+
+.single_portfolio_slider {
+	background-color: transparent !important;
+	border: none !important;
+	padding: 10px !important;
+}
+
+.portfolio_slider_content, .portfolio_slider_content_wrap {
+	width: 426px;
+	margin-left: 32px;
+}
+
+.single_portfolio_slider_content:not(:last-child) {
+	margin-bottom: 38px;
+}
+
+.single_portfolio_slider_content {
+	display: flex !important;
+	padding: 0 !important;
+	background: transparent !important;
+}
+.progressBar {
+	background: #e8eef4;
+	display: block;
+	width: 4px;
+}
+
+.inProgress {
+	background: #002752;
+	height: 0%;
+	width: 4px;
+}
+
+.portfolio_slider_content_inner {
+	display: flex;
+}
+
+.portfolio_slider_inner_content {
+	width: calc(100% - 28px);
+	margin-left: 24px;
+}
+
+.how_it_works_disclosure {
+    font-size: 12px;
+    line-height: 100%;
+    color: #212529;
+    font-weight: 300;
+    margin: 20px 8px 0 28px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.how_it_works_disclosure.hide {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.slider_index {
+	color: #212529;
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 120%;
+	opacity: 0.4;
+}
+
+.portfolio_slider_inner_content h3 {
+	color: #212529;
+	font-family: "Inter", sans-serif;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 100%;
+	letter-spacing: -0.032px;
+	margin: 10px 0;
+}
+
+.single_slider_desc {
+	margin: 0;
+	color: #21252999;
+	font-family: "Inter", sans-serif;
+	font-size: 18px !important;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	letter-spacing: -0.36px;
+    opacity: 0.8;
+}
+.how-works-info .how-works-wrap {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.how-works-info .how-works-wrap .how-works-list-item {
+    width: calc(33.33% - 72px);
+    text-align: center;
+    border-radius: 17.95px;
+    padding: 32px 24px;
+    position: relative;
+}
+.how-works-info .how-works-wrap .how-works-list-item:nth-child(3n + 1) {
+    background: #EDF5FF;
+}
+.how-works-info .how-works-wrap .how-works-list-item:nth-child(3n + 2) {
+    background: #D6F5F0;
+}
+.how-works-info .how-works-wrap .how-works-list-item:nth-child(3n + 3) {
+    background: #FCF4E3;
+}
+.how-works-info .how-works-wrap .how-works-list-item:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(../../images/right-arrow.svg);
+    width: 100px;
+    height: 21px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: -104px;
+}
+.how-works-info .how-works-wrap .how-works-list-item:last-child:after {
+    display: none;
+}
+.how-works-info .how-works-wrap .how-works-list-item .icon {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.how-works-info .how-works-wrap .how-works-list-item .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.how-works-info .how-works-list-item .meta {
+    margin-top: 24px;
+}
+.how-works-info .how-works-list-item .meta .title {
+    font-size: 20px;
+    line-height: 130%;
+    color: #2D2D2D;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -0.16px;
+}
+.how-works-info .how-works-list-item .meta p {
+    font-size: 16px;
+    line-height: 150%;
+    color: #505A64;
+    margin-bottom: 0;
+}
+.testimonials {
+    padding: 70px 0;
+}
+.tax_disclosure {
+    display: block;
+    text-align: center;
+    color: #505A64;
+    font-size: 10px;
+    line-height: 150%;
+    font-weight: 300;
+}
+.testimonials .testimonials-wrap {
+    margin-top: 0;
+}
+.testimonials .section-title {
+    font-size: 34px;
+}
+.testimonial-slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.testimonial-prev {
+    border-radius: 30px;
+    border: 1.7px solid rgba(0, 40, 82, 0.6);
+    background: rgba(255, 255, 255, 0);
+    width: 85px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.testimonial-next {
+    border-radius: 30px;
+    border: 1.7px solid rgba(0, 40, 82, 0.6);
+    background: rgba(255, 255, 255, 0);
+    width: 85px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.testimonials-slider,
+.testimonials-slider .slick-track,
+.testimonials-slider .slick-slide {
+    height: 100% !important;
+    display: flex;
+    align-items: stretch;
+}
+.testimonials-slider .slick-slide > div {
+    height: 100%;
+}
+.testimonial-card .testimonial-card-inner {
+    background: #FFFFFF;
+    box-shadow: 0.67px 2.67px 49.33px 0px #0000001A;
+    padding: 36px 30px 60px;
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.2s ease;
+    transform: scale(0.8);
+    z-index: 0;
+}
+.testimonials-slider .testimonial-card.slick-current + .testimonial-card .testimonial-card-inner {
+    transform: scale(1.1);
+    margin: 0 -35px;
+    z-index: 1;
+}
+.testimonial-card .testimonial-card-inner .leaders-info {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.testimonial-card .testimonial-card-inner .leaders-info .profile img {
+    width: 74px;
+    height: 74px;
+    object-fit: contain;
+    background: #D5E0F2;
+    border-radius: 100px;
+    min-width: 74px;
+    min-height: 74px;
+}
+.testimonial-card .testimonial-card-inner .leaders-info .details h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    margin: 0 0 9px;
+    font-family: "Inter", sans-serif;
+}
+.testimonial-card .testimonial-card-inner .leaders-info .details p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 100%;
+    color: #212529;
+    font-family: "Inter", sans-serif;
+}
+.testimonial-card .testimonial-card-inner .leaders-info .details p b {
+    font-weight: 400;
+    display: block;
+    margin-top: 3px;
+}
+.testimonial-card .testimonial-card-inner .description {
+    margin-top: 24px;
+}
+.testimonial-card .testimonial-card-inner .description p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #212529;
+    font-family: "Inter", sans-serif;
+}
+.testimonials sup {
+    top: -3px;
+}
+.testimonials-slider .slick-list {
+    padding: 80px 0 65px;
+}
+.home_page_faqs {
+    padding: 70px 0;
+}
+.home_page_faqs .section-title {
+    padding: 0 16px 24px;
+    margin-bottom: 0;
+}
+.home_page_faq_wrap {
+    padding: 0 91px;
+}
+.single_faq {
+    padding: 28px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.faq_que {
+    position: relative;
+    cursor: pointer;
+}
+.faq_que h4 {
+    color: #212529;
+    font-size: 20px;
+    line-height: 100%;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0;
+}
+.faq_que:after {
+    content: "\f078";
+    font-family: "FontAwesome";
+    position: absolute;
+    top: 0;
+    right: 0px;
+    color: #002852;
+    transition: transform 0.3s;
+    font-weight: 600;
+    font-size: 12px;
+}
+.faq_content {
+    margin-top: 28px;
+    color: rgba(30, 32, 34, 0.8);
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+}
+.faq_content p {
+    margin-bottom: 0;
+    color: rgba(30, 32, 34, 0.8);
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+}
+.single_faq .faq_content ul {
+    margin: 10px 25px;
+}
+.single_faq .faq_content ul li {
+    margin-bottom: 8px;
+    color: rgba(30, 32, 34, 0.8);
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+}
+.cta {
+    background-color: #002852;
+    padding: 70px 0;
+    margin-bottom: 20px;
+}
+.cta_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.cta_query_col {
+    width: calc(100% - 213px);
+    padding-right: 30px;
+}
+.cta_btn_col {
+    width: 213px;
+    padding-left: 10px;
+    text-align: end;
+}
+.cta_query_col .query_que {
+    color: #fff;
+    text-align: left;
+    font-size: 38px;
+}
+.btn {
+    display: inline-block;
+    padding: 16px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0;
+    color: #fff;
+    background-color: #002852;
+    border-radius: 5px;
+    border: 1px solid #002852;
+}
+a.btn.btn_light {
+    background: #fff;
+    padding: 16px 30px;
+    color: #002852;
+    border-color: #fff;
+}
+a.btn.btn_light:hover {
+    background: transparent;
+    color: #fff;
+}
+
+.cta_btn_col a.btn.btn_light {
+    padding: 16px;
+}
+
+.banner_popup {
+    max-width: 540px;
+    padding: 29px 40px 45px 49px;
+    border-radius: 10px;
+    background: #eef5fc;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.banner_popup p {
+    color: #000;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 15 18px 6px;
+}
+
+.close_btn {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    color: #fff;
+    background: #3382d1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.banner_popup_overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+    display: none;
+}
+
+@media screen and (max-width: 1240px) {
+    .advantages-slider .slick-track {
+        justify-content: flex-start;
+    }
+    .advantages-slider .slick-slide {
+        max-width: unset;
+    }
+    .advantages .advantages-slider-wrap .slick-list {
+        padding: 0 50px 0 0;
+    }
+}
+
+@media (max-width: 1100px) {
+    .mutual-funds-info .funds-row .funds-image {
+        width: 480px;
+    }
+
+    .mutual-funds-info .funds-row .funds-content {
+        width: calc(100% - 505px);
+        padding: 0;
+    }
+
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 44px;
+    }
+
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .mutual-funds-info .funds-row .funds-image {
+        width: 450px;
+    }
+    .mutual-funds-info .funds-row .funds-content {
+        width: calc(100% - 475px);
+        padding: 0;
+    }
+    .mutual-funds-info .funds-row .funds-content .bottom .buttons {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .page-template-page-global-mutual-funds .container {
+        padding: 0 16px;
+    }
+    .mutual-funds-info {
+        margin: 80px 0;
+    }
+    .mutual-funds-info .funds-row .funds-image {
+        width: 400px;
+    }
+    .mutual-funds-info .funds-row .funds-content {
+        width: calc(100% - 425px);
+    }
+    .why_wrap .why-list-item {
+        width: calc(25% - 6px);
+    }
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 40px !important;
+    }
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 16px;
+    }
+    .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
+        font-size: 16px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+    .advantages-info .advantages-detail h4.advantages-name {
+        font-size: 20px;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item {
+        width: calc(33.33% - 70px);
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:after {
+        right: -103px;
+    }
+    .home_page_faqs {
+        padding: 50px 0 70px;
+    }
+    .home_page_faqs .section-title {
+        padding: 0 16px 24px;
+        margin-bottom: 0;
+    }
+    .home_page_faq_wrap {
+        padding: 0 80px;
+    }
+    .portfolio_slider_content_wrap {
+        width: 100%;
+        margin: 0;
+    }
+    .portfolio_slider_content {
+        width: 100%;
+		margin-left: 16px;
+	}
+	.portfolio_slider {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 767px) {
+
+    .mutual-funds-info .funds-row .funds-content h1 {
+        font-size: 34px !important;
+    }
+
+    .mutual-funds-info {
+        margin: 16px 0;
+    }
+
+    .mutual-funds-info .funds-row .funds-content p {
+        font-size: 14px;
+    }
+    .mutual-funds-info .funds-row .funds-content, .mutual-funds-info .funds-row .funds-image {
+        padding-right: 0;
+        width: 100%;
+    }
+    .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
+        padding: 12px 20px;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 15px;
+    }
+    .how-works-info .how-works-list-item .meta .title {
+        font-size: 24px;
+    }
+    .mutual-funds-info .funds-row .funds-content .bottom .buttons, .advantages .advantages-slider-wrap {
+        margin-top: 16px;
+    }
+    .mutual-funds-info .funds-row .funds-image {
+        margin-top: 16px;
+    }
+    .why-info, .advantages, .who-info, .how-works-info, .home_page_faqs {
+        padding: 16px 0;
+        background-color: #FFFFFF;
+    }
+    .section-title {
+        font-size: 22px !important;
+        line-height: 130%;
+    }
+    .why_wrap {
+        margin-top: 16px;
+        background: #EEF5FC;
+        gap: 24px;
+        border-radius: 8px;
+        padding: 20px;
+    }
+    .why_wrap .why-list-item {
+        width: 100%;
+    }
+    .advantages .advantages-slider-wrap .slick-list {
+        padding: 0;
+        overflow: hidden;
+    }
+    .advantages-slider .advantages-slide .advantages-slide-inner {
+        padding: 24px 16px 18px;
+    }
+    .who-info .who-info-inner {
+        background: #EEF5FC;
+        padding: 24px;
+    }
+    .who-wrap .who-list-item {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .who-info .buttons {
+        margin-top: 0;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item {
+        width: 100%;
+        margin-bottom: 58px;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:last-child {
+        margin-bottom: 0;
+    }
+    .how-works-info .how-works-wrap .how-works-list-item:after {
+        background: url(../../images/down-arrow.svg);
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        bottom: -54px;
+        width: 25px;
+        height: 50px;
+        top: initial;
+        transform: none;
+    }
+    .testimonials {
+        padding: 16px 0;
+        background-color: #FFFFFF;
+    }
+    .testimonials .testimonials-wrap {
+        margin-top: 16px;
+        background: #EEF5FC;
+        border-radius: 8px;
+        padding: 0 20px 20px;
+    }
+    .testimonials .section-title {
+        font-size: 24px !important;
+        line-height: 150%;
+    }
+    .testimonials-slider .slick-list {
+        padding: 8px 0 10px;
+        margin: 0 -20px;
+    }
+    .testimonial-card.slick-slide {
+        margin: 20px;
+    }
+    .testimonials-slider, .testimonials-slider .slick-track, .testimonials-slider .slick-slide {
+        height: auto !important;
+        display: block;
+    }
+    .testimonial-card .testimonial-card-inner {
+        transform: none;
+        padding: 24px 28px 30px;
+        border-radius: 6.67px;
+    }
+    .testimonials-slider .testimonial-card.slick-current + .testimonial-card .testimonial-card-inner {
+        transform: none;
+        margin: 0;
+    }
+    .testimonial-next, .testimonial-prev {
+        height: 49px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info {
+        gap: 27px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .profile img {
+        width: 58px;
+        height: 58px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .details h3 {
+        font-size: 14.67px;
+        line-height: 22px;
+        margin: 0 0 2px;
+    }
+    .testimonial-card .testimonial-card-inner .description {
+        margin-top: 20px;
+    }
+    .testimonial-card .testimonial-card-inner .leaders-info .details p {
+        font-size: 8px;
+        line-height: 12px;
+    }
+    .testimonial-card .testimonial-card-inner .description p {
+        font-size: 10.67px;
+        line-height: 16px;
+    }
+    .how_it_works_disclosure {
+        margin: 36px 8px 0 0px;
+    }
+    .home_page_faqs .section-title {
+        padding: 0 0 37px;
+    }
+    .home_page_faq_wrap {
+        padding: 0;
+    }
+    .faq_que h4 {
+        font-size: 14px;
+        padding-right: 18px;
+    }
+    .faq_content {
+        margin-top: 24px;
+    }
+    .faq_content p {
+        font-size: 12px !important;
+    }
+    .faq_que:after {
+        line-height: 100%;
+    }
+    .cta {
+        padding: 30px 0;
+    }
+    .cta_query_col, .cta_btn_col {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .cta_query_col .query_que {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    a.btn.btn_light {
+        padding: 12px 20px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .who-wrap .who-list-item .meta p {
+        font-size: 14px;
+    }
+    .progressBar {
+		display: none;
+	}
+    .portfolio_slider_content {
+		width: 100%;
+		margin-left: 0;
+	}
+	.portfolio_slider_content {
+		margin-top: 25px;
+	}
+	.portfolio_slider_inner_content h3 {
+		font-size: 14px;
+	}
+	.single_slider_desc {
+		font-size: 12px !important;
+	}
+	.single_portfolio_slider_content:not(:last-child) {
+		margin-bottom: 0;
+	}
+	.slick-dots li {
+		width: 30% !important;
+	}
+	.stocks_slider_content .slick-dots li {
+		width: 20% !important;
+	}
+	.slick-dots li button {
+		font-size: 0;
+	}
+	.slick-dots li button:before {
+		width: 100%;
+	}
+	.slick-dots li button:before {
+		font-size: 0;
+		content: "";
+	}
+	.slick-dots li {
+		background: #e8eef4;
+		height: 3px !important;
+	}
+	.slick-dots li .inProgress {
+		height: 3px !important;
+	}
+    .portfolio_slider_inner_content {
+		margin-left: 5px;
+	}
+    .portfolio_slider_wrap {
+        margin-top: 40px;
+    }
+    .portfolio_slider_content_inner {
+        width: 100%;
+    }
+    .funds-disclosure {
+        margin: 20px 0 0;
+    }
+} 
+
+@media screen and (max-width: 360px) {
+    .slick-dots li {
+        width: 25% !important;
+    }
+}
