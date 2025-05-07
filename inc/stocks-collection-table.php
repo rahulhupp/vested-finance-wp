@@ -771,15 +771,19 @@ function enqueue_custom_pagination_script()
     const url = new URL(window.location);
     url.searchParams.set('tab', tabName);
     window.history.pushState({}, '', url);
+    console.log('[setTabInURL] URL updated to:', url.toString());
 }
 
 function activateTab(tab) {
+    console.log('[activateTab] Requested tab:', tab);
+
     currentPage = 1;
     $('#stock-search').val('');
     $('.tabs .tab-button').removeClass('active');
     $('#stocks-table, #etf-table').hide(); // hide both first
 
     if (tab === 'stocks' && $('.tabs .tab-button[data-target="#tab1"]').length) {
+        console.log('[activateTab] Activating Stocks tab');
         $('#stocks-table').show();
         $('.tabs .tab-button[data-target="#tab1"]').addClass('active');
         filteredData = allData;
@@ -790,6 +794,7 @@ function activateTab(tab) {
         $('.table_sort_options ul [data-sort="market_cap"]').show();
         $('.table_sort_options ul [data-sort="pe_ratio"]').show();
     } else if (tab === 'etfs' && $('.tabs .tab-button[data-target="#tab2"]').length) {
+        console.log('[activateTab] Activating ETFs tab');
         $('#etf-table').show();
         $('.tabs .tab-button[data-target="#tab2"]').addClass('active');
         filteredData = etfData;
@@ -799,6 +804,8 @@ function activateTab(tab) {
         $('#stock-search').attr('placeholder', 'Search Any ETF').data('type', 'ETFs');
         $('.table_sort_options ul [data-sort="market_cap"]').hide();
         $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+    } else {
+        console.log('[activateTab] Tab not found or not valid on this page:', tab);
     }
 }
 
@@ -807,6 +814,7 @@ $(document).on('click', '.tabs .tab-button', function(e) {
     e.preventDefault();
     const target = $(this).data('target');
     const tabName = target === '#tab1' ? 'stocks' : 'etfs';
+    console.log('[Click Event] Tab button clicked:', tabName);
     setTabInURL(tabName);
     activateTab(tabName);
 });
@@ -815,17 +823,25 @@ $(document).on('click', '.tabs .tab-button', function(e) {
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
+    console.log('[Page Load] URL tab param:', tabParam);
 
-    if (tabParam === 'etfs' && $('.tabs .tab-button[data-target="#tab2"]').length) {
+    const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
+    const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
+
+    console.log('[Page Load] Stocks Tab Exists:', hasStocksTab, '| ETFs Tab Exists:', hasETFsTab);
+
+    if (tabParam === 'etfs' && hasETFsTab) {
         activateTab('etfs');
-    } else if (tabParam === 'stocks' && $('.tabs .tab-button[data-target="#tab1"]').length) {
+    } else if (tabParam === 'stocks' && hasStocksTab) {
         activateTab('stocks');
-    } else if ($('.tabs .tab-button[data-target="#tab1"]').length && $('.tabs .tab-button[data-target="#tab2"]').length) {
-        activateTab('stocks'); // Default to Stocks if both exist and no param
-    } else if ($('.tabs .tab-button[data-target="#tab1"]').length) {
+    } else if (hasStocksTab && hasETFsTab) {
+        activateTab('stocks'); // default
+    } else if (hasStocksTab) {
         activateTab('stocks');
-    } else if ($('.tabs .tab-button[data-target="#tab2"]').length) {
+    } else if (hasETFsTab) {
         activateTab('etfs');
+    } else {
+        console.log('[Page Load] No tabs present on this page');
     }
 });
 
