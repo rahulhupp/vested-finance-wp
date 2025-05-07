@@ -777,8 +777,7 @@ function activateTab(tab) {
     currentPage = 1;
     $('#stock-search').val('');
     $('.tabs .tab-button').removeClass('active');
-    $('#stocks-table').hide();
-    $('#etf-table').hide();
+    $('#stocks-table, #etf-table').hide(); // hide both first
 
     if (tab === 'stocks' && $('.tabs .tab-button[data-target="#tab1"]').length) {
         $('#stocks-table').show();
@@ -803,7 +802,7 @@ function activateTab(tab) {
     }
 }
 
-// Handle tab click
+// Handle click
 $(document).on('click', '.tabs .tab-button', function(e) {
     e.preventDefault();
     const target = $(this).data('target');
@@ -821,10 +820,12 @@ $(document).ready(function () {
         activateTab('etfs');
     } else if (tabParam === 'stocks' && $('.tabs .tab-button[data-target="#tab1"]').length) {
         activateTab('stocks');
+    } else if ($('.tabs .tab-button[data-target="#tab1"]').length && $('.tabs .tab-button[data-target="#tab2"]').length) {
+        activateTab('stocks'); // Default to Stocks if both exist and no param
     } else if ($('.tabs .tab-button[data-target="#tab1"]').length) {
-        activateTab('stocks'); // Default fallback to stocks if present
+        activateTab('stocks');
     } else if ($('.tabs .tab-button[data-target="#tab2"]').length) {
-        activateTab('etfs'); // Fallback to etfs if stocks not available
+        activateTab('etfs');
     }
 });
 
