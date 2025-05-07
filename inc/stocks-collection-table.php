@@ -254,7 +254,7 @@ function enqueue_custom_pagination_script()
                                 $('.market_table_headings .tabs').show();
                                 $('#stocks-table').show();
                                 $('.skeleton-table').hide();
-                                $('.tabs [data-target="#tab1"]').addClass('active');
+                                // $('.tabs [data-target="#tab1"]').addClass('active');
                                 renderTable(currentPage);
                                 generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
                                 updateStockCount(allData.length, 'Stocks');
