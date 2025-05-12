@@ -42,6 +42,134 @@ get_header(); ?>
         </div>
     </section>
 
+    <section class="explore-stock">
+        <div class="container">
+            <div class="head">
+                <h2>Explore US Stocks</h2>
+                <p>Discover the world of 10,000+ US Stocks and ETFs</p>
+                <!-- <p class="desktop_hide">Issued by top rated companies with high <br>CRISIL ratings</p> -->
+            </div>
+            <div class="explore-image">
+                <ul>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/apple.webp"
+                                        alt="Apple" width="47" height="57">
+                                </div>
+                                <span>Apple</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/google.webp"
+                                        alt="Google" width="58" height="71">
+                                </div>
+                                <span>Google</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/invesco.webp"
+                                        alt="Invesco" width="54" height="44">
+                                </div>
+                                <span>Invesco</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/microsoft.webp"
+                                        alt="Microsoft" width="58" height="57">
+                                </div>
+                                <span>Microsoft</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/tesla.webp"
+                                        alt="Tesla" width="58" height="57">
+                                </div>
+                                <span>Tesla</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/meta.webp"
+                                        alt="Meta" width="57" height="33">
+                                </div>
+                                <span>Meta</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/netflix.webp"
+                                        alt="Netflix" width="71" height="47">
+                                </div>
+                                <span>Netflix</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/spdr.webp"
+                                        alt="Spdr" width="78" height="44">
+                                </div>
+                                <span>SPDR</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/amazon.webp"
+                                        alt="Amazon" width="58" height="57">
+                                </div>
+                                <span>Amazon</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="box">
+                                <div class="explore-icon">
+                                    <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/spotify.webp"
+                                        alt="Spotify" width="46" height="47">
+                                </div>
+                                <span>Spotify</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content text-center">
+                <p>Disclosure: This list is representative of stocks available but is not intended to recommend any
+                    investment.</p>
+            </div>
+        </div>
+    </section>
+
     <?php get_template_part('template-parts/us-stock-search'); ?>
 
     <?php get_template_part('template-parts/us-stock-vests-india'); ?>
