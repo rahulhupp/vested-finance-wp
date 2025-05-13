@@ -60,7 +60,7 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
-                    <div class="desktop right-button">
+                    <div class="right-button">
                         <div class="account-menu">
                             <ul class="menu-wrapper">
                                 <li
