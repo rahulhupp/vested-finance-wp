@@ -970,27 +970,8 @@ get_header(); ?>
     <?php endif; ?>
 </div>
 
-<?php if (have_rows('faq_list')) : ?>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                <?php $rowCount = 0; ?>
-                <?php while (have_rows('faq_list')) : the_row(); ?> {
-                        "@type": "Question",
-                        "name": "<?php the_sub_field('faq_question') ?>",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "
-                            <?php the_sub_field('faq_answer') ?> "
-                        }
-                    }
-                    <?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
-                <?php endwhile; ?>
-            ]
-        }
-    </script>
-<?php endif; ?>
+<script>
+    localStorage.setItem("vests", true);
+</script>
 
 <?php get_footer(); ?>
