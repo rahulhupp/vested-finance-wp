@@ -170,7 +170,538 @@ get_header(); ?>
         </div>
     </section>
 
-    <?php get_template_part('template-parts/us-stock-vests-india'); ?>
+    <section class="build-foundation">
+        <div class="container">
+            <div class="explore_vest_head">
+                <h2>Build a solid foundation with Vests</h2>
+                <p class="explore_vest_desc">Vests are expert-built investment baskets built with a specific purpose. Each
+                    basket contains curated US Stocks and ETFs, built to target specific goals.</p>
+
+                <div class="explore_vest_about_content">
+                    <p class="vest_about_content" style="display: none;">
+                        If you want to invest but don't have the time to research individual stocks, Vests offer a solution.
+                        They come in various categories, each focusing on a different investment objective. For instance, a
+                        Vest might aim for growth potential while another prioritizes stability. Vests can also cater to
+                        specific interests. Let's say you're passionate about renewable energy. You could choose a Vest that
+                        concentrates on companies in that sector. Explore <a>Vests</a> here.
+                    </p>
+                    <div id="vest_read_more">Read <span>More</span> <i class="fa fa-chevron-down"></i></div>
+                </div>
+            </div>
+            <div class="foundation-list">
+                <div class="skeleton_main" style="display: none;">
+                    <div class="skeleton_wrapper">
+                        <div class="skeleton_wrapper_figure">
+                            <span class="skeleton-box" style="width:100px;height:80px;"></span>
+                        </div>
+                        <div class="skeleton_wrapper_body">
+                            <div class="skeleton_main">
+                                <h3> <span class="skeleton-box" style="width:55%;"></span> </h3>
+                                <span class="skeleton-box" style="width:80%;"></span>
+                                <span class="skeleton-box" style="width:90%;"></span>
+                                <span class="skeleton-box" style="width:83%;"></span>
+                                <span class="skeleton-box" style="width:80%;"></span>
+                                <div class="blog-post__meta">
+                                    <span class="skeleton-box" style="width:70px;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vests_list_conatiner" style="display: flex;">
+                    <ul id="vestsResultsList">
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/e4e460f6-8ba4-4965-9a3f-dd7d45de9c32.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Bitcoin Vest</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">118.57%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>Investors who want to track the performance of Bitcoin.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/9aa14eb6-f887-477b-854d-ad091ff13c77.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Moat</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">27.38%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You believe businesses with sustainable competitive advantages will generate higher
+                                        returns.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/5f0318f6-a593-4652-8c93-d281bef895bc.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Deglobalization Vest</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">16.34%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>This Vest consists of stocks and ETFs that provide exposure to trends of
+                                        deglobalization.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/ba726e04-051c-4536-8a4d-6b5da0965c39.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Digital Cash</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">15.19%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You believe that digital payment is the way of the future and you desire to invest in
+                                        this segment.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/cc19fc6d-883e-42c8-a2ca-479a528e8b8e.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Cloud Computing</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">11.56%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You believe software as a service companies will generate higher returns.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/b3fed130-4ce1-4ede-88a8-bab161cfa476.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Aging Vest</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/4.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">11.44%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>For investors who believe that the aging population will have an economic impact and
+                                        want to increase investment exposures toward sectors that include: an increase in
+                                        healthcare spending, an increase in elderly-focused real estate, and an increase in
+                                        levels of automation.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/e9321be4-dac7-4b9b-aa4c-71bdf38da657.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>BlackRock Smart Beta</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/4.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">9.09%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You want to employ a long term investment that takes advantage of smart beta
+                                        strategies.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/8f35449c-6497-4f90-8569-4408bf388386.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Multi-Asset Class - Moderate</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/3.svg"
+                                            alt="progress bar">
+                                        <strong>Moderate</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">8.96%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>Optimized for balanced growth while minimizing volatility.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/5299078d-6895-4266-87f8-d407802fa719.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Multi-Asset Class - Aggressive</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">8.78%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>Optimized for more aggressive growth while maintaining portfolio efficiency.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/41a70cef-7781-4c3d-85a7-4c1f1e6a27df.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>99rises ZeroCarbon</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/5.svg"
+                                            alt="progress bar">
+                                        <strong>Aggressive</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">8.27%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>High-risk US equities portfolio focusing on renewable energy sector</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/7d3d7ec1-27b3-4e21-9d56-6b8df7a62622.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Multi-Asset Class - Conservative</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/1.svg"
+                                            alt="progress bar">
+                                        <strong>Conservative</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">7.8%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>Optimized for capital preservation.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/9fccae3e-364e-4008-8803-25a4f5e51297.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>Swensen Portfolio</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/2.svg"
+                                            alt="progress bar">
+                                        <strong>Conservative</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">7.41%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You want to enjoy equity growth gains while maintaining downside protection by
+                                        diversifying.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/0aef7869-1f01-47cf-bc97-676996a62632.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>99rises Fixed Income</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/3.svg"
+                                            alt="progress bar">
+                                        <strong>Moderate</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">5.39%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>This Vest follows a fixed-income ETF (Exchange-Traded Fund) based investment
+                                        strategy. Fixed-income ETFs provide exposure to various fixed-income securities with
+                                        varying maturities, credit ratings, and yields, allowing investors to manage risk
+                                        and generate income.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inner">
+                                <div class="top">
+                                    <div class="vest_img">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/d6708276-c205-4cf0-b6e6-bedb4f831b92.svg"
+                                            alt="solid-foundations">
+                                    </div>
+                                    <strong>All Weather</strong>
+                                </div>
+                                <div class="middle">
+                                    <div class="left">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest-risk/grey/2.svg"
+                                            alt="progress bar">
+                                        <strong>Conservative</strong>
+                                    </div>
+                                    <div class="right">
+                                        <div class="per-value">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5"
+                                                fill="none">
+                                                <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="#0CC786" alt="green-up">
+                                                </path>
+                                            </svg>
+                                            <span class="green">5.2%</span>
+                                        </div>
+                                        <span class="past-year">Past Year</span>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <span>Recommended for</span>
+                                    <p>You prefer lower volatility and want to minimize potential large drawdowns during
+                                        periods of recessions.</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="defult_vest">
+                        <a class="inner">
+                            <div class="plus-icon">
+                                <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/plus-icon.webp"
+                                    alt="plus-icon" width="38" height="38">
+                            </div>
+                            <div class="content">
+                                <strong>Create Your Own </strong>
+                                <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="tab-section">
         <div class="container">
