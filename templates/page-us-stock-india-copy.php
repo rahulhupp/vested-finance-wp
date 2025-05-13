@@ -685,19 +685,6 @@ get_header(); ?>
                             </a>
                         </li>
                     </ul>
-                    <div class="defult_vest">
-                        <a class="inner">
-                            <div class="plus-icon">
-                                <img src="http://wordpress-testing.vestedfinance.com/wp-content/themes/vested-finance-wp/assets/images/plus-icon.webp"
-                                    alt="plus-icon" width="38" height="38">
-                            </div>
-                            <div class="content">
-                                <strong>Create Your Own </strong>
-                                <p>Create a DIY Vest with stocks of your choice. Invest immediately or save it for later.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
