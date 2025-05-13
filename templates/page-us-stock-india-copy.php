@@ -170,8 +170,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <?php get_template_part('template-parts/us-stock-search'); ?>
-
     <?php get_template_part('template-parts/us-stock-vests-india'); ?>
 
     <section class="tab-section">
