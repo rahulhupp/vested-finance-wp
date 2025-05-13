@@ -3,6 +3,82 @@
 Template name: Page - US Stock India Copy
 */
 get_header(); ?>
+
+<header
+    class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
+    id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
+    <div id="ast-desktop-header" data-toggle-type="dropdown">
+        <div class="inner-header ast-main-header-wrap main-header-bar-wrap ">
+            <div class="ast-primary-header-bar ast-primary-header main-header-bar site-header-focus-item"
+                data-section="section-primary-header-builder">
+                <div class="site-primary-header-wrap ast-builder-grid-row-container site-header-focus-item ast-container"
+                    data-section="section-primary-header-builder">
+                    <div
+                        class="logo-menu ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+                        <div
+                            class="logo site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+                            <div class="ast-builder-layout-element ast-flex site-header-focus-item"
+                                data-section="title_tagline">
+                                <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization"
+                                    itemscope="itemscope">
+                                    <span class="site-logo-img">
+                                        <?php
+                                            $logo_id = get_theme_mod('custom_logo'); // Gets the logo ID from Astra theme settings
+                                            $logo_url = wp_get_attachment_image_url($logo_id, 'full'); // Get the full image URL
+
+                                            if ($logo_url) {
+                                                echo '<img src="' . esc_url($logo_url) . '" alt="' . get_bloginfo('name') . '">';
+                                            } else {
+                                                echo '<h1>' . get_bloginfo('name') . '</h1>'; // Fallback to site title if logo not set
+                                            }
+                                        ?>
+                                    </span>
+                                </div>
+                                <!-- .site-branding -->
+                            </div>
+                        </div>
+                        <div class="menu-overlay"></div>
+                        <div
+                            class="main-menu site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+                            <div class="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item"
+                                data-section="section-hb-menu-1">
+                                
+                            </div>
+                            <div class="mobile right-button">
+                                <div class="account-menu">
+                                    <ul class="menu-wrapper">
+                                        <li id="menu-item-1152"
+                                            class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
+                                            <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a>
+                                        </li>
+                                        <li id="menu-item-1153"
+                                            class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                            <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop right-button">
+                        <div class="account-menu">
+                            <ul class="menu-wrapper">
+                                <li
+                                    class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
+                                    <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a></li>
+                                <li
+                                    class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                    <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
 <div id="content" role="main" class="calc-page">
     <section class="stock-info">
         <div class="container">
@@ -872,41 +948,7 @@ get_header(); ?>
 
     <?php get_template_part('template-parts/investors-slider'); ?>
 
-    <section class="post-type-list">
-        <div class="container">
-            <h2>Invest with Confidence: Read our Blogs</h2>
-            <div class="post-listing">
-                <ul>
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 4,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'master_categories',
-                                'field'    => 'slug',
-                                'terms'    => array('us-stocks'),
-                            ),
-                        ),
-                    );
-
-                    $custom_query = new WP_Query($args);
-                    if ($custom_query->have_posts()) :
-                        while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_permalink() ?>">
-                                    <?php the_post_thumbnail(); ?>
-                                    <h4><?php the_title(); ?></h4>
-                                </a>
-                            </li>
-                    <?php endwhile;
-                        wp_reset_postdata();
-                    endif; ?>
-                </ul>
-            </div>
-        </div>
-    </section>
-
+    
     <section class="partners">
         <div class="container">
             <h2 class="section_title"><?php the_field('partners_heading'); ?></h2>
