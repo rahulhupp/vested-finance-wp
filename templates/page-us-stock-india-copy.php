@@ -1018,6 +1018,28 @@ get_header(); ?>
     .build-foundation .foundation-list ul li {
         padding-right: 2px;
     }
+
+    @media (max-width: 991px) {
+        header .inner-header .site-primary-header-wrap .logo-menu {
+            width: auto;
+        }
+
+        header .inner-header .site-primary-header-wrap {
+            flex-direction: row;
+        }
+
+        .account-menu {
+            width: 100px;
+        }
+
+        .account-menu .login-btn {
+            display: none;
+        }
+
+        header .inner-header .site-primary-header-wrap .right-button .account-menu ul li {
+            width: 100%;
+        }
+    }
 </style>
 
 <?php get_footer(); ?>
