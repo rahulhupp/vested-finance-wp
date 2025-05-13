@@ -819,7 +819,7 @@ get_header(); ?>
             </div>
         </section>
     <?php endif; ?>
-    <section class="stock_chart_sec">
+    <section class="stock_chart_sec tmp_us_stocks_calculator">
         <?php
         $chart = 'true';
         ?>
@@ -904,9 +904,6 @@ get_header(); ?>
                     endif; ?>
                 </ul>
             </div>
-            <div class="btn text-center">
-                <a href="<?php echo home_url(); ?>/blog/us-stocks/" class="btn_dark" target="_blank">Read All Blogs</a>
-            </div>
         </div>
     </section>
 
@@ -928,9 +925,6 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
-            <div class="btn text-center">
-                <a href="https://vestedfinance.typeform.com/to/ZdG011Tv" class="btn_dark" target="_blank">Become A Partner</a>
-            </div>
         </div>
     </section>
     <section class="eft_stock_info">
@@ -962,9 +956,6 @@ get_header(); ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
-                <div class="btn text-center">
-                    <a href="https://support.vestedfinance.com/portal/en/kb/vested-us-stocks" class="btn_dark" target="_blank">Explore All FAQs</a>
-                </div>
             </div>
         </section>
     <?php endif; ?>
@@ -973,5 +964,18 @@ get_header(); ?>
 <script>
     localStorage.setItem("vests", true);
 </script>
+<style>
+    .tmp_us_stocks_calculator .cta_btn {
+        display: none;
+    }
+    .build-foundation .foundation-list ul {
+        width: 100%;
+        /* margin: 0; */
+    }
+
+    .build-foundation .foundation-list ul li {
+        padding-right: 2px;
+    }
+</style>
 
 <?php get_footer(); ?>
