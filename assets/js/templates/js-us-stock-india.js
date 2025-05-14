@@ -430,7 +430,7 @@ jQuery(document).ready(function ($) {
 	});
 
 	$('#applyCoupon').click(function () {
-		const validCoupons = ["WELCOME50", "INVEST100"];
+		const validCoupons = ["GPAY10", "ZOMATO10"];
 		const code = $('#coupon-code').val().trim();
 		const messageBox = $('#coupon-message');
 		if (validCoupons.includes(code)) {

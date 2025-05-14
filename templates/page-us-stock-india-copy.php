@@ -38,39 +38,6 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="menu-overlay"></div>
-                        <div
-                            class="main-menu site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
-                            <div class="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item"
-                                data-section="section-hb-menu-1">
-                                
-                            </div>
-                            <div class="mobile right-button">
-                                <div class="account-menu">
-                                    <ul class="menu-wrapper">
-                                        <li id="menu-item-1152"
-                                            class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                            <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a>
-                                        </li>
-                                        <li id="menu-item-1153"
-                                            class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                            <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-button">
-                        <div class="account-menu">
-                            <ul class="menu-wrapper">
-                                <li
-                                    class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                    <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a></li>
-                                <li
-                                    class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                    <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
