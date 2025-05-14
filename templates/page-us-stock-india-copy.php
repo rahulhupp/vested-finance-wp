@@ -259,7 +259,7 @@ get_header(); ?>
                         They come in various categories, each focusing on a different investment objective. For instance, a
                         Vest might aim for growth potential while another prioritizes stability. Vests can also cater to
                         specific interests. Let's say you're passionate about renewable energy. You could choose a Vest that
-                        concentrates on companies in that sector. Explore <a>Vests</a> here.
+                        concentrates on companies in that sector. Explore Vests below.
                     </p>
                     <div id="vest_read_more">Read <span>More</span> <i class="fa fa-chevron-down"></i></div>
                 </div>
