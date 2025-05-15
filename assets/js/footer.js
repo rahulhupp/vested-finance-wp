@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
                 var tabHeight = $(this).height();
                 var finaHeight = tabHeight - 17;
                 var parentElement = $(this).closest('.single_tab_content');
-                console.log(tabHeight);
+                console.log('tabHeight', tabHeight);
                 parentElement.css('margin-bottom', finaHeight + 'px');
             });
         }
