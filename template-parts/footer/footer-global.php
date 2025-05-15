@@ -147,7 +147,7 @@
                         $collections = get_posts($args);
 
                         if ($collections) { ?>
-                            <div class="other_link_block">
+                            <div class="other_link_block popular_themes">
                                 <h4>Popular Themes</h4>
                                 <div class="others_links_wrap">
                                     <?php foreach ($collections as $collection) {
