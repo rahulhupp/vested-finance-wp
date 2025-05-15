@@ -774,6 +774,11 @@ footer .extra_info ul li sup {
     right: -7px;
   }
 
+
+  .popular_themes {
+    padding-bottom: 0px;
+  }
+
   .other_link_block {
     margin-top: 35px;
   }
