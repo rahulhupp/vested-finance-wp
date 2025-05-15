@@ -140,7 +140,7 @@
 
                         if ($collections) { ?>
                             <div class="other_link_block popular_themes">
-                                <h4>Popular Themes</h4>
+                                <h4>Popular US Stock themes</h4>
                                 <div class="others_links_wrap">
                                     <?php foreach ($collections as $collection) {
                                             $post_name = get_the_title($collection->ID);
