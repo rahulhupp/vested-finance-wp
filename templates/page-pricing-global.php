@@ -284,6 +284,7 @@ get_header(); ?>
                     console.log('show geolocation_banner');
                 } else {
                     // globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                    globalBanner.style.display = "none";
                     console.log('hide geolocation_banner');
                 }
             }
