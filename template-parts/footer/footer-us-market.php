@@ -113,6 +113,31 @@
                             </div>
                         </div>
                     <?php endif; ?>
+                    <?php
+                        $args = array(
+                            'post_type'      => 'collections',
+                            'posts_per_page' => -1, // Get all posts
+                            'post_status'    => 'publish',
+                        );
+
+                        $collections = get_posts($args);
+
+                        if ($collections) { ?>
+                            <div class="other_link_block popular_themes">
+                                <h4>Popular US Stock themes</h4>
+                                <div class="others_links_wrap">
+                                    <?php foreach ($collections as $collection) {
+                                            $post_name = get_the_title($collection->ID);
+                                            $post_link = get_permalink($collection->ID); ?>        
+                                        <a href="<?php echo $post_link; ?>"><?php echo $post_name; ?></a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php
+                        } else {
+                            echo 'No collections found.';
+                        }
+                    ?>
                     <?php if (have_rows('other_link_list_us', 'option')) : ?>
                         <div class="other_link_block">
 
