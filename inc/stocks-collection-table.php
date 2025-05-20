@@ -829,20 +829,21 @@ $(document).ready(function () {
     const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
 
     console.log('[Page Load] Stocks Tab Exists:', hasStocksTab, '| ETFs Tab Exists:', hasETFsTab);
-
-    if (tabParam === 'etfs' && hasETFsTab) {
-        activateTab('etfs');
-    } else if (tabParam === 'stocks' && hasStocksTab) {
-        activateTab('stocks');
-    } else if (hasStocksTab && hasETFsTab) {
-        activateTab('stocks'); // default
-    } else if (hasStocksTab) {
-        activateTab('stocks');
-    } else if (hasETFsTab) {
-        activateTab('etfs');
-    } else {
-        console.log('[Page Load] No tabs present on this page');
-    }
+    setTimeout(function () {
+        if (tabParam === 'etfs' && hasETFsTab) {
+            activateTab('etfs');
+        } else if (tabParam === 'stocks' && hasStocksTab) {
+            activateTab('stocks');
+        } else if (hasStocksTab && hasETFsTab) {
+            activateTab('stocks'); // default
+        } else if (hasStocksTab) {
+            activateTab('stocks');
+        } else if (hasETFsTab) {
+            activateTab('etfs');
+        } else {
+            console.log('[Page Load] No tabs present on this page');
+        }
+    }, 500);
 });
 
 
