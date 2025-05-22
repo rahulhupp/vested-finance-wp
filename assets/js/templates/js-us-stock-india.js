@@ -436,7 +436,7 @@ jQuery(document).ready(function ($) {
 		if (validCoupons.includes(code)) {
 		  messageBox.html(`
 				<div class="message-inner" style="background-color: #DCFCE7; color: #14532D;">
-				<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2025/05/lj13u396ubnmab3iohr.svg" alt="Success Icon" />
+				<img src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/05/22124339/s-1.png" alt="Success Icon" />
 				<div>Coupon applied successfully</div>
 				</div>
 			`).show();
@@ -446,7 +446,7 @@ jQuery(document).ready(function ($) {
 		} else {
 			messageBox.html(`
 				<div class="message-inner" style="background-color: #FEE2E2; color: #7F1D1D;">
-				<img src="http://wordpress-testing.vestedfinance.com/wp-content/uploads/2025/05/alert-circle.svg" alt="Error Icon" />
+				<img src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/05/22124240/alert-circle-icon.svg" alt="Error Icon" />
 				<div>Coupon code is invalid</div>
 				</div>
 			`).show();
