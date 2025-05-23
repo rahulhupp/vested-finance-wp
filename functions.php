@@ -538,3 +538,13 @@ function load_more_posts_callback() {
 
     wp_die();
 }
+
+
+add_filter('wpseo_robots', 'custom_noindex_nofollow_for_us_stock_india_copy');
+
+function custom_noindex_nofollow_for_us_stock_india_copy($robots) {
+    if (is_page() && is_page_template('page-us-stock-india-copy.php')) {
+        return 'noindex, nofollow';
+    }
+    return $robots;
+}
