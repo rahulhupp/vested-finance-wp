@@ -540,11 +540,16 @@ function load_more_posts_callback() {
 }
 
 
-add_filter('wpseo_robots', 'custom_noindex_nofollow_for_us_stock_india_copy');
+add_filter('wpseo_robots_override', 'force_noindex_nofollow_on_template');
 
-function custom_noindex_nofollow_for_us_stock_india_copy($robots) {
-    if (is_page() && is_page_template('page-us-stock-india-copy.php')) {
-        return 'noindex, nofollow';
+function force_noindex_nofollow_on_template($robots) {
+    if (is_page_template('page-us-stock-india-copy.php')) {
+        return [
+            'index' => false,   // noindex
+            'follow' => false,  // nofollow
+        ];
     }
-    return $robots;
+
+    return $robots; // fallback to default behavior
 }
+
