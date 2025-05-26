@@ -1,17 +1,25 @@
 <?php $sector_breakdowns_data = $args['sector_breakdowns_data']; ?>
-<?php if ($sector_breakdowns_data) { ?>
-    <?php
-        $colors = array(
-            '#EA580C',
-            '#C026D3',
-            '#7C3AED',
-            '#2563EB',
-            '#E11D48',
-            '#047857'
-        );
-        for ($i = 0; $i < count($sector_breakdowns_data); $i++) {
-            $sector_breakdowns_data[$i]['color'] = $colors[$i];
-        }    
+
+<?php
+if (
+    is_array($sector_breakdowns_data) &&
+    empty($sector_breakdowns_data['error']) &&
+    isset($sector_breakdowns_data[0]) // check it's a list-like array
+) {
+    $colors = array(
+        '#EA580C',
+        '#C026D3',
+        '#7C3AED',
+        '#2563EB',
+        '#E11D48',
+        '#047857'
+    );
+
+    for ($i = 0; $i < count($sector_breakdowns_data); $i++) {
+        $sector_breakdowns_data[$i]['color'] = $colors[$i % count($colors)];
+    }
+
+    // error_log('Valid Sector Breakdowns Data: ' . print_r($sector_breakdowns_data, true));
     ?>
     <div id="sector_breakdown_tab" class="tab_content">
         <div class="stock_details_box">
@@ -28,21 +36,21 @@
                                         <th>Weight</th>
                                     </tr>
                                     <?php
-                                        foreach ($sector_breakdowns_data as $breakdown) {
-                                            ?>
-                                                <tr>
-                                                    <td>
-                                                        <div class="sector_breakdown_name">
-                                                            <span style="background-color: <?php echo $breakdown['color']; ?>"></span>
-                                                            <?php echo $breakdown['name']; ?>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo number_format($breakdown['value'], 2); ?>%
-                                                    </td>
-                                                </tr>
-                                            <?php
-                                        }
+                                    foreach ($sector_breakdowns_data as $breakdown) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <div class="sector_breakdown_name">
+                                                    <span style="background-color: <?php echo $breakdown['color']; ?>"></span>
+                                                    <?php echo $breakdown['name']; ?>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <?php echo number_format($breakdown['value'], 2); ?>%
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
                                     ?>
                                 </table>
                             </div>
@@ -55,4 +63,8 @@
             </div>
         </div>
     </div>
-<?php } ?>
+<?php
+} else {
+    error_log('Invalid Sector Breakdowns Data: ' . print_r($sector_breakdowns_data, true));
+}
+?>
