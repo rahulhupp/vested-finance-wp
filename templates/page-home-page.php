@@ -359,7 +359,7 @@ $image = get_field('easy_access_image');
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>Global Mutual Funds launching soon. Join the waithlist now. <a href='http://wordpress-testing.vestedfinance.com/global-mutual-funds/' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Know More</a></p></div>";
+                    globalBanner.innerHTML = "<div class='content'><p>Looking to invest Globally via Mutual Funds? Sign up for early access. <a href='http://wordpress-testing.vestedfinance.com/global-mutual-funds/' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Know More</a></p></div>";
                     // globalBanner.classList.add('warning_banner');
                     console.log('show geolocation_banner');
                 } else {
