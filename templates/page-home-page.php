@@ -358,9 +358,10 @@ get_header(); ?>
                 if (globalBanner) {
                     globalBanner.style.display = "flex";
                     if (data.country === "IN") {
+                        globalBanner.innerHTML = "<div class='content'><p>Looking to invest Globally via Mutual Funds? Sign up for early access. <a href='<?php echo site_url() ?>/global-mutual-funds/' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Know More</a></p></div>";
                         // globalBanner.innerHTML = "<div class='content'><p>Announcing our latest partnership with HDFC Securities powering their Global Investing 2.0 offering. <a href='https://bfsi.economictimes.indiatimes.com/news/financial-services/hdfc-securities-partners-with-vested-finance-to-offer-access-to-global-investing-for-indians-and-nris/112221333' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Read Press Release</a></p></div>";
                         // globalBanner.classList.add('warning_banner');
-                        globalBanner.style.display = "none";
+                        // globalBanner.style.display = "none";
                         console.log('show geolocation_banner');
                     } else if (data.country === "US") {
                         globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the USA website. <a href='<?php echo site_url('/us/') ?>' class='learn_more_btn tmp'>Visit USA Website</a></p></div>";
