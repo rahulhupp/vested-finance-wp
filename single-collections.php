@@ -363,47 +363,30 @@ while (have_posts()) :
             </div>
         </section>
     <?php endif; ?>
-    <div class="cta-sec">
-        <div class="container">
-            <div class="cta_wrapper">
-                <?php if (get_field('cta_heading')): ?>
+    <?php if (get_field('cta_heading')): ?>
+        <div class="cta-sec">
+            <div class="container">
+                <div class="cta_wrapper">
                     <h2 class="cta_title"><?php the_field('cta_heading'); ?></h2>
                     <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
-                <?php else: ?>
-                    <h2 class="cta_title">Start investing in Top <br /><?php the_title(); ?> Stocks with Vested</h2>
-                    <a href="<?php the_field('cta_button_url'); ?>" class="cta_btn"><?php the_field('cta_button_text'); ?></a>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
+    <?php $selected_posts = get_field('select_posts'); ?>
+    <?php if ($selected_posts): ?>
     <div class="post_type_list">
         <div class="container">
             <h2 class="sec_title">Invest with Confidence: Read our Blogs</h2>
             <div class="post_listing">
                 <div class="posts_wrap">
                     <?php
-                    $selected_posts = get_field('select_posts');
-
-                    if ($selected_posts) {
-                        $args = array(
-                            'post_type'      => 'post',
-                            'posts_per_page' => 3,
-                            'post__in'       => $selected_posts,
-                            'orderby'        => 'post__in',
-                        );
-                    } else {
-                        $args = array(
-                            'post_type'      => 'post',
-                            'posts_per_page' => 3,
-                            'tax_query'      => array(
-                                array(
-                                    'taxonomy' => 'master_categories',
-                                    'field'    => 'slug',
-                                    'terms'    => array('us-stocks'),
-                                ),
-                            ),
-                        );
-                    }
+                    $args = array(
+                        'post_type'      => 'post',
+                        'posts_per_page' => 3,
+                        'post__in'       => $selected_posts,
+                        'orderby'        => 'post__in',
+                    );
 
                     // The custom query
                     $custom_query = new WP_Query($args);
@@ -434,6 +417,7 @@ while (have_posts()) :
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <?php if (have_rows('faq_list')): ?>
         <div class="faqs_sec">
             <div class="container">
