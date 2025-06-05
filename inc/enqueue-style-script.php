@@ -121,6 +121,10 @@
             wp_enqueue_style('gi-joe-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-us.css', false, '', '');
             wp_enqueue_script('gi-joe-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-us.js');
         }
+        if (is_page_template('templates/page-new-partner.php')) {
+            wp_enqueue_style('new-partner-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-new-partner.css', false, '', '');
+            wp_enqueue_script('new-partner-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-new-partner.js');
+        }
         if (is_page_template('templates/page-global-mutual-funds.php')) {
             wp_enqueue_style('global-funds-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-global-mutual-funds.css', false, '', '');
             wp_enqueue_script('global-funds-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-global-mutual-funds.js');

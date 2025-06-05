@@ -1,0 +1,221 @@
+<?php
+/*
+Template name: Partner New Landing Page
+Template Post Type: post, page, partners
+*/
+get_header();
+
+while (have_posts()) :
+    the_post();
+?>
+    <div class="partner_landing_page">
+        <section class="partner_hero_section">
+            <div class="container">
+                <div class="partner_hero_wrapper">
+                    <div class="partner_hero_content">
+                        <h1><?php the_field('banner_title'); ?></h1>
+                        <?php if (have_rows('banner_points')) : ?>
+                            <ul>
+                                <?php while (have_rows('banner_points')): the_row(); ?>
+                                    <li><?php the_sub_field('banner_point'); ?></li>
+                                <?php endwhile; ?>
+                            </ul>
+                        <?php endif; ?>
+                        <?php if (have_rows('banner_button')) : ?>
+                            <?php while (have_rows('banner_button')): the_row(); ?>
+                                <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="partner_hero_image">
+                        <img src="<?php the_field('banner_image'); ?>" alt="<?php the_field('banner_title'); ?>" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner_metrics">
+            <div class="container">
+                <div class="banner_metrics_wrapper">
+                    <?php if (have_rows('banner_metrics')) : ?>
+                        <?php while (have_rows('banner_metrics')): the_row(); ?>
+                            <div class="metric_item">
+                                <h2><?php the_sub_field('banner_metric_count'); ?></h2>
+                                <p><?php the_sub_field('banner_metric_label'); ?></p>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+
+        <section class="services_section">
+            <div class="container">
+                <div class="services_wrapper">
+                    <h2><?php the_field('services_title'); ?></h2>
+                    <p><?php the_field('services_description'); ?></p>
+                    <?php if (have_rows('services_list')) : ?>
+                        <div class="services_list">
+                            <?php while (have_rows('services_list')): the_row(); ?>
+                                <div class="service_item">
+                                    <h3><?php the_sub_field('services_list_title'); ?></h3>
+                                    <p><?php the_sub_field('services_list_description'); ?></p>
+                                    <img src="<?php the_sub_field('services_list_image'); ?>" alt="<?php the_sub_field('service_title'); ?>" />
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+
+        <section class="features_section" style="background-image: url('<?php the_field('features_background_image'); ?>');">
+            <div class="container">
+                <div class="features_wrapper">
+                    <h2><?php the_field('features_title'); ?></h2>
+                    <p><?php the_field('features_description'); ?></p>
+                    <?php if (have_rows('features_list')) : ?>
+                        <div class="features_list">
+                            <?php while (have_rows('features_list')): the_row(); ?>
+                                <div class="feature_item">
+                                    <img src="<?php the_sub_field("feature_list_icon") ?>" alt="<?php the_sub_field('feature_list_title'); ?>" />
+                                    <h3><?php the_sub_field('feature_list_title'); ?></h3>
+                                    <p><?php the_sub_field('feature_list_description'); ?></p>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (have_rows('banner_button')) : ?>
+                        <?php while (have_rows('banner_button')): the_row(); ?>
+                            <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <button type="button" class="features_prev">
+                <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="54" height="54" rx="27" fill="#002852"/>
+                    <path d="M30 33L24 27L30 21" stroke="#F8FAFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button type="button" class="features_next">
+                <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="54" height="54" rx="27" fill="#002852"/>
+                    <path d="M24 33L30 27L24 21" stroke="#F8FAFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>          
+        </section>
+
+        <section class="security_section">
+            <div class="container">
+                <div class="security_wrapper">
+                    <h2><?php the_field('security_title'); ?></h2>
+                    <?php if (have_rows('security_list')) : ?>
+                        <div class="security_list">
+                            <?php while (have_rows('security_list')): the_row(); ?>
+                                <div class="security_item">
+                                    <img src="<?php the_sub_field('security_list_image'); ?>" alt="<?php the_sub_field('security_title'); ?>" />
+                                    <p><?php the_sub_field('security_list_text'); ?></p>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+
+        <section class="about_section">
+            <div class="container">
+                <div class="about_wrapper">
+                    <img src="<?php the_field('about_logo'); ?>" alt="Partner logo">
+                    <p><?php the_field('about_description'); ?></p>
+                </div>    
+            </div>
+        </section>
+
+        <?php get_template_part('template-parts/investors-slider'); ?>
+
+        <?php if (have_rows('pricing_table')) : ?>
+            <section class="pricing_section">
+                <div class="container">
+                    <div class="pricing_wrapper">
+                        <h2><?php the_field('pricing_title'); ?></h2>
+                        <div class="pricing_table">
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>Basic</th>
+                                    <th>Premium</th>
+                                </tr>
+                                <?php while (have_rows('pricing_table')): the_row(); ?>
+                                <?php $basic = get_sub_field('pricing_basic'); ?>
+                                <?php $premium = get_sub_field('pricing_premium'); ?>
+                                    <tr>
+                                        <td><?php the_sub_field('pricing_label'); ?></td>
+                                        <td>
+                                            <?php 
+                                                if ($basic === 'null') {
+                                                   echo '<span class="not_available">-</span>';
+                                                } else if ($basic === 'true') {
+                                                   echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22Z" fill="#22C55E" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>';
+                                                } else {
+                                                   echo $basic;
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php 
+                                                if ($premium === 'null') {
+                                                   echo '<span class="not_available">-</span>';
+                                                } else if ($premium === 'true') {
+                                                   echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22Z" fill="#22C55E" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>';
+                                                } else {
+                                                   echo $premium;
+                                                }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <section class="process_section">
+            <div class="container">
+                <div class="process_wrapper">
+                    <h2><?php the_field('process_title'); ?></h2>
+                    <?php if (have_rows('process_list')) : ?>
+                        <div class="process_steps">
+                            <?php while (have_rows('process_list')): the_row(); ?>
+                                <div class="process_step">
+                                    <div class="process_step_content">
+                                        <h3><?php the_sub_field('process_step_title'); ?></h3>
+                                        <p><?php the_sub_field('process_step_description'); ?></p>
+                                    </div>
+                                    <img src="<?php the_sub_field('process_step_image'); ?>" alt="<?php the_sub_field('process_step_title'); ?>" />
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (have_rows('banner_button')) : ?>
+                        <?php while (have_rows('banner_button')): the_row(); ?>
+                            <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+        </section>
+    </div>
+<?php
+endwhile;
+get_footer();
