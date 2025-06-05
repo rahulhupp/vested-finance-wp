@@ -430,7 +430,7 @@ jQuery(document).ready(function ($) {
 	});
 
 	$('#applyCoupon').click(function () {
-		const validCoupons = ["GPAY10", "ZOMATO10"];
+		const validCoupons = ["GPAY10"];
 		const code = $('#coupon-code').val().trim();
 		const messageBox = $('#coupon-message');
 		if (validCoupons.includes(code)) {
@@ -441,7 +441,7 @@ jQuery(document).ready(function ($) {
 				</div>
 			`).show();
 			setTimeout(() => {
-				window.location.href = "https://app.vestedfinance.com/signup";
+				window.location.href = "https://vested.app.link/gpay";
 			}, 1000);
 		} else {
 			messageBox.html(`
