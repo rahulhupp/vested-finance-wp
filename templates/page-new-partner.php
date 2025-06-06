@@ -8,6 +8,7 @@ get_header();
 while (have_posts()) :
     the_post();
 ?>
+    <?php get_template_part('template-parts/new-partner-header'); ?>
     <div class="partner_landing_page">
         <section class="partner_hero_section">
             <div class="container">
@@ -49,7 +50,7 @@ while (have_posts()) :
             </div>
         </section>
 
-        <section class="services_section">
+        <section class="services_section" id="whyusstocks">
             <div class="container">
                 <div class="services_wrapper">
                     <h2><?php the_field('services_title'); ?></h2>
@@ -69,7 +70,7 @@ while (have_posts()) :
             </div>
         </section>
 
-        <section class="features_section" style="background-image: url('<?php the_field('features_background_image'); ?>');">
+        <section class="features_section" id="whyvested" style="background-image: url('<?php the_field('features_background_image'); ?>');">
             <div class="container">
                 <div class="features_wrapper">
                     <h2><?php the_field('features_title'); ?></h2>
@@ -106,7 +107,7 @@ while (have_posts()) :
             </button>          
         </section>
 
-        <section class="security_section">
+        <section class="security_section" id="safetysecurity">
             <div class="container">
                 <div class="security_wrapper">
                     <h2><?php the_field('security_title'); ?></h2>
@@ -136,7 +137,7 @@ while (have_posts()) :
         <?php get_template_part('template-parts/investors-slider'); ?>
 
         <?php if (have_rows('pricing_table')) : ?>
-            <section class="pricing_section">
+            <section class="pricing_section" id="pricing">
                 <div class="container">
                     <div class="pricing_wrapper">
                         <h2><?php the_field('pricing_title'); ?></h2>
@@ -189,7 +190,7 @@ while (have_posts()) :
             </section>
         <?php endif; ?>
 
-        <section class="process_section">
+        <section class="process_section" id="stepstoinvest">
             <div class="container">
                 <div class="process_wrapper">
                     <h2><?php the_field('process_title'); ?></h2>
