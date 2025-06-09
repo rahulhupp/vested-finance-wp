@@ -138,6 +138,15 @@ if (function_exists('acf_add_options_page')) {
         'redirect'      => false,
         'icon_url' => 'dashicons-admin-site',
     ));
+
+    acf_add_options_page(array(
+        'page_title'    => 'Partners Options',
+        'menu_title'    => 'Partners Options',
+        'menu_slug'     => 'partners-options',
+        'capability'    => 'edit_posts',
+        'redirect'      => false,
+        'icon_url' => 'dashicons-list-view',
+    ));
 }
 
 if (function_exists('acf_add_options_page')) {
