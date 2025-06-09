@@ -1,8 +1,14 @@
+<?php $new_partner = is_page_template('templates/page-new-partner.php'); ?>
 <?php if (have_rows('investors_reviews', 'option')) : ?>
     <section class="investors_sec">
         <div class="container">
-            <h2 class="section_title"><span><?php the_field('investors_title', 'option'); ?></span></h2>
-            <p class="investor_subtitle"><?php the_field('investors_sub_title', 'option'); ?></p>
+			<?php if ($new_partner) : ?>
+				<h2 class="section_title"><span>Voices of Vested</span></h2>
+				<p class="investor_subtitle">Discover why thousands trust Vested for global investing</p>
+			<?php else : ?>
+				<h2 class="section_title"><span><?php the_field('investors_title', 'option'); ?></span></h2>
+            	<p class="investor_subtitle"><?php the_field('investors_sub_title', 'option'); ?></p>
+			<?php endif; ?>
             <div class="investors_slider_wrap">
                 <div class="investors_slider">
                     <?php while (have_rows('investors_reviews', 'option')) : the_row(); ?>
@@ -22,11 +28,13 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="platform_icon">
-                                        <a href="<?php the_sub_field('investor_link') ?>" target="_blank">
-                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.webp" alt="Review Platform">
-                                        </a>
-                                    </div>
+									<?php if (!$new_partner) : ?>
+										<div class="platform_icon">
+											<a href="<?php the_sub_field('investor_link') ?>" target="_blank">
+												<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.webp" alt="Review Platform">
+											</a>
+										</div>
+									<?php endif; ?>
                                 </div>
                                 <div class="investor_review">
                                     <?php the_sub_field('investor_review') ?>
@@ -35,23 +43,40 @@
                         </div>
                     <?php endwhile; ?>
                 </div>
-                <div class="investor_slider_nav">
-                    <div class="investor_prev">
-                        <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M27.1035 10.0566H1.74131M1.74131 10.0566L10.9639 0.833984M1.74131 10.0566L10.9639 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
-                        </svg>
-                    </div>
-                    <div class="investor_next">
-                        <svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.283203 10.0566H25.6454M25.6454 10.0566L16.4228 0.833984M25.6454 10.0566L16.4228 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
-                        </svg>
-                    </div>
-                </div>
+				<?php if ($new_partner) : ?>
+					<div class="investor_slider_nav">
+						<div class="investor_prev">
+							<svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11 1L1.77738 10.2226L11 19.4452" stroke="#8E9DAD" stroke-width="1.7"/>
+							</svg>
+						</div>
+						<div class="investor_next">
+							<svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L10.2226 10.2226L1 19.4452" stroke="#8E9DAD" stroke-width="1.7"/>
+							</svg>
+						</div>
+					</div>
+				<?php else: ?>
+					<div class="investor_slider_nav">
+						<div class="investor_prev">
+							<svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M27.1035 10.0566H1.74131M1.74131 10.0566L10.9639 0.833984M1.74131 10.0566L10.9639 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+							</svg>
+						</div>
+						<div class="investor_next">
+							<svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M0.283203 10.0566H25.6454M25.6454 10.0566L16.4228 0.833984M25.6454 10.0566L16.4228 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+							</svg>
+						</div>
+					</div>
+				<?php endif; ?>
             </div>
 
-            <div class="investor_desclaimer">
-                <?php the_field('investors_disclaimer', 'option'); ?>
-            </div>
+			<?php if (!$new_partner) : ?>
+				<div class="investor_desclaimer">
+					<?php the_field('investors_disclaimer', 'option'); ?>
+				</div>
+			<?php endif; ?>
         </div>
 
     </section>
@@ -77,8 +102,8 @@
 	}
 
 	.investors_sec {
-		padding-top: 12px;
-		padding-bottom: 37px;
+		padding: 60px 0;
+		background: #eef5fc;
 	}
 
 	.investor_subtitle {
@@ -201,7 +226,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 32px;
+		margin-bottom: 51px;
 	}
 
 	.investors_slider {
@@ -250,12 +275,12 @@
 	}
 
 	.investor_desclaimer p {
-		color: rgba(33, 37, 41, 0.7);
-		font-family: Inter;
-		font-size: 16px;
+		color: rgba(33, 37, 41, 0.6);
+		font-family: "Inter", sans-serif;
+		font-size: 18px !important;
 		font-style: normal;
 		font-weight: 400;
-		line-height: normal;
+		line-height: 130%;
 		margin-bottom: 0;
 	}
 
@@ -282,7 +307,8 @@
 
 	@media (max-width: 767px) {
 		.investors_slider {
-			margin-top: 38px;
+			margin-top: 30px;
+			padding: 0 30px;
 		}
 
 		.investor_subtitle {
@@ -291,9 +317,6 @@
 
 		.investor_desclaimer p {
 			font-size: 10px !important;
-		}
-		.investors_sec {
-			padding-top: 45px;
 		}
 		.investor_slide_inner {
 			min-height: 360px;
@@ -307,7 +330,7 @@
 			padding: 0 24px;
 		}
 		.investor_slider_nav {
-		    margin-bottom: 37px;
+		    margin-bottom: 45px;
 		}
 	}
 
