@@ -1,0 +1,114 @@
+<header
+    class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
+    id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
+    <div id="ast-desktop-header" data-toggle-type="dropdown">
+        <div class="inner-header ast-main-header-wrap main-header-bar-wrap ">
+            <div class="ast-primary-header-bar ast-primary-header main-header-bar site-header-focus-item"
+                data-section="section-primary-header-builder">
+                <div class="site-primary-header-wrap ast-builder-grid-row-container site-header-focus-item ast-container"
+                    data-section="section-primary-header-builder">
+                    <div
+                        class="logo-menu ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+                        <div
+                            class="logo site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+                            <div class="ast-builder-layout-element ast-flex site-header-focus-item"
+                                data-section="title_tagline">
+                                <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization"
+                                    itemscope="itemscope">
+                                    <span class="site-logo-img">
+                                        <a href="https://vestedfinance.com/"
+                                            class="custom-logo-link" rel="home nofollow"><img
+                                                src="https://vested-wordpress-media-prod.s3.amazonaws.com/wp-content/uploads/2023/12/22053309/logo-1.svg"
+                                                class="custom-logo" alt="Vested Finance" decoding="async" width="144"
+                                                height="45"></a></span>
+                                </div>
+                                <!-- .site-branding -->
+                            </div>
+                        </div>
+                        <div class="humburger">
+                            <div class="inner">
+                                <div class="icon"></div>
+                            </div>
+                        </div>
+                        <div class="menu-overlay"></div>
+                        <div
+                            class="main-menu site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+                            <div class="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item"
+                                data-section="section-hb-menu-1">
+                                <div class="ast-main-header-bar-alignment">
+                                    <div id="mega-menu-wrap-primary" class="mega-menu-wrap">
+                                        <div class="mega-menu-toggle">
+                                            <div class="mega-toggle-blocks-left"></div>
+                                            <div class="mega-toggle-blocks-center"></div>
+                                            <div class="mega-toggle-blocks-right">
+                                                <div class="mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0"
+                                                    id="mega-toggle-block-0"><button aria-label="Toggle Menu"
+                                                        class="mega-toggle-animated mega-toggle-animated-slider"
+                                                        type="button" aria-expanded="false">
+                                                        <span class="mega-toggle-animated-box">
+                                                            <span class="mega-toggle-animated-inner"></span>
+                                                        </span>
+                                                    </button></div>
+                                            </div>
+                                        </div>
+                                        <ul id="mega-menu-primary" class="mega-menu max-mega-menu mega-menu-horizontal"
+                                            data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                                            data-effect-mobile="slide" data-effect-speed-mobile="200"
+                                            data-mobile-force-width="false" data-second-click="go"
+                                            data-document-click="collapse" data-vertical-behaviour="accordion"
+                                            data-breakpoint="991" data-unbind="true" data-mobile-state="collapse_all"
+                                            data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                                            <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout">
+                                                <a class="mega-menu-link" href="#whyusstocks" tabindex="0" rel="nofollow">Why US Stocks</a>
+                                            </li>
+                                            <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout">
+                                                <a class="mega-menu-link" href="#whyvested" tabindex="0" rel="nofollow">Why Vested</a>
+                                            </li>
+                                            <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout">
+                                                <a class="mega-menu-link" href="#safetysecurity" tabindex="0" rel="nofollow">Safety & Security</a>
+                                            </li>
+                                            <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout">
+                                                <a class="mega-menu-link" href="#pricing" tabindex="0" rel="nofollow">Pricing</a>
+                                            </li>
+                                            <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout">
+                                                <a class="mega-menu-link" href="#stepstoinvest" tabindex="0" rel="nofollow">Steps to Invest</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile right-button">
+                                <div class="account-menu">
+                                    <ul class="menu-wrapper">
+                                        <li id="menu-item-1152"
+                                            class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
+                                            <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a>
+                                        </li>
+                                        <li id="menu-item-1153"
+                                            class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                            <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desktop right-button">
+                        <div class="account-menu">
+                            <ul class="menu-wrapper">
+                                <li
+                                    class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
+                                    <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a></li>
+                                <li
+                                    class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                    <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ast-desktop-header-content content-align-flex-start " style="display: none;">
+        </div>
+    </div>
+</header>
