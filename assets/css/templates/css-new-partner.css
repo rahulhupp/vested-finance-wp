@@ -331,6 +331,10 @@
     align-items: flex-start;
 }
 
+.about_wrapper img {
+    max-width: 221px;
+}
+
 .about_wrapper p {
     color: #fff;
     font-weight: 400;

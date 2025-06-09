@@ -129,7 +129,7 @@ while (have_posts()) :
             <div class="container">
                 <div class="about_wrapper" style="background-color: <?php the_field('template_color'); ?>;">
                     <img src="<?php the_field('about_logo'); ?>" alt="Partner logo">
-                    <p><?php the_field('about_description'); ?></p>
+                    <p style="color:  <?php the_field('about_text_color'); ?>;"><?php the_field('about_description'); ?></p>
                 </div>    
             </div>
         </section>
