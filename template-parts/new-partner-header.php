@@ -80,13 +80,12 @@
                             <div class="mobile right-button">
                                 <div class="account-menu">
                                     <ul class="menu-wrapper">
-                                        <li id="menu-item-1152"
-                                            class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                            <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a>
-                                        </li>
-                                        <li id="menu-item-1153"
-                                            class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                            <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a>
+                                        <li id="menu-item-1153" class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                            <?php if (have_rows('banner_button')) : ?>
+                                                <?php while (have_rows('banner_button')): the_row(); ?>
+                                                    <a href="<?php the_sub_field('banner_button_link'); ?>" class="menu-link"><?php the_sub_field('banner_button_text'); ?></a>
+                                                <?php endwhile; ?>
+                                            <?php endif; ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,12 +95,13 @@
                     <div class="desktop right-button">
                         <div class="account-menu">
                             <ul class="menu-wrapper">
-                                <li
-                                    class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                    <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a></li>
-                                <li
-                                    class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                    <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a></li>
+                                <li class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                    <?php if (have_rows('banner_button')) : ?>
+                                        <?php while (have_rows('banner_button')): the_row(); ?>
+                                            <a href="<?php the_sub_field('banner_button_link'); ?>" class="menu-link"><?php the_sub_field('banner_button_text'); ?></a>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                </li>
                             </ul>
                         </div>
                     </div>
