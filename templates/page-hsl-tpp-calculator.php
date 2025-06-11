@@ -24,6 +24,7 @@ get_header(); ?>
 		margin-top: 20px;
 		display: flex;
 		flex-wrap: wrap;
+		overflow: hidden;
 	}
 
 	.calculator_input {
@@ -136,6 +137,41 @@ get_header(); ?>
 		font-weight: 600;
 		color: #1F2937;
 	}
+
+	@media (max-width: 1199px) {
+		.calculator form {
+			padding: 20px;
+		}
+
+		.calculator__result {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1023px) {
+		.calculator__result {
+			width: 40%;
+		}
+
+		.calculator__result .result {
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.calculator form {
+			width: 60%;
+		}
+
+		.calculator_input label {
+			font-size: 14px;
+		}
+
+		.calculator_input select, .calculator_input input {
+			font-size: 14px;
+			max-width: 220px;
+		}
+	}
+
 </style>
 
 <div class="hsi_tpp_calculator">
