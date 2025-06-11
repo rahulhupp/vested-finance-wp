@@ -170,6 +170,32 @@ get_header(); ?>
 			font-size: 14px;
 			max-width: 220px;
 		}
+		.calculator button {
+			font-size: 16px;
+			height: 48px;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.calculator form {
+			width: 100%;
+		}
+
+		.calculator_input {
+			display: block;
+		}
+
+		.calculator_input select, .calculator_input input {
+			max-width: 100%;
+		}
+
+		.calculator__result {
+			width: 100%;
+		}
+
+		.calculator_input:not(:last-child) {
+			margin-bottom: 18px;
+		}
 	}
 
 </style>
