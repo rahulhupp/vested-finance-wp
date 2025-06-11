@@ -179,6 +179,11 @@ get_header(); ?>
 	}
 
 	@media (max-width: 767px) {
+		.hsi_tpp_calculator p {
+			font-size: 14px;
+			line-height: 1.4;
+		}
+		
 		.calculator form {
 			width: 100%;
 		}
