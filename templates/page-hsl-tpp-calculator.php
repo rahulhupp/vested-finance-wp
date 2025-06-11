@@ -115,7 +115,7 @@ get_header(); ?>
 		line-height: 22px;
 		font-weight: 600;
 		color: #1F2937;
-		margin-bottom: 4px;
+		margin-bottom: 20px;
 	}
 
 	.calculator_result p {
@@ -209,9 +209,12 @@ get_header(); ?>
 
 <div class="hsi_tpp_calculator">
 	<h1>HSL TPP Calculator</h1>
-	<p>The HSL TPP Calculator helps RMs quickly estimate their TPP income in INR based on a referred client’s tax residency, subscription plan, and deposit amount. Accessible via a direct link, this tool ensures accurate commission projections while remaining hidden from search engines.</p>
+	<p>This calculator helps RMs quickly estimate their TPP income in INR based on a referred client’s tax residency, subscription plan, and deposit amount.</p>
+
 	<div class="calculator">
 		<form id="tppCalculator">
+			<p style="margin-bottom: 20px;">Enter your details and click "Calculate" to see your TPP Income.</p>
+
 			<div class="calculator_input">
 				<label for="residency">Client Tax Residency:</label>
 				<select id="residency" required>
@@ -221,12 +224,12 @@ get_header(); ?>
 				</select>
 			</div>
 
-			<div id="depositField" class="calculator_input">
+			<div id="depositField" class="calculator_input" style="display: none;">
 				<label for="deposit">Deposit Amount ($):</label>
 				<input type="number" id="deposit" min="0" />
 			</div>
 
-			<div class="calculator_input">
+			<div id="planField" class="calculator_input" style="display: none;">
 				<label for="plan">Subscription Plan:</label>
 				<select id="plan" required>
 					<option value="">-- Select --</option>
@@ -238,7 +241,6 @@ get_header(); ?>
 
 		<div class="calculator_result">
 			<h2>Result</h2>
-			<p>Enter your details and click "Calculate" to see your TPP Income.</p>
 			<div class="result">
 				Your TPP Income in INR: <strong id="result">-----</strong>
 			</div>
@@ -250,6 +252,7 @@ get_header(); ?>
 	const residencySelect = document.getElementById('residency');
 	const planSelect = document.getElementById('plan');
 	const depositField = document.getElementById('depositField');
+	const planField = document.getElementById('planField');
 	const depositInput = document.getElementById('deposit');
 	const resultDiv = document.getElementById('result');
 
@@ -268,21 +271,25 @@ get_header(); ?>
 
 	residencySelect.addEventListener('change', () => {
 		const selectedResidency = residencySelect.value;
+
+		// Reset options and input
 		planSelect.innerHTML = '<option value="">-- Select --</option>';
+		planField.style.display = 'none';
+		depositField.style.display = 'none';
+		depositInput.value = '';
 
-		if (selectedResidency === 'RI') {
-			depositField.style.display = 'flex';
-		} else {
-			depositField.style.display = 'none';
-			depositInput.value = '';
+		if (selectedResidency && plans[selectedResidency]) {
+			plans[selectedResidency].forEach(plan => {
+				const option = document.createElement('option');
+				option.value = plan.value;
+				option.textContent = plan.name;
+				planSelect.appendChild(option);
+			});
+			planField.style.display = 'flex';
+			if (selectedResidency === 'RI') {
+				depositField.style.display = 'flex';
+			}
 		}
-
-		plans[selectedResidency]?.forEach(plan => {
-			const option = document.createElement('option');
-			option.value = plan.value;
-			option.textContent = plan.name;
-			planSelect.appendChild(option);
-		});
 	});
 
 	document.getElementById('tppCalculator').addEventListener('submit', (e) => {
@@ -292,7 +299,7 @@ get_header(); ?>
 		const planAmount = parseFloat(planSelect.value);
 		const depositAmount = parseFloat(depositInput.value) || 0;
 
-		if (!planAmount || (residency === 'RI' && isNaN(depositAmount))) {
+		if (!planAmount || (residency === 'RI' && depositField.style.display !== 'none' && isNaN(depositAmount))) {
 			resultDiv.textContent = 'Please fill all fields correctly.';
 			return;
 		}
@@ -305,10 +312,10 @@ get_header(); ?>
 			tppIncome = planAmount * 0.6 * 85;
 		}
 
-		resultDiv.textContent = `INR ${tppIncome.toFixed(2)}`;
+		// Format with commas
+		const formattedIncome = 'INR ' + tppIncome.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		resultDiv.textContent = formattedIncome;
 	});
-
-	// Initial state
-	depositField.style.display = 'none';
 </script>
+
 <?php get_footer(); ?>
