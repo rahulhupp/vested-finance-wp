@@ -336,7 +336,7 @@
     <h3>The Wealth Protector:</h3>
     <p>You balance risk and return with a mix of assets</p>
   </div>
-  <a href="#">
+  <a href="http://app.vestedfinance.com/signup">
     <span>Start Investing</span>
     <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
