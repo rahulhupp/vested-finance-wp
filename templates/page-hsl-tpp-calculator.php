@@ -38,7 +38,7 @@ get_header(); ?>
 		padding: 36px;
 	}
 
-	.calculator__result {
+	.calculator_result {
 		width: 50%;
 		padding: 36px;
 		background-color: #EEF5FC;
@@ -110,7 +110,7 @@ get_header(); ?>
 		transition: all 0.5s ease;
 	}
 
-	.calculator__result h2 {
+	.calculator_result h2 {
 		font-size: 20px;
 		line-height: 22px;
 		font-weight: 600;
@@ -118,11 +118,11 @@ get_header(); ?>
 		margin-bottom: 4px;
 	}
 
-	.calculator__result p {
+	.calculator_result p {
 		font-size: 14px;
 	}
 
-	.calculator__result .result {
+	.calculator_result .result {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -133,7 +133,7 @@ get_header(); ?>
 		padding-bottom: 4px;
 	}
 
-	.calculator__result .result strong {
+	.calculator_result .result strong {
 		font-size: 20px;
 		line-height: 22px;
 		font-weight: 600;
@@ -145,17 +145,17 @@ get_header(); ?>
 			padding: 20px;
 		}
 
-		.calculator__result {
+		.calculator_result {
 			padding: 20px;
 		}
 	}
 
 	@media (max-width: 1023px) {
-		.calculator__result {
+		.calculator_result {
 			width: 40%;
 		}
 
-		.calculator__result .result {
+		.calculator_result .result {
 			flex-wrap: wrap;
 			gap: 10px;
 		}
@@ -183,7 +183,7 @@ get_header(); ?>
 			font-size: 14px;
 			line-height: 1.4;
 		}
-		
+
 		.calculator form {
 			width: 100%;
 		}
@@ -196,7 +196,7 @@ get_header(); ?>
 			max-width: 100%;
 		}
 
-		.calculator__result {
+		.calculator_result {
 			width: 100%;
 		}
 
@@ -236,7 +236,7 @@ get_header(); ?>
 			<button type="submit">Calculate</button>
 		</form>
 
-		<div class="calculator__result">
+		<div class="calculator_result">
 			<h2>Result</h2>
 			<p>Enter your details and click "Calculate" to see your TPP Income.</p>
 			<div class="result">
