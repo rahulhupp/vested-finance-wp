@@ -46,7 +46,7 @@ get_header(); ?>
 	.calculator_input select, .calculator_input select:focus {
 		border-radius: 4px;
 		width: 100%;
-		max-width: 240px;
+		max-width: 260px;
 		border: 1px solid #A9BDD0;
 		background: #fff;
 		color: #1F2937;
@@ -67,7 +67,7 @@ get_header(); ?>
 	.calculator_input input, .calculator_input input:focus {
 		border-radius: 4px;
 		width: 100%;
-		max-width: 240px;
+		max-width: 260px;
 		border: 1px solid #A9BDD0;
 		background: #fff;
 		color: #1F2937;
