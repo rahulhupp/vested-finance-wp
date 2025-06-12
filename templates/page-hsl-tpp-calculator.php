@@ -140,6 +140,24 @@ get_header(); ?>
 		color: #1F2937;
 	}
 
+	.notes {
+		margin-top: 24px;
+	}
+
+	.notes h3 {
+		font-size: 16px;
+		font-weight: 600;
+		margin-bottom: 8px;
+	}
+
+	.notes ul {
+		padding-left: 20px;
+		font-size: 14px;
+		line-height: 1.6;
+		color: #1F2937;
+		margin: 0;
+	}
+
 	@media (max-width: 1199px) {
 		.calculator form {
 			padding: 20px;
@@ -244,7 +262,15 @@ get_header(); ?>
 			<div class="result">
 				Your TPP Income in INR: <strong id="result">-----</strong>
 			</div>
+			<div class="notes">
+				<h3>Please Note:</h3>
+				<ul>
+					<li>The above amount is just the upfront income. In addition, trail income from brokerage will be added on an ongoing basis.</li>
+					<li>TPP credit on deposit is available only if the remittance is done via HDFC bank fund transfer option on the Global Investing platform. Not applicable if the remittance is via HDFC Netbanking, HDFC branch, or via any other banks.</li>
+				</ul>
+			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -269,25 +295,34 @@ get_header(); ?>
 		]
 	};
 
+	function formatNumberWithCommas(num) {
+		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
 	residencySelect.addEventListener('change', () => {
 		const selectedResidency = residencySelect.value;
 
-		// Reset options and input
 		planSelect.innerHTML = '<option value="">-- Select --</option>';
 		planField.style.display = 'none';
 		depositField.style.display = 'none';
 		depositInput.value = '';
 
 		if (selectedResidency && plans[selectedResidency]) {
-			plans[selectedResidency].forEach(plan => {
+			plans[selectedResidency].forEach((plan, index) => {
 				const option = document.createElement('option');
 				option.value = plan.value;
 				option.textContent = plan.name;
 				planSelect.appendChild(option);
 			});
+
+			// Set default plan (Super Gold)
+			planSelect.selectedIndex = plans[selectedResidency].length; // selects last option
+
+			// Show/hide fields
 			planField.style.display = 'flex';
 			if (selectedResidency === 'RI') {
 				depositField.style.display = 'flex';
+				depositInput.value = 10000; // Default deposit amount
 			}
 		}
 	});
@@ -312,10 +347,15 @@ get_header(); ?>
 			tppIncome = planAmount * 0.6 * 85;
 		}
 
-		// Format with commas
-		const formattedIncome = 'INR ' + tppIncome.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		const formattedIncome = 'INR ' + formatNumberWithCommas(Math.round(tppIncome));
 		resultDiv.textContent = formattedIncome;
 	});
+
+	// Optional: Set initial values
+	// You can uncomment these lines to set NRI as default on page load:
+	// residencySelect.value = 'NRI';
+	// residencySelect.dispatchEvent(new Event('change'));
 </script>
+
 
 <?php get_footer(); ?>
