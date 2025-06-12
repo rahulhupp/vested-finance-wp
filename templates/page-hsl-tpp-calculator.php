@@ -265,7 +265,7 @@ get_header(); ?>
 			<div class="notes">
 				<h3>Please Note:</h3>
 				<ul>
-					<li>The above amount is just the upfront income. In addition, trail income from brokerage will be added on an ongoing basis.</li>
+					<li>The above amount is just the upfront income. In addition, trail income from brokerage, future deposits, and other sources will be added on an ongoing basis.</li>
 					<li>TPP credit on deposit is available only if the remittance is done via HDFC bank fund transfer option on the Global Investing platform. Not applicable if the remittance is via HDFC Netbanking, HDFC branch, or via any other banks.</li>
 				</ul>
 			</div>
