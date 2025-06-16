@@ -227,7 +227,7 @@ get_header(); ?>
 
 <div class="hsi_tpp_calculator">
 	<h1>HSL TPP Calculator</h1>
-	<p>This calculator helps RMs quickly estimate their TPP income in INR based on a referred client’s tax residency, subscription plan, and deposit amount.</p>
+	<p>This calculator helps RMs quickly estimate their TPP income in INR based on a referred client's tax residency, subscription plan, and deposit amount.</p>
 
 	<div class="calculator">
 		<form id="tppCalculator">
@@ -242,16 +242,16 @@ get_header(); ?>
 				</select>
 			</div>
 
-			<div id="depositField" class="calculator_input" style="display: none;">
-				<label for="deposit">Deposit Amount ($):</label>
-				<input type="number" id="deposit" min="0" />
-			</div>
-
 			<div id="planField" class="calculator_input" style="display: none;">
 				<label for="plan">Subscription Plan:</label>
 				<select id="plan" required>
 					<option value="">-- Select --</option>
 				</select>
+			</div>
+
+			<div id="depositField" class="calculator_input" style="display: none;">
+				<label for="deposit">Deposit Amount (INR):</label>
+				<input type="number" id="deposit" min="0" />
 			</div>
 
 			<button type="submit">Calculate</button>
@@ -277,8 +277,8 @@ get_header(); ?>
 <script>
 	const residencySelect = document.getElementById('residency');
 	const planSelect = document.getElementById('plan');
+	const planField = document.getElementById('planField') || planSelect.closest('.calculator_input');
 	const depositField = document.getElementById('depositField');
-	const planField = document.getElementById('planField');
 	const depositInput = document.getElementById('deposit');
 	const resultDiv = document.getElementById('result');
 
@@ -302,27 +302,31 @@ get_header(); ?>
 	residencySelect.addEventListener('change', () => {
 		const selectedResidency = residencySelect.value;
 
-		planSelect.innerHTML = '<option value="">-- Select --</option>';
+		planSelect.innerHTML = selectedResidency === 'RI' ? '<option value="0">No subscription (INR 0)</option>' : '';
 		planField.style.display = 'none';
 		depositField.style.display = 'none';
 		depositInput.value = '';
 
 		if (selectedResidency && plans[selectedResidency]) {
-			plans[selectedResidency].forEach((plan, index) => {
+			plans[selectedResidency].forEach((plan) => {
 				const option = document.createElement('option');
 				option.value = plan.value;
 				option.textContent = plan.name;
 				planSelect.appendChild(option);
 			});
 
-			// Set default plan (Super Gold)
-			planSelect.selectedIndex = plans[selectedResidency].length; // selects last option
+			// Set default plan (Super Gold) for both RI and NRI
+			if (selectedResidency === 'RI') {
+				planSelect.selectedIndex = plans[selectedResidency].length; // This will select Super Gold after the "No subscription" option
+			} else {
+				planSelect.selectedIndex = plans[selectedResidency].length - 1; // This will select Super Gold for NRI
+			}
 
-			// Show/hide fields
 			planField.style.display = 'flex';
+
 			if (selectedResidency === 'RI') {
 				depositField.style.display = 'flex';
-				depositInput.value = 10000; // Default deposit amount
+				depositInput.value = 10000;
 			}
 		}
 	});
@@ -331,18 +335,24 @@ get_header(); ?>
 		e.preventDefault();
 
 		const residency = residencySelect.value;
-		const planAmount = parseFloat(planSelect.value);
+		const planAmount = parseFloat(planSelect.value) || 0;
 		const depositAmount = parseFloat(depositInput.value) || 0;
 
-		if (!planAmount || (residency === 'RI' && depositField.style.display !== 'none' && isNaN(depositAmount))) {
+		if (!residency || (residency === 'RI' && isNaN(depositAmount))) {
 			resultDiv.textContent = 'Please fill all fields correctly.';
+			return;
+		}
+
+		// For NRI, plan is required
+		if (residency === 'NRI' && planAmount === 0) {
+			resultDiv.textContent = 'Please select a subscription plan.';
 			return;
 		}
 
 		let tppIncome = 0;
 
 		if (residency === 'RI') {
-			tppIncome = (planAmount * 0.492) + (depositAmount * 0.005 * 85);
+			tppIncome = (planAmount * 0.492) + (depositAmount * 0.005);
 		} else {
 			tppIncome = planAmount * 0.6 * 85;
 		}
@@ -350,12 +360,8 @@ get_header(); ?>
 		const formattedIncome = 'INR ' + formatNumberWithCommas(Math.round(tppIncome));
 		resultDiv.textContent = formattedIncome;
 	});
-
-	// Optional: Set initial values
-	// You can uncomment these lines to set NRI as default on page load:
-	// residencySelect.value = 'NRI';
-	// residencySelect.dispatchEvent(new Event('change'));
 </script>
+
 
 
 <?php get_footer(); ?>
