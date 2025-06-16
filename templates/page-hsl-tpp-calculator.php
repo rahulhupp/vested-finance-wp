@@ -251,7 +251,7 @@ get_header(); ?>
 
 			<div id="depositField" class="calculator_input" style="display: none;">
 				<label for="deposit">Deposit Amount (INR):</label>
-				<input type="number" id="deposit" min="0" />
+				<input type="text" id="deposit" inputmode="numeric" pattern="[0-9,]*" />
 			</div>
 
 			<button type="submit">Calculate</button>
@@ -299,6 +299,19 @@ get_header(); ?>
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
+	function parseNumber(str) {
+		return parseFloat(str.replace(/,/g, '')) || 0;
+	}
+
+	// Format deposit input while typing
+	depositInput.addEventListener('input', () => {
+		const rawValue = depositInput.value.replace(/,/g, '');
+		if (!isNaN(rawValue) && rawValue !== '') {
+			depositInput.value = formatNumberWithCommas(rawValue);
+		}
+	});
+
+
 	residencySelect.addEventListener('change', () => {
 		const selectedResidency = residencySelect.value;
 
@@ -326,7 +339,7 @@ get_header(); ?>
 
 			if (selectedResidency === 'RI') {
 				depositField.style.display = 'flex';
-				depositInput.value = 10000;
+				depositInput.value = formatNumberWithCommas('10000');
 			}
 		}
 	});
@@ -336,7 +349,9 @@ get_header(); ?>
 
 		const residency = residencySelect.value;
 		const planAmount = parseFloat(planSelect.value) || 0;
-		const depositAmount = parseFloat(depositInput.value) || 0;
+		// const depositAmount = parseFloat(depositInput.value) || 0;
+		const depositAmount = parseNumber(depositInput.value);
+
 
 		if (!residency || (residency === 'RI' && isNaN(depositAmount))) {
 			resultDiv.textContent = 'Please fill all fields correctly.';
