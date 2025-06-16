@@ -124,13 +124,13 @@ while (have_posts()) :
                                         if ($vest['risk'] >= 0 && $vest['risk'] <= 2) $riskText = 'Conservative';
                                         elseif ($vest['risk'] == 3) $riskText = 'Moderate';
                                         ?>
-                                        <div class="vest_item">
+                                        <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank" class="vest_item">
                                             <div class="vest_img">
                                                 <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/<?php echo htmlspecialchars($vest['vestId']); ?>.svg" alt="solid-foundations" />
                                             </div>
-                                            <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank" class="vest_name">
+                                            <div class="vest_name">
                                                 <?php echo htmlspecialchars($vest['name']); ?>
-                                            </a>
+                                            </div>
                                             <p><?php echo htmlspecialchars($vest['shortBlurb'] ?? $vest['blurb']); ?></p>
                                             <div class="vest_return">
                                                 <span>1Y Return</span>
@@ -159,7 +159,7 @@ while (have_posts()) :
                                                 <img src="https://d13dxy5z8now6z.cloudfront.net/<?php echo htmlspecialchars($vest['poweredByLogo']); ?>" alt="solid-foundations" />
                                                 <span><?php echo htmlspecialchars($vest['poweredBy']); ?></span>
                                             </div>
-                                        </div>
+                                        </a>
                                         <?php
                                     }
                                 } else {
@@ -183,9 +183,9 @@ while (have_posts()) :
                         <?php
                             // Define the allowed vest IDs
                             $allowed_vest_ids = [
-                                '9aa14eb6-f887-477b-854d-ad091ff13c77',
-                                'ba726e04-051c-4536-8a4d-6b5da0965c39',
-                                'cc19fc6d-883e-42c8-a2ca-479a528e8b8e'
+                                '4b374ef4-3c14-4cc4-9bbe-727215dd1812',
+                                'f2038674-50a7-4a1f-a079-9038a266f6ee',
+                                '20f7bd6c-9b62-476c-9778-4e555e0e8dc6'
                             ];
 
                             if ($vests && is_array($vests)) {
@@ -205,13 +205,13 @@ while (have_posts()) :
                                         if ($vest['risk'] >= 0 && $vest['risk'] <= 2) $riskText = 'Conservative';
                                         elseif ($vest['risk'] == 3) $riskText = 'Moderate';
                                         ?>
-                                        <div class="vest_item">
+                                        <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank" class="vest_item">
                                             <div class="vest_img">
                                                 <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/<?php echo htmlspecialchars($vest['vestId']); ?>.svg" alt="solid-foundations" />
                                             </div>
-                                            <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank" class="vest_name">
+                                            <div class="vest_name">
                                                 <?php echo htmlspecialchars($vest['name']); ?>
-                                            </a>
+                                            </div>
                                             <p><?php echo htmlspecialchars($vest['shortBlurb'] ?? $vest['blurb']); ?></p>
                                             <div class="vest_return">
                                                 <span>1Y Return</span>
@@ -240,7 +240,7 @@ while (have_posts()) :
                                                 <img src="https://d13dxy5z8now6z.cloudfront.net/<?php echo htmlspecialchars($vest['poweredByLogo']); ?>" alt="solid-foundations" />
                                                 <span><?php echo htmlspecialchars($vest['poweredBy']); ?></span>
                                             </div>
-                                        </div>
+                                        </a>
                                         <?php
                                     }
                                 } else {
@@ -327,7 +327,7 @@ while (have_posts()) :
 
         <section class="testimonials_section">
             <div class="container">
-                <h2 class="section_title">Here’s what our customers have to say</h2>
+                <h2 class="section_title">Here's what our customers have to say</h2>
                 <div class="testimonials-wrap">
                     <?php if (have_rows('investors_reviews', 'option')): ?>
                         <div class="testimonials-slider">

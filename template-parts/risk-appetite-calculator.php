@@ -336,7 +336,7 @@
     <h3>The Wealth Protector:</h3>
     <p>You balance risk and return with a mix of assets</p>
   </div>
-  <a href="http://app.vestedfinance.com/signup">
+  <a href="#">
     <span>Start Investing</span>
     <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -360,11 +360,41 @@
   const totalStroke = 440;
 
   const options = [
-    { label: "The Wealth Protector", description: "You prioritize safety and stable returns, avoiding risk.", coreLabel: "Core Portfolio: Conservative", core: 100, thematic: 0 },
-    { label: "", description: "You seek slow, steady growth with limited risk exposure", coreLabel: "Core Portfolio: Conservative", core: 90, thematic: 10 },
-    { label: "The Wealth Protector", description: "You balance risk and return with a mix of assets", coreLabel: "Core Portfolio: Moderate", core: 80, thematic: 20 },
-    { label: "", description: "You are willing to take risks for higher long-term gains", coreLabel: "Core Portfolio: Aggressive", core: 80, thematic: 20 },
-    { label: "", description: "You pursue maximum returns with high-risk investments", coreLabel: "Core Portfolio: Aggressive", core: 70, thematic: 30 },
+    { 
+      label: "The Wealth Protector", 
+      description: "You prioritize safety and stable returns, avoiding risk.", 
+      coreLabel: "Core Portfolio: Conservative", 
+      core: 100, 
+      thematic: 0 
+    },
+    { 
+      label: "", 
+      description: "You seek slow, steady growth with limited risk exposure", 
+      coreLabel: "Core Portfolio: Conservative", 
+      core: 90, 
+      thematic: 10 
+    },
+    { 
+      label: "", 
+      description: "You balance risk and return with a mix of assets", 
+      coreLabel: "Core Portfolio: Moderate", 
+      core: 80, 
+      thematic: 20 
+    },
+    { 
+      label: "", 
+      description: "You are willing to take risks for higher long-term gains", 
+      coreLabel: "Core Portfolio: Aggressive", 
+      core: 80, 
+      thematic: 20 
+    },
+    { 
+      label: "", 
+      description: "You pursue maximum returns with high-risk investments", 
+      coreLabel: "Core Portfolio: Aggressive", 
+      core: 70, 
+      thematic: 30 
+    }
   ];
 
   function updateUI(value) {
