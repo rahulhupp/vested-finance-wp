@@ -1,14 +1,21 @@
 <?php $new_partner = is_page_template('templates/page-new-partner.php'); ?>
+<?php $partner_landing_v3 = is_page_template('templates/page-partner-landing-v3.php'); ?>
 <?php if (have_rows('investors_reviews', 'option')) : ?>
     <section class="investors_sec">
         <div class="container">
 			<?php if ($new_partner) : ?>
 				<h2 class="section_title"><span>Voices of Vested</span></h2>
 				<p class="investor_subtitle">Discover why thousands trust Vested for global investing</p>
+
+			<?php elseif ($partner_landing_v3) : ?>
+				<h2 class="section_title"><span>Trusted by Indians Around the World</span></h2>
+				<p class="investor_subtitle">Don’t just take our word for it — hear from investors who’ve built their global portfolios with Vested.</p>
+
 			<?php else : ?>
 				<h2 class="section_title"><span><?php the_field('investors_title', 'option'); ?></span></h2>
-            	<p class="investor_subtitle"><?php the_field('investors_sub_title', 'option'); ?></p>
+				<p class="investor_subtitle"><?php the_field('investors_sub_title', 'option'); ?></p>
 			<?php endif; ?>
+
             <div class="investors_slider_wrap">
                 <div class="investors_slider">
                     <?php while (have_rows('investors_reviews', 'option')) : the_row(); ?>
@@ -28,7 +35,7 @@
                                             </p>
                                         </div>
                                     </div>
-									<?php if (!$new_partner) : ?>
+									<?php if (!$new_partner && !$partner_landing_v3) : ?>
 										<div class="platform_icon">
 											<a href="<?php the_sub_field('investor_link') ?>" target="_blank">
 												<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/linkedin-icon.webp" alt="Review Platform">
@@ -72,7 +79,7 @@
 				<?php endif; ?>
             </div>
 
-			<?php if (!$new_partner) : ?>
+			<?php if (!$new_partner && !$partner_landing_v3) : ?>
 				<div class="investor_desclaimer">
 					<?php the_field('investors_disclaimer', 'option'); ?>
 				</div>
