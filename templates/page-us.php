@@ -219,6 +219,67 @@ get_header(); ?>
         <?php endif; ?>
     </section>
 
+    <!-- GROWTH SECTION START -->
+    <section id="growth-section" class="growth-section" aria-labelledby="growth-section">
+        <div class="container">
+            <div class="growth-content">
+                <h2><?php echo esc_html( get_field('equity_title') ); ?></h2>
+                <h6><?php echo esc_html( get_field('growth__description') ); ?></h6>
+            </div>
+            <div class="growth-cards">
+                <?php if (have_rows('growth_cards')) : ?>
+                    <?php $i = 1; ?>
+                    <?php while (have_rows('growth_cards')) : the_row(); ?>
+                        <?php
+                            $card_image_id = get_sub_field('card_image');
+                            $card_image_url = wp_get_attachment_image_url($card_image_id, 'full');
+                            $card_image_alt = get_post_meta($card_image_id, '_wp_attachment_image_alt', true);
+
+                            $card_title = get_sub_field('card_title');
+                            $card_heading = get_sub_field('card_heading');
+                            $card_description = get_sub_field('card_description');
+
+                            // Conditional class
+                            $extra_class = '';
+                            if ($i === 1) {
+                                $extra_class = 'first-card';
+                            } elseif ($i === 2) {
+                                $extra_class = 'soft-blue';
+                            }
+                        ?>
+                        <div class="growth-card <?php echo esc_attr($extra_class); ?>">
+                            <div class="card-title">
+                                <a href="#">
+                                    <figure>
+                                        <?php if ($card_image_id) : ?>
+                                            <img src="<?php echo esc_url($card_image_url); ?>" alt="<?php echo esc_attr($card_image_alt); ?>">
+                                        <?php endif; ?>
+                                    </figure>
+                                    <span><?php echo esc_html($card_title); ?></span>
+                                </a>
+                            </div>
+                            <div class="card-text">
+                                <h3><?php echo esc_html($card_heading); ?></h3>
+                                <p><?php echo esc_html($card_description); ?></p>
+                                <?php if (have_rows('card_list')) : ?>
+                                    <ul>
+                                        <?php while (have_rows('card_list')) : the_row(); ?>
+                                            <li><?php the_sub_field('list_item1'); ?></li>
+                                            <li><?php the_sub_field('list_item2'); ?></li>
+                                            <li><?php the_sub_field('list_item3'); ?></li>
+                                        <?php endwhile; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php $i++; ?>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+    <!-- GROWTH SECTION END -->
+
     <?php
     $county_info_section_title = get_field('county_info_section_title');
     $information_cards = get_field('information_cards');
