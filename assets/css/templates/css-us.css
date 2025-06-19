@@ -821,6 +821,10 @@ footer {
   background-color: var(--soft-blue);
 }
 
+.growth-section{
+	margin-bottom: 24px;
+}
+
 @media (max-width:920px) {
   .growth-section {
     padding-block: 50px;
