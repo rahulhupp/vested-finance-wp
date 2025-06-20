@@ -18,7 +18,7 @@ while (have_posts()) :
                         <p><?php the_field('banner_description'); ?></p>
                         <?php if (have_rows('banner_button')) : ?>
                             <?php while (have_rows('banner_button')): the_row(); ?>
-                                <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                                <a class="openInvestPopoverBtn"><?php the_sub_field('banner_button_text'); ?></a>
                             <?php endwhile; ?>
                         <?php endif; ?>
                     </div>
@@ -88,24 +88,30 @@ while (have_posts()) :
             </div>
         </section>
 
-        <div class="invest_section" id="whyvested">
-            <div class="container">
-                <div class="invest_wrapper">
-                    <div class="invest_content">
-                        <h2><?php the_field('invest_title'); ?></h2>
-                        <p><?php the_field('invest_description'); ?></p>
-                        <?php if (have_rows('invest_button')) : ?>
-                            <?php while (have_rows('invest_button')): the_row(); ?>
-                                <a href="<?php the_sub_field('invest_button_link'); ?>"><?php the_sub_field('invest_button_text'); ?></a>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
-                    </div>
-                    <div class="invest_image">
-                        <img src="<?php the_field('invest_image'); ?>" alt="<?php the_field('invest_title'); ?>" />
+        <?php 
+            $invest_title = get_field( "invest_title" );
+            if ($invest_title) {
+        ?>
+            <div class="invest_section" id="whyvested">
+                <div class="container">
+                    <div class="invest_wrapper">
+                        <div class="invest_content">
+                            <h2><?php the_field('invest_title'); ?></h2>
+                            <p><?php the_field('invest_description'); ?></p>
+                            <?php if (have_rows('invest_button')) : ?>
+                                <?php while (have_rows('invest_button')): the_row(); ?>
+                                    <a class="openInvestPopoverBtn"><?php the_sub_field('invest_button_text'); ?></a>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="invest_image">
+                            <img src="<?php the_field('invest_image'); ?>" alt="<?php the_field('invest_title'); ?>" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
+        
 
         <div class="explore_section" id="explore">
             <div class="container">
@@ -133,7 +139,7 @@ while (have_posts()) :
                     </div>
                     <?php if (have_rows('banner_button')) : ?>
                         <?php while (have_rows('banner_button')): the_row(); ?>
-                            <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                            <a class="openInvestPopoverBtn"><?php the_sub_field('banner_button_text'); ?></a>
                         <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
@@ -149,6 +155,7 @@ while (have_posts()) :
                     </div>
                     <div class="global_image">
                         <img src="<?php the_field('global_image'); ?>" />
+                        <p>Disclosure: Stocks shown are representative of our offerings and are not meant to be a recommendation.</p>
                     </div>
                 </div>
             </div>
@@ -233,10 +240,10 @@ while (have_posts()) :
         <section class="security_section" id="safetysecurity">
             <div class="container">
                 <div class="security_wrapper">
-                    <h2><?php the_field('security_title', 'option'); ?></h2>
-                    <?php if (have_rows('security_list', 'option')) : ?>
+                    <h2><?php the_field('security_title'); ?></h2>
+                    <?php if (have_rows('security_list')) : ?>
                         <div class="security_list">
-                            <?php while (have_rows('security_list', 'option')): the_row(); ?>
+                            <?php while (have_rows('security_list')): the_row(); ?>
                                 <div class="security_item">
                                     <img src="<?php the_sub_field('security_list_image'); ?>" alt="<?php the_sub_field('security_title'); ?>" />
                                     <p><?php the_sub_field('security_list_text'); ?></p>
@@ -269,7 +276,7 @@ while (have_posts()) :
                     <?php endif; ?>
                     <?php if (have_rows('banner_button')) : ?>
                         <?php while (have_rows('banner_button')): the_row(); ?>
-                            <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
+                            <a class="openInvestPopoverBtn"><?php the_sub_field('banner_button_text'); ?></a>
                         <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
@@ -298,6 +305,44 @@ while (have_posts()) :
                 </div>
             </section>
         <?php endif; ?>
+
+        <div class="invest_overlay" id="investPopoverOverlay">
+        <div class="invest_popover" id="investPopoverBox">
+            <h2>How do you want to get started?</h2>
+            <p class="subtitle">Let’s help you access exclusive benefits for Akshat’s NRI Community.</p>
+
+            <div class="invest_options">
+                <div class="invest_option" data-value="new" onclick="selectOption(this)">
+                    <div class="invest_option_content">
+                        <span class="invest_option_title">I’m new to Vested</span>
+                        <span class="invest_option_desc">Sign up and build your global portfolio.</span>
+                    </div>
+                    <span class="invest_option_checkmark">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+                <!-- disabled -->
+                <div class="invest_option" data-value="existing" onclick="selectOption(this)">
+                    <div class="invest_option_content">
+                        <span class="invest_option_title">I’m already a Vested user</span>
+                        <span class="invest_option_desc">Unlock special benefits for your account.</span>
+                    </div>
+                    <span class="invest_option_checkmark">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="invest_popover_actions">
+                <button class="btn cancel" onclick="closePopover()">Cancel</button>
+                <button class="btn continue" onclick="handleSubmit()">Continue</button>
+            </div>
+        </div>
+    </div>
     </div>
 <?php
 endwhile;

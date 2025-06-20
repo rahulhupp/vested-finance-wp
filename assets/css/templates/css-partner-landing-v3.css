@@ -650,6 +650,13 @@
   max-width: 539px;
 }
 
+.global_image p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #737373;
+}
+
 .global_content h2 {
   color: #021930;
   font-weight: 700;
@@ -1616,5 +1623,177 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
 
   .faqs_wrapper .single_faq .faq_content p {
     font-size: 14px !important;
+  }
+}
+
+.invest_overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.invest_popover {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 538px;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0px 4px 28px 0px #00000040;
+}
+
+.invest_popover h2 {
+  margin-bottom: 2px;
+  color: #262626;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.invest_popover p.subtitle {
+  color: #737373;
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.invest_option {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.invest_option.selected {
+  border-color: #2563EB;
+  background-color: #EFF6FF;
+}
+
+.invest_option_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.invest_option_title {
+  color: #021930;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.invest_option_desc {
+  color: #737373;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.invest_option_checkmark {
+  visibility: hidden;
+  display: block;
+}
+
+.invest_option.selected .invest_option_checkmark {
+  visibility: visible;
+}
+
+.invest_popover_actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 46px;
+  gap: 16px;
+}
+
+.invest_options {
+  margin-top: 24px;
+}
+
+.invest_popover_actions .btn {
+  width: 176px;
+  height: 48px;
+  border-radius: 6px;
+  border: 1px solid #002852;
+  background-color: #002852;
+  box-shadow: 0px 1px 2px -1px #0000001A;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0;
+}
+
+.invest_popover_actions .btn.cancel {
+  border-color: #E5E9EE;
+  background-color: #fff;
+  color: #002852;
+}
+
+.invest_option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.openInvestPopoverBtn {
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .openInvestPopoverBtn {
+      cursor: pointer;
+  }
+
+  .invest_popover {
+      padding: 20px;
+      max-width: calc(100% - 20px);
+  }
+
+  .invest_popover h2 {
+      font-size: 18px !important;
+      line-height: 1;
+  }
+
+  .invest_popover p.subtitle {
+      font-size: 12px;
+      line-height: 1.4;
+  }
+
+  .invest_options {
+      margin-top: 16px;
+  }
+
+  .invest_option {
+      padding: 10px 14px;
+  }
+
+  .invest_option_title {
+      font-size: 14px;
+      line-height: 1;
+  }
+
+  .invest_option_desc {
+      font-size: 12px;
+  }
+
+  .invest_popover_actions .btn {
+      width: 50%;
+      height: 42px;
+      font-size: 14px;
+  }
+
+  .invest_popover_actions {
+      margin-top: 24px;
   }
 }

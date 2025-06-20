@@ -1,3 +1,5 @@
+
+<?php $partner_landing_v3 = is_page_template('templates/page-partner-landing-v3.php'); ?>
 <header
     class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
     id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
@@ -16,11 +18,19 @@
                                 <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization"
                                     itemscope="itemscope">
                                     <span class="site-logo-img">
-                                        <a href="http://localhost/vestedfinance-testing/"
-                                            class="custom-logo-link" rel="home nofollow"><img
-                                                src="http://localhost/vestedfinance-testing/wp-content/uploads/2023/12/logo-1.svg"
-                                                class="custom-logo" alt="Vested Finance" decoding="async" width="144"
-                                                height="45"></a></span>
+                                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"class="custom-logo-link" rel="home nofollow">
+                                            <?php
+                                                $logo_id = get_theme_mod('custom_logo'); // Gets the logo ID from Astra theme settings
+                                                $logo_url = wp_get_attachment_image_url($logo_id, 'full'); // Get the full image URL
+
+                                                if ($logo_url) {
+                                                    echo '<img src="' . esc_url($logo_url) . '" alt="' . get_bloginfo('name') . '" class="custom-logo">';
+                                                } else {
+                                                    echo '<h1>' . get_bloginfo('name') . '</h1>'; // Fallback to site title if logo not set
+                                                }
+                                            ?>
+                                        </a>
+                                    </span>
                                 </div>
                                 <!-- .site-branding -->
                             </div>
@@ -80,13 +90,17 @@
                             <div class="mobile right-button">
                                 <div class="account-menu">
                                     <ul class="menu-wrapper">
-                                        <li id="menu-item-1152"
-                                            class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                            <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a>
-                                        </li>
-                                        <li id="menu-item-1153"
-                                            class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                            <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a>
+                                        <li id="menu-item-1153" class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                            <?php if (have_rows('banner_button')) : ?>
+                                                <?php while (have_rows('banner_button')): the_row(); ?>
+                                                    <?php if($partner_landing_v3) : ?>
+                                                        <a class="menu-link openInvestPopoverBtn"><?php the_sub_field('banner_button_text'); ?></a>
+                                                    <?php else : ?>
+                                                        <a href="<?php the_sub_field('banner_button_link'); ?>" class="menu-link"><?php the_sub_field('banner_button_text'); ?></a>
+                                                    <?php endif; ?>    
+                                                <?php endwhile; ?>
+                                            <?php endif; ?>
+
                                         </li>
                                     </ul>
                                 </div>
@@ -96,12 +110,17 @@
                     <div class="desktop right-button">
                         <div class="account-menu">
                             <ul class="menu-wrapper">
-                                <li
-                                    class="login-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1152">
-                                    <a href="https://app.vestedfinance.com/login" class="menu-link">Log in</a></li>
-                                <li
-                                    class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
-                                    <a href="https://app.vestedfinance.com/signup" class="menu-link">Sign up</a></li>
+                                <li class="primary-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+                                    <?php if (have_rows('banner_button')) : ?>
+                                        <?php while (have_rows('banner_button')): the_row(); ?>
+                                            <?php if($partner_landing_v3) : ?>
+                                                <a class="menu-link openInvestPopoverBtn"><?php the_sub_field('banner_button_text'); ?></a>
+                                            <?php else : ?>
+                                                <a href="<?php the_sub_field('banner_button_link'); ?>" class="menu-link"><?php the_sub_field('banner_button_text'); ?></a>
+                                            <?php endif; ?>  
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                </li>
                             </ul>
                         </div>
                     </div>
