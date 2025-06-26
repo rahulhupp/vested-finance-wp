@@ -368,32 +368,32 @@
       thematic: 0 
     },
     { 
-      label: "", 
+      label: "The Steady Builder", 
       description: "You seek slow, steady growth with limited risk exposure", 
       coreLabel: "Core Portfolio: Conservative", 
       core: 90, 
       thematic: 10 
     },
     { 
-      label: "", 
+      label: "The Diversified Thinker", 
       description: "You balance risk and return with a mix of assets", 
       coreLabel: "Core Portfolio: Moderate", 
       core: 80, 
       thematic: 20 
     },
     { 
-      label: "", 
+      label: "The Bold Explorer", 
       description: "You are willing to take risks for higher long-term gains", 
-      coreLabel: "Core Portfolio: Aggressive", 
-      core: 80, 
-      thematic: 20 
-    },
-    { 
-      label: "", 
-      description: "You pursue maximum returns with high-risk investments", 
       coreLabel: "Core Portfolio: Aggressive", 
       core: 70, 
       thematic: 30 
+    },
+    { 
+      label: "The Risk Warrior", 
+      description: "You pursue maximum returns with high-risk investments", 
+      coreLabel: "Core Portfolio: Aggressive", 
+      core: 60, 
+      thematic: 40 
     }
   ];
 

@@ -139,20 +139,20 @@ while (have_posts()) :
                                             <div class="vest_metrics">
                                                 <div class="vest_metric vest_metric_half">
                                                     <span>Min. Investment</span>
-                                                    $100
+                                                    $10
                                                 </div>
-                                                <div class="vest_metric vest_metric_half">
+                                                <!-- <div class="vest_metric vest_metric_half">
                                                     <span>Dividend Yield</span>
                                                     $100
-                                                </div>
-                                                <div class="vest_metric">
+                                                </div> -->
+                                                <div class="vest_metric vest_metric_half">
                                                     <span>Annualized Volatility</span>
-                                                    20%
+                                                    <?php echo htmlspecialchars($vest['oneYearVolatility']); ?>
                                                 </div>
-                                                <div class="vest_metric">
+                                                <!-- <div class="vest_metric">
                                                     <span>Allocations</span>
                                                     60% Stocks, 40% Bonds
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="vests_footer">
                                                 <span><?php echo htmlspecialchars($vest['poweredByText']); ?></span>
@@ -220,20 +220,20 @@ while (have_posts()) :
                                             <div class="vest_metrics">
                                                 <div class="vest_metric vest_metric_half">
                                                     <span>Min. Investment</span>
-                                                    $100
+                                                    $10
                                                 </div>
-                                                <div class="vest_metric vest_metric_half">
+                                                <!-- <div class="vest_metric vest_metric_half">
                                                     <span>Dividend Yield</span>
                                                     $100
-                                                </div>
-                                                <div class="vest_metric">
+                                                </div> -->
+                                                <div class="vest_metric vest_metric_half">
                                                     <span>Annualized Volatility</span>
-                                                    20%
+                                                    <?php echo htmlspecialchars($vest['oneYearVolatility']); ?>
                                                 </div>
-                                                <div class="vest_metric">
+                                                <!-- <div class="vest_metric">
                                                     <span>Allocations</span>
                                                     60% Stocks, 40% Bonds
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="vests_footer">
                                                 <span><?php echo htmlspecialchars($vest['poweredByText']); ?></span>
@@ -290,7 +290,7 @@ while (have_posts()) :
                 <div class="metrics_wrapper">
                     <div class="metrics_content">
                         <h2 class="section_title"><?php the_field('metrics_title'); ?></h2>
-                        <?php if (have_rows('metrics_button')) : ?>
+                        <!-- <?php if (have_rows('metrics_button')) : ?>
                             <?php while (have_rows('metrics_button')): the_row(); ?>
                                 <a href="<?php the_sub_field('metrics_button_link'); ?>">
                                     <span><?php the_sub_field('metrics_button_text'); ?></span>
@@ -299,7 +299,7 @@ while (have_posts()) :
                                     </svg>
                                 </a>
                             <?php endwhile; ?>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </div>
                     <div class="metrics_list">
                         <?php if (have_rows('metrics_list')) : ?>
