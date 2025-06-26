@@ -205,7 +205,7 @@ function enqueue_custom_pagination_script()
             var filteredData = [];
             $('.stock-search').attr('autocomplete', 'off');
             var stocksPerPage = $('#list_table').data('post-num') || -1;
-
+            var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
 
             var sortBy = $('#list_table').data('sort-by') || 'market_cap'; // 'market_cap' or 'price'
             var sortOrder = $('#list_table').data('sort-order') || 'asc'; // 'asc' or 'dsc'
@@ -284,6 +284,32 @@ function enqueue_custom_pagination_script()
                                 $('#stock-search').data('type', 'Stocks');
                                 $('.stocks_table_wrap.stocks_table').html('<p>No results found</p>');
                                 $('.skeleton-table').hide();
+                            }
+
+                            if (stockType === 'stocks' || stockType === 'etfs') {
+                                $('.market_table_headings .tabs').hide();
+                                $('p#stocks_count').insertAfter('.market_table_name h3');
+                                $('.market_table_search').addClass('top-0');
+                                if (stockType === 'stocks') {
+                                    $('#etf-table').hide();
+                                    $('#stocks-table').show();
+                                    renderTable(currentPage);
+                                    generatePagination(Math.ceil(allData.length / stocksPerPage), currentPage);
+                                    updateStockCount(allData.length, 'Stocks');
+                                    $('#stock-search').attr('placeholder', 'Search Any Stock');
+                                    $('#stock-search').data('type', 'Stocks');
+                                }
+                                if (stockType === 'etfs') {
+                                    $('#stocks-table').hide();
+                                    $('#etf-table').show();
+                                    renderETFTable(currentPage);
+                                    generatePagination(Math.ceil(etfData.length / stocksPerPage), currentPage);
+                                    updateStockCount(etfData.length, 'ETFs');
+                                    $('#stock-search').attr('placeholder', 'Search Any ETF');
+                                    $('#stock-search').data('type', 'ETFs');
+                                    $('.table_sort_options ul [data-sort="market_cap"]').hide();
+                                    $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+                                }
                             }
                             
                         } else {
@@ -820,7 +846,13 @@ $(document).on('click', '.tabs .tab-button', function(e) {
 });
 
 // On page load
-$(document).ready(function () {
+$(window).on('load', function () {
+    var page_id = '<?php echo get_the_ID(); ?>';
+    var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
+    if (stockType === 'stocks' || stockType === 'etfs') {
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
     console.log('[Page Load] URL tab param:', tabParam);
@@ -843,7 +875,7 @@ $(document).ready(function () {
         } else {
             console.log('[Page Load] No tabs present on this page');
         }
-    }, 500);
+    }, 100);
 });
 
 
