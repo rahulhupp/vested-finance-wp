@@ -875,7 +875,7 @@ $(window).on('load', function () {
         } else {
             console.log('[Page Load] No tabs present on this page');
         }
-    }, 100);
+    }, 500);
 });
 
 
