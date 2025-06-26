@@ -366,7 +366,7 @@
   const options = [
     { 
       label: "The Wealth Protector", 
-      description: "You prioritize safety and stable returns, avoiding risk.", 
+      description: "You prioritize safety and stable returns, avoiding risk", 
       coreLabel: "Core Portfolio: Conservative", 
       core: 100, 
       thematic: 0 
