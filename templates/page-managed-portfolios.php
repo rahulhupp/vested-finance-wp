@@ -98,7 +98,7 @@ while (have_posts()) :
                 <div class="portfolio_wrapper">
                     <h2 class="section_title"><?php the_field('first_vests_title'); ?></h2>
                     <p><?php the_field('first_vests_description'); ?></p>
-                    <div class="vests_list">
+                    <div class="vests_list core_vests_list">
                         <?php
                             // Define the allowed vest IDs
                             $allowed_vest_ids = [
@@ -139,20 +139,20 @@ while (have_posts()) :
                                             <div class="vest_metrics">
                                                 <div class="vest_metric vest_metric_half">
                                                     <span>Min. Investment</span>
-                                                    $100
+                                                    $10
                                                 </div>
-                                                <div class="vest_metric vest_metric_half">
+                                                <!-- <div class="vest_metric vest_metric_half">
                                                     <span>Dividend Yield</span>
                                                     $100
-                                                </div>
-                                                <div class="vest_metric">
+                                                </div> -->
+                                                <div class="vest_metric vest_metric_half">
                                                     <span>Annualized Volatility</span>
-                                                    20%
+                                                    <?php echo htmlspecialchars($vest['oneYearVolatility']); ?>
                                                 </div>
-                                                <div class="vest_metric">
+                                                <!-- <div class="vest_metric">
                                                     <span>Allocations</span>
                                                     60% Stocks, 40% Bonds
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="vests_footer">
                                                 <span><?php echo htmlspecialchars($vest['poweredByText']); ?></span>
@@ -170,6 +170,18 @@ while (have_posts()) :
                             }
                         ?>
                     </div>
+                    <div class="vests_slider_nav">
+                        <div class="core_vests_list_prev">
+                            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.1035 10.0566H1.74131M1.74131 10.0566L10.9639 0.833984M1.74131 10.0566L10.9639 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+                            </svg>
+                        </div>
+                        <div class="core_vests_list_next">
+                            <svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.283203 10.0566H25.6454M25.6454 10.0566L16.4228 0.833984M25.6454 10.0566L16.4228 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -179,7 +191,7 @@ while (have_posts()) :
                 <div class="portfolio_wrapper">
                     <h2 class="section_title"><?php the_field('second_vests_title'); ?></h2>
                     <p><?php the_field('second_vests_description'); ?></p>
-                    <div class="vests_list">
+                    <div class="vests_list thematic_vests_list">
                         <?php
                             // Define the allowed vest IDs
                             $allowed_vest_ids = [
@@ -220,20 +232,20 @@ while (have_posts()) :
                                             <div class="vest_metrics">
                                                 <div class="vest_metric vest_metric_half">
                                                     <span>Min. Investment</span>
-                                                    $100
+                                                    $10
                                                 </div>
-                                                <div class="vest_metric vest_metric_half">
+                                                <!-- <div class="vest_metric vest_metric_half">
                                                     <span>Dividend Yield</span>
                                                     $100
-                                                </div>
-                                                <div class="vest_metric">
+                                                </div> -->
+                                                <div class="vest_metric vest_metric_half">
                                                     <span>Annualized Volatility</span>
-                                                    20%
+                                                    <?php echo htmlspecialchars($vest['oneYearVolatility']); ?>
                                                 </div>
-                                                <div class="vest_metric">
+                                                <!-- <div class="vest_metric">
                                                     <span>Allocations</span>
                                                     60% Stocks, 40% Bonds
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="vests_footer">
                                                 <span><?php echo htmlspecialchars($vest['poweredByText']); ?></span>
@@ -250,6 +262,18 @@ while (have_posts()) :
                                 echo '<p>No vests found.</p>';
                             }
                         ?>
+                    </div>
+                    <div class="vests_slider_nav">
+                        <div class="thematic_vests_list_prev">
+                            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.1035 10.0566H1.74131M1.74131 10.0566L10.9639 0.833984M1.74131 10.0566L10.9639 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+                            </svg>
+                        </div>
+                        <div class="thematic_vests_list_next">
+                            <svg width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.283203 10.0566H25.6454M25.6454 10.0566L16.4228 0.833984M25.6454 10.0566L16.4228 19.2792" stroke="#002852" stroke-opacity="0.6" stroke-width="1.7" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
                 <div class="vests_disclosure"><?php the_field('vests_disclosure'); ?></div>
@@ -290,16 +314,6 @@ while (have_posts()) :
                 <div class="metrics_wrapper">
                     <div class="metrics_content">
                         <h2 class="section_title"><?php the_field('metrics_title'); ?></h2>
-                        <?php if (have_rows('metrics_button')) : ?>
-                            <?php while (have_rows('metrics_button')): the_row(); ?>
-                                <a href="<?php the_sub_field('metrics_button_link'); ?>">
-                                    <span><?php the_sub_field('metrics_button_text'); ?></span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#002852" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
                     </div>
                     <div class="metrics_list">
                         <?php if (have_rows('metrics_list')) : ?>
@@ -311,16 +325,6 @@ while (have_posts()) :
                             <?php endwhile; ?>
                         <?php endif; ?>
                     </div>
-                    <?php if (have_rows('metrics_button')) : ?>
-                        <?php while (have_rows('metrics_button')): the_row(); ?>
-                            <a href="<?php the_sub_field('metrics_button_link'); ?>" class="metrics_button_mobile">
-                                <span><?php the_sub_field('metrics_button_text'); ?></span>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.5 15L12.5 10L7.5 5" stroke="#002852" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
                 </div>
             </div>
         </section>

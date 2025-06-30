@@ -336,12 +336,16 @@
     <h3>The Wealth Protector:</h3>
     <p>You balance risk and return with a mix of assets</p>
   </div>
-  <a href="#">
-    <span>Start Investing</span>
-    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </a>
+  <?php if (have_rows('banner_button')) : ?>
+    <?php while (have_rows('banner_button')): the_row(); ?>
+        <a href="<?php the_sub_field('banner_button_link'); ?>">
+            <span>Start Investing</span>
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    <?php endwhile; ?>
+<?php endif; ?>
 </div>
 
 <div class="calculator_disclosure">
@@ -362,38 +366,38 @@
   const options = [
     { 
       label: "The Wealth Protector", 
-      description: "You prioritize safety and stable returns, avoiding risk.", 
+      description: "You prioritize safety and stable returns, avoiding risk", 
       coreLabel: "Core Portfolio: Conservative", 
       core: 100, 
       thematic: 0 
     },
     { 
-      label: "", 
+      label: "The Steady Builder", 
       description: "You seek slow, steady growth with limited risk exposure", 
       coreLabel: "Core Portfolio: Conservative", 
       core: 90, 
       thematic: 10 
     },
     { 
-      label: "", 
+      label: "The Diversified Thinker", 
       description: "You balance risk and return with a mix of assets", 
       coreLabel: "Core Portfolio: Moderate", 
       core: 80, 
       thematic: 20 
     },
     { 
-      label: "", 
+      label: "The Bold Explorer", 
       description: "You are willing to take risks for higher long-term gains", 
-      coreLabel: "Core Portfolio: Aggressive", 
-      core: 80, 
-      thematic: 20 
-    },
-    { 
-      label: "", 
-      description: "You pursue maximum returns with high-risk investments", 
       coreLabel: "Core Portfolio: Aggressive", 
       core: 70, 
       thematic: 30 
+    },
+    { 
+      label: "The Risk Warrior", 
+      description: "You pursue maximum returns with high-risk investments", 
+      coreLabel: "Core Portfolio: Aggressive", 
+      core: 60, 
+      thematic: 40 
     }
   ];
 
@@ -415,12 +419,16 @@
           <h3>${opt.label || opt.coreLabel}</h3>
           <p>${opt.description}</p>
       </div>
-      <a href="#">
-          <span>Start Investing</span>
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-      </a>
+      <?php if (have_rows('banner_button')) : ?>
+          <?php while (have_rows('banner_button')): the_row(); ?>
+              <a href="<?php the_sub_field('banner_button_link'); ?>">
+                  <span>Start Investing</span>
+                  <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 12.999L7 6.99902L0.999999 0.999023" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              </a>
+          <?php endwhile; ?>
+      <?php endif; ?>
     `;
   }
 

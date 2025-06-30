@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
         }
     ]
   });
-  jQuery(".vests_list").slick({
+  jQuery(".core_vests_list").slick({
     slidesToShow: 3,
     arrows: false,
     infinite: false,
@@ -27,9 +27,32 @@ jQuery(document).ready(function () {
         {
           breakpoint: 767,
           settings: {
-              slidesToShow: 1,
-              autoplay: true,
-              autoplaySpeed: 6000,
+             	slidesToShow: 1,
+              	autoplay: true,
+              	autoplaySpeed: 6000,
+			 	arrows: true,
+			 	prevArrow: jQuery(".core_vests_list_prev"),
+    			nextArrow: jQuery(".core_vests_list_next"),
+          }
+        }
+    ]
+  });
+  jQuery(".thematic_vests_list").slick({
+    slidesToShow: 3,
+    arrows: false,
+    infinite: false,
+    variableWidth: false,
+    dots: false,
+    responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+             	slidesToShow: 1,
+              	autoplay: true,
+              	autoplaySpeed: 6000,
+			 	arrows: true,
+			 	prevArrow: jQuery(".thematic_vests_list_prev"),
+    			nextArrow: jQuery(".thematic_vests_list_next"),
           }
         }
     ]
