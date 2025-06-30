@@ -857,6 +857,10 @@ $(window).on('load', function () {
     const tabParam = urlParams.get('tab');
     console.log('[Page Load] URL tab param:', tabParam);
 
+    if (tabParam === null || tabParam === 'null') {
+        return;
+    }
+
     const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
     const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
 
