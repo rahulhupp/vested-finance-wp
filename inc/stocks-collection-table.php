@@ -260,6 +260,7 @@ function enqueue_custom_pagination_script()
                                 updateStockCount(allData.length, 'Stocks');
                                 $('#stock-search').attr('placeholder', 'Search Any Stock');
                                 $('#stock-search').data('type', 'Stocks');
+                                activateTab('stocks');
                             } else if (etfData.length > 0) {
                                 $('.market_table_headings .tabs').show();
                                 $('#etf-table').show();
@@ -272,6 +273,7 @@ function enqueue_custom_pagination_script()
                                 $('#stock-search').data('type', 'ETFs');
                                 $('.table_sort_options ul [data-sort="market_cap"]').hide();
                                 $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+                                activateTab('etfs');
                             }
 
                             if (allData.length === 0 || etfData.length === 0) {
@@ -849,13 +851,22 @@ $(document).on('click', '.tabs .tab-button', function(e) {
 $(window).on('load', function () {
     var page_id = '<?php echo get_the_ID(); ?>';
     var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
-    if (stockType === 'stocks' || stockType === 'etfs') {
+    var ticker_type = '<?php echo get_field('ticker_list_type', $page_id); ?>';
+    console.log("stockType", stockType, ticker_type);
+    if (ticker_type !== 'manual' && (stockType === 'stocks' || stockType === 'etfs')) {
         return;
     }
 
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
     console.log('[Page Load] URL tab param:', tabParam);
+
+
+
+    if (tabParam === null || tabParam === 'null') {
+        loadStocksData();
+        return;
+    }
 
     const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
     const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
