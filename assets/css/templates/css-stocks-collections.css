@@ -30,6 +30,12 @@
     max-width: 50%;
 }
 
+.banner_img_col img {
+    width: 440px;
+    max-height: 300px;
+    object-fit: contain;
+}
+
 .banner_content_col .small_heading {
     font-size: 17.78px;
     color: #262626;
