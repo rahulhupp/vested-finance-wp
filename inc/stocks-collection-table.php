@@ -229,6 +229,12 @@ function enqueue_custom_pagination_script()
                 },
                 price_change: {
                     order: 'asc'
+                },
+                aum: {
+                    order: 'asc'
+                },
+                expense_ratio: {
+                    order: 'asc'
                 }
             };
 
@@ -273,6 +279,8 @@ function enqueue_custom_pagination_script()
                                 $('#stock-search').data('type', 'ETFs');
                                 $('.table_sort_options ul [data-sort="market_cap"]').hide();
                                 $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+                                $('.table_sort_options ul [data-sort="aum"]').show();
+                                $('.table_sort_options ul [data-sort="expense_ratio"]').show();
                                 activateTab('etfs');
                             }
 
@@ -311,6 +319,8 @@ function enqueue_custom_pagination_script()
                                     $('#stock-search').data('type', 'ETFs');
                                     $('.table_sort_options ul [data-sort="market_cap"]').hide();
                                     $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+                                    $('.table_sort_options ul [data-sort="aum"]').show();
+                                    $('.table_sort_options ul [data-sort="expense_ratio"]').show();
                                 }
                             }
                             
@@ -513,7 +523,7 @@ function enqueue_custom_pagination_script()
                     var stockPriceChange = (stock.price_change == null) ? 'N/A' : (stock.price_change < 0 ? '' : '+') + parseFloat(stock.price_change).toFixed(2) + '%';
 
                     // P/E Ratio formatting
-                    var peRatio = (stock.expense_ratio == null || stock.expense_ratio == 0) ? '-' : parseFloat(stock.expense_ratio).toFixed(2);
+                    var peRatio = (stock.expense_ratio == null || stock.expense_ratio == 0) ? '-' : parseFloat(stock.expense_ratio).toFixed(2) + '%';
 
                     // One Year Return formatting
                     var oneYearReturns = (stock.one_year_returns == null || stock.one_year_returns == 0) ? '-' : parseFloat(stock.one_year_returns).toFixed(2) + '%';
@@ -590,7 +600,6 @@ function enqueue_custom_pagination_script()
                 var sortField = $(this).closest('th').data('sort');
                 var currentOrder = $(this).data('order') || 'asc';
                 var dataType = $('#stock-search').data('type');
-
                 // Reset other sorting fields
                 if (sortField === 'market_cap') {
                     sortingState.peRatio.order = 'asc';
@@ -617,6 +626,14 @@ function enqueue_custom_pagination_script()
                     sortingState.marketCap.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'aum') {
+                    sortingState.expense_ratio.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'expense_ratio') {
+                    sortingState.aum.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 }
 
                 // Toggle the sorting order between 'asc' and 'desc'
@@ -631,7 +648,7 @@ function enqueue_custom_pagination_script()
 
                 dataToSort.sort(function(a, b) {
                     var aValue, bValue;
-
+                    
                     if (sortField === 'market_cap') {
                         aValue = parseMarketCap(a.market_cap);
                         bValue = parseMarketCap(b.market_cap);
@@ -647,6 +664,12 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'price_change') {
                         aValue = parseFloat(a.price_change) || 0;
                         bValue = parseFloat(b.price_change) || 0;
+                    } else if (sortField === 'aum') {
+                        aValue = parseMarketCap(a.aum);
+                        bValue = parseMarketCap(b.aum);
+                    } else if (sortField === 'expense_ratio') {
+                        aValue = parseFloat(a.expense_ratio) || 0;
+                        bValue = parseFloat(b.expense_ratio) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
@@ -719,6 +742,16 @@ function enqueue_custom_pagination_script()
                     sortingState.price.order = 'asc';
                     sortingState.one_year_returns.order = 'asc';
                     sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'aum') {
+                    sortingState.price.order = 'asc';
+                    sortingState.expense_ratio.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
+                } else if (sortField === 'expense_ratio') {
+                    sortingState.price.order = 'asc';
+                    sortingState.aum.order = 'asc';
+                    sortingState.one_year_returns.order = 'asc';
+                    sortingState.cagr_5_year.order = 'asc';
                 }
 
 
@@ -772,6 +805,12 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'price_change') {
                         aValue = parseFloat(a.price_change) || 0;
                         bValue = parseFloat(b.price_change) || 0;
+                    } else if (sortField === 'aum') {
+                        aValue = parseMarketCap(a.aum);
+                        bValue = parseMarketCap(b.aum);
+                    } else if (sortField === 'expense_ratio') {
+                        aValue = parseFloat(a.expense_ratio) || 0;
+                        bValue = parseFloat(b.expense_ratio) || 0;
                     }
 
                     return (currentOrder === 'asc') ? (aValue - bValue) : (bValue - aValue);
@@ -821,6 +860,8 @@ function activateTab(tab) {
         $('#stock-search').attr('placeholder', 'Search Any Stock').data('type', 'Stocks');
         $('.table_sort_options ul [data-sort="market_cap"]').show();
         $('.table_sort_options ul [data-sort="pe_ratio"]').show();
+        $('.table_sort_options ul [data-sort="aum"]').hide();
+        $('.table_sort_options ul [data-sort="expense_ratio"]').hide();
     } else if (tab === 'etfs' && $('.tabs .tab-button[data-target="#tab2"]').length) {
         console.log('[activateTab] Activating ETFs tab');
         $('#etf-table').show();
@@ -832,6 +873,8 @@ function activateTab(tab) {
         $('#stock-search').attr('placeholder', 'Search Any ETF').data('type', 'ETFs');
         $('.table_sort_options ul [data-sort="market_cap"]').hide();
         $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
+        $('.table_sort_options ul [data-sort="aum"]').show();
+        $('.table_sort_options ul [data-sort="expense_ratio"]').show();
     } else {
         console.log('[activateTab] Tab not found or not valid on this page:', tab);
     }
@@ -1127,7 +1170,7 @@ $(window).on('load', function () {
                                     <strong class="stock_change ${changeClass}">${stockPriceChange}</strong>
                                 </td>
                                 <td>${(stock.aum == null || stock.aum == 0) ? '-' : stock.aum}</td> 
-                                <td>${parseFloat(stock.expense_ratio).toFixed(2)}</td>
+                                <td>${parseFloat(stock.expense_ratio).toFixed(2) + '%'}</td>
                                 <td>${oneYearReturns}</td>
                                 <td>${cagr_5_year}</td>
                             </tr>
