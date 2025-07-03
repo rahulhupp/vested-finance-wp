@@ -568,12 +568,14 @@ function autoplay_video_on_single_post() {
             const videos = document.querySelectorAll('video');
 
             videos.forEach(video => {
-                video.muted = true; // Set muted BEFORE play()
+                video.muted = true;
                 video.autoplay = true;
                 video.loop = true;
-                video.removeAttribute('controls');
 
-                // Try to play safely
+                // Set 'controls' to false — might work on some browsers
+                video.removeAttribute('controls');
+                video.controls = false;
+
                 const playPromise = video.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(error => {

@@ -2191,3 +2191,11 @@ a.chapter_back_btn:hover {
 .single-post video, .single-post .wp-video {
   pointer-events: none;
 }
+
+.single-post video::-webkit-media-controls {
+  display: none !important;
+}
+
+.single-post video {
+  pointer-events: none; /* Optional: prevent interaction */
+}
