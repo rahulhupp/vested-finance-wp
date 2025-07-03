@@ -560,3 +560,22 @@ function force_noindex_nofollow_for_us_stock_template($robots_array, $indexable)
     return $robots_array;
 }
 
+function autoplay_video_on_single_post() {
+    if (is_single()) {
+        ?>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.setAttribute('autoplay', '');
+                video.setAttribute('muted', '');
+                video.setAttribute('loop', '');
+                video.removeAttribute('controls');
+                video.play().catch(() => {});
+            });
+        });
+        </script>
+        <?php
+    }
+}
+add_action('wp_footer', 'autoplay_video_on_single_post');
