@@ -2186,3 +2186,8 @@ a.chapter_back_btn:hover {
 		width: 100%;
 	}
 }
+
+
+.single-post video, .single-post .wp-video {
+  pointer-events: none;
+}
