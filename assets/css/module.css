@@ -2192,7 +2192,7 @@ a.chapter_back_btn:hover {
   pointer-events: none;
 }
 
-.single-post video::-webkit-media-controls {
+.single-post video::-webkit-media-controls, .mejs-controls {
   display: none !important;
 }
 
