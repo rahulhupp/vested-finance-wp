@@ -566,12 +566,20 @@ function autoplay_video_on_single_post() {
         <script>
         document.addEventListener('DOMContentLoaded', function () {
             const videos = document.querySelectorAll('video');
+
             videos.forEach(video => {
-                video.setAttribute('autoplay', '');
-                video.setAttribute('muted', '');
-                video.setAttribute('loop', '');
+                video.muted = true; // Set muted BEFORE play()
+                video.autoplay = true;
+                video.loop = true;
                 video.removeAttribute('controls');
-                video.play().catch(() => {});
+
+                // Try to play safely
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.warn('Autoplay blocked:', error);
+                    });
+                }
             });
         });
         </script>
