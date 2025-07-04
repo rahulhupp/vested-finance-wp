@@ -1095,3 +1095,226 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
         padding: 29px 24px 23px !important;
     }
 }
+
+
+.vested_features_section {
+    padding: 70px 0;
+}
+
+.vested_features_wrapper h2 {
+    color: #002852;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.vests_list {
+    margin-top: 32px;
+}
+
+.vest_item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #EEF5FC;
+    padding: 32px;
+    border-radius: 8px;
+}
+
+.vest_item + .vest_item {
+    margin-top: 32px;
+}
+
+.vest_content {
+    width: 49%;
+    padding-right: 27px;
+}
+
+.vest_details {
+    width: 51%;
+}
+
+.vest_content h3 {
+    color: #021930;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 38px;
+    margin-bottom: 12px;
+}
+
+.vest_content p {
+    color: #262626;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    margin: 0;
+}
+
+.vest_details a {
+    background-color: #FFFFFF;
+    display: block;
+    border: 1px solid #E5E9EE;
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.vest_details .vest_img {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.vest_details .vest_name {
+    color: #262626;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 4px;
+}
+
+.vest_details p {
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 16px;
+}
+
+.vest_return {
+    color: #047857;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 38px;
+    margin-bottom: 16px;
+}
+
+.vest_return span {
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+}
+
+.vest_metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.vest_metrics .vest_metric {
+    width: calc(50% - 4px);
+}
+
+.vest_metrics .vest_metric {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.vest_metrics .vest_metric span {
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+}
+
+.vests_footer {
+    border-top: 1px dashed #D1D5DB;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    color: #262626;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    gap: 4px;
+}
+
+.vests_footer img {
+    width: 16px;
+}
+
+.vested_features_button {
+    width: 375px;
+    height: 48px;
+    background-color: #002852;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    box-shadow: 0px 1px 2px -1px #0000001A;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 32px auto 0;
+}
+
+.vested_features_button:hover {
+    color: #fff;
+}
+
+.banner_disclosure {
+    color: #737373;
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 12px;
+    line-height: 1;
+    margin: 24px 0 0;
+}
+
+@media (max-width: 991px) {
+    .vest_content {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .vest_item {
+        padding: 24px;
+    }
+    
+    .vest_content h3 {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    
+    .vest_content p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .vest_details {
+        width: 100%;
+        margin-top: 16px;
+    }
+    .vest_metrics .vest_metric {
+        width: 100%;
+    }
+    
+    .vest_metrics .vest_metric.vest_metric_half {
+        width: calc(50% - 4px);
+    }
+    
+    .vest_details .vest_name {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    
+    .vest_return {
+        font-size: 20px;
+        line-height: 32px;
+    }
+    
+    .partner_hero_content a {
+        width: 100%;
+    }
+    
+    .vested_features_button {
+        width: 100%;
+    }
+}

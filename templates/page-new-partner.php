@@ -14,8 +14,20 @@ while (have_posts()) :
             <div class="container">
                 <div class="partner_hero_wrapper">
                     <div class="partner_hero_content">
-                        <h1><?php the_field('banner_title', 'option'); ?></h1>
-                        <?php if (have_rows('banner_points', 'option')) : ?>
+                        <?php
+                            $banner_title = get_field('banner_title');
+                            if (!$banner_title) {
+                                $banner_title = get_field('banner_title', 'option');
+                            }
+                        ?>
+                        <h1><?php echo esc_html($banner_title); ?></h1>
+                        <?php if (have_rows('banner_points')) : ?>
+                            <ul>
+                                <?php while (have_rows('banner_points')): the_row(); ?>
+                                    <li><?php the_sub_field('banner_point'); ?></li>
+                                <?php endwhile; ?>
+                            </ul>
+                        <?php elseif (have_rows('banner_points', 'option')) : ?>
                             <ul>
                                 <?php while (have_rows('banner_points', 'option')): the_row(); ?>
                                     <li><?php the_sub_field('banner_point'); ?></li>
@@ -26,6 +38,10 @@ while (have_posts()) :
                             <?php while (have_rows('banner_button')): the_row(); ?>
                                 <a href="<?php the_sub_field('banner_button_link'); ?>"><?php the_sub_field('banner_button_text'); ?></a>
                             <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php $banner_disclosure = get_field('banner_disclosure'); ?>
+                        <?php if ($banner_disclosure) : ?>
+                            <p class="banner_disclosure"><?php echo $banner_disclosure; ?></p>
                         <?php endif; ?>
                     </div>
                     <div class="partner_hero_image">
@@ -49,6 +65,35 @@ while (have_posts()) :
                 </div>
             </div>
         </section>
+
+        <?php if (have_rows('vests')) : ?>
+            <section class="vested_features_section">
+                <div class="container">
+                    <div class="vested_features_wrapper">
+                        <h2><?php the_field('vests_title'); ?></h2>
+                        <?php 
+                            // Collect vest IDs from the repeater field
+                            $allowed_vest_ids = array();
+                            while (have_rows('vests')): the_row(); 
+                                $vest_id = get_sub_field('vest_id');
+                                if (!empty($vest_id)) {
+                                    $allowed_vest_ids[] = $vest_id;
+                                }
+                            endwhile;
+
+                            set_query_var('allowed_vest_ids', $allowed_vest_ids);
+                            get_template_part('template-parts/new-partner-vests'); 
+                        ?>
+                        <?php if (have_rows('banner_button')) : ?>
+                            <?php while (have_rows('banner_button')): the_row(); ?>
+                                <a href="<?php the_sub_field('banner_button_link'); ?>" class="vested_features_button">Sign Up to Start Investing</a>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
 
         <section class="services_section" id="whyusstocks">
             <div class="container">
@@ -136,11 +181,19 @@ while (have_posts()) :
 
         <?php get_template_part('template-parts/investors-slider'); ?>
 
-        <?php if (have_rows('pricing_table', 'option')) : ?>
+        <?php
+        $pricing_table_source = null;
+        if (have_rows('pricing_table')) {
+            $pricing_table_source = '';
+        } elseif (have_rows('pricing_table', 'option')) {
+            $pricing_table_source = 'option';
+        }
+        if ($pricing_table_source !== null) :
+        ?>
             <section class="pricing_section" id="pricing">
                 <div class="container">
                     <div class="pricing_wrapper">
-                        <h2><?php the_field('pricing_title', 'option'); ?></h2>
+                        <h2><?php echo esc_html(get_field('pricing_title', $pricing_table_source ?: get_the_ID())); ?></h2>
                         <div class="pricing_table">
                             <table>
                                 <tr>
@@ -148,7 +201,7 @@ while (have_posts()) :
                                     <th>Basic</th>
                                     <th>Premium</th>
                                 </tr>
-                                <?php while (have_rows('pricing_table', 'option')): the_row(); ?>
+                                <?php while (have_rows('pricing_table', $pricing_table_source)) : the_row(); ?>
                                 <?php $basic = get_sub_field('pricing_basic'); ?>
                                 <?php $premium = get_sub_field('pricing_premium'); ?>
                                     <tr>
