@@ -69,7 +69,7 @@
                             <p><?php echo htmlspecialchars($vest['blurb']); ?></p>
                         </div>
                         <div class="vest_details">
-                            <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank">
+                            <a>
                                 <div class="vest_img">
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/<?php echo htmlspecialchars($vest['vestId']); ?>.svg" alt="solid-foundations" />
                                 </div>
