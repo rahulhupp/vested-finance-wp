@@ -560,33 +560,40 @@ function force_noindex_nofollow_for_us_stock_template($robots_array, $indexable)
     return $robots_array;
 }
 
-function autoplay_multiple_videos_on_single_post() {
+function autoplay_videos_on_single_post() {
     if (is_single()) {
         ?>
         <script>
         document.addEventListener('DOMContentLoaded', function () {
             const videos = document.querySelectorAll('video');
 
-            videos.forEach(video => {
-                // Apply safe autoplay settings early
-                video.muted = true;
-                video.autoplay = true;
-                video.loop = true;
-                video.controls = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
 
-                // Wait a bit before playing to avoid race conditions
-                setTimeout(() => {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            console.warn('Autoplay blocked or interrupted:', error);
-                        });
+                    if (entry.isIntersecting) {
+                        video.muted = true;
+                        video.loop = true;
+                        video.controls = false;
+
+                        // Only try to play if not already playing
+                        if (video.paused) {
+                            video.play().catch(err => {
+                                console.warn('Autoplay blocked:', err);
+                            });
+                        }
+                    } else {
+                        video.pause();
                     }
-                }, 300); // You can increase to 500ms if needed
+                });
+            }, {
+                threshold: 0.5 // Play only when 50% is visible
             });
+
+            videos.forEach(video => observer.observe(video));
         });
         </script>
         <?php
     }
 }
-add_action('wp_footer', 'autoplay_multiple_videos_on_single_post');
+add_action('wp_footer', 'autoplay_videos_on_single_post');
