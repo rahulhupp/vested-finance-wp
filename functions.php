@@ -568,20 +568,21 @@ function autoplay_video_on_single_post() {
             const videos = document.querySelectorAll('video');
 
             videos.forEach(video => {
+                // Set autoplay-friendly attributes early
                 video.muted = true;
                 video.autoplay = true;
                 video.loop = true;
+                video.controls = false; // remove UI controls
 
-                // Set 'controls' to false — might work on some browsers
-                video.removeAttribute('controls');
-                video.controls = false;
-
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.warn('Autoplay blocked:', error);
-                    });
-                }
+                // Wait briefly before trying to play
+                setTimeout(() => {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.warn('Autoplay error:', error);
+                        });
+                    }
+                }, 300); // 300ms delay helps bypass race conditions
             });
         });
         </script>
@@ -589,3 +590,4 @@ function autoplay_video_on_single_post() {
     }
 }
 add_action('wp_footer', 'autoplay_video_on_single_post');
+
