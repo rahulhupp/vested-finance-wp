@@ -560,7 +560,7 @@ function force_noindex_nofollow_for_us_stock_template($robots_array, $indexable)
     return $robots_array;
 }
 
-function autoplay_video_on_single_post() {
+function autoplay_multiple_videos_on_single_post() {
     if (is_single()) {
         ?>
         <script>
@@ -568,26 +568,25 @@ function autoplay_video_on_single_post() {
             const videos = document.querySelectorAll('video');
 
             videos.forEach(video => {
-                // Set autoplay-friendly attributes early
+                // Apply safe autoplay settings early
                 video.muted = true;
                 video.autoplay = true;
                 video.loop = true;
-                video.controls = false; // remove UI controls
+                video.controls = false;
 
-                // Wait briefly before trying to play
+                // Wait a bit before playing to avoid race conditions
                 setTimeout(() => {
                     const playPromise = video.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(error => {
-                            console.warn('Autoplay error:', error);
+                            console.warn('Autoplay blocked or interrupted:', error);
                         });
                     }
-                }, 300); // 300ms delay helps bypass race conditions
+                }, 300); // You can increase to 500ms if needed
             });
         });
         </script>
         <?php
     }
 }
-add_action('wp_footer', 'autoplay_video_on_single_post');
-
+add_action('wp_footer', 'autoplay_multiple_videos_on_single_post');
