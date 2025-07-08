@@ -103,12 +103,6 @@ function check_ipo_has_full_data($ipo_id) {
                 </div>
             <?php endif; ?>
         </div>
-
-        <div class="ipo-debug-info">
-            <h3>Debug Information</h3>
-            <p><strong>Database Table:</strong> <?php echo $table_name; ?></p>
-            <p><strong>Total Records:</strong> <?php echo $wpdb->get_var("SELECT COUNT(*) FROM $table_name"); ?></p>
-        </div>
     </div>
 </div>
 
