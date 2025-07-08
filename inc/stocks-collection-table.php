@@ -18,6 +18,16 @@ function fetch_stocks_data()
         $total_stocks_display = 20;
     }
     $table_name = $wpdb->prefix . 'stocks_list_details';
+    
+    // Check if the table exists before trying to query it
+    $table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name;
+    if (!$table_exists) {
+        wp_send_json_success([
+            'all_data' => [],
+            'etf_data' => []
+        ]);
+        return;
+    }
 
     if ($ticker_type === 'manual') {
         $stocks_list = get_field('stock_symbols', $page_id); // acf field
@@ -207,9 +217,12 @@ function enqueue_custom_pagination_script()
             var stocksPerPage = $('#list_table').data('post-num') || -1;
             var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
 
-            var sortBy = $('#list_table').data('sort-by') || 'market_cap'; // 'market_cap' or 'price'
-            var sortOrder = $('#list_table').data('sort-order') || 'asc'; // 'asc' or 'dsc'
-
+            // Get separate sorting values for stocks and ETFs
+            var stocksSortBy = $('#list_table').data('stocks-sort-by') || 'market_cap';
+            var stocksSortOrder = $('#list_table').data('stocks-sort-order') || 'asc';
+            var etfsSortBy = $('#list_table').data('etfs-sort-by') || 'aum';
+            var etfsSortOrder = $('#list_table').data('etfs-sort-order') || 'asc';
+            
             // Sorting state
             var sortingState = {
                 marketCap: {
@@ -254,7 +267,7 @@ function enqueue_custom_pagination_script()
                             allData = response.data.all_data;
                             etfData = response.data.etf_data;
 
-                            // Apply default sorting based on ACF fields
+                            // Apply default sorting based on separate ACF fields
                             applyDefaultSort();
                             if (allData.length > 0) {
                                 $('.market_table_headings .tabs').show();
@@ -321,9 +334,26 @@ function enqueue_custom_pagination_script()
                                     $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
                                     $('.table_sort_options ul [data-sort="aum"]').show();
                                     $('.table_sort_options ul [data-sort="expense_ratio"]').show();
+                                    setActiveSortOption(); // Update active sort option for ETFs
                                 }
                             }
                             
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const tabParam = urlParams.get('tab');
+                            const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
+                            const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
+
+                            if (tabParam === 'etfs' && hasETFsTab) {
+                                activateTab('etfs');
+                            } else if (tabParam === 'stocks' && hasStocksTab) {
+                                activateTab('stocks');
+                            } else if (hasStocksTab && hasETFsTab) {
+                                activateTab('stocks'); // default
+                            } else if (hasStocksTab) {
+                                activateTab('stocks');
+                            } else if (hasETFsTab) {
+                                activateTab('etfs');
+                            }
                         } else {
                             $('#stocks-table tbody').html('<tr><td colspan="6">Error loading data</td></tr>');
                             $('.skeleton-table').hide();
@@ -340,59 +370,74 @@ function enqueue_custom_pagination_script()
                 }
             }
 
-            // Default sorting logic based on ACF fields
+            // Default sorting logic based on separate ACF fields for stocks and ETFs
             function applyDefaultSort() {
+                
+                // Sort stocks data using stocks-specific ACF fields
                 allData.sort(function(a, b) {
                     var valueA = 0,
                         valueB = 0;
-                    // Sorting by 'market_cap' or 'price' based on the ACF value
-                    if (sortBy === 'market_cap') {
+                    // Sorting by stocks-specific field
+                    if (stocksSortBy === 'market_cap') {
                         valueA = a.market_cap ? parseFloat(a.market_cap.replace(/,/g, '')) : 0;
                         valueB = b.market_cap ? parseFloat(b.market_cap.replace(/,/g, '')) : 0;
-                    } else if (sortBy === 'price') {
+                    } else if (stocksSortBy === 'price') {
                         valueA = a.price ? parseFloat(a.price) : 0;
                         valueB = b.price ? parseFloat(b.price) : 0;
-                    } else if (sortBy === 'price_change') {
-                        valueA = a.price_change ? parseFloat(a.price_change) : 0;
-                        valueB = b.price_change ? parseFloat(b.price_change) : 0;
-                    } else if (sortBy === 'one_year_returns') {
+                    } else if (stocksSortBy === 'pe_ratio') {
+                        valueA = a.pe_ratio ? parseFloat(a.pe_ratio) : 0;
+                        valueB = b.pe_ratio ? parseFloat(b.pe_ratio) : 0;
+                    } else if (stocksSortBy === 'one_year_returns') {
                         valueA = a.one_year_returns ? parseFloat(a.one_year_returns) : 0;
                         valueB = b.one_year_returns ? parseFloat(b.one_year_returns) : 0;
-                    } else if (sortBy === 'cagr_5_year') {
+                    } else if (stocksSortBy === 'cagr_5_year') {
                         valueA = a.cagr_5_year ? parseFloat(a.cagr_5_year) : 0;
                         valueB = b.cagr_5_year ? parseFloat(b.cagr_5_year) : 0;
+                    } else if (stocksSortBy === 'price_change') {
+                        valueA = a.price_change ? parseFloat(a.price_change) : 0;
+                        valueB = b.price_change ? parseFloat(b.price_change) : 0;
                     }
 
-                    // Sort ascending or descending based on the ACF 'sort_order'
-                    if (sortOrder === 'asc') {
+                    // Sort ascending or descending based on the stocks ACF 'sort_order'
+                    if (stocksSortOrder === 'asc') {
                         return valueA - valueB;
                     } else {
                         return valueB - valueA;
                     }
                 });
+                
+                // Sort ETFs data using ETFs-specific ACF fields
                 etfData.sort(function(a, b) {
                     var valueA = 0,
                         valueB = 0;
-                    // Sorting by 'market_cap' or 'price' based on the ACF value
-                    if (sortBy === 'market_cap') {
-                        valueA = a.market_cap ? parseFloat(a.market_cap.replace(/,/g, '')) : 0;
-                        valueB = b.market_cap ? parseFloat(b.market_cap.replace(/,/g, '')) : 0;
-                    } else if (sortBy === 'price') {
-                        valueA = a.price ? parseFloat(a.price) : 0;
-                        valueB = b.price ? parseFloat(b.price) : 0;
-                    } else if (sortBy === 'price_change') {
-                        valueA = a.price_change ? parseFloat(a.price_change) : 0;
-                        valueB = b.price_change ? parseFloat(b.price_change) : 0;
-                    } else if (sortBy === 'one_year_returns') {
+                    // Sorting by ETFs-specific field - only use fields that exist in ETF data
+                    if (etfsSortBy === 'aum') {
+                        // Handle different AUM formats
+                        valueA = parseAUMValue(a.aum);
+                        valueB = parseAUMValue(b.aum);
+                    } else if (etfsSortBy === 'expense_ratio') {
+                        valueA = a.expense_ratio ? parseFloat(a.expense_ratio) : 0;
+                        valueB = b.expense_ratio ? parseFloat(b.expense_ratio) : 0;
+                    } else if (etfsSortBy === 'one_year_returns') {
                         valueA = a.one_year_returns ? parseFloat(a.one_year_returns) : 0;
                         valueB = b.one_year_returns ? parseFloat(b.one_year_returns) : 0;
-                    } else if (sortBy === 'cagr_5_year') {
+                    } else if (etfsSortBy === 'cagr_5_year') {
                         valueA = a.cagr_5_year ? parseFloat(a.cagr_5_year) : 0;
                         valueB = b.cagr_5_year ? parseFloat(b.cagr_5_year) : 0;
+                    } else if (etfsSortBy === 'price_change') {
+                        valueA = a.price_change ? parseFloat(a.price_change) : 0;
+                        valueB = b.price_change ? parseFloat(b.price_change) : 0;
+                    } else if (etfsSortBy === 'price') {
+                        valueA = a.price ? parseFloat(a.price) : 0;
+                        valueB = b.price ? parseFloat(b.price) : 0;
+                    } else {
+                        // Default to AUM if field doesn't exist
+                        valueA = a.aum ? parseFloat(a.aum.replace(/,/g, '')) : 0;
+                        valueB = b.aum ? parseFloat(b.aum.replace(/,/g, '')) : 0;
                     }
 
-                    // Sort ascending or descending based on the ACF 'sort_order'
-                    if (sortOrder === 'asc') {
+                    // Sort ascending or descending based on the ETFs ACF 'sort_order'
+                    if (etfsSortOrder === 'asc') {
                         return valueA - valueB;
                     } else {
                         return valueB - valueA;
@@ -593,6 +638,32 @@ function enqueue_custom_pagination_script()
                 return parseFloat(value) || 0;
             }
 
+            function parseAUMValue(value) {
+                // Handle null, undefined, or dash values
+                if (!value || value === '-' || value === 'N/A' || value === '') {
+                    return -1; // Use -1 to sort dash values at the end
+                }
+                
+                if (typeof value === 'string') {
+                    // Remove $ and commas first
+                    let cleanValue = value.replace(/[$,]/g, '');
+                    let numericValue = parseFloat(cleanValue);
+
+                    if (value.includes('T')) {
+                        return numericValue * 1_000_000_000_000;
+                    } else if (value.includes('B')) {
+                        return numericValue * 1_000_000_000;
+                    } else if (value.includes('M')) {
+                        return numericValue * 1_000_000;
+                    } else if (value.includes('K')) {
+                        return numericValue * 1_000;
+                                    } else {
+                    return numericValue;
+                }
+            }
+            return parseFloat(value) || -1;
+        }
+
             var dataType = $('#stock-search').data('type');
             var filteredData = dataType === 'Stocks' ? allData : etfData;
 
@@ -666,8 +737,8 @@ function enqueue_custom_pagination_script()
                         aValue = parseFloat(a.price_change) || 0;
                         bValue = parseFloat(b.price_change) || 0;
                     } else if (sortField === 'aum') {
-                        aValue = parseMarketCap(a.aum);
-                        bValue = parseMarketCap(b.aum);
+                        aValue = parseAUMValue(a.aum);
+                        bValue = parseAUMValue(b.aum);
                     } else if (sortField === 'expense_ratio') {
                         aValue = parseFloat(a.expense_ratio) || 0;
                         bValue = parseFloat(b.expense_ratio) || 0;
@@ -688,17 +759,43 @@ function enqueue_custom_pagination_script()
 
 
 
-            if ($('.explore_market_leaders').data('sort-by') == 'price_change') {
-                $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
-            } else if ($('.explore_market_leaders').data('sort-by') == 'market_cap') {
-                $('.table_sort_options ul li[data-sort="market_cap"]').addClass('active');
-            } else if ($('.explore_market_leaders').data('sort-by') == 'one_year_returns') {
-                $('.table_sort_options ul li[data-sort="one_year_returns"]').addClass('active');
-            } else if ($('.explore_market_leaders').data('sort-by') == 'cagr_5_year') {
-                $('.table_sort_options ul li[data-sort="cagr_5_year"]').addClass('active');
-            } else {
-                $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
+            // Set active state based on current data type and sort field
+            function setActiveSortOption() {
+                var dataType = $('#stock-search').data('type');
+                var currentSortBy = dataType === 'Stocks' ? stocksSortBy : etfsSortBy;
+                
+                // Remove all active classes first
+                $('.table_sort_options ul li').removeClass('active');
+                
+                // Add active class based on current sort field
+                if (currentSortBy === 'price_change') {
+                    $('.table_sort_options ul li[data-sort="price_change"]').addClass('active');
+                } else if (currentSortBy === 'market_cap') {
+                    $('.table_sort_options ul li[data-sort="market_cap"]').addClass('active');
+                } else if (currentSortBy === 'one_year_returns') {
+                    $('.table_sort_options ul li[data-sort="one_year_returns"]').addClass('active');
+                } else if (currentSortBy === 'cagr_5_year') {
+                    $('.table_sort_options ul li[data-sort="cagr_5_year"]').addClass('active');
+                } else if (currentSortBy === 'pe_ratio') {
+                    $('.table_sort_options ul li[data-sort="pe_ratio"]').addClass('active');
+                } else if (currentSortBy === 'aum') {
+                    $('.table_sort_options ul li[data-sort="aum"]').addClass('active');
+                } else if (currentSortBy === 'expense_ratio') {
+                    $('.table_sort_options ul li[data-sort="expense_ratio"]').addClass('active');
+                } else if (currentSortBy === 'price') {
+                    $('.table_sort_options ul li[data-sort="price"]').addClass('active');
+                } else {
+                    // Default fallback based on data type
+                    if (dataType === 'Stocks') {
+                        $('.table_sort_options ul li[data-sort="market_cap"]').addClass('active');
+                    } else {
+                        $('.table_sort_options ul li[data-sort="aum"]').addClass('active');
+                    }
+                }
             }
+            
+            // Call this function after data loads
+            setActiveSortOption();
 
             $('.table_sort_options ul li').click(function() {
                 var sortField = $(this).data('sort');
@@ -797,18 +894,18 @@ function enqueue_custom_pagination_script()
                     } else if (sortField === 'price') {
                         aValue = parseFloat(a.price) || 0;
                         bValue = parseFloat(b.price) || 0;
+                    } else if (sortField === 'price_change') {
+                        aValue = parseFloat(a.price_change) || 0;
+                        bValue = parseFloat(b.price_change) || 0;
                     } else if (sortField === 'one_year_returns') {
                         aValue = parseFloat(a.one_year_returns) || 0;
                         bValue = parseFloat(b.one_year_returns) || 0;
                     } else if (sortField === 'cagr_5_year') {
                         aValue = parseFloat(a.cagr_5_year) || 0;
                         bValue = parseFloat(b.cagr_5_year) || 0;
-                    } else if (sortField === 'price_change') {
-                        aValue = parseFloat(a.price_change) || 0;
-                        bValue = parseFloat(b.price_change) || 0;
                     } else if (sortField === 'aum') {
-                        aValue = parseMarketCap(a.aum);
-                        bValue = parseMarketCap(b.aum);
+                        aValue = parseAUMValue(a.aum);
+                        bValue = parseAUMValue(b.aum);
                     } else if (sortField === 'expense_ratio') {
                         aValue = parseFloat(a.expense_ratio) || 0;
                         bValue = parseFloat(b.expense_ratio) || 0;
@@ -839,19 +936,15 @@ function enqueue_custom_pagination_script()
     const url = new URL(window.location);
     url.searchParams.set('tab', tabName);
     window.history.pushState({}, '', url);
-    console.log('[setTabInURL] URL updated to:', url.toString());
 }
 
 function activateTab(tab) {
-    console.log('[activateTab] Requested tab:', tab);
-
     currentPage = 1;
     $('#stock-search').val('');
     $('.tabs .tab-button').removeClass('active');
     $('#stocks-table, #etf-table').hide(); // hide both first
 
     if (tab === 'stocks' && $('.tabs .tab-button[data-target="#tab1"]').length) {
-        console.log('[activateTab] Activating Stocks tab');
         $('#stocks-table').show();
         $('.tabs .tab-button[data-target="#tab1"]').addClass('active');
         filteredData = allData;
@@ -863,8 +956,8 @@ function activateTab(tab) {
         $('.table_sort_options ul [data-sort="pe_ratio"]').show();
         $('.table_sort_options ul [data-sort="aum"]').hide();
         $('.table_sort_options ul [data-sort="expense_ratio"]').hide();
+        setActiveSortOption(); // Update active sort option for stocks
     } else if (tab === 'etfs' && $('.tabs .tab-button[data-target="#tab2"]').length) {
-        console.log('[activateTab] Activating ETFs tab');
         $('#etf-table').show();
         $('.tabs .tab-button[data-target="#tab2"]').addClass('active');
         filteredData = etfData;
@@ -876,8 +969,7 @@ function activateTab(tab) {
         $('.table_sort_options ul [data-sort="pe_ratio"]').hide();
         $('.table_sort_options ul [data-sort="aum"]').show();
         $('.table_sort_options ul [data-sort="expense_ratio"]').show();
-    } else {
-        console.log('[activateTab] Tab not found or not valid on this page:', tab);
+        setActiveSortOption(); // Update active sort option for ETFs
     }
 }
 
@@ -886,7 +978,6 @@ $(document).on('click', '.tabs .tab-button', function(e) {
     e.preventDefault();
     const target = $(this).data('target');
     const tabName = target === '#tab1' ? 'stocks' : 'etfs';
-    console.log('[Click Event] Tab button clicked:', tabName);
     setTabInURL(tabName);
     activateTab(tabName);
 });
@@ -896,41 +987,32 @@ $(window).on('load', function () {
     var page_id = '<?php echo get_the_ID(); ?>';
     var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
     var ticker_type = '<?php echo get_field('ticker_list_type', $page_id); ?>';
-    console.log("stockType", stockType, ticker_type);
     if (ticker_type !== 'manual' && (stockType === 'stocks' || stockType === 'etfs')) {
         return;
     }
 
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
-    console.log('[Page Load] URL tab param:', tabParam);
-
-
-
-    if (tabParam === null || tabParam === 'null') {
-        loadStocksData();
-        return;
-    }
-
     const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
     const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
 
-    console.log('[Page Load] Stocks Tab Exists:', hasStocksTab, '| ETFs Tab Exists:', hasETFsTab);
-    setTimeout(function () {
-        if (tabParam === 'etfs' && hasETFsTab) {
-            activateTab('etfs');
-        } else if (tabParam === 'stocks' && hasStocksTab) {
-            activateTab('stocks');
-        } else if (hasStocksTab && hasETFsTab) {
-            activateTab('stocks'); // default
-        } else if (hasStocksTab) {
-            activateTab('stocks');
-        } else if (hasETFsTab) {
-            activateTab('etfs');
-        } else {
-            console.log('[Page Load] No tabs present on this page');
-        }
-    }, 500);
+    if (tabParam === 'etfs' && hasETFsTab) {
+        activateTab('etfs');
+    } else if (tabParam === 'stocks' && hasStocksTab) {
+        activateTab('stocks');
+    } else if (hasStocksTab && hasETFsTab) {
+        activateTab('stocks'); // default
+    } else if (hasStocksTab) {
+        activateTab('stocks');
+    } else if (hasETFsTab) {
+        activateTab('etfs');
+    }
+
+    console.log('etfData:', etfData.length);
+    console.log('Stocks Tab:', $('.tabs .tab-button[data-target="#tab1"]').length);
+    console.log('ETFs Tab:', $('.tabs .tab-button[data-target="#tab2"]').length);
+
+    $('#etf-table').is(':visible')
 });
 
 

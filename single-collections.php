@@ -6,18 +6,33 @@ while (have_posts()) :
     the_post();
     $featured_image_url = get_the_post_thumbnail_url();
     $ticker_selected = get_field('ticker_list_type');
-    $sortByField = get_field('sort_by');
-    $sortOrderField = get_field('sort_order');
-    $sortBy = isset($sortByField['value']) ? $sortByField['value'] : '';
-    $sortOrder = isset($sortOrderField['value']) ? $sortOrderField['value'] : '';
+    
+    // Get separate sorting fields for stocks and ETFs
+    $stocksSortByField = get_field('stocks_sort_by');
+    $stocksSortOrderField = get_field('stocks_sort_order');
+    $etfsSortByField = get_field('etfs_sort_by');
+    $etfsSortOrderField = get_field('etfs_sort_order');
+    
+
+    
+    // Set default values for stocks
+    $stocksSortBy = isset($stocksSortByField['value']) ? $stocksSortByField['value'] : 'market_cap';
+    $stocksSortOrder = isset($stocksSortOrderField['value']) ? $stocksSortOrderField['value'] : 'asc';
+    
+    // Set default values for ETFs - handle both array and direct value formats
+    $etfsSortBy = is_array($etfsSortByField) ? (isset($etfsSortByField['value']) ? $etfsSortByField['value'] : 'aum') : $etfsSortByField;
+    $etfsSortOrder = is_array($etfsSortOrderField) ? (isset($etfsSortOrderField['value']) ? $etfsSortOrderField['value'] : 'asc') : $etfsSortOrderField;
+    
     preload_image($featured_image_url);
     if ($ticker_selected === 'manual') {
     } elseif ($ticker_selected === 'algorithm') {
         $algorithmSelected = get_field('algorithm_select');
 
         if ($algorithmSelected === 'megaCap' || $algorithmSelected === 'largeCap' || $algorithmSelected === 'midCap' || $algorithmSelected === 'smallCap' || $algorithmSelected === 'microCap') {
-            $sortBy = 'market_cap';
-            $sortOrder = 'dsc';
+            $stocksSortBy = 'market_cap';
+            $stocksSortOrder = 'dsc';
+            $etfsSortBy = 'aum';
+            $etfsSortOrder = 'dsc';
         }
     }
 ?>
@@ -43,7 +58,13 @@ while (have_posts()) :
             </div>
         </div>
     </div>
-    <div class="explore_market_leaders" id="list_table" data-sort-by="<?php echo esc_attr($sortBy); ?>" data-sort-order="<?php echo esc_attr($sortOrder); ?>" data-post-num="<?php the_field('no_of_stocks_to_display'); ?>">
+
+    <div class="explore_market_leaders" id="list_table" 
+         data-stocks-sort-by="<?php echo esc_attr($stocksSortBy); ?>" 
+         data-stocks-sort-order="<?php echo esc_attr($stocksSortOrder); ?>"
+         data-etfs-sort-by="<?php echo esc_attr($etfsSortBy); ?>" 
+         data-etfs-sort-order="<?php echo esc_attr($etfsSortOrder); ?>"
+         data-post-num="<?php the_field('no_of_stocks_to_display'); ?>">
         <div class="container">
             <div class="market_leaders_row">
                 <div class="market_leaders_col">
