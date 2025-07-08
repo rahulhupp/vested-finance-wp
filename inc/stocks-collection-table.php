@@ -297,7 +297,8 @@ function enqueue_custom_pagination_script()
                                 activateTab('etfs');
                             }
 
-                            if (allData.length === 0 || etfData.length === 0) {
+                            // Hide tabs only when we have only one type of data (stocks only or ETFs only)
+                            if ((allData.length > 0 && etfData.length === 0) || (allData.length === 0 && etfData.length > 0)) {
                                 $('.market_table_headings .tabs').hide();
                                 $('p#stocks_count').insertAfter('.market_table_name h3');
                                 $('.market_table_search').addClass('top-0');
@@ -309,7 +310,9 @@ function enqueue_custom_pagination_script()
                                 $('.skeleton-table').hide();
                             }
 
-                            if (stockType === 'stocks' || stockType === 'etfs') {
+                            // Only apply stockType logic if it's explicitly set and we have both types of data
+                            // Otherwise, let the data-driven logic handle the display
+                            if (stockType && (stockType === 'stocks' || stockType === 'etfs') && allData.length > 0 && etfData.length > 0) {
                                 $('.market_table_headings .tabs').hide();
                                 $('p#stocks_count').insertAfter('.market_table_name h3');
                                 $('.market_table_search').addClass('top-0');
@@ -338,10 +341,10 @@ function enqueue_custom_pagination_script()
                                 }
                             }
                             
-                            const urlParams = new URLSearchParams(window.location.search);
-                            const tabParam = urlParams.get('tab');
-                            const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
-                            const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
+                            // Handle URL parameters after data is loaded
+                            const tabParam = window.initialTabParam;
+                            const hasStocksTab = allData.length > 0;
+                            const hasETFsTab = etfData.length > 0;
 
                             if (tabParam === 'etfs' && hasETFsTab) {
                                 activateTab('etfs');
@@ -982,37 +985,23 @@ $(document).on('click', '.tabs .tab-button', function(e) {
     activateTab(tabName);
 });
 
-// On page load
+// On page load - only handle URL parameters, let data loading handle the rest
 $(window).on('load', function () {
     var page_id = '<?php echo get_the_ID(); ?>';
     var stockType = '<?php echo get_field('select_stock_type', $page_id); ?>';
     var ticker_type = '<?php echo get_field('ticker_list_type', $page_id); ?>';
-    if (ticker_type !== 'manual' && (stockType === 'stocks' || stockType === 'etfs')) {
+    
+    // Only apply stockType logic if it's explicitly set and we're not using manual ticker selection
+    if (ticker_type !== 'manual' && stockType && (stockType === 'stocks' || stockType === 'etfs')) {
         return;
     }
 
+    // Store URL parameters for use after data loads
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
-    const hasStocksTab = $('.tabs .tab-button[data-target="#tab1"]').length > 0;
-    const hasETFsTab = $('.tabs .tab-button[data-target="#tab2"]').length > 0;
-
-    if (tabParam === 'etfs' && hasETFsTab) {
-        activateTab('etfs');
-    } else if (tabParam === 'stocks' && hasStocksTab) {
-        activateTab('stocks');
-    } else if (hasStocksTab && hasETFsTab) {
-        activateTab('stocks'); // default
-    } else if (hasStocksTab) {
-        activateTab('stocks');
-    } else if (hasETFsTab) {
-        activateTab('etfs');
-    }
-
-    console.log('etfData:', etfData.length);
-    console.log('Stocks Tab:', $('.tabs .tab-button[data-target="#tab1"]').length);
-    console.log('ETFs Tab:', $('.tabs .tab-button[data-target="#tab2"]').length);
-
-    $('#etf-table').is(':visible')
+    
+    // Store the tab parameter globally so it can be used after data loads
+    window.initialTabParam = tabParam;
 });
 
 
