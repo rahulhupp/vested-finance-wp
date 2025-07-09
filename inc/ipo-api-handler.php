@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 // API Configuration
-define('IPO_API_INVESTOR_ID', '91efb49e-f1bb-4d81-af98-20d1afac5e74'); // Static investor ID
+define('IPO_API_INVESTOR_ID', 'a0147241-64d9-41e9-875c-b67dd7cf07ab'); // Static investor ID
 /**
  * Generic function to fetch data from IPO APIs
  * 
@@ -49,7 +49,7 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     }
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?preIPOCompanyId=" . urlencode($ipo_id);
+    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     $headers = array(
         'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
         'accept' => 'application/json',
@@ -110,7 +110,7 @@ function get_ipo_spv_details($spv_id) {
     }
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true";
+    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     $headers = array(
         'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
         'accept' => 'application/json',
