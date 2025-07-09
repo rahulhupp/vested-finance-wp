@@ -627,7 +627,17 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<?php 
 								$csrf_param = isset($_GET['csrf']) ? $_GET['csrf'] : '';
 								$token_param = isset($_GET['token']) ? $_GET['token'] : '';
+								
+								// Get SPV ID from investors data
+								$spv_id = '';
+								if (!empty($investors_data['items'][0]['id'])) {
+									$spv_id = $investors_data['items'][0]['id'];
+								}
+								
 								$invest_url = "https://next-staging.vestedfinance.com/ntv-bridge?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
+								if (!empty($spv_id)) {
+									$invest_url .= "&productId={$spv_id}";
+								}
 							?>
 							<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
 						<?php else: ?>
