@@ -1,10 +1,14 @@
 <?php
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
 
-// Add no-index, no-follow meta tags for SEO
+// Remove default WordPress robots meta tag and add no-index, no-follow meta tags for SEO
 add_action('wp_head', function() {
+    // Remove default WordPress robots meta tag
+    remove_action('wp_head', 'wp_robots');
+    
+    // Add our custom robots meta tag
     echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
-});
+}, 1);
 
 get_header();
 if ($hide_header_footer): ?>
@@ -383,9 +387,30 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<h2>Research Reports</h2>
 						</div>
 						<?php
-						$total_research = count($research_data['items']);
+						// Sort research data by relation (SUBJECT first) and publishedDate (newest first)
+						$sorted_research = $research_data['items'];
+						usort($sorted_research, function($a, $b) {
+							$a_relation = isset($a['relation']) ? $a['relation'] : '';
+							$b_relation = isset($b['relation']) ? $b['relation'] : '';
+							
+							// SUBJECT should come first
+							if ($a_relation === 'SUBJECT' && $b_relation !== 'SUBJECT') {
+								return -1;
+							}
+							if ($b_relation === 'SUBJECT' && $a_relation !== 'SUBJECT') {
+								return 1;
+							}
+							
+							// If both have same relation or neither is SUBJECT, sort by publishedDate (newest first)
+							$a_date = isset($a['publishedDate']) ? strtotime($a['publishedDate']) : 0;
+							$b_date = isset($b['publishedDate']) ? strtotime($b['publishedDate']) : 0;
+							
+							return $b_date - $a_date; // Newest first
+						});
+						
+						$total_research = count($sorted_research);
 						echo '<div class="ipo_research_list" data-total="' . $total_research . '">';
-						foreach ($research_data['items'] as $index => $research) {
+						foreach ($sorted_research as $index => $research) {
 							$title = esc_html($research['title']);
 							$link = esc_url($research['link']);
 							
@@ -695,7 +720,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						</div>
 					</div>
 				<?php else: ?>
-					<?php if ($funding_rounds_data && !empty($funding_rounds_data['items'])): ?>
+					<?php if ($funding_rounds_data && !empty($funding_rounds_data['items']) && empty($investors_data['items'])): ?>
 						<div class="ipo_sidebar_box">
 							<h2>Funding Rounds</h2>
 							<div class="funding_rounds_list">
