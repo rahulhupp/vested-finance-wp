@@ -643,7 +643,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								
 								$invest_url = "https://next-staging.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
 								if (!empty($spv_id)) {
-									$invest_url .= "&productId={$spv_id}";
+									$invest_url .= "?productId={$spv_id}";
 								}
 							?>
 							<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
