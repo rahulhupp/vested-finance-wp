@@ -16,5 +16,12 @@
             )
         );
 
+        acf_add_options_page(array(
+            'page_title'    => 'IPO Settings',
+            'menu_title'    => 'IPO Settings',
+            'menu_slug'     => 'ipo-settings',
+            'parent_slug'   => 'global-general-settings',
+        ));
+
     }
 ?>
