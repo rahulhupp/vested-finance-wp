@@ -1,4 +1,4 @@
-<?php
+<?php 
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
 
 // Remove default WordPress robots meta tag and add no-index, no-follow meta tags for SEO
@@ -106,65 +106,78 @@ global $wpdb;
 $table_name = $wpdb->prefix . 'ipo_list';
 $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
 
-// Fetch investors data for valuation
-$investors_data = get_ipo_investors($ipo_id);
-// error_log("investors_data: " . print_r($investors_data, true));
+// Get key information from database instead of API calls
 $api_valuation = 'N/A';
 $api_management_fee = 'N/A';
 $api_funding_deadline = 'N/A';
 $api_min_commitment = 'N/A';
 $api_notable_investors = array();
-
-if ($investors_data && !empty($investors_data['items'])) {
-    $first_investor = $investors_data['items'][0];
-    if (!empty($first_investor['valuation'])) {
-        $api_valuation = format_human_readable_number($first_investor['valuation']);
-    }
-    if (!empty($first_investor['managementFee'])) {
-        $api_management_fee = $first_investor['managementFee'];
-    }
-    if (!empty($first_investor['fundingDeadline'])) {
-        $api_funding_deadline = $first_investor['fundingDeadline'];
-    }
-    if (!empty($first_investor['minCommitmentAmount'])) {
-        $api_min_commitment = format_human_readable_number($first_investor['minCommitmentAmount']);
-    }
-    if (!empty($first_investor['notableInvestors'])) {
-        $api_notable_investors = $first_investor['notableInvestors'];
-    }
-}
-
-// Fetch investment data
-$investment_data = get_ipo_investment($ipo_id);
 $api_share_type = 'N/A';
 $api_share_class = 'N/A';
 $api_price_per_share = 'N/A';
 $api_transaction_type = 'N/A';
 
-if ($investment_data && !empty($investment_data['items'])) {
-    $first_investment = $investment_data['items'][0];
-    if (!empty($first_investment['shareType'])) {
-        $api_share_type = $first_investment['shareType'];
+// Use database values if available
+if ($ipo) {
+    if (!empty($ipo->api_valuation)) {
+        $api_valuation = $ipo->api_valuation;
     }
-    if (!empty($first_investment['shareClass'])) {
-        $api_share_class = $first_investment['shareClass'];
+    if (!empty($ipo->api_management_fee)) {
+        $api_management_fee = $ipo->api_management_fee;
     }
-    if (!empty($first_investment['pricePerShare'])) {
-        $api_price_per_share = $first_investment['pricePerShare'];
+    if (!empty($ipo->api_funding_deadline)) {
+        $api_funding_deadline = $ipo->api_funding_deadline;
     }
-    if (!empty($first_investment['transactionType'])) {
-        $api_transaction_type = $first_investment['transactionType'];
+    if (!empty($ipo->api_min_commitment)) {
+        $api_min_commitment = $ipo->api_min_commitment;
+    }
+    if (!empty($ipo->api_notable_investors)) {
+        $api_notable_investors = json_decode($ipo->api_notable_investors, true);
+    }
+    if (!empty($ipo->api_share_type)) {
+        $api_share_type = $ipo->api_share_type;
+    }
+    if (!empty($ipo->api_share_class)) {
+        $api_share_class = $ipo->api_share_class;
+    }
+    if (!empty($ipo->api_price_per_share)) {
+        $api_price_per_share = $ipo->api_price_per_share;
+    }
+    if (!empty($ipo->api_transaction_type)) {
+        $api_transaction_type = $ipo->api_transaction_type;
     }
 }
 
-// Fetch funding rounds data
-$funding_rounds_data = get_ipo_funding_rounds($ipo_id);
+// Fetch funding rounds data from database
+$funding_rounds_data = null;
+if ($ipo && !empty($ipo->api_funding_rounds_data)) {
+    $funding_rounds_data = json_decode($ipo->api_funding_rounds_data, true);
+}
 
-// Fetch all API data once at the top
-$news_data = get_ipo_news($ipo_id);
-$research_data = get_ipo_research($ipo_id);
-$documents_data = get_ipo_documents($ipo_id);
-$deal_memo_url = get_ipo_deal_memo_url($ipo_id);
+// Get dynamic data from database instead of API calls
+$news_data = null;
+$research_data = null;
+$documents_data = null;
+
+if ($ipo) {
+    // Get news data from database
+    if (!empty($ipo->api_news_data)) {
+        $news_data = json_decode($ipo->api_news_data, true);
+    }
+    
+    // Get research data from database
+    if (!empty($ipo->api_research_data)) {
+        $research_data = json_decode($ipo->api_research_data, true);
+    }
+    
+    // Get documents data from database
+    if (!empty($ipo->api_documents_data)) {
+        $documents_data = json_decode($ipo->api_documents_data, true);
+    }
+}
+
+// Check if we have investors data for investment functionality
+$has_investors_data = !empty($api_notable_investors) || $api_valuation !== 'N/A' || $api_min_commitment !== 'N/A';
 
 $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I%20want%20to%20learn%20more%20about%20investing%20in%20Pre-IPO%20companies.%20Please%20give%20me%20a%20callback";
 ?>
@@ -174,8 +187,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 			<div class="ipo_content">
 				<div class="ipo_header">
 					<?php if (!empty($ipo->logo_url)): ?>
-						<div class="ipo_logo">
-							<div class="ipo_logo_wrapper">
+					<div class="ipo_logo">
+						<div class="ipo_logo_wrapper">
 								<img src="<?php echo esc_url($ipo->logo_url); ?>" alt="<?php echo esc_attr($ipo->name ?? 'IPO'); ?>" />
 							</div>
 						</div>
@@ -216,24 +229,24 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					</div>
 				</div>
 				<div class="ipo_tabs">
-					<?php if (!empty($investors_data['items'])): ?>
-						<button class="ipo_tab active" data-target="#ipo-overview">Overview</button>
+									<?php if ($has_investors_data): ?>
+					<button class="ipo_tab active" data-target="#ipo-overview">Overview</button>
 					<?php endif; ?>
 					<?php if (!empty($ipo->description) && trim($ipo->description) !== 'description'): ?>
-						<button class="ipo_tab" data-target="#ipo-about">About</button>
+					<button class="ipo_tab" data-target="#ipo-about">About</button>
 					<?php endif; ?>
 					<?php if (!empty($api_notable_investors)): ?>
-						<button class="ipo_tab" data-target="#ipo-investors">Investors</button>
+					<button class="ipo_tab" data-target="#ipo-investors">Investors</button>
 					<?php endif; ?>
 					<?php if ($news_data && !empty($news_data['items'])): ?>
-						<button class="ipo_tab" data-target="#ipo-news">News</button>
+					<button class="ipo_tab" data-target="#ipo-news">News</button>
 					<?php endif; ?>
 					<?php if ($research_data && !empty($research_data['items'])): ?>
-						<button class="ipo_tab" data-target="#ipo-research">Research Reports</button>
+					<button class="ipo_tab" data-target="#ipo-research">Research Reports</button>
 					<?php endif; ?>
 				</div>
 
-				<?php if (!empty($investors_data['items'])): ?>
+				<?php if ($has_investors_data): ?>
 				<div class="ipo_content_box" id="ipo-overview">
 					<div class="ipo_content_box_header">
 						<h2>Key Information</h2>
@@ -241,57 +254,57 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					<div class="ipo_key_information">
 						<div class="ipo_ki_metrics">
 							<?php if ($api_price_per_share !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_price_per_share; ?></h4>
-									<span>Price Per Share</span>
-								</div>
+								<span>Price Per Share</span>
+							</div>
 							<?php endif; ?>
 							<?php if ($api_min_commitment !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_min_commitment; ?></h4>
-									<span>Minimum Investment</span>
-								</div>
+								<span>Minimum Investment</span>
+							</div>
 							<?php endif; ?>
 							<?php if ($api_valuation !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_valuation; ?></h4>
-									<span>Company Valuation</span>
-								</div>
+								<span>Company Valuation</span>
+							</div>
 							<?php endif; ?>
 						</div>
 						<div class="ipo_ki_meta_container">
 							<div class="ipo_ki_meta_box">
 								<?php if ($api_share_type !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Share Type</span>
+								<div class="ipo_ki_meta">
+									<span>Share Type</span>
 										<strong><?php echo $api_share_type; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_management_fee !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Management Fee</span>
+								<div class="ipo_ki_meta">
+									<span>Management Fee</span>
 										<strong><?php echo $api_management_fee; ?>%</strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_funding_deadline !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Close Date</span>
+								<div class="ipo_ki_meta">
+									<span>Close Date</span>
 										<strong><?php echo format_date_with_ordinal($api_funding_deadline); ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 							</div>
 							<div class="ipo_ki_meta_box">
 								<?php if ($api_share_class !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Share Class</span>
+								<div class="ipo_ki_meta">
+									<span>Share Class</span>
 										<strong><?php echo $api_share_class; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_transaction_type !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Transaction Type</span>
+								<div class="ipo_ki_meta">
+									<span>Transaction Type</span>
 										<strong><?php echo $api_transaction_type; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<div class="ipo_ki_meta">
 									<span>Fund History</span>
@@ -304,41 +317,41 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<?php endif; ?>
 
 				<?php if (!empty($ipo->description) && trim($ipo->description) !== 'description'): ?>
-					<div class="ipo_content_box" id="ipo-about">
-						<div class="ipo_content_box_header">
-							<h2>About <?php echo esc_attr($ipo->name ?? 'IPO'); ?></h2>
-						</div>
-						<div class="ipo_about_content">
-							<?php
-							$desc = esc_html($ipo->description);
-							$paragraphs = explode("\n\n", $desc);
-							foreach ($paragraphs as $para) {
-								echo '<p>' . nl2br(trim($para)) . '</p>';
-							}
-							?>
-						</div>
+				<div class="ipo_content_box" id="ipo-about">
+					<div class="ipo_content_box_header">
+						<h2>About <?php echo esc_attr($ipo->name ?? 'IPO'); ?></h2>
 					</div>
+					<div class="ipo_about_content">
+						<?php
+							$desc = esc_html($ipo->description);
+						$paragraphs = explode("\n\n", $desc);
+						foreach ($paragraphs as $para) {
+							echo '<p>' . nl2br(trim($para)) . '</p>';
+						}
+						?>
+					</div>
+				</div>
 				<?php endif; ?>
 
 
 				<?php if (!empty($api_notable_investors)): ?>
-					<div class="ipo_content_box" id="ipo-investors">
-						<div class="ipo_content_box_header">
-							<h2>Notable Investors</h2>
-						</div>
+				<div class="ipo_content_box" id="ipo-investors">
+					<div class="ipo_content_box_header">
+						<h2>Notable Investors</h2>
+					</div>
 						<div class="ipo_notable_investors">
 							<?php foreach ($api_notable_investors as $investor_name): ?>
 								<div class="ipo_notable_investor"><?php echo esc_html($investor_name); ?></div>
 							<?php endforeach; ?>
 						</div>
-					</div>
+				</div>
 				<?php endif; ?>
 
 				<?php if ($news_data && !empty($news_data['items'])): ?>
-					<div class="ipo_content_box" id="ipo-news">
-						<div class="ipo_content_box_header">
-							<h2>News</h2>
-						</div>
+				<div class="ipo_content_box" id="ipo-news">
+					<div class="ipo_content_box_header">
+						<h2>News</h2>
+					</div>
 						<?php
 						$total_news = count($news_data['items']);
 						echo '<div class="ipo_news_list" data-total="' . $total_news . '">';
@@ -366,7 +379,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 										<?php endif; ?>
 									</div>
 								</a>
-							</div>
+				</div>
 							<?php
 						}
 						echo '</div>';
@@ -382,9 +395,9 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<?php endif; ?>
 
 				<?php if ($research_data && !empty($research_data['items'])): ?>
-					<div class="ipo_content_box" id="ipo-research">
-						<div class="ipo_content_box_header">
-							<h2>Research Reports</h2>
+				<div class="ipo_content_box" id="ipo-research">
+					<div class="ipo_content_box_header">
+						<h2>Research Reports</h2>
 						</div>
 						<?php
 						// Sort research data by relation (SUBJECT first) and publishedDate (newest first)
@@ -437,8 +450,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 										</svg>
 										<span>View Document</span>
 									</a>
-								</div>
-							</div>
+					</div>
+				</div>
 							<?php
 						}
 						echo '</div>';
@@ -655,13 +668,15 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<div class="ipo_sidebar_box quick_actions">
 					<h2>Quick Actions</h2>
 					<div class="ipo_quick_actions">
-						<?php if (!empty($investors_data['items'])): ?>
+						<?php if ($has_investors_data): ?>
 							<?php 
 								$csrf_param = isset($_GET['csrf']) ? $_GET['csrf'] : '';
 								$token_param = isset($_GET['token']) ? $_GET['token'] : '';
 								
-								// Get SPV ID from investors data
+								// Get SPV ID from database or fallback to API if needed
 								$spv_id = '';
+								// For now, we'll need to fetch SPV ID via API if needed for investment
+								$investors_data = get_ipo_investors($ipo_id);
 								if (!empty($investors_data['items'][0]['id'])) {
 									$spv_id = $investors_data['items'][0]['id'];
 								}
@@ -682,15 +697,15 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								}
 							?>
 						<?php endif; ?>
-						<?php if ($deal_memo_url): ?>
-							<a href="<?php echo esc_url($deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
+						<?php if ($has_investors_data && !empty($ipo->api_deal_memo_url)): ?>
+						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
-					<div class="ipo_sidebar_box">
-						<h2>Documents</h2>
+				<div class="ipo_sidebar_box">
+					<h2>Documents</h2>
 						<div class="ipo_documents_list">
 							<?php foreach ($documents_data['items'] as $document): 
 								$document_name = esc_html($document['name']);
@@ -726,7 +741,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="funding_rounds_list">
 								<?php render_funding_rounds($funding_rounds_data); ?>
 							</div>
-						</div>
+				</div>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>

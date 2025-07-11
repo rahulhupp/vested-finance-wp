@@ -37,14 +37,14 @@ function ipo_custom_template_redirect()
         
         if ($ipo_id) {
             // Get IPO data
-            global $wpdb;
-            $table_name = $wpdb->prefix . 'ipo_list';
-            $ipo_exists = $wpdb->get_row($wpdb->prepare(
-                "SELECT * FROM $table_name WHERE ipo_id = %s",
-                $ipo_id
-            ));
-            
-            if ($ipo_exists) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'ipo_list';
+        $ipo_exists = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM $table_name WHERE ipo_id = %s",
+            $ipo_id
+        ));
+        
+        if ($ipo_exists) {
                 // Set IPO ID for template and API calls
                 set_query_var('ipo_id', $ipo_id);
                 set_query_var('custom_ipo_title_value', $ipo_exists->name);
@@ -53,12 +53,12 @@ function ipo_custom_template_redirect()
             }
         }
         
-        // IPO not found, redirect to 404 or custom page
-        $not_found_url = home_url("/ipo-not-found");
-        wp_redirect($not_found_url, 301);
-        exit();
-    }
-}
+                // IPO not found, redirect to 404 or custom page
+                $not_found_url = home_url("/ipo-not-found");
+                wp_redirect($not_found_url, 301);
+                exit();
+            }
+        }
 add_action('template_redirect', 'ipo_custom_template_redirect');
 
 // Function to get IPO data from database with new URL structure
@@ -192,19 +192,7 @@ function remove_unwanted_for_ipo_styles()
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_for_ipo_styles', 99999999999);
 
-function format_human_readable_number($number) {
-    if ($number >= 1_000_000_000_000) {
-        return number_format($number / 1_000_000_000_000, ($number % 1_000_000_000_000 ? 1 : 0)) . 'T';
-    } elseif ($number >= 1_000_000_000) {
-        return number_format($number / 1_000_000_000, ($number % 1_000_000_000 ? 1 : 0)) . 'B';
-    } elseif ($number >= 1_000_000) {
-        return number_format($number / 1_000_000, ($number % 1_000_000 ? 1 : 0)) . 'M';
-    } elseif ($number >= 1_000) {
-        return number_format($number / 1_000, ($number % 1_000 ? 1 : 0)) . 'K';
-    } else {
-        return (string)$number;
-    }
-}
+
 
 function get_typoform_link_by_ipo_id($ipo_id) {
     if (have_rows('ipo_typoform_links', 'option')) {
@@ -217,4 +205,47 @@ function get_typoform_link_by_ipo_id($ipo_id) {
         }
     }
     return false;
+}
+
+/**
+ * Get IPO key information from database
+ * This function retrieves the key IPO information that was previously fetched via API calls
+ * 
+ * @param string $ipo_id The IPO ID
+ * @return array Array containing key IPO information
+ */
+function get_ipo_key_info_from_db($ipo_id) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'ipo_list';
+    
+    $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
+    
+    if (!$ipo) {
+        return array();
+    }
+    
+    return array(
+        'valuation' => $ipo->api_valuation ?: 'N/A',
+        'management_fee' => $ipo->api_management_fee ?: 'N/A',
+        'funding_deadline' => $ipo->api_funding_deadline ?: 'N/A',
+        'min_commitment' => $ipo->api_min_commitment ?: 'N/A',
+        'notable_investors' => !empty($ipo->api_notable_investors) ? json_decode($ipo->api_notable_investors, true) : array(),
+        'share_type' => $ipo->api_share_type ?: 'N/A',
+        'share_class' => $ipo->api_share_class ?: 'N/A',
+        'price_per_share' => $ipo->api_price_per_share ?: 'N/A',
+        'transaction_type' => $ipo->api_transaction_type ?: 'N/A',
+        'funding_rounds_data' => !empty($ipo->api_funding_rounds_data) ? json_decode($ipo->api_funding_rounds_data, true) : null,
+        'last_updated' => $ipo->api_last_updated
+    );
+}
+
+/**
+ * Check if IPO has key information available
+ * 
+ * @param string $ipo_id The IPO ID
+ * @return bool True if IPO has key information, false otherwise
+ */
+function ipo_has_key_info($ipo_id) {
+    $key_info = get_ipo_key_info_from_db($ipo_id);
+    return !empty($key_info['valuation']) && $key_info['valuation'] !== 'N/A';
 }

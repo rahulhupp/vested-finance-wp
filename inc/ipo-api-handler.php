@@ -259,6 +259,8 @@ function get_ipo_funding_rounds($ipo_id) {
     return get_ipo_api_data($ipo_id, 'funding_rounds');
 }
 
+
+
 /**
  * Test API connection (for debugging)
  * 

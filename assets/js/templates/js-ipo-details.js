@@ -30,7 +30,7 @@ function scrollActiveTabToCenter(activeTab) {
 const tabs = document.querySelectorAll('.ipo_tab');
 tabs.forEach(tab => {
 	tab.addEventListener('click', function (e) {
-		console.log('click');
+		// console.log('click');
 		
 		e.preventDefault();
 		
@@ -182,6 +182,8 @@ buttons.forEach(button => {
 document.addEventListener('DOMContentLoaded', function() {
 	// Initialize tabs
 	initializeTabs();
+	
+
 	
 	// Handle window resize - sections might become visible/hidden
 	window.addEventListener('resize', function() {
