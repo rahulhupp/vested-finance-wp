@@ -599,3 +599,5 @@ function autoplay_videos_on_single_post() {
     }
 }
 add_action('wp_footer', 'autoplay_videos_on_single_post');
+
+add_filter( 'big_image_size_threshold', '__return_false' );
