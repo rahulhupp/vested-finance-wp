@@ -10,15 +10,41 @@ add_action('wp_head', function() {
     echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
 }, 1);
 
-get_header();
 if ($hide_header_footer): ?>
-    <style>
-        header, .site-header, #masthead, footer, .site-footer, #colophon {
-            display: none !important;
-        }
-    </style>
-<?php endif;
+    <?php
+		// Remove unnecessary WordPress features for iframe
+		remove_action('wp_head', 'wp_generator');
+		remove_action('wp_head', 'wlwmanifest_link');
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wp_shortlink_wp_head');
+		
+		    // Disable unnecessary scripts/styles
+    add_filter('wp_enqueue_scripts', function() {
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_script('wp-embed');
+        wp_dequeue_script('wp-emoji-release');
+    }, 100);
+    
+    // Remove emoji script from head
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+	?>
 
+	<!DOCTYPE html>
+    <html <?php language_attributes(); ?>>
+    <head>
+        <meta charset="<?php bloginfo('charset'); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+        <?php wp_head(); ?>
+    </head>
+    <body <?php body_class(); ?>>
+<?php else: ?>
+	<?php get_header(); ?>
+<?php endif;  ?>
+
+<?php
 $ipo_id = get_query_var('ipo_id');
 $ipo_name = get_query_var('ipo_name');
 
@@ -769,4 +795,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </div>
 </div>
 
-<?php get_footer(); ?>
+<?php if ($hide_header_footer): ?>
+	<script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
+    </body>
+	</html>
+<?php else: ?>
+	<?php get_footer(); ?>
+<?php endif; ?>
