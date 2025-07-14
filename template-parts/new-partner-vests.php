@@ -85,7 +85,7 @@
                                 <div class="vest_metrics">
                                     <div class="vest_metric vest_metric_half">
                                         <span>Min. Investment</span>
-                                        <?php echo htmlspecialchars($vest_min_investments[$vest['vestId']] ?? 'N/A'); ?>
+                                        $<?php echo htmlspecialchars($vest_min_investments[$vest['vestId']] ?? 'N/A'); ?>
                                     </div>
                                     <div class="vest_metric">
                                         <span>Annualized Volatility</span>
