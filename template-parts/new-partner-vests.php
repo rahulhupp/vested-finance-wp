@@ -42,6 +42,7 @@
 
     // Get the dynamic allowed vest IDs from the main template
     $allowed_vest_ids = get_query_var('allowed_vest_ids', []);
+    $vest_min_investments = get_query_var('vest_min_investments', []);
 ?>
 
 <div class="vests_list core_vests_list">
@@ -69,7 +70,7 @@
                             <p><?php echo htmlspecialchars($vest['blurb']); ?></p>
                         </div>
                         <div class="vest_details">
-                            <a>
+                            <a href="https://app.vestedfinance.com/vest-details?vestId=<?php echo htmlspecialchars($vest['vestId']); ?>" target="_blank">
                                 <div class="vest_img">
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/img/vest/icon/<?php echo htmlspecialchars($vest['vestId']); ?>.svg" alt="solid-foundations" />
                                 </div>
@@ -84,19 +85,11 @@
                                 <div class="vest_metrics">
                                     <div class="vest_metric vest_metric_half">
                                         <span>Min. Investment</span>
-                                        $100
-                                    </div>
-                                    <div class="vest_metric vest_metric_half">
-                                        <span>Dividend Yield</span>
-                                        2.5%
+                                        <?php echo htmlspecialchars($vest_min_investments[$vest['vestId']] ?? 'N/A'); ?>
                                     </div>
                                     <div class="vest_metric">
                                         <span>Annualized Volatility</span>
                                         <?php echo htmlspecialchars($vest['oneYearVolatility']); ?>
-                                    </div>
-                                    <div class="vest_metric">
-                                        <span>Allocations</span>
-                                        20% Stocks, 80% Bonds
                                     </div>
                                 </div>
                                 <div class="vests_footer">

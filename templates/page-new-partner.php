@@ -72,16 +72,20 @@ while (have_posts()) :
                     <div class="vested_features_wrapper">
                         <h2><?php the_field('vests_title'); ?></h2>
                         <?php 
-                            // Collect vest IDs from the repeater field
+                            // Collect vest IDs and minimum investments from the repeater field
                             $allowed_vest_ids = array();
+                            $vest_min_investments = array();
                             while (have_rows('vests')): the_row(); 
                                 $vest_id = get_sub_field('vest_id');
+                                $vest_min_investment = get_sub_field('vest_min_investment');
                                 if (!empty($vest_id)) {
                                     $allowed_vest_ids[] = $vest_id;
+                                    $vest_min_investments[$vest_id] = $vest_min_investment ?: '$100'; // Default to $100 if empty
                                 }
                             endwhile;
 
                             set_query_var('allowed_vest_ids', $allowed_vest_ids);
+                            set_query_var('vest_min_investments', $vest_min_investments);
                             get_template_part('template-parts/new-partner-vests'); 
                         ?>
                         <?php if (have_rows('banner_button')) : ?>
@@ -174,9 +178,7 @@ while (have_posts()) :
             <div class="container">
                 <div class="about_wrapper" style="background-color: <?php the_field('template_color'); ?>;">
                     <img src="<?php the_field('about_logo'); ?>" alt="Partner logo">
-                    <div style="color: <?php the_field('about_text_color'); ?>;">
-                        <?php the_field('about_description'); ?>
-                    </div>
+                    <p style="color:  <?php the_field('about_text_color'); ?>;"><?php the_field('about_description'); ?></p>
                 </div>    
             </div>
         </section>
