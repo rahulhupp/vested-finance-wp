@@ -5287,7 +5287,7 @@ footer .extra_info ul li sup {
 	margin-bottom: 16px;
 }
 
-.ipo_quick_actions a {
+.ipo_quick_actions a, .ipo_quick_actions button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -5300,6 +5300,7 @@ footer .extra_info ul li sup {
 	font-size: 14px;
 	line-height: 20px;
 	margin-top: 12px;
+	background-color: transparent;
 }
 
 .ipo_quick_actions a.ipo_primary_button {
@@ -6047,7 +6048,7 @@ footer .extra_info ul li sup {
 		gap: 16px;
 	}
 
-	.ipo_quick_actions a {
+	.ipo_quick_actions a, .ipo_quick_actions button {
 		margin-top: 0;
 	}
 
@@ -6067,6 +6068,11 @@ footer .extra_info ul li sup {
 	.ipo_tab:hover {
 		color: #8E9DAD;
 		background: transparent;
+	}
+
+	.ipo_tab.active {
+		color: #262626;
+		background: #fff;
 	}
 }
 
@@ -6150,7 +6156,7 @@ footer .extra_info ul li sup {
 		height: 40px;
 	}
 	
-	.ipo_quick_actions a {
+	.ipo_quick_actions a, .ipo_quick_actions button {
 		width: calc(50% - 6px);
 	}
 	

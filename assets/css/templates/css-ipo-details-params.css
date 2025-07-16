@@ -948,6 +948,11 @@ a {
 		color: #8E9DAD;
 		background: transparent;
 	}
+
+	.ipo_tab.active {
+		color: #262626;
+		background: #fff;
+	}
 }
 
 @media (max-width: 767px) {
