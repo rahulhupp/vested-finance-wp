@@ -1254,4 +1254,13 @@ $(window).on('load', function () {
     </script>
 <?php
 }
-add_action('wp_footer', 'enqueue_custom_pagination_script');
+// add_action('wp_footer', 'enqueue_custom_pagination_script');
+$requested_url = $_SERVER['REQUEST_URI'];
+$getfirstpath = explode("/", $requested_url);
+// $getfirstpath[0] is always empty because the string starts with "/"
+// $getfirstpath[1] is the first path segment
+// $getfirstpath[2] is the second path segment
+
+if (isset($getfirstpath[2]) && $getfirstpath[2] == 'collections') {
+    add_action('wp_footer', 'enqueue_custom_pagination_script');
+}
