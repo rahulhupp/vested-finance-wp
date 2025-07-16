@@ -26,7 +26,7 @@
             </div>
             <ul id="vestsResultsList"></ul>
             <div class="btn">
-                <a class="btn_dark" href="https://app.vestedfinance.com/vests"  target="_blank">Explore ALL Vests</a>
+                <a class="btn_dark" href="https://vestedfinance.com/in/managed-portfolios/"  target="_blank">Explore ALL Vests</a>
             </div>
         </div>
         <div class="bottom-content">
