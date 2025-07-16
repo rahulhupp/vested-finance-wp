@@ -6,7 +6,7 @@
 
             <div class="explore_vest_about_content">
                 <p class="vest_about_content">
-                    If you want to invest but don't have the time to research individual stocks, Vests offer a solution. They come in various categories, each focusing on a different investment objective. For instance, a Vest might aim for growth potential while another prioritizes stability. Vests can also cater to specific interests. Let's say you're passionate about renewable energy. You could choose a Vest that concentrates on companies in that sector. Explore <a href="https://vestedfinance.com/in/managed-portfolios/" target="_blank">Vests</a> here.
+                    If you want to invest but don't have the time to research individual stocks, Vests offer a solution. They come in various categories, each focusing on a different investment objective. For instance, a Vest might aim for growth potential while another prioritizes stability. Vests can also cater to specific interests. Let's say you're passionate about renewable energy. You could choose a Vest that concentrates on companies in that sector. Explore <a href="https://app.vestedfinance.com/vests" target="_blank">Vests</a> here.
                 </p>
                 <div id="vest_read_more">Read <span>More</span> <i class="fa fa-chevron-down"></i></div>
             </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="btn">
-                <a class="btn_dark" href="https://vestedfinance.com/in/managed-portfolios/" target="_blank">Explore All Vests</a>
+                <a class="btn_dark" href="https://app.vestedfinance.com/vests" target="_blank">Explore All Vests</a>
             </div>
         </div>
         <!-- <div class="bottom-content">
