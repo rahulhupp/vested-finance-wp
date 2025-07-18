@@ -687,7 +687,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									$spv_id = $investors_data['items'][0]['id'];
 								}
 								
-								$invest_url = "https://next-staging.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
+								$invest_url = "https://app.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
 								if (!empty($spv_id)) {
 									$invest_url .= "?productId={$spv_id}";
 								}
@@ -699,7 +699,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								if ($typoform_link) {
 									echo '<a href="' . esc_url($typoform_link) . '" class="ipo_primary_button">Express Interest</a>';
 								} else {
-									echo '<a href="#TBD" class="ipo_primary_button">Express Interest</a>';
+									echo '<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">Express Interest</a>';
 								}
 							?>
 						<?php endif; ?>
