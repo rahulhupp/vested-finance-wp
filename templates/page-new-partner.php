@@ -178,7 +178,9 @@ while (have_posts()) :
             <div class="container">
                 <div class="about_wrapper" style="background-color: <?php the_field('template_color'); ?>;">
                     <img src="<?php the_field('about_logo'); ?>" alt="Partner logo">
-                    <p style="color:  <?php the_field('about_text_color'); ?>;"><?php the_field('about_description'); ?></p>
+                    <div class="about_content" style="color:  <?php the_field('about_text_color'); ?>;">
+                        <?php the_field('about_description'); ?>
+                    </div>
                 </div>    
             </div>
         </section>

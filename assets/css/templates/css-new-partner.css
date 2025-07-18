@@ -335,13 +335,19 @@
     max-width: 221px;
 }
 
+.about_wrapper .about_content {
+    padding-left: 88px;
+}
+
 .about_wrapper p {
     color: inherit;
     font-weight: 400;
     font-size: 16px;
     line-height: 160%;
+}
+
+.about_wrapper .about_content p:last-child {
     margin: 0;
-    padding-left: 88px;
 }
 
 .partner_landing_page .investors_sec {
