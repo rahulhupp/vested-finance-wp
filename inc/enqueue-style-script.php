@@ -137,6 +137,9 @@
             wp_enqueue_style('partner-landing-v3-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-partner-landing-v3.css', false, '', '');
             wp_enqueue_script('partner-landing-v3-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-partner-landing-v3.js');
         }
+        if (is_page_template('templates/page-nse.php')) {
+            wp_enqueue_style('nse-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-nse.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
