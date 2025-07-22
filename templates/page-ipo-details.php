@@ -1,14 +1,7 @@
 <?php 
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
+$current_url = (is_ssl() ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-// Remove default WordPress robots meta tag and add no-index, no-follow meta tags for SEO
-add_action('wp_head', function() {
-    // Remove default WordPress robots meta tag
-    remove_action('wp_head', 'wp_robots');
-    
-    // Add our custom robots meta tag
-    echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
-}, 1);
 
 if ($hide_header_footer): ?>
 	<!DOCTYPE html>
@@ -22,7 +15,7 @@ if ($hide_header_footer): ?>
     <body <?php body_class(); ?>>
 <?php else: ?>
 	<?php get_header(); ?>
-<?php endif;  ?>
+<?php endif; ?>
 
 <?php
 $ipo_id = get_query_var('ipo_id');
@@ -66,18 +59,25 @@ function render_funding_rounds($funding_rounds_data) {
             $round_name = esc_html($round['roundName']);
             $issued_at = '';
             $issue_price = '';
-            
-            // Get the first share detail for price and date
+
+            // Find the maximum issue price and the corresponding issuedAt in shareDetails
             if (!empty($round['shareDetails']) && is_array($round['shareDetails'])) {
-                $first_share = $round['shareDetails'][0];
-                if (!empty($first_share['issuePrice'])) {
-                    $issue_price = '$' . number_format($first_share['issuePrice'], 2);
+                $max_issue_price = null;
+                $max_issued_at = '';
+                foreach ($round['shareDetails'] as $share) {
+                    if (isset($share['issuePrice']) && (is_null($max_issue_price) || $share['issuePrice'] > $max_issue_price)) {
+                        $max_issue_price = $share['issuePrice'];
+                        $max_issued_at = !empty($share['issuedAt']) ? $share['issuedAt'] : $max_issued_at;
+                    }
                 }
-                if (!empty($first_share['issuedAt'])) {
-                    $issued_at = format_date_with_ordinal($first_share['issuedAt']);
+                if (!is_null($max_issue_price)) {
+                    $issue_price = '$' . number_format($max_issue_price, 2);
+                }
+                if (!empty($max_issued_at)) {
+                    $issued_at = format_date_with_ordinal($max_issued_at);
                 }
             }
-            
+
             // Fallback to round-level data if share details not available
             if (empty($issue_price) && !empty($round['issuePrice'])) {
                 $issue_price = '$' . number_format($round['issuePrice'], 2);
@@ -91,8 +91,8 @@ function render_funding_rounds($funding_rounds_data) {
                     <h4><?php echo $round_name; ?></h4>
                 </div>
                 <div class="funding_amount">
-                    <strong><?php echo $issue_price ?: 'N/A'; ?></strong>
-                    <span class="funding_date"><?php echo $issued_at ?: 'N/A'; ?></span>
+                    <strong><?php echo $issue_price ?: '0'; ?></strong>
+                    <span class="funding_date"><?php echo $issued_at ?: ''; ?></span>
                 </div>
             </div>
             <?php
@@ -780,5 +780,118 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </body>
 	</html>
 <?php else: ?>
+	 <!-- Schema.org JSON-LD markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "<?php echo esc_js($ipo->name ?? 'IPO Details'); ?>",
+      "url": "<?php echo $current_url; ?>",
+      "description": "<?php echo esc_js(wp_strip_all_tags($ipo->description ?? '')); ?>"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>",
+      "image": "<?php echo esc_url($ipo->logo_url ?? ''); ?>",
+      "description": "<?php echo esc_js(wp_strip_all_tags($ipo->description ?? '')); ?>",
+      "brand": {
+        "@type": "Brand",
+        "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "<?php echo esc_js($api_price_per_share !== 'N/A' ? $api_price_per_share : ''); ?>",
+        "availability": "https://schema.org/PreOrder",
+        "url": "<?php echo $current_url; ?>"
+      }
+    }
+    </script>
+    <?php
+    // Build FAQ array ONCE for both HTML and schema
+    $ipo_faqs = [
+      [
+        "question" => "What is this investment opportunity in " . ($ipo->name ?? 'this company') . "?",
+        "answer" => "This is an opportunity to invest in " . ($ipo->name ?? 'this company') . " through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors."
+      ],
+      [
+        "question" => "How is the investment structured?",
+        "answer" => "You'll be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you'll become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
+      ],
+      [
+        "question" => "Why can't I invest in " . ($ipo->name ?? 'this company') . " directly?",
+        "answer" => "Direct investment into high-demand private companies like " . ($ipo->name ?? 'this company') . " often requires $50M+ in capital. Our SPV structure gives you access at lower minimums by pooling capital and investing through intermediaries that already hold equity."
+      ],
+      [
+        "question" => "What is the minimum investment amount?",
+        "answer" => "The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations."
+      ],
+      [
+        "question" => "What is the price per share and valuation?",
+        "answer" => "The offering is priced at $" . ($api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD') . "/share, implying a valuation of approximately $" . ($api_valuation !== 'N/A' ? $api_valuation : 'TBD') . ". This includes a one-time management fee and expense reserve. There are no ongoing fees or carry."
+      ],
+      [
+        "question" => "What are the dates for the investment window?",
+        "answer" => "The offering for " . ($ipo->name ?? 'this company') . " opens on " . (!empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD') . " and closes on " . ($api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD') . ". Once closed, the opportunity will no longer be available for subscription."
+      ],
+      [
+        "question" => "When will I receive units for my investment?",
+        "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you'll be notified. This typically takes 2–3 weeks post close date."
+      ],
+      [
+        "question" => "How do I invest in " . ($ipo->name ?? 'this company') . "?",
+        "answer" => "Once you click \"Invest\" and enter the amount or number of shares, you'll be able to review and sign the subscription documents in-app. The investment will then be initiated, and funds will be deducted from your existing DriveWealth buying power. No additional account setup is required."
+      ],
+      [
+        "question" => "How do I transfer funds to make the investment?",
+        "answer" => "Investment funds will be deducted from your existing buying power. You can top up your Vested account via HDFC, Axis, or other supported banks through the \"Transfer\" section in the app."
+      ],
+      [
+        "question" => "What are the exit options or liquidity paths?",
+        "answer" => "Liquidity is not guaranteed. However, exits may occur via (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries."
+      ],
+      [
+        "question" => "What are the risks of investing in " . ($ipo->name ?? 'this company') . "?",
+        "answer" => "Key risks include equity risk (share value decline) and liquidity risk (limited tradability of private shares). As with any private market investment, capital loss is possible."
+      ],
+      [
+        "question" => "What are the tax implications?",
+        "answer" => "Taxation is treated the same as investing in US-listed stocks. Long-term capital gains (after 24 months) are taxed at 12.5%. Short-term gains are taxed as per your income tax slab."
+      ],
+      [
+        "question" => "Under which regulatory framework does this investment fall?",
+        "answer" => "All investments are made through SEC-compliant SPVs under Regulation D. The structure is similar to those used by leading US platforms like EquityZen and Forge."
+      ],
+      [
+        "question" => "Who manages the investment and SPV?",
+        "answer" => "The SPV is co-managed by Vested Finance Inc. and Monark Capital Management. Monark Capital Management oversees fund structuring, operations, and coordination with underlying counterparties."
+      ],
+      [
+        "question" => "What happens if Vested or its partners go bankrupt?",
+        "answer" => "Each SPV is bankruptcy-remote and legally ringfenced. Your ownership in the SPV remains unaffected even if Vested or its partners face insolvency."
+      ]
+    ];
+    ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        <?php foreach ($ipo_faqs as $i => $faq) { ?>
+        {
+          "@type": "Question",
+          "name": "<?php echo esc_js($faq['question']); ?>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<?php echo esc_js($faq['answer']); ?>"
+          }
+        }<?php if ($i < count($ipo_faqs) - 1) echo ','; ?>
+        <?php } ?>
+      ]
+    }
+    </script>
 	<?php get_footer(); ?>
 <?php endif; ?>

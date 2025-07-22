@@ -249,3 +249,61 @@ function ipo_has_key_info($ipo_id) {
     $key_info = get_ipo_key_info_from_db($ipo_id);
     return !empty($key_info['valuation']) && $key_info['valuation'] !== 'N/A';
 }
+
+// Helper function to generate custom IPO meta title
+function get_ipo_custom_meta_title() {
+    $custom_ipo_request = get_query_var('custom_ipo_request');
+    $ipo_id = get_query_var('ipo_id');
+    if ($custom_ipo_request && $ipo_id) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'ipo_list';
+        $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
+        if ($ipo) {
+            $company = $ipo->name;
+            $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
+            return "Invest in {$company} | Buy Pre-IPO Shares | Opening in {$year}";
+        }
+    }
+    return false;
+}
+
+// Set dynamic Yoast SEO meta title for IPO detail pages
+add_filter('wpseo_title', function($title) {
+    $custom_title = get_ipo_custom_meta_title();
+    return $custom_title ? $custom_title : $title;
+});
+
+// Set dynamic Yoast SEO Open Graph og:title for IPO detail pages
+add_filter('wpseo_opengraph_title', function($og_title) {
+    $custom_title = get_ipo_custom_meta_title();
+    return $custom_title ? $custom_title : $og_title;
+});
+
+// Helper function to generate custom IPO meta description
+function get_ipo_custom_meta_description() {
+    $custom_ipo_request = get_query_var('custom_ipo_request');
+    $ipo_id = get_query_var('ipo_id');
+    if ($custom_ipo_request && $ipo_id) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'ipo_list';
+        $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
+        if ($ipo) {
+            $company = $ipo->name;
+            $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
+            return "Explore the {$company} IPO launching in {$year}. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.";
+        }
+    }
+    return false;
+}
+
+// Set dynamic Yoast SEO meta description for IPO detail pages
+add_filter('wpseo_metadesc', function($desc) {
+    $custom_desc = get_ipo_custom_meta_description();
+    return $custom_desc ? $custom_desc : $desc;
+});
+
+// Set dynamic Yoast SEO Open Graph og:description for IPO detail pages
+add_filter('wpseo_opengraph_desc', function($og_desc) {
+    $custom_desc = get_ipo_custom_meta_description();
+    return $custom_desc ? $custom_desc : $og_desc;
+});

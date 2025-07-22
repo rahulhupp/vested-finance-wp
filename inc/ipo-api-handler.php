@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 // API Configuration
-define('IPO_API_INVESTOR_ID', 'a0147241-64d9-41e9-875c-b67dd7cf07ab'); // Static investor ID
+define('IPO_API_INVESTOR_ID', '80f78783-a2f8-43e7-b13a-91ab05bd87d0'); // Static investor ID
 /**
  * Generic function to fetch data from IPO APIs
  * 
@@ -46,10 +46,10 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     }
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?investorId=" . IPO_API_INVESTOR_ID . "&preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
+    $api_url = "https://api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?investorId=" . IPO_API_INVESTOR_ID . "&preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     // error_log("api_url: " . $api_url);
     $headers = array(
-        'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
+        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
         'accept' => 'application/json',
     );
     
@@ -113,9 +113,9 @@ function get_ipo_spv_details($spv_id) {
     // error_log("Skipping SPV cache - fetching fresh data for SPV {$spv_id}");
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
+    $api_url = "https://api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     $headers = array(
-        'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
+        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
         'accept' => 'application/json',
     );
     
