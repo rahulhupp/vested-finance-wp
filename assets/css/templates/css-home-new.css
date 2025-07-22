@@ -789,3 +789,148 @@ section > div > div > p {
         line-height: 1.4;
     }
 }
+
+@media (max-width: 767px) {
+    .home_banner_content h1 {
+        font-size: 36px !important;
+        line-height: 1.2;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+    
+    .home_banner_content p {
+        font-size: 16px;
+    }
+    
+    .btn {
+        font-size: 16px;
+    }
+    
+    .home_banner_content h5 {
+        font-size: 14px;
+    }
+    
+    .home_metrics_item {
+        width: 100%;
+    }
+    
+    .home_metrics_list {
+        gap: 15px;
+    }
+    
+    .home_features {
+        padding: 40px 0;
+    }
+    
+    h2 {
+        line-height: 1.4;
+    }
+    
+    section > div > div > p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .home_features_item {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .home_features_item a {
+        position: relative;
+        bottom: 0;
+        margin-top: 14px;
+    }
+    
+    .home_features_item h3 {
+        margin-top: 8px;
+    }
+    
+    .home_features_item p {
+        margin-top: 0;
+    }
+    
+    .home_diversify {
+        padding: 40px 0;
+    }
+    
+    .home_diversify_list {
+        margin-top: 20px;
+    }
+    
+    .home_diversify_item {
+        width: 100%;
+        max-width: 360px;
+        margin: auto;
+    }
+    
+    .home_service_content {
+        width: 100%;
+    }
+    
+    .home_service_footer {
+        margin-top: 30px;
+    }
+    
+    .home_service_image {
+        width: 100%;
+    }
+    
+    .home_service_item {
+        gap: 10px;
+    }
+    
+    .home_service_item:nth-child(even) .home_service_image {
+        order: 2;
+    }
+    
+    .home_steps {
+        padding: 40px 0;
+    }
+    
+    .step_item {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .step_content {
+        width: 50%;
+    }
+    
+    .step_item img {
+        width: 50%;
+    }
+    
+    .step_item:nth-child(2) {
+        flex-direction: row;
+    }
+    
+    .step_item:nth-child(2) .step_content {
+        top: 0;
+    }
+    
+    .step_item:nth-child(2) h3 {
+        padding-top: 20px;
+    }
+    
+    .home_steps_list {
+        gap: 15px;
+    }
+    
+    .home_security_wrapper h2 br {
+        display: none;
+    }
+    
+    .home_security_list .home_security_item {
+        width: 100%;
+    }
+    
+    .home_quick_links {
+        padding: 40px 0;
+    }
+    
+    .home_quick_links_item {
+        width: 100%;
+    }
+}
