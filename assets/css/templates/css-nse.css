@@ -136,7 +136,9 @@
   background: var(--nse-color-primary);
   color: var(--nse-color-bg-card);
   border: 1px solid transparent;
+  font: 500 14px / 20px "Inter", sans-serif;
 }
+
 .nse-express-btn:hover {
   color: var(--nse-color-primary);
   background-color: var(--nse-color-bg-card);
@@ -156,7 +158,7 @@
 }
 
 .nse-section-inner-block:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .nse-inner-section-title {
@@ -299,7 +301,7 @@
   width: fit-content;
   gap: 4px;
   background: var(--nse-color-bg-bar);
-  color: var(--nse-color-primary);
+  color: var(--nse-color-text-muted);
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 12px;
@@ -309,6 +311,7 @@
 
 .nse-chip p {
   margin: 0;
+  color: var(--nse-color-text-muted);
 }
 
 .nse-chip .nse-chip-image {
@@ -440,6 +443,7 @@
   text-align: left;
   border: none;
   font: 400 14px / 20px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
 }
 
 :is(.nse-financial-table th, .nse-financial-table td):is(
@@ -488,6 +492,19 @@
   color: var(--nse-color-text-accent);
   font: 400 14px / 20px "Inter", sans-serif;
   margin-bottom: 0;
+}
+
+.nse-financial-metric-desc p {
+  margin-bottom: 4px;
+}
+
+.nse-financial-metric-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.nse-growth-card-desc p small {
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .nse-growth-metrics {
@@ -551,6 +568,7 @@
   text-align: left;
   border: none;
   font: 400 14px / 20px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
 }
 .nse-competitive-table td:is(:first-child, :nth-child(2)),
 .nse-competitive-table th {
@@ -560,6 +578,10 @@
 .nse-competitive-table th:is(:nth-child(3), :nth-child(2)),
 .nse-competitive-table td:is(:nth-child(3), :nth-child(2)) {
   text-align: end;
+}
+
+.nse-competitive-table td:is(:nth-child(3), :nth-child(4)) {
+  color: var(--nse-color-text-accent);
 }
 
 .nse-competitive-table td:first-child,
