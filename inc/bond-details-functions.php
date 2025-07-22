@@ -40,7 +40,7 @@ function custom_bond_template_redirect()
             $security_code = strtolower($bond['securityId']);
             if ($issuer_name_slug == $issuerName && $security_code == $securityId && $bond['bondCategory'] == $internalBondCategory) {
                 $bond_found = true;
-                error_log("Custom bond request: $custom_bond_request, Bond category: $bondCategory, Issuer name: $issuerName, Security ID: $securityId");
+                // error_log("Custom bond request: $custom_bond_request, Bond category: $bondCategory, Issuer name: $issuerName, Security ID: $securityId");
                 break;
             }
         }
@@ -52,7 +52,7 @@ function custom_bond_template_redirect()
         }
         exit();
     } else {
-        error_log("Custom bond request not set.");
+       // error_log("Custom bond request not set.");
     }
 }
 add_action('template_redirect', 'custom_bond_template_redirect');

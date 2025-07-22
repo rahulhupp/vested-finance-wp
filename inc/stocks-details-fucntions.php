@@ -22,7 +22,7 @@ function custom_rewrite_rules()
         'top'
     );
     $current_url_path = rtrim($_SERVER['REQUEST_URI'], '/'); // Remove trailing slash for consistency
-    error_log('Current URL Path: ' . $current_url_path);
+    // error_log('Current URL Path: ' . $current_url_path);
 }
 add_action('init', 'custom_rewrite_rules');
 
@@ -33,7 +33,7 @@ function custom_template_redirect()
     $custom_stock_request = get_query_var('custom_stock_request');
     $symbol = get_query_var('symbol');
     $company = get_query_var('company');
-    error_log('requested url: ' . $requested_url);
+    // error_log('requested url: ' . $requested_url);
 
     if ($custom_stock_request) {
         include get_stylesheet_directory() . '/templates/page-stocks-details.php';
@@ -89,16 +89,16 @@ if ($getfirstpath[1] == 'us-stocks') {
             }
         }
         if ($is_valid_prefix) {
-            error_log('ETF IF');
+      // error_log('ETF IF');
         } else {
-            error_log('Symbol not found');
+      // error_log('Symbol not found');
             $not_found_url = home_url("/stock-not-found");
             wp_redirect($not_found_url, 301);
             exit();
         }
     }
 } else {
-    error_log('Not us-stocks');
+    // error_log('Not us-stocks');
 }
 
 function custom_redirect()
@@ -156,11 +156,11 @@ function custom_redirect()
             exit();
         } else {
             $current_url_path = $_SERVER['REQUEST_URI'];
-            error_log('ETF Not Current URL Path: ' . $current_url_path);
+      // error_log('ETF Not Current URL Path: ' . $current_url_path);
             if ($is_valid_prefix) {
-                error_log('ETF IF');
+          // error_log('ETF IF');
             } else {
-                error_log('Symbol not found');
+          // error_log('Symbol not found');
                 $not_found_url = home_url("/stock-not-found");
                 wp_redirect($not_found_url, 301);
                 exit();
@@ -360,7 +360,7 @@ function remove_unwanted_styles()
         wp_dequeue_script('astra-theme-js');
         wp_deregister_script('astra-theme-js');
     } else {
-        error_log('Dequeue function Else');
+  // error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 99999999999);

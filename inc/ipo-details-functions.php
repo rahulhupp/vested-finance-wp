@@ -187,7 +187,7 @@ function remove_unwanted_for_ipo_styles()
         wp_dequeue_script('astra-theme-js');
         wp_deregister_script('astra-theme-js');
     } else {
-        error_log('Dequeue function Else');
+  // error_log('Dequeue function Else');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_for_ipo_styles', 99999999999);

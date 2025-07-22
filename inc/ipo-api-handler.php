@@ -21,7 +21,7 @@ define('IPO_API_INVESTOR_ID', 'a0147241-64d9-41e9-875c-b67dd7cf07ab'); // Static
 function get_ipo_api_data($ipo_id, $endpoint) {
     // Validate IPO ID
     if (empty($ipo_id)) {
-        error_log("IPO {$endpoint} API Error: Empty IPO ID provided");
+        // error_log("IPO {$endpoint} API Error: Empty IPO ID provided");
         return false;
     }
     
@@ -44,7 +44,7 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     );
     
     if (!isset($endpoints[$endpoint])) {
-        error_log("IPO API Error: Invalid endpoint '{$endpoint}'");
+  // error_log("IPO API Error: Invalid endpoint '{$endpoint}'");
         return false;
     }
     
@@ -63,13 +63,13 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     
     // Check for errors
     if (is_wp_error($response)) {
-        error_log("IPO {$endpoint} API Error: " . $response->get_error_message());
+  // error_log("IPO {$endpoint} API Error: " . $response->get_error_message());
         return false;
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
     if ($response_code !== 200) {
-        error_log("IPO {$endpoint} API Error: HTTP {$response_code} for IPO ID: {$ipo_id}");
+  // error_log("IPO {$endpoint} API Error: HTTP {$response_code} for IPO ID: {$ipo_id}");
         return false;
     }
     
@@ -78,7 +78,7 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     $data = json_decode($body, true);
     
     if (json_last_error() !== JSON_ERROR_NONE) {
-        error_log("IPO {$endpoint} API Error: Invalid JSON response for IPO ID: {$ipo_id}");
+  // error_log("IPO {$endpoint} API Error: Invalid JSON response for IPO ID: {$ipo_id}");
         return false;
     }
     
@@ -97,7 +97,7 @@ function get_ipo_api_data($ipo_id, $endpoint) {
 function get_ipo_spv_details($spv_id) {
     // Validate SPV ID
     if (empty($spv_id)) {
-        error_log("IPO SPV API Error: Empty SPV ID provided");
+  // error_log("IPO SPV API Error: Empty SPV ID provided");
         return false;
     }
     
@@ -124,13 +124,13 @@ function get_ipo_spv_details($spv_id) {
     
     // Check for errors
     if (is_wp_error($response)) {
-        error_log("IPO SPV API Error: " . $response->get_error_message());
+  // error_log("IPO SPV API Error: " . $response->get_error_message());
         return false;
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
     if ($response_code !== 200) {
-        error_log("IPO SPV API Error: HTTP {$response_code} for SPV ID: {$spv_id}");
+  // error_log("IPO SPV API Error: HTTP {$response_code} for SPV ID: {$spv_id}");
         return false;
     }
     
@@ -139,7 +139,7 @@ function get_ipo_spv_details($spv_id) {
     $data = json_decode($body, true);
     
     if (json_last_error() !== JSON_ERROR_NONE) {
-        error_log("IPO SPV API Error: Invalid JSON response for SPV ID: {$spv_id}");
+  // error_log("IPO SPV API Error: Invalid JSON response for SPV ID: {$spv_id}");
         return false;
     }
     

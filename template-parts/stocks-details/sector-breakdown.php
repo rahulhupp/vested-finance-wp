@@ -65,6 +65,6 @@ if (
     </div>
 <?php
 } else {
-    error_log('Invalid Sector Breakdowns Data: ' . print_r($sector_breakdowns_data, true));
+    // error_log('Invalid Sector Breakdowns Data: ' . print_r($sector_breakdowns_data, true));
 }
 ?>
