@@ -11,7 +11,7 @@ add_filter('query_vars', 'ipo_custom_query_vars');
 function ipo_custom_rewrite_rules()
 {
     add_rewrite_rule(
-        '^in/pre-ipo/([^/]+)/?$',
+        '^in/private-markets/([^/]+)/?$',
         'index.php?custom_ipo_request=1&ipo_slug=$matches[1]',
         'top'
     );
@@ -74,7 +74,7 @@ function get_ipo_data_from_list()
         $ipo_mappings[$id] = [
             'name' => $slug, 
             'original_name' => $row['name'],
-            'url' => home_url('/in/pre-ipo/' . $slug . '/')
+            'url' => home_url('/in/private-markets/' . $slug . '/')
         ];
     }
     return $ipo_mappings;
@@ -260,8 +260,9 @@ function get_ipo_custom_meta_title() {
         $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
         if ($ipo) {
             $company = $ipo->name;
-            $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
-            return "Invest in {$company} | Buy Pre-IPO Shares | Opening in {$year}";
+            // $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
+            // return "Invest in {$company} | Buy Pre-IPO Shares | Opening in {$year}";
+            return "Buy or Invest in {$company} Pre-IPO Shares | Vested Finance";
         }
     }
     return false;
@@ -289,8 +290,9 @@ function get_ipo_custom_meta_description() {
         $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
         if ($ipo) {
             $company = $ipo->name;
-            $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
-            return "Explore the {$company} IPO launching in {$year}. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.";
+            // $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
+            // return "Explore the {$company} IPO launching in {$year}. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.";
+            return "Explore investment opportunities in {$company} before its IPO. Get access to private market deals via Vested and diversify your portfolio with top startups.";
         }
     }
     return false;

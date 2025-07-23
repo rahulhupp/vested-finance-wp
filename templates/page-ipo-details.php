@@ -788,14 +788,14 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </body>
 	</html>
 <?php else: ?>
-	 <!-- Schema.org JSON-LD markup -->
+	<!-- Schema.org JSON-LD markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "<?php echo esc_js($ipo->name ?? 'IPO Details'); ?>",
       "url": "<?php echo $current_url; ?>",
-      "description": "<?php echo esc_js(wp_strip_all_tags($ipo->description ?? '')); ?>"
+      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential."
     }
     </script>
     <script type="application/ld+json">
@@ -804,7 +804,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
       "@type": "Product",
       "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>",
       "image": "<?php echo esc_url($ipo->logo_url ?? ''); ?>",
-      "description": "<?php echo esc_js(wp_strip_all_tags($ipo->description ?? '')); ?>",
+      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.",
       "brand": {
         "@type": "Brand",
         "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>"
@@ -827,10 +827,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
       ],
       [
         "question" => "How is the investment structured?",
-        "answer" => "You'll be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you'll become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
+        "answer" => "You will be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you will become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
       ],
       [
-        "question" => "Why can't I invest in " . ($ipo->name ?? 'this company') . " directly?",
+        "question" => "Why can not I invest in " . ($ipo->name ?? 'this company') . " directly?",
         "answer" => "Direct investment into high-demand private companies like " . ($ipo->name ?? 'this company') . " often requires $50M+ in capital. Our SPV structure gives you access at lower minimums by pooling capital and investing through intermediaries that already hold equity."
       ],
       [
@@ -847,11 +847,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
       ],
       [
         "question" => "When will I receive units for my investment?",
-        "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you'll be notified. This typically takes 2–3 weeks post close date."
+        "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you will be notified. This typically takes 2–3 weeks post close date."
       ],
       [
         "question" => "How do I invest in " . ($ipo->name ?? 'this company') . "?",
-        "answer" => "Once you click \"Invest\" and enter the amount or number of shares, you'll be able to review and sign the subscription documents in-app. The investment will then be initiated, and funds will be deducted from your existing DriveWealth buying power. No additional account setup is required."
+        "answer" => "Once you click \"Invest\" and enter the amount or number of shares, you will be able to review and sign the subscription documents in-app. The investment will then be initiated, and funds will be deducted from your existing DriveWealth buying power. No additional account setup is required."
       ],
       [
         "question" => "How do I transfer funds to make the investment?",
@@ -859,7 +859,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
       ],
       [
         "question" => "What are the exit options or liquidity paths?",
-        "answer" => "Liquidity is not guaranteed. However, exits may occur via (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries."
+        "answer" => "Liquidity is not guaranteed. However, exits may occur via (a) resale through our partners Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries."
       ],
       [
         "question" => "What are the risks of investing in " . ($ipo->name ?? 'this company') . "?",
