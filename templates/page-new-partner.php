@@ -43,7 +43,7 @@ while (have_posts()) :
                         <?php if ($banner_disclosure) : ?>
                             <p class="banner_disclosure"><?php echo $banner_disclosure; ?></p>
                         <?php else: ?>
-                            <p class="banner_disclosure">Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation</p>
+                            <p class="banner_disclosure">Offered by VF Securities Inc.</p>
                         <?php endif; ?>
                     </div>
                     <div class="partner_hero_image">
