@@ -2,14 +2,6 @@
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
 $current_url = (is_ssl() ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-// Remove default WordPress robots meta tag and add no-index, no-follow meta tags for SEO
-add_action('wp_head', function() {
-    // Remove default WordPress robots meta tag
-    remove_action('wp_head', 'wp_robots');
-    
-    // Add our custom robots meta tag
-    echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
-}, 1);
 
 if ($hide_header_footer): ?>
 	<!DOCTYPE html>
@@ -367,9 +359,18 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<h2>News</h2>
 					</div>
 						<?php
-						$total_news = count($news_data['items']);
+						// Sort news data by releaseDate (newest first)
+						$sorted_news = $news_data['items'];
+						usort($sorted_news, function($a, $b) {
+							$a_date = isset($a['releaseDate']) ? strtotime($a['releaseDate']) : 0;
+							$b_date = isset($b['releaseDate']) ? strtotime($b['releaseDate']) : 0;
+							
+							return $b_date - $a_date; // Newest first
+						});
+						
+						$total_news = count($sorted_news);
 						echo '<div class="ipo_news_list" data-total="' . $total_news . '">';
-						foreach ($news_data['items'] as $index => $news) {
+						foreach ($sorted_news as $index => $news) {
 							$headline = esc_html($news['headline']);
 							$description = esc_html($news['description']);
 							$link = esc_url($news['link']);
@@ -386,14 +387,26 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_news_item<?php echo $hidden_class; ?>">
 								<a href="<?php echo $link; ?>" target="_blank" class="ipo_news_link">
 									<div class="ipo_news_content">
-										<h3 class="ipo_news_headline"><?php echo $headline; ?></h3>
-										<p class="ipo_news_description"><?php echo $description; ?></p>
 										<?php if ($release_date): ?>
 											<span class="ipo_news_date"><?php echo $release_date; ?></span>
 										<?php endif; ?>
+										<h3 class="ipo_news_headline"><?php echo $headline; ?></h3>
+										<p class="ipo_news_description"><?php echo $description; ?></p>
 									</div>
 								</a>
-				</div>
+								<?php if (!empty($news['articles']) && is_array($news['articles'])): ?>
+								<div class="ipo_news_related_articles">
+									<span>Related Articles:</span>
+									<?php foreach ($news['articles'] as $article): ?>
+										<?php if (!empty($article['publication']) && !empty($article['link'])): ?>
+										<a href="<?php echo esc_url($article['link']); ?>" target="_blank" class="ipo_news_publication_link">
+											<?php echo esc_html($article['publication']); ?>
+										</a>
+										<?php endif; ?>
+									<?php endforeach; ?>
+								</div>
+								<?php endif; ?>
+							</div>
 							<?php
 						}
 						echo '</div>';
@@ -485,9 +498,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<h2>Frequently Asked Questions</h2>
 					</div>
 					<?php
-					$total_faq = 14; // Total number of FAQ items
+					$total_faq = $has_investors_data ? 12 : 7; // Total number of FAQ items (12 for SPV pages, 7 for company pages)
 					echo '<div class="ipo_faq_container" data-total="' . $total_faq . '">';
 					?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item">
 							<div class="ipo_faq_question">
 								<span>What is this investment opportunity in <?php echo esc_html($ipo->name ?? 'this company'); ?>?</span>
@@ -499,15 +513,20 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>This is an opportunity to invest in <?php echo esc_html($ipo->name ?? 'this company'); ?> through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors.</p>	
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item">
 							<div class="ipo_faq_question">
-								<span>How is the investment structured?</span>
+								<span><?php echo $has_investors_data ? 'How is the investment structured?' : 'How would the investment be structured?'; ?></span>
 								<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M1 1L7 7L13 1" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
+								<?php if ($has_investors_data): ?>
 								<p>You'll be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you'll become a limited partner in a fund that indirectly holds shares of <?php echo esc_html($ipo->name ?? 'this company'); ?>.</p>
+								<?php else: ?>
+								<p>When investment opportunities become available for <?php echo esc_html($ipo->name ?? 'this company'); ?>, they would typically be structured through US-based, bankruptcy-remote Delaware SPVs. As an investor, you would become a limited partner in a fund that indirectly holds shares of the company. This page is for expressing interest in future opportunities, not for making actual investments.</p>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="ipo_faq_item">
@@ -532,6 +551,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What is the price per share and valuation?</span>
@@ -543,6 +563,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $<?php echo $api_valuation !== 'N/A' ? $api_valuation : 'TBD'; ?>. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 							</div>
 						</div>
+						<?php endif; ?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What are the dates for the investment window?</span>
@@ -554,6 +576,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>When will I receive units for my investment?</span>
@@ -565,6 +588,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you'll be notified. This typically takes 2–3 weeks post close date.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>How do I invest in <?php echo esc_html($ipo->name ?? 'this company'); ?>?</span>
@@ -587,6 +611,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>Investment funds will be deducted from your existing buying power. You can top up your Vested account via HDFC, Axis, or other supported banks through the "Transfer" section in the app.</p>
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What are the exit options or liquidity paths?</span>
@@ -595,7 +620,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>Liquidity is not guaranteed. However, exits may occur via (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of <?php echo esc_html($ipo->name ?? 'this company'); ?> or its subsidiaries.</p>
+								<p>Liquidity is not guaranteed. However, exits may occur through the following avenues:<br>
+								(a) resale through our partner's Alternative Trading System (ATS) after a holding period,<br>
+								(b) secondary market transactions,<br>
+								(c) a future IPO of <?php echo esc_html($ipo->name ?? 'this company'); ?> or its subsidiaries, or<br>
+								(d) an acquisition of the company.</p>
 							</div>
 						</div>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
@@ -628,9 +657,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>All investments are made through SEC-compliant SPVs under Regulation D. The structure is similar to those used by leading US platforms like EquityZen and Forge.</p>
+								<p>All investments are made through SEC-compliant SPVs under Regulation S. The structure is similar to those used by leading US platforms like EquityZen and Forge.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>Who manages the investment and SPV?</span>
@@ -642,6 +672,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The SPV is co-managed by Vested Finance Inc. and Monark Capital Management. Monark Capital Management oversees fund structuring, operations, and coordination with underlying counterparties.</p>
 							</div>
 						</div>
+						<?php endif; ?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What happens if Vested or its partners go bankrupt?</span>
@@ -652,7 +684,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_faq_answer">
 								<p>Each SPV is bankruptcy-remote and legally ringfenced. Your ownership in the SPV remains unaffected even if Vested or its partners face insolvency.</p>
 							</div>
-						</div>						
+						</div>
+						<?php endif; ?>						
 					</div>
 					<?php
 					// Show "View More" button if there are more than 4 FAQ items
@@ -808,7 +841,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </body>
 	</html>
 <?php else: ?>
-	<!-- Schema.org JSON-LD markup -->
+<?php $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : ''; ?>
+	 <!-- Schema.org JSON-LD markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -840,68 +874,86 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </script>
     <?php
     // Build FAQ array ONCE for both HTML and schema
-    $ipo_faqs = [
-      [
+    $ipo_faqs = [];
+    
+    // Only include the first question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
         "question" => "What is this investment opportunity in " . ($ipo->name ?? 'this company') . "?",
         "answer" => "This is an opportunity to invest in " . ($ipo->name ?? 'this company') . " through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors."
-      ],
-      [
-        "question" => "How is the investment structured?",
-        "answer" => "You will be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you will become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
-      ],
-      [
-        "question" => "Why can not I invest in " . ($ipo->name ?? 'this company') . " directly?",
-        "answer" => "Direct investment into high-demand private companies like " . ($ipo->name ?? 'this company') . " often requires $50M+ in capital. Our SPV structure gives you access at lower minimums by pooling capital and investing through intermediaries that already hold equity."
-      ],
-      [
-        "question" => "What is the minimum investment amount?",
-        "answer" => "The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations."
-      ],
-      [
+      ];
+    }
+    
+    $ipo_faqs[] = [
+      "question" => $has_investors_data ? "How is the investment structured?" : "How would the investment be structured?",
+      "answer" => $has_investors_data 
+        ? "You will be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you will become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
+        : "When investment opportunities become available for " . ($ipo->name ?? 'this company') . ", they would typically be structured through US-based, bankruptcy-remote Delaware SPVs. As an investor, you would become a limited partner in a fund that indirectly holds shares of the company. This page is for expressing interest in future opportunities, not for making actual investments."
+    ];
+    $ipo_faqs[] = [
+      "question" => "Why can not I invest in " . ($ipo->name ?? 'this company') . " directly?",
+      "answer" => "Direct investment into high-demand private companies like " . ($ipo->name ?? 'this company') . " often requires $50M+ in capital. Our SPV structure gives you access to lower minimums by pooling capital and investing through intermediaries that already hold equity."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What is the minimum investment amount?",
+      "answer" => "The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations."
+    ];
+    // Only include price per share question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
         "question" => "What is the price per share and valuation?",
         "answer" => "The offering is priced at $" . ($api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD') . "/share, implying a valuation of approximately $" . ($api_valuation !== 'N/A' ? $api_valuation : 'TBD') . ". This includes a one-time management fee and expense reserve. There are no ongoing fees or carry."
-      ],
-      [
+      ];
+    }
+    // Only include investment window dates question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
         "question" => "What are the dates for the investment window?",
         "answer" => "The offering for " . ($ipo->name ?? 'this company') . " opens on " . (!empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD') . " and closes on " . ($api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD') . ". Once closed, the opportunity will no longer be available for subscription."
-      ],
-      [
-        "question" => "When will I receive units for my investment?",
-        "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you will be notified. This typically takes 2–3 weeks post close date."
-      ],
-      [
+      ];
+    }
+    $ipo_faqs[] = [
+      "question" => "When will I receive units for my investment?",
+      "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you will be notified. This typically takes 2–3 weeks post close date."
+    ];
+    // Only include investment process questions for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
         "question" => "How do I invest in " . ($ipo->name ?? 'this company') . "?",
         "answer" => "Once you click \"Invest\" and enter the amount or number of shares, you will be able to review and sign the subscription documents in-app. The investment will then be initiated, and funds will be deducted from your existing DriveWealth buying power. No additional account setup is required."
-      ],
-      [
+      ];
+      $ipo_faqs[] = [
         "question" => "How do I transfer funds to make the investment?",
         "answer" => "Investment funds will be deducted from your existing buying power. You can top up your Vested account via HDFC, Axis, or other supported banks through the \"Transfer\" section in the app."
-      ],
-      [
-        "question" => "What are the exit options or liquidity paths?",
-        "answer" => "Liquidity is not guaranteed. However, exits may occur via (a) resale through our partners Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries."
-      ],
-      [
-        "question" => "What are the risks of investing in " . ($ipo->name ?? 'this company') . "?",
-        "answer" => "Key risks include equity risk (share value decline) and liquidity risk (limited tradability of private shares). As with any private market investment, capital loss is possible."
-      ],
-      [
-        "question" => "What are the tax implications?",
-        "answer" => "Taxation is treated the same as investing in US-listed stocks. Long-term capital gains (after 24 months) are taxed at 12.5%. Short-term gains are taxed as per your income tax slab."
-      ],
-      [
-        "question" => "Under which regulatory framework does this investment fall?",
-        "answer" => "All investments are made through SEC-compliant SPVs under Regulation D. The structure is similar to those used by leading US platforms like EquityZen and Forge."
-      ],
-      [
+      ];
+    }
+    $ipo_faqs[] = [
+      "question" => "What are the exit options or liquidity paths?",
+      "answer" => "Liquidity is not guaranteed. However, exits may occur through the following avenues: (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries, or (d) an acquisition of the company."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What are the risks of investing in " . ($ipo->name ?? 'this company') . "?",
+      "answer" => "Key risks include equity risk (share value decline) and liquidity risk (limited tradability of private shares). As with any private market investment, capital loss is possible."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What are the tax implications?",
+      "answer" => "Taxation is treated the same as investing in US-listed stocks. Long-term capital gains (after 24 months) are taxed at 12.5%. Short-term gains are taxed as per your income tax slab."
+    ];
+    $ipo_faqs[] = [
+      "question" => "Under which regulatory framework does this investment fall?",
+      "answer" => "All investments are made through SEC-compliant SPVs under Regulation S. The structure is similar to those used by leading US platforms like EquityZen and Forge."
+    ];
+    // Only include SPV management questions for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
         "question" => "Who manages the investment and SPV?",
         "answer" => "The SPV is co-managed by Vested Finance Inc. and Monark Capital Management. Monark Capital Management oversees fund structuring, operations, and coordination with underlying counterparties."
-      ],
-      [
+      ];
+      $ipo_faqs[] = [
         "question" => "What happens if Vested or its partners go bankrupt?",
         "answer" => "Each SPV is bankruptcy-remote and legally ringfenced. Your ownership in the SPV remains unaffected even if Vested or its partners face insolvency."
-      ]
-    ];
+      ];
+    }
     ?>
     <script type="application/ld+json">
     {

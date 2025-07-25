@@ -433,6 +433,29 @@ a {
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
+	margin-bottom: 2px;
+}
+
+.ipo_news_related_articles {
+    color: #262626;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+.ipo_news_related_articles .ipo_news_publication_link:after {
+    content: ",";
+    margin-left: -3px;
+    margin-right: 4px;
+}
+
+.ipo_news_related_articles span {
+    font-weight: 600;
+}
+
+.ipo_news_related_articles .ipo_news_publication_link:last-child:after {
+    display: none;
 }
 
 .ipo_news_item:last-child {
