@@ -396,7 +396,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</a>
 								<?php if (!empty($news['articles']) && is_array($news['articles'])): ?>
 								<div class="ipo_news_related_articles">
-									<span>More Articles:</span>
+									<span>Related Articles:</span>
 									<?php foreach ($news['articles'] as $article): ?>
 										<?php if (!empty($article['publication']) && !empty($article['link'])): ?>
 										<a href="<?php echo esc_url($article['link']); ?>" target="_blank" class="ipo_news_publication_link">
