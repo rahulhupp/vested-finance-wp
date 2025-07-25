@@ -186,22 +186,31 @@ get_header(); ?>
         <div class="nse-financial-metrics">
           <div class="nse-financial-metric">
             <h3>₹19,177 Cr</h3>
-            <span class="nse-financial-metric-desc">Revenue (FY25)<br>&#8593;41% from FY21</span>
+            <div class="nse-financial-metric-desc">
+              <p>Revenue (FY25)</p>
+              <p><small>+241% from FY21</small></p>
+            </div>
           </div>
           <div class="nse-financial-metric">
             <h3>₹12,188 Cr</h3>
-            <span class="nse-financial-metric-desc">Profit
-              (FY25)<br>+241% from FY21</span>
+            <div class="nse-financial-metric-desc">
+              <p>Profit (FY25)</p>
+              <p><small>+241% from FY21</small></p>
+            </div>
           </div>
           <div class="nse-financial-metric">
             <h3>64%</h3>
-            <span class="nse-financial-metric-desc">Net Margin
-              (FY25)<br>Consistent 60%+</span>
+            <div class="nse-financial-metric-desc">
+              <p>Net Margin (FY25)</p>
+              <p><small>Consistent 60%+</small></p>
+            </div>
           </div>
           <div class="nse-financial-metric">
             <h3>₹49.24</h3>
-            <span class="nse-financial-metric-desc">EPS
-              (FY25)<br>+250% from FY21</span>
+            <div class="nse-financial-metric-desc">
+              <p>EPS (FY25)</p>
+              <p><small>+250% from FY21</small></p>
+            </div>
           </div>
         </div>
         <div class="table-wrapper">
@@ -298,6 +307,7 @@ get_header(); ?>
 
       <div class="nse-section-inner-block">
         <h2 class="nse-inner-section-title">Competitive Position</h2>
+        <div class="nse-inner-section-desc">NSE vs BSE comparison (FY25)</div>
         <div class="table-wrapper">
 
           <table class="nse-competitive-table">
@@ -317,6 +327,18 @@ get_header(); ?>
               <td>Net Profit (₹ Cr)</td>
               <td>12,188</td>
               <td>1,322</td>
+              <td>9x Higher</td>
+            </tr>
+            <tr>
+              <td>EPS (₹ Cr)</td>
+              <td>49.24</td>
+              <td>32.65</td>
+              <td>9x Higher</td>
+            </tr>
+            <tr>
+              <td>Share price</td>
+              <td>2,400</td>
+              <td>2,497</td>
               <td>9x Higher</td>
             </tr>
             <tr>
