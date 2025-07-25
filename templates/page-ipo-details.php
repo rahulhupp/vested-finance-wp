@@ -1,14 +1,23 @@
-<?php
+<?php 
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
-get_header();
-if ($hide_header_footer): ?>
-    <style>
-        header, .site-header, #masthead, footer, .site-footer, #colophon {
-            display: none !important;
-        }
-    </style>
-<?php endif;
+$current_url = (is_ssl() ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
+
+if ($hide_header_footer): ?>
+	<!DOCTYPE html>
+    <html <?php language_attributes(); ?>>
+    <head>
+        <meta charset="<?php bloginfo('charset'); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/templates/css-ipo-details-params.css" type="text/css" media="all" />
+    </head>
+    <body <?php body_class(); ?>>
+<?php else: ?>
+	<?php get_header(); ?>
+<?php endif; ?>
+
+<?php
 $ipo_id = get_query_var('ipo_id');
 $ipo_name = get_query_var('ipo_name');
 
@@ -50,18 +59,25 @@ function render_funding_rounds($funding_rounds_data) {
             $round_name = esc_html($round['roundName']);
             $issued_at = '';
             $issue_price = '';
-            
-            // Get the first share detail for price and date
+
+            // Find the maximum issue price and the corresponding issuedAt in shareDetails
             if (!empty($round['shareDetails']) && is_array($round['shareDetails'])) {
-                $first_share = $round['shareDetails'][0];
-                if (!empty($first_share['issuePrice'])) {
-                    $issue_price = '$' . number_format($first_share['issuePrice'], 2);
+                $max_issue_price = null;
+                $max_issued_at = '';
+                foreach ($round['shareDetails'] as $share) {
+                    if (isset($share['issuePrice']) && (is_null($max_issue_price) || $share['issuePrice'] > $max_issue_price)) {
+                        $max_issue_price = $share['issuePrice'];
+                        $max_issued_at = !empty($share['issuedAt']) ? $share['issuedAt'] : $max_issued_at;
+                    }
                 }
-                if (!empty($first_share['issuedAt'])) {
-                    $issued_at = format_date_with_ordinal($first_share['issuedAt']);
+                if (!is_null($max_issue_price)) {
+                    $issue_price = '$' . number_format($max_issue_price, 2);
+                }
+                if (!empty($max_issued_at)) {
+                    $issued_at = format_date_with_ordinal($max_issued_at);
                 }
             }
-            
+
             // Fallback to round-level data if share details not available
             if (empty($issue_price) && !empty($round['issuePrice'])) {
                 $issue_price = '$' . number_format($round['issuePrice'], 2);
@@ -75,8 +91,8 @@ function render_funding_rounds($funding_rounds_data) {
                     <h4><?php echo $round_name; ?></h4>
                 </div>
                 <div class="funding_amount">
-                    <strong><?php echo $issue_price ?: 'N/A'; ?></strong>
-                    <span class="funding_date"><?php echo $issued_at ?: 'N/A'; ?></span>
+                    <strong><?php echo $issue_price ?: '0'; ?></strong>
+                    <span class="funding_date"><?php echo $issued_at ?: ''; ?></span>
                 </div>
             </div>
             <?php
@@ -96,64 +112,78 @@ global $wpdb;
 $table_name = $wpdb->prefix . 'ipo_list';
 $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
 
-// Fetch investors data for valuation
-$investors_data = get_ipo_investors($ipo_id);
+// Get key information from database instead of API calls
 $api_valuation = 'N/A';
 $api_management_fee = 'N/A';
 $api_funding_deadline = 'N/A';
 $api_min_commitment = 'N/A';
 $api_notable_investors = array();
-
-if ($investors_data && !empty($investors_data['items'])) {
-    $first_investor = $investors_data['items'][0];
-    if (!empty($first_investor['valuation'])) {
-        $api_valuation = format_human_readable_number($first_investor['valuation']);
-    }
-    if (!empty($first_investor['managementFee'])) {
-        $api_management_fee = $first_investor['managementFee'];
-    }
-    if (!empty($first_investor['fundingDeadline'])) {
-        $api_funding_deadline = $first_investor['fundingDeadline'];
-    }
-    if (!empty($first_investor['minCommitmentAmount'])) {
-        $api_min_commitment = format_human_readable_number($first_investor['minCommitmentAmount']);
-    }
-    if (!empty($first_investor['notableInvestors'])) {
-        $api_notable_investors = $first_investor['notableInvestors'];
-    }
-}
-
-// Fetch investment data
-$investment_data = get_ipo_investment($ipo_id);
 $api_share_type = 'N/A';
 $api_share_class = 'N/A';
 $api_price_per_share = 'N/A';
 $api_transaction_type = 'N/A';
 
-if ($investment_data && !empty($investment_data['items'])) {
-    $first_investment = $investment_data['items'][0];
-    if (!empty($first_investment['shareType'])) {
-        $api_share_type = $first_investment['shareType'];
+// Use database values if available
+if ($ipo) {
+    if (!empty($ipo->api_valuation)) {
+        $api_valuation = $ipo->api_valuation;
     }
-    if (!empty($first_investment['shareClass'])) {
-        $api_share_class = $first_investment['shareClass'];
+    if (!empty($ipo->api_management_fee)) {
+        $api_management_fee = $ipo->api_management_fee;
     }
-    if (!empty($first_investment['pricePerShare'])) {
-        $api_price_per_share = $first_investment['pricePerShare'];
+    if (!empty($ipo->api_funding_deadline)) {
+        $api_funding_deadline = $ipo->api_funding_deadline;
     }
-    if (!empty($first_investment['transactionType'])) {
-        $api_transaction_type = $first_investment['transactionType'];
+    if (!empty($ipo->api_min_commitment)) {
+        $api_min_commitment = $ipo->api_min_commitment;
+    }
+    if (!empty($ipo->api_notable_investors)) {
+        $api_notable_investors = json_decode($ipo->api_notable_investors, true);
+    }
+    if (!empty($ipo->api_share_type)) {
+        $api_share_type = $ipo->api_share_type;
+    }
+    if (!empty($ipo->api_share_class)) {
+        $api_share_class = $ipo->api_share_class;
+    }
+    if (!empty($ipo->api_price_per_share)) {
+        $api_price_per_share = $ipo->api_price_per_share;
+    }
+    if (!empty($ipo->api_transaction_type)) {
+        $api_transaction_type = $ipo->api_transaction_type;
     }
 }
 
-// Fetch funding rounds data
-$funding_rounds_data = get_ipo_funding_rounds($ipo_id);
+// Fetch funding rounds data from database
+$funding_rounds_data = null;
+if ($ipo && !empty($ipo->api_funding_rounds_data)) {
+    $funding_rounds_data = json_decode($ipo->api_funding_rounds_data, true);
+}
 
-// Fetch all API data once at the top
-$news_data = get_ipo_news($ipo_id);
-$research_data = get_ipo_research($ipo_id);
-$documents_data = get_ipo_documents($ipo_id);
-$deal_memo_url = get_ipo_deal_memo_url($ipo_id);
+// Get dynamic data from database instead of API calls
+$news_data = null;
+$research_data = null;
+$documents_data = null;
+
+if ($ipo) {
+    // Get news data from database
+    if (!empty($ipo->api_news_data)) {
+        $news_data = json_decode($ipo->api_news_data, true);
+    }
+    
+    // Get research data from database
+    if (!empty($ipo->api_research_data)) {
+        $research_data = json_decode($ipo->api_research_data, true);
+    }
+    
+    // Get documents data from database
+    if (!empty($ipo->api_documents_data)) {
+        $documents_data = json_decode($ipo->api_documents_data, true);
+    }
+}
+
+// Check if we have investors data for investment functionality
+$has_investors_data = !empty($api_notable_investors) || $api_valuation !== 'N/A' || $api_min_commitment !== 'N/A';
 
 $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I%20want%20to%20learn%20more%20about%20investing%20in%20Pre-IPO%20companies.%20Please%20give%20me%20a%20callback";
 ?>
@@ -163,8 +193,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 			<div class="ipo_content">
 				<div class="ipo_header">
 					<?php if (!empty($ipo->logo_url)): ?>
-						<div class="ipo_logo">
-							<div class="ipo_logo_wrapper">
+					<div class="ipo_logo">
+						<div class="ipo_logo_wrapper">
 								<img src="<?php echo esc_url($ipo->logo_url); ?>" alt="<?php echo esc_attr($ipo->name ?? 'IPO'); ?>" />
 							</div>
 						</div>
@@ -205,24 +235,24 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					</div>
 				</div>
 				<div class="ipo_tabs">
-					<?php if (!empty($investors_data['items'])): ?>
-						<button class="ipo_tab active" data-target="#ipo-overview">Overview</button>
+									<?php if ($has_investors_data): ?>
+					<button class="ipo_tab active" data-target="#ipo-overview">Overview</button>
 					<?php endif; ?>
 					<?php if (!empty($ipo->description) && trim($ipo->description) !== 'description'): ?>
-						<button class="ipo_tab" data-target="#ipo-about">About</button>
+					<button class="ipo_tab" data-target="#ipo-about">About</button>
 					<?php endif; ?>
 					<?php if (!empty($api_notable_investors)): ?>
-						<button class="ipo_tab" data-target="#ipo-investors">Investors</button>
+					<button class="ipo_tab" data-target="#ipo-investors">Investors</button>
 					<?php endif; ?>
 					<?php if ($news_data && !empty($news_data['items'])): ?>
-						<button class="ipo_tab" data-target="#ipo-news">News</button>
+					<button class="ipo_tab" data-target="#ipo-news">News</button>
 					<?php endif; ?>
 					<?php if ($research_data && !empty($research_data['items'])): ?>
-						<button class="ipo_tab" data-target="#ipo-research">Research Reports</button>
+					<button class="ipo_tab" data-target="#ipo-research">Research Reports</button>
 					<?php endif; ?>
 				</div>
 
-				<?php if (!empty($investors_data['items'])): ?>
+				<?php if ($has_investors_data): ?>
 				<div class="ipo_content_box" id="ipo-overview">
 					<div class="ipo_content_box_header">
 						<h2>Key Information</h2>
@@ -230,57 +260,57 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					<div class="ipo_key_information">
 						<div class="ipo_ki_metrics">
 							<?php if ($api_price_per_share !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_price_per_share; ?></h4>
-									<span>Price Per Share</span>
-								</div>
+								<span>Price Per Share</span>
+							</div>
 							<?php endif; ?>
 							<?php if ($api_min_commitment !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_min_commitment; ?></h4>
-									<span>Minimum Investment</span>
-								</div>
+								<span>Minimum Investment</span>
+							</div>
 							<?php endif; ?>
 							<?php if ($api_valuation !== 'N/A'): ?>
-								<div class="ip_ki_metric">
+							<div class="ip_ki_metric">
 									<h4>$<?php echo $api_valuation; ?></h4>
-									<span>Company Valuation</span>
-								</div>
+								<span>Company Valuation</span>
+							</div>
 							<?php endif; ?>
 						</div>
 						<div class="ipo_ki_meta_container">
 							<div class="ipo_ki_meta_box">
 								<?php if ($api_share_type !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Share Type</span>
+								<div class="ipo_ki_meta">
+									<span>Share Type</span>
 										<strong><?php echo $api_share_type; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_management_fee !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Management Fee</span>
+								<div class="ipo_ki_meta">
+									<span>Management Fee</span>
 										<strong><?php echo $api_management_fee; ?>%</strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_funding_deadline !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Close Date</span>
+								<div class="ipo_ki_meta">
+									<span>Close Date</span>
 										<strong><?php echo format_date_with_ordinal($api_funding_deadline); ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 							</div>
 							<div class="ipo_ki_meta_box">
 								<?php if ($api_share_class !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Share Class</span>
+								<div class="ipo_ki_meta">
+									<span>Share Class</span>
 										<strong><?php echo $api_share_class; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<?php if ($api_transaction_type !== 'N/A'): ?>
-									<div class="ipo_ki_meta">
-										<span>Transaction Type</span>
+								<div class="ipo_ki_meta">
+									<span>Transaction Type</span>
 										<strong><?php echo $api_transaction_type; ?></strong>
-									</div>
+								</div>
 								<?php endif; ?>
 								<div class="ipo_ki_meta">
 									<span>Fund History</span>
@@ -293,45 +323,54 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<?php endif; ?>
 
 				<?php if (!empty($ipo->description) && trim($ipo->description) !== 'description'): ?>
-					<div class="ipo_content_box" id="ipo-about">
-						<div class="ipo_content_box_header">
-							<h2>About <?php echo esc_attr($ipo->name ?? 'IPO'); ?></h2>
-						</div>
-						<div class="ipo_about_content">
-							<?php
-							$desc = esc_html($ipo->description);
-							$paragraphs = explode("\n\n", $desc);
-							foreach ($paragraphs as $para) {
-								echo '<p>' . nl2br(trim($para)) . '</p>';
-							}
-							?>
-						</div>
+				<div class="ipo_content_box" id="ipo-about">
+					<div class="ipo_content_box_header">
+						<h2>About <?php echo esc_attr($ipo->name ?? 'IPO'); ?></h2>
 					</div>
+					<div class="ipo_about_content">
+						<?php
+							$desc = esc_html($ipo->description);
+						$paragraphs = explode("\n\n", $desc);
+						foreach ($paragraphs as $para) {
+							echo '<p>' . nl2br(trim($para)) . '</p>';
+						}
+						?>
+					</div>
+				</div>
 				<?php endif; ?>
 
 
 				<?php if (!empty($api_notable_investors)): ?>
-					<div class="ipo_content_box" id="ipo-investors">
-						<div class="ipo_content_box_header">
-							<h2>Notable Investors</h2>
-						</div>
+				<div class="ipo_content_box" id="ipo-investors">
+					<div class="ipo_content_box_header">
+						<h2>Notable Investors</h2>
+					</div>
 						<div class="ipo_notable_investors">
 							<?php foreach ($api_notable_investors as $investor_name): ?>
 								<div class="ipo_notable_investor"><?php echo esc_html($investor_name); ?></div>
 							<?php endforeach; ?>
 						</div>
-					</div>
+				</div>
 				<?php endif; ?>
 
 				<?php if ($news_data && !empty($news_data['items'])): ?>
-					<div class="ipo_content_box" id="ipo-news">
-						<div class="ipo_content_box_header">
-							<h2>News</h2>
-						</div>
+				<div class="ipo_content_box" id="ipo-news">
+					<div class="ipo_content_box_header">
+						<h2>News</h2>
+					</div>
 						<?php
-						$total_news = count($news_data['items']);
+						// Sort news data by releaseDate (newest first)
+						$sorted_news = $news_data['items'];
+						usort($sorted_news, function($a, $b) {
+							$a_date = isset($a['releaseDate']) ? strtotime($a['releaseDate']) : 0;
+							$b_date = isset($b['releaseDate']) ? strtotime($b['releaseDate']) : 0;
+							
+							return $b_date - $a_date; // Newest first
+						});
+						
+						$total_news = count($sorted_news);
 						echo '<div class="ipo_news_list" data-total="' . $total_news . '">';
-						foreach ($news_data['items'] as $index => $news) {
+						foreach ($sorted_news as $index => $news) {
 							$headline = esc_html($news['headline']);
 							$description = esc_html($news['description']);
 							$link = esc_url($news['link']);
@@ -348,13 +387,25 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_news_item<?php echo $hidden_class; ?>">
 								<a href="<?php echo $link; ?>" target="_blank" class="ipo_news_link">
 									<div class="ipo_news_content">
-										<h3 class="ipo_news_headline"><?php echo $headline; ?></h3>
-										<p class="ipo_news_description"><?php echo $description; ?></p>
 										<?php if ($release_date): ?>
 											<span class="ipo_news_date"><?php echo $release_date; ?></span>
 										<?php endif; ?>
+										<h3 class="ipo_news_headline"><?php echo $headline; ?></h3>
+										<p class="ipo_news_description"><?php echo $description; ?></p>
 									</div>
 								</a>
+								<?php if (!empty($news['articles']) && is_array($news['articles'])): ?>
+								<div class="ipo_news_related_articles">
+									<span>More Articles:</span>
+									<?php foreach ($news['articles'] as $article): ?>
+										<?php if (!empty($article['publication']) && !empty($article['link'])): ?>
+										<a href="<?php echo esc_url($article['link']); ?>" target="_blank" class="ipo_news_publication_link">
+											<?php echo esc_html($article['publication']); ?>
+										</a>
+										<?php endif; ?>
+									<?php endforeach; ?>
+								</div>
+								<?php endif; ?>
 							</div>
 							<?php
 						}
@@ -371,14 +422,35 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<?php endif; ?>
 
 				<?php if ($research_data && !empty($research_data['items'])): ?>
-					<div class="ipo_content_box" id="ipo-research">
-						<div class="ipo_content_box_header">
-							<h2>Research Reports</h2>
+				<div class="ipo_content_box" id="ipo-research">
+					<div class="ipo_content_box_header">
+						<h2>Research Reports</h2>
 						</div>
 						<?php
-						$total_research = count($research_data['items']);
+						// Sort research data by relation (SUBJECT first) and publishedDate (newest first)
+						$sorted_research = $research_data['items'];
+						usort($sorted_research, function($a, $b) {
+							$a_relation = isset($a['relation']) ? $a['relation'] : '';
+							$b_relation = isset($b['relation']) ? $b['relation'] : '';
+							
+							// SUBJECT should come first
+							if ($a_relation === 'SUBJECT' && $b_relation !== 'SUBJECT') {
+								return -1;
+							}
+							if ($b_relation === 'SUBJECT' && $a_relation !== 'SUBJECT') {
+								return 1;
+							}
+							
+							// If both have same relation or neither is SUBJECT, sort by publishedDate (newest first)
+							$a_date = isset($a['publishedDate']) ? strtotime($a['publishedDate']) : 0;
+							$b_date = isset($b['publishedDate']) ? strtotime($b['publishedDate']) : 0;
+							
+							return $b_date - $a_date; // Newest first
+						});
+						
+						$total_research = count($sorted_research);
 						echo '<div class="ipo_research_list" data-total="' . $total_research . '">';
-						foreach ($research_data['items'] as $index => $research) {
+						foreach ($sorted_research as $index => $research) {
 							$title = esc_html($research['title']);
 							$link = esc_url($research['link']);
 							
@@ -405,8 +477,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 										</svg>
 										<span>View Document</span>
 									</a>
-								</div>
-							</div>
+					</div>
+				</div>
 							<?php
 						}
 						echo '</div>';
@@ -426,9 +498,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<h2>Frequently Asked Questions</h2>
 					</div>
 					<?php
-					$total_faq = 14; // Total number of FAQ items
+					$total_faq = $has_investors_data ? 12 : 7; // Total number of FAQ items (12 for SPV pages, 7 for company pages)
 					echo '<div class="ipo_faq_container" data-total="' . $total_faq . '">';
 					?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item">
 							<div class="ipo_faq_question">
 								<span>What is this investment opportunity in <?php echo esc_html($ipo->name ?? 'this company'); ?>?</span>
@@ -440,15 +513,20 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>This is an opportunity to invest in <?php echo esc_html($ipo->name ?? 'this company'); ?> through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors.</p>	
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item">
 							<div class="ipo_faq_question">
-								<span>How is the investment structured?</span>
+								<span><?php echo $has_investors_data ? 'How is the investment structured?' : 'How would the investment be structured?'; ?></span>
 								<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M1 1L7 7L13 1" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
+								<?php if ($has_investors_data): ?>
 								<p>You'll be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you'll become a limited partner in a fund that indirectly holds shares of <?php echo esc_html($ipo->name ?? 'this company'); ?>.</p>
+								<?php else: ?>
+								<p>When investment opportunities become available for <?php echo esc_html($ipo->name ?? 'this company'); ?>, they would typically be structured through US-based, bankruptcy-remote Delaware SPVs. As an investor, you would become a limited partner in a fund that indirectly holds shares of the company. This page is for expressing interest in future opportunities, not for making actual investments.</p>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="ipo_faq_item">
@@ -473,6 +551,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What is the price per share and valuation?</span>
@@ -484,6 +563,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $<?php echo $api_valuation !== 'N/A' ? $api_valuation : 'TBD'; ?>. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 							</div>
 						</div>
+						<?php endif; ?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What are the dates for the investment window?</span>
@@ -495,6 +576,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>When will I receive units for my investment?</span>
@@ -506,6 +588,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you'll be notified. This typically takes 2–3 weeks post close date.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>How do I invest in <?php echo esc_html($ipo->name ?? 'this company'); ?>?</span>
@@ -528,6 +611,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>Investment funds will be deducted from your existing buying power. You can top up your Vested account via HDFC, Axis, or other supported banks through the "Transfer" section in the app.</p>
 							</div>
 						</div>
+						<?php endif; ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What are the exit options or liquidity paths?</span>
@@ -536,7 +620,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>Liquidity is not guaranteed. However, exits may occur via (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, or (c) a future IPO of <?php echo esc_html($ipo->name ?? 'this company'); ?> or its subsidiaries.</p>
+								<p>Liquidity is not guaranteed. However, exits may occur through the following avenues:<br>
+								(a) resale through our partner's Alternative Trading System (ATS) after a holding period,<br>
+								(b) secondary market transactions,<br>
+								(c) a future IPO of <?php echo esc_html($ipo->name ?? 'this company'); ?> or its subsidiaries, or<br>
+								(d) an acquisition of the company.</p>
 							</div>
 						</div>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
@@ -569,9 +657,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>All investments are made through SEC-compliant SPVs under Regulation D. The structure is similar to those used by leading US platforms like EquityZen and Forge.</p>
+								<p>All investments are made through SEC-compliant SPVs under Regulation S. The structure is similar to those used by leading US platforms like EquityZen and Forge.</p>
 							</div>
 						</div>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>Who manages the investment and SPV?</span>
@@ -583,6 +672,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>The SPV is co-managed by Vested Finance Inc. and Monark Capital Management. Monark Capital Management oversees fund structuring, operations, and coordination with underlying counterparties.</p>
 							</div>
 						</div>
+						<?php endif; ?>
+						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
 								<span>What happens if Vested or its partners go bankrupt?</span>
@@ -593,7 +684,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_faq_answer">
 								<p>Each SPV is bankruptcy-remote and legally ringfenced. Your ownership in the SPV remains unaffected even if Vested or its partners face insolvency.</p>
 							</div>
-						</div>						
+						</div>
+						<?php endif; ?>						
 					</div>
 					<?php
 					// Show "View More" button if there are more than 4 FAQ items
@@ -623,18 +715,20 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 				<div class="ipo_sidebar_box quick_actions">
 					<h2>Quick Actions</h2>
 					<div class="ipo_quick_actions">
-						<?php if (!empty($investors_data['items'])): ?>
+						<?php if ($has_investors_data): ?>
 							<?php 
 								$csrf_param = isset($_GET['csrf']) ? $_GET['csrf'] : '';
 								$token_param = isset($_GET['token']) ? $_GET['token'] : '';
 								
-								// Get SPV ID from investors data
+								// Get SPV ID from database or fallback to API if needed
 								$spv_id = '';
+								// For now, we'll need to fetch SPV ID via API if needed for investment
+								$investors_data = get_ipo_investors($ipo_id);
 								if (!empty($investors_data['items'][0]['id'])) {
 									$spv_id = $investors_data['items'][0]['id'];
 								}
 								
-								$invest_url = "https://next-staging.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
+								$invest_url = "https://app.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
 								if (!empty($spv_id)) {
 									$invest_url .= "?productId={$spv_id}";
 								}
@@ -644,21 +738,41 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<?php
 								$typoform_link = get_typoform_link_by_ipo_id($ipo_id);
 								if ($typoform_link) {
-									echo '<a href="' . esc_url($typoform_link) . '" class="ipo_primary_button">Express Interest</a>';
+									?>
+									<a href="<?php echo esc_url($typoform_link); ?>" class="ipo_primary_button">
+										<?php
+											if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+												echo 'Invest Now';
+											} else {
+												echo 'Express Interest';
+											}
+										?>
+									</a>
+									<?php
 								} else {
-									echo '<a href="#TBD" class="ipo_primary_button">Express Interest</a>';
+									?>
+										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
+											<?php
+												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+													echo 'Invest Now';
+												} else {
+													echo 'Express Interest';
+												}
+											?>
+										</a>
+									<?php
 								}
 							?>
 						<?php endif; ?>
-						<?php if ($deal_memo_url): ?>
-							<a href="<?php echo esc_url($deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
+						<?php if ($has_investors_data && !empty($ipo->api_deal_memo_url)): ?>
+						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
-					<div class="ipo_sidebar_box">
-						<h2>Documents</h2>
+				<div class="ipo_sidebar_box">
+					<h2>Documents</h2>
 						<div class="ipo_documents_list">
 							<?php foreach ($documents_data['items'] as $document): 
 								$document_name = esc_html($document['name']);
@@ -688,13 +802,13 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						</div>
 					</div>
 				<?php else: ?>
-					<?php if ($funding_rounds_data && !empty($funding_rounds_data['items'])): ?>
+					<?php if ($funding_rounds_data && !empty($funding_rounds_data['items']) && empty($investors_data['items'])): ?>
 						<div class="ipo_sidebar_box">
 							<h2>Funding Rounds</h2>
 							<div class="funding_rounds_list">
 								<?php render_funding_rounds($funding_rounds_data); ?>
 							</div>
-						</div>
+				</div>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
@@ -722,4 +836,142 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     </div>
 </div>
 
-<?php get_footer(); ?>
+<?php if ($hide_header_footer): ?>
+	<script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
+    </body>
+	</html>
+<?php else: ?>
+<?php $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : ''; ?>
+	 <!-- Schema.org JSON-LD markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "<?php echo esc_js($ipo->name ?? 'IPO Details'); ?>",
+      "url": "<?php echo $current_url; ?>",
+      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>",
+      "image": "<?php echo esc_url($ipo->logo_url ?? ''); ?>",
+      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.",
+      "brand": {
+        "@type": "Brand",
+        "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "<?php echo esc_js($api_price_per_share !== 'N/A' ? $api_price_per_share : ''); ?>",
+        "availability": "https://schema.org/PreOrder",
+        "url": "<?php echo $current_url; ?>"
+      }
+    }
+    </script>
+    <?php
+    // Build FAQ array ONCE for both HTML and schema
+    $ipo_faqs = [];
+    
+    // Only include the first question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
+        "question" => "What is this investment opportunity in " . ($ipo->name ?? 'this company') . "?",
+        "answer" => "This is an opportunity to invest in " . ($ipo->name ?? 'this company') . " through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors."
+      ];
+    }
+    
+    $ipo_faqs[] = [
+      "question" => $has_investors_data ? "How is the investment structured?" : "How would the investment be structured?",
+      "answer" => $has_investors_data 
+        ? "You will be investing via a US-based, bankruptcy-remote Delaware SPV. As an investor, you will become a limited partner in a fund that indirectly holds shares of " . ($ipo->name ?? 'this company') . "."
+        : "When investment opportunities become available for " . ($ipo->name ?? 'this company') . ", they would typically be structured through US-based, bankruptcy-remote Delaware SPVs. As an investor, you would become a limited partner in a fund that indirectly holds shares of the company. This page is for expressing interest in future opportunities, not for making actual investments."
+    ];
+    $ipo_faqs[] = [
+      "question" => "Why can not I invest in " . ($ipo->name ?? 'this company') . " directly?",
+      "answer" => "Direct investment into high-demand private companies like " . ($ipo->name ?? 'this company') . " often requires $50M+ in capital. Our SPV structure gives you access to lower minimums by pooling capital and investing through intermediaries that already hold equity."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What is the minimum investment amount?",
+      "answer" => "The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations."
+    ];
+    // Only include price per share question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
+        "question" => "What is the price per share and valuation?",
+        "answer" => "The offering is priced at $" . ($api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD') . "/share, implying a valuation of approximately $" . ($api_valuation !== 'N/A' ? $api_valuation : 'TBD') . ". This includes a one-time management fee and expense reserve. There are no ongoing fees or carry."
+      ];
+    }
+    // Only include investment window dates question for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
+        "question" => "What are the dates for the investment window?",
+        "answer" => "The offering for " . ($ipo->name ?? 'this company') . " opens on " . (!empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD') . " and closes on " . ($api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD') . ". Once closed, the opportunity will no longer be available for subscription."
+      ];
+    }
+    $ipo_faqs[] = [
+      "question" => "When will I receive units for my investment?",
+      "answer" => "Once the SPV is fully funded and the shares are secured, units will be allocated to your account and you will be notified. This typically takes 2–3 weeks post close date."
+    ];
+    // Only include investment process questions for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
+        "question" => "How do I invest in " . ($ipo->name ?? 'this company') . "?",
+        "answer" => "Once you click \"Invest\" and enter the amount or number of shares, you will be able to review and sign the subscription documents in-app. The investment will then be initiated, and funds will be deducted from your existing DriveWealth buying power. No additional account setup is required."
+      ];
+      $ipo_faqs[] = [
+        "question" => "How do I transfer funds to make the investment?",
+        "answer" => "Investment funds will be deducted from your existing buying power. You can top up your Vested account via HDFC, Axis, or other supported banks through the \"Transfer\" section in the app."
+      ];
+    }
+    $ipo_faqs[] = [
+      "question" => "What are the exit options or liquidity paths?",
+      "answer" => "Liquidity is not guaranteed. However, exits may occur through the following avenues: (a) resale through our partner's Alternative Trading System (ATS) after a holding period, (b) secondary market transactions, (c) a future IPO of " . ($ipo->name ?? 'this company') . " or its subsidiaries, or (d) an acquisition of the company."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What are the risks of investing in " . ($ipo->name ?? 'this company') . "?",
+      "answer" => "Key risks include equity risk (share value decline) and liquidity risk (limited tradability of private shares). As with any private market investment, capital loss is possible."
+    ];
+    $ipo_faqs[] = [
+      "question" => "What are the tax implications?",
+      "answer" => "Taxation is treated the same as investing in US-listed stocks. Long-term capital gains (after 24 months) are taxed at 12.5%. Short-term gains are taxed as per your income tax slab."
+    ];
+    $ipo_faqs[] = [
+      "question" => "Under which regulatory framework does this investment fall?",
+      "answer" => "All investments are made through SEC-compliant SPVs under Regulation S. The structure is similar to those used by leading US platforms like EquityZen and Forge."
+    ];
+    // Only include SPV management questions for SPV-specific pages
+    if ($has_investors_data) {
+      $ipo_faqs[] = [
+        "question" => "Who manages the investment and SPV?",
+        "answer" => "The SPV is co-managed by Vested Finance Inc. and Monark Capital Management. Monark Capital Management oversees fund structuring, operations, and coordination with underlying counterparties."
+      ];
+      $ipo_faqs[] = [
+        "question" => "What happens if Vested or its partners go bankrupt?",
+        "answer" => "Each SPV is bankruptcy-remote and legally ringfenced. Your ownership in the SPV remains unaffected even if Vested or its partners face insolvency."
+      ];
+    }
+    ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        <?php foreach ($ipo_faqs as $i => $faq) { ?>
+        {
+          "@type": "Question",
+          "name": "<?php echo esc_js($faq['question']); ?>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<?php echo esc_js($faq['answer']); ?>"
+          }
+        }<?php if ($i < count($ipo_faqs) - 1) echo ','; ?>
+        <?php } ?>
+      ]
+    }
+    </script>
+	<?php get_footer(); ?>
+<?php endif; ?>

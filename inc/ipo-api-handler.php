@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 // API Configuration
-define('IPO_API_INVESTOR_ID', 'a0147241-64d9-41e9-875c-b67dd7cf07ab'); // Static investor ID
+define('IPO_API_INVESTOR_ID', '80f78783-a2f8-43e7-b13a-91ab05bd87d0'); // Static investor ID
 /**
  * Generic function to fetch data from IPO APIs
  * 
@@ -19,19 +19,16 @@ define('IPO_API_INVESTOR_ID', 'a0147241-64d9-41e9-875c-b67dd7cf07ab'); // Static
  * @return array|false Array of data or false on error
  */
 function get_ipo_api_data($ipo_id, $endpoint) {
+    error_log("get_ipo_api_data: " . $ipo_id . " " . $endpoint);
     // Validate IPO ID
     if (empty($ipo_id)) {
-        // error_log("IPO {$endpoint} API Error: Empty IPO ID provided");
+        error_log("IPO {$endpoint} API Error: Empty IPO ID provided");
         return false;
     }
     
-    // Check if we have cached data first
+    // Skip cache - always fetch fresh data
     $cache_key = "ipo_{$endpoint}_" . sanitize_key($ipo_id);
-    $cached_data = get_transient($cache_key);
-    
-    if ($cached_data !== false) {
-        return $cached_data;
-    }
+    error_log("Skipping cache - fetching fresh data for {$endpoint} and IPO {$ipo_id}");
     
     // API endpoints mapping
     $endpoints = array(
@@ -44,14 +41,15 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     );
     
     if (!isset($endpoints[$endpoint])) {
-  // error_log("IPO API Error: Invalid endpoint '{$endpoint}'");
+        error_log("IPO API Error: Invalid endpoint '{$endpoint}'");
         return false;
     }
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
+    $api_url = "https://api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?investorId=" . IPO_API_INVESTOR_ID . "&preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
+    error_log("api_url: " . $api_url);
     $headers = array(
-        'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
+        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
         'accept' => 'application/json',
     );
     
@@ -63,13 +61,13 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     
     // Check for errors
     if (is_wp_error($response)) {
-  // error_log("IPO {$endpoint} API Error: " . $response->get_error_message());
+        error_log("IPO {$endpoint} API Error: " . $response->get_error_message());
         return false;
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
     if ($response_code !== 200) {
-  // error_log("IPO {$endpoint} API Error: HTTP {$response_code} for IPO ID: {$ipo_id}");
+        error_log("IPO {$endpoint} API Error: HTTP {$response_code} for IPO ID: {$ipo_id}");
         return false;
     }
     
@@ -78,9 +76,18 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     $data = json_decode($body, true);
     
     if (json_last_error() !== JSON_ERROR_NONE) {
-  // error_log("IPO {$endpoint} API Error: Invalid JSON response for IPO ID: {$ipo_id}");
+        error_log("IPO {$endpoint} API Error: Invalid JSON response for IPO ID: {$ipo_id}");
         return false;
     }
+    
+    // Log the actual API response data
+    error_log("=== IPO API RESPONSE DATA ===");
+    error_log("Endpoint: {$endpoint}");
+    error_log("IPO ID: {$ipo_id}");
+    error_log("Response Code: {$response_code}");
+    error_log("Raw Response Body: " . $body);
+    error_log("Parsed Data: " . print_r($data, true));
+    error_log("=== END IPO API RESPONSE DATA ===");
     
     // Cache the data for 1 hour
     set_transient($cache_key, $data, HOUR_IN_SECONDS);
@@ -97,22 +104,18 @@ function get_ipo_api_data($ipo_id, $endpoint) {
 function get_ipo_spv_details($spv_id) {
     // Validate SPV ID
     if (empty($spv_id)) {
-  // error_log("IPO SPV API Error: Empty SPV ID provided");
+        error_log("IPO SPV API Error: Empty SPV ID provided");
         return false;
     }
     
-    // Check if we have cached data first
+    // Skip cache - always fetch fresh data
     $cache_key = "ipo_spv_details_" . sanitize_key($spv_id);
-    $cached_data = get_transient($cache_key);
-    
-    if ($cached_data !== false) {
-        return $cached_data;
-    }
+    error_log("Skipping SPV cache - fetching fresh data for SPV {$spv_id}");
     
     // API endpoint and headers
-    $api_url = "https://sandbox-api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
+    $api_url = "https://api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     $headers = array(
-        'Authorization' => 'partner_w4jzGWqdQ7Mgb2r2yq5ndIQOjdq/VVuvk3ZEmEMoJgE=',
+        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
         'accept' => 'application/json',
     );
     
@@ -124,13 +127,13 @@ function get_ipo_spv_details($spv_id) {
     
     // Check for errors
     if (is_wp_error($response)) {
-  // error_log("IPO SPV API Error: " . $response->get_error_message());
+        error_log("IPO SPV API Error: " . $response->get_error_message());
         return false;
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
     if ($response_code !== 200) {
-  // error_log("IPO SPV API Error: HTTP {$response_code} for SPV ID: {$spv_id}");
+        error_log("IPO SPV API Error: HTTP {$response_code} for SPV ID: {$spv_id}");
         return false;
     }
     
@@ -139,9 +142,17 @@ function get_ipo_spv_details($spv_id) {
     $data = json_decode($body, true);
     
     if (json_last_error() !== JSON_ERROR_NONE) {
-  // error_log("IPO SPV API Error: Invalid JSON response for SPV ID: {$spv_id}");
+        error_log("IPO SPV API Error: Invalid JSON response for SPV ID: {$spv_id}");
         return false;
     }
+    
+    // Log the actual SPV API response data
+    error_log("=== IPO SPV API RESPONSE DATA ===");
+    error_log("SPV ID: {$spv_id}");
+    error_log("Response Code: {$response_code}");
+    error_log("Raw Response Body: " . $body);
+    error_log("Parsed Data: " . print_r($data, true));
+    error_log("=== END IPO SPV API RESPONSE DATA ===");
     
     // Cache the data for 1 hour
     set_transient($cache_key, $data, HOUR_IN_SECONDS);
@@ -247,6 +258,8 @@ function get_ipo_investment($ipo_id) {
 function get_ipo_funding_rounds($ipo_id) {
     return get_ipo_api_data($ipo_id, 'funding_rounds');
 }
+
+
 
 /**
  * Test API connection (for debugging)

@@ -20,7 +20,7 @@ function exclude_ipo_pages_from_password_protection() {
     $is_ipo_url = (
         ($custom_ipo_request && $ipo_slug) || 
         $is_ipo_landing_page ||
-        strpos($current_url, '/in/pre-ipo/') !== false ||
+        strpos($current_url, '/in/private-markets/') !== false ||
         strpos($current_url, '/ipo-') !== false
     );
     
@@ -45,7 +45,7 @@ function exclude_ipo_pages_from_password_protection() {
 function prevent_ppwp_form_for_ipo_pages($should_render) {
     $current_url = $_SERVER['REQUEST_URI'] ?? '';
     
-    if (strpos($current_url, '/in/pre-ipo/') !== false || 
+    if (strpos($current_url, '/in/private-markets/') !== false || 
         strpos($current_url, '/ipo-') !== false) {
         return false; // Don't render the password form
     }
@@ -60,7 +60,7 @@ function prevent_ppwp_form_for_ipo_pages($should_render) {
 function early_ipo_bypass() {
     $current_url = $_SERVER['REQUEST_URI'] ?? '';
     
-    if (strpos($current_url, '/in/pre-ipo/') !== false || 
+    if (strpos($current_url, '/in/private-markets/') !== false || 
         strpos($current_url, '/ipo-') !== false) {
         
         // Apply all bypasses immediately with high priority
