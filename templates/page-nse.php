@@ -244,7 +244,7 @@ get_header(); ?>
               <td>63%</td>
               <td>58%</td>
               <td>63%</td>
-              <td>63%</td>
+              <td>56%</td>
               <td>64%</td>
             </tr>
             <tr>
@@ -285,7 +285,7 @@ get_header(); ?>
             <h3>39%</h3>
             <div class="nse-growth-card-desc">
               <p>Demat Accounts CAGR</p>
-              <p><small>(5-YearGrowth)</small></p>
+              <p><small>(3-YearGrowth)</small></p>
             </div>
           </div>
           <div class="nse-growth-card">
