@@ -8,68 +8,75 @@ jQuery(document).ready(function ($) {
     const time = 0.5;
     let animating = false;
 
-    // --- Card Stack Animation Setup ---
-    gsap.set(".card", {
-        y: (index) => 20 * index,
-        transformOrigin: "center top"
-    });
-
-    const tl = gsap.timeline({ paused: true });
-    [2, 3, 4, 5].forEach((n, i) => {
-        tl.add(`card${n}`);
-        tl.to(`.card:nth-child(${i + 1})`, { scale: 0.85 + i * 0.05, duration: time });
-        tl.from(
-            `.card:nth-child(${i + 2})`,
-            { y: () => window.innerHeight, duration: time },
-            "<"
-        );
-    });
-
-    function tweenToLabel(direction, isScrollingDown) {
-        if (
-            (!tl.nextLabel() && isScrollingDown) ||
-            (!tl.previousLabel() && !isScrollingDown)
-        ) {
-            cardsObserver.disable();
-            return;
-        }
-        if (!animating && direction) {
-            animating = true;
-            tl.tweenTo(direction, { onComplete: () => (animating = false) });
-        }
+    // --- Mobile Check Function ---
+    function isMobile() {
+        return window.innerWidth <= 767;
     }
 
-    // --- Observer Plugin ---
-    const cardsObserver = Observer.create({
-        wheelSpeed: -1,
-        onDown: () => tweenToLabel(tl.previousLabel(), false),
-        onUp: () => tweenToLabel(tl.nextLabel(), true),
-        tolerance: 10,
-        preventDefault: true,
-        onEnable(self) {
-            allowScroll = false;
-            scrollTimeout.restart(true);
-            let savedScroll = self.scrollY();
-            self._restoreScroll = () => self.scrollY(savedScroll);
-            document.addEventListener("scroll", self._restoreScroll, { passive: false });
-        },
-        onDisable: (self) =>
-            document.removeEventListener("scroll", self._restoreScroll)
-    });
-    cardsObserver.disable();
+    // --- Card Stack Animation Setup (Desktop Only) ---
+    if (!isMobile()) {
+        gsap.set(".card", {
+            y: (index) => 20 * index,
+            transformOrigin: "center top"
+        });
 
-    // --- ScrollTrigger for Card Stack ---
-    $('.home_service_item img').on('load', ScrollTrigger.refresh);
-    ScrollTrigger.create({
-        id: "STOP-SCROLL",
-        trigger: ".cards-section",
-        pin: true,
-        start: "top 10%",
-        end: () => "+=" + document.querySelector('.cards-section').offsetHeight,
-        markers: false,
-        onEnter: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); },
-        onEnterBack: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); }
-    });
+        const tl = gsap.timeline({ paused: true });
+        [2, 3, 4, 5].forEach((n, i) => {
+            tl.add(`card${n}`);
+            tl.to(`.card:nth-child(${i + 1})`, { scale: 0.85 + i * 0.05, duration: time });
+            tl.from(
+                `.card:nth-child(${i + 2})`,
+                { y: () => window.innerHeight, duration: time },
+                "<"
+            );
+        });
+
+        function tweenToLabel(direction, isScrollingDown) {
+            if (
+                (!tl.nextLabel() && isScrollingDown) ||
+                (!tl.previousLabel() && !isScrollingDown)
+            ) {
+                cardsObserver.disable();
+                return;
+            }
+            if (!animating && direction) {
+                animating = true;
+                tl.tweenTo(direction, { onComplete: () => (animating = false) });
+            }
+        }
+
+        // --- Observer Plugin ---
+        const cardsObserver = Observer.create({
+            wheelSpeed: -1,
+            onDown: () => tweenToLabel(tl.previousLabel(), false),
+            onUp: () => tweenToLabel(tl.nextLabel(), true),
+            tolerance: 10,
+            preventDefault: true,
+            onEnable(self) {
+                allowScroll = false;
+                scrollTimeout.restart(true);
+                let savedScroll = self.scrollY();
+                self._restoreScroll = () => self.scrollY(savedScroll);
+                document.addEventListener("scroll", self._restoreScroll, { passive: false });
+            },
+            onDisable: (self) =>
+                document.removeEventListener("scroll", self._restoreScroll)
+        });
+        cardsObserver.disable();
+
+        // --- ScrollTrigger for Card Stack (Desktop Only) ---
+        $('.home_service_item img').on('load', ScrollTrigger.refresh);
+        ScrollTrigger.create({
+            id: "STOP-SCROLL",
+            trigger: ".cards-section",
+            pin: true,
+            start: "top 10%",
+            end: () => "+=" + document.querySelector('.cards-section').offsetHeight,
+            markers: false,
+            onEnter: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); },
+            onEnterBack: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); }
+        });
+    }
 
     // --- Utility: Animate Section Items ---
     function animateSectionItems(selector, yVal, duration, start, delayStep) {
@@ -163,6 +170,16 @@ jQuery(document).ready(function ($) {
             delay: i * 0.1,
             ease: "power2.out"
         });
+    });
+
+    // --- Resize Handler for Mobile/Desktop Transition ---
+    let currentMobileState = isMobile();
+    window.addEventListener("resize", function() {
+        const newMobileState = isMobile();
+        if (newMobileState !== currentMobileState) {
+            currentMobileState = newMobileState;
+            ScrollTrigger.refresh();
+        }
     });
 });
 
