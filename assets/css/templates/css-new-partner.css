@@ -191,6 +191,16 @@
     max-width: 396px;
 }
 
+.services_disclosure {
+    color: #737373;
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 30px;
+    text-align: center;
+}
+
 .features_section {
     background-size: cover;
     padding: 96px 0;

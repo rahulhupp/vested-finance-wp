@@ -118,6 +118,9 @@ while (have_posts()) :
                             <?php endwhile; ?>
                         </div>
                     <?php endif; ?>
+                    <div class="services_disclosure">
+                        Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation
+                    </div>
                 </div>
             </div>
         </section>
