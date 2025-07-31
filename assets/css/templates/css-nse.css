@@ -110,6 +110,11 @@
   color: var(--nse-color-text-muted);
 }
 
+.nse-price-amount .nse-price-amount-small {
+  color: var(--nse-color-text-accent);
+  font: 500 14px / 20px "Inter", sans-serif;
+}
+
 .nse-price-date {
   color: var(--nse-color-text-accent);
   font: 400 14px / 20px "Inter", sans-serif;

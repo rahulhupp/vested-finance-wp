@@ -15,7 +15,7 @@ get_header(); ?>
         <div class="nse-header-content">
           <div class="nse-title">National Stock Exchange of India (NSE)</div>
           <div class="nse-price-block">
-            <div class="nse-price-amount">₹2,400</div>
+            <div class="nse-price-amount">₹2,400 <span class="nse-price-amount-small">(approx price)</span></div>
             <div class="nse-price-date">as of July 2025</div>
           </div>
           <div class="nse-stats">
