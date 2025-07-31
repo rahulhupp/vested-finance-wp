@@ -101,6 +101,21 @@
   margin-bottom: 16px;
 }
 
+.nse-price-block {
+  margin-bottom: 16px;
+}
+
+.nse-price-amount {
+  font: 600 24px / 38px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
+}
+
+.nse-price-date {
+  color: var(--nse-color-text-accent);
+  font: 400 14px / 20px "Inter", sans-serif;
+  margin-top: -3px;
+}
+
 .nse-stats {
   display: flex;
   flex-direction: column;
@@ -553,7 +568,7 @@
 
 .nse-competitive-table {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   border: none;
   border-collapse: collapse;
 }
@@ -592,6 +607,27 @@
 .nse-competitive-table th:last-child {
   width: 279px;
   padding-left: 48px;
+}
+
+.nse-warning-icon {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.nse-warning-icon p {
+  color: var(--nse-color-text-accent);
+  font: 400 14px / 20px "Inter", sans-serif;
+  margin-bottom: 0;
+  width: 50%;
+  flex: 1 1 auto;
+}
+
+.nse-warning-icon svg {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
 }
 
 .nse-institutional-investors-list {
@@ -694,6 +730,11 @@
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 8px;
+  }
+
+  .nse-price-amount {
+    font-size: 20px;
+    line-height: 28px;
   }
 
   .nse-stats {

@@ -14,6 +14,10 @@ get_header(); ?>
         </div>
         <div class="nse-header-content">
           <div class="nse-title">National Stock Exchange of India (NSE)</div>
+          <div class="nse-price-block">
+            <div class="nse-price-amount">₹2,400</div>
+            <div class="nse-price-date">as of July 2025</div>
+          </div>
           <div class="nse-stats">
             <div>Market Cap<br><b>$69.89B</b></div>
             <div>P/E Ratio<br><b>49x</b></div>
@@ -309,7 +313,6 @@ get_header(); ?>
         <h2 class="nse-inner-section-title">Competitive Position</h2>
         <div class="nse-inner-section-desc">NSE vs BSE comparison (FY25)</div>
         <div class="table-wrapper">
-
           <table class="nse-competitive-table">
             <tr>
               <th><strong>Metric</strong></th>
@@ -354,6 +357,14 @@ get_header(); ?>
               <td>Better Valuation</td>
             </tr>
           </table>
+        </div>
+        <div class="nse-warning-icon">
+          <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9 6.66699V9.66699M9 12.667H9.0075M16.5 9.66699C16.5 13.8091 13.1421 17.167 9 17.167C4.85786 17.167 1.5 13.8091 1.5 9.66699C1.5 5.52486 4.85786 2.16699 9 2.16699C13.1421 2.16699 16.5 5.52486 16.5 9.66699Z"
+              stroke="#8E9DAD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <p>This is based on the current indicative price in the unlisted market and is subject to change.</p>
         </div>
       </div>
 
