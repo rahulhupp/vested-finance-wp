@@ -39,7 +39,7 @@ get_header(); ?>
     <div class="container">
         <div class="row">
             <div class="content">
-                <h2><?php the_field('pricing_info_title'); ?></h2>
+                <h1><?php the_field('pricing_info_title'); ?></h1>
                 <?php the_field('pricing_info_content'); ?>
             </div>
             <div class="mobile-tab">
@@ -51,7 +51,7 @@ get_header(); ?>
                     <h2><?php the_field('basic_plan_heading'); ?></h2>
                     <span><?php the_field('basic_plan_price'); ?></span>
                     <div class="basic-plan-selection">
-                        <label for="pay-once">Pay Once</label>
+                        <label for="pay-once" style="opacity: 0;">Pay Once</label>
                     </div>
                     <a href="<?php the_field('basic_plan_button_link'); ?>"><?php the_field('basic_plan_button_label'); ?></a>
                 </div>
@@ -101,25 +101,25 @@ get_header(); ?>
             <div class="head-part">
               <div class="inner">
                 <div class="stock">
-                 
                   <?php
-                                            $image = get_sub_field('stock_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?> 
-
-                  <strong><?php the_sub_field('stock_title'); ?></strong> 
+                    $image = get_sub_field('stock_icon');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?> 
+                    <strong><?php the_sub_field('stock_title'); ?></strong> 
                 </div>
                 <div class="currency">
-                   
                   <?php
-                                            $image = get_sub_field('currency_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>   
+                    $image = get_sub_field('currency_icon');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>   
                   <span><?php the_sub_field('currency_text'); ?></span>
+                </div>
+                <div class="stock-heading-label">
+                  Offered through VF Securities, Inc. (member FINRA/SIPC)
                 </div>
               </div>
               <div class="empty-space">
@@ -280,6 +280,7 @@ get_header(); ?>
 <?php endif; ?>
 
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         getUserLocationByIP();
@@ -287,7 +288,7 @@ get_header(); ?>
 
     function getUserLocationByIP() {
         // Make a request to the ipinfo.io API to get user location based on IP
-        fetch('https://ipinfo.io/json')
+        fetch('https://get.geojs.io/v1/ip/country.json')
             .then(response => response.json())
             .then(data => {
             // Process the location information
@@ -296,10 +297,11 @@ get_header(); ?>
             if (globalBanner) {
                 globalBanner.style.display = "flex"; 
                 if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                    // globalBanner.innerHTML = "<div class='content'><p>Discover the new face of Vested! Read our latest update to know more.</p></div><a href='<?php home_url(); ?>/blog/vested-updates/welcome-to-a-better-and-improved-vested/' target='_blank' class='learn_more_btn'>Learn more</a>";
+                    globalBanner.style.display = "none";
                     console.log('show geolocation_banner');
                 } else {
-                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div><a href='<?php home_url() ?>/pricing'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our pricing for the global users.</p></div><a href='<?php home_url() ?>/pricing'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.webp'>Global</a>";
                     console.log('hide geolocation_banner');
                 }
             }
@@ -309,5 +311,4 @@ get_header(); ?>
             });
     }
 </script>
-
 <?php get_footer(); ?>

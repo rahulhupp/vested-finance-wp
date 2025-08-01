@@ -25,7 +25,7 @@
     width: 45%;
     padding-right: 19px;
 }
-.pricing-info .content h2 {
+.pricing-info .content h1 {
     color: #002852;
     font-size: 30px;
     font-weight: 800;
@@ -203,9 +203,8 @@
     bottom: -17px;
     left: 0;
     right: 0;
-    width: 75px;
+    width: 80px;
     margin: 0 auto;
-    
 }
 .pricing-info .mobile-tab {
     display: none;
@@ -290,6 +289,14 @@
     line-height: 28px;
     margin-left: 0;
     padding-left: 15px;
+}
+.stock-heading-label {
+    color: #6B7280;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    padding-left: 16px;
+    margin-top: 8px;
 }
 .pricing-table .pricing-tabs-content .head-part .inner .currency {
     padding: 10px;
@@ -515,7 +522,7 @@
     content: "";
     position: absolute;
     right: 16px;
-    background-image: url('../../images/chevron-down.png');
+    background-image: url('../../images/chevron-down.webp');
     background-size: 20px;
     width: 20px;
     height: 20px;
@@ -676,7 +683,7 @@
         padding-right: 0;
         text-align: center;
     }
-    .pricing-info .content h2 {
+    .pricing-info .content h1 {
         font-size: 32px;
         margin: 0 auto 15px;
         max-width: 320px;
