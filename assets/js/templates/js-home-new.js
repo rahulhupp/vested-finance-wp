@@ -68,10 +68,10 @@ jQuery(document).ready(function ($) {
         $('.home_service_item img').on('load', ScrollTrigger.refresh);
         ScrollTrigger.create({
             id: "STOP-SCROLL",
-            trigger: ".cards-section",
+            trigger: ".home_services",
             pin: true,
             start: "top 10%",
-            end: () => "+=" + document.querySelector('.cards-section').offsetHeight,
+            end: () => "+=" + document.querySelector('.home_services').offsetHeight,
             markers: false,
             onEnter: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); },
             onEnterBack: () => { if (!cardsObserver.isEnabled) cardsObserver.enable(); }

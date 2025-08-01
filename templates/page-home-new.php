@@ -67,10 +67,10 @@ get_header(); ?>
                     </div>
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Pre-IPO Companies">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Private Markets">
                         </div>
                         <div class="home_features_item_content">
-                            <h3>Pre-IPO Companies</h3>
+                            <h3>Private Markets</h3>
                             <label>Private Beta</label>
                         </div>
                         <!-- <p>A Vested Finance, Inc product</p> -->
@@ -121,7 +121,7 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="home_features_disclosure">
-                    US Stocks & ETFs, Private Markets and Global Mutual Funds are offered by VF Securities, Inc. Managed Portfolios  are offered by Vested Finance, Inc 
+                    US Stocks & ETFs and Global Mutual Funds are offered by VF Securities, Inc. Managed Portfolios and Private Markets are offered by Vested Finance, Inc. 
                 </div>
             </div>
         </div>
@@ -153,6 +153,12 @@ get_header(); ?>
                             <p>US markets have historically delivered higher INR-adjusted returns compared to Indian markets,helping Indian investors build long-term wealth faster.</p>
                         </div>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-diversify-3.png" alt="Diversify 3">
+                        <div class="home_diversify_item_footer">
+                            <div class="india_markets">India Markets</div>
+                            <div class="global_markets">Global Markets</div>
+                            <a href="#">Why US Markets deliver higher returns?</a>
+                            <h6>Past performance is no guarantee of future results.</h6>
+                        </div>
                     </div>
                 </div>
                 <a href="#" class="btn btn-primary">Start Investing</a>
@@ -197,10 +203,10 @@ get_header(); ?>
                                     </svg>
                                 </span>
                             </div>
-                            <h3>Smart Investing, Made Effortless</h3>
+                            <h3>Smart Investing Made Effortless</h3>
                             <ul>
-                                <li>Curated by professionals, each portfolio is constructed by Vested’s in-house research team</li>
-                                <li>Get instant one-click exposure to themes, sectors - no need to pick and track individual stocks or etfs</li>
+                                <li>Each Portfolio is constructed by Vested’s in-house research team</li>
+                                <li>Get instant one-click exposure to themes and sectors - no need to pick and track individual stocks or ETFs</li>
                                 <li>Minimum investments starting $1. Simple AUM-based pricing</li>
                             </ul>
                             <div class="home_service_footer">
@@ -216,14 +222,14 @@ get_header(); ?>
                     <div class="home_service_item card">
                         <div class="home_service_content">
                             <div class="home_service_labels">
-                                <span>Pre-IPO</span>
+                                <span>Private Markets</span>
                                 <span class="active">Private Beta</span>
                             </div>
                             <h3>Get Early Access to Tomorrow’s Giants</h3>
                             <ul>
                                 <li>Invest before the IPO buzz. Access companies still in their growth phase-before they get listed</li>
                                 <li>Curated and vetted opportunities such as Open AI, SpaceX, Stripe and more</li>
-                                <li>Limited-time deals with minimum investment starting at $10,000</li>
+                                <li>Limited-time deals with minimum investments starting at $10,000</li>
                             </ul>
                             <div class="home_service_footer">
                                 <a href="#" class="btn btn-primary">Explore Pre-IPOs</a>
@@ -243,18 +249,18 @@ get_header(); ?>
                             </div>
                             <h3>Invest Globally with the World’s Top Fund Managers</h3>
                             <ul>
-                                <li>Invest in 50+ countries with mutual funds, actively managed by global asset managers</li>
-                                <li>Avoid U.S. inheritance tax, which applies above $60,000 for non-US residents holding direct US securities</li>
+                                <li>Invest in 50+ countries with Global Mutual Funds managed by global asset managers</li>
+                                <li>Avoid U.S. inheritance tax, which applies to non-US residents directly holding more than $60,000 in US assets</li>
                                 <li>No entry/exit load + Simplified taxes. Start investing with $1</li>
                             </ul>
                             <div class="home_service_footer">
                                 <a href="#" class="btn btn-primary">Join Waitlist</a>
-                                <p class="desktop_disclosure">A VF Securities Inc. product</p>
+                                <p class="desktop_disclosure">Offered by VF Securities, Inc</p>
                             </div>
                         </div>
                         <div class="home_service_image">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-4.png" alt="Global Mutual Funds">
-                            <p class="mobile_disclosure">A VF Securities Inc. product</p>
+                            <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>
                 </div>
@@ -277,7 +283,7 @@ get_header(); ?>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Add Funds</h3>
-                            <p>Easily transfer funds via partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions.</p>
+                            <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions.</p>
                         </div>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-2.png" alt="Step 2">
                     </div>
@@ -297,8 +303,8 @@ get_header(); ?>
         <div class="container">
             <div class="home_cta_box_wrapper">
                 <div class="home_cta_box_content">
-                    <h2>Accessible across all platforms</h2>
-                    <p>Whether you are using mobile or web, there is always a more efficient way to execute trades at your fingertips.</p>
+                    <h2>Access Vested on your browser or mobile</h2>
+                    <!-- <p>Whether you are using mobile or web, there is always a more efficient way to execute trades at your fingertips.</p> -->
                     <div class="home_cta_box_buttons">
                         <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-app-store.svg" alt="App store"></a>
                         <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-google-play.svg" alt="Google play"></a>
@@ -319,7 +325,7 @@ get_header(); ?>
                 <div class="home_security_list">
                     <div class="home_security_item">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-1.png" alt="Security 1">
-                        <p>Investments are protected under US regulatory bodies up to $500K - 250K for cash.</p>
+                        <p>Investments are protected under US regulatory bodies up to $500K - $250K for cash.</p>
                     </div>
                     <div class="home_security_item">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-2.png" alt="Security 2">
