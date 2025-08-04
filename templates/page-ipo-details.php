@@ -806,9 +806,24 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<div class="ipo_sidebar_box">
 							<h2>Funding Rounds</h2>
 							<div class="funding_rounds_list">
+								<?php
+									if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03') {
+										?>
+										<div class="funding_round">
+											<div class="funding_round_info">
+												<h4>Series E extension</h4>
+											</div>
+											<div class="funding_amount">
+												<strong>$697</strong>
+												<span class="funding_date">Ongoing</span>
+											</div>
+										</div>
+										<?php
+									}
+								?>
 								<?php render_funding_rounds($funding_rounds_data); ?>
 							</div>
-				</div>
+						</div>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
