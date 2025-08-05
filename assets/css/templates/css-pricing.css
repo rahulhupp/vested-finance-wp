@@ -290,6 +290,14 @@
     margin-left: 0;
     padding-left: 15px;
 }
+.stock-heading-label {
+    color: #6B7280;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    padding-left: 16px;
+    margin-top: 8px;
+}
 .pricing-table .pricing-tabs-content .head-part .inner .currency {
     padding: 10px;
     background: #fff;

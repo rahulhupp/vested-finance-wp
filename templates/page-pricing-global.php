@@ -104,6 +104,9 @@ get_header(); ?>
                                             <?php endif; ?>     
                   <span><?php the_sub_field('currency_text'); ?></span>
                 </div>
+                <div class="stock-heading-label">
+                  Offered through VF Securities, Inc. (member FINRA/SIPC)
+                </div>
               </div>
               <div class="empty-space">
                 <div class="empty first"></div>

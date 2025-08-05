@@ -101,25 +101,25 @@ get_header(); ?>
             <div class="head-part">
               <div class="inner">
                 <div class="stock">
-                 
                   <?php
-                                            $image = get_sub_field('stock_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?> 
-
-                  <strong><?php the_sub_field('stock_title'); ?></strong> 
+                    $image = get_sub_field('stock_icon');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?> 
+                    <strong><?php the_sub_field('stock_title'); ?></strong> 
                 </div>
                 <div class="currency">
-                   
                   <?php
-                                            $image = get_sub_field('currency_icon');
-                                            if (!empty($image)): ?>
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                    alt="<?php echo esc_attr($image['alt']); ?>" />
-                                            <?php endif; ?>   
+                    $image = get_sub_field('currency_icon');
+                    if (!empty($image)): ?>
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <?php endif; ?>   
                   <span><?php the_sub_field('currency_text'); ?></span>
+                </div>
+                <div class="stock-heading-label">
+                  Offered through VF Securities, Inc. (member FINRA/SIPC)
                 </div>
               </div>
               <div class="empty-space">
