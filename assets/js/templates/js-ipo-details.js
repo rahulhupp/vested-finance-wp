@@ -291,7 +291,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function copyLink() {
 	var inputElement = document.createElement("input");
-	inputElement.value = window.location.href;
+	// inputElement.value = window.location.href;
+	inputElement.value = "http://app.vestedfinance.com/en/global/pre-ipo?toExternalLandingPage=true";
 	document.body.appendChild(inputElement);
 	inputElement.select();
 	document.execCommand("copy"); // This command copies the selected text
