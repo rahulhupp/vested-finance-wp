@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 // API Configuration
-define('IPO_API_INVESTOR_ID', '80f78783-a2f8-43e7-b13a-91ab05bd87d0'); // Static investor ID
+define('IPO_API_INVESTOR_ID', '977dd548-6daf-4a08-9605-d1e907431d56'); // Static investor ID
 /**
  * Generic function to fetch data from IPO APIs
  * 
