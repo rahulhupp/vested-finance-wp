@@ -905,28 +905,28 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "<?php echo esc_js($ipo->name ?? 'IPO Details'); ?>",
-      "url": "<?php echo $current_url; ?>",
-      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential."
+      "name": <?php echo json_encode($ipo->name ?? 'IPO Details'); ?>,
+      "url": <?php echo json_encode($current_url); ?>,
+      "description": <?php echo json_encode("Explore the " . ($ipo->name ?? 'IPO Details') . " IPO launching in " . $year . ". Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential."); ?>
     }
     </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>",
-      "image": "<?php echo esc_url($ipo->logo_url ?? ''); ?>",
-      "description": "Explore the <?php echo esc_js($ipo->name ?? 'IPO Details'); ?> IPO launching in <?php echo $year; ?>. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.",
+      "name": <?php echo json_encode($ipo->name ?? 'IPO'); ?>,
+      "image": <?php echo json_encode($ipo->logo_url ?? ''); ?>,
+      "description": <?php echo json_encode("Explore the " . ($ipo->name ?? 'IPO Details') . " IPO launching in " . $year . ". Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential."); ?>,
       "brand": {
         "@type": "Brand",
-        "name": "<?php echo esc_js($ipo->name ?? 'IPO'); ?>"
+        "name": <?php echo json_encode($ipo->name ?? 'IPO'); ?>
       },
       "offers": {
         "@type": "Offer",
         "priceCurrency": "USD",
-        "price": "<?php echo esc_js($api_price_per_share !== 'N/A' ? $api_price_per_share : ''); ?>",
+        "price": <?php echo json_encode($api_price_per_share !== 'N/A' ? $api_price_per_share : ''); ?>,
         "availability": "https://schema.org/PreOrder",
-        "url": "<?php echo $current_url; ?>"
+        "url": <?php echo json_encode($current_url); ?>
       }
     }
     </script>
@@ -1021,10 +1021,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
         <?php foreach ($ipo_faqs as $i => $faq) { ?>
         {
           "@type": "Question",
-          "name": "<?php echo esc_js($faq['question']); ?>",
+          "name": <?php echo json_encode($faq['question']); ?>,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "<?php echo esc_js($faq['answer']); ?>"
+            "text": <?php echo json_encode($faq['answer']); ?>
           }
         }<?php if ($i < count($ipo_faqs) - 1) echo ','; ?>
         <?php } ?>
