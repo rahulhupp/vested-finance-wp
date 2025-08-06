@@ -3,6 +3,7 @@ function ipo_custom_query_vars($vars)
 {
     $vars[] = 'custom_ipo_request';
     $vars[] = 'ipo_slug';
+    $vars[] = 'ipo_raw_request';
     return $vars;
 }
 add_filter('query_vars', 'ipo_custom_query_vars');
@@ -13,6 +14,12 @@ function ipo_custom_rewrite_rules()
     add_rewrite_rule(
         '^in/private-markets/([^/]+)/?$',
         'index.php?custom_ipo_request=1&ipo_slug=$matches[1]',
+        'top'
+    );
+    
+    add_rewrite_rule(
+        '^in/private-markets/raw/([^/]+)/?$',
+        'index.php?ipo_raw_request=1&ipo_slug=$matches[1]',
         'top'
     );
 }
@@ -29,9 +36,10 @@ add_action('init', 'force_flush_ipo_rewrite_rules', 1);
 function ipo_custom_template_redirect()
 {
     $custom_ipo_request = get_query_var('custom_ipo_request');
+    $ipo_raw_request = get_query_var('ipo_raw_request');
     $ipo_slug = get_query_var('ipo_slug');
     
-    if ($custom_ipo_request && $ipo_slug) {
+    if (($custom_ipo_request || $ipo_raw_request) && $ipo_slug) {
         // Get IPO ID by slug
         $ipo_id = get_ipo_id_by_slug($ipo_slug);
         
@@ -48,7 +56,13 @@ function ipo_custom_template_redirect()
                 // Set IPO ID for template and API calls
                 set_query_var('ipo_id', $ipo_id);
                 set_query_var('custom_ipo_title_value', $ipo_exists->name);
-                include get_stylesheet_directory() . '/templates/page-ipo-details.php';
+                
+                // Choose template based on request type
+                if ($ipo_raw_request) {
+                    include get_stylesheet_directory() . '/templates/page-ipo-details-raw.php';
+                } else {
+                    include get_stylesheet_directory() . '/templates/page-ipo-details.php';
+                }
                 exit();
             }
         }
