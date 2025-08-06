@@ -122,6 +122,9 @@ $api_share_type = 'N/A';
 $api_share_class = 'N/A';
 $api_price_per_share = 'N/A';
 $api_transaction_type = 'N/A';
+$api_investor_price_per_share = 'N/A';
+$api_investor_fee_per_share = 'N/A';
+$api_all_in_price_per_share = 'N/A';
 
 // Use database values if available
 if ($ipo) {
@@ -151,6 +154,15 @@ if ($ipo) {
     }
     if (!empty($ipo->api_transaction_type)) {
         $api_transaction_type = $ipo->api_transaction_type;
+    }
+    if (!empty($ipo->api_investor_price_per_share)) {
+        $api_investor_price_per_share = $ipo->api_investor_price_per_share;
+    }
+    if (!empty($ipo->api_investor_fee_per_share)) {
+        $api_investor_fee_per_share = $ipo->api_investor_fee_per_share;
+    }
+    if (!empty($ipo->api_all_in_price_per_share)) {
+        $api_all_in_price_per_share = $ipo->api_all_in_price_per_share;
     }
 }
 
@@ -226,12 +238,12 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</div> -->
 							</div>
 						</div>
-						<button class="ipo_share" onclick="copyLink()">
+						<!-- <button class="ipo_share" onclick="copyLink()">
 							<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M5.44257 10.1325L10.5651 13.1175M10.5576 4.88251L5.44257 7.86751M14.75 3.75C14.75 4.99264 13.7426 6 12.5 6C11.2574 6 10.25 4.99264 10.25 3.75C10.25 2.50736 11.2574 1.5 12.5 1.5C13.7426 1.5 14.75 2.50736 14.75 3.75ZM5.75 9C5.75 10.2426 4.74264 11.25 3.5 11.25C2.25736 11.25 1.25 10.2426 1.25 9C1.25 7.75736 2.25736 6.75 3.5 6.75C4.74264 6.75 5.75 7.75736 5.75 9ZM14.75 14.25C14.75 15.4926 13.7426 16.5 12.5 16.5C11.2574 16.5 10.25 15.4926 10.25 14.25C10.25 13.0074 11.2574 12 12.5 12C13.7426 12 14.75 13.0074 14.75 14.25Z" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
 							<span>Share</span>
-						</button>
+						</button> -->
 					</div>
 				</div>
 				<div class="ipo_tabs">
@@ -259,10 +271,10 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					</div>
 					<div class="ipo_key_information">
 						<div class="ipo_ki_metrics">
-							<?php if ($api_price_per_share !== 'N/A'): ?>
+							<?php if ($api_investor_price_per_share !== 'N/A'): ?>
 							<div class="ip_ki_metric">
-									<h4>$<?php echo $api_price_per_share; ?></h4>
-								<span>Price Per Share</span>
+									<h4>$<?php echo number_format($api_investor_price_per_share, 2); ?></h4>
+								<span>Price without fees</span>
 							</div>
 							<?php endif; ?>
 							<?php if ($api_min_commitment !== 'N/A'): ?>
@@ -273,7 +285,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<?php endif; ?>
 							<?php if ($api_valuation !== 'N/A'): ?>
 							<div class="ip_ki_metric">
+								<?php if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03'): ?>
+									<h4>$21B</h4>
+								<?php else: ?>
 									<h4>$<?php echo $api_valuation; ?></h4>
+								<?php endif; ?>
 								<span>Company Valuation</span>
 							</div>
 							<?php endif; ?>
@@ -288,10 +304,18 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<?php endif; ?>
 								<?php if ($api_management_fee !== 'N/A'): ?>
 								<div class="ipo_ki_meta">
-									<span>Management Fee</span>
+									<span>Management fee (one-time)</span>
 										<strong><?php echo $api_management_fee; ?>%</strong>
 								</div>
 								<?php endif; ?>
+								<div class="ipo_ki_meta">
+									<span>All-in price per share</span>
+										<strong>$<?php echo $api_all_in_price_per_share !== 'N/A' ? number_format($api_all_in_price_per_share, 2) : 'TBD'; ?></strong>
+								</div>
+								<!-- <div class="ipo_ki_meta">
+									<span>Fees per share</span>
+										<strong>$<?php // echo number_format($api_investor_fee_per_share, 2); ?></strong>
+								</div> -->
 								<?php if ($api_funding_deadline !== 'N/A'): ?>
 								<div class="ipo_ki_meta">
 									<span>Close Date</span>
@@ -510,7 +534,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>This is an opportunity to invest in <?php echo esc_html($ipo->name ?? 'this company'); ?> through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors.</p>	
+								<p>This is an opportunity to invest in <?php echo esc_html($ipo->name ?? 'this company'); ?> through a Special Purpose Vehicle (SPV) fund structure. It allows fractional ownership with a low minimum investment and gives access to Private markets shares typically unavailable to individual investors.</p>	
 							</div>
 						</div>
 						<?php endif; ?>
@@ -573,7 +597,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								</svg>
 							</div>
 							<div class="ipo_faq_answer">
-								<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
+								<?php if($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03'): ?>
+									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on August 6th, 2025 and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
+								<?php else: ?>
+									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
+								<?php endif; ?>
 							</div>
 						</div>
 						<?php endif; ?>
@@ -714,7 +742,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 			<div class="ipo_sidebar">
 				<div class="ipo_sidebar_box quick_actions">
 					<h2>Quick Actions</h2>
-					<div class="ipo_quick_actions">
+					<div class="ipo_quick_actions <?php echo ($has_investors_data && !empty($ipo->api_deal_memo_url)) ? 'with_deal_memo' : ''; ?>">
 						<?php if ($has_investors_data): ?>
 							<?php 
 								$csrf_param = isset($_GET['csrf']) ? $_GET['csrf'] : '';
@@ -765,7 +793,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							?>
 						<?php endif; ?>
 						<?php if ($has_investors_data && !empty($ipo->api_deal_memo_url)): ?>
-						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
+						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 					</div>
@@ -823,7 +851,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								?>
 								<?php render_funding_rounds($funding_rounds_data); ?>
 							</div>
-						</div>
+				</div>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
@@ -895,7 +923,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
     if ($has_investors_data) {
       $ipo_faqs[] = [
         "question" => "What is this investment opportunity in " . ($ipo->name ?? 'this company') . "?",
-        "answer" => "This is an opportunity to invest in " . ($ipo->name ?? 'this company') . " through a Special Purpose Vehicle (SPV) structure. It allows fractional ownership with a low minimum investment and gives access to pre-IPO shares typically unavailable to individual investors."
+        "answer" => "This is an opportunity to invest in " . ($ipo->name ?? 'this company') . " through a Special Purpose Vehicle (SPV) fund structure. It allows fractional ownership with a low minimum investment and gives access to Private markets shares typically unavailable to individual investors."
       ];
     }
     
