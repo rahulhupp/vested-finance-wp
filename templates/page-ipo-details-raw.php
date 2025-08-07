@@ -854,6 +854,42 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
         }
     };
     
+    // Function to get parent URL from URL parameters
+    window.getParentUrlFromParams = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('parentUrl') || urlParams.get('parent_url') || null;
+    };
+    
+    // Function to get the browser address bar URL (parent URL)
+    window.getBrowserAddressBarUrl = function() {
+        // First try to get from URL parameters
+        const parentUrlFromParams = window.getParentUrlFromParams();
+        if (parentUrlFromParams) {
+            console.log('Parent URL from parameters:', parentUrlFromParams);
+            return parentUrlFromParams;
+        }
+        
+        // Then try to access parent window directly
+        if (window.isInIframe) {
+            try {
+                return window.top.location.href;
+            } catch (e) {
+                try {
+                    return window.parent.location.href;
+                } catch (e2) {
+                    console.log('Cannot access parent URL - need to pass it as parameter');
+                    return null;
+                }
+            }
+        } else {
+            return window.location.href;
+        }
+    };
+    
+    // Log the browser address bar URL
+    const browserUrl = window.getBrowserAddressBarUrl();
+    console.log('Browser Address Bar URL:', browserUrl);
+    
     // Log the best available URL
     console.log('Best available URL:', window.getBestAvailableUrl());
     
