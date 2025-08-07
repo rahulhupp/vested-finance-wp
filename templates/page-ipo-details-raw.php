@@ -772,15 +772,28 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<?php
 								} else {
 									?>
-										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
-											<?php
-												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-													echo 'Invest Now';
-												} else {
-													echo 'Express Interest';
-												}
-											?>
-										</a>
+										<?php
+											if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
+												?>
+													<a href="https://app.vestedfinance.com/en/global/pre-ipo" class="ipo_primary_button" id="invest-button">
+														Express Interest
+													</a>
+												<?php
+											} else {
+												?>
+													<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
+														<?php
+															if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+																echo 'Invest Now';
+															} else {
+																echo 'Express Interest';
+															}
+														?>
+													</a>
+												<?php
+											}
+										?>
+										
 									<?php
 								}
 							?>
@@ -789,13 +802,15 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
-							
-<script>
-console.log('document.referrer:', document.referrer);
-// console.log("window.parent.location.href:", window.parent.location.href);
-console.log('window.location.ancestorOrigins[0]:', window.location.ancestorOrigins[0]);
-</script>
-
+						<script>
+							console.log('document.referrer:', document.referrer);
+							// console.log("window.parent.location.href:", window.parent.location.href);
+							console.log('window.location.ancestorOrigins[0]:', window.location.ancestorOrigins[0]);
+							const investButton = document.getElementById('invest-button');
+							if (window.location.ancestorOrigins[0]) {
+								investButton.href = `${window.location.ancestorOrigins[0]}/en/global/pre-ipo`;
+							}
+						</script>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
