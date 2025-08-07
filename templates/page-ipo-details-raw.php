@@ -750,7 +750,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								
 								// $invest_url = "https://app.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
 								$invest_url = "https://app.vestedfinance.com/en/global/pre-ipo";
-								if (!empty($spv_id)) {
+                                if (!empty($spv_id)) {
 									$invest_url .= "?productId={$spv_id}";
 								}
 							?>
@@ -772,32 +772,15 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<?php
 								} else {
 									?>
-										<?php
-											if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-												// Use default URL for caching, let JavaScript handle domain replacement
-												$default_url = "https://app.vestedfinance.com/en/global/pre-ipo";
-												if (!empty($spv_id)) {
-													$default_url .= "?productId={$spv_id}";
+										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
+											<?php
+												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+													echo 'Invest Now';
+												} else {
+													echo 'Express Interest';
 												}
-												?>
-													<a href="<?php echo esc_url($default_url); ?>" class="ipo_primary_button" id="invest-button" data-original-url="<?php echo esc_url($default_url); ?>" data-ipo-id="<?php echo esc_attr($ipo->ipo_id); ?>">
-														Express Interest
-													</a>
-												<?php
-											} else {
-												?>
-													<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
-														<?php
-															if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-																echo 'Invest Now';
-															} else {
-																echo 'Express Interest';
-															}
-														?>
-													</a>
-												<?php
-											}
-										?>
+											?>
+										</a>
 									<?php
 								}
 							?>
@@ -806,135 +789,6 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
-
-						<script>
-						// Function to update button URLs based on parent domain (iframe scenario)
-						function updateButtonUrls() {
-							const investButton = document.getElementById('invest-button');
-							if (!investButton) return;
-							
-							const originalUrl = investButton.getAttribute('data-original-url');
-							const ipoId = investButton.getAttribute('data-ipo-id');
-							
-							if (!originalUrl || !ipoId) return;
-							
-							// Only apply dynamic domain logic for the test IPO
-							if (ipoId === '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-								let targetDomain = 'app.vestedfinance.com'; // Default fallback
-								
-								// Check if we're in an iframe
-								if (window.self !== window.top) {
-									// We're in an iframe - try multiple methods to get parent domain
-									console.log('Iframe detected, trying to get parent domain...');
-									console.log('Current protocol:', window.location.protocol);
-									console.log('Current domain:', window.location.hostname);
-									
-									// Method 1: Try direct parent access
-									try {
-										const parentDomain = window.parent.location.hostname;
-										console.log('Method 1 - Parent domain detected:', parentDomain);
-										
-										if (parentDomain) {
-											targetDomain = parentDomain.replace(/^www\./, '');
-											console.log('Using parent domain:', targetDomain);
-										} else {
-											throw new Error('No parent domain available');
-										}
-									} catch (e) {
-										console.log('Method 1 failed:', e.message);
-										
-										// Method 2: Try referrer
-										try {
-											// Cross-origin restriction - try to get domain from referrer
-											console.log('Cross-origin restriction detected');
-											const referrer = document.referrer;
-											console.log('Referrer:', referrer);
-											
-											if (referrer) {
-												const referrerUrl = new URL(referrer);
-												targetDomain = referrerUrl.hostname.replace(/^www\./, '');
-												console.log('Using referrer domain:', targetDomain);
-											} else {
-												// No referrer - try to get domain from URL parameters or use current domain
-												console.log('No referrer available');
-												
-												// Check if we can get domain from URL parameters
-												const urlParams = new URLSearchParams(window.location.search);
-												const parentDomain = urlParams.get('parent_domain');
-												
-												if (parentDomain) {
-													targetDomain = parentDomain.replace(/^www\./, '');
-													console.log('Using parent domain from URL param:', targetDomain);
-												} else {
-													console.log('No URL param, trying Method 3...');
-													
-													// Method 3: Try to detect parent domain from iframe context
-													// Check if we're in an iframe and try to infer parent domain
-													if (window.self !== window.top) {
-														// We're in an iframe - try to get parent domain from URL patterns
-														const currentUrl = window.location.href;
-														console.log('Current URL:', currentUrl);
-														
-														// Try to get parent domain from URL parameters
-														const urlParams = new URLSearchParams(window.location.search);
-														const parentDomainParam = urlParams.get('parent_domain');
-														
-														if (parentDomainParam) {
-															targetDomain = parentDomainParam.replace(/^www\./, '');
-															console.log('Using parent domain from URL param:', targetDomain);
-														} else {
-															// Try to infer from common patterns
-															if (currentUrl.includes('lp.vestedfinance.com')) {
-																// If we're on lp.vestedfinance.com, parent is likely next-staging.vestedfinance.com
-																targetDomain = 'next-staging.vestedfinance.com';
-																console.log('Inferred parent domain from URL pattern:', targetDomain);
-															} else {
-																targetDomain = window.location.hostname.replace(/^www\./, '');
-																console.log('Using current domain as fallback:', targetDomain);
-															}
-														}
-													} else {
-														targetDomain = window.location.hostname.replace(/^www\./, '');
-														console.log('Using current domain as fallback:', targetDomain);
-													}
-												}
-											}
-										} catch (referrerError) {
-											console.log('Method 2 failed:', referrerError.message);
-											
-											// Method 3: Final fallback
-											console.log('All methods failed, using current domain');
-											targetDomain = window.location.hostname.replace(/^www\./, '');
-										}
-									}
-								} else {
-									// Not in iframe - use current domain
-									targetDomain = window.location.hostname.replace(/^www\./, '');
-								}
-								
-								// Replace the domain in the URL with protocol-agnostic approach
-								const updatedUrl = originalUrl.replace(/https?:\/\/[^\/]+/, `https://${targetDomain}`);
-								
-								// Update the button href
-								investButton.href = updatedUrl;
-								
-								console.log('1 Updated button URL for test IPO:', updatedUrl);
-								console.log('Target domain used:', targetDomain);
-							}
-						}
-
-						// Run immediately for faster response
-						updateButtonUrls();
-
-						// Also run when DOM is loaded (as fallback)
-						document.addEventListener('DOMContentLoaded', updateButtonUrls);
-
-						// Also run when the page is loaded in an iframe
-						if (window.self !== window.top) {
-							updateButtonUrls();
-						}
-						</script>
-
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
@@ -1034,5 +888,33 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 </div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
+
+<script>
+// Detect if page is loaded in iframe and get parent URL
+(function() {
+    try {
+        // Check if the page is loaded in an iframe
+        if (window.self !== window.top) {
+            console.log('Page is loaded in an iframe');
+            console.log('Current window URL:', window.location.href);
+            console.log('Parent window URL:', window.top.location.href);
+            console.log('Parent window origin:', window.top.location.origin);
+        } else {
+            console.log('Page is loaded in main window (not in iframe)');
+            console.log('Current window URL:', window.location.href);
+        }
+        
+        // Alternative method to detect iframe
+        if (window.parent !== window) {
+            console.log('Alternative detection: Page is in iframe');
+            console.log('Parent window URL (alternative):', window.parent.location.href);
+        }
+        
+    } catch (error) {
+        console.log('Error accessing parent window (likely due to same-origin policy):', error.message);
+        console.log('Current window URL:', window.location.href);
+    }
+})();
+</script>
 </body>
 </html>
