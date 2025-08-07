@@ -925,6 +925,8 @@ function updateButtonUrls() {
         if (window.self !== window.top) {
             // We're in an iframe - try multiple methods to get parent domain
             console.log('Iframe detected, trying to get parent domain...');
+            console.log('Current protocol:', window.location.protocol);
+            console.log('Current domain:', window.location.hostname);
             
             // Method 1: Try direct parent access
             try {
@@ -942,9 +944,8 @@ function updateButtonUrls() {
                 
                 // Method 2: Try referrer
                 try {
-                // Cross-origin restriction - try to get domain from referrer
-                console.log('Cross-origin restriction detected');
-                try {
+                    // Cross-origin restriction - try to get domain from referrer
+                    console.log('Cross-origin restriction detected');
                     const referrer = document.referrer;
                     console.log('Referrer:', referrer);
                     
@@ -985,13 +986,14 @@ function updateButtonUrls() {
             targetDomain = window.location.hostname.replace(/^www\./, '');
         }
         
-        // Replace the domain in the URL
-        const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${targetDomain}`);
+        // Replace the domain in the URL with protocol-agnostic approach
+        const updatedUrl = originalUrl.replace(/https?:\/\/[^\/]+/, `https://${targetDomain}`);
         
         // Update the button href
         investButton.href = updatedUrl;
         
         console.log('Updated button URL for test IPO:', updatedUrl);
+        console.log('Target domain used:', targetDomain);
     }
 }
 
