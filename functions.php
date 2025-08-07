@@ -551,16 +551,47 @@ function load_more_posts_callback() {
 }
 
 
-add_filter('wpseo_robots_array', 'force_noindex_nofollow_for_us_stock_template', 10, 2);
+add_filter('wpseo_robots_array', 'custom_robots_rules', 10, 2);
 
-function force_noindex_nofollow_for_us_stock_template($robots_array, $indexable) {
-    if (is_page_template('page-us-stock-india-copy.php') || is_singular('partners') || is_page_template('templates/page-new-partner.php') || is_page_template('templates/page-hsl-tpp-calculator.php') ) {
-        // Force noindex and nofollow
-        $robots_array['index'] = 'noindex';
+function custom_robots_rules($robots_array, $indexable) {
+    // Post IDs you want to allow (index, follow)
+    $allowed_ids = [12504, 12702]; // Replace with your real IDs
+
+    // Apply to all singular pages or posts
+    if (is_singular('partners')) {
+        global $post;
+
+        // If post is one of the allowed ones → index, follow
+        if (in_array($post->ID, $allowed_ids)) {
+            $robots_array['index']  = 'index';
+            $robots_array['follow'] = 'follow';
+        } else {
+            // Everything else → noindex, nofollow
+            $robots_array['index']  = 'noindex';
+            $robots_array['follow'] = 'nofollow';
+        }
+    }
+
+    // Additionally force noindex, nofollow for specific page templates (e.g. static pages)
+    if (
+        is_page_template('page-us-stock-india-copy.php') ||
+        is_page_template('templates/page-new-partner.php') ||
+        is_page_template('templates/page-hsl-tpp-calculator.php')
+    ) {
+        $robots_array['index']  = 'noindex';
         $robots_array['follow'] = 'nofollow';
     }
+
     return $robots_array;
 }
+
+add_filter('wpseo_sitemap_exclude_post_type', function($exclude, $post_type) {
+    if ($post_type === 'partners') {
+        return true; // Exclude "partners" CPT from sitemap
+    }
+    return $exclude;
+}, 10, 2);
+
 
 function autoplay_videos_on_single_post() {
     if (is_single()) {
