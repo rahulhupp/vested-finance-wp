@@ -923,36 +923,60 @@ function updateButtonUrls() {
         
         // Check if we're in an iframe
         if (window.self !== window.top) {
-            // We're in an iframe - try to get parent domain
+            // We're in an iframe - try multiple methods to get parent domain
+            console.log('Iframe detected, trying to get parent domain...');
+            
+            // Method 1: Try direct parent access
             try {
                 const parentDomain = window.parent.location.hostname;
-                console.log('Parent domain detected:', parentDomain);
+                console.log('Method 1 - Parent domain detected:', parentDomain);
                 
-                // Always use parent domain when in iframe, regardless of localhost
                 if (parentDomain) {
-                    // Remove 'www.' if present
                     targetDomain = parentDomain.replace(/^www\./, '');
                     console.log('Using parent domain:', targetDomain);
                 } else {
-                    // Fallback to current domain
-                    console.log('No parent domain, using current domain');
-                    targetDomain = window.location.hostname.replace(/^www\./, '');
+                    throw new Error('No parent domain available');
                 }
             } catch (e) {
+                console.log('Method 1 failed:', e.message);
+                
+                // Method 2: Try referrer
+                try {
                 // Cross-origin restriction - try to get domain from referrer
                 console.log('Cross-origin restriction detected');
                 try {
                     const referrer = document.referrer;
+                    console.log('Referrer:', referrer);
+                    
                     if (referrer) {
                         const referrerUrl = new URL(referrer);
                         targetDomain = referrerUrl.hostname.replace(/^www\./, '');
                         console.log('Using referrer domain:', targetDomain);
                     } else {
-                        console.log('No referrer, using current domain');
-                        targetDomain = window.location.hostname.replace(/^www\./, '');
+                        // No referrer - try to get domain from URL parameters or use current domain
+                        console.log('No referrer available');
+                        
+                        // Check if we can get domain from URL parameters
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const parentDomain = urlParams.get('parent_domain');
+                        
+                        if (parentDomain) {
+                            targetDomain = parentDomain.replace(/^www\./, '');
+                            console.log('Using parent domain from URL param:', targetDomain);
+                        } else {
+                            console.log('No URL param, trying Method 3...');
+                            
+                            // Method 3: Try to get domain from postMessage or other methods
+                            // For HTTPS, we might need to rely on URL parameters or other methods
+                            targetDomain = window.location.hostname.replace(/^www\./, '');
+                            console.log('Using current domain as fallback:', targetDomain);
+                        }
                     }
                 } catch (referrerError) {
-                    console.log('Referrer also failed, using current domain');
+                    console.log('Method 2 failed:', referrerError.message);
+                    
+                    // Method 3: Final fallback
+                    console.log('All methods failed, using current domain');
                     targetDomain = window.location.hostname.replace(/^www\./, '');
                 }
             }
