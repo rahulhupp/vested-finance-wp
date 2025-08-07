@@ -893,7 +893,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								// Update the button href
 								investButton.href = updatedUrl;
 								
-								console.log('Updated button URL for test IPO:', updatedUrl);
+								console.log('1 Updated button URL for test IPO:', updatedUrl);
 								console.log('Target domain used:', targetDomain);
 							}
 						}
@@ -909,6 +909,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							updateButtonUrls();
 						}
 						</script>
+
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
