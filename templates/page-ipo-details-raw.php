@@ -750,7 +750,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								
 								// $invest_url = "https://app.vestedfinance.com?csrf={$csrf_param}&token={$token_param}&redirect_uri=/en/global/pre-ipo";
 								$invest_url = "https://app.vestedfinance.com/en/global/pre-ipo";
-                                if (!empty($spv_id)) {
+								if (!empty($spv_id)) {
 									$invest_url .= "?productId={$spv_id}";
 								}
 							?>
@@ -772,15 +772,42 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<?php
 								} else {
 									?>
-										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
-											<?php
-												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-													echo 'Invest Now';
-												} else {
-													echo 'Express Interest';
+										<?php
+											if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
+												// Get current domain and dynamically create app domain
+												$current_domain = $_SERVER['HTTP_HOST'] ?? '';
+												$app_domain = 'app.vestedfinance.com'; // Default domain
+												
+												// Dynamic domain replacement logic
+												if (!empty($current_domain)) {
+													// Remove 'www.' if present
+													$clean_domain = preg_replace('/^www\./', '', $current_domain);
+													$app_domain = $clean_domain;
 												}
-											?>
-										</a>
+												
+												$tmp_invest_url = "https://{$app_domain}/en/global/pre-ipo";
+												if (!empty($spv_id)) {
+													$tmp_invest_url .= "?productId={$spv_id}";
+												}
+												?>
+													<a href="<?php echo esc_url($tmp_invest_url); ?>" class="ipo_primary_button"  id="invest-button" data-original-url="<?php echo esc_url($tmp_invest_url); ?>">
+														Express Interest
+													</a>
+												<?php
+											} else {
+												?>
+													<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
+														<?php
+															if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+																echo 'Invest Now';
+															} else {
+																echo 'Express Interest';
+															}
+														?>
+													</a>
+												<?php
+											}
+										?>
 									<?php
 								}
 							?>
@@ -888,5 +915,47 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 </div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
+
+<script>
+// Function to update invest URL based on current domain (fallback for iframe scenarios)
+function updateInvestUrl() {
+    const investButton = document.getElementById('invest-button');
+    if (!investButton) return;
+    
+    const originalUrl = investButton.getAttribute('data-original-url');
+    if (!originalUrl) return;
+    
+    // Get current domain
+    const currentDomain = window.location.hostname;
+    
+    // Dynamic domain replacement logic (same as PHP)
+    let targetDomain = 'app.vestedfinance.com'; // Default fallback
+    
+    if (currentDomain) {
+        // Remove 'www.' if present
+        const cleanDomain = currentDomain.replace(/^www\./, '');
+        
+        // Create app domain by adding 'app.' prefix
+        targetDomain = cleanDomain;
+    }
+    
+    // Replace the domain in the URL
+    const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${targetDomain}`);
+    
+    // Update the button href
+    investButton.href = updatedUrl;
+    
+    console.log('Updated invest URL:', updatedUrl);
+}
+
+// Run the function when DOM is loaded (as fallback)
+document.addEventListener('DOMContentLoaded', updateInvestUrl);
+
+// Also run when the page is loaded in an iframe (for iframe scenarios)
+if (window.self !== window.top) {
+    // This page is loaded in an iframe
+    updateInvestUrl();
+}
+</script>
 </body>
 </html>
