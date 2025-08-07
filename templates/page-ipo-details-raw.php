@@ -790,33 +790,75 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 							
-						<script>
-						// Detect if page is loaded in iframe and get parent URL
-						(function() {
-							try {
-								// Check if the page is loaded in an iframe
-								if (window.self !== window.top) {
-									console.log('Page is loaded in an iframe');
-									console.log('Current window URL:', window.location.href);
-									console.log('Parent window URL:', window.top.location.href);
-									console.log('Parent window origin:', window.top.location.origin);
-								} else {
-									console.log('Page is loaded in main window (not in iframe)');
-									console.log('Current window URL:', window.location.href);
-								}
-								
-								// Alternative method to detect iframe
-								if (window.parent !== window) {
-									console.log('Alternative detection: Page is in iframe');
-									console.log('Parent window URL (alternative):', window.parent.location.href);
-								}
-								
-							} catch (error) {
-								console.log('Error accessing parent window (likely due to same-origin policy):', error.message);
-								console.log('Current window URL:', window.location.href);
-							}
-						})();
-						</script>
+<script>
+// Detect if page is loaded in iframe and get parent URL
+(function() {
+    try {
+        // Check if the page is loaded in an iframe
+        if (window.self !== window.top) {
+            console.log('Page is loaded in an iframe');
+            console.log('Current window URL:', window.location.href);
+            
+            // Try to get parent URL with error handling
+            try {
+                console.log('Parent window URL:', window.top.location.href);
+                console.log('Parent window origin:', window.top.location.origin);
+            } catch (parentError) {
+                console.log('Cannot access parent window due to cross-origin policy');
+                console.log('Parent error:', parentError.message);
+            }
+            
+            // Try alternative method
+            try {
+                console.log('Parent window URL (alternative):', window.parent.location.href);
+            } catch (parentError2) {
+                console.log('Alternative method also blocked by cross-origin policy');
+            }
+            
+            // Store iframe detection in a global variable for other scripts to use
+            window.isInIframe = true;
+            window.currentIframeUrl = window.location.href;
+            
+        } else {
+            console.log('Page is loaded in main window (not in iframe)');
+            console.log('Current window URL:', window.location.href);
+            window.isInIframe = false;
+        }
+        
+        // Alternative method to detect iframe
+        if (window.parent !== window) {
+            console.log('Alternative detection: Page is in iframe');
+        }
+        
+    } catch (error) {
+        console.log('Error accessing parent window (likely due to same-origin policy):', error.message);
+        console.log('Current window URL:', window.location.href);
+        window.isInIframe = true;
+        window.currentIframeUrl = window.location.href;
+    }
+    
+    // Function to get the best available URL (parent if accessible, current if not)
+    window.getBestAvailableUrl = function() {
+        if (window.isInIframe) {
+            try {
+                return window.top.location.href;
+            } catch (e) {
+                try {
+                    return window.parent.location.href;
+                } catch (e2) {
+                    return window.location.href; // Fallback to current URL
+                }
+            }
+        } else {
+            return window.location.href;
+        }
+    };
+    
+    // Log the best available URL
+    console.log('Best available URL:', window.getBestAvailableUrl());
+    
+})();
+</script>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
