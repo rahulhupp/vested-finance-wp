@@ -907,7 +907,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
 
 <script>
-// Function to update button URLs based on current domain (works with caching)
+// Function to update button URLs based on parent domain (iframe scenario)
 function updateButtonUrls() {
     const investButton = document.getElementById('invest-button');
     if (!investButton) return;
@@ -919,21 +919,55 @@ function updateButtonUrls() {
     
     // Only apply dynamic domain logic for the test IPO
     if (ipoId === '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-        // Get current domain
-        const currentDomain = window.location.hostname;
+        let targetDomain = 'app.vestedfinance.com'; // Default fallback
         
-        if (currentDomain) {
-            // Remove 'www.' if present
-            const cleanDomain = currentDomain.replace(/^www\./, '');
-            
-            // Replace the domain in the URL
-            const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${cleanDomain}`);
-            
-            // Update the button href
-            investButton.href = updatedUrl;
-            
-            console.log('Updated button URL for test IPO:', updatedUrl);
+        // Check if we're in an iframe
+        if (window.self !== window.top) {
+            // We're in an iframe - try to get parent domain
+            try {
+                const parentDomain = window.parent.location.hostname;
+                console.log('Parent domain detected:', parentDomain);
+                
+                // Always use parent domain when in iframe, regardless of localhost
+                if (parentDomain) {
+                    // Remove 'www.' if present
+                    targetDomain = parentDomain.replace(/^www\./, '');
+                    console.log('Using parent domain:', targetDomain);
+                } else {
+                    // Fallback to current domain
+                    console.log('No parent domain, using current domain');
+                    targetDomain = window.location.hostname.replace(/^www\./, '');
+                }
+            } catch (e) {
+                // Cross-origin restriction - try to get domain from referrer
+                console.log('Cross-origin restriction detected');
+                try {
+                    const referrer = document.referrer;
+                    if (referrer) {
+                        const referrerUrl = new URL(referrer);
+                        targetDomain = referrerUrl.hostname.replace(/^www\./, '');
+                        console.log('Using referrer domain:', targetDomain);
+                    } else {
+                        console.log('No referrer, using current domain');
+                        targetDomain = window.location.hostname.replace(/^www\./, '');
+                    }
+                } catch (referrerError) {
+                    console.log('Referrer also failed, using current domain');
+                    targetDomain = window.location.hostname.replace(/^www\./, '');
+                }
+            }
+        } else {
+            // Not in iframe - use current domain
+            targetDomain = window.location.hostname.replace(/^www\./, '');
         }
+        
+        // Replace the domain in the URL
+        const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${targetDomain}`);
+        
+        // Update the button href
+        investButton.href = updatedUrl;
+        
+        console.log('Updated button URL for test IPO:', updatedUrl);
     }
 }
 
