@@ -789,6 +789,34 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
+							
+						<script>
+						// Detect if page is loaded in iframe and get parent URL
+						(function() {
+							try {
+								// Check if the page is loaded in an iframe
+								if (window.self !== window.top) {
+									console.log('Page is loaded in an iframe');
+									console.log('Current window URL:', window.location.href);
+									console.log('Parent window URL:', window.top.location.href);
+									console.log('Parent window origin:', window.top.location.origin);
+								} else {
+									console.log('Page is loaded in main window (not in iframe)');
+									console.log('Current window URL:', window.location.href);
+								}
+								
+								// Alternative method to detect iframe
+								if (window.parent !== window) {
+									console.log('Alternative detection: Page is in iframe');
+									console.log('Parent window URL (alternative):', window.parent.location.href);
+								}
+								
+							} catch (error) {
+								console.log('Error accessing parent window (likely due to same-origin policy):', error.message);
+								console.log('Current window URL:', window.location.href);
+							}
+						})();
+						</script>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
@@ -888,33 +916,5 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 </div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
-
-<script>
-// Detect if page is loaded in iframe and get parent URL
-(function() {
-    try {
-        // Check if the page is loaded in an iframe
-        if (window.self !== window.top) {
-            console.log('Page is loaded in an iframe');
-            console.log('Current window URL:', window.location.href);
-            console.log('Parent window URL:', window.top.location.href);
-            console.log('Parent window origin:', window.top.location.origin);
-        } else {
-            console.log('Page is loaded in main window (not in iframe)');
-            console.log('Current window URL:', window.location.href);
-        }
-        
-        // Alternative method to detect iframe
-        if (window.parent !== window) {
-            console.log('Alternative detection: Page is in iframe');
-            console.log('Parent window URL (alternative):', window.parent.location.href);
-        }
-        
-    } catch (error) {
-        console.log('Error accessing parent window (likely due to same-origin policy):', error.message);
-        console.log('Current window URL:', window.location.href);
-    }
-})();
-</script>
 </body>
 </html>
