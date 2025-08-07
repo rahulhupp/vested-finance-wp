@@ -793,7 +793,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 <script>
 console.log('document.referrer:', document.referrer);
 // console.log("window.parent.location.href:", window.parent.location.href);
-console.log('window.location.ancestorOrigins:', window.location.ancestorOrigins);
+console.log('window.location.ancestorOrigins[0]:', window.location.ancestorOrigins[0]);
 </script>
 
 					</div>
