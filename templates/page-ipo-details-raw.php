@@ -774,23 +774,13 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									?>
 										<?php
 											if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-												// Get current domain and dynamically create app domain
-												$current_domain = $_SERVER['HTTP_HOST'] ?? '';
-												$app_domain = 'app.vestedfinance.com'; // Default domain
-												
-												// Dynamic domain replacement logic
-												if (!empty($current_domain)) {
-													// Remove 'www.' if present
-													$clean_domain = preg_replace('/^www\./', '', $current_domain);
-													$app_domain = $clean_domain;
-												}
-												
-												$tmp_invest_url = "https://{$app_domain}/en/global/pre-ipo";
+												// Use default URL for caching, let JavaScript handle domain replacement
+												$default_url = "https://app.vestedfinance.com/en/global/pre-ipo";
 												if (!empty($spv_id)) {
-													$tmp_invest_url .= "?productId={$spv_id}";
+													$default_url .= "?productId={$spv_id}";
 												}
 												?>
-													<a href="<?php echo esc_url($tmp_invest_url); ?>" class="ipo_primary_button"  id="invest-button" data-original-url="<?php echo esc_url($tmp_invest_url); ?>">
+													<a href="<?php echo esc_url($default_url); ?>" class="ipo_primary_button" id="invest-button" data-original-url="<?php echo esc_url($default_url); ?>" data-ipo-id="<?php echo esc_attr($ipo->ipo_id); ?>">
 														Express Interest
 													</a>
 												<?php
@@ -917,44 +907,45 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
 
 <script>
-// Function to update invest URL based on current domain (fallback for iframe scenarios)
-function updateInvestUrl() {
+// Function to update button URLs based on current domain (works with caching)
+function updateButtonUrls() {
     const investButton = document.getElementById('invest-button');
     if (!investButton) return;
     
     const originalUrl = investButton.getAttribute('data-original-url');
-    if (!originalUrl) return;
+    const ipoId = investButton.getAttribute('data-ipo-id');
     
-    // Get current domain
-    const currentDomain = window.location.hostname;
+    if (!originalUrl || !ipoId) return;
     
-    // Dynamic domain replacement logic (same as PHP)
-    let targetDomain = 'app.vestedfinance.com'; // Default fallback
-    
-    if (currentDomain) {
-        // Remove 'www.' if present
-        const cleanDomain = currentDomain.replace(/^www\./, '');
+    // Only apply dynamic domain logic for the test IPO
+    if (ipoId === '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
+        // Get current domain
+        const currentDomain = window.location.hostname;
         
-        // Create app domain by adding 'app.' prefix
-        targetDomain = cleanDomain;
+        if (currentDomain) {
+            // Remove 'www.' if present
+            const cleanDomain = currentDomain.replace(/^www\./, '');
+            
+            // Replace the domain in the URL
+            const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${cleanDomain}`);
+            
+            // Update the button href
+            investButton.href = updatedUrl;
+            
+            console.log('Updated button URL for test IPO:', updatedUrl);
+        }
     }
-    
-    // Replace the domain in the URL
-    const updatedUrl = originalUrl.replace(/https:\/\/[^\/]+/, `https://${targetDomain}`);
-    
-    // Update the button href
-    investButton.href = updatedUrl;
-    
-    console.log('Updated invest URL:', updatedUrl);
 }
 
-// Run the function when DOM is loaded (as fallback)
-document.addEventListener('DOMContentLoaded', updateInvestUrl);
+// Run immediately for faster response
+updateButtonUrls();
 
-// Also run when the page is loaded in an iframe (for iframe scenarios)
+// Also run when DOM is loaded (as fallback)
+document.addEventListener('DOMContentLoaded', updateButtonUrls);
+
+// Also run when the page is loaded in an iframe
 if (window.self !== window.top) {
-    // This page is loaded in an iframe
-    updateInvestUrl();
+    updateButtonUrls();
 }
 </script>
 </body>
