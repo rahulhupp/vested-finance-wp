@@ -754,7 +754,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									$invest_url .= "?productId={$spv_id}";
 								}
 							?>
-							<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
+							<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button" id="invest-button-spv">Invest</a>
 						<?php else: ?>
 							<?php
 								$typoform_link = get_typoform_link_by_ipo_id($ipo_id);
@@ -772,28 +772,15 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<?php
 								} else {
 									?>
-										<?php
-											if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-												?>
-													<a href="https://app.vestedfinance.com/en/global/pre-ipo" class="ipo_primary_button" id="invest-button">
-														Express Interest
-													</a>
-												<?php
-											} else {
-												?>
-													<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
-														<?php
-															if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-																echo 'Invest Now';
-															} else {
-																echo 'Express Interest';
-															}
-														?>
-													</a>
-												<?php
-											}
-										?>
-										
+										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
+											<?php
+												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
+													echo 'Invest Now';
+												} else {
+													echo 'Express Interest';
+												}
+											?>
+										</a>
 									<?php
 								}
 							?>
@@ -803,12 +790,25 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 						<script>
-							console.log('document.referrer:', document.referrer);
+							// console.log('document.referrer:', document.referrer);
 							// console.log("window.parent.location.href:", window.parent.location.href);
 							console.log('window.location.ancestorOrigins[0]:', window.location.ancestorOrigins[0]);
-							const investButton = document.getElementById('invest-button');
+							// const investButton = document.getElementById('invest-button');
+							const investButtonSpv = document.getElementById('invest-button-spv');
+							
+							// Get the original href to extract productId if present
+							const originalHref = investButtonSpv ? investButtonSpv.href : '';
+							const urlParams = new URLSearchParams(originalHref.split('?')[1] || '');
+							const productId = urlParams.get('productId');
+							
 							if (window.location.ancestorOrigins[0]) {
-								investButton.href = `${window.location.ancestorOrigins[0]}/en/global/pre-ipo`;
+								let newUrl = `${window.location.ancestorOrigins[0]}/en/global/pre-ipo`;
+								if (productId) {
+									newUrl += `?productId=${productId}`;
+								}
+								if (investButtonSpv) {
+									investButtonSpv.href = newUrl;
+								}
 							}
 						</script>
 					</div>
