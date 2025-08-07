@@ -868,10 +868,35 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 												} else {
 													console.log('No URL param, trying Method 3...');
 													
-													// Method 3: Try to get domain from postMessage or other methods
-													// For HTTPS, we might need to rely on URL parameters or other methods
-													targetDomain = window.location.hostname.replace(/^www\./, '');
-													console.log('Using current domain as fallback:', targetDomain);
+													// Method 3: Try to detect parent domain from iframe context
+													// Check if we're in an iframe and try to infer parent domain
+													if (window.self !== window.top) {
+														// We're in an iframe - try to get parent domain from URL patterns
+														const currentUrl = window.location.href;
+														console.log('Current URL:', currentUrl);
+														
+														// Try to get parent domain from URL parameters
+														const urlParams = new URLSearchParams(window.location.search);
+														const parentDomainParam = urlParams.get('parent_domain');
+														
+														if (parentDomainParam) {
+															targetDomain = parentDomainParam.replace(/^www\./, '');
+															console.log('Using parent domain from URL param:', targetDomain);
+														} else {
+															// Try to infer from common patterns
+															if (currentUrl.includes('lp.vestedfinance.com')) {
+																// If we're on lp.vestedfinance.com, parent is likely next-staging.vestedfinance.com
+																targetDomain = 'next-staging.vestedfinance.com';
+																console.log('Inferred parent domain from URL pattern:', targetDomain);
+															} else {
+																targetDomain = window.location.hostname.replace(/^www\./, '');
+																console.log('Using current domain as fallback:', targetDomain);
+															}
+														}
+													} else {
+														targetDomain = window.location.hostname.replace(/^www\./, '');
+														console.log('Using current domain as fallback:', targetDomain);
+													}
 												}
 											}
 										} catch (referrerError) {
