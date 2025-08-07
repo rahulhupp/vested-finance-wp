@@ -806,6 +806,109 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
+
+						<script>
+						// Function to update button URLs based on parent domain (iframe scenario)
+						function updateButtonUrls() {
+							const investButton = document.getElementById('invest-button');
+							if (!investButton) return;
+							
+							const originalUrl = investButton.getAttribute('data-original-url');
+							const ipoId = investButton.getAttribute('data-ipo-id');
+							
+							if (!originalUrl || !ipoId) return;
+							
+							// Only apply dynamic domain logic for the test IPO
+							if (ipoId === '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
+								let targetDomain = 'app.vestedfinance.com'; // Default fallback
+								
+								// Check if we're in an iframe
+								if (window.self !== window.top) {
+									// We're in an iframe - try multiple methods to get parent domain
+									console.log('Iframe detected, trying to get parent domain...');
+									console.log('Current protocol:', window.location.protocol);
+									console.log('Current domain:', window.location.hostname);
+									
+									// Method 1: Try direct parent access
+									try {
+										const parentDomain = window.parent.location.hostname;
+										console.log('Method 1 - Parent domain detected:', parentDomain);
+										
+										if (parentDomain) {
+											targetDomain = parentDomain.replace(/^www\./, '');
+											console.log('Using parent domain:', targetDomain);
+										} else {
+											throw new Error('No parent domain available');
+										}
+									} catch (e) {
+										console.log('Method 1 failed:', e.message);
+										
+										// Method 2: Try referrer
+										try {
+											// Cross-origin restriction - try to get domain from referrer
+											console.log('Cross-origin restriction detected');
+											const referrer = document.referrer;
+											console.log('Referrer:', referrer);
+											
+											if (referrer) {
+												const referrerUrl = new URL(referrer);
+												targetDomain = referrerUrl.hostname.replace(/^www\./, '');
+												console.log('Using referrer domain:', targetDomain);
+											} else {
+												// No referrer - try to get domain from URL parameters or use current domain
+												console.log('No referrer available');
+												
+												// Check if we can get domain from URL parameters
+												const urlParams = new URLSearchParams(window.location.search);
+												const parentDomain = urlParams.get('parent_domain');
+												
+												if (parentDomain) {
+													targetDomain = parentDomain.replace(/^www\./, '');
+													console.log('Using parent domain from URL param:', targetDomain);
+												} else {
+													console.log('No URL param, trying Method 3...');
+													
+													// Method 3: Try to get domain from postMessage or other methods
+													// For HTTPS, we might need to rely on URL parameters or other methods
+													targetDomain = window.location.hostname.replace(/^www\./, '');
+													console.log('Using current domain as fallback:', targetDomain);
+												}
+											}
+										} catch (referrerError) {
+											console.log('Method 2 failed:', referrerError.message);
+											
+											// Method 3: Final fallback
+											console.log('All methods failed, using current domain');
+											targetDomain = window.location.hostname.replace(/^www\./, '');
+										}
+									}
+								} else {
+									// Not in iframe - use current domain
+									targetDomain = window.location.hostname.replace(/^www\./, '');
+								}
+								
+								// Replace the domain in the URL with protocol-agnostic approach
+								const updatedUrl = originalUrl.replace(/https?:\/\/[^\/]+/, `https://${targetDomain}`);
+								
+								// Update the button href
+								investButton.href = updatedUrl;
+								
+								console.log('Updated button URL for test IPO:', updatedUrl);
+								console.log('Target domain used:', targetDomain);
+							}
+						}
+
+						// Run immediately for faster response
+						updateButtonUrls();
+
+						// Also run when DOM is loaded (as fallback)
+						document.addEventListener('DOMContentLoaded', updateButtonUrls);
+
+						// Also run when the page is loaded in an iframe
+						if (window.self !== window.top) {
+							updateButtonUrls();
+						}
+						</script>
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
@@ -905,108 +1008,5 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 </div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/templates/js-ipo-details.js"></script>
-
-<script>
-// Function to update button URLs based on parent domain (iframe scenario)
-function updateButtonUrls() {
-    const investButton = document.getElementById('invest-button');
-    if (!investButton) return;
-    
-    const originalUrl = investButton.getAttribute('data-original-url');
-    const ipoId = investButton.getAttribute('data-ipo-id');
-    
-    if (!originalUrl || !ipoId) return;
-    
-    // Only apply dynamic domain logic for the test IPO
-    if (ipoId === '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
-        let targetDomain = 'app.vestedfinance.com'; // Default fallback
-        
-        // Check if we're in an iframe
-        if (window.self !== window.top) {
-            // We're in an iframe - try multiple methods to get parent domain
-            console.log('Iframe detected, trying to get parent domain...');
-            console.log('Current protocol:', window.location.protocol);
-            console.log('Current domain:', window.location.hostname);
-            
-            // Method 1: Try direct parent access
-            try {
-                const parentDomain = window.parent.location.hostname;
-                console.log('Method 1 - Parent domain detected:', parentDomain);
-                
-                if (parentDomain) {
-                    targetDomain = parentDomain.replace(/^www\./, '');
-                    console.log('Using parent domain:', targetDomain);
-                } else {
-                    throw new Error('No parent domain available');
-                }
-            } catch (e) {
-                console.log('Method 1 failed:', e.message);
-                
-                // Method 2: Try referrer
-                try {
-                    // Cross-origin restriction - try to get domain from referrer
-                    console.log('Cross-origin restriction detected');
-                    const referrer = document.referrer;
-                    console.log('Referrer:', referrer);
-                    
-                    if (referrer) {
-                        const referrerUrl = new URL(referrer);
-                        targetDomain = referrerUrl.hostname.replace(/^www\./, '');
-                        console.log('Using referrer domain:', targetDomain);
-                    } else {
-                        // No referrer - try to get domain from URL parameters or use current domain
-                        console.log('No referrer available');
-                        
-                        // Check if we can get domain from URL parameters
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const parentDomain = urlParams.get('parent_domain');
-                        
-                        if (parentDomain) {
-                            targetDomain = parentDomain.replace(/^www\./, '');
-                            console.log('Using parent domain from URL param:', targetDomain);
-                        } else {
-                            console.log('No URL param, trying Method 3...');
-                            
-                            // Method 3: Try to get domain from postMessage or other methods
-                            // For HTTPS, we might need to rely on URL parameters or other methods
-                            targetDomain = window.location.hostname.replace(/^www\./, '');
-                            console.log('Using current domain as fallback:', targetDomain);
-                        }
-                    }
-                } catch (referrerError) {
-                    console.log('Method 2 failed:', referrerError.message);
-                    
-                    // Method 3: Final fallback
-                    console.log('All methods failed, using current domain');
-                    targetDomain = window.location.hostname.replace(/^www\./, '');
-                }
-            }
-        } else {
-            // Not in iframe - use current domain
-            targetDomain = window.location.hostname.replace(/^www\./, '');
-        }
-        
-        // Replace the domain in the URL with protocol-agnostic approach
-        const updatedUrl = originalUrl.replace(/https?:\/\/[^\/]+/, `https://${targetDomain}`);
-        
-        // Update the button href
-        investButton.href = updatedUrl;
-        
-        console.log('Updated button URL for test IPO:', updatedUrl);
-        console.log('Target domain used:', targetDomain);
-    }
-}
-
-// Run immediately for faster response
-updateButtonUrls();
-
-// Also run when DOM is loaded (as fallback)
-document.addEventListener('DOMContentLoaded', updateButtonUrls);
-
-// Also run when the page is loaded in an iframe
-if (window.self !== window.top) {
-    updateButtonUrls();
-}
-</script>
 </body>
 </html>
