@@ -791,9 +791,14 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 							
 <script>
-var parentURL = window.parent.location.href;
-console.log("Parent URL:", parentURL);
+console.log('Referrer:', document.referrer);
 </script>
+<?php
+if ($ipo->ipo_id == '1de6af6f-2e27-41d6-9eb2-f76a560b64ed') {
+	echo 'Referrer: ' . ($_SERVER['HTTP_REFERER'] ?? 'Not available');
+}
+?>
+
 					</div>
 				</div>
 				<?php if ($documents_data && !empty($documents_data['items'])): ?>
