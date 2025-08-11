@@ -128,7 +128,7 @@ if ( Astra_Builder_Helper::is_row_empty( $astra_header_row, 'header', 'desktop' 
 			</div>
 			</div>
 			<?php
-				if (is_page_template('templates/page-home-page.php') || is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-pricing-global.php') || is_page_template('templates/page-pricing-india.php') ) {
+				if (is_page_template('templates/page-home-page.php') || is_page_template('templates/page-us-stock-global.php') || is_page_template('templates/page-pricing-global.php') || is_page_template('templates/page-pricing-india.php') || is_page_template('templates/page-home-new.php') ) {
 					?>
 						<div class="geolocation_banner" style="display: none;"></div>
 					<?php
