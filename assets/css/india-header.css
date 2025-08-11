@@ -378,3 +378,45 @@ header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primar
         padding: 14px 0;
     }
 }
+
+
+.geolocation_banner p {
+    display: flex;
+    align-items: center;
+}
+
+.geolocation_banner a {
+    width: auto;
+    margin-left: 10px;
+}
+
+@media (max-width: 1200px) {
+    
+	.geolocation_banner .content {
+		padding: 0;
+	}
+
+	.geolocation_banner p {
+		font-size: 16px;
+	}
+
+	.geolocation_banner a {
+		font-size: 16px;
+		padding: 6px 8px;
+	}
+}
+
+@media (max-width: 767px) {
+    
+	.geolocation_banner p {
+		display: block;
+	}
+	
+	.geolocation_banner a {
+		margin: 10px 0 0;
+		width: auto;
+	}
+	.geolocation_banner .content {
+        width: 100%;
+    }
+}
