@@ -119,6 +119,9 @@
             wp_enqueue_style('managed-portfolios-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-managed-portfolios.css', false, '', '');
             wp_enqueue_script('managed-portfolios-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-managed-portfolios.js');
         }
+        if (is_page_template('templates/page-nse.php')) {
+            wp_enqueue_style('nse-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-nse.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
