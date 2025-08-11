@@ -429,4 +429,31 @@ get_header(); ?>
         </div>
     </section>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        getUserLocationByIP();
+    });
+
+    function getUserLocationByIP() {
+        // Make a request to the ipinfo.io API to get user location based on IP
+        fetch('https://get.geojs.io/v1/ip/country.json')
+            .then(response => response.json())
+            .then(data => {
+            var globalBanner = document.querySelector(".geolocation_banner");
+            if (globalBanner) {
+                globalBanner.style.display = "flex"; 
+                if (data.country === "IN") {
+                    globalBanner.innerHTML = "<div class='content'><p>Looking to invest Globally via Mutual Funds? Sign up for early access. <a href='http://wordpress-testing.vestedfinance.com/global-mutual-funds/' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Know More</a></p></div>";
+                    // globalBanner.classList.add('warning_banner');
+                    console.log('show geolocation_banner');
+                } else {
+                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
+                }
+            }
+            })
+            .catch(error => {
+                console.error('Error getting user location based on IP:', error);
+            });
+    }
+</script>
 <?php get_footer(); ?>
