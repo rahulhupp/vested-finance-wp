@@ -324,18 +324,18 @@ add_filter('wpseo_opengraph_desc', function($og_desc) {
     return $custom_desc ? $custom_desc : $og_desc;
 });
 
-function ipo_custom_wpseo_sitemap_index($sitemap_index)
-{
-    $last_modified = date('c');
-    $custom_urls = array(
-        '<sitemap><loc>' . home_url('/private-markets-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
-    );
+// function ipo_custom_wpseo_sitemap_index($sitemap_index)
+// {
+//     $last_modified = date('c');
+//     $custom_urls = array(
+//         '<sitemap><loc>' . home_url('/private-markets-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
+//     );
 
-    // Append each custom URL to the sitemap index
-    foreach ($custom_urls as $url) {
-        $sitemap_index .= $url;
-    }
+//     // Append each custom URL to the sitemap index
+//     foreach ($custom_urls as $url) {
+//         $sitemap_index .= $url;
+//     }
 
-    return $sitemap_index;
-}
-add_filter('wpseo_sitemap_index', 'ipo_custom_wpseo_sitemap_index', 10, 1);
+//     return $sitemap_index;
+// }
+// add_filter('wpseo_sitemap_index', 'ipo_custom_wpseo_sitemap_index', 10, 1);

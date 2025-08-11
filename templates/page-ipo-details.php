@@ -2,6 +2,15 @@
 $hide_header_footer = isset($_GET['csrf']) && isset($_GET['token']);
 $current_url = (is_ssl() ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
+// Remove default WordPress robots meta tag and add no-index, no-follow meta tags for SEO
+add_action('wp_head', function() {
+    // Remove default WordPress robots meta tag
+    remove_action('wp_head', 'wp_robots');
+    
+    // Add our custom robots meta tag
+    echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
+}, 1);
+
 
 if ($hide_header_footer): ?>
 	<!DOCTYPE html>
