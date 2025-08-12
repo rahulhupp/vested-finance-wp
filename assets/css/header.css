@@ -790,3 +790,8 @@ header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primar
 section {
     overflow: hidden;
 }
+
+
+.india_invest_menu, .india_more_menu {
+	display: none !important;
+}
