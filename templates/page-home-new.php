@@ -10,8 +10,8 @@ get_header(); ?>
                 <div class="home_banner_content">
                     <h1>Your Gateway to <br> Global Investing</h1>
                     <p>Invest in US Stocks, ETFs, Global Mutual Funds and more to build a globally diversified portfolio.</p>
-                    <a href="#" class="btn btn-primary">Start Investing</a>
-                    <h5>Are you an NRI looking to invest? <a href="#">Visit here</a></h5>
+                    <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start Investing</a>
+                    <h5>Are you an NRI looking to invest? <a href="<?php echo home_url('/'); ?>">Visit here</a></h5>
                 </div>
                 <div class="banner_image">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-banner.svg" alt="Banner Image"  class="desktop_image" />
@@ -56,9 +56,9 @@ get_header(); ?>
                         <div class="home_features_item_image">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-1.png" alt="US Stocks">
                         </div>
-                        <h3>US Stocks & ETFs</h3>
+                        <h3><a href="<?php echo home_url('/in/us-stocks/'); ?>">US Stocks & ETFs</a></h3>
                         <!-- <p>A VF Securities Inc. product</p> -->
-                        <a href="#">
+                        <a href="<?php echo home_url('/in/us-stocks/'); ?>" class="learn_more_btn">
                             <span>Learn More</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,11 +70,11 @@ get_header(); ?>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Private Markets">
                         </div>
                         <div class="home_features_item_content">
-                            <h3>Private Markets</h3>
+                            <h3><a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer">Private Markets</a></h3>
                             <label>Private Beta</label>
                         </div>
                         <!-- <p>A Vested Finance, Inc product</p> -->
-                        <a href="#">
+                        <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="learn_more_btn">
                             <span>Learn More</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -86,11 +86,11 @@ get_header(); ?>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-4.png" alt="Global Mutual Funds">
                         </div>
                         <div class="home_features_item_content">
-                            <h3>Global Mutual Funds</h3>
+                            <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
                             <label>Join Waitlist</label>
                         </div>
                         <!-- <p>A VF Securities Inc. product</p> -->
-                        <a href="#">
+                        <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="learn_more_btn">
                             <span>Learn More</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -103,7 +103,7 @@ get_header(); ?>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-2.png" alt="Managed Portfolios">
                         </div>
                         <div class="home_features_item_content">
-                            <h3>Managed Portfolios</h3>
+                            <h3><a href="<?php echo home_url('/in/managed-portfolios/'); ?>">Managed Portfolios</a></h3>
                             <p>Previously Vests, by 
                                 <svg width="80" height="22" viewBox="0 0 80 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect y="0.606323" width="20.7874" height="20.7874" rx="2.0773" fill="#002852"/>
@@ -112,7 +112,7 @@ get_header(); ?>
                                 </svg>
                             </p>
                         </div>
-                        <a href="#">
+                        <a href="<?php echo home_url('/in/managed-portfolios/'); ?>" class="learn_more_btn">
                             <span>Learn More</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -156,12 +156,12 @@ get_header(); ?>
                         <div class="home_diversify_item_footer">
                             <div class="india_markets">India Markets</div>
                             <div class="global_markets">Global Markets</div>
-                            <a href="#">Why US Markets deliver higher returns?</a>
+                            <a href="https://vestedfinance.com/in/blog/why-investing-in-the-us-has-given-superior-returns/">Why US Markets deliver higher returns?</a>
                             <h6>Past performance is no guarantee of future results.</h6>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn btn-primary">Start Investing</a>
+                <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start Investing</a>
             </div>
         </div>
     </section>
@@ -182,7 +182,7 @@ get_header(); ?>
                                 <li>Buy fractional shares starting $0.01</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="#" class="btn btn-primary">Explore US Stocks</a>
+                                <a href="<?php echo home_url('/in/us-stocks/'); ?>" class="btn btn-primary">Explore US Stocks</a>
                                 <p class="desktop_disclosure">Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation</p>
                             </div>
                         </div>
@@ -210,7 +210,7 @@ get_header(); ?>
                                 <li>Minimum investments starting $1. Simple AUM-based pricing</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="#" class="btn btn-primary">Explore Managed Portfolios</a>
+                                <a href="<?php echo home_url('/in/managed-portfolios/'); ?>" class="btn btn-primary">Explore Managed Portfolios</a>
                                 <p class="desktop_disclosure">Offered by Vested Finance, Inc</p>
                             </div>
                         </div>
@@ -232,7 +232,7 @@ get_header(); ?>
                                 <li>Limited-time deals with minimum investments starting at $10,000</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="#" class="btn btn-primary">Explore Pre-IPOs</a>
+                                <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Pre-IPOs</a>
                                 <p class="desktop_disclosure">Offered by Vested Finance, Inc</p>
                             </div>
                         </div>
@@ -254,7 +254,7 @@ get_header(); ?>
                                 <li>No entry/exit load + Simplified taxes. Start investing with $1</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="#" class="btn btn-primary">Join Waitlist</a>
+                                <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="btn btn-primary">Join Waitlist</a>
                                 <p class="desktop_disclosure">Offered by VF Securities, Inc</p>
                             </div>
                         </div>
@@ -283,14 +283,14 @@ get_header(); ?>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Add Funds</h3>
-                            <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions.</p>
+                            <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions</p>
                         </div>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-2.png" alt="Step 2">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Start Investing!</h3>
-                            <p>Build your global portfolio with US Stocks, ETFs or Vests starting at $1</p>
+                            <p>Build your global portfolio with US Stocks, ETFs or Managed Portfolios starting at $1</p>
                         </div>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-3.png" alt="Step 3">
                     </div>
@@ -306,10 +306,14 @@ get_header(); ?>
                     <h2>Access Vested on your browser or mobile</h2>
                     <!-- <p>Whether you are using mobile or web, there is always a more efficient way to execute trades at your fingertips.</p> -->
                     <div class="home_cta_box_buttons">
-                        <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-app-store.svg" alt="App store"></a>
-                        <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-google-play.svg" alt="Google play"></a>
+                        <a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1" target="_blank" rel="noopener noreferrer">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-app-store.svg" alt="App store">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.vested.investing.android&hl=en&gl=US" target="_blank" rel="noopener noreferrer">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-google-play.svg" alt="Google play">
+                        </a>
                     </div>
-                    <a href="#" class="btn btn-primary">Continue Using Web</a>
+                    <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Continue Using Web</a>
                 </div>
                 <div class="home_cta_box_image">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-cta-banner.svg" alt="CTA Box">
@@ -398,7 +402,7 @@ get_header(); ?>
                 <p>Get access to in-depth guides, smart calculators, and human support — built to help you invest globally with clarity.</p>
                 <div class="home_quick_links_list">
                     <div class="home_quick_links_item">
-                        <a href="#">
+                        <a href="https://support.vestedfinance.com/portal/en/home" target="_blank" rel="noopener noreferrer">
                             <span>Help & Support</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 18L15 12L9 6" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -407,7 +411,7 @@ get_header(); ?>
                         <p>Get answers to frequently asked questions by our investors or get help on any topic</p>
                     </div>
                     <div class="home_quick_links_item">
-                        <a href="#">
+                        <a href="<?php echo home_url('/blog/'); ?>">
                             <span>Blogs</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 18L15 12L9 6" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -416,7 +420,7 @@ get_header(); ?>
                         <p>Stay up to date on the latest investing trends in the markets and other announcements from Vested</p>
                     </div>
                     <div class="home_quick_links_item">
-                        <a href="#">
+                        <a href="<?php echo home_url('/calculators/'); ?>">
                             <span>Calculators</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 18L15 12L9 6" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -429,31 +433,4 @@ get_header(); ?>
         </div>
     </section>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        getUserLocationByIP();
-    });
-
-    function getUserLocationByIP() {
-        // Make a request to the ipinfo.io API to get user location based on IP
-        fetch('https://get.geojs.io/v1/ip/country.json')
-            .then(response => response.json())
-            .then(data => {
-            var globalBanner = document.querySelector(".geolocation_banner");
-            if (globalBanner) {
-                globalBanner.style.display = "flex"; 
-                if (data.country === "IN") {
-                    globalBanner.innerHTML = "<div class='content'><p>Looking to invest Globally via Mutual Funds? Sign up for early access. <a href='http://wordpress-testing.vestedfinance.com/global-mutual-funds/' rel='nofollow' target='_blank' class='learn_more_btn tmp'>Know More</a></p></div>";
-                    // globalBanner.classList.add('warning_banner');
-                    console.log('show geolocation_banner');
-                } else {
-                    globalBanner.innerHTML = "<div class='content'><p>You're on our India website. Visit the Global website to explore our Global products.</p></div><a href='<?php home_url() ?>'><img src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/global.png'>Global</a>";
-                }
-            }
-            })
-            .catch(error => {
-                console.error('Error getting user location based on IP:', error);
-            });
-    }
-</script>
 <?php get_footer(); ?>
