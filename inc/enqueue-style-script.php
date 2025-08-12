@@ -24,6 +24,12 @@
         wp_enqueue_script('header-js', get_stylesheet_directory_uri() . '/assets/js/header.js');
         wp_enqueue_script('footer-js', get_stylesheet_directory_uri() . '/assets/js/footer.js');
         wp_enqueue_script('script-js', get_stylesheet_directory_uri() . '/assets/js/script.js');
+
+        // Enqueue India header CSS for URLs containing /in
+        if (strpos($_SERVER['REQUEST_URI'], '/in') !== false) {
+            wp_enqueue_style('india-header-css', get_stylesheet_directory_uri() . '/assets/css/india-header.css', false, '', '');
+        }
+        
         if ( is_page_template( 'templates/page-home-page.php') ) {
             wp_enqueue_style('home-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-page.css', false, '', '');
             wp_enqueue_script('home-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-page.js');
@@ -121,6 +127,12 @@
         }
         if (is_page_template('templates/page-nse.php')) {
             wp_enqueue_style('nse-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-nse.css', false, '', '');
+        }
+        if (is_page_template('templates/page-home-new.php')) {
+            wp_enqueue_script('gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js');
+            wp_enqueue_script('gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js');
+            wp_enqueue_style('home-new-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-new.css', false, '', '');
+            wp_enqueue_script('home-new-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-new.js');
         }
     }
 

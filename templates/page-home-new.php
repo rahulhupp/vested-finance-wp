@@ -14,8 +14,8 @@ get_header(); ?>
                     <h5>Are you an NRI looking to invest? <a href="<?php echo home_url('/'); ?>">Visit here</a></h5>
                 </div>
                 <div class="banner_image">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-banner.svg" alt="Banner Image"  class="desktop_image" />
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-banner-mobile.svg" alt="Banner Image mobile" class="mobile_image" />
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-banner.svg" alt="Banner Image"  class="desktop_image" />
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-banner-mobile.svg" alt="Banner Image mobile" class="mobile_image" />
                 </div>
                 <h6>Past returns shown are hypothetical and for visual purposes only.</h6>
             </div>
@@ -54,7 +54,7 @@ get_header(); ?>
                 <div class="home_features_list">
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-1.png" alt="US Stocks">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-1.png" alt="US Stocks">
                         </div>
                         <h3><a href="<?php echo home_url('/in/us-stocks/'); ?>">US Stocks & ETFs</a></h3>
                         <!-- <p>A VF Securities Inc. product</p> -->
@@ -67,7 +67,7 @@ get_header(); ?>
                     </div>
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Private Markets">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-3.png" alt="Private Markets">
                         </div>
                         <div class="home_features_item_content">
                             <h3><a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer">Private Markets</a></h3>
@@ -83,7 +83,7 @@ get_header(); ?>
                     </div>
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Mutual Funds">
                         </div>
                         <div class="home_features_item_content">
                             <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
@@ -100,7 +100,7 @@ get_header(); ?>
 
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-2.png" alt="Managed Portfolios">
                         </div>
                         <div class="home_features_item_content">
                             <h3><a href="<?php echo home_url('/in/managed-portfolios/'); ?>">Managed Portfolios</a></h3>
@@ -138,21 +138,21 @@ get_header(); ?>
                             <h3>Invest in Companies That Shape the World</h3>
                             <p>From Apple to Amazon, many of the world’s most innovative and profitable companies are based outside India. Get exposure to these companies by diversifying globally.</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-diversify-1.png" alt="Diversify 1">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-diversify-1.png" alt="Diversify 1">
                     </div>
                     <div class="home_diversify_item">
                         <div class="home_diversify_item_content">
                             <h3>Hedge Against INR Depreciation</h3>
                             <p>The Indian Rupee has historically depreciated against the US Dollar. By investing in USD-denominated assets, you preserve and grow your wealth in a historically stronger global currency over time.</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-diversify-2.png" alt="Diversify 2">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-diversify-2.png" alt="Diversify 2">
                     </div>
                     <div class="home_diversify_item">
                         <div class="home_diversify_item_content">
                             <h3>US Markets + Dollar Strength = Compounded Gains</h3>
                             <p>US markets have historically delivered higher INR-adjusted returns compared to Indian markets,helping Indian investors build long-term wealth faster.</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-diversify-3.png" alt="Diversify 3">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-diversify-3.png" alt="Diversify 3">
                         <div class="home_diversify_item_footer">
                             <div class="india_markets">India Markets</div>
                             <div class="global_markets">Global Markets</div>
@@ -187,7 +187,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-1.png" alt="US Stocks & ETFs">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-1.png" alt="US Stocks & ETFs">
                             <p class="mobile_disclosure">Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation</p>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-2.png" alt="Managed Portfolios">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -237,7 +237,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-3.png" alt="Pre-IPO">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-3.png" alt="Pre-IPO">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -259,7 +259,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Mutual Funds">
                             <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>
@@ -278,21 +278,21 @@ get_header(); ?>
                             <h3>Create your Vested Account</h3>
                             <p>Sign up and complete your 100% Digital KYC in less than 5 minutes</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-1.png" alt="Step 1">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-1.png" alt="Step 1">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Add Funds</h3>
                             <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-2.png" alt="Step 2">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-2.png" alt="Step 2">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Start Investing!</h3>
                             <p>Build your global portfolio with US Stocks, ETFs or Managed Portfolios starting at $1</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-3.png" alt="Step 3">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-3.png" alt="Step 3">
                     </div>
                 </div>
             </div>
@@ -307,16 +307,16 @@ get_header(); ?>
                     <!-- <p>Whether you are using mobile or web, there is always a more efficient way to execute trades at your fingertips.</p> -->
                     <div class="home_cta_box_buttons">
                         <a href="https://apps.apple.com/us/app/vested-us-stocks-investing/id1478145933?ls=1" target="_blank" rel="noopener noreferrer">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-app-store.svg" alt="App store">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-app-store.svg" alt="App store">
                         </a>
                         <a href="https://play.google.com/store/apps/details?id=com.vested.investing.android&hl=en&gl=US" target="_blank" rel="noopener noreferrer">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-google-play.svg" alt="Google play">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-google-play.svg" alt="Google play">
                         </a>
                     </div>
                     <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Continue Using Web</a>
                 </div>
                 <div class="home_cta_box_image">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-cta-banner.svg" alt="CTA Box">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-cta-banner.svg" alt="CTA Box">
                 </div>
             </div>
         </div>
@@ -328,19 +328,19 @@ get_header(); ?>
                 <h2>Investing in US Stocks from India:<br>Safe, Secure, and Simple</h2>
                 <div class="home_security_list">
                     <div class="home_security_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-1.png" alt="Security 1">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-security-1.png" alt="Security 1">
                         <p>Investments are protected under US regulatory bodies up to $500K - $250K for cash.</p>
                     </div>
                     <div class="home_security_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-2.png" alt="Security 2">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-security-2.png" alt="Security 2">
                         <p>Funds & securities are held securely in US brokerage accounts.</p>
                     </div>
                     <div class="home_security_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-3.png" alt="Security 3">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-security-3.png" alt="Security 3">
                         <p>Vested is registered as a FINRA member and a Broker Dealer called as VF Securities, Inc.</p>
                     </div>
                     <!-- <div class="home_security_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-security-4.png" alt="Security 4">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-security-4.png" alt="Security 4">
                         <p>Regulated under India and US Securities and Exchange Commission.</p>
                     </div> -->
                 </div>

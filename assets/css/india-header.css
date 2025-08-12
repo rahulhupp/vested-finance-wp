@@ -1,0 +1,422 @@
+
+    
+.india_invest_menu, .india_more_menu {
+    display: inline-block !important;
+}
+
+.global_invest_menu, .hide_for_india {
+    display: none !important;
+}
+
+header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.login-btn a {
+    border: 1px solid #B2BECB;
+    color: #262626;
+}
+
+header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a {
+    background: #05A86B;
+    border: 1px solid #05A86B;
+    color: #FFFFFF;
+}
+
+header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a:hover {
+    color: #05A86B;
+}
+
+header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link {
+    color: #262626;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.new_menu>a.mega-menu-link {
+    display: flex;
+    align-items: center;
+}
+
+.new_menu .mega-menu-link {
+    position: relative;
+}
+
+.new_menu .mega-menu-link:after {
+    content: "New";
+    display: block !important;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    background-color: #2563EB;
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-left: 8px;
+}
+
+.home_invest_mega_menu_item {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+}
+
+.home_invest_mega_menu_item_content h3 {
+    color: #021930;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home_invest_mega_menu_item_content p {
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 8px 0 0;
+}
+
+.home_invest_mega_menu_item_content span {
+    color: #1E3A8A;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #BFDBFE;
+    padding: 5px 12px;
+    border-radius: 100pc;
+}
+
+.home_invest_mega_menu_item_content small {
+    color: #021930;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+    
+.india_more_mega_menu_explore h2 {
+    color: #021930;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: left;
+}
+
+.home_more_mega_menu_item_content h3 {
+    color: #021930;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.home_more_mega_menu_item_content p {
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.india_more_mega_menu_quick_links a {
+    padding: 14px 24px;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.india_more_mega_menu_quick_links a span {
+    color: #021930;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+@media (min-width: 992px) {
+    header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.login-btn a {
+        width: 100px;
+        height: 46px;
+        border-radius: 8px;
+        padding: 0;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a {
+        width: 120px;
+        height: 46px;
+        border-radius: 8px;
+        padding: 0;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn {
+        margin-left: 16px;
+    }
+    
+    header .inner-header .site-primary-header-wrap .logo-menu {
+        flex: 1;
+        justify-content: space-between;
+    }
+    
+    header .inner-header .site-primary-header-wrap .logo-menu .logo {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    
+    
+    
+    .home_invest_mega_menu {
+        background-color: #FFFFFF;
+    }
+    
+    .home_invest_mega_menu_wrapper {
+        max-width: 1440px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 36px 64px;
+        column-gap: 24px;
+    }
+
+    .home_invest_mega_menu_item {
+        width: calc(50% - 12px);
+    }
+    
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.india_invest_menu ul.mega-sub-menu,
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.india_more_menu ul.mega-sub-menu,
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu  {
+        width: 100%;
+        left: 0;
+        position: fixed;
+        top: 74px;
+        margin-top: 0;
+    }
+    
+    .india_more_mega_menu {
+        background-color: #FFFFFF;
+    }
+    
+    .india_more_mega_menu_wrapper {
+        max-width: 1440px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 36px 64px;
+        column-gap: 24px;
+    }
+    .india_more_mega_menu_explore {
+        width: calc(70% - 24px);
+    }
+    
+    .india_more_mega_menu_quick_links {
+        width: 30%;
+    }
+
+    .home_more_mega_menu_item {
+        padding: 12px 24px;
+        gap: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    
+    .home_more_mega_menu_item_image {
+        width: 48px;
+    }
+    
+    .home_more_mega_menu_item_content {
+        width: calc(100% - 64px);
+    }
+    
+    
+    
+
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu,
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.india_invest_menu ul.mega-sub-menu {
+        padding: 0;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link {
+        display: flex;
+        align-items: center;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator {
+        display: block;
+        margin-left: 0;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator:after {
+        content: "";
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator:before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%238E9DAD' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item>a.mega-menu-link span.mega-indicator:after {
+        content: "";
+        display: none;
+    }
+
+
+    .learn_megamenu   .mega-sub-menu .common {
+        max-width: 1440px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 36px 64px;
+        column-gap: 24px;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu li ul li {
+        width: calc(50% - 12px);
+        /* display: flex; */
+        /* align-items: flex-start; */
+        padding: 0;
+        /* gap: 16px; */
+        border: none;
+        margin: 0;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu li ul li .content-area {
+        display: flex;
+        align-items: flex-start;
+        padding: 24px;
+        gap: 16px;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu li ul li .content-area .content {
+        width: calc(100% - 50px);
+        padding-left: 0;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu li ul li .content-area .content a {
+        color: #021930;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1;
+        display: block;
+    }
+
+    header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item.learn_megamenu ul.mega-sub-menu li ul li .content-area .content p {
+        color: #737373;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 8px 0 0;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .home_invest_mega_menu_item {
+        padding: 16px 0;
+        flex-wrap: wrap;
+    }
+    
+    .home_invest_mega_menu_item_content {
+        width: calc(100% - 48px);
+    }
+    
+    .home_invest_mega_menu_item_image {
+        width: 32px;
+    }
+    
+    .home_invest_mega_menu_item_content h3 {font-size: 16px;}
+    
+    .home_invest_mega_menu_item_content span {
+        font-size: 12px;
+    }
+    
+    .home_invest_mega_menu_item_content p {
+        margin-top: 2px;
+    }
+    .india_more_mega_menu_explore h2 {
+        font-size: 16px !important;
+    }
+    
+    a.home_more_mega_menu_item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    
+    .home_more_mega_menu_item_image {width: 32px;}
+    
+    .home_more_mega_menu_item_content {
+        width: calc(100% - 48px);
+    }
+    
+    .india_more_mega_menu_explore_list {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .india_more_mega_menu_quick_links a {
+        padding: 14px 0;
+    }
+}
+
+
+.geolocation_banner p {
+    display: flex;
+    align-items: center;
+}
+
+.geolocation_banner a {
+    width: auto;
+    margin-left: 10px;
+}
+
+@media (max-width: 1200px) {
+    
+	.geolocation_banner .content {
+		padding: 0;
+	}
+
+	.geolocation_banner p {
+		font-size: 16px;
+	}
+
+	.geolocation_banner a {
+		font-size: 16px;
+		padding: 6px 8px;
+	}
+}
+
+@media (max-width: 767px) {
+    
+	.geolocation_banner p {
+		display: block;
+	}
+	
+	.geolocation_banner a {
+		margin: 10px 0 0;
+		width: auto;
+	}
+	.geolocation_banner .content {
+        width: 100%;
+    }
+}
