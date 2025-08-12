@@ -36,6 +36,16 @@ get_header(); ?>
     </div>
 
     <div class="nse-main-right-wrapper">
+      <div class="nse-section-inner-block nse-summary-section">
+        <h2 class="nse-inner-section-title">Summary</h2>
+        <div class="nse-summary-desc">
+          This opportunity provides pre-IPO access at institutional valuations. In addition, you are diversifying into
+          India’s financial backbone via a tax-efficient USD structure (Delaware LP). Despite regulatory headwinds,
+          NSE continues to demonstrate transparency and compliance. It has cleaned up governance in the last few years
+          and has retained trust from Temasek, Tiger Global, CPP, Morgan Stanley &amp; others.
+        </div>
+      </div>
+
       <div class="nse-section-inner-block nse-overview">
         <div class="nse-overview-tags">
           <div class="nse-chip">
@@ -435,15 +445,6 @@ get_header(); ?>
               <div class="nse-market-bar-inner" style="width: 12.3%"></div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="nse-section-inner-block nse-summary-section">
-        <h2 class="nse-inner-section-title">Summary</h2>
-        <div class="nse-summary-desc">
-          This opportunity provides pre-IPO access at institutional valuations. In addition, you are diversifying into
-          India’s financial backbone via a tax-efficient USD structure (Delaware LP). Despite regulatory headwinds,
-          NSE continues to demonstrate transparency and compliance. It has cleaned up governance in the last few years
-          and has retained trust from Temasek, Tiger Global, CPP, Morgan Stanley &amp; others.
         </div>
       </div>
     </div>
