@@ -9,7 +9,7 @@ get_header(); ?>
             <div class="home_banner_wrapper">
                 <div class="home_banner_content">
                     <h1>Your Gateway to <br> Global Investing</h1>
-                    <p>Invest in US Stocks, ETFs, Global Mutual Funds and more to build a globally diversified portfolio.</p>
+                    <p>Invest in US Stocks, ETFs, Global Mutual Funds and more to build a globally diversified portfolio</p>
                     <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start Investing</a>
                     <h5>Are you an NRI looking to invest? <a href="<?php echo home_url('/'); ?>">Visit here</a></h5>
                 </div>
@@ -50,7 +50,7 @@ get_header(); ?>
         <div class="container">
             <div class="home_features_wrapper">
                 <h2>Explore Global Investment Opportunities</h2>
-                <p>Choose from a wide range of asset classes designed to help you build a diversified global portfolio — whether you're starting small or aiming big.</p>
+                <p>Choose from a wide range of asset classes designed to help you build a diversified global portfolio — whether you're starting small or aiming big</p>
                 <div class="home_features_list">
                     <div class="home_features_item">
                         <div class="home_features_item_image">
@@ -131,7 +131,7 @@ get_header(); ?>
         <div class="container">
             <div class="home_diversify_wrapper">
                 <h2>Think Global: Why Global Diversification Matters</h2>
-                <p>Diversify beyond FDs, Gold & Indian equity markets.</p>
+                <p>Diversify beyond FDs, Gold & Indian equity markets</p>
                 <div class="home_diversify_list">
                     <div class="home_diversify_item">
                         <div class="home_diversify_item_content">
@@ -232,12 +232,12 @@ get_header(); ?>
                                 <li>Limited-time deals with minimum investments starting at $10,000</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Pre-IPOs</a>
+                                <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Private Marketss</a>
                                 <p class="desktop_disclosure">Offered by Vested Finance, Inc</p>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-3.png" alt="Pre-IPO">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-3.png" alt="Private Markets">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -325,7 +325,7 @@ get_header(); ?>
     <section class="home_security">
         <div class="container">
             <div class="home_security_wrapper">
-                <h2>Investing in US Stocks from India:<br>Safe, Secure, and Simple</h2>
+                <h2>Investing in US Stocks from India:<br> Safe, Secure, and Simple</h2>
                 <div class="home_security_list">
                     <div class="home_security_item">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-security-1.png" alt="Security 1">
@@ -399,7 +399,7 @@ get_header(); ?>
         <div class="container">
             <div class="home_quick_links_wrapper">
                 <h2>All You Need to Invest Globally, in One Place</h2>
-                <p>Get access to in-depth guides, smart calculators, and human support — built to help you invest globally with clarity.</p>
+                <p>Get access to in-depth guides, smart calculators, and human support — built to help you invest globally with clarity</p>
                 <div class="home_quick_links_list">
                     <div class="home_quick_links_item">
                         <a href="https://support.vestedfinance.com/portal/en/home" target="_blank" rel="noopener noreferrer">

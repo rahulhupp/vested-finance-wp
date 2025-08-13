@@ -116,7 +116,7 @@ section > div > div > p {
     background-color: #002852;
     text-align: center;
     padding-top: 32px;
-    padding-bottom: 9px;
+    padding-bottom: 32px;
 }
 
 .home_metrics_list {
@@ -1226,14 +1226,23 @@ p {}
         line-height: 20px;
         opacity: 1;
     }
+
+    /* .home_cta_box_content h2 {
+        text-align: center;
+    } */
     
     .home_cta_box_buttons {
         margin-top: 24px;
         flex-wrap: wrap;
+        /* max-width: 300px;
+        margin: 24px auto 0; */
     }
     
     .home_cta_box_content .btn {
         max-width: 100%;
+        /* max-width: 300px;
+        margin: 13px auto 0;
+        display: block; */
     }
     
     .home_cta_box_buttons a {
