@@ -232,7 +232,7 @@ get_header(); ?>
                                 <li>Limited-time deals with minimum investments starting at $10,000</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Private Marketss</a>
+                                <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Private Markets</a>
                                 <p class="desktop_disclosure">Offered by Vested Finance, Inc</p>
                             </div>
                         </div>
