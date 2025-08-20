@@ -796,3 +796,44 @@ section {
 .india_invest_menu, .india_more_menu {
 	display: none !important;
 }
+
+
+.page-id-6747 .faqs_sec .sec_title {
+    padding: 24px 0;
+}
+
+.page-id-6747 .faqs_wrap .single_faq {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-id-6747 .faqs_wrap .single_faq .faq_que h4 {
+    color: #212529;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.page-id-6747 .faqs_wrap .single_faq .faq_que:after {
+    content: "\f078";
+    font-family: "FontAwesome";
+    position: absolute;
+    top: 0;
+    right: 0px;
+    color: #212529;
+    transition: transform 0.3s;
+}
+
+.page-id-6747 .faqs_wrap .single_faq .faq_content p {
+    margin-bottom: 0;
+    color: #1e2022;
+    font-family: Inter;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+}
+
+.page-id-6747 .faqs_wrap .single_faq .faq_content {
+    margin-top: 10px;
+}
