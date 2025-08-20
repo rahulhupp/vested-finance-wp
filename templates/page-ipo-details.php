@@ -774,7 +774,11 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									$invest_url .= "?productId={$spv_id}";
 								}
 							?>
-							<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
+							<?php if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03') { ?>
+								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button ipo_disable_button">Subscribed</a>
+							<?php }	else { ?>
+								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
+							<?php } ?>
 						<?php else: ?>
 							<?php
 								$typoform_link = get_typoform_link_by_ipo_id($ipo_id);

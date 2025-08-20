@@ -182,6 +182,11 @@ a {
 	background-color: transparent;
 }
 
+.ipo_quick_actions a.ipo_disable_button.ipo_primary_button {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 .ipo_quick_actions a.ipo_primary_button {
 	margin-top: 0;
 	background-color: #002852;
