@@ -94,9 +94,22 @@
     border-radius: 16px;
     display: flex;
     flex-wrap: wrap;
-    padding: 32px 30px;
+    padding: 32px 30px 40px;
+    position: relative;
 }
-
+.banner_metrics_disclosure {
+    display: block;
+    color: #8E9DAD;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    margin-top: 16px;
+    position: absolute;
+    bottom: 9px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
 .metric_item {
     flex: 1;
     color: #ffff;
@@ -176,6 +189,16 @@
     line-height: 20px;
     margin: 11px 0 0;
     max-width: 396px;
+}
+
+.services_disclosure {
+    color: #737373;
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 30px;
+    text-align: center;
 }
 
 .features_section {
@@ -349,6 +372,8 @@
 .about_wrapper .about_content p:last-child {
     margin: 0;
 }
+
+
 
 .partner_landing_page .investors_sec {
     padding: 96px 0;
@@ -1323,4 +1348,15 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
     .vested_features_button {
         width: 100%;
     }
+}
+
+.investor_desclaimer.partner_investor_disclaimer {
+    max-width: 692px;
+    margin: 10px auto 0;
+    color: #737373;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    padding: 0;
 }
