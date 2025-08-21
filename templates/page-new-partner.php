@@ -42,6 +42,8 @@ while (have_posts()) :
                         <?php $banner_disclosure = get_field('banner_disclosure'); ?>
                         <?php if ($banner_disclosure) : ?>
                             <p class="banner_disclosure"><?php echo $banner_disclosure; ?></p>
+                        <?php else: ?>
+                            <p class="banner_disclosure">Offered by VF Securities Inc.</p>
                         <?php endif; ?>
                     </div>
                     <div class="partner_hero_image">
@@ -62,6 +64,7 @@ while (have_posts()) :
                             </div>
                         <?php endwhile; ?>
                     <?php endif; ?>
+                    <span class="banner_metrics_disclosure">All numbers displayed are as of July 2025</span>
                 </div>
             </div>
         </section>
@@ -115,6 +118,9 @@ while (have_posts()) :
                             <?php endwhile; ?>
                         </div>
                     <?php endif; ?>
+                    <div class="services_disclosure">
+                        Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation
+                    </div>
                 </div>
             </div>
         </section>
