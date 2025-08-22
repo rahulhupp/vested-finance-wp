@@ -83,6 +83,10 @@
 				<div class="investor_desclaimer">
 					<?php the_field('investors_disclaimer', 'option'); ?>
 				</div>
+			<?php else: ?>
+				<div class="investor_desclaimer partner_investor_disclaimer">
+					These customers were not paid for their testimonials and may not be representative of the experience of other customers. These testimonials are no guarantee of future performance or success.
+				</div>
 			<?php endif; ?>
         </div>
 
