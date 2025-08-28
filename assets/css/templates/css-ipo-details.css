@@ -3861,20 +3861,6 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul {
 	align-items: center;
 }
 
-header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.login-btn a {
-	color: #212529;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: normal;
-
-	padding: 17.5px 0;
-	display: inline-block;
-}
-
-header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.login-btn a:hover {
-	color: #002852;
-}
-
 header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn {
 	display: inline-block;
 	margin-left: 28px;
