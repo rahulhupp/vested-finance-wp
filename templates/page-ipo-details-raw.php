@@ -279,6 +279,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ip_ki_metric">
 								<?php if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03'): ?>
 									<h4>$21B</h4>
+								<?php elseif ($ipo->ipo_id == '7705c819-c829-4897-bea7-56ba1628777a'): ?>
+									<h4>$466.3B</h4>
 								<?php else: ?>
 									<h4>$<?php echo $api_valuation; ?></h4>
 								<?php endif; ?>
@@ -578,6 +580,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_faq_answer">
 								<?php if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03'): ?>
 									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $21B. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
+								<?php elseif ($ipo->ipo_id == '7705c819-c829-4897-bea7-56ba1628777a'): ?>
+									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $466.3B. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 								<?php else: ?>
 									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $<?php echo $api_valuation !== 'N/A' ? $api_valuation : 'TBD'; ?>. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 								<?php endif; ?>	
@@ -794,7 +798,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							?>
 						<?php endif; ?>
 						<?php if ($has_investors_data && !empty($ipo->api_deal_memo_url)): ?>
-						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Deal Memo</a>
+						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button deal_memo_btn" target="_blank">Download Key Terms</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 						<script>
