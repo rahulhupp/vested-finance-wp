@@ -3880,25 +3880,6 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
 	margin-left: 28px;
 }
 
-header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a {
-	border-radius: 5px;
-	background: #002852;
-	padding: 16px 27px;
-	margin-left: 0;
-	color: #FFF;
-	text-align: center;
-	font-size: 18px;
-	font-weight: 600;
-	line-height: normal;
-
-	border: 1px solid #002852;
-	display: inline-block;
-}
-
-header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a:hover {
-	background: transparent;
-	color: #002852;
-}
 
 header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item ul.mega-sub-menu li ul li .content a:hover b {
 	color: #002852;
@@ -4112,26 +4093,8 @@ body.mega-menu-open .site-content:before {
 		margin-right: 4px;
 	}
 
-	header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.login-btn a {
-		font-size: 14px;
-		font-weight: 600;
-		padding: 12px;
-		border: 1px solid;
-		border-radius: 3px;
-		width: 100%;
-		text-align: center;
-	}
-
 	header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn {
 		margin-left: 4px;
-	}
-
-	header .inner-header .site-primary-header-wrap .right-button .account-menu ul li.primary-btn a {
-		border-radius: 3px;
-		padding: 12px;
-		font-size: 14px;
-		font-weight: 600;
-		width: 100%;
 	}
 
 	header .inner-header .site-primary-header-wrap .logo-menu #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-item {

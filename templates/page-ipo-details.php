@@ -765,7 +765,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							?>
 						<?php endif; ?>
 						<?php if ($has_investors_data && !empty($ipo->api_deal_memo_url)): ?>
-						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button" target="_blank">Download Deal Memo</a>
+						<a href="<?php echo esc_url($ipo->api_deal_memo_url); ?>" class="ipo_button" target="_blank">Download Key Terms</a>
 						<?php endif; ?>
 						<a href="<?php echo $request_callback_url; ?>" class="ipo_button" target="_blank">Request Callback</a>
 					</div>
