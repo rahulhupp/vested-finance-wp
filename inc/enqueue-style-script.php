@@ -152,6 +152,9 @@
             wp_enqueue_style('home-new-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-new.css', false, '', '');
             wp_enqueue_script('home-new-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-new.js');
         }
+         if (is_page_template('templates/page-dsp-funds.php')) {
+            wp_enqueue_style('dsp-funds-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/dsp-funds.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
