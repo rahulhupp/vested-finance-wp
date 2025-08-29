@@ -98,7 +98,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <section class="first-blog">
+    <!-- <section class="first-blog">
         <div class="container">
             <div class="inner-row">
                 <div class="single-blog">
@@ -185,7 +185,7 @@ get_header(); ?>
                 <?php endwhile; ?>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <section class="us-stock-list">
         <div class="container">
