@@ -19,7 +19,7 @@ get_header(); ?>
         <div class="container">
             <div class="inner-row">
                 <div class="category-tab">
-                    <?php if (have_rows('filter_list')): ?>
+                    <!-- <?php if (have_rows('filter_list')): ?>
                         <ul>
                             <li class="active"><a href="#">All</a></li>
                             <?php while (have_rows('filter_list')):
@@ -30,7 +30,7 @@ get_header(); ?>
                                 </li>
                             <?php endwhile; ?>
                         </ul>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
                 </div>
                 <div class="search">
                     <?php // get_search_form(); ?>
@@ -306,7 +306,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <section class="spot-light">
+    <!-- <section class="spot-light">
         <div class="container">
             <div class="head-part">
                 <div class="heading-icon">
@@ -383,9 +383,9 @@ get_header(); ?>
                 </div>
                 <div>
                 </div>
-    </section>
+    </section> -->
 
-    <section class="vested-edge-blog" id="p2p-lending">
+    <!-- <section class="vested-edge-blog" id="p2p-lending">
         <div class="container">
             <div class="head-part">
                 <div class="vested-label">
@@ -439,9 +439,9 @@ get_header(); ?>
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="vested-edge-blog" id="bonds">
+    <!-- <section class="vested-edge-blog" id="bonds">
         <div class="container">
             <div class="head-part">
                 <div class="vested-label">
@@ -495,9 +495,9 @@ get_header(); ?>
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="vested-edge-blog" id="solar">
+    <!-- <section class="vested-edge-blog" id="solar">
         <div class="container">
             <div class="head-part">
                 <div class="vested-label">
@@ -551,8 +551,8 @@ get_header(); ?>
                 </ul>
             </div>
         </div>
-    </section>
-    <section class="latest_articles">
+    </section> -->
+    <!-- <section class="latest_articles">
         <div class="container">
             <div class="head-part">
                 <div class="title">
@@ -605,7 +605,7 @@ get_header(); ?>
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="newsletter-section">
         <?php get_template_part('template-parts/newsletter'); ?>
