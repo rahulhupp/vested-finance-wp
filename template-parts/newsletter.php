@@ -3,7 +3,7 @@
     <div class="inner-row">
         <div class="content">
             <h2>Subscribe to our Blog</h2>
-            <p>Stay up to date with latest content and market trends on Global Investing</p>
+            <p>Stay up to date with latest content and market trends on Global Investing.</p>
             <div class="newsletter-form">
                 <?php echo do_shortcode('[moengage_newsletter id="2" name="newsletter-subscriber" message="Thank You! You have been added to the waitlist." button_text="Subscribe"]'); ?>
             </div>
