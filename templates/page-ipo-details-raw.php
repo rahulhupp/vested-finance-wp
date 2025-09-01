@@ -45,9 +45,43 @@ function format_date_with_ordinal($date_string) {
 }
 
 // Helper function to render funding rounds content
-function render_funding_rounds($funding_rounds_data) {
+function render_funding_rounds($funding_rounds_data, $ipo_id = '') {
     if ($funding_rounds_data && !empty($funding_rounds_data['items'])) {
-        foreach ($funding_rounds_data['items'] as $round) {
+        $rounds_to_display = $funding_rounds_data['items'];
+        
+        // Special handling for specific IPO ID
+        if ($ipo_id === '7705c819-c829-4897-bea7-56ba1628777a') {
+            $filtered_rounds = [];
+            $series_j_found = false;
+            
+            foreach ($rounds_to_display as $round) {
+                $round_name = $round['roundName'];
+                
+                // Include all rounds up to and including Series J
+                if (stripos($round_name, 'Series J') !== false) {
+                    $filtered_rounds[] = $round;
+                    $series_j_found = true;
+                } elseif (!$series_j_found) {
+                    // Include rounds before Series J
+                    $filtered_rounds[] = $round;
+                }
+                // Skip all rounds after Series J
+            }
+            
+            // Add Tender Offer round after Series J
+            if ($series_j_found) {
+                $tender_offer_round = [
+                    'roundName' => 'Tender Offer',
+                    'issuePrice' => 212.50,
+                    'issuedAt' => '2025-07-01'
+                ];
+                $filtered_rounds[] = $tender_offer_round;
+            }
+            
+            $rounds_to_display = $filtered_rounds;
+        }
+        
+        foreach ($rounds_to_display as $round) {
             $round_name = esc_html($round['roundName']);
             $issued_at = '';
             $issue_price = '';
