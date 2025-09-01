@@ -96,7 +96,10 @@ function render_funding_rounds($funding_rounds_data, $ipo_id = '') {
             }
             
             $rounds_to_display = $filtered_rounds;
-        }
+			echo "True";
+        } else {
+			echo "False";
+		}
         
         foreach ($rounds_to_display as $round) {
             $round_name = esc_html($round['roundName']);
