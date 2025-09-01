@@ -910,7 +910,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 										<?php
 									}
 								?>
-								<?php render_funding_rounds($funding_rounds_data); ?>
+								<?php render_funding_rounds($funding_rounds_data, $ipo_id); ?>
 							</div>
 				</div>
 					<?php endif; ?>
@@ -947,7 +947,7 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 					<?php
 				}
 			?>
-            <?php render_funding_rounds($funding_rounds_data); ?>
+            <?php render_funding_rounds($funding_rounds_data, $ipo_id); ?>
         </div>
         <div class="funding_rounds_popup_footer">
             <button class="funding_rounds_close_btn" onclick="closeFundingRoundsPopup()">Done</button>
