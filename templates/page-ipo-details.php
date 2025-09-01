@@ -824,25 +824,13 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								if ($typoform_link) {
 									?>
 									<a href="<?php echo esc_url($typoform_link); ?>" class="ipo_primary_button">
-										<?php
-											if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-												echo 'Invest Now';
-											} else {
-												echo 'Express Interest';
-											}
-										?>
+										Express Interest
 									</a>
 									<?php
 								} else {
 									?>
 										<a href="https://vestedfinance.typeform.com/to/NBg1K5gi" class="ipo_primary_button">
-											<?php
-												if ($ipo->ipo_id == 'd90dce47-4768-47a0-821f-9afe71b77888') {
-													echo 'Invest Now';
-												} else {
-													echo 'Express Interest';
-												}
-											?>
+											Express Interest
 										</a>
 									<?php
 								}
