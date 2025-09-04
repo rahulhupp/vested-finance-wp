@@ -152,8 +152,14 @@
             wp_enqueue_style('home-new-css', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-new.css', false, '', '');
             wp_enqueue_script('home-new-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-new.js');
         }
-         if (is_page_template('templates/page-dsp-funds.php')) {
+        if (is_page_template('templates/page-dsp-funds.php')) {
             wp_enqueue_style('dsp-funds-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/dsp-funds.css', false, '', '');
+        }
+        if (is_singular('exclusive-benefits')) {
+            wp_enqueue_script('gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js');
+            wp_enqueue_script('gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js');
+            wp_enqueue_style('exclusive-benefits-style', get_stylesheet_directory_uri() . '/assets/css/css-exclusive-benefits.css', false, '', '');
+            wp_enqueue_script('exclusive-benefits-js', get_stylesheet_directory_uri() . '/assets/js/js-exclusive-benefits.js');
         }
     }
 
