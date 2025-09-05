@@ -44,6 +44,15 @@ get_header(); ?>
                                 <span class="nse-overview-label">Administrator</span>
                                 <span class="nse-overview-value">NAV Consulting, Inc</span>
                             </div>
+                            <div class="disabled-section">
+                                <div class="disabled-section-content">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span><a href="#">Login</a> to view details</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <a href="#" class="nse-express-btn">
@@ -342,6 +351,15 @@ get_header(); ?>
                                 <td>NA</td>
                             </tr>
                         </table>
+                        <div class="disabled-section">
+                            <div class="disabled-section-content">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                    <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span><a href="#">Login</a> to view details</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="nse-warning-icon">
                         <p>
@@ -396,6 +414,15 @@ get_header(); ?>
                                 <td>0.5</td>
                             </tr>
                         </table>
+                        <div class="disabled-section">
+                            <div class="disabled-section-content">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                    <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span><a href="#">Login</a> to view details</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="nse-risk-disclaimer">
                         <p>

@@ -779,6 +779,7 @@
 
 .table-wrapper {
   overflow: auto;
+  position: relative;
 }
 
 .table-wrapper table {
@@ -896,6 +897,52 @@
 .nse-requirement-text {
   color: var(--nse-color-text-muted);
   font: 500 16px / 24px "Inter", sans-serif;
+}
+
+
+.nse-overview-grid {
+  position: relative;
+}
+
+.disabled-section {
+  position: absolute;
+  left: -24px;
+  top: 0;
+  width: calc(100% - -48px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.disabled-section-content {
+  text-align: center;
+}
+
+.disabled-section-content span {
+  display: block;
+  color: #262626;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 16px;
+}
+
+.disabled-section-content span a {
+  color: #2563EB;
+  text-decoration: underline;
+}
+
+.disabled-section-content svg {
+  display: block;
+  margin: auto;
+}
+
+.table-wrapper .disabled-section {
+  left: 0;
+  width: 100%;
 }
 
 /* Responsive Portfolio Styles */
@@ -1059,5 +1106,9 @@
 
   .nse-highlights-list {
     --auto-grid-min-size: 15rem;
+  }
+  .disabled-section {
+    left: -18px;
+    width: calc(100% + 36px);
   }
 }
