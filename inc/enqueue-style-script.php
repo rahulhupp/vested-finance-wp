@@ -27,9 +27,18 @@
 
 
         // Enqueue India header CSS for URLs containing /in
-        if (strpos($_SERVER['REQUEST_URI'], '/in') !== false) {
+        $request_uri = strtok($_SERVER['REQUEST_URI'], '?'); // remove query string
+        error_log('Request URI: ' . $request_uri);
+        $request_uri = trim($request_uri, '/'); // remove leading/trailing slashes
+        error_log('Request URI: ' . $request_uri);
+        $segments = explode('/', $request_uri); // split into parts
+        error_log('Segments: ' . print_r($segments, true));
+
+        // Enqueue India header CSS for URLs containing /in
+        if (isset($segments[0]) && $segments[0] === 'in') {
             wp_enqueue_style('india-header-css', get_stylesheet_directory_uri() . '/assets/css/india-header.css', false, '', '');
         }
+        
         if ( is_page_template( 'templates/page-home-page.php') ) {
             wp_enqueue_style('home-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-home-page.css', false, '', '');
             wp_enqueue_script('home-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-home-page.js');
