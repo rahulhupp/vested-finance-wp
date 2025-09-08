@@ -54,28 +54,26 @@ function render_funding_rounds($funding_rounds_data, $ipo_id = '') {
             $filtered_rounds = [];
             $series_j_found = false;
             
+            // Add Tender Offer round first
+            $tender_offer_round = [
+                'roundName' => 'Tender Offer',
+                'issuePrice' => 212.50,
+                'issuedAt' => '2025-07-01'
+            ];
+            $filtered_rounds[] = $tender_offer_round;
+            
             foreach ($rounds_to_display as $round) {
                 $round_name = $round['roundName'];
                 
-                // Include all rounds up to and including Series J
+                // Include Series J and all rounds that come after it in the array (older rounds)
                 if (stripos($round_name, 'Series J') !== false) {
                     $filtered_rounds[] = $round;
                     $series_j_found = true;
-                } elseif (!$series_j_found) {
-                    // Include rounds before Series J
+                } elseif ($series_j_found) {
+                    // Include rounds that come after Series J in the array (older rounds)
                     $filtered_rounds[] = $round;
                 }
-                // Skip all rounds after Series J
-            }
-            
-            // Add Tender Offer round after Series J
-            if ($series_j_found) {
-                $tender_offer_round = [
-                    'roundName' => 'Tender Offer',
-                    'issuePrice' => 212.50,
-                    'issuedAt' => '2025-07-01'
-                ];
-                $filtered_rounds[] = $tender_offer_round;
+                // Skip rounds that come before Series J in the array (newer rounds like Series N, M, L, K)
             }
             
             $rounds_to_display = $filtered_rounds;
