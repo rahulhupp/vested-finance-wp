@@ -6,7 +6,7 @@
                 <div class="benefits_banner_content">
                     <h1>Global Investing for <?php the_field('benefits_name'); ?> India</h1>
                     <p>Exclusive benefits for <?php the_field('benefits_name'); ?> India employees to build a robust Global portfolio</p>
-                    <a href="<?php echo home_url('/'); ?>" class="btn btn-primary">Start Investing</a>
+                    <a class="btn btn-primary openInvestPopoverBtn">Start Investing</a>
                 </div>
                 <div class="benefits_banner_image">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/banner.svg" alt="Exclusive Benefits">
@@ -19,20 +19,20 @@
             <div class="benefits_metrics_wrapper">
                 <div class="benefits_metrics_list">
                     <div class="benefits_metrics_item">
-                        <h3>₹6,000 Cr+</h3>
-                        <p>Assets Under Administration</p>
-                    </div>
-                    <div class="benefits_metrics_item">
-                        <h3>₹16,000 Cr+</h3>
-                        <p>Trading Volume</p>
+                        <h3>$70M+</h3>
+                        <p>ESOP/RSUs Transferred</p>
                     </div>
                     <div class="benefits_metrics_item">
                         <h3>3,00,000+</h3>
                         <p>Global Portfolios Launched</p>
                     </div>
                     <div class="benefits_metrics_item">
-                        <h3>₹7,00,000+</h3>
+                        <h3>$15,000</h3>
                         <p>Average Portfolio Value</p>
+                    </div>
+                    <div class="benefits_metrics_item">
+                        <h3>$750M+</h3>
+                        <p>Assets Under Administration</p>
                     </div>
                 </div>
                 <span>All numbers displayed are as of July 2025</span>
@@ -470,5 +470,43 @@
             </div>
         </div>
     </section>
+
+    <div class="invest_overlay" id="investPopoverOverlay">
+        <div class="invest_popover" id="investPopoverBox">
+            <h2>How do you want to get started?</h2>
+            <p class="subtitle">Let's help you access exclusive benefits for <?php the_field('benefits_name'); ?> India.</p>
+
+            <div class="invest_options">
+                <div class="invest_option" data-value="new" onclick="selectOption(this)">
+                    <div class="invest_option_content">
+                        <span class="invest_option_title">I'm new to Vested</span>
+                        <span class="invest_option_desc">Sign up and build your global portfolio.</span>
+                    </div>
+                    <span class="invest_option_checkmark">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+                <!-- disabled -->
+                <div class="invest_option" data-value="existing" onclick="selectOption(this)">
+                    <div class="invest_option_content">
+                        <span class="invest_option_title">I'm already a Vested user</span>
+                        <span class="invest_option_desc">Unlock special benefits for your account.</span>
+                    </div>
+                    <span class="invest_option_checkmark">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="invest_popover_actions">
+                <button class="btn cancel" onclick="closePopover()">Cancel</button>
+                <button class="btn continue" onclick="handleSubmit()">Continue</button>
+            </div>
+        </div>
+    </div>
 </div>
 <?php get_footer(); ?>

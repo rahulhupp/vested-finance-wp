@@ -16,6 +16,7 @@
     line-height: 100%;
     display: inline-block;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -1273,4 +1274,178 @@ section > div > div > p {
     .benefits_steps_list {
         gap: 15px;
     }
+}
+
+/* Popup Styles */
+.invest_overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.invest_popover {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 538px;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0px 4px 28px 0px #00000040;
+}
+
+.invest_popover h2 {
+  margin-bottom: 2px;
+  color: #262626;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: left;
+}
+
+.invest_popover p.subtitle {
+  color: #737373;
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.invest_option {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.invest_option:hover {
+  border-color: #E5E9EE;
+  background-color: #F8FAFB;
+}
+
+.invest_option.selected {
+  border-color: #002852;
+  background-color: #F0F4F8;
+}
+
+.invest_option_content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.invest_option_title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #262626;
+}
+
+.invest_option_desc {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #737373;
+}
+
+.invest_option_checkmark {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.invest_option.selected .invest_option_checkmark {
+  opacity: 1;
+}
+
+.invest_popover_actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 46px;
+  gap: 16px;
+}
+
+.invest_options {
+  margin-top: 24px;
+}
+
+.invest_popover_actions .btn {
+  width: 176px;
+  height: 48px;
+  border-radius: 6px;
+  border: 1px solid #002852;
+  background-color: #002852;
+  box-shadow: 0px 1px 2px -1px #0000001A;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.invest_popover_actions .btn.cancel {
+  border-color: #E5E9EE;
+  background-color: #fff;
+  color: #002852;
+}
+
+.invest_option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .invest_popover {
+      padding: 20px;
+      max-width: calc(100% - 20px);
+  }
+
+  .invest_popover h2 {
+      font-size: 18px !important;
+      line-height: 1;
+  }
+
+  .invest_popover p.subtitle {
+      font-size: 12px;
+      line-height: 1.4;
+  }
+
+  .invest_options {
+      margin-top: 16px;
+  }
+
+  .invest_option {
+      padding: 10px 14px;
+      margin-bottom: 8px;
+  }
+
+  .invest_option_title {
+      font-size: 14px;
+  }
+
+  .invest_option_desc {
+      font-size: 12px;
+  }
+
+  .invest_popover_actions .btn {
+      width: 50%;
+      height: 42px;
+      font-size: 14px;
+  }
+
+  .invest_popover_actions {
+      margin-top: 24px;
+  }
 }
