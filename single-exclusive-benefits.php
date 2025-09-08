@@ -58,7 +58,7 @@
                         <div class="benefits_employees_item_content">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
                             <p>Zero fee India and U.S. withdrawals. </p>
-                            <a href="#">Click here to know more.</a>
+                            <a href="<?php echo home_url('/in/pricing/'); ?>">Click here to know more.</a>
                         </div>
                         <div class="benefits_employees_item_content">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
@@ -75,7 +75,7 @@
                         <div class="benefits_employees_item_content">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
                             <p>Benefits extend to one more family member.</p>
-                            <a href="#">Apply for benefits here.</a>
+                            <a href="https://vestedfinance.typeform.com/to/B1gfXsOZ?utm_source=landing_page" target="_blank" rel="noopener noreferrer">Apply for benefits here.</a>
                         </div>
                     </div>
                     <div class="benefits_employees_item">
@@ -150,7 +150,7 @@
                 <div class="benefits_why_us_tabs_content">
                     <div class="benefits_why_us_tabs_content_item active">
                         <div class="benefits_why_us_tabs_content_item_content">
-                            <p>Investing in US Stock Markets can give your portfolio the global exposure it needs. US Securities Market lists the largest companies globally such as Tesla, Apple, NVIDIA, Amazon, Meta and more. Easily diversify your portfolio by doing SIP in US Stocks or investing in lump-sum and get exposure to global economies and industries.</p>
+                            <p>Investing in US Stock Markets can give your portfolio the global exposure it needs. US Securities Market lists the largestgest companies globally such as Tesla, Apple, NVIDIA, Amazon, Meta and more. Easily diversify your portfolio by doing SIP in US Stocks or investing in lump-sum and get exposure to global economies and industries.</p>
                         </div>
                         <div class="benefits_why_us_tabs_content_item_image">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/diversification.png" alt="Diversification">
