@@ -304,10 +304,10 @@ endwhile;
                     $faq_count++; // Increment the counter
                 ?> {
                         "@type": "Question",
-                        "name": "<?php the_sub_field('faq_question'); ?>",
+                        "name": <?php echo json_encode(get_sub_field('faq_question')); ?>,
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "<?php the_sub_field('faq_answer', false, false); ?>"
+                            "text": <?php echo json_encode(get_sub_field('faq_answer', false, false)); ?>
                         }
                     }
                     <?php if ($faq_count < count(get_field('faq_list'))) echo ','; // Add a comma except for the last item 

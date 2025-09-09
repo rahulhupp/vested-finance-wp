@@ -55,12 +55,10 @@ get_header(); ?>
         <?php while (have_rows('sip_faqs_list')) : the_row(); ?>
             {
                 "@type": "Question",
-                "name": "<?php the_sub_field('sip_faqs_list_question') ?>",
+                "name": <?php echo json_encode(get_sub_field('sip_faqs_list_question')); ?>,
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('sip_faqs_list_answer') ?>
-                    "
+                    "text": <?php echo json_encode(get_sub_field('sip_faqs_list_answer')); ?>
                 }
             }<?php echo (++$rowCount === count(get_field('sip_faqs_list'))) ? '' : ','; ?>
         <?php endwhile; ?>
@@ -140,12 +138,10 @@ get_header(); ?>
         <?php while (have_rows('lumpsum_faqs_list')) : the_row(); ?>
             {
                 "@type": "Question",
-                "name": "<?php the_sub_field('lumpsum_faqs_list_question') ?>",
+                "name": <?php echo json_encode(get_sub_field('lumpsum_faqs_list_question')); ?>,
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "
-                        <?php the_sub_field('lumpsum_faqs_list_answer') ?>
-                    "
+                    "text": <?php echo json_encode(get_sub_field('lumpsum_faqs_list_answer')); ?>
                 }
             }<?php echo (++$rowCount === count(get_field('lumpsum_faqs_list'))) ? '' : ','; ?>
         <?php endwhile; ?>

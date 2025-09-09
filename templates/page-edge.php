@@ -448,10 +448,10 @@ get_header(); ?>
         <?php while (have_rows('faq_list')) : the_row(); ?>
             {
                 "@type": "Question",
-                "name": "<?php the_sub_field('faq_question') ?>",
+                "name": <?php echo json_encode(get_sub_field('faq_question')); ?>,
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "<?php the_sub_field('faq_answer') ?>"
+                    "text": <?php echo json_encode(get_sub_field('faq_answer')); ?>
                 }
             }<?php echo (++$rowCount === count(get_field('faq_list'))) ? '' : ','; ?>
         <?php endwhile; ?>
