@@ -303,3 +303,28 @@ if ($overview_data) {
     ?>
 
     <?php get_footer(); ?>
+
+    <?php if ($overview_data): ?>
+    <?php
+        // Generate FinancialProduct schema markup
+        $summary = $overview_data->summary;
+        $summaryMapping = preprocessSummary($summary);
+        $rangeItem = isset($summaryMapping["52-Week Range"]) ? $summaryMapping["52-Week Range"] : null;
+        $lowRange = isset($rangeItem['low']) ? $rangeItem['low'] : '0';
+        $highRange = isset($rangeItem['high']) ? $rangeItem['high'] : '0';
+    ?>
+    <script type="application/ld+json">
+    <?php echo json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "FinancialProduct",
+        "name" => $overview_data->name . ' (' . $overview_data->ticker . ')',
+        "identifier" => $overview_data->ticker,
+        "offers" => [
+            "@type" => "Offer",
+            "priceCurrency" => "USD",
+            "highPrice" => (float)$highRange,
+            "lowPrice" => (float)$lowRange
+        ]
+    ], JSON_PRETTY_PRINT); ?>
+    </script>
+    <?php endif; ?>
