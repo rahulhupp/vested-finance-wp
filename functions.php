@@ -573,7 +573,7 @@ function custom_robots_rules($robots_array, $indexable) {
     }
 
     // Additionally force noindex, nofollow for specific page templates (e.g. static pages)
-    if (is_page_template('page-us-stock-india-copy.php') || is_page_template('templates/page-hsl-tpp-calculator.php')) {
+    if (is_singular('exclusive-benefits') || is_page_template('page-us-stock-india-copy.php') || is_page_template('templates/page-hsl-tpp-calculator.php')) {
         $robots_array['index']  = 'noindex';
         $robots_array['follow'] = 'nofollow';
     }
