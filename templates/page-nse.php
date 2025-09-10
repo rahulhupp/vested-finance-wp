@@ -23,8 +23,17 @@ get_header(); ?>
             <div>P/E Ratio<br><b>49x</b></div>
             <div>Profit Margin<br><b>60%+</b></div>
             <div>Dividend/Share<br><b>₹35</b></div>
+            <div class="disabled-section">
+                <div class="disabled-section-content">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span><a href="#">Login</a> to view details</span>
+                </div>
+            </div>
           </div>
-          <a href="#" class="nse-express-btn">
+          <a href="https://vestedfinance.typeform.com/to/okDZaSLr" target="_blank" class="nse-express-btn">
             <span>Express Interest</span>
             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
@@ -36,6 +45,16 @@ get_header(); ?>
     </div>
 
     <div class="nse-main-right-wrapper">
+      <div class="nse-section-inner-block nse-summary-section">
+        <h2 class="nse-inner-section-title">Summary</h2>
+        <div class="nse-summary-desc">
+          This opportunity provides pre-IPO access at institutional valuations. In addition, you are diversifying into
+          India’s financial backbone via a tax-efficient USD structure (Delaware LP). Despite regulatory headwinds,
+          NSE continues to demonstrate transparency and compliance. It has cleaned up governance in the last few years
+          and has retained trust from Temasek, Tiger Global, CPP, Morgan Stanley &amp; others.
+        </div>
+      </div>
+
       <div class="nse-section-inner-block nse-overview">
         <div class="nse-overview-tags">
           <div class="nse-chip">
@@ -187,97 +206,108 @@ get_header(); ?>
       <div class="nse-section-inner-block nse-financial">
         <h2 class="nse-inner-section-title">Financial Performance</h2>
         <div class="nse-inner-section-desc">5-year track record of consistent growth (FY21-FY25)</div>
-        <div class="nse-financial-metrics">
-          <div class="nse-financial-metric">
-            <h3>₹19,177 Cr</h3>
-            <div class="nse-financial-metric-desc">
-              <p>Revenue (FY25)</p>
-              <p><small>+241% from FY21</small></p>
+        <div class="nse-financial-metrics-wrapper">
+            <div class="nse-financial-metrics">
+            <div class="nse-financial-metric">
+                <h3>₹19,177 Cr</h3>
+                <div class="nse-financial-metric-desc">
+                <p>Revenue (FY25)</p>
+                <p><small>+241% from FY21</small></p>
+                </div>
             </div>
-          </div>
-          <div class="nse-financial-metric">
-            <h3>₹12,188 Cr</h3>
-            <div class="nse-financial-metric-desc">
-              <p>Profit (FY25)</p>
-              <p><small>+241% from FY21</small></p>
+            <div class="nse-financial-metric">
+                <h3>₹12,188 Cr</h3>
+                <div class="nse-financial-metric-desc">
+                <p>Profit (FY25)</p>
+                <p><small>+241% from FY21</small></p>
+                </div>
             </div>
-          </div>
-          <div class="nse-financial-metric">
-            <h3>64%</h3>
-            <div class="nse-financial-metric-desc">
-              <p>Net Margin (FY25)</p>
-              <p><small>Consistent 60%+</small></p>
+            <div class="nse-financial-metric">
+                <h3>64%</h3>
+                <div class="nse-financial-metric-desc">
+                <p>Net Margin (FY25)</p>
+                <p><small>Consistent 60%+</small></p>
+                </div>
             </div>
-          </div>
-          <div class="nse-financial-metric">
-            <h3>₹49.24</h3>
-            <div class="nse-financial-metric-desc">
-              <p>EPS (FY25)</p>
-              <p><small>+250% from FY21</small></p>
+            <div class="nse-financial-metric">
+                <h3>₹49.24</h3>
+                <div class="nse-financial-metric-desc">
+                <p>EPS (FY25)</p>
+                <p><small>+250% from FY21</small></p>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="table-wrapper">
-          <table class="nse-financial-table">
-            <tr>
-              <th>Metric</th>
-              <th>FY21</th>
-              <th>FY22</th>
-              <th>FY23</th>
-              <th>FY24</th>
-              <th>FY25</th>
-            </tr>
-            <tr>
-              <td>Revenue (₹ Cr)</td>
-              <td>5,624</td>
-              <td>8,929</td>
-              <td>11,856</td>
-              <td>14,780</td>
-              <td>19,177</td>
-            </tr>
-            <tr>
-              <td>Profit (₹ Cr)</td>
-              <td>3,573</td>
-              <td>5,198</td>
-              <td>7,501</td>
-              <td>8,406</td>
-              <td>12,188</td>
-            </tr>
-            <tr>
-              <td>Net Margin (%)</td>
-              <td>63%</td>
-              <td>58%</td>
-              <td>63%</td>
-              <td>56%</td>
-              <td>64%</td>
-            </tr>
-            <tr>
-              <td>EPS (₹)</td>
-              <td>14</td>
-              <td>21</td>
-              <td>30</td>
-              <td>34</td>
-              <td>49</td>
-            </tr>
-          </table>
-        </div>
-        <div class="nse-subsidiaries-metrics">
-          <div class="nse-subsidiaries-metric">
-            <h3>₹35</h3>
-            <span class="nse-financial-metric-desc">Dividend per Share</span>
-          </div>
-          <div class="nse-subsidiaries-metric">
-            <h3>₹11.46</h3>
-            <span class="nse-financial-metric-desc">Special Dividend</span>
-          </div>
-          <div class="nse-subsidiaries-metric">
-            <h3>Minimal</h3>
-            <span class="nse-financial-metric-desc">Debt Level</span>
-          </div>
-          <div class="nse-subsidiaries-metric">
-            <h3>60%+</h3>
-            <span class="nse-financial-metric-desc">Operating Margin</span>
-          </div>
+            </div>
+            <div class="table-wrapper">
+            <table class="nse-financial-table">
+                <tr>
+                <th>Metric</th>
+                <th>FY21</th>
+                <th>FY22</th>
+                <th>FY23</th>
+                <th>FY24</th>
+                <th>FY25</th>
+                </tr>
+                <tr>
+                <td>Revenue (₹ Cr)</td>
+                <td>5,624</td>
+                <td>8,929</td>
+                <td>11,856</td>
+                <td>14,780</td>
+                <td>19,177</td>
+                </tr>
+                <tr>
+                <td>Profit (₹ Cr)</td>
+                <td>3,573</td>
+                <td>5,198</td>
+                <td>7,501</td>
+                <td>8,406</td>
+                <td>12,188</td>
+                </tr>
+                <tr>
+                <td>Net Margin (%)</td>
+                <td>63%</td>
+                <td>58%</td>
+                <td>63%</td>
+                <td>56%</td>
+                <td>64%</td>
+                </tr>
+                <tr>
+                <td>EPS (₹)</td>
+                <td>14</td>
+                <td>21</td>
+                <td>30</td>
+                <td>34</td>
+                <td>49</td>
+                </tr>
+            </table>
+            </div>
+            <div class="nse-subsidiaries-metrics">
+            <div class="nse-subsidiaries-metric">
+                <h3>₹35</h3>
+                <span class="nse-financial-metric-desc">Dividend per Share</span>
+            </div>
+            <div class="nse-subsidiaries-metric">
+                <h3>₹11.46</h3>
+                <span class="nse-financial-metric-desc">Special Dividend</span>
+            </div>
+            <div class="nse-subsidiaries-metric">
+                <h3>Minimal</h3>
+                <span class="nse-financial-metric-desc">Debt Level</span>
+            </div>
+            <div class="nse-subsidiaries-metric">
+                <h3>60%+</h3>
+                <span class="nse-financial-metric-desc">Operating Margin</span>
+            </div>
+            </div>
+            <div class="disabled-section">
+                <div class="disabled-section-content">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span><a href="#">Login</a> to view details</span>
+                </div>
+            </div>
         </div>
       </div>
 
@@ -357,6 +387,15 @@ get_header(); ?>
               <td>Better Valuation</td>
             </tr>
           </table>
+          <div class="disabled-section">
+                <div class="disabled-section-content">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span><a href="#">Login</a> to view details</span>
+                </div>
+            </div>
         </div>
         <div class="nse-warning-icon">
           <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -435,15 +474,6 @@ get_header(); ?>
               <div class="nse-market-bar-inner" style="width: 12.3%"></div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="nse-section-inner-block nse-summary-section">
-        <h2 class="nse-inner-section-title">Summary</h2>
-        <div class="nse-summary-desc">
-          This opportunity provides pre-IPO access at institutional valuations. In addition, you are diversifying into
-          India’s financial backbone via a tax-efficient USD structure (Delaware LP). Despite regulatory headwinds,
-          NSE continues to demonstrate transparency and compliance. It has cleaned up governance in the last few years
-          and has retained trust from Temasek, Tiger Global, CPP, Morgan Stanley &amp; others.
         </div>
       </div>
     </div>
