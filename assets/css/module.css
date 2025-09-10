@@ -2200,3 +2200,8 @@ a.chapter_back_btn:hover {
   pointer-events: none; /* Optional: prevent interaction */
   width: 100%;
 }
+
+
+.single_module_post_content .content a {
+    text-decoration: underline;
+}
