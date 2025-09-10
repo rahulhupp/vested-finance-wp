@@ -311,9 +311,10 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const urls = {
-      new: "https://vested.app.link/RWBKECmefOb",
-      existing: "https://vestedfinance.typeform.com/to/B1gfXsOZ?utm_source=landing_page"
+    // Use dynamic URLs from PHP if available, otherwise fallback to defaults
+    const urls = window.investPopoverUrls || {
+      new: "#",
+      existing: "#"
     };
 
     window.open(urls[selectedOption], "_blank");

@@ -514,5 +514,12 @@
             </div>
         </div>
     </div>
+    <script>
+        // Pass dynamic URLs from PHP to JavaScript
+        window.investPopoverUrls = {
+            new: "<?php echo get_field('new_user_url'); ?>",
+            existing: "<?php echo get_field('existing_user_url'); ?>"
+        };
+    </script>
 </div>
 <?php get_footer(); ?>
