@@ -2201,7 +2201,6 @@ a.chapter_back_btn:hover {
   width: 100%;
 }
 
-
-.single_module_post_content .content a {
-    text-decoration: underline;
+.single_module_content_wrapper a[href*="vestedfinance.com"] {
+	text-decoration: underline;
 }
