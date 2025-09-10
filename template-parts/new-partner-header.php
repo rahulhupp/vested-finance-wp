@@ -127,6 +127,19 @@
                 </div>
             </div>
         </div>
+        <?php
+            if (strpos(home_url(add_query_arg([], $wp->request)), 'weekend-investing') !== false) {
+                ?>
+                <div class="partner_top_banner">
+                    <div class="container">
+                        <div class="partner_top_banner_wrapper">
+                            Already a Vested user? <a href='https://vestedfinance.typeform.com/ustop10'>Click here to access this Vest.</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        ?>
         <div class="ast-desktop-header-content content-align-flex-start " style="display: none;">
         </div>
     </div>
