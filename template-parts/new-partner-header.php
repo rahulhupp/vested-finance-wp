@@ -133,7 +133,7 @@
                 <div class="partner_top_banner">
                     <div class="container">
                         <div class="partner_top_banner_wrapper">
-                            Already a Vested user? <a href='https://vestedfinance.typeform.com/ustop10'>Click here to access this Vest.</a>
+                            Already a Vested user? <a href='https://vestedfinance.typeform.com/ustop10' target='_blank' rel='noopener noreferrer'>Click here to access this Vest.</a>
                         </div>
                     </div>
                 </div>

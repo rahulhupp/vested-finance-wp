@@ -47,59 +47,65 @@
                 <div class="benefits_employees_list">
                     <div class="benefits_employees_item">
                         <h3><?php the_field('benefits_name'); ?></h3>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Complimentary <strong>Vested Premium upgrade</strong>:</p>
-                            <ul>
-                                <li>12 months free Premium upgrade upon registration</li>
-                                <li>$15k+ portfolio balance: Premium upgrade continues after first 12 months</li>
-                            </ul>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Zero fee India and U.S. withdrawals. </p>
-                            <a href="<?php echo home_url('/in/pricing/'); ?>">Click here to know more.</a>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>No annual maintenance fee</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Access to exclusive investing training sessions</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Dedicated relationship managers</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Benefits extend to one more family member.</p>
-                            <a href="https://vestedfinance.typeform.com/to/B1gfXsOZ?utm_source=landing_page" target="_blank" rel="noopener noreferrer">Apply for benefits here.</a>
-                        </div>
+
+                        <?php if (have_rows('company_benefits')): ?>
+                            <?php while (have_rows('company_benefits')): the_row(); ?>
+                                <div class="benefits_employees_item_content">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
+
+                                    <?php if (get_sub_field('company_benefit_text')): ?>
+                                        <p><?php the_sub_field('company_benefit_text'); ?></p>
+                                    <?php endif; ?>
+
+                                    <?php if (have_rows('company_sub_points')): ?>
+                                        <ul>
+                                            <?php while (have_rows('company_sub_points')): the_row(); ?>
+                                                <li><?php the_sub_field('company_point_text'); ?></li>
+                                            <?php endwhile; ?>
+                                        </ul>
+                                    <?php endif; ?>
+
+                                    <?php if (get_sub_field('company_optional_link_url')): ?>
+                                        <a href="<?php the_sub_field('company_optional_link_url'); ?>" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer">
+                                        <?php the_sub_field('company_optional_link_text'); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
                     </div>
+
                     <div class="benefits_employees_item">
                         <h3>Vested Premium Benefits</h3>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>40% lower brokerage fees: 0.15% only ($35 max)</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Tax-loss harvesting tool to reduce tax payments</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Access to advanced investment research tools</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Exclusive access to 3 multi-asset Vests</p>
-                        </div>
-                        <div class="benefits_employees_item_content">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
-                            <p>Priority customer support</p>
-                        </div>
+                        <?php if (have_rows('vested_premium_benefits')): ?>
+                            <?php while (have_rows('vested_premium_benefits')): the_row(); ?>
+                                <div class="benefits_employees_item_content">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/check-icon.svg" alt="check-icon" />
+
+                                    <?php if (get_sub_field('vested_benefit_text')): ?>
+                                        <p><?php the_sub_field('vested_benefit_text'); ?></p>
+                                    <?php endif; ?>
+
+                                    <?php if (have_rows('vested_sub_points')): ?>
+                                        <ul>
+                                            <?php while (have_rows('vested_sub_points')): the_row(); ?>
+                                                <li><?php the_sub_field('vested_point_text'); ?></li>
+                                            <?php endwhile; ?>
+                                        </ul>
+                                    <?php endif; ?>
+
+                                    <?php if (get_sub_field('vested_optional_link_url')): ?>
+                                        <a href="<?php the_sub_field('vested_optional_link_url'); ?>" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer">
+                                        <?php the_sub_field('vested_optional_link_text'); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
