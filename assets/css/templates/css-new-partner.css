@@ -1360,3 +1360,39 @@ header .inner-header .site-primary-header-wrap .right-button .account-menu ul li
     text-align: center;
     padding: 0;
 }
+
+
+.partner_top_banner {
+    background: #497df9;
+    border: 1px solid #e0e8f1;
+    padding: 18px 24px;
+    text-align: center;
+}
+
+.partner_top_banner_wrapper {
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: -.36px;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.partner_top_banner_wrapper a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .partner_top_banner_wrapper {
+        font-size: 16px;
+    }
+    .partner_top_banner {
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 575px) {
+    .partner_top_banner_wrapper {
+        font-size: 12px;
+    }
+}
