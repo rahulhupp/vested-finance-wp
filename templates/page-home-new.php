@@ -71,7 +71,7 @@ get_header(); ?>
                         </div>
                         <div class="home_features_item_content">
                             <h3><a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer">Private Markets</a></h3>
-                            <label>Private Beta</label>
+                            <!-- <label>Private Beta</label> -->
                         </div>
                         <!-- <p>A Vested Finance, Inc product</p> -->
                         <a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer" class="learn_more_btn">
@@ -87,7 +87,7 @@ get_header(); ?>
                         </div>
                         <div class="home_features_item_content">
                             <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
-                            <label>Join Waitlist</label>
+                            <!-- <label>Join Waitlist</label> -->
                         </div>
                         <!-- <p>A VF Securities Inc. product</p> -->
                         <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="learn_more_btn">
@@ -223,7 +223,7 @@ get_header(); ?>
                         <div class="home_service_content">
                             <div class="home_service_labels">
                                 <span>Private Markets</span>
-                                <span class="active">Private Beta</span>
+                                <!-- <span class="active">Private Beta</span> -->
                             </div>
                             <h3>Get Early Access to Tomorrow’s Giants</h3>
                             <ul>
@@ -254,7 +254,7 @@ get_header(); ?>
                                 <li>No entry/exit load + Simplified taxes. Start investing with $1</li>
                             </ul>
                             <div class="home_service_footer">
-                                <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="btn btn-primary">Join Waitlist</a>
+                                <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="btn btn-primary">Explore Global Mutual Funds</a>
                                 <p class="desktop_disclosure">Offered by VF Securities, Inc</p>
                             </div>
                         </div>
