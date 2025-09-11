@@ -196,7 +196,7 @@
                 <div class="benefits_features_list">
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-1.png" alt="US Stocks">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-1.png" alt="US Stocks">
                         </div>
                         <h3><a href="<?php echo home_url('/in/us-stocks/'); ?>">US Stocks & ETFs</a></h3>
                         <!-- <p>A VF Securities Inc. product</p> -->
@@ -209,7 +209,7 @@
                     </div>
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Private Markets">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-3.png" alt="Private Markets">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer">Private Markets</a></h3>
@@ -225,7 +225,7 @@
                     </div>
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Mutual Funds">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
@@ -242,7 +242,7 @@
 
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-2.png" alt="Managed Portfolios">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="<?php echo home_url('/in/managed-portfolios/'); ?>">Managed Portfolios</a></h3>
@@ -290,7 +290,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-1.png" alt="US Stocks & ETFs">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-1.png" alt="US Stocks & ETFs">
                             <p class="mobile_disclosure">Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation</p>
                         </div>
                     </div>
@@ -318,7 +318,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-2.png" alt="Managed Portfolios">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -340,7 +340,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-3.png" alt="Pre-IPO">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-3.png" alt="Pre-IPO">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -362,7 +362,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Mutual Funds">
                             <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>
@@ -381,21 +381,21 @@
                             <h3>Create your Vested Account</h3>
                             <p>Sign up and complete your 100% Digital KYC in less than 5 minutes</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-1.png" alt="Step 1">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-1.png" alt="Step 1">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Add Funds</h3>
                             <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-2.png" alt="Step 2">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-2.png" alt="Step 2">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Start Investing!</h3>
                             <p>Build your global portfolio with US Stocks, ETFs or Managed Portfolios starting at $1</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-3.png" alt="Step 3">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-3.png" alt="Step 3">
                     </div>
                 </div>
             </div>
