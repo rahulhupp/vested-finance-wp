@@ -666,7 +666,7 @@ section > div > div > p {
 
 .step_item img {
     display: block;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .step_item h3 {
@@ -687,6 +687,10 @@ section > div > div > p {
     padding: 0 39px 0 24px;
 }
 
+.step_content {
+    min-height: 140px;
+}
+
 .step_item:nth-child(2) {
     display: flex;
     flex-direction: column;
@@ -699,7 +703,8 @@ section > div > div > p {
 .step_item:nth-child(2) .step_content {
     order: 2;
     position: relative;
-    top: -20px;
+    padding-top: 20px;
+    /* top: -20px; */
 }
 
 .step_item:nth-child(2) h3 {
@@ -834,22 +839,26 @@ section > div > div > p {
     padding: 105px 0;
 }
 
-.benefits_peers_wrapper h2 {
-    font-size: 38px;
-    line-height: 1.2;
-    font-weight: 800;
-    color: #002852;
-    margin-bottom: 24px;
-}
+@media (min-width: 768px) {
 
-.benefits_peers_wrapper p {
-    color: #505A64;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 120%;
-    text-align: center;
-    max-width: 807px;
-    margin: auto;
+    .benefits_peers_wrapper h2 {
+        font-size: 38px;
+        line-height: 1.2;
+        font-weight: 800;
+        color: #002852;
+        margin-bottom: 24px;
+    }
+
+    .benefits_peers_wrapper p {
+        color: #505A64;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+        text-align: center;
+        max-width: 807px;
+        margin: auto;
+    }
+
 }
 
 .benefits_peers_list {
@@ -907,6 +916,9 @@ section > div > div > p {
   }
 
 @media (max-width: 991px) {
+    .ast-separate-container #content .ast-container {
+        padding: 0;
+    }
     .benefits_metrics_item {
         width: calc(50% - 15.5px);
     }
@@ -944,6 +956,11 @@ section > div > div > p {
     .benefits_transform_content ul li {
         font-size: 14px;
         line-height: 1.4;
+    }
+
+    .benefits_why_us_content {
+        padding-left: 15px;
+        padding-right: 15px;
     }
     .benefits_why_us_tabs_content_item_content p {
         font-size: 16px;
@@ -1104,10 +1121,6 @@ section > div > div > p {
     .benefits_employees_item_content ul {
         padding-left: 31px;
     }
-    
-    .benefits_employees {
-        padding: 40px;
-    }
 
     .benefits_transform {
         padding: 40px 0;
@@ -1265,7 +1278,7 @@ section > div > div > p {
     }
     
     .step_item:nth-child(2) .step_content {
-        top: 0;
+        padding-top: 0;
     }
     
     .step_item:nth-child(2) h3 {
@@ -1274,6 +1287,18 @@ section > div > div > p {
     
     .benefits_steps_list {
         gap: 15px;
+    }
+    .benefits_peers {
+        padding: 40px 0;
+    }
+    
+    .benefits_peers_item {
+        width: calc(50% - 8px);
+        flex: unset;
+    }
+    
+    .benefits_peers_list {
+        flex-wrap: wrap;
     }
 }
 

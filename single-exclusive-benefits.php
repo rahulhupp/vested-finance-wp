@@ -146,7 +146,7 @@
             <div class="benefits_why_us_wrapper">
                 <div class="benefits_why_us_content">
                     <h2>Why US Markets Deserve a Place in Your Portfolio</h2>
-                    <p>US markets offer more than just iconic brands — they provide long-term growth, global diversification, and a strong currency advantage. Here’s why millions of investors are going global.</p>
+                    <p>Here's why millions of investors are going global</p>
                     <div class="benefits_why_us_tabs_buttons">
                         <button class="benefits_why_us_tabs_button active" data-label="Diversification">Diversification</button>
                         <button class="benefits_why_us_tabs_button" data-label="Higher returns">Higher returns</button>
@@ -156,7 +156,7 @@
                 <div class="benefits_why_us_tabs_content">
                     <div class="benefits_why_us_tabs_content_item active">
                         <div class="benefits_why_us_tabs_content_item_content">
-                            <p>Investing in US Stock Markets can give your portfolio the global exposure it needs. US Securities Market lists the largestgest companies globally such as Tesla, Apple, NVIDIA, Amazon, Meta and more. Easily diversify your portfolio by doing SIP in US Stocks or investing in lump-sum and get exposure to global economies and industries.</p>
+                            <p>US Markets is home to the top global companies of the world like Apple, Nvidia, Amazon, Microsoft and more. Easily diversify your portfolio by doing SIP or lumpsum investments in US Stocks</p>
                         </div>
                         <div class="benefits_why_us_tabs_content_item_image">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/diversification.png" alt="Diversification">
@@ -165,9 +165,8 @@
                     </div>
                     <div class="benefits_why_us_tabs_content_item">
                         <div class="benefits_why_us_tabs_content_item_content">
-                            <p>The strength of the dollar can be an investor’s ally. In the period 2010 to 2024, the US Stock Markets have given 83% higher returns compared to the Indian Stock markets.</p>
-                            <p>Aside from the stock market gains, there’s potential for better returns from currency(USD) appreciation against INR.
-                            <br />Read more: <a href="#" target="_blank" rel="noopener noreferrer">Why Investing in the US has given superior returns</a></p>
+                            <p>US markets gave 83% higher returns compared to Indian markets in the period 2010 to 2024.</p>
+                            <p>Aside from stock market gains, the higher returns also came from the appreciation of the USD against the INR.</p>
                         </div>
                         <div class="benefits_why_us_tabs_content_item_image">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/higher-returns.png" alt="Higher Returns">
@@ -197,7 +196,7 @@
                 <div class="benefits_features_list">
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-1.png" alt="US Stocks">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-1.png" alt="US Stocks">
                         </div>
                         <h3><a href="<?php echo home_url('/in/us-stocks/'); ?>">US Stocks & ETFs</a></h3>
                         <!-- <p>A VF Securities Inc. product</p> -->
@@ -210,7 +209,7 @@
                     </div>
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-3.png" alt="Private Markets">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-3.png" alt="Private Markets">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="https://lp.vestedfinance.com/pre-ipo-1/" target="_blank" rel="noopener noreferrer">Private Markets</a></h3>
@@ -226,7 +225,7 @@
                     </div>
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-4.png" alt="Global Mutual Funds">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
@@ -243,7 +242,7 @@
 
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-feature-2.png" alt="Managed Portfolios">
                         </div>
                         <div class="benefits_features_item_content">
                             <h3><a href="<?php echo home_url('/in/managed-portfolios/'); ?>">Managed Portfolios</a></h3>
@@ -291,7 +290,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-1.png" alt="US Stocks & ETFs">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-1.png" alt="US Stocks & ETFs">
                             <p class="mobile_disclosure">Offered by VF Securities Inc. Stock symbols shown here are representative of our offerings and are not meant to be a recommendation</p>
                         </div>
                     </div>
@@ -319,7 +318,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-2.png" alt="Managed Portfolios">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-2.png" alt="Managed Portfolios">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -341,7 +340,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-3.png" alt="Pre-IPO">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-3.png" alt="Pre-IPO">
                             <p class="mobile_disclosure">Offered by Vested Finance, Inc</p>
                         </div>
                     </div>
@@ -363,7 +362,7 @@
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-service-4.png" alt="Global Mutual Funds">
                             <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>
@@ -382,21 +381,21 @@
                             <h3>Create your Vested Account</h3>
                             <p>Sign up and complete your 100% Digital KYC in less than 5 minutes</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-1.png" alt="Step 1">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-1.png" alt="Step 1">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Add Funds</h3>
                             <p>Easily transfer funds via ESOP/RSUs, partner banks like HDFC Bank, Axis Bank or any Indian bank with guided instructions</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-2.png" alt="Step 2">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-2.png" alt="Step 2">
                     </div>
                     <div class="step_item">
                         <div class="step_content">
                             <h3>Start Investing!</h3>
                             <p>Build your global portfolio with US Stocks, ETFs or Managed Portfolios starting at $1</p>
                         </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-3.png" alt="Step 3">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/tmp/home-step-3.png" alt="Step 3">
                     </div>
                 </div>
             </div>
@@ -514,6 +513,7 @@
             </div>
         </div>
     </div>
+
     <script>
         // Pass dynamic URLs from PHP to JavaScript
         window.investPopoverUrls = {
