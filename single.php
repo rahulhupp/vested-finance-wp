@@ -330,32 +330,66 @@ while (have_posts()) :
 		function handleTOCsmallerScreen() {
 			if (window.innerWidth < 1201 && tocElement) {
 				tocElement.classList.add('toc_close');
-				tocNav.style.display = 'none';
-				tocInsideNav.addEventListener('click', function(event) {
-					if (event.target === this) {
-						tocNav.style.display = 'none';
-						mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
-					}
-				});
+				if (tocNav) {
+					tocNav.style.display = 'none';
+				}
+				
+				// Remove existing event listeners to prevent duplicates
+				if (tocInsideNav) {
+					tocInsideNav.removeEventListener('click', handleTocInsideNavClick);
+					tocInsideNav.addEventListener('click', handleTocInsideNavClick);
+				}
+				
 				const tocItems = document.querySelectorAll('.ez-toc-list a');
 				tocItems.forEach((item) => {
-					item.addEventListener('click', function() {
-						tocNav.style.display = 'none';
-						mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
-					});
+					item.removeEventListener('click', handleTocItemClick);
+					item.addEventListener('click', handleTocItemClick);
 				});
-				titleContainers.addEventListener('click', function() {
-					if (tocNav.style.display === "none" || tocNav.style.display === "") {
-						tocNav.style.display = "block";
-						mainBody.classList.add('has-off-canvas-right', 'has-off-canvas');
-					} else {
-						tocNav.style.display = "none";
-						mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
-					}
-				});
+				
+				if (titleContainers) {
+					titleContainers.removeEventListener('click', handleTitleContainerClick);
+					titleContainers.addEventListener('click', handleTitleContainerClick);
+				}
+			} else if (tocElement) {
+				// Desktop view - remove mobile classes and show TOC
+				tocElement.classList.remove('toc_close');
+				if (tocNav) {
+					tocNav.style.display = 'block';
+				}
+				mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
 			}
-
 		}
+
+		// Event handler functions
+		function handleTocInsideNavClick(event) {
+			if (event.target === this) {
+				if (tocNav) {
+					tocNav.style.display = 'none';
+				}
+				mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
+			}
+		}
+
+		function handleTocItemClick() {
+			if (tocNav) {
+				tocNav.style.display = 'none';
+			}
+			mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
+		}
+
+		function handleTitleContainerClick() {
+			if (tocNav) {
+				if (tocNav.style.display === "none" || tocNav.style.display === "") {
+					tocNav.style.display = "block";
+					mainBody.classList.add('has-off-canvas-right', 'has-off-canvas');
+				} else {
+					tocNav.style.display = "none";
+					mainBody.classList.remove('has-off-canvas-right', 'has-off-canvas');
+				}
+			}
+		}
+
+		// Initialize on page load
 		handleTOCsmallerScreen();
 		window.addEventListener('resize', handleTOCsmallerScreen);
 
@@ -363,9 +397,10 @@ while (have_posts()) :
 
 		headingsToProcess.forEach((heading) => {
 			const spanElement = document.createElement('span');
-			let headingText = heading.textContent
-				.replace(/[^a-zA-Z0-9_\s-]+/g, '')
-				.replace(/\s+/g, '_');
+
+			// let headingText = heading.textContent.replace(/\s+|[.\[\]{}()?;:\u00A0',']/g, '_').replace(/_+$/, '').replace(/’/g, '').replace(/_{2,}/g, '_').replace(/,/g, '');
+			let headingText = heading.textContent.replace(/[^a-zA-Z0-9_\s]+/g, '').replace(/\s+/g, '_');
+			console.log('4 headingText', headingText);
 
 			spanElement.className = 'ez-toc-section';
 			spanElement.id = headingText;
@@ -376,9 +411,10 @@ while (have_posts()) :
 			const endSpan = document.createElement('span');
 			endSpan.className = 'ez-toc-section-end';
 
+
 			heading.appendChild(endSpan);
 		});
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var current_text = document.querySelector(".single_module_title").textContent;
 
 			// document.querySelector(".share_twitter").addEventListener("click", function() {
@@ -393,7 +429,7 @@ while (have_posts()) :
 			//     window.open('https://www.facebook.com/sharer.php?text=' + encodeURIComponent(current_text) + '&u=' + encodeURIComponent(current_page_url) + '&utm-medium=social&utm-source=Facebook&utm-campaign=Academy', "", "width=600,height=400");
 			// });
 
-			document.querySelector(".share_whatsapp").addEventListener("click", function() {
+			document.querySelector(".share_whatsapp").addEventListener("click", function () {
 				// ga('send', 'event', 'Social Sharing on Academy', 'Click', 'WhatsApp');
 				var current_page_url = window.location.href;
 				window.open('https://wa.me/?text=' + encodeURIComponent(current_text + " , " + current_page_url) + '&utm-medium=social&utm-source=WhatsApp&utm-campaign=Academy', "_blank");
@@ -405,7 +441,7 @@ while (have_posts()) :
 			if (dynamicContent) {
 				var anchorTags = dynamicContent.querySelectorAll('a');
 
-				anchorTags.forEach(function(anchorTag) {
+				anchorTags.forEach(function (anchorTag) {
 					var href = anchorTag.getAttribute('href');
 					var isExternal = /^https?:\/\//.test(href) && !href.includes('vestedfinance.com/');
 
@@ -416,8 +452,6 @@ while (have_posts()) :
 				});
 			}
 		}
-
-
 		addAttributesToExternalLinks();
 
 		if (document.querySelector('.takeways')) {

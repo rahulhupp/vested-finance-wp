@@ -1402,6 +1402,14 @@ body.single.single-module {
 		border-radius: 0 0 6px 6px;
 	}
 
+	.single_module_table_content #ez-toc-container .ez-toc-list {
+		display: none;
+	}
+
+	.single_module_table_content #ez-toc-container:not(.toc_close) .ez-toc-list {
+		display: block;
+	}
+
 	.module_completed {
 		opacity: 0;
 		visibility: hidden;
