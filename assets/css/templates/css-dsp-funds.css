@@ -110,6 +110,65 @@
   color: var(--nse-color-text-muted);
 }
 
+.nse-overview-section .nse-overview-title {
+  color: var(--nse-color-text-muted);
+  font: 600 18px / 30px "Inter", sans-serif;
+  margin-bottom: 4px;
+}
+
+.nse-overview-section {
+  width: 100%;
+}
+
+.nse-section-inner-block.nse-overview .nse-overview-section {
+  margin-bottom: 24px;
+}
+
+.nse-section-inner-block.nse-overview
+  .nse-overview-section
+  .nse-overview-desc:last-child {
+  margin-bottom: 0;
+}
+
+.nse-overview-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.nse-overview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 0;
+}
+
+.nse-overview-label {
+  color: var(--nse-color-text-muted);
+  font: 400 14px / 20px "Inter", sans-serif;
+  width: 50%;
+}
+
+.nse-overview-value {
+  color: var(--nse-color-text-muted);
+  font: 500 14px / 20px "Inter", sans-serif;
+  width: 50%;
+  text-align: right;
+}
+
+.nse-overview-value-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50%;
+}
+.nse-overview-value-wrapper .nse-overview-note {
+  color: var(--nse-color-text-accent);
+  font: 400 12px / 16px "Inter", sans-serif;
+}
+
 .nse-price-amount .nse-price-amount-small {
   color: var(--nse-color-text-accent);
   font: 500 14px / 20px "Inter", sans-serif;
@@ -128,7 +187,6 @@
   gap: 4px;
   color: var(--nse-color-text-muted);
   margin-bottom: 36px;
-  position: relative;
 }
 
 .nse-stats > div {
@@ -183,7 +241,7 @@
 }
 
 .nse-inner-section-title {
-  font: 600 20px / 32px "Inter", sans-serif;
+  font: 600 18px / 30px "Inter", sans-serif;
   margin-bottom: 4px;
   color: var(--nse-color-text-muted);
 }
@@ -207,17 +265,18 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 24px 0;
-}
-
-.nse-highlights h3 {
-  font: 600 16px / 24px "Inter", sans-serif;
-  margin-bottom: 6px;
-  color: var(--nse-color-text-muted);
+  padding: 0;
 }
 
 .nse-highlights-left {
-  width: 40%;
+  width: 100%;
+}
+
+.nse-section-inner-block.nse-overview .nse-inner-section-title,
+.nse-highlights h3 {
+  font: 600 20px / 32px "Inter", sans-serif;
+  margin-bottom: 6px;
+  color: var(--nse-color-text-muted);
 }
 
 .nse-highlights-list {
@@ -226,18 +285,36 @@
   margin: 0;
   padding-left: 0;
   margin-top: 12px;
-  max-width: 317px;
   color: var(--nse-color-text-muted);
+  --auto-grid-min-size: 20rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  gap: 12px;
 }
 
 .nse-highlights-list li {
-  padding: 4px 0 4px 22px;
-  background: 0px 5px / 16px no-repeat
+  padding: 4px 0 4px 26px;
+  background: 0px 5px / 20px no-repeat
     url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M14.6667 7.38674V8.00007C14.6659 9.43769 14.2003 10.8365 13.3396 11.988C12.4788 13.1394 11.2689 13.9817 9.89025 14.3893C8.51163 14.797 7.03818 14.748 5.68966 14.2498C4.34113 13.7516 3.18978 12.8308 2.40732 11.6248C1.62485 10.4188 1.2532 8.99212 1.34779 7.55762C1.44239 6.12312 1.99815 4.75762 2.9322 3.66479C3.86625 2.57195 5.12853 1.81033 6.5308 1.4935C7.93307 1.17668 9.40019 1.32163 10.7133 1.90674" stroke="%232563EB" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/%3E%3Cpath d="M6 7.33317L8 9.33317L14.6667 2.6665" stroke="%232563EB" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E');
 }
 
-.nse-highlights-list li:not(:last-child) {
-  margin-bottom: 12px;
+.nse-section-inner-block.nse-overview .nse-highlights-list li p {
+  font: 400 14px / 20px "Inter", sans-serif;
+  margin: 0;
+}
+
+.nse-highlights-list li p {
+  font: 500 16px / 24px "Inter", sans-serif;
+  margin: -2px 0 0;
+}
+
+.nse-highlights-list li .nse-highlights-note {
+  font: 400 14px / 20px "Inter", sans-serif;
+  margin: 6px 0 0;
+  color: var(--nse-color-text-accent);
 }
 
 .nse-highlights-right {
@@ -454,36 +531,40 @@
   border-collapse: collapse;
 }
 
+.nse-financial-table:last-child {
+  margin-bottom: 0;
+}
+
 .nse-financial-table tr:not(:last-child) {
   border-bottom: 1px solid var(--nse-color-border-main);
 }
 
 .nse-financial-table th,
 .nse-financial-table td {
-  padding: 12px 8px;
+  padding: 14.5px 8px;
   text-align: left;
   border: none;
   font: 400 14px / 20px "Inter", sans-serif;
   color: var(--nse-color-text-muted);
 }
 
-:is(.nse-financial-table th, .nse-financial-table td):is(
-    :first-child,
-    :last-child
-  ) {
+.nse-financial-table th {
+  font-weight: 600;
+}
+
+.nse-financial-table td:first-child {
   font-weight: 500;
+}
+
+.nse-financial-table td span {
+  color: var(--nse-color-bg-bar-fill);
+  font-weight: 600;
 }
 
 :is(.nse-financial-table th, .nse-financial-table td):not(:first-child) {
   text-align: end;
-}
-
-:is(.nse-financial-table th, .nse-financial-table td):first-child {
-  width: 210px;
-}
-
-:is(.nse-financial-table th, .nse-financial-table td):last-child {
-  width: 151px;
+  width: 125px;
+  min-width: 100px;
 }
 
 .nse-subsidiaries-metrics {
@@ -585,34 +666,52 @@
 
 .nse-competitive-table th,
 .nse-competitive-table td {
-  padding: 12px 8px;
   text-align: left;
+  padding: 14.5px 8px;
   border: none;
   font: 400 14px / 20px "Inter", sans-serif;
   color: var(--nse-color-text-muted);
 }
-.nse-competitive-table td:is(:first-child, :nth-child(2)),
+
+.nse-competitive-table td:first-child strong,
+.nse-competitive-table td:first-child,
 .nse-competitive-table th {
+  font-weight: 500;
+}
+
+.nse-competitive-table th strong {
   font-weight: 600;
 }
 
-.nse-competitive-table th:is(:nth-child(3), :nth-child(2)),
-.nse-competitive-table td:is(:nth-child(3), :nth-child(2)) {
+.nse-competitive-table th:not(:first-child),
+.nse-competitive-table td:not(:first-child) {
   text-align: end;
+  width: 125px;
+  min-width: 100px;
 }
 
-.nse-competitive-table td:is(:nth-child(3), :nth-child(4)) {
+.nse-competitive-table .fund-value {
+  color: var(--nse-color-bg-bar-fill);
+  font-weight: 600;
+}
+
+.nse-competitive-table .alpha-negative {
+  color: #dc2626;
+}
+
+.nse-competitive-table .alpha-positive {
+  color: #047857;
+}
+
+.nse-section-inner-block .nse-risk-disclaimer {
+  margin-top: 16px;
+  max-width: 865px;
+}
+
+.nse-section-inner-block .nse-risk-disclaimer p {
+  font: 400 12px / 16px "Inter", sans-serif;
   color: var(--nse-color-text-accent);
-}
-
-.nse-competitive-table td:first-child,
-.nse-competitive-table th:first-child {
-  width: 324px;
-}
-.nse-competitive-table td:last-child,
-.nse-competitive-table th:last-child {
-  width: 279px;
-  padding-left: 48px;
+  margin: 0;
 }
 
 .nse-warning-icon {
@@ -620,11 +719,12 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 8px;
+  margin-top: 8px;
 }
 
 .nse-warning-icon p {
   color: var(--nse-color-text-accent);
-  font: 400 14px / 20px "Inter", sans-serif;
+  font: 400 12px / 16px "Inter", sans-serif;
   margin-bottom: 0;
   width: 50%;
   flex: 1 1 auto;
@@ -686,20 +786,133 @@
   min-width: fit-content;
 }
 
-.nse-financial-metrics-wrapper {
-  position: relative;
+/* Portfolio Composition Styles */
+.nse-portfolio-composition {
+  margin: 16px 0 0;
 }
 
+.nse-portfolio-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.nse-portfolio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.nse-portfolio-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.nse-portfolio-content h3 {
+  font: 400 14px / 1 "Inter", sans-serif;
+  color: var(--nse-color-text-accent);
+  margin: 0 0 4px 0;
+}
+
+.nse-portfolio-content p {
+  font: 500 16px / 24px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
+  margin-bottom: 0;
+}
+
+.nse-portfolio-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.nse-portfolio-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--nse-color-border-main);
+}
+
+.nse-portfolio-card h3 {
+  font: 500 16px / 24px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
+  margin: 0 0 24px 0;
+}
+
+.nse-portfolio-card-details p {
+  font: 400 14px / 20px "Inter", sans-serif;
+  color: var(--nse-color-text-muted);
+  margin: 0;
+}
+
+.nse-portfolio-card-value {
+  font: 400 14px / 20px "Inter", sans-serif;
+  color: var(--nse-color-text-accent);
+  margin: 0;
+}
+
+/* Additional Portfolio Styles */
+.nse-portfolio-section {
+  background: var(--nse-color-bg-card, #fff);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--nse-color-border-main, #f0f0f0);
+}
+
+.nse-portfolio-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--nse-color-text-main, #222);
+}
+
+/* Who Can Invest Section */
+.nse-who-can-invest-section {
+  background: var(--nse-color-bg-card, #fff);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--nse-color-border-main, #f0f0f0);
+}
+
+.nse-investor-requirement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.nse-requirement-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nse-requirement-text {
+  color: var(--nse-color-text-muted);
+  font: 500 16px / 24px "Inter", sans-serif;
+}
+
+
+.nse-overview-grid {
+  position: relative;
+}
 
 .disabled-section {
   position: absolute;
   left: -24px;
   top: 0;
-  width: calc(100% - -48px) !important;
+  width: calc(100% - -48px);
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center !important;
+  justify-content: center;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.68);
 }
@@ -729,9 +942,34 @@
 
 .table-wrapper .disabled-section {
   left: 0;
-  width: 100% !important;
+  width: 100%;
 }
 
+/* Responsive Portfolio Styles */
+@media only screen and (max-width: 767px) {
+  .nse-portfolio-top {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .nse-portfolio-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .nse-portfolio-item {
+    gap: 12px;
+  }
+
+  .nse-portfolio-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nse-portfolio-section {
+    padding: 24px;
+  }
+}
 
 @media only screen and (max-width: 1200px) {
   .nse-container {
@@ -763,18 +1001,76 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .nse-section-inner-block.nse-overview .nse-inner-section-title,
+  .nse-highlights h3,
   .nse-inner-section-title {
-    font-size: 20px !important;
-    line-height: 26px !important;
+    font-size: 18px !important;
+    line-height: 26px;
+    margin-bottom: 6px;
   }
 
   .nse-summary-desc {
-    font-size: 12px !;
+    font-size: 14px !important;
     line-height: 20px;
+  }
+
+  .nse-summary-desc p {
+    margin-bottom: 15px;
+  }
+
+  .nse-portfolio-top {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .nse-portfolio-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .nse-portfolio-card {
+    padding: 14px;
+  }
+
+  .nse-portfolio-item {
+    gap: 12px;
+  }
+
+  .nse-portfolio-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nse-portfolio-card h3 {
+    margin-bottom: 18px;
+  }
+
+  .nse-financial-table th,
+  .nse-financial-table td,
+  .nse-competitive-table th,
+  .nse-competitive-table td {
+    padding: 10px 6px;
+  }
+
+  .nse-competitive-table th,
+  .nse-competitive-table td,
+  .nse-financial-table th,
+  .nse-financial-table td {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .nse-section-inner-block.nse-overview .nse-overview-section {
+    margin-bottom: 16px;
   }
 }
 
 @media only screen and (max-width: 640px) {
+  .nse-section-inner-block,
+  .nse-card {
+    padding: 18px;
+  }
+
   .nse-logo {
     width: 60px;
     height: 60px;
@@ -800,11 +1096,6 @@
     padding: 12px 0;
   }
 
-  .nse-highlights-right,
-  .nse-highlights-left {
-    width: 100%;
-  }
-
   .nse-subsidiaries-logos {
     --auto-grid-min-size: 5rem;
   }
@@ -812,8 +1103,12 @@
   .nse-growth-metrics {
     gap: 16px;
   }
+
+  .nse-highlights-list {
+    --auto-grid-min-size: 15rem;
+  }
   .disabled-section {
     left: -18px;
-    width: calc(100% + 36px) !important;
+    width: calc(100% + 36px);
   }
 }

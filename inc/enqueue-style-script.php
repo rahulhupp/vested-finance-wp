@@ -128,6 +128,9 @@
         if (is_page_template('templates/page-nse.php')) {
             wp_enqueue_style('nse-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-nse.css', false, '', '');
         }
+        if (is_page_template('templates/page-dsp-funds.php')) {
+            wp_enqueue_style('dsp-funds-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-dsp-funds.css', false, '', '');
+        }
         if (is_page_template('templates/page-home-new.php')) {
             wp_enqueue_script('gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js');
             wp_enqueue_script('gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js');
