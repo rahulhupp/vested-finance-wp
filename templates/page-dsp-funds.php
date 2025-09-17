@@ -55,8 +55,8 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="nse-express-btn">
-                        <span>Invest</span>
+                    <a href="https://vestedfinance.typeform.com/to/i1ItERoU" target="_blank" class="nse-express-btn">
+                        <span>Express Interest</span>
                         <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
                                 stroke-linejoin="round" />
