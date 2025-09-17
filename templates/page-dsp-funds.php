@@ -74,16 +74,13 @@ get_header(); ?>
                         Invest in a Delaware-domiciled US feeder fund that provides exposure to a Large & Mid Cap
                         SEBI-regulated Mutual Fund via a GIFT City Fund. Both the Mutual Fund and the GIFT Fund are
                         managed
-                        by DSP, a 30-year old asset manager in India.
+                        by DSP,  a 160-year old asset manager in India.
                     </div>
                 </div>
                 <div class="nse-overview-section">
                     <h2 class="nse-inner-section-title">Investment Objective</h2>
                     <div class="nse-overview-desc">
-                        To generate long-term capital appreciation by investing primarily in units of DSP Large & Mid
-                        Cap
-                        Fund — which focuses on companies with strong growth, healthy balance sheets, and compelling
-                        valuations.
+                        To generate long-term capital appreciation by investing primarily in DSP Gift city fund and DSP Gift city fund will invest in DSP Large & Mid Cap Fund — which focuses on India-based companies with strong growth, healthy balance sheets, and compelling valuations.
                     </div>
                 </div>
                 <div class="nse-highlights">
@@ -108,6 +105,13 @@ get_header(); ?>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+
+            <div class="nse-section-inner-block nse-ecosystem-section">
+                <h2 class="nse-inner-section-title">Fund Structure</h2>
+                <div class="nse-overview-desc">
+                U.S. feeder fund investing in DSP India Equity Opportunities Fund (GIFT City), which invests in DSP Large & Mid Cap Fund (SEBI-regulated mutual fund). DSP Mutual Fund is managed by DSP Asset Managers Private Limited (DSPAM). DSP Gift City Fund is managed by DSP Fund Managers IFSC Private Limited, wholly-owned subsidiary company of DSPAM.
                 </div>
             </div>
 
@@ -210,7 +214,7 @@ get_header(); ?>
                 </div>
 
                 <div class="nse-section-inner-block nse-financial">
-                    <h2 class="nse-inner-section-title">Sector Allocation</h2>
+                    <h2 class="nse-inner-section-title">Sector Allocation of the underlying DSP Large & Mid Cap Fund</h2>
                     <div class="nse-inner-section-desc">% as of June 30, 2025</div>
                     <div class="table-wrapper">
                         <table class="nse-financial-table">
