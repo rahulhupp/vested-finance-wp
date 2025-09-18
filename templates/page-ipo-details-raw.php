@@ -800,10 +800,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							?>
 							<?php if ($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03') { ?>
 								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button ipo_disable_button">Subscribed</a>
-							<?php }	elseif ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4') { ?>
-								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Express Interest</a>
-							<?php } else { ?>
-								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button">Invest</a>
+							<?php }	else { ?>
+								<a href="<?php echo esc_url($invest_url); ?>" class="ipo_primary_button" id="invest-button-spv">Invest</a>
 							<?php } ?>
 						<?php else: ?>
 							<?php
