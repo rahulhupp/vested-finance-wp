@@ -330,6 +330,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<h4>$21B</h4>
 								<?php elseif ($ipo->ipo_id == '7705c819-c829-4897-bea7-56ba1628777a'): ?>
 									<h4>$466.3B</h4>
+								<?php elseif ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
+									<h4>$5.4B</h4>
 								<?php else: ?>
 									<h4>$<?php echo $api_valuation; ?></h4>
 								<?php endif; ?>
@@ -632,6 +634,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $21B. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 								<?php elseif ($ipo->ipo_id == '7705c819-c829-4897-bea7-56ba1628777a'): ?>
 									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $466.3B. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
+								<?php elseif ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
+									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $5.4B. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 								<?php else: ?>
 									<p>The offering is priced at $<?php echo $api_price_per_share !== 'N/A' ? $api_price_per_share : 'TBD'; ?>/share, implying a valuation of approximately $<?php echo $api_valuation !== 'N/A' ? $api_valuation : 'TBD'; ?>. This includes a one-time management fee and expense reserve. There are no ongoing fees or carry.</p>
 								<?php endif; ?>	
