@@ -653,6 +653,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 							<div class="ipo_faq_answer">
 								<?php if($ipo->ipo_id == 'c6e9306c-c9e9-4b6f-a86c-21ae62b8dd03'): ?>
 									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on August 6th, 2025 and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
+								<?php elseif($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
+									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on September 18th, 2025 and closes on September 29th, 2025. Once closed, the opportunity will no longer be available for subscription.</p>
 								<?php else: ?>
 									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
 								<?php endif; ?>
