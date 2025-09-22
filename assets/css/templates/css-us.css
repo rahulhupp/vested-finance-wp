@@ -752,7 +752,7 @@ footer {
 }
 
 .growth-section .growth-cards .growth-card .card-title {
-  display: inline-block;
+  display: flex;
 }
 
 .growth-section .growth-cards .growth-card .card-title a {
