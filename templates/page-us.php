@@ -230,6 +230,7 @@ get_header(); ?>
                             $card_title = get_sub_field('card_title');
                             $card_heading = get_sub_field('card_heading');
                             $card_description = get_sub_field('card_description');
+                            $card_link = get_sub_field('card_link');
 
                             // Conditional class
                             $extra_class = '';
@@ -262,6 +263,13 @@ get_header(); ?>
                                         <?php endwhile; ?>
                                     </ul>
                                 <?php endif; ?>
+                                <a href="<?php echo esc_url($card_link); ?>" rel="nofollow noindex">
+                                    <span>Learn More</span>
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 17.5L17 7.5" stroke="#002852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M7 7.5H17V17.5" stroke="#002852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                         <?php $i++; ?>
