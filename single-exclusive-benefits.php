@@ -4,21 +4,8 @@
         <div class="container">
             <div class="benefits_banner_wrapper">
                 <div class="benefits_banner_content">
-                    <?php if (get_field('benefits_name') == 'Qualcomm'): ?>
-                        <h1>Global Investing with Vested</h1>
-                    <?php elseif (get_field('benefits_name') == 'Airbnb'): ?>
-                        <h1>Global Investing with Vested</h1>
-                    <?php else: ?>
-                        <h1>Global Investing for <?php the_field('benefits_name'); ?> India</h1>
-                    <?php endif; ?>
-
-                    <?php if (get_field('benefits_name') == 'Qualcomm'): ?>
-                        <p>Diversify beyond borders - Access US Stocks and ETFs with exclusive benefits</p>
-                    <?php elseif (get_field('benefits_name') == 'Airbnb'): ?>
-                        <p>Diversify beyond borders - Access US Stocks and ETFs with exclusive benefits</p>
-                    <?php else: ?>
-                        <p>Exclusive benefits for <?php the_field('benefits_name'); ?> India employees to build a robust Global portfolio</p>
-                    <?php endif; ?>
+                    <h1>Your Exclusive Global Investing Access</h1>
+                    <p>Seamlessly diversify your ESOP/RSUs and create a robust global portfolio</p>
                     <a class="btn btn-primary openInvestPopoverBtn">Start Investing</a>
                 </div>
                 <div class="benefits_banner_image">
@@ -56,22 +43,10 @@
     <section class="benefits_employees">
         <div class="container">
             <div class="benefits_employees_wrapper">
-                <?php if (get_field('benefits_name') == 'Qualcomm'): ?>
-                    <h2>Your exclusive Global Investing experience, with Vested</h2>
-                <?php elseif (get_field('benefits_name') == 'Airbnb'): ?>
-                    <h2>Your exclusive Global Investing experience, with Vested</h2>
-                <?php else: ?>
-                    <h2>Global Investing for <?php the_field('benefits_name'); ?> India</h2>
-                <?php endif; ?>
+                <h2>Your exclusive Global Investing experience, with Vested</h2>
                 <div class="benefits_employees_list">
                     <div class="benefits_employees_item">
-                        <?php if (get_field('benefits_name') == 'Qualcomm'): ?>
-                            <h3>Exclusive Benefits</h3>
-                        <?php elseif (get_field('benefits_name') == 'Airbnb'): ?>
-                            <h3>Exclusive Benefits</h3>
-                        <?php else: ?>
-                            <h3><?php the_field('benefits_name'); ?></h3>
-                        <?php endif; ?>
+                        <h3>Exclusive Benefits</h3>
 
                         <?php if (have_rows('company_benefits')): ?>
                             <?php while (have_rows('company_benefits')): the_row(); ?>
@@ -474,34 +449,6 @@
         </div>
     </section>
     <?php endif; ?>
-
-    <section class="benefits_peers">
-        <div class="container">
-            <div class="benefits_peers_wrapper">
-                <h2>Your Peers Already Have Access</h2>
-                <p>We've launched exclusive benefits for leading US-listed companies to bring exclusive ESOP/RSU features to their teams. Because top talent deserves top tools.</p>
-                <div class="benefits_peers_list">
-                    <?php if (get_field('benefits_name') !== 'Qualcomm'): ?>
-                        <div class="benefits_peers_item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers1.svg" alt="Peers 1">
-                        </div>
-                    <?php endif; ?>
-                    <div class="benefits_peers_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers2.svg" alt="Peers 2">
-                    </div>
-                    <div class="benefits_peers_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers3.svg" alt="Peers 3">
-                    </div>
-                    <div class="benefits_peers_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers4.svg" alt="Peers 4">
-                    </div>
-                    <div class="benefits_peers_item">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers5.svg" alt="Peers 5">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="invest_overlay" id="investPopoverOverlay">
         <div class="invest_popover" id="investPopoverBox">

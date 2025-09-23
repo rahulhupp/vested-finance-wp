@@ -715,7 +715,7 @@ section > div > div > p {
     margin: 8px 0 5px;
 }
 
-.benefits_investors_slider_section {padding-top: 48px;padding-bottom: 13px;background-color: #EFF6FF;}
+.benefits_investors_slider_section {padding-top: 48px;padding-bottom: 48px;background-color: #EFF6FF;}
 
 .benefits_investors_slider_section .container {
     max-width: 100%;
