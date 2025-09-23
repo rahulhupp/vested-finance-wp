@@ -4,8 +4,16 @@
         <div class="container">
             <div class="benefits_banner_wrapper">
                 <div class="benefits_banner_content">
-                    <h1>Your Exclusive Global Investing Access</h1>
-                    <p>Seamlessly diversify your ESOP/RSUs and create a robust global portfolio</p>
+                    <?php if (get_field('benefits_name')): ?>
+                        <h1>Global Investing for <?php the_field('benefits_name'); ?> India</h1>
+                    <?php else: ?>
+                        <h1>Your Exclusive Global Investing Access</h1>
+                    <?php endif; ?>
+                    <?php if (get_field('benefits_name')): ?>
+                        <p>Exclusive benefits for <?php the_field('benefits_name'); ?> India employees to build a robust Global portfolio</p>
+                    <?php else: ?>
+                        <p>Seamlessly diversify your ESOP/RSUs and create a robust global portfolio</p>
+                    <?php endif; ?>
                     <a class="btn btn-primary openInvestPopoverBtn">Start Investing</a>
                 </div>
                 <div class="benefits_banner_image">
@@ -43,11 +51,18 @@
     <section class="benefits_employees">
         <div class="container">
             <div class="benefits_employees_wrapper">
-                <h2>Your exclusive Global Investing experience, with Vested</h2>
+                <?php if (get_field('benefits_name')): ?>
+                    <h2>Global Investing for <?php the_field('benefits_name'); ?> India</h2>
+                <?php else: ?>
+                    <h2>Your exclusive Global Investing experience, with Vested</h2>
+                <?php endif; ?>
                 <div class="benefits_employees_list">
                     <div class="benefits_employees_item">
-                        <h3>Exclusive Benefits</h3>
-
+                        <?php if (get_field('benefits_name')): ?>
+                            <h3><?php the_field('benefits_name'); ?></h3>
+                        <?php else: ?>
+                            <h3>Exclusive Benefits</h3>
+                        <?php endif; ?>
                         <?php if (have_rows('company_benefits')): ?>
                             <?php while (have_rows('company_benefits')): the_row(); ?>
                                 <div class="benefits_employees_item_content">
@@ -444,6 +459,34 @@
                 </div>
                 <div class="benefits_investors_disclosure">
                     These customers were not paid for their testimonials and may not be representative of the experience of other customers. These testimonials are no guarantee of future performance or success.
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <?php if (get_field('benefits_name')): ?>
+    <section class="benefits_peers">
+        <div class="container">
+            <div class="benefits_peers_wrapper">
+                <h2>Your Peers Already Have Access</h2>
+                <p>We've launched exclusive benefits for leading US-listed companies to bring exclusive ESOP/RSU features to their teams. Because top talent deserves top tools.</p>
+                <div class="benefits_peers_list">
+                    <div class="benefits_peers_item">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers1.svg" alt="Peers 1">
+                    </div>
+                    <div class="benefits_peers_item">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers2.svg" alt="Peers 2">
+                    </div>
+                    <div class="benefits_peers_item">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers3.svg" alt="Peers 3">
+                    </div>
+                    <div class="benefits_peers_item">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers4.svg" alt="Peers 4">
+                    </div>
+                    <div class="benefits_peers_item">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/peers/peers5.svg" alt="Peers 5">
+                    </div>
                 </div>
             </div>
         </div>
