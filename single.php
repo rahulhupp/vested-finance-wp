@@ -330,9 +330,9 @@ while (have_posts()) :
 		function handleTOCsmallerScreen() {
 			if (window.innerWidth < 1201 && tocElement) {
 				tocElement.classList.add('toc_close');
-				if (tocNav) {
-					tocNav.style.display = 'none';
-				}
+				// if (tocNav) {
+				// 	tocNav.style.display = 'none';
+				// }
 				
 				// Remove existing event listeners to prevent duplicates
 				if (tocInsideNav) {
