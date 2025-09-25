@@ -1402,12 +1402,21 @@ body.single.single-module {
 		border-radius: 0 0 6px 6px;
 	}
 
+	/* Hide TOC navigation on mobile by default */
 	.single_module_table_content #ez-toc-container .ez-toc-list {
 		display: none;
 	}
 
-	.single_module_table_content #ez-toc-container:not(.toc_close) .ez-toc-list {
-		display: block;
+	/* Show TOC navigation on desktop (min-width: 1201px) */
+	@media (min-width: 1201px) {
+		.single_module_table_content #ez-toc-container .ez-toc-list {
+			display: block;
+		}
+	}
+
+	/* Hide TOC when toc_close class is present (for JavaScript control) */
+	.single_module_table_content #ez-toc-container.toc_close .ez-toc-list {
+		display: none;
 	}
 
 	.module_completed {
