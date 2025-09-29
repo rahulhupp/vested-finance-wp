@@ -49,7 +49,7 @@ function get_ipo_api_data($ipo_id, $endpoint) {
     $api_url = "https://api.monark-markets.com/primary/v1/{$endpoints[$endpoint]}?investorId=" . IPO_API_INVESTOR_ID . "&preIPOCompanyId=" . urlencode($ipo_id) . "&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     // error_log("api_url: " . $api_url);
     $headers = array(
-        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
+        'Authorization' => 'partner_rMC+q51NAABf9slZ2SHUscPUu2NxZXaMqx7FcrIQZZE=',
         'accept' => 'application/json',
     );
     
@@ -115,7 +115,7 @@ function get_ipo_spv_details($spv_id) {
     // API endpoint and headers
     $api_url = "https://api.monark-markets.com/primary/v1/pre-ipo-company-spv/{$spv_id}/investor/" . IPO_API_INVESTOR_ID . "?includeDocuments=true&monarkStage=PRIMARY_FUNDRAISE&exemptionsClaimed=Reg_S";
     $headers = array(
-        'Authorization' => 'partner_Bt2rdmqWUNqUnyeNkHKkuE15AGk1YdDdhbt4Y5/Fmkc=',
+        'Authorization' => 'partner_rMC+q51NAABf9slZ2SHUscPUu2NxZXaMqx7FcrIQZZE=',
         'accept' => 'application/json',
     );
     
