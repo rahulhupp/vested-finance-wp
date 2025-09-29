@@ -332,6 +332,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<h4>$466.3B</h4>
 								<?php elseif ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
 									<h4>$5.4B</h4>
+								<?php elseif ($ipo->ipo_id == 'c1db5a5b-f9ea-4536-8c25-05cf25952a1e4'): ?>
+									<h4>$9.9B</h4>
 								<?php else: ?>
 									<h4>$<?php echo $api_valuation; ?></h4>
 								<?php endif; ?>

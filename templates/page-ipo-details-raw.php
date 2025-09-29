@@ -315,6 +315,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<h4>$466.3B</h4>
 								<?php elseif ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
 									<h4>$5.4B</h4>
+								<?php elseif ($ipo->ipo_id == 'c1db5a5b-f9ea-4536-8c25-05cf25952a1e4'): ?>
+									<h4>$9.9B</h4>
 								<?php else: ?>
 									<h4>$<?php echo $api_valuation; ?></h4>
 								<?php endif; ?>
@@ -637,6 +639,8 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on August 6th, 2025 and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
 								<?php elseif($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
 									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on September 18th, 2025 and closes on September 29th, 2025. Once closed, the opportunity will no longer be available for subscription.</p>
+								<?php elseif ($ipo->ipo_id == 'c1db5a5b-f9ea-4536-8c25-05cf25952a1e4'): ?>
+									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on September 29th, 2025 and closes on October 15th, 2025. Once closed, the opportunity will no longer be available for subscription.</p>
 								<?php else: ?>
 									<p>The offering for <?php echo esc_html($ipo->name ?? 'this company'); ?> opens on <?php echo !empty($ipo->year_est) ? date('F j, Y', strtotime($ipo->year_est)) : 'TBD'; ?> and closes on <?php echo $api_funding_deadline !== 'N/A' ? format_date_with_ordinal($api_funding_deadline) : 'TBD'; ?>. Once closed, the opportunity will no longer be available for subscription.</p>
 								<?php endif; ?>
