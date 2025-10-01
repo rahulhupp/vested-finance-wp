@@ -522,6 +522,30 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 						
 						$total_research = count($sorted_research);
 						echo '<div class="ipo_research_list" data-total="' . $total_research . '">';
+						if ($ipo->ipo_id == '08227fe7-f3a5-4710-a199-029c69ba69d4'): ?>
+							<div class="ipo_research_item">
+								<div class="ipo_research_content">
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M9.99935 1.3335H3.99935C3.64573 1.3335 3.30659 1.47397 3.05654 1.72402C2.80649 1.97407 2.66602 2.31321 2.66602 2.66683V13.3335C2.66602 13.6871 2.80649 14.0263 3.05654 14.2763C3.30659 14.5264 3.64573 14.6668 3.99935 14.6668H11.9993C12.353 14.6668 12.6921 14.5264 12.9422 14.2763C13.1922 14.0263 13.3327 13.6871 13.3327 13.3335V4.66683L9.99935 1.3335Z" stroke="#002852" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M9.33398 1.3335V4.00016C9.33398 4.35378 9.47446 4.69292 9.72451 4.94297C9.97456 5.19302 10.3137 5.3335 10.6673 5.3335H13.334" stroke="#002852" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M6.66732 6H5.33398" stroke="#002852" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M10.6673 8.6665H5.33398" stroke="#002852" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M10.6673 11.3335H5.33398" stroke="#002852" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+									<h3 class="ipo_research_title">Apptronik Business Overview</h3>
+								</div>
+								<div class="ipo_research_link">
+									<a href="https://d13dxy5z8now6z.cloudfront.net/v3/img/appsmith/word/Apptronik+(1).pdf" target="_blank">
+										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10 2H14V6" stroke="#2563EB" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M6.66602 9.33333L13.9993 2" stroke="#2563EB" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M12 8.66667V12.6667C12 13.0203 11.8595 13.3594 11.6095 13.6095C11.3594 13.8595 11.0203 14 10.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V5.33333C2 4.97971 2.14048 4.64057 2.39052 4.39052C2.64057 4.14048 2.97971 4 3.33333 4H7.33333" stroke="#2563EB" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+										<span>View Document</span>
+									</a>
+								</div>
+							</div>
+						<?php endif;
 						foreach ($sorted_research as $index => $research) {
 							$title = esc_html($research['title']);
 							$link = esc_url($research['link']);
