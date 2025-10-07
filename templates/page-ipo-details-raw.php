@@ -618,17 +618,19 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<p>Direct investment into high-demand private companies like <?php echo esc_html($ipo->name ?? 'this company'); ?> often requires $50M+ in capital. Our SPV structure gives you access at lower minimums by pooling capital and investing through intermediaries that already hold equity.</p>
 							</div>
 						</div>
-						<div class="ipo_faq_item">
-							<div class="ipo_faq_question">
-								<span>What is the minimum investment amount?</span>
-								<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M1 1L7 7L13 1" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
+						<?php if ($api_min_commitment !== 'N/A'): ?>
+							<div class="ipo_faq_item">
+								<div class="ipo_faq_question">
+									<span>What is the minimum investment amount?</span>
+									<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M1 1L7 7L13 1" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+								<div class="ipo_faq_answer">
+									<p>The minimum investment typically starts from $<?php echo $api_min_commitment; ?>, though it may vary depending on the deal size and available allocations.</p>
+								</div>
 							</div>
-							<div class="ipo_faq_answer">
-								<p>The minimum investment typically starts from $10,000, though it may vary depending on the deal size and available allocations.</p>
-							</div>
-						</div>
+						<?php endif; ?>
 						<?php if ($has_investors_data): ?>
 						<div class="ipo_faq_item ipo_faq_item_hidden">
 							<div class="ipo_faq_question">
