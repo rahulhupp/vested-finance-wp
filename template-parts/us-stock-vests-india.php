@@ -170,6 +170,45 @@
             vestsResultsList.appendChild(li);
         }
 
+        // Initialize slick slider after vests are loaded
+        if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
+            jQuery("#vestsResultsList").slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                dots: false,
+                arrows: false,
+                responsive: [
+                    {
+                        breakpoint: 1199,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,  // This will now apply properly for screens smaller than 992px
+                        }
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    }
+                ]
+            });
+        }
+
         // const defaultBox = document.createElement("li");
         // defaultBox.className = "box";
         // defaultBox.innerHTML = `

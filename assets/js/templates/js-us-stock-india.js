@@ -339,57 +339,6 @@ jQuery(document).ready(function ($) {
 		});
 	});
 
-	// mobile slider for vests
-
-	setTimeout(checkForVests, 3000);
-
-	function checkForVests() {
-		var vestsValue = localStorage.getItem("vests");
-
-		if (vestsValue === "true") {
-			console.log('vests');
-			$("#vestsResultsList").slick({
-				slidesToShow: 4,
-				slidesToScroll: 1,
-				infinite: true,
-				autoplay: true,
-				autoplaySpeed: 2000,
-				dots: false,
-				arrows: false,
-				responsive: [
-					{
-						breakpoint: 1199,
-						settings: {
-							slidesToShow: 3,
-						}
-					},
-					{
-						breakpoint: 992,
-						settings: {
-							slidesToShow: 2,  // This will now apply properly for screens smaller than 992px
-						}
-					},
-					{
-						breakpoint: 767,
-						settings: {
-							slidesToShow: 2,
-						}
-					},
-					{
-						breakpoint: 600,
-						settings: {
-							slidesToShow: 1,
-						}
-					}
-				]
-			});					
-			localStorage.removeItem("vests");
-		} else {
-			console.log('No vests');
-			setTimeout(checkForVests, 1000); // Check again in 1 second
-		}
-	}
-
 	if ($(window).width() <= 767) {
 		$(".post-listing ul").slick({
 			slidesToShow: 1,
