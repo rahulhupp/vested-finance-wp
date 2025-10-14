@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
   const overlay = document.getElementById("investPopoverOverlay");
   const investPopoverBox = document.getElementById("investPopoverBox");
-  let selectedOption = "";
+  let selectedOption = null;
 
   // Bind all "Start Investing" buttons
   document.querySelectorAll(".openInvestPopoverBtn").forEach(button => {
@@ -288,9 +288,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function resetOptions() {
-    selectedOption = "";
+    selectedOption = null;
     document.querySelectorAll(".invest_option").forEach(card => card.classList.remove("selected"));
-    // document.querySelector('[data-value="new"]').classList.add("selected");
   }
 
   // ✅ Make these accessible from HTML onclick
@@ -327,6 +326,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Default select on load
-  resetOptions();
 });
