@@ -14,7 +14,7 @@
                     <?php else: ?>
                         <p>Seamlessly diversify your ESOP/RSUs and create a robust global portfolio</p>
                     <?php endif; ?>
-                    <a class="btn btn-primary openInvestPopoverBtn">Start Investing</a>
+                    <a class="btn btn-primary openInvestPopoverBtn">Get Exclusive Benefits</a>
                 </div>
                 <div class="benefits_banner_image">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/exclusive-benefits/banner.svg" alt="Exclusive Benefits">
@@ -407,7 +407,7 @@
                     </div>
                     <div class="step_item">
                         <div class="step_content">
-                            <h3>Start Investing!</h3>
+                            <h3>Get Exclusive Benefits</h3>
                             <p>Build your global portfolio with US Stocks, ETFs or Managed Portfolios starting at $1</p>
                         </div>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-step-3.png" alt="Step 3">
