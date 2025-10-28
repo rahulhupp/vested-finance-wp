@@ -2,7 +2,9 @@
 /*
 Template name: Page - NSE page
 */
-get_header(); ?>
+get_header();
+$fund_access = get_field('disable_funds');
+?>
 
 <section class="nse-section">
   <div class="nse-container">
@@ -19,27 +21,54 @@ get_header(); ?>
             <div class="nse-price-date">as of July 2025</div>
           </div>
           <div class="nse-stats">
-            <div>Market Cap<br><b>$69.89B</b></div>
-            <div>P/E Ratio<br><b>49x</b></div>
-            <div>Profit Margin<br><b>60%+</b></div>
-            <div>Dividend/Share<br><b>₹35</b></div>
-            <div class="disabled-section">
-                <div class="disabled-section-content">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Available after launch</span>
-                </div>
-            </div>
+          <?php if ($fund_access == 'Yes'): ?>
+              <div>Market Cap<br><b>$00.00B</b></div>
+              <div>P/E Ratio<br><b>00x</b></div>
+              <div>Profit Margin<br><b>00%</b></div>
+              <div>Dividend/Share<br><b>₹00</b></div>
+              <div class="disabled-section">
+                  <div class="disabled-section-content">
+                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                          <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>Available after launch</span>
+                  </div>
+              </div>
+            <?php else: ?>
+              <div>Market Cap<br><b>$69.89B</b></div>
+              <div>P/E Ratio<br><b>49x</b></div>
+              <div>Profit Margin<br><b>60%+</b></div>
+              <div>Dividend/Share<br><b>₹35</b></div>
+            <?php endif; ?>
           </div>
-          <a href="https://vestedfinance.typeform.com/to/okDZaSLr" target="_blank" class="nse-express-btn">
-            <span>Express Interest</span>
-            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </a>
+          <?php if ($fund_access == 'Yes'): ?>
+            <a href="http://us.vestedfinance.com/en/us/offering-details/nse?ctaClicked=true" target="_blank" class="nse-express-btn">
+                <span>Express Interest</span>
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>          
+          <?php else: ?>
+            <a class="nse-express-btn" id="nseExpressBtn">
+              <span>
+                <?php
+                  if (isset($_GET['cta'])) {
+                      $cta = urldecode($_GET['cta']);
+                      echo $cta;
+                  } else {
+                    echo 'Express Interest';
+                  }
+                ?>
+              </span>
+
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -207,107 +236,202 @@ get_header(); ?>
         <h2 class="nse-inner-section-title">Financial Performance</h2>
         <div class="nse-inner-section-desc">5-year track record of consistent growth (FY21-FY25)</div>
         <div class="nse-financial-metrics-wrapper">
-            <div class="nse-financial-metrics">
-            <div class="nse-financial-metric">
-                <h3>₹19,177 Cr</h3>
-                <div class="nse-financial-metric-desc">
-                <p>Revenue (FY25)</p>
-                <p><small>+241% from FY21</small></p>
+        <?php if ($fund_access == 'Yes'): ?>
+              <div class="nse-financial-metrics">
+                <div class="nse-financial-metric">
+                    <h3>₹00,000 Cr</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Revenue (FY25)</p>
+                    <p><small>+00% from FY21</small></p>
+                    </div>
                 </div>
-            </div>
-            <div class="nse-financial-metric">
-                <h3>₹12,188 Cr</h3>
-                <div class="nse-financial-metric-desc">
-                <p>Profit (FY25)</p>
-                <p><small>+241% from FY21</small></p>
+                <div class="nse-financial-metric">
+                    <h3>₹00,000 Cr</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Profit (FY25)</p>
+                    <p><small>+00% from FY21</small></p>
+                    </div>
                 </div>
-            </div>
-            <div class="nse-financial-metric">
-                <h3>64%</h3>
-                <div class="nse-financial-metric-desc">
-                <p>Net Margin (FY25)</p>
-                <p><small>Consistent 60%+</small></p>
+                <div class="nse-financial-metric">
+                    <h3>00%</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Net Margin (FY25)</p>
+                    <p><small>Consistent 00%+</small></p>
+                    </div>
                 </div>
-            </div>
-            <div class="nse-financial-metric">
-                <h3>₹49.24</h3>
-                <div class="nse-financial-metric-desc">
-                <p>EPS (FY25)</p>
-                <p><small>+250% from FY21</small></p>
+                <div class="nse-financial-metric">
+                    <h3>₹00.00</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>EPS (FY25)</p>
+                    <p><small>+00% from FY21</small></p>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <div class="table-wrapper">
-            <table class="nse-financial-table">
-                <tr>
-                <th>Metric</th>
-                <th>FY21</th>
-                <th>FY22</th>
-                <th>FY23</th>
-                <th>FY24</th>
-                <th>FY25</th>
-                </tr>
-                <tr>
-                <td>Revenue (₹ Cr)</td>
-                <td>5,624</td>
-                <td>8,929</td>
-                <td>11,856</td>
-                <td>14,780</td>
-                <td>19,177</td>
-                </tr>
-                <tr>
-                <td>Profit (₹ Cr)</td>
-                <td>3,573</td>
-                <td>5,198</td>
-                <td>7,501</td>
-                <td>8,406</td>
-                <td>12,188</td>
-                </tr>
-                <tr>
-                <td>Net Margin (%)</td>
-                <td>63%</td>
-                <td>58%</td>
-                <td>63%</td>
-                <td>56%</td>
-                <td>64%</td>
-                </tr>
-                <tr>
-                <td>EPS (₹)</td>
-                <td>14</td>
-                <td>21</td>
-                <td>30</td>
-                <td>34</td>
-                <td>49</td>
-                </tr>
-            </table>
-            </div>
-            <div class="nse-subsidiaries-metrics">
-            <div class="nse-subsidiaries-metric">
-                <h3>₹35</h3>
-                <span class="nse-financial-metric-desc">Dividend per Share</span>
-            </div>
-            <div class="nse-subsidiaries-metric">
-                <h3>₹11.46</h3>
-                <span class="nse-financial-metric-desc">Special Dividend</span>
-            </div>
-            <div class="nse-subsidiaries-metric">
-                <h3>Minimal</h3>
-                <span class="nse-financial-metric-desc">Debt Level</span>
-            </div>
-            <div class="nse-subsidiaries-metric">
-                <h3>60%+</h3>
-                <span class="nse-financial-metric-desc">Operating Margin</span>
-            </div>
-            </div>
-            <div class="disabled-section">
-                <div class="disabled-section-content">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Available after launch</span>
+              </div>
+              <div class="table-wrapper">
+                <table class="nse-financial-table">
+                    <tr>
+                    <th>Metric</th>
+                    <th>FY21</th>
+                    <th>FY22</th>
+                    <th>FY23</th>
+                    <th>FY24</th>
+                    <th>FY25</th>
+                    </tr>
+                    <tr>
+                    <td>Revenue (₹ Cr)</td>
+                    <td>00,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>00,000</td>
+                    </tr>
+                    <tr>
+                    <td>Profit (₹ Cr)</td>
+                    <td>00,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>00,000</td>
+                    </tr>
+                    <tr>
+                    <td>Net Margin (%)</td>
+                    <td>00,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>00,000</td>
+                    </tr>
+                    <tr>
+                    <td>EPS (₹)</td>
+                    <td>00,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>0,000</td>
+                    <td>00,000</td>
+                    </tr>
+                </table>
+              </div>
+              <div class="nse-subsidiaries-metrics">
+                <div class="nse-subsidiaries-metric">
+                    <h3>₹00</h3>
+                    <span class="nse-financial-metric-desc">Dividend per Share</span>
                 </div>
-            </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>₹00.00</h3>
+                    <span class="nse-financial-metric-desc">Special Dividend</span>
+                </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>00%</h3>
+                    <span class="nse-financial-metric-desc">Debt Level</span>
+                </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>00%+</h3>
+                    <span class="nse-financial-metric-desc">Operating Margin</span>
+                </div>
+              </div>
+              <div class="disabled-section">
+                  <div class="disabled-section-content">
+                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                          <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>Available after launch</span>
+                  </div>
+              </div>
+            <?php else: ?>
+              <div class="nse-financial-metrics">
+                <div class="nse-financial-metric">
+                    <h3>₹19,177 Cr</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Revenue (FY25)</p>
+                    <p><small>+241% from FY21</small></p>
+                    </div>
+                </div>
+                <div class="nse-financial-metric">
+                    <h3>₹12,188 Cr</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Profit (FY25)</p>
+                    <p><small>+241% from FY21</small></p>
+                    </div>
+                </div>
+                <div class="nse-financial-metric">
+                    <h3>64%</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>Net Margin (FY25)</p>
+                    <p><small>Consistent 60%+</small></p>
+                    </div>
+                </div>
+                <div class="nse-financial-metric">
+                    <h3>₹49.24</h3>
+                    <div class="nse-financial-metric-desc">
+                    <p>EPS (FY25)</p>
+                    <p><small>+250% from FY21</small></p>
+                    </div>
+                </div>
+                </div>
+                <div class="table-wrapper">
+                <table class="nse-financial-table">
+                    <tr>
+                    <th>Metric</th>
+                    <th>FY21</th>
+                    <th>FY22</th>
+                    <th>FY23</th>
+                    <th>FY24</th>
+                    <th>FY25</th>
+                    </tr>
+                    <tr>
+                    <td>Revenue (₹ Cr)</td>
+                    <td>5,624</td>
+                    <td>8,929</td>
+                    <td>11,856</td>
+                    <td>14,780</td>
+                    <td>19,177</td>
+                    </tr>
+                    <tr>
+                    <td>Profit (₹ Cr)</td>
+                    <td>3,573</td>
+                    <td>5,198</td>
+                    <td>7,501</td>
+                    <td>8,406</td>
+                    <td>12,188</td>
+                    </tr>
+                    <tr>
+                    <td>Net Margin (%)</td>
+                    <td>63%</td>
+                    <td>58%</td>
+                    <td>63%</td>
+                    <td>56%</td>
+                    <td>64%</td>
+                    </tr>
+                    <tr>
+                    <td>EPS (₹)</td>
+                    <td>14</td>
+                    <td>21</td>
+                    <td>30</td>
+                    <td>34</td>
+                    <td>49</td>
+                    </tr>
+                </table>
+                </div>
+                <div class="nse-subsidiaries-metrics">
+                <div class="nse-subsidiaries-metric">
+                    <h3>₹35</h3>
+                    <span class="nse-financial-metric-desc">Dividend per Share</span>
+                </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>₹11.46</h3>
+                    <span class="nse-financial-metric-desc">Special Dividend</span>
+                </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>Minimal</h3>
+                    <span class="nse-financial-metric-desc">Debt Level</span>
+                </div>
+                <div class="nse-subsidiaries-metric">
+                    <h3>60%+</h3>
+                    <span class="nse-financial-metric-desc">Operating Margin</span>
+                </div>
+              </div>
+            <?php endif; ?>
         </div>
       </div>
 
@@ -343,59 +467,106 @@ get_header(); ?>
         <h2 class="nse-inner-section-title">Competitive Position</h2>
         <div class="nse-inner-section-desc">NSE vs BSE comparison (FY25)</div>
         <div class="table-wrapper">
-          <table class="nse-competitive-table">
-            <tr>
-              <th><strong>Metric</strong></th>
-              <th>NSE</th>
-              <th>BSE</th>
-              <th>Advantage</th>
-            </tr>
-            <tr>
-              <td><strong>Revenue (₹ Cr)</strong></td>
-              <td>19,177</td>
-              <td>3,212</td>
-              <td>6x Higher</td>
-            </tr>
-            <tr>
-              <td>Net Profit (₹ Cr)</td>
-              <td>12,188</td>
-              <td>1,322</td>
-              <td>9x Higher</td>
-            </tr>
-            <tr>
-              <td>EPS (₹ Cr)</td>
-              <td>49.24</td>
-              <td>32.65</td>
-              <td>9x Higher</td>
-            </tr>
-            <tr>
-              <td>Share price</td>
-              <td>2,400</td>
-              <td>2,497</td>
-              <td>9x Higher</td>
-            </tr>
-            <tr>
-              <td>Market Cap (USD Bn)</td>
-              <td>69.89</td>
-              <td>12.0</td>
-              <td>6x Larger</td>
-            </tr>
-            <tr>
-              <td>P/E Ratio</td>
-              <td>49</td>
-              <td>76</td>
-              <td>Better Valuation</td>
-            </tr>
-          </table>
-          <div class="disabled-section">
-                <div class="disabled-section-content">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Available after launch</span>
-                </div>
-            </div>
+        <?php if ($fund_access == 'Yes'): ?>
+              <table class="nse-competitive-table">
+                <tr>
+                  <th><strong>Metric</strong></th>
+                  <th>NSE</th>
+                  <th>BSE</th>
+                  <th>Advantage</th>
+                </tr>
+                <tr>
+                  <td><strong>Revenue (₹ Cr)</strong></td>
+                  <td>00,000</td>
+                  <td>0,000</td>
+                  <td>00x Higher</td>
+                </tr>
+                <tr>
+                  <td>Net Profit (₹ Cr)</td>
+                  <td>00,000</td>
+                  <td>0,000</td>
+                  <td>00x Higher</td>
+                </tr>
+                <tr>
+                  <td>EPS (₹ Cr)</td>
+                  <td>00.00</td>
+                  <td>0,000</td>
+                  <td>00x Higher</td>
+                </tr>
+                <tr>
+                  <td>Share price</td>
+                  <td>00,000</td>
+                  <td>0,000</td>
+                  <td>00x Higher</td>
+                </tr>
+                <tr>
+                  <td>Market Cap (USD Bn)</td>
+                  <td>00.00</td>
+                  <td>0,000</td>
+                  <td>00x Larger</td>
+                </tr>
+                <tr>
+                  <td>P/E Ratio</td>
+                  <td>00</td>
+                  <td>0,000</td>
+                  <td>00</td>
+                </tr>
+              </table>
+              <div class="disabled-section">
+                  <div class="disabled-section-content">
+                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                          <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>Available after launch</span>
+                  </div>
+              </div>
+            <?php else: ?>
+              <table class="nse-competitive-table">
+                <tr>
+                  <th><strong>Metric</strong></th>
+                  <th>NSE</th>
+                  <th>BSE</th>
+                  <th>Advantage</th>
+                </tr>
+                <tr>
+                  <td><strong>Revenue (₹ Cr)</strong></td>
+                  <td>19,177</td>
+                  <td>3,212</td>
+                  <td>6x Higher</td>
+                </tr>
+                <tr>
+                  <td>Net Profit (₹ Cr)</td>
+                  <td>12,188</td>
+                  <td>1,322</td>
+                  <td>9x Higher</td>
+                </tr>
+                <tr>
+                  <td>EPS (₹ Cr)</td>
+                  <td>49.24</td>
+                  <td>32.65</td>
+                  <td>9x Higher</td>
+                </tr>
+                <tr>
+                  <td>Share price</td>
+                  <td>2,400</td>
+                  <td>2,497</td>
+                  <td>9x Higher</td>
+                </tr>
+                <tr>
+                  <td>Market Cap (USD Bn)</td>
+                  <td>69.89</td>
+                  <td>12.0</td>
+                  <td>6x Larger</td>
+                </tr>
+                <tr>
+                  <td>P/E Ratio</td>
+                  <td>49</td>
+                  <td>76</td>
+                  <td>Better Valuation</td>
+                </tr>
+              </table>
+            <?php endif; ?>
         </div>
         <div class="nse-warning-icon">
           <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -483,3 +654,16 @@ get_header(); ?>
 
 
 <?php get_footer(); ?>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctaBtn = document.getElementById('nseExpressBtn');
+
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', function(e) {
+        console.log('clicked');
+        e.preventDefault(); // stop opening Typeform
+        window.parent.postMessage({ type: 'CTA_CLICKED' }, '*'); // trigger parent message
+      });
+    }
+  });
+</script>

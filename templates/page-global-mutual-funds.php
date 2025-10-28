@@ -33,7 +33,7 @@ get_header(); ?>
         <div class="banner_popup_overlay">
             <div class="banner_popup">
                 <div class="close_btn"><i class="fa fa-times"></i></div>
-                <p>This page contains information on investing in Global Mutual Funds via Vested. Mutual Funds mentioned on this page are offered through VF Securities, Inc. (member FINRA/SIPC). Alternative investment options outside of Global Mutual Funds, that are offered on other sections of the website are not FINRA regulated and not protected by the SIPC.</p>
+                <p>This page contains information on investing in Global Funds via Vested. Global Funds mentioned on this page are offered through VF Securities, Inc. (member FINRA/SIPC). Alternative investment options outside of Global Funds, that are offered on other sections of the website are not FINRA regulated and not protected by the SIPC.</p>
             </div>
         </div>
     </section>

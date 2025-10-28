@@ -216,6 +216,7 @@
   color: var(--nse-color-bg-card);
   border: 1px solid transparent;
   font: 500 14px / 20px "Inter", sans-serif;
+  cursor: pointer;
 }
 
 .nse-express-btn:hover {
@@ -1111,4 +1112,8 @@
     left: -18px;
     width: calc(100% + 36px);
   }
+}
+
+.page-id-13575 footer {
+  display: none;
 }

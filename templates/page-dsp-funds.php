@@ -2,7 +2,9 @@
 /*
 Template name: Page - DSP Fund
 */
-get_header(); ?>
+get_header();
+$fund_access = get_field('disable_funds');
+?>
 
 <section class="nse-section">
     <div class="nse-container">
@@ -17,51 +19,101 @@ get_header(); ?>
                     <div class="nse-overview-section">
                         <div class="nse-overview-title">Overview</div>
                         <div class="nse-overview-grid">
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Minimum Investment</span>
-                                <span class="nse-overview-value">$50,000</span>
-                            </div>
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Lock-in</span>
-                                <div class="nse-overview-value-wrapper">
+                            <?php if ($fund_access == 'Yes'): ?>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Minimum Investment</span>
+                                    <span class="nse-overview-value">$00,000</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Lock-in</span>
+                                    <div class="nse-overview-value-wrapper">
+                                        <span class="nse-overview-value">--</span>
+                                        <span class="nse-overview-note">--</span>
+                                    </div>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Performance Fee</span>
+                                    <span class="nse-overview-value">--</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Total Expense Ratio</span>
+                                    <span class="nse-overview-value">0%</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Fund Manager</span>
+                                    <span class="nse-overview-value">--</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Administrator</span>
+                                    <span class="nse-overview-value">--</span>
+                                </div>
+                                <div class="disabled-section">
+                                    <div class="disabled-section-content">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                            <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Available after launch</span>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Minimum Investment</span>
+                                    <span class="nse-overview-value">$50,000</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Lock-in</span>
+                                    <div class="nse-overview-value-wrapper">
+                                        <span class="nse-overview-value">None</span>
+                                        <span class="nse-overview-note">(after exit window)</span>
+                                    </div>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Performance Fee</span>
                                     <span class="nse-overview-value">None</span>
-                                    <span class="nse-overview-note">(after exit window)</span>
                                 </div>
-                            </div>
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Performance Fee</span>
-                                <span class="nse-overview-value">None</span>
-                            </div>
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Total Expense Ratio</span>
-                                <span class="nse-overview-value">2%</span>
-                            </div>
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Fund Manager</span>
-                                <span class="nse-overview-value">Vested Finance Inc.</span>
-                            </div>
-                            <div class="nse-overview-item">
-                                <span class="nse-overview-label">Administrator</span>
-                                <span class="nse-overview-value">NAV Consulting, Inc</span>
-                            </div>
-                            <div class="disabled-section">
-                                <div class="disabled-section-content">
-                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    <span>Available after launch</span>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Total Expense Ratio</span>
+                                    <span class="nse-overview-value">2%</span>
                                 </div>
-                            </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Fund Manager</span>
+                                    <span class="nse-overview-value">Vested Finance Inc.</span>
+                                </div>
+                                <div class="nse-overview-item">
+                                    <span class="nse-overview-label">Administrator</span>
+                                    <span class="nse-overview-value">NAV Consulting, Inc</span>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
-                    <a href="https://vestedfinance.typeform.com/to/i1ItERoU" target="_blank" class="nse-express-btn">
-                        <span>Express Interest</span>
+                    <?php if ($fund_access == 'Yes'): ?>
+                        <a href="http://us.vestedfinance.com/en/us/offering-details/vested-equity-dsp?ctaClicked=true" target="_blank" class="nse-express-btn">
+                            <span>Invest</span>
+                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a>          
+                    <?php else: ?>
+                        <a class="nse-express-btn" id="nseExpressBtn">
+                        <span>
+                            <?php
+                            if (isset($_GET['cta'])) {
+                                $cta = urldecode($_GET['cta']);
+                                echo $cta;
+                            } else {
+                                echo 'Express Interest';
+                            }
+                            ?>
+                        </span>
+
                         <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 15L13 10L8 5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                            stroke-linejoin="round" />
                         </svg>
-                    </a>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -296,75 +348,138 @@ get_header(); ?>
 
                 <div class="nse-section-inner-block">
                     <h2 class="nse-inner-section-title">Performance Track Record (USD)</h2>
-                    <div class="table-wrapper">
-                        <table class="nse-competitive-table">
-                            <tr>
-                                <th><strong>Period</strong></th>
-                                <th><strong>Fund</strong></th>
-                                <th><strong>Nifty LMC 250</strong></th>
-                                <th><strong>MSCI India</strong></th>
-                                <th><strong>Alpha vs Nifty</strong></th>
-                                <th><strong>Alpha vs MSCI</strong></th>
-                            </tr>
-                            <tr>
-                                <td><strong>1 Year</strong></td>
-                                <td class="fund-value">3.5%</td>
-                                <td>3.4%</td>
-                                <td>0.8%</td>
-                                <td class="alpha-positive">+0.2%</td>
-                                <td class="alpha-positive">+2.7%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>3 Year</strong></td>
-                                <td class="fund-value">22.6%</td>
-                                <td>21.7%</td>
-                                <td>15.6%</td>
-                                <td class="alpha-positive">+0.9%</td>
-                                <td class="alpha-positive">+6.9%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>5 Year</strong></td>
-                                <td class="fund-value">22.0%</td>
-                                <td>23.8%</td>
-                                <td>18.1%</td>
-                                <td class="alpha-negative">-1.7%</td>
-                                <td class="alpha-positive">+3.9%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>10 Year</strong></td>
-                                <td class="fund-value">12.3%</td>
-                                <td>12.8%</td>
-                                <td>9.2%</td>
-                                <td class="alpha-negative">-0.5%</td>
-                                <td class="alpha-positive">+3.1%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>20 Year</strong></td>
-                                <td class="fund-value">13.0%</td>
-                                <td>12.3%</td>
-                                <td>9.9%</td>
-                                <td class="alpha-positive">+0.7%</td>
-                                <td class="alpha-positive">+3.1%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Since Inception</strong></td>
-                                <td class="fund-value">14.82%</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                            </tr>
-                        </table>
-                        <div class="disabled-section">
-                            <div class="disabled-section-content">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                                    <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Available after launch</span>
+                    <?php if ($fund_access == 'Yes'): ?>
+                        <div class="table-wrapper">
+                            <table class="nse-competitive-table">
+                                <tr>
+                                    <th><strong>Period</strong></th>
+                                    <th><strong>Fund</strong></th>
+                                    <th><strong>Nifty LMC 250</strong></th>
+                                    <th><strong>MSCI India</strong></th>
+                                    <th><strong>Alpha vs Nifty</strong></th>
+                                    <th><strong>Alpha vs MSCI</strong></th>
+                                </tr>
+                                <tr>
+                                    <td><strong>0 Year</strong></td>
+                                    <td class="fund-value">00%</td>
+                                    <td>00%</td>
+                                    <td>00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 Year</strong></td>
+                                    <td class="fund-value">00%</td>
+                                    <td>00%</td>
+                                    <td>00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 Year</strong></td>
+                                    <td class="fund-value">00%</td>
+                                    <td>00%</td>
+                                    <td>00%</td>
+                                    <td class="alpha-negative">00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 Year</strong></td>
+                                    <td class="fund-value">00%</td>
+                                    <td>00%</td>
+                                    <td>00%</td>
+                                    <td class="alpha-negative">00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 Year</strong></td>
+                                    <td class="fund-value">00.0%</td>
+                                    <td>00%</td>
+                                    <td>00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                    <td class="alpha-positive">00%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>--</strong></td>
+                                    <td class="fund-value">00.00%</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                            </table>
+                            <div class="disabled-section">
+                                <div class="disabled-section-content">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>Available after launch</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php else: ?>
+                        <div class="table-wrapper">
+                            <table class="nse-competitive-table">
+                                <tr>
+                                    <th><strong>Period</strong></th>
+                                    <th><strong>Fund</strong></th>
+                                    <th><strong>Nifty LMC 250</strong></th>
+                                    <th><strong>MSCI India</strong></th>
+                                    <th><strong>Alpha vs Nifty</strong></th>
+                                    <th><strong>Alpha vs MSCI</strong></th>
+                                </tr>
+                                <tr>
+                                    <td><strong>1 Year</strong></td>
+                                    <td class="fund-value">3.5%</td>
+                                    <td>3.4%</td>
+                                    <td>0.8%</td>
+                                    <td class="alpha-positive">+0.2%</td>
+                                    <td class="alpha-positive">+2.7%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3 Year</strong></td>
+                                    <td class="fund-value">22.6%</td>
+                                    <td>21.7%</td>
+                                    <td>15.6%</td>
+                                    <td class="alpha-positive">+0.9%</td>
+                                    <td class="alpha-positive">+6.9%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5 Year</strong></td>
+                                    <td class="fund-value">22.0%</td>
+                                    <td>23.8%</td>
+                                    <td>18.1%</td>
+                                    <td class="alpha-negative">-1.7%</td>
+                                    <td class="alpha-positive">+3.9%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>10 Year</strong></td>
+                                    <td class="fund-value">12.3%</td>
+                                    <td>12.8%</td>
+                                    <td>9.2%</td>
+                                    <td class="alpha-negative">-0.5%</td>
+                                    <td class="alpha-positive">+3.1%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>20 Year</strong></td>
+                                    <td class="fund-value">13.0%</td>
+                                    <td>12.3%</td>
+                                    <td>9.9%</td>
+                                    <td class="alpha-positive">+0.7%</td>
+                                    <td class="alpha-positive">+3.1%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Since Inception</strong></td>
+                                    <td class="fund-value">14.82%</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                            </table>
+                        </div>
+                    <?php endif; ?>
                     <div class="nse-warning-icon">
                         <p>
                             Data as of June 30, 2025. Returns are net of fees. Past performance is not indicative of
@@ -394,40 +509,68 @@ get_header(); ?>
 
                 <div class="nse-section-inner-block">
                     <h2 class="nse-inner-section-title">Risk Metrics (USD)</h2>
-                    <div class="table-wrapper">
-                        <table class="nse-competitive-table">
-                            <tr>
-                                <th><strong>Metric</strong></th>
-                                <th><strong>1Y</strong></th>
-                                <th><strong>3Y</strong></th>
-                                <th><strong>5Y</strong></th>
-                                <th><strong>10Y</strong></th>
-                            </tr>
-                            <tr>
-                                <td>Volatility (%)</td>
-                                <td>15.9</td>
-                                <td>14.8</td>
-                                <td>15.4</td>
-                                <td>14.8</td>
-                            </tr>
-                            <tr>
-                                <td>Sharpe Ratio</td>
-                                <td>-0.1</td>
-                                <td>1.2</td>
-                                <td>0.5</td>
-                                <td>0.5</td>
-                            </tr>
-                        </table>
-                        <div class="disabled-section">
-                            <div class="disabled-section-content">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
-                                    <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>Available after launch</span>
+                    <?php if ($fund_access == 'Yes'): ?>
+                        <div class="table-wrapper">
+                            <table class="nse-competitive-table">
+                                <tr>
+                                    <th><strong>Metric</strong></th>
+                                    <th><strong>1Y</strong></th>
+                                    <th><strong>3Y</strong></th>
+                                    <th><strong>5Y</strong></th>
+                                    <th><strong>10Y</strong></th>
+                                </tr>
+                                <tr>
+                                    <td>Volatility (%)</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Sharpe Ratio</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                    <td>00.0</td>
+                                </tr>
+                            </table>
+                            <div class="disabled-section">
+                                <div class="disabled-section-content">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
+                                        <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>Available after launch</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php else: ?>
+                        <div class="table-wrapper">
+                            <table class="nse-competitive-table">
+                                <tr>
+                                    <th><strong>Metric</strong></th>
+                                    <th><strong>1Y</strong></th>
+                                    <th><strong>3Y</strong></th>
+                                    <th><strong>5Y</strong></th>
+                                    <th><strong>10Y</strong></th>
+                                </tr>
+                                <tr>
+                                    <td>Volatility (%)</td>
+                                    <td>15.9</td>
+                                    <td>14.8</td>
+                                    <td>15.4</td>
+                                    <td>14.8</td>
+                                </tr>
+                                <tr>
+                                    <td>Sharpe Ratio</td>
+                                    <td>-0.1</td>
+                                    <td>1.2</td>
+                                    <td>0.5</td>
+                                    <td>0.5</td>
+                                </tr>
+                            </table>
+                        </div>
+                    <?php endif; ?>
                     <div class="nse-risk-disclaimer">
                         <p>
                             Risk Metrics such as Volatility and Sharpe Ratio are provided for informational purposes
@@ -479,3 +622,16 @@ get_header(); ?>
 
 
 <?php get_footer(); ?>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctaBtn = document.getElementById('nseExpressBtn');
+
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', function(e) {
+        console.log('clicked');
+        e.preventDefault(); // stop opening Typeform
+        window.parent.postMessage({ type: 'CTA_CLICKED' }, '*'); // trigger parent message
+      });
+    }
+  });
+</script>
