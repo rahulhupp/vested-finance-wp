@@ -6807,3 +6807,8 @@ td.holdings_stock_weight_td {
 		padding-right: 0;
 	}
 }
+
+
+.india_invest_menu, .india_more_menu {
+	display: none !important;
+}

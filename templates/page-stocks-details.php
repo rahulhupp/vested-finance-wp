@@ -261,6 +261,34 @@ if ($overview_data) {
             <?php get_template_part('template-parts/stocks-details/advanced-chart-modal', null, array('overview_data' => $overview_data)); ?>
             <?php get_template_part('template-parts/stocks-details/add-ticker-modal'); ?>
 
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Get current URL parameters
+                    const queryString = window.location.search;
+                    console.log('queryString', queryString);
+
+                    // Only proceed if there are any parameters
+                    if (queryString) {
+                        console.log('queryString found');
+                        // Select all signup links inside li.primary-btn
+                        const signupLinks = document.querySelectorAll("li.primary-btn a[href*='app.vestedfinance.com/signup']");
+
+                        signupLinks.forEach((link) => {
+                        // Append parameters only if not already present
+                        if (!link.href.includes("?")) {
+                            link.href += queryString;
+                        } else {
+                            link.href += "&" + queryString.substring(1);
+                        }
+                        });
+                    } else {
+                        console.log('queryString not found');
+                    }
+                });
+
+            </script>
+
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
             <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
