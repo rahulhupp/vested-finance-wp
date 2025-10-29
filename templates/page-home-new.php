@@ -245,7 +245,7 @@ get_header(); ?>
                         <div class="home_service_content">
                             <div class="home_service_labels">
                                 <span>Global Funds</span>
-                                <span class="active">Waitlist</span>
+                                <!-- <span class="active">Waitlist</span> -->
                             </div>
                             <h3>Invest Globally with the World’s Top Fund Managers</h3>
                             <ul>
