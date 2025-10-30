@@ -103,7 +103,7 @@ $fund_access = get_field('disable_funds');
                                 $cta = urldecode($_GET['cta']);
                                 echo $cta;
                             } else {
-                                echo 'Express Interest';
+                                echo 'Invest';
                             }
                             ?>
                         </span>
