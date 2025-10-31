@@ -366,10 +366,12 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 										<strong><?php echo $api_transaction_type; ?></strong>
 								</div>
 								<?php endif; ?>
-								<div class="ipo_ki_meta">
+								<?php if ($api_funding_rounds_data && !empty($api_funding_rounds_data['items'])): ?>
+									<div class="ipo_ki_meta">
 									<span>Fund History</span>
-									<button onclick="openFundingRoundsPopup()">Funding Rounds</button>
-								</div>
+										<button onclick="openFundingRoundsPopup()">Funding Rounds</button>
+									</div>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
