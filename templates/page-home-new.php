@@ -8,8 +8,8 @@ get_header(); ?>
         <div class="container">
             <div class="home_banner_wrapper">
                 <div class="home_banner_content">
-                    <h1>Your Gateway to <br> Global Investing</h1>
-                    <p>Invest in US Stocks, ETFs, Global Funds and more to build a globally diversified portfolio</p>
+                    <h1>The Global Investing Specialist</h1>
+                    <p>Access the widest range of global assets across Stocks, Funds, Private Markets and more on a platform built exclusively for global investing</p>
                     <a href="https://app.vestedfinance.com/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start Investing</a>
                     <h5>Are you an NRI looking to invest? <a href="<?php echo home_url('/'); ?>">Visit here</a></h5>
                 </div>
@@ -50,7 +50,7 @@ get_header(); ?>
         <div class="container">
             <div class="home_features_wrapper">
                 <h2>Explore Global Investment Opportunities</h2>
-                <p>Choose from a wide range of asset classes designed to help you build a diversified global portfolio — whether you're starting small or aiming big</p>
+                <p>Choose from a wide range of asset classes designed to help you build a diversified global portfolio — whether you're starting small or aiming big.</p>
                 <div class="home_features_list">
                     <div class="home_features_item">
                         <div class="home_features_item_image">
@@ -83,10 +83,10 @@ get_header(); ?>
                     </div>
                     <div class="home_features_item">
                         <div class="home_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Funds">
                         </div>
                         <div class="home_features_item_content">
-                            <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Funds</a></h3>
+                            <h3><a href="<?php echo home_url('/in/global-funds/'); ?>">Global Funds</a></h3>
                             <!-- <label>Join Waitlist</label> -->
                         </div>
                         <!-- <p>A VF Securities Inc. product</p> -->
@@ -259,7 +259,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="home_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Funds">
                             <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>

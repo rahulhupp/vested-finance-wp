@@ -51,10 +51,18 @@ section > div > div > p {
 .home_banner {
     padding-top: 48px;
 }
+
+.home_banner .container {
+    max-width: 100%;
+}
+
 .home_banner_content {
     max-width: 638px;
     margin: auto;
     text-align: center;
+    margin-bottom: -60px;
+    position: relative;
+    z-index: 1;
 }
 
 .home_banner_content h1 {
@@ -78,7 +86,7 @@ section > div > div > p {
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
-    margin-top: 33px;
+    margin-top: 77px;
 }
 
 .home_banner_content h5 a {
@@ -87,9 +95,9 @@ section > div > div > p {
 }
 
 .banner_image {
-    max-width: 1013px;
+    max-width: 1248px;
     margin: 27px auto 0px;
-    height: 380px;
+    height: 460px;
 }
 
 .banner_image img {
@@ -116,7 +124,7 @@ section > div > div > p {
     background-color: #002852;
     text-align: center;
     padding-top: 32px;
-    padding-bottom: 32px;
+    padding-bottom: 9px;
 }
 
 .home_metrics_list {
@@ -469,6 +477,10 @@ section > div > div > p {
     order: 1;
 }
 
+.home_service_item + .home_service_item {
+    /* margin-top: 48px; */
+}
+
 .home_service_image img {
     display: block;
 }
@@ -798,6 +810,10 @@ section > div > div > p {
   }
 
   @media (max-width: 1199px) {
+    .banner_image {
+        height: 360px;
+    }
+
     .home_metrics_item p {
         font-size: 16px;
     }
@@ -840,6 +856,9 @@ section > div > div > p {
   }
 
 @media (max-width: 991px) {
+    .home_banner_content {
+        margin-bottom: -40px;
+    }
     .banner_image {
         height: 260px;
     }
@@ -1220,23 +1239,14 @@ section > div > div > p {
         line-height: 20px;
         opacity: 1;
     }
-
-    /* .home_cta_box_content h2 {
-        text-align: center;
-    } */
     
     .home_cta_box_buttons {
         margin-top: 24px;
         flex-wrap: wrap;
-        /* max-width: 300px;
-        margin: 24px auto 0; */
     }
     
     .home_cta_box_content .btn {
         max-width: 100%;
-        /* max-width: 300px;
-        margin: 13px auto 0;
-        display: block; */
     }
     
     .home_cta_box_buttons a {
