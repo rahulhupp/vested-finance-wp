@@ -240,14 +240,14 @@
                     </div>
                     <div class="benefits_features_item">
                         <div class="benefits_features_item_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-feature-4.png" alt="Global Funds">
                         </div>
                         <div class="benefits_features_item_content">
-                            <h3><a href="<?php echo home_url('/in/global-mutual-funds/'); ?>">Global Mutual Funds</a></h3>
-                            <label>Join Waitlist</label>
+                            <h3><a href="<?php echo home_url('/in/global-funds/'); ?>">Global Funds</a></h3>
+                            <!-- <label>Join Waitlist</label> -->
                         </div>
                         <!-- <p>A VF Securities Inc. product</p> -->
-                        <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="learn_more_btn">
+                        <a href="<?php echo home_url('/in/global-funds/'); ?>" class="learn_more_btn">
                             <span>Learn More</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#002852" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -278,7 +278,7 @@
                     </div>
                 </div>
                 <div class="benefits_features_disclosure">
-                    US Stocks & ETFs and Global Mutual Funds are offered by VF Securities, Inc. Managed Portfolios and Private Markets are offered by Vested Finance, Inc. 
+                    US Stocks & ETFs and Global Funds are offered by VF Securities, Inc. Managed Portfolios and Private Markets are offered by Vested Finance, Inc. 
                 </div>
             </div>
         </div>
@@ -362,22 +362,22 @@
                     <div class="benefits_service_item card">
                         <div class="benefits_service_content">
                             <div class="benefits_service_labels">
-                                <span>Global Mutual Funds</span>
-                                <span class="active">Waitlist</span>
+                                <span>Global Funds</span>
+                                <!-- <span class="active">Waitlist</span> -->
                             </div>
                             <h3>Invest Globally with the World’s Top Fund Managers</h3>
                             <ul>
-                                <li>Invest in 50+ countries with Global Mutual Funds managed by global asset managers</li>
+                                <li>Invest in 50+ countries with Global Funds managed by global asset managers</li>
                                 <li>Avoid U.S. inheritance tax, which applies to non-US residents directly holding more than $60,000 in US assets</li>
                                 <li>No entry/exit load + Simplified taxes. Start investing with $1</li>
                             </ul>
                             <div class="benefits_service_footer">
-                                <a href="<?php echo home_url('/in/global-mutual-funds/'); ?>" class="btn btn-primary">Join Waitlist</a>
+                                <a href="<?php echo home_url('/in/global-funds/'); ?>" class="btn btn-primary">Explore Global Funds</a>
                                 <p class="desktop_disclosure">Offered by VF Securities, Inc</p>
                             </div>
                         </div>
                         <div class="benefits_service_image">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Mutual Funds">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/new-home/home-service-4.png" alt="Global Funds">
                             <p class="mobile_disclosure">Offered by VF Securities, Inc</p>
                         </div>
                     </div>
