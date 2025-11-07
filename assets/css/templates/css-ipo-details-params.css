@@ -1110,3 +1110,22 @@ a {
 		padding: 16px;
 	}
 }
+
+.ipo_ki_meta_disclaimer {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 20px;
+    color: #000;
+}
+
+.ipo_ki_meta_disclaimer p {
+    margin: 0;
+}
+
+.ipo_ki_meta_disclaimer p + p {
+    margin-top: 10px;
+    background-color: #F2F4F6;
+    padding: 10px 10px;
+    border-radius: 6px;
+}

@@ -392,6 +392,13 @@ $request_callback_url = "https://api.whatsapp.com/send?phone=919321712688&text=I
 								<?php endif; ?>
 							</div>
 						</div>
+						<?php if ($ipo->ipo_id == 'b1bae8a6-62e1-4220-82c2-aa4d81a6bb19'): ?>
+							<div class="ipo_ki_meta_disclaimer">
+								<p>To invest in this private market opportunity, you must be a Qualified Purchaser as defined under the U.S. Investment Company Act of 1940.</p>
+								<p>An individual Qualified Purchaser is someone who:<br>
+								Owns at least ₹45 crore (Indian Rupees) in investments, including (but not limited to) stocks, bonds, funds, partnership interests, and equity or shareholdings in companies held for investment purposes — excluding your primary residence and assets held for personal use.</p>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 				<?php endif; ?>
