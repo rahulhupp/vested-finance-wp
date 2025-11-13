@@ -17,7 +17,8 @@ while (have_posts()):
 	the_post();
 	$featured_image_url = get_the_post_thumbnail_url();
 	$author_id = get_the_author_meta('ID');
-	$date_created = get_the_date();
+	// $date_created = get_the_date();
+	$date_updated = get_the_modified_date();
 	$reading_time = calculate_reading_time(get_the_content());
 
 	$previous_post = get_previous_post(true, '', 'modules');
@@ -121,7 +122,8 @@ while (have_posts()):
 											stroke-linejoin="round" />
 									</svg>
 									<span>
-										<?php echo $date_created; ?>
+										<?php //echo $date_created; ?>
+										<?php echo $date_updated; ?>
 									</span>
 								</div>
 								<div class="single_module_meta_item">
