@@ -59,7 +59,7 @@ $fund_access = get_field('disable_funds');
                             <?php else: ?>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Minimum Investment</span>
-                                    <span class="nse-overview-value">$50,000</span>
+                                    <span class="nse-overview-value">$100k</span>
                                 </div>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Lock-in</span>
@@ -74,7 +74,7 @@ $fund_access = get_field('disable_funds');
                                 </div>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Total Expense Ratio</span>
-                                    <span class="nse-overview-value">2%</span>
+                                    <span class="nse-overview-value">2.15%</span>
                                 </div>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Fund Manager</span>
