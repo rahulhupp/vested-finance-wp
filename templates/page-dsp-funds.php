@@ -61,13 +61,13 @@ $fund_access = get_field('disable_funds');
                                     <span class="nse-overview-label">Minimum Investment</span>
                                     <span class="nse-overview-value">$100k</span>
                                 </div>
-                                <div class="nse-overview-item">
+                                <!-- <div class="nse-overview-item">
                                     <span class="nse-overview-label">Lock-in</span>
                                     <div class="nse-overview-value-wrapper">
                                         <span class="nse-overview-value">None</span>
                                         <span class="nse-overview-note">(after exit window)</span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Performance Fee</span>
                                     <span class="nse-overview-value">None</span>
@@ -84,6 +84,7 @@ $fund_access = get_field('disable_funds');
                                     <span class="nse-overview-label">Administrator</span>
                                     <span class="nse-overview-value">NAV Consulting, Inc</span>
                                 </div>
+                                <p class="nse-overview-note">Investors may withdraw monthly with at least 10 days’ notice. To encourage long-term investing, withdrawals within the first 12 months are subject to a 2% withdrawal fee.</p>
                             <?php endif; ?>
                         </div>
                     </div>
