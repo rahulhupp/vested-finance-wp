@@ -267,7 +267,7 @@ $fund_access = get_field('disable_funds');
 
                 <div class="nse-section-inner-block nse-financial">
                     <h2 class="nse-inner-section-title">Sector Allocation of the underlying DSP Large & Mid Cap Fund</h2>
-                    <div class="nse-inner-section-desc">% as of June 30, 2025</div>
+                    <div class="nse-inner-section-desc">% as of Oct 31, 2025</div>
                     <div class="table-wrapper">
                         <table class="nse-financial-table">
                             <tr>
@@ -278,68 +278,68 @@ $fund_access = get_field('disable_funds');
                             </tr>
                             <tr>
                                 <td>Financials</td>
-                                <td><span>33.3%</span></td>
-                                <td>29.0%</td>
-                                <td>29.3%</td>
+                                <td><span>33.5%</span></td>
+                                <td>29.7%</td>
+                                <td>29.4%</td>
                             </tr>
                             <tr>
                                 <td>Healthcare</td>
-                                <td><span>10.1%</span></td>
-                                <td>7.8%</td>
-                                <td>5.6%</td>
+                                <td><span>10.7%</span></td>
+                                <td>6.5%</td>
+                                <td>5.5%</td>
                             </tr>
                             <tr>
                                 <td>Consumer Discretionary</td>
-                                <td><span>10.0%</span></td>
-                                <td>11.1%</td>
-                                <td>12.2%</td>
+                                <td><span>9.1%</span></td>
+                                <td>12.6%</td>
+                                <td>13.1%</td>
                             </tr>
                             <tr>
                                 <td>Materials</td>
-                                <td><span>9.5%</span></td>
-                                <td>10.1%</td>
-                                <td>8.0%</td>
+                                <td><span>8.9%</span></td>
+                                <td>9.3%</td>
+                                <td>8.1%</td>
                             </tr>
                             <tr>
                                 <td>IT</td>
-                                <td><span>8.4%</span></td>
-                                <td>8.4%</td>
-                                <td>9.9%</td>
+                                <td><span>10.8%</span></td>
+                                <td>8.1%</td>
+                                <td>9.2%</td>
                             </tr>
                             <tr>
                                 <td>Energy</td>
-                                <td><span>5.7%</span></td>
-                                <td>6.0%</td>
-                                <td>9.3%</td>
+                                <td><span>6.7%</span></td>
+                                <td>5.9%</td>
+                                <td>9.1%</td>
                             </tr>
                             <tr>
                                 <td>Industrials</td>
-                                <td><span>4.9%</span></td>
-                                <td>13.0%</td>
-                                <td>9.0%</td>
+                                <td><span>5.0%</span></td>
+                                <td>12.6%</td>
+                                <td>9.2%</td>
                             </tr>
                             <tr>
                                 <td>Consumer Staples</td>
-                                <td><span>3.8%</span></td>
-                                <td>5.5%</td>
+                                <td><span>3.2%</span></td>
+                                <td>6.0%</td>
                                 <td>6.3%</td>
                             </tr>
                             <tr>
                                 <td>Utilities</td>
                                 <td><span>3.5%</span></td>
-                                <td>3.6%</td>
+                                <td>3.5%</td>
                                 <td>3.7%</td>
                             </tr>
                             <tr>
                                 <td>Communication Svcs</td>
-                                <td><span>3.2%</span></td>
-                                <td>3.7%</td>
+                                <td><span>2.9%</span></td>
+                                <td>3.6%</td>
                                 <td>4.9%</td>
                             </tr>
                             <tr>
                                 <td>Real Estate</td>
-                                <td><span>0.9%</span></td>
-                                <td>2.0%</td>
+                                <td><span>1.7%</span></td>
+                                <td>1.8%</td>
                                 <td>1.6%</td>
                             </tr>
                         </table>
@@ -431,58 +431,50 @@ $fund_access = get_field('disable_funds');
                                 </tr>
                                 <tr>
                                     <td><strong>1 Year</strong></td>
-                                    <td class="fund-value">3.5%</td>
-                                    <td>3.4%</td>
-                                    <td>0.8%</td>
-                                    <td class="alpha-positive">+0.2%</td>
-                                    <td class="alpha-positive">+2.7%</td>
+                                    <td class="fund-value">-1.2%</td>
+                                    <td>0.9%</td>
+                                    <td class="alpha-negative">-1.2%</td>
+                                    <td class="alpha-negative">-2.1%</td>
+                                    <td>0.0%</td>
                                 </tr>
                                 <tr>
                                     <td><strong>3 Year</strong></td>
-                                    <td class="fund-value">22.6%</td>
-                                    <td>21.7%</td>
-                                    <td>15.6%</td>
-                                    <td class="alpha-positive">+0.9%</td>
-                                    <td class="alpha-positive">+6.9%</td>
+                                    <td class="fund-value">18.2%</td>
+                                    <td>16.3%</td>
+                                    <td>10.9%</td>
+                                    <td class="alpha-positive">+1.9%</td>
+                                    <td class="alpha-positive">+7.2%</td>
                                 </tr>
                                 <tr>
                                     <td><strong>5 Year</strong></td>
-                                    <td class="fund-value">22.0%</td>
-                                    <td>23.8%</td>
-                                    <td>18.1%</td>
-                                    <td class="alpha-negative">-1.7%</td>
-                                    <td class="alpha-positive">+3.9%</td>
+                                    <td class="fund-value">19.8%</td>
+                                    <td>19.4%</td>
+                                    <td>13.8%</td>
+                                    <td class="alpha-positive">+0.4%</td>
+                                    <td class="alpha-positive">+6.0%</td>
                                 </tr>
                                 <tr>
                                     <td><strong>10 Year</strong></td>
-                                    <td class="fund-value">12.3%</td>
-                                    <td>12.8%</td>
-                                    <td>9.2%</td>
-                                    <td class="alpha-negative">-0.5%</td>
-                                    <td class="alpha-positive">+3.1%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>20 Year</strong></td>
-                                    <td class="fund-value">13.0%</td>
-                                    <td>12.3%</td>
-                                    <td>9.9%</td>
-                                    <td class="alpha-positive">+0.7%</td>
-                                    <td class="alpha-positive">+3.1%</td>
+                                    <td class="fund-value">13.3%</td>
+                                    <td>12.7%</td>
+                                    <td>9.4%</td>
+                                    <td class="alpha-positive">+0.5%</td>
+                                    <td class="alpha-positive">+3.9%</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Since Inception</strong></td>
-                                    <td class="fund-value">14.82%</td>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                    <td>NA</td>
+                                    <td class="fund-value">12.9%</td>
+                                    <td>12.2%</td>
+                                    <td>8.3%</td>
+                                    <td class="alpha-positive">+0.7%</td>
+                                    <td class="alpha-positive">+4.5%</td>
                                 </tr>
                             </table>
                         </div>
                     <?php endif; ?>
                     <div class="nse-warning-icon">
                         <p>
-                            Data as of June 30, 2025. Returns are net of fees. Past performance is not indicative of
+                            Data as of Oct 31, 2025. Returns are net of fees. Past performance is not indicative of
                             future results. The benchmarks used are representative of the investment's general
                             risk/return characteristics.  The fund's strategy may materially differ from the benchmarks
                             shown.
