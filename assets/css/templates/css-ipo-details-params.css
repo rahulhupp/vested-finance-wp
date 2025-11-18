@@ -182,11 +182,6 @@ a {
 	background-color: transparent;
 }
 
-.ipo_quick_actions a.ipo_disable_button.ipo_primary_button {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
 .ipo_quick_actions a.ipo_primary_button {
 	margin-top: 0;
 	background-color: #002852;
@@ -658,12 +653,6 @@ a {
 	opacity: 0.5;
     cursor: not-allowed;
 }
-  
-.ipo_need_more_info {
-    /* border-top: 1px solid #E5E9EE;
-    margin: 24px -24px 0; */
-    /* padding: 0 24px; */
-}
 
 .ipo_need_more_info_content {
     position: relative;
@@ -1110,6 +1099,7 @@ a {
 		padding: 16px;
 	}
 }
+
 
 .ipo_ki_meta_disclaimer {
     font-weight: 400;

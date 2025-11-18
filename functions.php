@@ -27,7 +27,6 @@ require_once get_stylesheet_directory() . '/inc/bond-details-functions.php';
 require_once get_stylesheet_directory() . '/inc/stocks-collection-table.php';
 require_once get_stylesheet_directory() . '/inc/stock-search-function.php';
 require_once get_stylesheet_directory() . '/inc/ipo-details-functions.php';
-require_once get_stylesheet_directory() . '/inc/ipo-api-handler.php';
 
 function add_custom_js_to_pages()
 {

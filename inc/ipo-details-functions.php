@@ -75,24 +75,6 @@ function ipo_custom_template_redirect()
         }
 add_action('template_redirect', 'ipo_custom_template_redirect');
 
-// Function to get IPO data from database with new URL structure
-function get_ipo_data_from_list()
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'ipo_list';
-    $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-    $ipo_mappings = array();
-    foreach ($results as $row) {
-        $id = $row['ipo_id'];
-        $slug = generate_ipo_slug($row['name']);
-        $ipo_mappings[$id] = [
-            'name' => $slug, 
-            'original_name' => $row['name'],
-            'url' => home_url('/in/private-markets/' . $slug . '/')
-        ];
-    }
-    return $ipo_mappings;
-}
 
 /**
  * Generate URL-friendly slug from company name
@@ -201,141 +183,34 @@ function remove_unwanted_for_ipo_styles()
         wp_dequeue_script('astra-theme-js');
         wp_deregister_script('astra-theme-js');
     } else {
-        error_log('Dequeue function Else');
+        error_log('Dequeue function Else for IPO pages');
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_for_ipo_styles', 99999999999);
 
 
 
-function get_typoform_link_by_ipo_id($ipo_id) {
-    if (have_rows('ipo_typoform_links', 'option')) {
-        while (have_rows('ipo_typoform_links', 'option')) {
-            the_row();
-            $stored_ipo_id = get_sub_field('ipo_id');
-            if ($stored_ipo_id === $ipo_id) {
-                return get_sub_field('typoform_link');
-            }
-        }
-    }
-    return false;
-}
+
+
 
 /**
- * Get IPO key information from database
- * This function retrieves the key IPO information that was previously fetched via API calls
- * 
- * @param string $ipo_id The IPO ID
- * @return array Array containing key IPO information
+ * Force noindex, nofollow for IPO pages
+ * This function is hooked to wpseo_robots_array filter to control SEO for IPO pages
  */
-function get_ipo_key_info_from_db($ipo_id) {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'ipo_list';
-    
-    $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
-    
-    if (!$ipo) {
-        return array();
-    }
-    
-    return array(
-        'valuation' => $ipo->api_valuation ?: 'N/A',
-        'management_fee' => $ipo->api_management_fee ?: 'N/A',
-        'funding_deadline' => $ipo->api_funding_deadline ?: 'N/A',
-        'min_commitment' => $ipo->api_min_commitment ?: 'N/A',
-        'notable_investors' => !empty($ipo->api_notable_investors) ? json_decode($ipo->api_notable_investors, true) : array(),
-        'share_type' => $ipo->api_share_type ?: 'N/A',
-        'share_class' => $ipo->api_share_class ?: 'N/A',
-        'price_per_share' => $ipo->api_price_per_share ?: 'N/A',
-        'transaction_type' => $ipo->api_transaction_type ?: 'N/A',
-        'funding_rounds_data' => !empty($ipo->api_funding_rounds_data) ? json_decode($ipo->api_funding_rounds_data, true) : null,
-        'last_updated' => $ipo->api_last_updated
-    );
-}
-
-/**
- * Check if IPO has key information available
- * 
- * @param string $ipo_id The IPO ID
- * @return bool True if IPO has key information, false otherwise
- */
-function ipo_has_key_info($ipo_id) {
-    $key_info = get_ipo_key_info_from_db($ipo_id);
-    return !empty($key_info['valuation']) && $key_info['valuation'] !== 'N/A';
-}
-
-// Helper function to generate custom IPO meta title
-function get_ipo_custom_meta_title() {
+function force_noindex_nofollow_for_ipo_pages($robots_array, $indexable) {
+    // Check for IPO pages using query vars (custom routes)
     $custom_ipo_request = get_query_var('custom_ipo_request');
-    $ipo_id = get_query_var('ipo_id');
-    if ($custom_ipo_request && $ipo_id) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'ipo_list';
-        $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
-        if ($ipo) {
-            $company = $ipo->name;
-            // $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
-            // return "Invest in {$company} | Buy Pre-IPO Shares | Opening in {$year}";
-            return "Buy or Invest in {$company} Pre-IPO Shares | Vested Finance";
-        }
+    $ipo_raw_request = get_query_var('ipo_raw_request');
+    $ipo_slug = get_query_var('ipo_slug');
+    if (($custom_ipo_request || $ipo_raw_request) && $ipo_slug) {
+        // Force noindex and nofollow for IPO pages
+        $robots_array['index'] = 'noindex';
+        $robots_array['follow'] = 'nofollow';
+        return $robots_array;
     }
-    return false;
+    
+    return $robots_array;
 }
 
-// Set dynamic Yoast SEO meta title for IPO detail pages
-add_filter('wpseo_title', function($title) {
-    $custom_title = get_ipo_custom_meta_title();
-    return $custom_title ? $custom_title : $title;
-});
-
-// Set dynamic Yoast SEO Open Graph og:title for IPO detail pages
-add_filter('wpseo_opengraph_title', function($og_title) {
-    $custom_title = get_ipo_custom_meta_title();
-    return $custom_title ? $custom_title : $og_title;
-});
-
-// Helper function to generate custom IPO meta description
-function get_ipo_custom_meta_description() {
-    $custom_ipo_request = get_query_var('custom_ipo_request');
-    $ipo_id = get_query_var('ipo_id');
-    if ($custom_ipo_request && $ipo_id) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'ipo_list';
-        $ipo = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE ipo_id = %s", $ipo_id));
-        if ($ipo) {
-            $company = $ipo->name;
-            // $year = !empty($ipo->year_est) ? date('Y', strtotime($ipo->year_est)) : '';
-            // return "Explore the {$company} IPO launching in {$year}. Learn about its financials, investment opportunities & upcoming IPO details. Apply now for growth potential.";
-            return "Explore investment opportunities in {$company} before its IPO. Get access to private market deals via Vested and diversify your portfolio with top startups.";
-        }
-    }
-    return false;
-}
-
-// Set dynamic Yoast SEO meta description for IPO detail pages
-add_filter('wpseo_metadesc', function($desc) {
-    $custom_desc = get_ipo_custom_meta_description();
-    return $custom_desc ? $custom_desc : $desc;
-});
-
-// Set dynamic Yoast SEO Open Graph og:description for IPO detail pages
-add_filter('wpseo_opengraph_desc', function($og_desc) {
-    $custom_desc = get_ipo_custom_meta_description();
-    return $custom_desc ? $custom_desc : $og_desc;
-});
-
-// function ipo_custom_wpseo_sitemap_index($sitemap_index)
-// {
-//     $last_modified = date('c');
-//     $custom_urls = array(
-//         '<sitemap><loc>' . home_url('/private-markets-sitemap.xml') . '</loc><lastmod>' . $last_modified . '</lastmod></sitemap>',
-//     );
-
-//     // Append each custom URL to the sitemap index
-//     foreach ($custom_urls as $url) {
-//         $sitemap_index .= $url;
-//     }
-
-//     return $sitemap_index;
-// }
-// add_filter('wpseo_sitemap_index', 'ipo_custom_wpseo_sitemap_index', 10, 1);
+// Hook the IPO robots function to Yoast SEO filter
+add_filter('wpseo_robots_array', 'force_noindex_nofollow_for_ipo_pages', 10, 2);
