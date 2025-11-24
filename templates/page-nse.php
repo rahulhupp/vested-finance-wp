@@ -69,6 +69,9 @@ $fund_access = get_field('disable_funds');
               </svg>
             </a>
           <?php endif; ?>
+          <a href="https://api.whatsapp.com/send?phone=919321712688&text=I%20want%20to%20learn%20more%20about%20investing%20in%20National%20Stock%20Exchange%20of%20India%20(NSE).%20Please%20give%20me%20a%20callback" target="_blank" class="nse-express-btn-secondary">
+              <span>Request callback</span>
+          </a>
         </div>
       </div>
     </div>
@@ -645,6 +648,15 @@ $fund_access = get_field('disable_funds');
               <div class="nse-market-bar-inner" style="width: 12.3%"></div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="nse-section-inner-block nse-summary-section">
+        <h2 class="nse-inner-section-title">Disclosure</h2>
+        <div class="nse-summary-desc">
+          Pre-IPO investments involve significant risk, including the possible loss of your entire investment. These securities are offered only to accredited investors under Regulation D and are not registered with the SEC. Pre-IPO shares of foreign issuers may involve additional risks, including limited disclosure, different accounting standards, political and regulatory risks, currency risk, and reduced investor protections.
+          <br /><br /> There is no guarantee of an IPO, liquidity event, or market for resale, and the securities may be subject to transfer restrictions or lock-ups. Valuations are speculative and may not reflect market value.
+          <br /><br /> This material is for informational purposes only and is not a recommendation to buy or sell securities. Investors should conduct their own due diligence and consult their advisors before investing.
         </div>
       </div>
     </div>

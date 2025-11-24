@@ -167,6 +167,31 @@
   border-color: var(--nse-color-primary);
 }
 
+
+
+.nse-express-btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--nse-color-bg-card);
+  color: #262626;
+  border: 1px solid #E5E9EE;
+  font: 500 14px / 20px "Inter", sans-serif;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.nse-express-btn-secondary:hover {
+  color: var(--nse-color-bg-card);
+  background: #262626;
+  border-color: var(--nse-color-primary);
+}
+
 .nse-main-right-wrapper {
   width: calc(100% - 340px - 24px);
 }
