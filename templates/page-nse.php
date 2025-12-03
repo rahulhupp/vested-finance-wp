@@ -36,7 +36,7 @@ $fund_access = get_field('disable_funds');
                   </div>
               </div>
             <?php else: ?>
-              <div>Market Cap<br><b>$69.89B</b></div>
+              <div>Market Cap<br><b>$58.24B</b></div>
               <div>P/E Ratio<br><b>49x</b></div>
               <div>Profit Margin<br><b>60%+</b></div>
               <div>Dividend/Share<br><b>₹35</b></div>
@@ -552,13 +552,13 @@ $fund_access = get_field('disable_funds');
                 </tr>
                 <tr>
                   <td>Share price</td>
-                  <td>2,400</td>
+                  <td>2,000</td>
                   <td>2,497</td>
                   <td>9x Higher</td>
                 </tr>
                 <tr>
                   <td>Market Cap (USD Bn)</td>
-                  <td>69.89</td>
+                  <td>58.24</td>
                   <td>12.0</td>
                   <td>6x Larger</td>
                 </tr>
