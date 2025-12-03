@@ -1,9 +1,10 @@
 jQuery(document).ready(function ($) {
 	$("#us-stock-why-choose-slider").slick({
-		infinite: true,
+		infinite: false,
 		arrows: true,
 		dots: false,
 		autoplay: false,
+		autoplaySpeed: 6000,
 		speed: 800,
 		slidesToShow: 2,
 		slidesToScroll: 1,

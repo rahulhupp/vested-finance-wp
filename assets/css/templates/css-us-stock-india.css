@@ -726,7 +726,7 @@
     margin-bottom: 25px;
 }
 
-.us-stock-learn-more-content p strong {
+.us-stock-learn-more-content h4 {
     font-weight: 500;
     font-size: 24px;
 }
@@ -794,7 +794,7 @@
 
 .us-stock-faq-question span {
     color: #262626;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 24px;
     line-height: 32px;
 }
@@ -811,8 +811,8 @@
 .us-stock-faq-answer {
     color: #262626;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 1.4;
     padding: 0px 20px 0px 20px;
     max-height: 0;
     overflow: hidden;
@@ -1109,7 +1109,7 @@
         font-size: 24px;
     }
 
-    .us-stock-learn-more-content p strong {
+    .us-stock-learn-more-content h4 {
         font-size: 18px;
     }
 
@@ -1232,7 +1232,7 @@
         font-size: 24px;
     }
 
-    .us-stock-learn-more-content p strong {
+    .us-stock-learn-more-content h4 {
         font-size: 18px;
     }
 
