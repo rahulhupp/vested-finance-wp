@@ -17,7 +17,7 @@ $fund_access = get_field('disable_funds');
         <div class="nse-header-content">
           <div class="nse-title">National Stock Exchange of India (NSE)</div>
           <div class="nse-price-block">
-            <div class="nse-price-amount">₹2,400 <span class="nse-price-amount-small">(approx price)</span></div>
+            <div class="nse-price-amount">₹2,000 <span class="nse-price-amount-small">(approx price)</span></div>
             <div class="nse-price-date">as of July 2025</div>
           </div>
           <div class="nse-stats">
@@ -37,7 +37,7 @@ $fund_access = get_field('disable_funds');
               </div>
             <?php else: ?>
               <div>Market Cap<br><b>$58.24B</b></div>
-              <div>P/E Ratio<br><b>49x</b></div>
+              <div>P/E Ratio<br><b>41x</b></div>
               <div>Profit Margin<br><b>60%+</b></div>
               <div>Dividend/Share<br><b>₹35</b></div>
             <?php endif; ?>
