@@ -89,7 +89,7 @@ $fund_access = get_field('disable_funds');
                                     <span class="nse-overview-label">Administrator</span>
                                     <span class="nse-overview-value">NAV Consulting, Inc</span>
                                 </div>
-                                <p class="nse-overview-note">Investors may withdraw monthly with at least 10 days’ notice. To encourage long-term investing, withdrawals within the first 12 months are subject to a 1% withdrawal fee. (change 2% withdrawal fees to 1% withdrawal fees)</p>
+                                <p class="nse-overview-note">Investors may withdraw monthly with at least 10 days’ notice. To encourage long-term investing, withdrawals within the first 12 months are subject to a 2% withdrawal fee.</p>
                             <?php endif; ?>
                         </div>
                     </div>
