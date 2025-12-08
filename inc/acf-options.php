@@ -20,7 +20,7 @@
             'page_title'    => 'IPO Settings',
             'menu_title'    => 'IPO Settings',
             'menu_slug'     => 'ipo-settings',
-            'parent_slug'   => 'global-general-settings',
+            'parent_slug'   => 'ipo-data-updater',
         ));
 
     }
