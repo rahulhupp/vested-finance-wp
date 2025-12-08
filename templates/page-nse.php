@@ -18,7 +18,7 @@ $fund_access = get_field('disable_funds');
           <div class="nse-title">National Stock Exchange of India (NSE)</div>
           <div class="nse-price-block">
             <div class="nse-price-amount">₹2,000 <span class="nse-price-amount-small">(approx price)</span></div>
-            <div class="nse-price-date">as of July 2025</div>
+            <div class="nse-price-date">as of Dec 2025</div>
           </div>
           <div class="nse-stats">
           <?php if ($fund_access == 'Yes'): ?>
@@ -564,7 +564,7 @@ $fund_access = get_field('disable_funds');
                 </tr>
                 <tr>
                   <td>P/E Ratio</td>
-                  <td>49</td>
+                  <td>41</td>
                   <td>76</td>
                   <td>Better Valuation</td>
                 </tr>
