@@ -414,9 +414,179 @@ get_header(); ?>
 </script>
 <?php endif; ?>
 
+<?php
+// BreadcrumbList Schema
+$current_url = get_permalink();
+$site_name = get_bloginfo('name');
+$home_url = home_url();
+$page_title = get_the_title();
+?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": <?php echo json_encode($site_name); ?>,
+            "item": <?php echo json_encode($home_url); ?>
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": <?php echo json_encode($page_title); ?>,
+            "item": <?php echo json_encode($current_url); ?>
+        }
+    ]
+}
+</script>
+
+<?php
+// Organization Schema
+$site_name = get_bloginfo('name');
+$site_url = home_url();
+$site_description = get_bloginfo('description');
+$custom_logo_id = get_theme_mod('custom_logo');
+$logo_url = '';
+if ($custom_logo_id) {
+    $logo_url = wp_get_attachment_image_url($custom_logo_id, 'full');
+}
+?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": <?php echo json_encode($site_name); ?>,
+    "url": <?php echo json_encode($site_url); ?><?php if ($site_description) : ?>,
+    "description": <?php echo json_encode($site_description); ?><?php endif; ?><?php if ($logo_url) : ?>,
+    "logo": <?php echo json_encode($logo_url); ?><?php endif; ?>
+}
+</script>
+
+<?php
+// WebPage Schema
+$page_title = get_the_title();
+$page_url = get_permalink();
+$page_description = '';
+if (get_field('banner_description')) {
+    $page_description = wp_strip_all_tags(get_field('banner_description'));
+    $page_description = wp_trim_words($page_description, 30, '...');
+} elseif (get_bloginfo('description')) {
+    $page_description = get_bloginfo('description');
+}
+$page_date_published = get_the_date('c');
+$page_date_modified = get_the_modified_date('c');
+?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": <?php echo json_encode($page_title); ?>,
+    "url": <?php echo json_encode($page_url); ?><?php if ($page_description) : ?>,
+    "description": <?php echo json_encode($page_description); ?><?php endif; ?>,
+    "datePublished": <?php echo json_encode($page_date_published); ?>,
+    "dateModified": <?php echo json_encode($page_date_modified); ?>,
+    "inLanguage": "en-US",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": <?php echo json_encode(get_bloginfo('name')); ?>,
+        "url": <?php echo json_encode(home_url()); ?>
+    }
+}
+</script>
+
+<?php
+// ItemList Schema for Stocks
+$default_stocks = ['AAPL', 'GOOGL', 'MSFT', 'TSLA', 'META', 'NFLX', 'AMZN', 'NVDA', 'SPOT', 'IVZ'];
+$stock_items = [];
+foreach ($default_stocks as $position => $symbol) {
+    $formatted_symbol = strtolower($symbol);
+    // Stock URLs follow pattern: /us-stocks/{symbol}/{name}-share-price/
+    // Since we don't have stock names in PHP, we'll use a simplified URL structure
+    $stock_url = 'https://vestedfinance.com/us-stocks/' . $formatted_symbol . '/';
+    $stock_items[] = [
+        '@type' => 'ListItem',
+        'position' => $position + 1,
+        'name' => $symbol,
+        'item' => $stock_url
+    ];
+}
+?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Most Popular US Stocks by Indian Investors",
+    "description": "Access 10,000+ US Stocks and ETFs with a trusted global platform",
+    "itemListElement": <?php echo json_encode($stock_items, JSON_UNESCAPED_SLASHES); ?>
+}
+</script>
+
+<?php
+// ItemList Schema for Collections
+$taxonomy = 'stocks_collections_categories';
+$terms = get_terms(array(
+    'taxonomy' => $taxonomy,
+    'hide_empty' => false,
+));
+$collection_items = [];
+$position = 1;
+
+foreach ($terms as $term) {
+    $category_name = $term->name;
+    
+    // Exclude "Popular on Vested" category
+    if ($category_name === 'Popular on Vested') {
+        continue;
+    }
+    
+    $term_args = array(
+        'post_type' => 'collections',
+        'tax_query' => array(
+            array(
+                'taxonomy' => $taxonomy,
+                'field' => 'term_id',
+                'terms' => $term->term_id,
+            ),
+        ),
+        'posts_per_page' => -1,
+    );
+    
+    $term_query = new WP_Query($term_args);
+    
+    if ($term_query->have_posts()) {
+        while ($term_query->have_posts()) {
+            $term_query->the_post();
+            $collection_name = get_the_title();
+            $collection_url = get_permalink();
+            
+            $collection_items[] = [
+                '@type' => 'ListItem',
+                'position' => $position++,
+                'name' => $collection_name,
+                'item' => $collection_url
+            ];
+        }
+        wp_reset_postdata();
+    }
+}
+?>
+<?php if (!empty($collection_items)) : ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Explore US Stock Collections",
+    "description": "Discover curated collections of US Stocks designed to match your goals and simplify your investing decisions",
+    "itemListElement": <?php echo json_encode($collection_items, JSON_UNESCAPED_SLASHES); ?>
+}
+</script>
+<?php endif; ?>
+
 <script>
 (function() {
-    const defaultStocks = ['AAPL', 'GOOGL', 'IVZ', 'MSFT', 'TSLA', 'META', 'NFLX', 'NVDA', 'AMZN', 'SPOT'];
+    const defaultStocks = ['AAPL', 'GOOGL', 'MSFT', 'TSLA', 'META', 'NFLX', 'AMZN', 'NVDA', 'SPOT', 'IVZ'];
     let authToken = null;
     let searchTimeout = null;
     let allInstruments = [];
@@ -553,12 +723,133 @@ get_header(); ?>
         const resultsList = document.getElementById('stockResultsList');
         displaySkeletonLoading(3); // Show 3 skeleton cards for search results
 
-        const searchLower = searchTerm.toLowerCase();
-        const filtered = allInstruments.filter(instrument => {
-            const symbolMatch = instrument.symbol.toLowerCase().startsWith(searchLower);
-            const nameMatch = instrument.name.toLowerCase().includes(searchLower);
-            return symbolMatch || nameMatch;
-        }).slice(0, 20); // Limit to 20 results
+        const searchLower = searchTerm.toLowerCase().trim();
+        const searchUpper = searchTerm.toUpperCase().trim();
+        const searchTrimmed = searchTerm.trim();
+        
+        // Split search term into words for better matching (used in both filter and sort)
+        const searchWords = searchLower.split(/\s+/).filter(word => word.length > 0);
+        const isMultiWordSearch = searchWords.length > 1;
+        
+        // Check if search term looks like a ticker (short, alphanumeric, typically 1-5 chars)
+        // A ticker is typically: all uppercase, 1-5 chars, alphanumeric, no spaces
+        // If it's all lowercase and longer than 3 chars, it's probably a word, not a ticker
+        const isShortAlphanumeric = /^[A-Z0-9]{1,5}$/i.test(searchTrimmed);
+        const isAllUppercase = searchTrimmed === searchUpper;
+        const isAllLowercase = searchTrimmed === searchLower;
+        const looksLikeTicker = isShortAlphanumeric && (isAllUppercase || (isAllLowercase && searchTrimmed.length <= 3));
+        // Only treat as ticker if it's all uppercase
+        const isTickerSearch = isShortAlphanumeric && isAllUppercase;
+        
+        let filtered = allInstruments.filter(instrument => {
+            const instrumentSymbol = instrument.symbol.toLowerCase();
+            const instrumentName = instrument.name.toLowerCase();
+            
+            // First, always check for exact symbol match (case-insensitive)
+            // This handles "aapl" -> "AAPL" or "AAPL" -> "AAPL"
+            if (instrumentSymbol === searchLower) {
+                return true;
+            }
+            
+            // For uppercase ticker searches, only return exact symbol matches
+            if (isTickerSearch) {
+                return false; // Already checked above
+            }
+            
+            // If search looks like a ticker (even lowercase), be more strict
+            // Only match if symbol appears in parentheses in the name
+            if (looksLikeTicker) {
+                const symbolInName = instrumentName.includes(`(${searchUpper})`) || 
+                                     instrumentName.includes(`(${searchLower})`);
+                return symbolInName;
+            }
+            
+            // For name searches, check multiple conditions
+            // Check if name starts with the full search term (exact phrase match)
+            const nameStartsWith = instrumentName.startsWith(searchLower);
+            
+            // For multi-word searches, prioritize exact phrase matches
+            if (isMultiWordSearch) {
+                // First check if name starts with the exact search phrase
+                if (nameStartsWith) {
+                    return true;
+                }
+                // For multi-word, also check if the phrase appears as a whole (not just individual words)
+                const escapedSearch = searchLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const phraseMatch = new RegExp(`\\b${escapedSearch}`, 'i').test(instrumentName);
+                if (phraseMatch) {
+                    return true;
+                }
+                // Don't match multi-word searches if words are scattered
+                return false;
+            }
+            
+            // For single-word searches, check if all search words appear in the name (with word boundaries)
+            let allWordsMatch = true;
+            if (searchWords.length > 0) {
+                for (const word of searchWords) {
+                    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const wordRegex = new RegExp(`\\b${escapedWord}`, 'i');
+                    if (!wordRegex.test(instrumentName)) {
+                        allWordsMatch = false;
+                        break;
+                    }
+                }
+            }
+            
+            // Check if symbol appears in parentheses in the name (e.g., "Apple (AAPL)")
+            const symbolInName = instrumentName.includes(`(${searchUpper})`) || 
+                                 instrumentName.includes(`(${searchLower})`);
+            
+            // For single-word searches, return true if name starts with search, all words match, or symbol is in name
+            return nameStartsWith || allWordsMatch || symbolInName;
+        });
+        
+        // Sort results to prioritize better matches
+        filtered.sort((a, b) => {
+            const aSymbol = a.symbol.toLowerCase();
+            const bSymbol = b.symbol.toLowerCase();
+            const aName = a.name.toLowerCase();
+            const bName = b.name.toLowerCase();
+            
+            // First priority: Exact symbol match
+            const aSymbolMatch = aSymbol === searchLower;
+            const bSymbolMatch = bSymbol === searchLower;
+            if (aSymbolMatch && !bSymbolMatch) return -1;
+            if (!aSymbolMatch && bSymbolMatch) return 1;
+            
+            // Second priority: Exact phrase match (name equals or starts with search term)
+            const aStartsWith = aName.startsWith(searchLower);
+            const bStartsWith = bName.startsWith(searchLower);
+            if (aStartsWith && !bStartsWith) return -1;
+            if (!aStartsWith && bStartsWith) return 1;
+            
+            // For multi-word searches, prioritize exact phrase matches
+            if (isMultiWordSearch) {
+                const escapedSearch = searchLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const phraseRegex = new RegExp(`\\b${escapedSearch}`, 'i');
+                const aPhraseMatch = phraseRegex.test(aName);
+                const bPhraseMatch = phraseRegex.test(bName);
+                if (aPhraseMatch && !bPhraseMatch) return -1;
+                if (!aPhraseMatch && bPhraseMatch) return 1;
+            }
+            
+            // Third priority: Symbol in name (in parentheses)
+            const aSymbolInName = aName.includes(`(${searchUpper})`) || aName.includes(`(${searchLower})`);
+            const bSymbolInName = bName.includes(`(${searchUpper})`) || bName.includes(`(${searchLower})`);
+            if (aSymbolInName && !bSymbolInName) return -1;
+            if (!aSymbolInName && bSymbolInName) return 1;
+            
+            // Fourth priority: Position of match (earlier is better)
+            const aIndex = aName.indexOf(searchLower);
+            const bIndex = bName.indexOf(searchLower);
+            if (aIndex !== -1 && bIndex !== -1 && aIndex !== bIndex) return aIndex - bIndex;
+            
+            // Finally, alphabetical
+            return aName.localeCompare(bName);
+        });
+        
+        filtered = filtered.slice(0, 20); // Limit to 20 results
 
         console.log('filtered', filtered);
         if (filtered.length > 0) {

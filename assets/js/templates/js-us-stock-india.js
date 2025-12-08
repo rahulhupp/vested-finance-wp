@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
-	$("#us-stock-why-choose-slider").slick({
-		infinite: false,
+	var $whyChooseSlider = $("#us-stock-why-choose-slider");
+	$whyChooseSlider.slick({
+		infinite: true,
 		arrows: true,
 		dots: false,
 		autoplay: false,
@@ -24,6 +25,23 @@ jQuery(document).ready(function ($) {
 				},
 			},
 		],
+	});
+
+	// Add 'slick-disabled' class to prev button on page load
+	$('.us-stock-why-choose-slider-button-prev').addClass('slick-disabled');
+
+	// Disable infinite scrolling when user clicks next button (first time only, with 1 second delay)
+	var nextButtonClicked = false;
+	$('.us-stock-why-choose-slider-button-next').on('click', function() {
+		// Remove 'slick-disabled' class from prev button when next is clicked
+		$('.us-stock-why-choose-slider-button-prev').removeClass('slick-disabled');
+		
+		if (!nextButtonClicked) {
+			nextButtonClicked = true;
+			setTimeout(function() {
+				$whyChooseSlider.slick('slickSetOption', 'infinite', false, true);
+			}, 1000);
+		}
 	});
 
 	$("#us-stock-investors-slider").slick({

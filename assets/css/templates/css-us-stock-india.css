@@ -1,4 +1,3 @@
-
 .btn {
     padding: 12px 16px;
     display: inline-block;
@@ -94,6 +93,7 @@
     width: 52%;
     padding-top: 35px;
 }
+
 .us-stock-stocks-section {
     background-color: #EFF6FF;
     padding: 72px 0;
@@ -224,6 +224,7 @@
     0% {
         background-position: -200% 0;
     }
+
     100% {
         background-position: 200% 0;
     }
@@ -444,7 +445,12 @@
     padding: 0 36px;
 }
 
-.us-stock-why-invest-item-image {position: absolute;bottom: 0;left: 0;width: 100%;}
+.us-stock-why-invest-item-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
 
 .us-stock-why-invest-section p.us-stock-why-invest-disclosure {
     font-size: 12px;
@@ -540,6 +546,12 @@
     background-color: transparent;
 }
 
+.us-stock-why-choose-slider-nav .slick-arrow.slick-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.2;
+}
+
 .us-stocks-steps-section {
     padding: 72px 0;
 }
@@ -593,7 +605,11 @@
 }
 
 
-.us-stocks-step-item:nth-child(2) .us-stocks-step-item-content {order: 2;padding-bottom: 42px;padding-top: 0;}
+.us-stocks-step-item:nth-child(2) .us-stocks-step-item-content {
+    order: 2;
+    padding-bottom: 42px;
+    padding-top: 0;
+}
 
 
 .us-stocks-step-item-image img {
@@ -601,7 +617,10 @@
     margin: auto;
 }
 
-.us-stocks-steps-section .us-stocks-steps-buttons {text-align: center;margin-top: 36px;}
+.us-stocks-steps-section .us-stocks-steps-buttons {
+    text-align: center;
+    margin-top: 36px;
+}
 
 .us-stock-blogs-section {
     padding: 72px 0;
@@ -771,7 +790,9 @@
     text-align: center;
 }
 
-.us-stock-faqs-list {margin-top: 36px;}
+.us-stock-faqs-list {
+    margin-top: 36px;
+}
 
 .us-stock-faq-item {
     border: 1px solid #E5E9EE;
@@ -830,11 +851,11 @@
     margin: 0;
 }
 
-.us-stock-faq-answer p + p {
+.us-stock-faq-answer p+p {
     margin-top: 20px;
 }
 
-.us-stock-faq-item + .us-stock-faq-item {
+.us-stock-faq-item+.us-stock-faq-item {
     margin-top: 12px;
 }
 
@@ -887,7 +908,7 @@
     margin-bottom: 6px;
 }
 
-.extra-content  > span {
+.extra-content>span {
     color: #8E9DAD;
     font-weight: 400;
     font-size: 12px;
@@ -910,7 +931,7 @@
     margin-bottom: 8px;
 }
 
-.us-stock-investors-section   p {
+.us-stock-investors-section p {
     color: #737373;
     font-weight: 400;
     font-size: 16px;
@@ -1075,7 +1096,7 @@
     margin-bottom: 8px;
 }
 
-.us-stock-return-calculator-section .container > p {
+.us-stock-return-calculator-section .container>p {
     color: #505A64;
     font-weight: 400;
     font-size: 16px;
@@ -1084,7 +1105,7 @@
     margin-bottom: 30px;
 }
 
-.us-stock-return-calculator-section .container > p.us-stock-return-calculator-disclaimer {
+.us-stock-return-calculator-section .container>p.us-stock-return-calculator-disclaimer {
     color: rgba(33, 37, 41, 0.7);
     line-height: 1.2;
     text-align: left;
@@ -1135,26 +1156,26 @@
     .us-stock-banner-content {
         width: 100%;
     }
-    
+
     .us-stock-banner-content h1 {
         font-size: 38px;
     }
-    
+
     .us-stock-banner-content ul li {
         font-size: 16px;
         padding-left: 30px;
     }
-    
+
     .us-stock-banner-content ul li:before {
         width: 20px;
         height: 20px;
     }
-    
+
     .us-stock-banner-image {
         width: 100%;
         text-align: center;
     }
-    
+
     .us-stock-stocks-section {
         padding: 40px 0;
     }
@@ -1162,68 +1183,68 @@
     .stock-results-container .stock-results-list .stock-item {
         width: calc(33.33% - 10.8px);
     }
-    
+
     .us-stock-collection-item {
         width: calc(50% - 8px);
     }
-    
+
     .us-stock-why-invest-item h3 {
         font-size: 16px;
         padding: 15px 15px 6px;
     }
-    
+
     .us-stock-why-invest-item p {
         font-size: 14px;
         padding: 0 15px;
     }
-    
+
     .us-stock-why-invest-item {
         padding-bottom: 180px;
     }
-    
+
     .extra-content {
-        padding: 0  10px;
+        padding: 0 10px;
     }
-    
+
     .us-stock-why-choose-item h3 {
         font-size: 18px;
         line-height: 1.2;
     }
-    
+
     .us-stock-why-choose-item p {
         font-size: 14px;
     }
-    
+
     .us-stock-why-choose-item {
         padding: 20px 15px;
     }
-    
+
     .us-stocks-step-item-content {
         padding: 15px 20px 0 20px;
     }
-    
+
     .us-stocks-step-item-content h3 {
         font-size: 18px;
         line-height: 1.4;
     }
-    
+
     .us-stocks-step-item-content p {
         font-size: 14px;
     }
-    
+
     .us-stocks-step-item:nth-child(2) .us-stocks-step-item-content {
         padding-bottom: 25px;
     }
-    
+
     .us-stock-blog-item {
         padding: 16px;
     }
-    
+
     .us-stock-blog-item h4 {
         font-size: 16px;
         line-height: 1.4;
     }
-    
+
     .us-stock-partners-list {
         justify-content: center;
     }
@@ -1258,93 +1279,95 @@
     section {
         padding: 40px 0 !important;
     }
-    
-    section h2 {line-height: 1.4 !important;}
-    
-    .stock-results-container .stock-results-list .stock-item {width: calc(50% - 8px);}
-    
+
+    section h2 {
+        line-height: 1.4 !important;
+    }
+
+    .stock-results-container .stock-results-list .stock-item {
+        width: calc(50% - 8px);
+    }
+
     .stock-results-container .stock-results-list .stock-item .stock-image {
         width: 40px;
         height: 40px;
     }
-    
-    .stock-name {}
-    
+
     .us-stock-collection-item {
         width: 100%;
     }
-    
+
     .us-stock-why-invest-item {
         width: 100%;
     }
-    
+
     .us-stock-why-invest-item-image {
         max-height: 180px;
         overflow: hidden;
     }
-    
+
     .us-stock-why-invest-item-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-    
+
     .us-stock-why-invest-section p.us-stock-why-invest-disclosure {
         position: relative;
         bottom: 0;
         margin-top: 20px;
         line-height: 1.2;
     }
-    
+
     .us-stock-why-choose-section p.us-stock-why-choose-disclosure {
         position: relative;
         bottom: 0;
         margin-top: 20px;
     }
-    
-    .us-stock-return-calculator-section .container > p.us-stock-return-calculator-disclaimer {
+
+    .us-stock-return-calculator-section .container>p.us-stock-return-calculator-disclaimer {
         margin-top: 0;
         font-size: 14px;
     }
-    
+
     .us-stocks-step-item {
         width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
     }
-    
+
     .us-stocks-step-item-content {
         width: 50%;
         padding: 10px;
     }
-    
+
     .us-stocks-step-item-image {
         width: 50%;
     }
-    
+
     .us-stock-investors-section p.us-stock-investors-disclaimer {
         position: relative;
         bottom: 0;
         margin-top: 20px;
     }
-    
+
     .us-stock-blog-item {
         width: 100%;
     }
-    
+
     .us-stock-partners-list {
         height: auto;
     }
-    
+
     .us-stock-faq-question span {
         font-size: 16px;
         line-height: 1.4;
     }
-    
+
     .us-stock-faq-question {
         padding: 10px;
     }
-    
+
     .us-stock-faq-item.active .us-stock-faq-answer {
         padding: 0px 10px 10px 10px;
     }
