@@ -620,3 +620,68 @@ function autoplay_videos_on_single_post() {
 add_action('wp_footer', 'autoplay_videos_on_single_post');
 
 add_filter( 'big_image_size_threshold', '__return_false' );
+
+
+
+/**
+ * Update login and signup links for specific page templates
+ * Only applies to: page-dsp-funds.php, page-nse.php, and page-us.php
+ */
+add_filter('wp_nav_menu_objects', 'update_login_signup_links_for_specific_pages', 10, 2);
+
+function update_login_signup_links_for_specific_pages($items, $args) {
+    // Only modify the secondary_menu (header login/signup buttons)
+    if (!isset($args->theme_location) || $args->theme_location !== 'secondary_menu') {
+        return $items;
+    }
+
+    // Check if we're on one of the three specific page templates
+    $target_templates = array(
+        'templates/page-dsp-funds.php',
+        'templates/page-nse.php',
+        'templates/page-us.php'
+    );
+
+    // Get current page template
+    $current_template = get_page_template_slug();
+    
+    // Check if current template matches any of our target templates
+    $is_target_page = false;
+    if ($current_template && in_array($current_template, $target_templates, true)) {
+        $is_target_page = true;
+    } else {
+        // Fallback: check using is_page_template() if get_page_template_slug() didn't work
+        foreach ($target_templates as $template) {
+            if (is_page_template($template)) {
+                $is_target_page = true;
+                break;
+            }
+        }
+    }
+
+    // Only modify links if we're on one of the target pages
+    if (!$is_target_page) {
+        return $items;
+    }
+
+    // Update menu item URLs
+    foreach ($items as $item) {
+        // Check if this is the login button
+        if (in_array('login-btn', $item->classes)) {
+            // Update login link
+            if (strpos($item->url, 'app.vestedfinance.com/login') !== false || strpos($item->url, 'vestedfinance.com/login') !== false) {
+                $item->url = 'https://us.vestedfinance.com/login';
+            }
+        }
+        
+        // Check if this is the signup button
+        if (in_array('primary-btn', $item->classes)) {
+            // Update signup link
+            if (strpos($item->url, 'app.vestedfinance.com/signup') !== false || strpos($item->url, 'vestedfinance.com/signup') !== false) {
+                $item->url = 'https://us.vestedfinance.com/signup';
+            }
+        }
+    }
+
+    return $items;
+}
