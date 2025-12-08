@@ -79,7 +79,7 @@ $fund_access = get_field('disable_funds');
                                 </div>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Total Expense Ratio</span>
-                                    <span class="nse-overview-value">1.50%</span>
+                                    <span class="nse-overview-value">1.98%</span>
                                 </div>
                                 <div class="nse-overview-item">
                                     <span class="nse-overview-label">Fund Manager</span>
