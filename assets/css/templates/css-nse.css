@@ -847,3 +847,13 @@
 .page-id-12896 footer {
   display: none;
 }
+
+
+.table-source {
+  font: 400 14px / 20px "Inter", sans-serif;
+  color: var(--nse-color-text-accent);
+  margin-top: 10px;
+  margin-bottom: 0;
+  border-top: 1px solid var(--ast-border-color);
+  padding-top: 10px;
+}

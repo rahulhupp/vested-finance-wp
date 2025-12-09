@@ -53,7 +53,7 @@ $fund_access = get_field('disable_funds');
                                             <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
                                             <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <span>Login to View details</span>
+                                        <span><a href="https://us.vestedfinance.com/login">Login</a> to View details</span>
                                     </div>
                                 </div>
                             <?php else: ?>
@@ -89,7 +89,7 @@ $fund_access = get_field('disable_funds');
                                     <span class="nse-overview-label">Administrator</span>
                                     <span class="nse-overview-value">NAV Consulting, Inc</span>
                                 </div>
-                                <p class="nse-overview-note">Investors may withdraw monthly with at least 10 days’ notice. To encourage long-term investing, withdrawals within the first 12 months are subject to a 2% withdrawal fee.</p>
+                                <p class="nse-overview-note">Investors may withdraw monthly with at least 10 days’ notice. To encourage long-term investing, withdrawals within the first 12 months are subject to a 1% withdrawal fee.</p>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -423,7 +423,7 @@ $fund_access = get_field('disable_funds');
                                         <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
                                         <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    <span>Login to View details</span>
+                                    <span><a href="https://us.vestedfinance.com/login">Login</a> to View details</span>
                                 </div>
                             </div>
                         </div>
@@ -541,7 +541,7 @@ $fund_access = get_field('disable_funds');
                                         <rect width="40" height="40" rx="20" fill="#DBEAFE"/>
                                         <path d="M15 19V15C15 13.6739 15.5268 12.4021 16.4645 11.4645C17.4021 10.5268 18.6739 10 20 10C21.3261 10 22.5979 10.5268 23.5355 11.4645C24.4732 12.4021 25 13.6739 25 15V19M13 19H27C28.1046 19 29 19.8954 29 21V28C29 29.1046 28.1046 30 27 30H13C11.8954 30 11 29.1046 11 28V21C11 19.8954 11.8954 19 13 19Z" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    <span>Login to View details</span>
+                                    <span><a href="https://us.vestedfinance.com/login">Login</a> to View details</span>
                                 </div>
                             </div>
                         </div>
