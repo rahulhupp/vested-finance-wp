@@ -185,7 +185,7 @@ $fund_access = get_field('disable_funds');
                             <span class="nse-highlights-note">Vested handles all fund-level compliance</span>
                         </li>
                         <li>
-                            <p>Capital gains and income are taxed at U.S. mutual fund ratescc</p>
+                            <p>Capital gains and income are taxed at U.S. mutual fund rates</p>
                         </li>
                         <li>
                             <p>K-1 will be available for simple tax reporting</p>
