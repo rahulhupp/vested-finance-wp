@@ -883,6 +883,13 @@ footer {
   .growth-section .growth-cards .growth-card .card-text ul li:not(:last-child) {
     margin-bottom: 12px;
   }
+  .custom-header ul li:last-child a {
+        padding: 8px 18px 10px;
+    }
+
+    .custom-header .siite-logo img {
+        max-width: 160px;
+    }
 
 }
 
