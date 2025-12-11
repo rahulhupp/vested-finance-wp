@@ -184,11 +184,11 @@
                     </div>
                 </div>
                 <div class="stock_metrics_range">
-                    <h6>
+                    <div class="stock_metrics_range_title">
                         <span>52-week Range</span>
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/info-icon.svg" alt="info-icon" />
                         <div class="info_text">This shows the range of the stock’s price between the 52-week high (the highest price of the stock for the past 52 weeks) and the 52-week low (the lowest price of the stock for the past 52 weeks).</div>
-                    </h6>
+                    </div>
                     <div class="range_container">
                         <div class="range_item range_low">
                             <span><?php echo '$' . $lowRange; ?></span>

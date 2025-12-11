@@ -13,7 +13,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/SPY.png" alt="spy-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>SPDR S&P 500 ETF Trust</h2>
+                                    <div class="stock_name">SPDR S&P 500 ETF Trust</div>
                                 </div>
                             </a>
                         </div>
@@ -23,7 +23,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/QQQ.png" alt="qqq-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>Invesco QQQ Trust</h2>
+                                    <div class="stock_name">Invesco QQQ Trust</div>
                                 </div>
                             </a>
                         </div>
@@ -33,7 +33,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/VTI.png" alt="vti-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>Vanguard Total Stock Market Index Fund ETF Shares</h2>
+                                    <div class="stock_name">Vanguard Total Stock Market Index Fund ETF Shares</div>
                                 </div>
                             </a>
                         </div>
@@ -43,7 +43,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/IEFA.png" alt="iefa-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>iShares Core MSCI EAFE ETF</h2>
+                                    <div class="stock_name">iShares Core MSCI EAFE ETF</div>
                                 </div>
                             </a>
                         </div>
@@ -53,7 +53,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/BND.png" alt="bnd-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>Vanguard Total Bond Market Index Fund ETF Shares</h2>
+                                    <div class="stock_name">Vanguard Total Bond Market Index Fund ETF Shares</div>
                                 </div>
                             </a>
                         </div>
@@ -63,7 +63,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/IBIT.png" alt="ibit-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>iShares Bitcoin Trust</h2>
+                                    <div class="stock_name">iShares Bitcoin Trust</div>
                                 </div>
                             </a>
                         </div>
@@ -73,7 +73,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/VUG.png" alt="vug-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>Vanguard Growth Index Fund ETF Shares</h2>
+                                    <div class="stock_name">Vanguard Growth Index Fund ETF Shares</div>
                                 </div>
                             </a>
                         </div>
@@ -83,7 +83,7 @@
                                     <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/GLD.png" alt="gld-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>SPDR® Gold Shares</h2>
+                                    <div class="stock_name">SPDR® Gold Shares</div>
                                 </div>
                             </a>
                         </div>
@@ -93,7 +93,7 @@
                                 <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/TLT.png" alt="tlt-img" />
                                 </div>
                                 <div class="stocks_details">
-                                    <h2>iShares 20+ Year Treasury Bond ETF</h2>
+                                    <div class="stock_name">iShares 20+ Year Treasury Bond ETF</div>
                                 </div>
                             </a>
                         </div>
@@ -108,7 +108,7 @@
                                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/tesla_logo.svg" alt="Tsla">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Tesla, Inc.</h2>
+                                <div class="stock_name">Tesla, Inc.</div>
                                 </div>
                             </a>
                         </div>
@@ -118,7 +118,7 @@
                                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/apple_logo.svg" alt="aaple">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Apple, Inc.</h2>
+                                <div class="stock_name">Apple, Inc.</div>
                                 </div>
                             </a>
                         </div>
@@ -128,7 +128,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/google_logo.svg" alt="GOOGL">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Alphabet Inc. - Class A Shares</h2>
+                                <div class="stock_name">Alphabet Inc. - Class A Shares</div>
                                 </div>
                             </a>
                         </div>
@@ -138,7 +138,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/meta_logo.svg" alt="META">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Meta Platforms Inc</h2>
+                                <div class="stock_name">Meta Platforms Inc</div>
                                 </div>
                             </a>
                         </div>
@@ -148,7 +148,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/amazon_logo.svg" alt="AMZN">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Amazon.com Inc.</h2>
+                                <div class="stock_name">Amazon.com Inc.</div>
                                 </div>
                             </a>
                         </div>
@@ -158,7 +158,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/microsoft_logo.svg" alt="Microsoft">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Microsoft Corporation</h2>
+                                <div class="stock_name">Microsoft Corporation</div>
                                 </div>
                             </a>
                         </div>
@@ -168,7 +168,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/navida_logo.svg" alt="NVDA">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>NVIDIA Corporation</h2>
+                                <div class="stock_name">NVIDIA Corporation</div>
                                 </div>
                             </a>
                         </div>
@@ -179,7 +179,7 @@
                                     alt="BRK">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Berkshire Hathaway Inc. Hld B</h2>
+                                <div class="stock_name">Berkshire Hathaway Inc. Hld B</div>
                                 </div>
                             </a>
                         </div>
@@ -189,7 +189,7 @@
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/discover-images/lilly_logo.svg" alt="LLY">
                                 </div>
                                 <div class="stocks_details">
-                                <h2>Eli Lilly and Company</h2>
+                                <div class="stock_name">Eli Lilly and Company</div>
                                 </div>
                             </a>
                         </div>

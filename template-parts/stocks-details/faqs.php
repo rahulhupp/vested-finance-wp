@@ -28,7 +28,7 @@
                 <div class="faq_container">
                     <div class="list_faqs">
                         <div class="faq_item">
-                            <div class="faq_question">What is <span><?php echo $name; ?></span> share price today?</div>
+                            <h3 class="faq_question">What is <span><?php echo $name; ?></span> share price today?</h3>
                             <div class="faq_icon">
                                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can Indians buy <span><?php echo $name; ?></span> shares?</div>
+                        <h3 class="faq_question">Can Indians buy <span><?php echo $name; ?></span> shares?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -51,7 +51,7 @@
                         <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <company-name> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can Fractional shares of <span><?php echo $name; ?></span> be purchased?</div>
+                        <h3 class="faq_question">Can Fractional shares of <span><?php echo $name; ?></span> be purchased?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,7 +63,7 @@
                             in <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) with a minimum investment of $1.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">How to invest in <span><?php echo $name; ?></span> shares from India?</div>
+                        <h3 class="faq_question">How to invest in <span><?php echo $name; ?></span> shares from India?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,7 +79,7 @@
                         </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <span><?php echo $name; ?></span> 52-week high and low stock price?</div>
+                        <h3 class="faq_question">What is <span><?php echo $name; ?></span> 52-week high and low stock price?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -91,7 +91,7 @@
                             is <span>$<?php echo $lowRange; ?></span>.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-earnings (P/E) ratio?</div>
+                        <h3 class="faq_question">What is <span><?php echo $name; ?></span> price-to-earnings (P/E) ratio?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -102,7 +102,7 @@
                         <p>The price-to-earnings (P/E) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $peRatio; ?></span></p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <span><?php echo $name; ?></span> price-to-book (P/B) ratio?</div>
+                        <h3 class="faq_question">What is <span><?php echo $name; ?></span> price-to-book (P/B) ratio?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -113,7 +113,7 @@
                         <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</div>
+                        <h3 class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -124,7 +124,7 @@
                         <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?></span></p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is the Market Cap of <span><?php echo $name; ?></span>?</div>
+                        <h3 class="faq_question">What is the Market Cap of <span><?php echo $name; ?></span>?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -135,7 +135,7 @@
                         <p>The market capitalization of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $marketCapValue; ?></span></p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <span><?php echo $name; ?></span>’s stock symbol?</div>
+                        <h3 class="faq_question">What is <span><?php echo $name; ?></span>’s stock symbol?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -157,12 +157,12 @@
         <div class="feedback_section">
             <div class="feedback_list" style="margin-right: 15px">
                 <a href="<?php echo $feedbackLinkAdd; ?>" target="_blank">
-                    <h2>Request to add more info/data</h2>
+                    <div class="feedback_list_title">Request to add more info/data</div>
                 </a>
             </div>
             <div class="feedback_list">
                 <a href="<?php echo $feedbackLinkIncorrect; ?>" target="_blank">
-                <h2>Inform about wrong info/data</h2>
+                <div class="feedback_list_title">Inform about wrong info/data</div>
             </a>
             </div>
         </div>

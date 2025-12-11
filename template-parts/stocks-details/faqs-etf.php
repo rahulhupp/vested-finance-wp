@@ -24,7 +24,7 @@
                 <div class="faq_container">
                     <div class="list_faqs">
                         <div class="faq_item">
-                            <div class="faq_question">What is <?php echo $name; ?> (<?php echo $ticker; ?>) ETF share price today?</div>
+                            <h3 class="faq_question">What is <?php echo $name; ?> (<?php echo $ticker; ?>) ETF share price today?</h3>
                             <div class="faq_icon">
                                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can Indians buy <?php echo $name; ?> shares?</div>
+                        <h3 class="faq_question">Can Indians buy <?php echo $name; ?> shares?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,7 +47,7 @@
                         <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $ticker; ?> from India, you can open a US Brokerage account by signing up on Vested. The account opening process is completely digital and secure, and takes 3-5 minutes to complete.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can Fractional shares of <?php echo $name; ?> be purchased?</div>
+                        <h3 class="faq_question">Can Fractional shares of <?php echo $name; ?> be purchased?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -58,7 +58,7 @@
                         <p>Yes, you can purchase fractional shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. You can start investing in <?php echo $name; ?> (<?php echo $ticker; ?>) with a minimum investment of $1.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">How to invest in <?php echo $name; ?> shares from India?</div>
+                        <h3 class="faq_question">How to invest in <?php echo $name; ?> shares from India?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,7 +73,7 @@
                         </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <?php echo $name; ?>'s 52-week high and low ETF share price?</div>
+                        <h3 class="faq_question">What is <?php echo $name; ?>'s 52-week high and low ETF share price?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -84,7 +84,7 @@
                         <p>The 52-week high price of <?php echo $name; ?> (<?php echo $ticker; ?>) is $<?php echo $highRange; ?>. The 52-week low price of <?php echo $name; ?> (<?php echo $ticker; ?>) is $<?php echo $lowRange; ?>.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is <?php echo $name; ?>'s ticker or symbol?</div>
+                        <h3 class="faq_question">What is <?php echo $name; ?>'s ticker or symbol?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -95,7 +95,7 @@
                         <p>The stock symbol (or ticker) of <?php echo $name; ?> is <?php echo $ticker; ?>.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Can I set up automatic investments (SIP) in <?php echo $name; ?> shares?</div>
+                        <h3 class="faq_question">Can I set up automatic investments (SIP) in <?php echo $name; ?> shares?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -111,7 +111,7 @@
                         </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is the historical performance of <?php echo $name; ?> ETF?</div>
+                        <h3 class="faq_question">What is the historical performance of <?php echo $name; ?> ETF?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -128,7 +128,7 @@
                         </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is the expense ratio of <?php echo $name; ?>?</div>
+                        <h3 class="faq_question">What is the expense ratio of <?php echo $name; ?>?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -150,12 +150,12 @@
         <div class="feedback_section">
             <div class="feedback_list" style="margin-right: 15px">
                 <a href="<?php echo $feedbackLinkAdd; ?>" target="_blank">
-                    <h2>Request to add more info/data</h2>
+                    <div class="feedback_list_title">Request to add more info/data</div>
                 </a>
             </div>
             <div class="feedback_list">
                 <a href="<?php echo $feedbackLinkIncorrect; ?>" target="_blank">
-                <h2>Inform about wrong info/data</h2>
+                <div class="feedback_list_title">Inform about wrong info/data</div>
             </a>
             </div>
         </div>
