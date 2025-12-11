@@ -97,6 +97,7 @@
 .us-stock-stocks-section {
     background-color: #EFF6FF;
     padding: 72px 0;
+    position: relative;
 }
 
 .us-stock-stocks-section .container {
@@ -521,6 +522,8 @@
 
 .us-stock-why-choose-list .slick-list .slick-track {
     display: flex;
+    cursor: grab;
+    user-select: none;
 }
 
 .us-stock-why-choose-section p.us-stock-why-choose-disclosure {
@@ -947,6 +950,8 @@
 .us-stock-investors-list .slick-list {
     overflow: visible;
     margin: 0 -12px;
+    cursor: grab;
+    user-select: none;
 }
 
 .us-stock-investors-item {
@@ -956,6 +961,8 @@
     border-radius: 8px;
     padding: 32px 24px;
     height: auto;
+    cursor: grab;
+    user-select: none;
 }
 
 .us-stock-investors-item-info {

@@ -2,7 +2,8 @@
 /*
 Template name: Page - US Stock India
 */
-get_header(); ?>
+get_header();
+?>
 <div id="content" role="main">
     <section class="us-stock-banner">
         <div class="container">
@@ -50,7 +51,128 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="stock-results-container">
-                    <ul id="stockResultsList" class="stock-results-list"></ul>
+                    <ul id="stockResultsList" class="stock-results-list">
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/aapl/apple-inc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/AAPL.png" alt="Apple Inc" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Apple Inc</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/googl/alphabet-inc-class-a-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/GOOGL.png" alt="Alphabet Inc Class A" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Alphabet Inc Class A</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/msft/microsoft-corporation-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/MSFT.png" alt="Microsoft Corporation" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Microsoft Corporation</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/tsla/tesla-inc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/TSLA.png" alt="Tesla Inc" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Tesla Inc</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/meta/meta-platforms-inc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/META.png" alt="Meta Platforms Inc." onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Meta Platforms Inc.</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/nflx/netflix-inc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/NFLX.png" alt="Netflix Inc" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Netflix Inc</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/amzn/amazon-com-inc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/AMZN.png" alt="Amazon.com Inc" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Amazon.com Inc</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/nvda/nvidia-corporation-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/NVDA.png" alt="NVIDIA Corporation" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">NVIDIA Corporation</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/spot/spotify-technology-sa-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/SPOT.png" alt="Spotify Technology SA" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Spotify Technology SA</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="stock-item">
+                            <a href="https://vestedfinance.com/us-stocks/ivz/invesco-plc-share-price/" rel="nofollow">
+                                <div class="stock-item-content">
+                                    <div class="stock-image">
+                                        <img src="https://d13dxy5z8now6z.cloudfront.net/symbol/IVZ.png" alt="Invesco Plc" onerror="this.src='<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-stock.png'">
+                                    </div>
+                                    <div class="stock-info">
+                                        <div class="stock-name">Invesco Plc</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="us-stock-stocks-buttons">
                     <a href="<?php echo home_url(); ?>/us-stocks/" class="btn">Invest in US Stocks</a>
@@ -220,7 +342,7 @@ get_header(); ?>
     <section class="us-stock-return-calculator-section">
         <div class="container">
             <h2>US Stock Return Calculator</h2>
-            <p>View how your investment would have performed over a selected historical period.</p>
+            <p>View how your investment would have performed over a selected historical period</p>
             <?php get_template_part('template-parts/stocks-calculator-us-stock-india'); ?>
             <p class="us-stock-return-calculator-disclaimer">This calculator utilizes dividend and split adjusted close price of third business day of start and end months to calculate returns. The total return, annualized return, and the hypothetical portfolio value of the investment amount are computed based on the first and last prices within the selected range.</p>
         </div>
@@ -301,32 +423,35 @@ get_header(); ?>
 
     <section class="us-stock-blogs-section">
         <div class="container">
-            <h2>Invest with Confidence: Read our Blogs</h2>
-            <div class="us-stock-blogs-list">
-                <?php
-                $args = array(
-                    'post_type'      => 'post',
-                    'posts_per_page' => 6,
-                    'tax_query'      => array(
-                        array(
-                            'taxonomy' => 'master_categories',
-                            'field'    => 'slug',
-                            'terms'    => array('us-stocks'),
-                        ),
+            <?php
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => 6,
+                'tax_query'      => array(
+                    array(
+                        'taxonomy' => 'master_categories',
+                        'field'    => 'slug',
+                        'terms'    => array('us-stocks'),
                     ),
-                );
+                ),
+            );
 
-                $custom_query = new WP_Query($args);
-                if ($custom_query->have_posts()) :
+            $custom_query = new WP_Query($args);
+            $has_blogs = $custom_query->have_posts();
+            ?>
+            <?php if ($has_blogs) : ?>
+                <h2>Invest with Confidence: Read our Blogs</h2>
+                <div class="us-stock-blogs-list">
+                    <?php
                     while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                         <a href="<?php echo get_permalink() ?>" class="us-stock-blog-item">
                             <?php the_post_thumbnail(); ?>
                             <h4><?php the_title(); ?></h4>
                         </a>
-                <?php endwhile;
-                    wp_reset_postdata();
-                endif; ?>
-            </div>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -590,6 +715,11 @@ foreach ($terms as $term) {
     let authToken = null;
     let searchTimeout = null;
     let allInstruments = [];
+    // Preserve the baked-in static list so we can restore it when APIs fail or return nothing
+    const staticListHTML = (() => {
+        const el = document.getElementById('stockResultsList');
+        return el ? el.innerHTML : '';
+    })();
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
@@ -871,22 +1001,40 @@ foreach ($terms as $term) {
         }
     }
 
+    // Try to load default stocks via API; if anything fails, keep/restore the static list
     async function loadDefaultStocks() {
-        if (!authToken) {
-            await getAuthToken();
-        }
-        
         const resultsList = document.getElementById('stockResultsList');
-        displaySkeletonLoading(10); // Show 10 skeleton cards for default stocks
+        if (!resultsList) return;
 
-        const stockPromises = defaultStocks.map(symbol => fetchStockData(symbol));
-        const stockData = await Promise.all(stockPromises);
-        const validStocks = stockData.filter(stock => stock !== null);
+        try {
+            if (!authToken) {
+                await getAuthToken();
+            }
 
-        if (validStocks.length > 0) {
-            displayStocks(validStocks);
-        } else {
-            resultsList.innerHTML = '<li class="no-results">Unable to load stocks at this time.</li>';
+            // Show skeletons while fetching
+            displaySkeletonLoading(10);
+
+            const stockPromises = defaultStocks.map(symbol => fetchStockData(symbol));
+            const stockData = await Promise.all(stockPromises);
+            const validStocks = stockData.filter(stock => stock !== null);
+
+            if (validStocks.length > 0) {
+                displayStocks(validStocks);
+            } else {
+                // Fallback to static list if no valid API data
+                if (staticListHTML) {
+                    resultsList.innerHTML = staticListHTML;
+                } else {
+                    resultsList.innerHTML = '<li class="no-results">Unable to load stocks at this time.</li>';
+                }
+            }
+        } catch (err) {
+            console.warn('Default stock load failed, using static list', err);
+            if (staticListHTML) {
+                resultsList.innerHTML = staticListHTML;
+            } else {
+                resultsList.innerHTML = '<li class="no-results">Unable to load stocks at this time.</li>';
+            }
         }
     }
 
@@ -1002,7 +1150,12 @@ foreach ($terms as $term) {
 
     function displayNoResults() {
         const resultsList = document.getElementById('stockResultsList');
-        resultsList.innerHTML = '<li class="no-results">No stocks found. Please try a different search term.</li>';
+        // Fall back to the static list if we have it, otherwise show a simple message
+        if (staticListHTML) {
+            resultsList.innerHTML = staticListHTML;
+        } else {
+            resultsList.innerHTML = '<li class="no-results">No stocks found. Please try a different search term.</li>';
+        }
     }
 })();
 </script>

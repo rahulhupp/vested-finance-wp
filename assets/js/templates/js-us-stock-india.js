@@ -1,4 +1,54 @@
 jQuery(document).ready(function ($) {
+	/**
+	 * Skeleton/fallback for images that fail to load.
+	 */
+	function applyImageSkeletons() {
+		var fallbackSrc = window.location.origin + '/wp-content/themes/vested-finance-wp/assets/images/default-stock.png';
+		var targets = document.querySelectorAll(
+			'.us-stocks-step-item-image img, ' +
+			'.us-stock-why-choose-item-image img, ' +
+			'.us-stock-investors-item-image img, ' +
+			'.us-stock-collection-image img'
+		);
+
+		targets.forEach(function (img) {
+			var wrapper = img.parentElement;
+			if (!wrapper) return;
+
+			var setSkeletonHeight = function () {
+				var placeholderHeight = img.getAttribute('height') || img.clientHeight || wrapper.clientHeight || 180;
+				if (placeholderHeight && Number(placeholderHeight) > 0) {
+					wrapper.style.setProperty('--skeleton-height', placeholderHeight + 'px');
+				}
+			};
+
+			var removeSkeleton = function () {
+				wrapper.classList.remove('img-skeleton');
+				wrapper.style.removeProperty('--skeleton-height');
+			};
+
+			if (!img.complete || img.naturalWidth === 0) {
+				setSkeletonHeight();
+				wrapper.classList.add('img-skeleton');
+			} else {
+				removeSkeleton();
+			}
+
+			img.addEventListener('load', removeSkeleton, { once: true });
+
+			img.addEventListener('error', function () {
+				setSkeletonHeight();
+				wrapper.classList.add('img-skeleton');
+				if (!img.dataset.fallbackApplied) {
+					img.dataset.fallbackApplied = '1';
+					img.src = fallbackSrc;
+				}
+			});
+		});
+	}
+
+	applyImageSkeletons();
+
 	var $whyChooseSlider = $("#us-stock-why-choose-slider");
 	$whyChooseSlider.slick({
 		infinite: true,
@@ -9,6 +59,11 @@ jQuery(document).ready(function ($) {
 		speed: 800,
 		slidesToShow: 2,
 		slidesToScroll: 1,
+		swipe: true,
+		touchMove: true,
+		draggable: true,
+		swipeToSlide: true,
+		touchThreshold: 10,
 		prevArrow: $('.us-stock-why-choose-slider-button-prev'),
 		nextArrow: $('.us-stock-why-choose-slider-button-next'),
 		responsive: [
@@ -16,14 +71,16 @@ jQuery(document).ready(function ($) {
 				breakpoint: 1199,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 1,
-				},
-				breakpoint: 767,
+					slidesToScroll: 1
+				}
+			},
+			{
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
+					slidesToScroll: 1
 				},
-			},
+				breakpoint: 767
+			}
 		],
 	});
 
@@ -52,6 +109,11 @@ jQuery(document).ready(function ($) {
 		speed: 800,
 		slidesToShow: 3,
 		slidesToScroll: 1,
+		swipe: true,
+		touchMove: true,
+		draggable: true,
+		swipeToSlide: true,
+		touchThreshold: 10,
 		prevArrow: $('.us-stock-investors-slider-button-prev'),
 		nextArrow: $('.us-stock-investors-slider-button-next'),
 		responsive: [
@@ -59,14 +121,16 @@ jQuery(document).ready(function ($) {
 				breakpoint: 991,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 1,
-				},
-				breakpoint: 767,
+					slidesToScroll: 1
+				}
+			},
+			{
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
+					slidesToScroll: 1
 				},
-			},
+				breakpoint: 767
+			}
 		],
 	});
 
