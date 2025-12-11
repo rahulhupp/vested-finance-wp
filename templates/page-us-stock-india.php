@@ -185,7 +185,7 @@ get_header();
     <section class="us-stock-collection-section">
         <div class="container">
             <h2>Explore US Stock Collections</h2>
-            <p>Discover curated collections of US Stocks designed to match your goals and simplify your investing decisions.</p>
+            <p>Discover curated collections of US Stocks designed to match your goals and simplify your investing decisions</p>
             <?php
                 $taxonomy = 'stocks_collections_categories';
                 $terms = get_terms($taxonomy);
