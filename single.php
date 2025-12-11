@@ -19,6 +19,7 @@ while (have_posts()) :
 	$featured_image_url = get_the_post_thumbnail_url();
 	$author_id = get_the_author_meta('ID');
 	$date_created = get_the_date();
+	$date_updated = get_the_modified_date();
 	$reading_time = calculate_reading_time(get_the_content());
 
 	$previous_post = get_previous_post(true, '', 'modules');
@@ -93,7 +94,10 @@ while (have_posts()) :
 										<path d="M6 1.5V4.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 										<path d="M2.25 7.5H15.75" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 									</svg>
-									<span><?php echo $date_created; ?></span>
+									<span>
+										<?php // echo $date_created; ?>
+										<?php echo $date_updated; ?>
+									</span>
 								</div>
 								<div class="single_module_meta_item">
 									<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
