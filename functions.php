@@ -20,6 +20,7 @@ require_once get_stylesheet_directory() . '/inc/enqueue-style-script.php';
 require_once get_stylesheet_directory() . '/inc/acf-options.php';
 require_once get_stylesheet_directory() . '/inc/store-token.php';
 require_once get_stylesheet_directory() . '/inc/stocks-details-fucntions.php';
+require_once get_stylesheet_directory() . '/inc/stock-schema-functions.php';
 require_once get_stylesheet_directory() . '/inc/ipo-details-functions.php';
 require_once get_stylesheet_directory() . '/inc/ipo-api-handler.php';
 require_once get_stylesheet_directory() . '/inc/ipo-password-exclusion.php';
