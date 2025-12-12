@@ -325,7 +325,28 @@ function exclude_specific_pages_from_sitemap($url, $type, $object)
     return $url;
 }
 
+/**
+ * Block all REST endpoints under /wp-json for everyone (front-end requests).
+ */
+add_filter( 'rest_authentication_errors', function ( $result ) {
+    // Preserve existing auth errors, if any.
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
 
+    $request_uri = ! empty( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+
+    // Deny any request that targets /wp-json (any namespace/route).
+    if ( strpos( $request_uri, '/wp-json/wp/v2/posts' ) !== false ) {
+        return new WP_Error(
+            'protected',
+            'Error: Access denied. This API is protected with sitewide protection.',
+            array( 'status' => 401 )
+        );
+    }
+
+    return $result;
+}, 5 );
 
 function custom_comment_reply_notification_to_fyno($comment_id, $comment_approved, $commentdata)
 {
