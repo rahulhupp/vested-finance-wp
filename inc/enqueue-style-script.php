@@ -172,6 +172,19 @@
             wp_enqueue_style('exclusive-benefits-style', get_stylesheet_directory_uri() . '/assets/css/css-exclusive-benefits.css', false, '', '');
             wp_enqueue_script('exclusive-benefits-js', get_stylesheet_directory_uri() . '/assets/js/js-exclusive-benefits.js');
         }
+        if (vested_academy_is_academy_page() || is_page_template('page-academy-dashboard.php')) {
+            wp_enqueue_style('academy-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-academy.css', false, '', '');
+            wp_enqueue_script('academy-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-academy.js', array('jquery'), '1.0.0', true);
+        }
+        if (is_singular('module')) {
+            $has_quiz = get_field('quiz_questions', get_the_ID());
+            if ($has_quiz && !empty($has_quiz)) {
+                wp_enqueue_script('quiz-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-quiz.js', array('jquery'), '1.0.0', true);
+            }
+        }
+            if ($has_quiz && !empty($has_quiz)) {
+            wp_enqueue_script('quiz-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-quiz.js', array('jquery'), '1.0.0', true);
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
