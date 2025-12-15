@@ -284,7 +284,7 @@ get_header();
                                         <span>India Markets</span>
                                         <span>Global Markets</span>
                                     </div>
-                                    <a href="#">Why US Markets deliver higher returns?</a>
+                                    <a href="https://vestedfinance.com/in/blog/why-investing-in-the-us-has-given-superior-returns/">Why US Markets deliver higher returns?</a>
                                     <span>Past performance is no guarantee of future results.</span>
                                 </div>
                                 <?php endif; ?>
