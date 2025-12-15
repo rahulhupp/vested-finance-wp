@@ -294,14 +294,14 @@ function vf_build_breadcrumb_items($overview_data, $is_etf) {
         $items[] = [
             '@type' => 'ListItem',
             'position' => 4,
-            'name' => $stock_name,
+            'name' => $current_url,
             'item' => $current_url
         ];
     } else {
         $items[] = [
             '@type' => 'ListItem',
             'position' => 3,
-            'name' => $stock_name,
+            'name' => $current_url,
             'item' => $current_url
         ];
     }
