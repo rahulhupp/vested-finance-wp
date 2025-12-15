@@ -48,11 +48,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div id="pdf-container">
 		<iframe 
 			id="pdf-embed"
-			src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/12/15044554/How-India-Invests-Globally-2025-Edition.pdf"
+			src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/12/15050621/How-India-Invests-Globally-2025.pdf"
 			type="application/pdf"
 			title="Global Investing Report">
 			<p>Your browser does not support PDFs. 
-				<a href="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/12/15044554/How-India-Invests-Globally-2025-Edition.pdf" target="_blank">
+				<a href="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/12/15050621/How-India-Invests-Globally-2025.pdf" target="_blank">
 					Download the PDF
 				</a>
 			</p>
