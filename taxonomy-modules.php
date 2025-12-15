@@ -1,4 +1,24 @@
 <?php
+/**
+ * Template for displaying Modules taxonomy archive
+ * 
+ * Uses the Academy Module Page template
+ * 
+ * @package Vested Finance WP
+ */
+
+// Check if we should use the new Academy Module template
+$use_academy_template = true;
+
+if ( $use_academy_template ) {
+	// Load the Academy Module page template
+	$template_path = get_stylesheet_directory() . '/templates/page-academy-module.php';
+	if ( file_exists( $template_path ) ) {
+		include $template_path;
+		return;
+	}
+}
+
 get_header();
 ?>
 <div id="content" role="main" class="vested-acadamy-page">

@@ -81,14 +81,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	?>
 >
 	<?php
+		$is_academy_page = false;
+		
+		// Check if it's a module post type
+		if ( is_singular( 'module' ) ) {
+			$is_academy_page = true;
+		}
+		
+		// Check if it's a modules taxonomy page
+		if ( is_tax( 'modules' ) ) {
+			$is_academy_page = true;
+		}
+		
+		// Check if it's the Academy page template
 		$page_id = get_the_ID();
-		$page_template = get_page_template_slug($page_id);
-		if ($page_template !== 'templates/page-us.php') {
+		if ( ! $page_id && is_page() ) {
+			global $wp_query;
+			if ( isset( $wp_query->queried_object_id ) ) {
+				$page_id = $wp_query->queried_object_id;
+			}
+		}
+		$page_template = '';
+		if ( $page_id ) {
+			$page_template = get_page_template_slug( $page_id );
+		}
+		// Also check via global query object
+		if ( empty( $page_template ) && is_page() ) {
+			global $wp_query;
+			if ( isset( $wp_query->queried_object ) && isset( $wp_query->queried_object->page_template ) ) {
+				$page_template = $wp_query->queried_object->page_template;
+			}
+		}
+		$academy_templates = array(
+			'templates/page-vested-academy.php',
+			'templates/page-academy-home.php',
+			'templates/page-academy-module.php',
+			'templates/page-academy-login.php',
+			'templates/page-academy-signup.php',
+			'page-academy-dashboard.php',
+		);
+		if ( in_array( $page_template, $academy_templates ) ) {
+			$is_academy_page = true;
+		}
+		
+		// Quizzes are now stored on chapters, no separate quiz post type
+		
+		// Check if URL contains /academy/
+		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/academy/' ) !== false ) {
+			$is_academy_page = true;
+		}
+
+		if ( $is_academy_page ) {
+			// Load Academy-specific header
+			get_template_part( 'template-parts/header/academy-header' );
+			// Don't open content wrapper for Academy pages - templates handle their own structure
+		} elseif ( $page_template !== 'templates/page-us.php' ) {
+			// Load default Astra header
 			astra_header_before();
 			astra_header();
 			astra_header_after();
+		} else {
+			astra_content_before();
 		}
-		astra_content_before();
 		?>
 	<div id="content" class="site-content">
 		<div class="ast-container">

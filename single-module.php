@@ -1,4 +1,23 @@
 <?php
+/**
+ * Template for displaying single Module (Chapter) post
+ * 
+ * Uses the Academy Chapter template if available
+ * 
+ * @package Vested Finance WP
+ */
+
+// Check if we should use the new Academy Chapter template
+$use_academy_template = true;
+
+if ( $use_academy_template ) {
+	// Load the Academy Chapter template
+	$template_path = get_stylesheet_directory() . '/single-module-academy.php';
+	if ( file_exists( $template_path ) ) {
+		include $template_path;
+		return;
+	}
+}
 
 get_header();
 while (have_posts()) :
