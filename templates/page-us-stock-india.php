@@ -175,7 +175,7 @@ get_header();
                     </ul>
                 </div>
                 <div class="us-stock-stocks-buttons">
-                    <a href="<?php echo home_url(); ?>/us-stocks/" class="btn">Invest in US Stocks</a>
+                    <a href="https://app.vestedfinance.com/signup" class="btn">Invest in US Stocks</a>
                 </div>
             </div>
             <p class="disclaimer">Disclosure: This list is representative of stocks available but is not intended to recommend any investment.</p>
