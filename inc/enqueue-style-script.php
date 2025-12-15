@@ -62,6 +62,8 @@
         }
         if (is_page_template('templates/page-us-stock-india.php') || is_page_template('templates/page-us-stock-india-copy.php')) {
             wp_enqueue_style('us-stock-india-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-us-stock-india.css', false, '', '');
+            wp_enqueue_script('gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js');
+            wp_enqueue_script('gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js');
             wp_enqueue_script('progressbar-js', 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.1/progressbar.min.js');
             wp_enqueue_script('us-stock-india-page-page-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-us-stock-india.js');
         }
