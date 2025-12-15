@@ -1261,3 +1261,38 @@ section > div > div > p {
         padding-left: 16px;
     }
 }
+
+
+.geolocation_banner .india_defult_banner p {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.geolocation_banner .india_defult_banner a {
+    width: 160px;
+}
+
+@media (max-width: 991px) {
+    .geolocation_banner .india_defult_banner a {
+        width: 190px;
+    }
+}
+
+@media (max-width: 767px) {
+    .geolocation_banner .india_defult_banner p {
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+    
+    .geolocation_banner .india_defult_banner.content {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .geolocation_banner .india_defult_banner p a {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
