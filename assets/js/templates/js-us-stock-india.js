@@ -1,406 +1,544 @@
-jQuery(document).ready(function () {
-	// Show the first tab and hide the rest for both desktop and mobile tabs
-	jQuery("#tabs-nav li:first-child").addClass("active");
-	jQuery("#mob-tabs li:first-child").addClass("active");
-	jQuery(".tab-content").hide();
-	jQuery(".tab-content:first").show();
-
-	// Click function for desktop tabs
-	jQuery("#tabs-nav li").click(function () {
-		jQuery("#tabs-nav li").removeClass("active");
-		jQuery("#mob-tabs li").removeClass("active");
-		jQuery(this).addClass("active");
-
-		var activeTab = jQuery(this).find("a").attr("href");
-		jQuery(".tab-content").hide();
-		jQuery(activeTab).fadeIn();
-		return false;
-	});
-
-	// Click function for mobile tabs
-	jQuery("#mob-tabs li").click(function () {
-		jQuery("#mob-tabs li").removeClass("active");
-		jQuery("#tabs-nav li").removeClass("active");
-
-		var activeTabMobile = jQuery(this).find("a").attr("href");
-		var correspondingDeskTab = jQuery("#tabs-nav li").find("a[href='" + activeTabMobile + "']");
-
-		if (correspondingDeskTab.length > 0) {
-			correspondingDeskTab.parent().addClass("active");
-		}
-
-		jQuery(this).addClass("active");
-
-		jQuery(".tab-content").hide();
-		jQuery(activeTabMobile).fadeIn();
-		return false;
-	});
-
-	jQuery('.vest_about_content').slideUp();
-	jQuery('.chart_desc_btn + .chart').slideUp();
-
-	jQuery('#vest_read_more').click(function(){
-		jQuery('.vest_about_content').slideToggle();
-		jQuery(this).toggleClass('collapsed');
-		if(jQuery('#vest_read_more span').text() === 'More') {
-			jQuery('#vest_read_more span').text('Less');
-			jQuery(this).children('i').css('transform', 'rotate(180deg)');
-		}
-		else {
-			jQuery('#vest_read_more span').text('More');
-			jQuery(this).children('i').css('transform', 'rotate(0deg)');
-		}
-	});
-
-	jQuery('.chart_desc_btn').click(function(){
-		jQuery('.chart_desc_btn + .chart').slideToggle();
-	});
-});
-
-
-// portfolio slider
 jQuery(document).ready(function ($) {
-	$(".portfolio_slider").slick({
+	/**
+	 * Skeleton/fallback for images that fail to load.
+	 */
+	function applyImageSkeletons() {
+		var fallbackSrc = window.location.origin + '/wp-content/themes/vested-finance-wp/assets/images/default-stock.png';
+		var targets = document.querySelectorAll(
+			'.us-stocks-step-item-image img, ' +
+			'.us-stock-why-choose-item-image img, ' +
+			'.us-stock-investors-item-image img, ' +
+			'.us-stock-collection-image img'
+		);
+
+		targets.forEach(function (img) {
+			var wrapper = img.parentElement;
+			if (!wrapper) return;
+
+			var setSkeletonHeight = function () {
+				var placeholderHeight = img.getAttribute('height') || img.clientHeight || wrapper.clientHeight || 180;
+				if (placeholderHeight && Number(placeholderHeight) > 0) {
+					wrapper.style.setProperty('--skeleton-height', placeholderHeight + 'px');
+				}
+			};
+
+			var removeSkeleton = function () {
+				wrapper.classList.remove('img-skeleton');
+				wrapper.style.removeProperty('--skeleton-height');
+			};
+
+			if (!img.complete || img.naturalWidth === 0) {
+				setSkeletonHeight();
+				wrapper.classList.add('img-skeleton');
+			} else {
+				removeSkeleton();
+			}
+
+			img.addEventListener('load', removeSkeleton, { once: true });
+
+			img.addEventListener('error', function () {
+				setSkeletonHeight();
+				wrapper.classList.add('img-skeleton');
+				if (!img.dataset.fallbackApplied) {
+					img.dataset.fallbackApplied = '1';
+					img.src = fallbackSrc;
+				}
+			});
+		});
+	}
+
+	applyImageSkeletons();
+
+	var $whyChooseSlider = $("#us-stock-why-choose-slider");
+	$whyChooseSlider.slick({
 		infinite: true,
-		arrows: false,
+		arrows: true,
 		dots: false,
 		autoplay: false,
+		autoplaySpeed: 6000,
 		speed: 800,
-		slidesToShow: 1,
+		slidesToShow: 2,
 		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: true,
+		swipe: true,
+		touchMove: true,
+		draggable: true,
+		swipeToSlide: true,
+		touchThreshold: 10,
+		prevArrow: $('.us-stock-why-choose-slider-button-prev'),
+		nextArrow: $('.us-stock-why-choose-slider-button-next'),
 		responsive: [
 			{
-				breakpoint: 767,
+				breakpoint: 1199,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1
+				}
+			},
+			{
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
-					asNavFor: ".portfolio_slider_content",
-					vertical: false,
-					verticalSwiping: false,
+					slidesToScroll: 1
 				},
-			},
+				breakpoint: 767
+			}
 		],
 	});
 
-	$(".portfolio_slider_content").slick({
+	// Add 'slick-disabled' class to prev button on page load
+	$('.us-stock-why-choose-slider-button-prev').addClass('slick-disabled');
+
+	// Disable infinite scrolling when user clicks next button (first time only, with 1 second delay)
+	var nextButtonClicked = false;
+	$('.us-stock-why-choose-slider-button-next').on('click', function() {
+		// Remove 'slick-disabled' class from prev button when next is clicked
+		$('.us-stock-why-choose-slider-button-prev').removeClass('slick-disabled');
+		
+		if (!nextButtonClicked) {
+			nextButtonClicked = true;
+			setTimeout(function() {
+				$whyChooseSlider.slick('slickSetOption', 'infinite', false, true);
+			}, 1000);
+		}
+	});
+
+	$("#us-stock-investors-slider").slick({
 		infinite: true,
-		arrows: false,
+		arrows: true,
 		dots: false,
 		autoplay: false,
 		speed: 800,
 		slidesToShow: 3,
 		slidesToScroll: 1,
-		vertical: true,
+		swipe: true,
+		touchMove: true,
+		draggable: true,
+		swipeToSlide: true,
+		touchThreshold: 10,
+		prevArrow: $('.us-stock-investors-slider-button-prev'),
+		nextArrow: $('.us-stock-investors-slider-button-next'),
 		responsive: [
 			{
-				breakpoint: 767,
+				breakpoint: 991,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1
+				}
+			},
+			{
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
-					asNavFor: ".portfolio_slider",
-					vertical: false,
-					dots: true,
+					slidesToScroll: 1
 				},
-			},
+				breakpoint: 767
+			}
 		],
 	});
 
-	//stocks slider
-	$(".us_stocks_slider").slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		autoplay: false,
-		speed: 800,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: false,
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					asNavFor: ".stocks_slider_content",
-					vertical: false,
-					verticalSwiping: false,
-					autoplay: false,
-				},
-			},
-		],
-	});
-	if ($(window).width() <= 767) {
-
-		$(".stocks_slider_content").slick({
-			arrows: false,
-			dots: false,
-			autoplay: false,
-			slidesToShow: 4,
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						infinite: true,
-						slidesToShow: 1,
-						slidesToScroll: 1,
-						asNavFor: ".us_stocks_slider",
-						vertical: false,
-						dots: true,
-						speed: 800,
-					},
-				},
-			],
-		});
-
-	}
-
-	//ticking machine
-	var percentTime;
-	var tick;
-	var time = 0.1;
-	var progressBarIndex = 0;
-
-	$(".portfolio_slider_content .progressBar").each(function (index) {
-		var progress = "<div class='inProgress inProgress" + index + "'></div>";
-		$(this).html(progress);
-	});
-	$(".portfolio_slider_content .slick-dots li").each(function (index) {
-		var progress = "<div class='inProgress inProgress" + index + "'></div>";
-		$(this).html(progress);
-	});
-
-	function startProgressbar() {
-		resetProgressbar();
-		percentTime = 0;
-		tick = setInterval(interval, 10);
-	}
-
-	function interval() {
-		if (
-			$(
-				'.portfolio_slider .slick-track div[data-slick-index="' +
-				progressBarIndex +
-				'"]'
-			).attr("aria-hidden") === "true"
-		) {
-			progressBarIndex = $(
-				'.portfolio_slider .slick-track div[aria-hidden="false"]'
-			).data("slickIndex");
-			startProgressbar();
-		} else {
-			percentTime += 1 / (time + 4);
-			var $progressBar = $(".portfolio_slider_content .inProgress" + progressBarIndex);
-			var $progressbarMob = $(".portfolio_slider_content .slick-dots li .inProgress" + progressBarIndex);
-
-			// Check screen width and update width or height accordingly
-
-			$progressBar.css({
-				height: percentTime + "%",
-			});
-			$progressbarMob.css({
-				width: percentTime + "%",
-			});
-
-			if (percentTime >= 100) {
-				$(".single-item").slick("slickNext");
-				progressBarIndex++;
-				if (progressBarIndex > 3) {
-					progressBarIndex = 0;
+	// Read More / Read Less toggle functionality
+	function initializeReadMore() {
+		var $content = $('#learnMoreContent');
+		var $h3Elements = $content.find('h3');
+		
+		// Hide sections after the second h3 when collapsed
+		if ($h3Elements.length > 2) {
+			$h3Elements.each(function(index) {
+				if (index >= 2) {
+					// Hide this h3 and all following content until next h3 or end
+					var $currentH3 = $(this);
+					var $nextH3 = $h3Elements.eq(index + 1);
+					
+					if ($nextH3.length) {
+						// Hide everything from this h3 until (but not including) the next h3
+						$currentH3.nextUntil($nextH3).addBack().addClass('learn-more-hidden');
+					} else {
+						// This is the last h3 - hide it and everything after it
+						$currentH3.nextAll().addBack().addClass('learn-more-hidden');
+					}
 				}
-				startProgressbar();
-			}
+			});
 		}
 	}
-
-	function resetProgressbar() {
-		$(".portfolio_slider_content .inProgress").css({
-			height: 0 + "%",
-		});
-		$(".portfolio_slider_content .slick-dots li .inProgress").css({
-			width: 0 + "%",
-		});
-		clearInterval(tick);
-	}
-	startProgressbar();
-
-
-	//stock slider controls
-
-	var percentTimeOne;
-	var tickOne;
-	var timeOne = 0.1;
-	var progressBarIndexOne = 0;
-
-	$(".stocks_slider_content .progressBar").each(function (index) {
-		var progressOne = "<div class='inProgress inProgress" + index + "'></div>";
-		$(this).html(progressOne);
-	});
-	$(".stocks_slider_content .slick-dots li").each(function (index) {
-		var progressOne = "<div class='inProgress inProgress" + index + "'></div>";
-		$(this).html(progressOne);
-	});
-
-	function startProgressbarOne() {
-		resetProgressbarOne();
-		percentTimeOne = 0;
-		tickOne = setInterval(intervalOne, 10);
-	}
-
-	function intervalOne() {
-		if (
-			$(
-				'.us_stocks_slider .slick-track div[data-slick-index="' +
-				progressBarIndexOne +
-				'"]'
-			).attr("aria-hidden") === "true"
-		) {
-			progressBarIndexOne = $(
-				'.us_stocks_slider .slick-track div[aria-hidden="false"]'
-			).data("slickIndex");
-			startProgressbarOne();
+	
+	// Initialize on page load
+	initializeReadMore();
+	
+	$('#readMoreBtn').on('click', function(e) {
+		e.preventDefault();
+		var $content = $('#learnMoreContent');
+		var $btn = $(this);
+		
+		if ($content.hasClass('collapsed')) {
+			$content.removeClass('collapsed').addClass('expanded');
+			$btn.text('Read Less');
 		} else {
-			percentTimeOne += 1 / (timeOne + 4);
-			var $progressBarOne = $(".stocks_slider_content .inProgress" + progressBarIndexOne);
-			var $progressbarMobOne = $(".stocks_slider_content .slick-dots li .inProgress" + progressBarIndexOne);
-
-			$progressBarOne.closest(".single_portfolio_slider_content").addClass("slide-current");
-			// Check screen width and update width or height accordingly
-
-			$progressBarOne.css({
-				height: percentTimeOne + "%",
-			});
-			$progressbarMobOne.css({
-				width: percentTimeOne + "%",
-			});
-
-			if (percentTimeOne >= 100) {
-				$(".stock-single-item").slick("slickNext");
-				progressBarIndexOne++;
-				if (progressBarIndexOne > 4) {
-					progressBarIndexOne = 0;
-				}
-				startProgressbarOne();
-			}
+			$content.removeClass('expanded').addClass('collapsed');
+			$btn.text('Read More');
+			// Scroll to top of section when collapsing
+			$('html, body').animate({
+				scrollTop: $content.offset().top - 100
+			}, 300);
 		}
-	}
-
-	function resetProgressbarOne() {
-		$(".stocks_slider_content .inProgress").css({
-			height: 0 + "%",
-		});
-		$(".stocks_slider_content .slick-dots li .inProgress").css({
-			width: 0 + "%",
-		});
-		$(".single_portfolio_slider_content.slide-current").removeClass("slide-current");
-		clearInterval(tickOne);
-	}
-	startProgressbarOne();
-
-
-	// End ticking machine
-
-	$(".single_portfolio_slider_content").click(function () {
-		clearInterval(tick);
-		var goToThisIndex = $(this).find("span").data("slickIndex");
-		goToThisIndex = goToThisIndex - 1;
-		$(".single-item").slick("slickGoTo", goToThisIndex, false);
-		startProgressbar();
 	});
 
-	$(".stocks_slider_content .single_portfolio_slider_content").click(function () {
-		clearInterval(tickOne);
-		var goToThisIndex = $(this).find("span").data("slickIndex");
-		goToThisIndex = goToThisIndex - 1;
-		$(".stock-single-item").slick("slickGoTo", goToThisIndex, false);
-		startProgressbarOne();
-	});
-	jQuery(function ($) {
-		$(".faq_que").click(function (j) {
-			var dropDown = $(this).closest(".single_faq").find(".faq_content");
-			$(this)
-				.closest(".home_page_faq_wrap")
-				.find(".faq_content")
-				.not(dropDown)
-				.slideUp();
-			if ($(this).hasClass("active")) {
-				$(this).removeClass("active");
-			} else {
-				$(this)
-					.closest(".home_page_faq_wrap")
-					.find(".faq_que.active")
-					.removeClass("active");
-				$(this).addClass("active");
-			}
-			dropDown.stop(false, true).slideToggle();
-			j.preventDefault();
-		});
+	// FAQ Item toggle functionality (accordion - only one open at a time)
+	$('.us-stock-faq-question').on('click', function(e) {
+		e.preventDefault();
+		var $faqItem = $(this).closest('.us-stock-faq-item');
+		var isActive = $faqItem.hasClass('active');
+		
+		// Close all FAQ items first
+		$('.us-stock-faq-item').removeClass('active');
+		
+		// If the clicked item was not active, open it; otherwise keep it closed
+		if (!isActive) {
+			$faqItem.addClass('active');
+		}
 	});
 
-	if ($(window).width() <= 767) {
-		$(".post-listing ul").slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			infinite: true,
-			autoplay: true,
-			autoplaySpeed: 2000,
-			dots: false,
-			arrows: false,
-		});
-	}
-
-	$(".single_portfolio_slider_content[data-slick-index='0']").addClass("slide-active");
-
-	$(".us_stocks_slider").on('beforeChange', function (event, slick, currentSlide) {
-
-		var $activeSinglePortfolioSlider = $(this).find('.single_portfolio_slider.slick-current');
-		var currentIndex = $activeSinglePortfolioSlider.data("slick-index");
-
-		$(".single_portfolio_slider_content").each(function () {
-			var slideIndex = $(this).data("slick-index");
-			if (slideIndex !== 0 && slideIndex === currentIndex + 1) {
-				$(this).addClass("slide-active");
-			} else {
-				$(this).removeClass("slide-active");
-			}
-		});
-	});
-
-	$('.stock-info .stock-row .stock-content p b a').click(function () {
-		$('.banner_popup_overlay').show();
+	$('.us-stock-banner-content p a').click(function () {
+		$('.us-stock-popup-overlay').show();
 		$('html').addClass('disclosure-popup-open');
 	});
-
-	$('.banner_popup_overlay .close_btn').click(function () {
-		$('.banner_popup_overlay').hide();
+	
+	$('.us-stock-popup-overlay .close-btn').click(function () {
+		$('.us-stock-popup-overlay').hide();
 		$('html').removeClass('disclosure-popup-open');
 	});
 
-	$('#applyCoupon').click(function () {
-		const validCoupons = ["GPAY10"];
-		const code = $('#coupon-code').val().trim();
-		const messageBox = $('#coupon-message');
-		if (validCoupons.includes(code)) {
-		  messageBox.html(`
-				<div class="message-inner" style="background-color: #DCFCE7; color: #14532D;">
-				<img src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/05/22124339/s-1.png" alt="Success Icon" />
-				<div>Coupon applied successfully</div>
-				</div>
-			`).show();
-			setTimeout(() => {
-				window.location.href = "https://vested.app.link/gpay";
-			}, 1000);
-		} else {
-			messageBox.html(`
-				<div class="message-inner" style="background-color: #FEE2E2; color: #7F1D1D;">
-				<img src="https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/05/22124240/alert-circle-icon.svg" alt="Error Icon" />
-				<div>Coupon code is invalid</div>
-				</div>
-			`).show();
+	// --- GSAP Animations ---
+	if (typeof gsap !== 'undefined') {
+		gsap.registerPlugin(ScrollTrigger);
+
+		// --- Utility: Animate Section Items ---
+		function animateSectionItems(selector, yVal, duration, start, delayStep) {
+			gsap.utils.toArray(selector).forEach(function(item, i) {
+				gsap.fromTo(item,
+					{ y: yVal, opacity: 0 },
+					{
+						scrollTrigger: {
+							trigger: item,
+							start: start,
+							end: "bottom 60%",
+						},
+						y: 0,
+						opacity: 1,
+						duration: duration,
+						delay: i * delayStep,
+						ease: "power2.out"
+					}
+				);
+			});
 		}
-	});
+
+		// --- Banner Section Animation ---
+		gsap.from(".us-stock-banner-content h1", {
+			scrollTrigger: {
+				trigger: ".us-stock-banner",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-banner-content p", {
+			scrollTrigger: {
+				trigger: ".us-stock-banner",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-banner-buttons", {
+			scrollTrigger: {
+				trigger: ".us-stock-banner",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.3,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-banner-image", {
+			scrollTrigger: {
+				trigger: ".us-stock-banner",
+				start: "top 80%",
+			},
+			x: 50,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.2,
+			ease: "power2.out"
+		});
+
+		// --- Stocks Section Animation ---
+		gsap.from(".us-stock-stocks-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-stocks-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-stocks-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-stocks-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-stocks-search", {
+			scrollTrigger: {
+				trigger: ".us-stock-stocks-section",
+				start: "top 80%",
+			},
+			y: 60,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.3,
+			ease: "power2.out"
+		});
+
+		// --- Collections Section Animation ---
+		gsap.from(".us-stock-collection-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-collection-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-collection-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-collection-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stock-collection-item", 40, 0.7, "top 85%", 0.1);
+
+		// --- Why Invest Section Animation ---
+		gsap.from(".us-stock-why-invest-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-why-invest-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-why-invest-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-why-invest-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stock-why-invest-item", 40, 0.7, "top 90%", 0.15);
+
+		// --- Why Choose Section Animation ---
+		gsap.from(".us-stock-why-choose-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-why-choose-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-why-choose-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-why-choose-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		gsap.from("#us-stock-why-choose-slider", {
+			scrollTrigger: {
+				trigger: ".us-stock-why-choose-section",
+				start: "top 80%",
+			},
+			y: 60,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.3,
+			ease: "power2.out"
+		});
+
+		// --- Return Calculator Section Animation ---
+		gsap.from(".us-stock-return-calculator-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-return-calculator-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-return-calculator-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-return-calculator-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+
+		// --- Steps Section Animation ---
+		gsap.from(".us-stocks-steps-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stocks-steps-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stocks-step-item", 40, 0.7, "top 90%", 0.15);
+
+		// --- Investors Section Animation ---
+		gsap.from(".us-stock-investors-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-investors-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-investors-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-investors-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		gsap.from("#us-stock-investors-slider", {
+			scrollTrigger: {
+				trigger: ".us-stock-investors-section",
+				start: "top 80%",
+			},
+			y: 60,
+			opacity: 0,
+			duration: 0.8,
+			delay: 0.3,
+			ease: "power2.out"
+		});
+
+		// --- Blogs Section Animation ---
+		gsap.from(".us-stock-blogs-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-blogs-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stock-blog-item", 30, 0.6, "top 90%", 0.1);
+
+		// --- Partners Section Animation ---
+		gsap.from(".us-stock-partners-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-partners-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from(".us-stock-partners-section > .container > p", {
+			scrollTrigger: {
+				trigger: ".us-stock-partners-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stock-partner-item", 30, 0.6, "top 90%", 0.1);
+
+		// --- Learn More Section Animation ---
+		gsap.from(".us-stock-learn-more-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-learn-more-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		gsap.from("#learnMoreContent", {
+			scrollTrigger: {
+				trigger: ".us-stock-learn-more-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			delay: 0.15,
+			ease: "power2.out"
+		});
+
+		// --- FAQs Section Animation ---
+		gsap.from(".us-stock-faqs-section h2", {
+			scrollTrigger: {
+				trigger: ".us-stock-faqs-section",
+				start: "top 80%",
+			},
+			y: 40,
+			opacity: 0,
+			duration: 0.7,
+			ease: "power2.out"
+		});
+		animateSectionItems(".us-stock-faq-item", 30, 0.6, "top 90%", 0.1);
+
+		// --- ScrollTrigger refresh fixes for layout/animation jumps ---
+		window.addEventListener("load", ScrollTrigger.refresh);
+		window.addEventListener("resize", ScrollTrigger.refresh);
+		if (document.fonts) {
+			document.fonts.ready.then(ScrollTrigger.refresh);
+		}
+	}
 });
-
-
