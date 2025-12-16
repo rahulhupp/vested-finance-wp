@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <header id="masthead" class="academy-header site-header" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
-	<div class="academy-header-container">
-		<div class="academy-header-inner">
+	<div class="academy-header-container inner-header">
+		<div class="academy-header-inner site-primary-header-wrap">
 			<!-- Logo Section -->
 			<div class="academy-logo">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="academy-logo-link">
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 			<!-- Navigation Menu -->
-			<nav class="academy-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Academy Menu', 'vested-finance-wp' ); ?>">
+			<nav class="academy-navigation logo-menu" role="navigation" aria-label="<?php esc_attr_e( 'Academy Menu', 'vested-finance-wp' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
