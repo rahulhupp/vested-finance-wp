@@ -526,6 +526,12 @@
     margin-top: 40px;
 }
 
+.quiz-results-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .quiz-retake-btn,
 .quiz-back-btn {
     padding: 12px 24px;
@@ -1139,6 +1145,7 @@
     background: #008a42;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 166, 81, 0.3);
+    color: #ffffff;
 }
 
 .hero-stats {
@@ -1649,6 +1656,7 @@
 
 .module-start-button:hover {
     background: #008a42;
+    color: #ffffff;
 }
 
 .module-header-image img {
@@ -1787,14 +1795,6 @@
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-}
-
-.structure-sub-item:hover {
-    background: #f5f5f5;
-}
-
-.structure-sub-item:hover {
-    background: #f5f5f5;
 }
 
 .sub-item-icon {
