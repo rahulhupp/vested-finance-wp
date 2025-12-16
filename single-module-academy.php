@@ -742,7 +742,7 @@ while ( have_posts() ) :
 											// Don't show lock icon if user is logged in (even if quiz is locked, they can see it)
 											?>
 											<a href="<?php echo esc_url( $quiz_url ); ?>" class="sidebar-chapter-sub-item quiz-item <?php echo $quiz_active ? 'active' : ''; ?> <?php echo ( $quiz_locked && ! is_user_logged_in() ) ? 'locked' : ''; ?>">
-												<span class="sub-item-icon">❓</span>
+												<span class="sub-item-icon">📋</span>
 												<span class="sub-item-title">Quiz</span>
 												<span class="sub-item-duration"><?php echo esc_html( $chapter_quiz['time_limit'] ); ?> Minutes</span>
 												<?php if ( $quiz_locked && ! is_user_logged_in() ) : ?>

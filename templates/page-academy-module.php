@@ -897,11 +897,11 @@ if ( $module_post ) {
                                             <h3 class="similar-module-title"><?php echo esc_html( $similar_name ); ?></h3>
                                             <p class="similar-module-description"><?php echo esc_html( $similar_desc ); ?></p>
                                             
-                                            <div class="similar-module-meta">
+                                            <!-- <div class="similar-module-meta">
                                                 <span class="meta-item"><?php echo esc_html( $module_difficulty ); ?></span>
                                                 <span class="meta-item"><?php echo esc_html( $similar_chapters->post_count ); ?> Chapters</span>
                                                 <span class="meta-item"><?php echo esc_html( $similar_time_display ); ?></span>
-                                            </div>
+                                            </div> -->
                                             
                                             <a href="<?php echo esc_url( $similar_url ); ?>" class="similar-module-button">
                                                 View course detail
@@ -944,44 +944,6 @@ if ( $module_post ) {
                                 <span class="info-text"><?php echo esc_html( $total_time_display ); ?></span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Skills You Will Gain Card -->
-                    <div class="sidebar-card skills-card">
-                        <h3 class="card-title">Skills you will gain</h3>
-                        <ul class="skills-list">
-                            <li class="skill-item">
-                                <span class="skill-check">✓</span>
-                                <span class="skill-text">How U.S. stock exchanges work</span>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-check">✓</span>
-                                <span class="skill-text">How to invest from India (via LRS)</span>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-check">✓</span>
-                                <span class="skill-text">Understanding ETFs and themes</span>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-check">✓</span>
-                                <span class="skill-text">Basic research techniques</span>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-check">✓</span>
-                                <span class="skill-text">Tax implications for Indian investors</span>
-                            </li>
-                        </ul>
-                        
-                        <?php
-                        // Use the same logic as the header button
-                        $skills_chapter_url = $first_chapter_url ?: '#';
-                        if ( $next_uncompleted_chapter ) {
-                            $skills_chapter_url = $next_uncompleted_chapter['url'];
-                        }
-                        ?>
-                        <a href="<?php echo esc_url( $skills_chapter_url ); ?>" class="skills-cta-button">
-                            <?php echo $next_uncompleted_chapter ? 'Continue Learning →' : 'Start learning for free →'; ?>
-                        </a>
                     </div>
                 </div>
             </div>

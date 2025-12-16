@@ -282,6 +282,7 @@
 
 .quiz-question-wrapper {
     background: #ffffff;
+    padding: 20px 30px;
 }
 
 .quiz-question-header {
@@ -389,7 +390,7 @@
 }
 
 .quiz-progress {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .progress-text {
@@ -1698,6 +1699,10 @@
     gap: 15px;
 }
 
+.module-similar-section {
+    margin-top: 40px;
+}
+
 .course-structure-item {
     background: #ffffff;
     border: 2px solid #e0e0e0;
@@ -1988,7 +1993,7 @@
     background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: solid 1px #ccc;
     transition: transform 0.3s;
 }
 
