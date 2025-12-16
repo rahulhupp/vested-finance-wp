@@ -1297,107 +1297,14 @@ function vested_academy_is_email_verified( $user_id ) {
 /**
  * Send email verification email
  */
-function vested_academy_send_verification_email( $user_email, $user_login, $verification_token ) {
-	$verification_url = add_query_arg( array(
-		'action' => 'verify_email',
-		'token'  => $verification_token,
-		'email'  => urlencode( $user_email ),
-	), home_url( '/academy/signup' ) );
-	
-	$subject = 'Verify Your Academy Account Email';
-	
-	$message = "Hello " . esc_html( $user_login ) . ",\n\n";
-	$message .= "Thank you for signing up for the Academy!\n\n";
-	$message .= "Please verify your email address by clicking the link below:\n\n";
-	// Use raw URL to avoid converting '&' to HTML entities in plain text emails.
-	$message .= esc_url_raw( $verification_url ) . "\n\n";
-	$message .= "This link will expire in 24 hours.\n\n";
-	$message .= "If you did not create an account, please ignore this email.\n\n";
-	$message .= "Best regards,\n";
-	$message .= "Academy Team";
-	
-	$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
-	
-	wp_mail( $user_email, $subject, $message, $headers );
-}
+// Deprecated: old link-based verification helper (kept for reference)
+function vested_academy_send_verification_email( $user_email, $user_login, $verification_token ) {}
 
 /**
  * Handle email verification
  */
-function vested_academy_handle_email_verification() {
-	if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'verify_email' ) {
-		return;
-	}
-	
-	if ( ! isset( $_GET['token'] ) || ! isset( $_GET['email'] ) ) {
-		wp_redirect( home_url( '/academy/login?verification=error&msg=invalid_link' ) );
-		exit;
-	}
-	
-	$token = sanitize_text_field( $_GET['token'] );
-	$email = sanitize_email( $_GET['email'] );
-	
-	// Find user by email
-	$user = get_user_by( 'email', $email );
-	
-	if ( ! $user ) {
-		wp_redirect( home_url( '/academy/login?verification=error&msg=user_not_found' ) );
-		exit;
-	}
-	
-	// Clear cache to ensure we get fresh token data
-	clean_user_cache( $user->ID );
-	wp_cache_delete( $user->ID, 'user_meta' );
-	wp_cache_delete( $user->ID, 'users' );
-	
-	// Check if already verified
-	$is_verified = get_user_meta( $user->ID, 'academy_email_verified', true );
-	if ( $is_verified === '1' ) {
-		wp_redirect( home_url( '/academy/login?verification=already_verified' ) );
-		exit;
-	}
-	
-	// Verify token - get fresh data after cache clear
-	$stored_token = get_user_meta( $user->ID, 'academy_verification_token', true );
-	$expiry = get_user_meta( $user->ID, 'academy_verification_expiry', true );
-	
-	if ( $stored_token !== $token ) {
-		wp_redirect( home_url( '/academy/login?verification=error&msg=invalid_token' ) );
-		exit;
-	}
-	
-	// Check if token expired
-	if ( time() > intval( $expiry ) ) {
-		wp_redirect( home_url( '/academy/login?verification=error&msg=expired' ) );
-		exit;
-	}
-	
-	// Mark email as verified - use '1' as string to ensure consistency
-	$update_result = update_user_meta( $user->ID, 'academy_email_verified', '1' );
-	
-	// Clean up verification tokens
-	delete_user_meta( $user->ID, 'academy_verification_token' );
-	delete_user_meta( $user->ID, 'academy_verification_expiry' );
-	
-	// Clear all caches to ensure fresh data
-	clean_user_cache( $user->ID );
-	wp_cache_delete( $user->ID, 'user_meta' );
-	wp_cache_delete( $user->ID, 'users' );
-	
-	// Double-check that verification was saved correctly
-	$verify_check = get_user_meta( $user->ID, 'academy_email_verified', true );
-	if ( $verify_check !== '1' ) {
-		// If not saved correctly, try again
-		update_user_meta( $user->ID, 'academy_email_verified', '1' );
-		wp_cache_delete( $user->ID, 'user_meta' );
-	}
-	
-	// Redirect to login page with success message (user needs to log in manually)
-	wp_safe_redirect( home_url( '/academy/login?verification=success' ) );
-	exit;
-}
-// Run verification handler on init to ensure it runs before any template_redirect hooks
-add_action( 'init', 'vested_academy_handle_email_verification', 1 );
+// Deprecated link-based verification handler (replaced by OTP flow)
+function vested_academy_handle_email_verification() {}
 
 /**
  * Resend verification email
@@ -1415,36 +1322,66 @@ function vested_academy_resend_verification_email() {
 		exit;
 	}
 	
+	// Check pending signup transient first
+	$pending_key = 'academy_pending_' . md5( $user_email );
+	$pending     = get_transient( $pending_key );
+
+	if ( $pending && isset( $pending['user_login'] ) ) {
+		$otp_code   = random_int( 100000, 999999 );
+		$otp_expiry = time() + ( 10 * 60 );
+
+		$pending['otp_code']   = $otp_code;
+		$pending['otp_expiry'] = $otp_expiry;
+		set_transient( $pending_key, $pending, 15 * MINUTE_IN_SECONDS );
+
+		$subject = 'Your Academy Email Verification Code';
+		$message  = "Hello,\n\n";
+		$message .= "Your Academy verification code is: " . $otp_code . "\n";
+		$message .= "This code will expire in 10 minutes.\n\n";
+		$message .= "If you did not request this, please ignore this email.\n\n";
+		$message .= "Best regards,\n";
+		$message .= "Academy Team";
+		$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+		wp_mail( $user_email, $subject, $message, $headers );
+
+		wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $user_email ) . '&resend=success' ) );
+		exit;
+	}
+
+	// If pending not found, check existing user (unverified)
 	$user = get_user_by( 'email', $user_email );
-	
-	if ( ! $user ) {
-		wp_redirect( home_url( '/academy/signup?resend=error&msg=user_not_found' ) );
+	if ( $user ) {
+		$is_verified = get_user_meta( $user->ID, 'academy_email_verified', true );
+		if ( $is_verified === '1' ) {
+			wp_redirect( home_url( '/academy/login?resend=already_verified' ) );
+			exit;
+		}
+
+		$otp_code   = random_int( 100000, 999999 );
+		$otp_expiry = time() + ( 10 * 60 );
+
+		update_user_meta( $user->ID, 'academy_verification_otp', $otp_code );
+		update_user_meta( $user->ID, 'academy_verification_otp_expiry', $otp_expiry );
+
+		clean_user_cache( $user->ID );
+		wp_cache_delete( $user->ID, 'user_meta' );
+		wp_cache_delete( $user->ID, 'users' );
+
+		$subject = 'Your Academy Email Verification Code';
+		$message  = "Hello " . esc_html( $user->user_login ) . ",\n\n";
+		$message .= "Your Academy verification code is: " . $otp_code . "\n";
+		$message .= "This code will expire in 10 minutes.\n\n";
+		$message .= "If you did not request this, please ignore this email.\n\n";
+		$message .= "Best regards,\n";
+		$message .= "Academy Team";
+		$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+		wp_mail( $user_email, $subject, $message, $headers );
+
+		wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $user_email ) . '&resend=success' ) );
 		exit;
 	}
-	
-	// Check if already verified
-	$is_verified = get_user_meta( $user->ID, 'academy_email_verified', true );
-	if ( $is_verified === '1' ) {
-		wp_redirect( home_url( '/academy/login?resend=already_verified' ) );
-		exit;
-	}
-	
-	// Generate new verification token
-	$verification_token = wp_generate_password( 32, false );
-	$verification_expiry = time() + ( 24 * 60 * 60 ); // 24 hours from now
-	
-	update_user_meta( $user->ID, 'academy_verification_token', $verification_token );
-	update_user_meta( $user->ID, 'academy_verification_expiry', $verification_expiry );
-	
-	// Clear all caches to ensure fresh data is used when verifying
-	clean_user_cache( $user->ID );
-	wp_cache_delete( $user->ID, 'user_meta' );
-	wp_cache_delete( $user->ID, 'users' );
-	
-	// Send verification email
-	vested_academy_send_verification_email( $user_email, $user->user_login, $verification_token );
-	
-	wp_redirect( home_url( '/academy/signup?resend=success&email=' . urlencode( $user_email ) ) );
+
+	wp_redirect( home_url( '/academy/signup?resend=error&msg=user_not_found' ) );
 	exit;
 }
 add_action( 'admin_post_academy_resend_verification', 'vested_academy_resend_verification_email' );
@@ -1500,36 +1437,146 @@ function vested_academy_handle_registration() {
 		$counter++;
 	}
 	
-	// Create user with auto-generated username
-	$user_id = wp_create_user( $user_login, $user_pass, $user_email );
+	// Generate OTP
+	$otp_code    = random_int( 100000, 999999 );
+	$otp_expiry  = time() + ( 10 * 60 ); // 10 minutes
+
+	// Store pending signup in transient (15 minutes)
+	$pending_key = 'academy_pending_' . md5( $user_email );
+	$pending_data = array(
+		'user_login' => $user_login,
+		'user_email' => $user_email,
+		'user_pass'  => $user_pass,
+		'otp_code'   => $otp_code,
+		'otp_expiry' => $otp_expiry,
+		'created_at' => time(),
+	);
+	set_transient( $pending_key, $pending_data, 15 * MINUTE_IN_SECONDS );
 	
-	if ( is_wp_error( $user_id ) ) {
-		wp_redirect( home_url( '/academy/signup?registration=error&msg=' . urlencode( $user_id->get_error_message() ) ) );
-		exit;
-	}
+	// Send OTP email
+	$subject = 'Your Academy Email Verification Code';
+	$message  = "Hello,\n\n";
+	$message .= "Your Academy verification code is: " . $otp_code . "\n";
+	$message .= "This code will expire in 10 minutes.\n\n";
+	$message .= "If you did not request this, please ignore this email.\n\n";
+	$message .= "Best regards,\n";
+	$message .= "Academy Team";
+	$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+	wp_mail( $user_email, $subject, $message, $headers );
 	
-	// Assign Academy User role
-	$user = new WP_User( $user_id );
-	$user->set_role( 'academy_user' );
-	
-	// Generate email verification token
-	$verification_token = wp_generate_password( 32, false );
-	$verification_expiry = time() + ( 24 * 60 * 60 ); // 24 hours from now
-	
-	// Store verification token and mark as unverified
-	update_user_meta( $user_id, 'academy_email_verified', '0' );
-	update_user_meta( $user_id, 'academy_verification_token', $verification_token );
-	update_user_meta( $user_id, 'academy_verification_expiry', $verification_expiry );
-	
-	// Send verification email
-	vested_academy_send_verification_email( $user_email, $user_login, $verification_token );
-	
-	// Redirect to signup page with verification message
-	wp_redirect( home_url( '/academy/signup?registration=verify_email&email=' . urlencode( $user_email ) ) );
+	// Redirect to signup page with OTP verification prompt
+	wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $user_email ) ) );
 	exit;
 }
 add_action( 'admin_post_academy_register', 'vested_academy_handle_registration' );
 add_action( 'admin_post_nopriv_academy_register', 'vested_academy_handle_registration' );
+
+/**
+ * Verify OTP submission
+ */
+function vested_academy_verify_otp() {
+	// Verify nonce
+	if ( ! isset( $_POST['academy_verify_otp_nonce'] ) || ! wp_verify_nonce( $_POST['academy_verify_otp_nonce'], 'academy_verify_otp' ) ) {
+		wp_die( 'Security check failed' );
+	}
+
+	$email = isset( $_POST['user_email'] ) ? sanitize_email( $_POST['user_email'] ) : '';
+	$otp   = isset( $_POST['verification_otp'] ) ? sanitize_text_field( $_POST['verification_otp'] ) : '';
+
+	if ( empty( $email ) || empty( $otp ) ) {
+		wp_redirect( home_url( '/academy/signup?verification=error&msg=invalid_otp' ) );
+		exit;
+	}
+
+	// Check pending signup transient
+	$pending_key = 'academy_pending_' . md5( $email );
+	$pending     = get_transient( $pending_key );
+
+	if ( $pending && isset( $pending['otp_code'] ) ) {
+		// Validate OTP from pending data
+		if ( time() > intval( $pending['otp_expiry'] ) ) {
+			wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $email ) . '&verification=error&msg=expired' ) );
+			exit;
+		}
+
+		// Compare as strings to handle type mismatch
+		if ( (string) $pending['otp_code'] !== (string) $otp ) {
+			wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $email ) . '&verification=error&msg=invalid_otp' ) );
+			exit;
+		}
+
+		// Create user now
+		$user_id = wp_create_user( $pending['user_login'], $pending['user_pass'], $pending['user_email'] );
+		if ( is_wp_error( $user_id ) ) {
+			wp_redirect( home_url( '/academy/signup?verification=error&msg=' . urlencode( $user_id->get_error_message() ) ) );
+			exit;
+		}
+
+		$user = new WP_User( $user_id );
+		$user->set_role( 'academy_user' );
+
+		// Mark verified
+		update_user_meta( $user_id, 'academy_email_verified', '1' );
+
+		// Clear pending data
+		delete_transient( $pending_key );
+
+		wp_redirect( home_url( '/academy/login?verification=success' ) );
+		exit;
+	}
+
+	// If no pending, fallback to existing user (unverified) flow
+	$user = get_user_by( 'email', $email );
+	if ( ! $user ) {
+		wp_redirect( home_url( '/academy/signup?verification=error&msg=user_not_found' ) );
+		exit;
+	}
+
+	// Refresh cache
+	clean_user_cache( $user->ID );
+	wp_cache_delete( $user->ID, 'user_meta' );
+	wp_cache_delete( $user->ID, 'users' );
+
+	$is_verified = get_user_meta( $user->ID, 'academy_email_verified', true );
+	if ( $is_verified === '1' ) {
+		wp_redirect( home_url( '/academy/login?verification=already_verified' ) );
+		exit;
+	}
+
+	$stored_otp    = get_user_meta( $user->ID, 'academy_verification_otp', true );
+	$otp_expiry    = intval( get_user_meta( $user->ID, 'academy_verification_otp_expiry', true ) );
+
+	if ( empty( $stored_otp ) || empty( $otp_expiry ) ) {
+		wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $email ) . '&verification=error&msg=invalid_otp' ) );
+		exit;
+	}
+
+	if ( time() > $otp_expiry ) {
+		wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $email ) . '&verification=error&msg=expired' ) );
+		exit;
+	}
+
+	// Compare as strings to handle type mismatch (OTP might be stored as int or string)
+	if ( (string) $stored_otp !== (string) $otp ) {
+		wp_redirect( home_url( '/academy/signup?registration=verify_otp&email=' . urlencode( $email ) . '&verification=error&msg=invalid_otp' ) );
+		exit;
+	}
+
+	// Mark verified
+	update_user_meta( $user->ID, 'academy_email_verified', '1' );
+	delete_user_meta( $user->ID, 'academy_verification_otp' );
+	delete_user_meta( $user->ID, 'academy_verification_otp_expiry' );
+
+	// Clear caches
+	clean_user_cache( $user->ID );
+	wp_cache_delete( $user->ID, 'user_meta' );
+	wp_cache_delete( $user->ID, 'users' );
+
+	wp_redirect( home_url( '/academy/login?verification=success' ) );
+	exit;
+}
+add_action( 'admin_post_academy_verify_otp', 'vested_academy_verify_otp' );
+add_action( 'admin_post_nopriv_academy_verify_otp', 'vested_academy_verify_otp' );
 
 /**
  * Restrict login to Academy User role only and check email verification

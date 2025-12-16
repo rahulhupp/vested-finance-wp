@@ -46,23 +46,39 @@ get_header();
 					echo '<div class="academy-error-message">' . esc_html( $message ) . '</div>';
 				}
 				
-				// Show email verification message
-				if ( isset( $_GET['registration'] ) && $_GET['registration'] === 'verify_email' ) {
+				// Show OTP verification message
+				if ( isset( $_GET['registration'] ) && $_GET['registration'] === 'verify_otp' ) {
 					$email = isset( $_GET['email'] ) ? sanitize_email( $_GET['email'] ) : '';
 					echo '<div class="academy-info-message">';
-					echo '<h3>Check Your Email</h3>';
-					echo '<p>We\'ve sent a verification email to <strong>' . esc_html( $email ) . '</strong></p>';
-					echo '<p>Please click the verification link in the email to activate your account. The link will expire in 24 hours.</p>';
-					echo '<p>Didn\'t receive the email? Check your spam folder or resend it below.</p>';
-					
-					// Resend verification form
-					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin-top: 20px;">';
+					echo '<h3>Verify Your Email</h3>';
+					echo '<p>We\'ve sent a 6-digit verification code to <strong>' . esc_html( $email ) . '</strong></p>';
+					echo '<p>Enter the code below to verify your account. The code expires in 10 minutes.</p>';
+					echo '</div>';
+
+					// OTP verification form
+					?>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin-top: 20px;">
+						<input type="hidden" name="action" value="academy_verify_otp">
+						<?php wp_nonce_field( 'academy_verify_otp', 'academy_verify_otp_nonce' ); ?>
+						<input type="hidden" name="user_email" value="<?php echo esc_attr( $email ); ?>">
+						<div class="form-group">
+							<label for="verification_otp">Verification Code</label>
+							<input type="text" name="verification_otp" id="verification_otp" class="form-control" maxlength="6" pattern="[0-9]{6}" required>
+							<small class="form-help">Enter the 6-digit code from your email.</small>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn-signup-submit">Verify Code</button>
+						</div>
+					</form>
+
+					<?php
+					// Resend OTP form
+					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin-top: 10px;">';
 					echo '<input type="hidden" name="action" value="academy_resend_verification">';
 					wp_nonce_field( 'resend_verification', 'resend_verification_nonce' );
 					echo '<input type="hidden" name="user_email" value="' . esc_attr( $email ) . '">';
-					echo '<button type="submit" class="btn-resend-verification" style="padding: 10px 20px; background: #0073aa; color: white; border: none; cursor: pointer; border-radius: 4px;">Resend Verification Email</button>';
+					echo '<button type="submit" class="btn-resend-verification" style="padding: 8px 16px; background: #0073aa; color: white; border: none; cursor: pointer; border-radius: 4px;">Resend Code</button>';
 					echo '</form>';
-					echo '</div>';
 				}
 				
 				// Show verification status messages
@@ -70,9 +86,8 @@ get_header();
 					if ( $_GET['verification'] === 'error' ) {
 						$error_msg = isset( $_GET['msg'] ) ? sanitize_text_field( $_GET['msg'] ) : 'unknown';
 						$verification_errors = array(
-							'invalid_link' => 'Invalid verification link. Please check the link and try again.',
-							'invalid_token' => 'Invalid verification token. The link may have been used already.',
-							'expired' => 'This verification link has expired. Please request a new one.',
+							'invalid_otp' => 'Invalid verification code. Please try again.',
+							'expired' => 'This verification code has expired. Please request a new one.',
 							'user_not_found' => 'User not found. Please contact support if you continue to have issues.',
 							'unknown' => 'Verification failed. Please try again or contact support.'
 						);
@@ -99,7 +114,7 @@ get_header();
 				}
 				
 				// Only show signup form if not showing verification message
-				$show_verification_message = isset( $_GET['registration'] ) && $_GET['registration'] === 'verify_email';
+				$show_verification_message = isset( $_GET['registration'] ) && $_GET['registration'] === 'verify_otp';
 				if ( ! $show_verification_message ) :
 				?>
 				
