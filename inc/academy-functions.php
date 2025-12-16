@@ -32,7 +32,7 @@ function vested_academy_register_post_types() {
 		'archives'              => __( 'Module Archives', 'vested-finance-wp' ),
 		'attributes'            => __( 'Module Attributes', 'vested-finance-wp' ),
 		'parent_item_colon'     => __( 'Parent Module:', 'vested-finance-wp' ),
-		'all_items'             => __( 'Academy Modules', 'vested-finance-wp' ),
+		'all_items'             => __( 'Modules', 'vested-finance-wp' ),
 		'add_new_item'          => __( 'Add New Module', 'vested-finance-wp' ),
 		'add_new'               => __( 'Add New', 'vested-finance-wp' ),
 		'new_item'              => __( 'New Module', 'vested-finance-wp' ),
@@ -95,7 +95,7 @@ function vested_academy_register_chapter_topic_cpt() {
 		'new_item'           => __( 'New Chapter Topic', 'vested-finance-wp' ),
 		'edit_item'          => __( 'Edit Chapter Topic', 'vested-finance-wp' ),
 		'view_item'          => __( 'View Chapter Topic', 'vested-finance-wp' ),
-		'all_items'          => __( 'Chapter Topics', 'vested-finance-wp' ),
+		'all_items'          => __( 'Topics', 'vested-finance-wp' ),
 		'search_items'       => __( 'Search Chapter Topics', 'vested-finance-wp' ),
 		'not_found'          => __( 'No topics found.', 'vested-finance-wp' ),
 		'not_found_in_trash' => __( 'No topics found in Trash.', 'vested-finance-wp' ),
@@ -257,7 +257,7 @@ function vested_academy_register_quiz_cpt() {
 		'new_item'           => __( 'New Quiz', 'vested-finance-wp' ),
 		'edit_item'          => __( 'Edit Quiz', 'vested-finance-wp' ),
 		'view_item'          => __( 'View Quiz', 'vested-finance-wp' ),
-		'all_items'          => __( 'Quizzes', 'vested-finance-wp' ),
+		'all_items'          => __( 'Quiz', 'vested-finance-wp' ),
 		'search_items'       => __( 'Search Quizzes', 'vested-finance-wp' ),
 		'not_found'          => __( 'No quizzes found.', 'vested-finance-wp' ),
 		'not_found_in_trash' => __( 'No quizzes found in Trash.', 'vested-finance-wp' ),
@@ -443,6 +443,43 @@ function vested_academy_hide_modules_taxonomy_submenu() {
 add_action( '_admin_menu', 'vested_academy_hide_modules_taxonomy_submenu', 999 );
 add_action( 'admin_menu', 'vested_academy_hide_modules_taxonomy_submenu', 999 );
 add_action( 'admin_menu', 'vested_academy_hide_modules_taxonomy_submenu', 9999 );
+
+/**
+ * Remove unwanted submenu items under Modules.
+ * - Add New Chapter
+ * - Re-Order
+ */
+function vested_academy_clean_modules_menu() {
+	$parent_slug = 'edit.php?post_type=module';
+
+	// Remove via core helper.
+	remove_submenu_page( $parent_slug, 'post-new.php?post_type=module' );
+	remove_submenu_page( $parent_slug, 'edit.php?post_type=module&orderby=menu_order&order=asc' );
+	remove_submenu_page( $parent_slug, 'edit.php?post_type=module&amp;orderby=menu_order&amp;order=asc' );
+
+	// Extra safety: strip by slug/title if still present.
+	global $submenu;
+	if ( isset( $submenu[ $parent_slug ] ) && is_array( $submenu[ $parent_slug ] ) ) {
+		foreach ( $submenu[ $parent_slug ] as $key => $item ) {
+			$slug  = isset( $item[2] ) ? $item[2] : '';
+			$title = isset( $item[0] ) ? strip_tags( $item[0] ) : '';
+
+			$is_add_new = strpos( $slug, 'post-new.php?post_type=module' ) !== false
+				|| stripos( $title, 'add new' ) !== false;
+			$is_reorder = stripos( $slug, 're-order' ) !== false
+				|| stripos( $slug, 'reorder' ) !== false
+				|| stripos( $slug, 'orderby=menu_order' ) !== false
+				|| stripos( $title, 're-order' ) !== false
+				|| stripos( $title, 'reorder' ) !== false;
+
+			if ( $is_add_new || $is_reorder ) {
+				unset( $submenu[ $parent_slug ][ $key ] );
+			}
+		}
+		$submenu[ $parent_slug ] = array_values( $submenu[ $parent_slug ] );
+	}
+}
+add_action( 'admin_menu', 'vested_academy_clean_modules_menu', 1000 );
 
 /**
  * Add CSS to hide the taxonomy menu item as a fallback
@@ -1423,13 +1460,12 @@ function vested_academy_handle_registration() {
 	}
 	
 	// Get form data
-	$user_login = isset( $_POST['user_login'] ) ? sanitize_user( $_POST['user_login'] ) : '';
 	$user_email = isset( $_POST['user_email'] ) ? sanitize_email( $_POST['user_email'] ) : '';
 	$user_pass = isset( $_POST['user_pass'] ) ? $_POST['user_pass'] : '';
 	$user_pass_confirm = isset( $_POST['user_pass_confirm'] ) ? $_POST['user_pass_confirm'] : '';
 	
 	// Validate
-	if ( empty( $user_login ) || empty( $user_email ) || empty( $user_pass ) ) {
+	if ( empty( $user_email ) || empty( $user_pass ) ) {
 		wp_redirect( home_url( '/academy/signup?registration=error&msg=empty' ) );
 		exit;
 	}
@@ -1439,18 +1475,32 @@ function vested_academy_handle_registration() {
 		exit;
 	}
 	
-	// Check if username/email already exists
-	if ( username_exists( $user_login ) ) {
-		wp_redirect( home_url( '/academy/signup?registration=error&msg=username_exists' ) );
-		exit;
-	}
-	
+	// Check if email already exists
 	if ( email_exists( $user_email ) ) {
 		wp_redirect( home_url( '/academy/signup?registration=error&msg=email_exists' ) );
 		exit;
 	}
 	
-	// Create user
+	// Generate username from email (use email address as username)
+	// Extract the part before @ symbol and sanitize it
+	$email_parts = explode( '@', $user_email );
+	$base_username = sanitize_user( $email_parts[0], true );
+	
+	// Ensure username is valid (WordPress requires at least 4 characters)
+	if ( strlen( $base_username ) < 4 ) {
+		// If too short, use the full email (sanitized)
+		$base_username = sanitize_user( $user_email, true );
+	}
+	
+	// If username already exists, append numbers until we find an available one
+	$user_login = $base_username;
+	$counter = 1;
+	while ( username_exists( $user_login ) ) {
+		$user_login = $base_username . $counter;
+		$counter++;
+	}
+	
+	// Create user with auto-generated username
 	$user_id = wp_create_user( $user_login, $user_pass, $user_email );
 	
 	if ( is_wp_error( $user_id ) ) {

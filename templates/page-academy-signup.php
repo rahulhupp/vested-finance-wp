@@ -38,7 +38,6 @@ get_header();
 					$error_messages = array(
 						'empty' => 'Please fill in all required fields.',
 						'password_mismatch' => 'Passwords do not match. Please try again.',
-						'username_exists' => 'This username is already taken. Please choose another.',
 						'email_exists' => 'This email is already registered. Please use a different email or try logging in.',
 						'unknown' => 'Registration failed. Please try again.'
 					);
@@ -108,12 +107,6 @@ get_header();
 					<input type="hidden" name="action" value="academy_register">
 					<input type="hidden" name="academy_registration" value="1">
 					<?php wp_nonce_field( 'academy_register', 'academy_register_nonce' ); ?>
-					
-					<div class="form-group">
-						<label for="user_login">Username</label>
-						<input type="text" name="user_login" id="user_login" class="form-control" value="" size="20" required>
-						<small class="form-help">Username cannot be changed later</small>
-					</div>
 					
 					<div class="form-group">
 						<label for="user_email">Email</label>

@@ -666,23 +666,36 @@ if ( $module_post ) {
                                         </div>
                                         
                                         <div class="structure-item-content" style="display: <?php echo $chapter_index === 1 ? 'block' : 'none'; ?>;">
-                                            <a href="<?php echo esc_url( $chapter_url ); ?>" class="structure-sub-item">
-                                                    <span class="sub-item-icon">📄</span>
-                                                <span class="sub-item-title"><?php the_title(); ?></span>
-                                                    <span class="sub-item-status <?php echo $chapter_completed ? 'completed' : ''; ?>">
-                                                        <?php echo $chapter_completed ? '✓' : ''; ?>
-                                                    </span>
-                                            </a>
-                                            <!-- <?php if ( $has_quiz ) : ?>
-                                                <a href="<?php echo esc_url( $quiz_url ); ?>" class="structure-sub-item quiz-item <?php echo ! is_user_logged_in() ? 'locked' : ''; ?>">
-                                                    <span class="sub-item-icon">❓</span>
-                                                    <span class="sub-item-title">Quiz</span>
-                                                    <?php if ( ! is_user_logged_in() ) : ?>
-                                                        <span class="sub-item-lock">🔒</span>
-                                                    <?php endif; ?>
-                                                </a>
-                                            <?php endif; ?> -->
-                                            </div>
+                                            
+                                            
+                                            <?php
+                                            // Display topics for this chapter
+                                            if ( ! empty( $chapter_topics ) ) {
+                                                foreach ( $chapter_topics as $topic_idx => $topic ) :
+                                                    $topic_title = isset( $topic['topic_title'] ) ? $topic['topic_title'] : ( isset( $topic['title'] ) ? $topic['title'] : 'Topic ' . ( $topic_idx + 1 ) );
+                                                    
+                                                    if ( isset( $topic['topic_slug'] ) && function_exists( 'vested_academy_get_topic_url' ) ) {
+                                                        $topic_url = vested_academy_get_topic_url( $chapter_id, $topic['topic_slug'] );
+                                                    } else {
+                                                        $topic_url = add_query_arg( 'topic', $topic_idx, $chapter_url );
+                                                    }
+                                                    
+                                                    $topic_completed = false;
+                                                    if ( $user_id ) {
+                                                        $topic_completed = vested_academy_is_topic_completed( $user_id, $chapter_id, $topic_idx );
+                                                    }
+                                                    ?>
+                                                    <a href="<?php echo esc_url( $topic_url ); ?>" class="structure-sub-item">
+                                                        <span class="sub-item-icon">📚</span>
+                                                        <span class="sub-item-title"><?php echo esc_html( $topic_title ); ?></span>
+                                                        <span class="sub-item-status <?php echo $topic_completed ? 'completed' : ''; ?>">
+                                                            <?php echo $topic_completed ? '✓' : ''; ?>
+                                                        </span>
+                                                    </a>
+                                                <?php endforeach;
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     <?php
                                     $chapter_index++;
