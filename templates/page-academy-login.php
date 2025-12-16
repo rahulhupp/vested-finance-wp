@@ -80,9 +80,11 @@ get_header();
 				}
 				?>
 				
-				<form name="academy-login-form" id="academy-login-form" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+				<form name="academy-login-form" id="academy-login-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+					<input type="hidden" name="action" value="academy_login">
 					<input type="hidden" name="academy_login" value="1">
 					<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/academy/' ) ); ?>">
+					<?php wp_nonce_field( 'academy_login', 'academy_login_nonce' ); ?>
 					
 					<div class="form-group">
 						<label for="user_login">Username or Email</label>

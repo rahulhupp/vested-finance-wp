@@ -1715,6 +1715,76 @@ function vested_academy_handle_login_failure( $username ) {
 add_action( 'wp_login_failed', 'vested_academy_handle_login_failure', 10, 1 );
 
 /**
+ * Custom Academy Login Handler
+ * Handles login directly from Academy login page
+ */
+function vested_academy_handle_login() {
+	// Verify nonce
+	if ( ! isset( $_POST['academy_login_nonce'] ) || ! wp_verify_nonce( $_POST['academy_login_nonce'], 'academy_login' ) ) {
+		wp_die( 'Security check failed' );
+	}
+	
+	$username = isset( $_POST['log'] ) ? sanitize_text_field( $_POST['log'] ) : '';
+	$password = isset( $_POST['pwd'] ) ? $_POST['pwd'] : '';
+	$remember = isset( $_POST['rememberme'] ) ? true : false;
+	$redirect_to = isset( $_POST['redirect_to'] ) ? esc_url_raw( $_POST['redirect_to'] ) : home_url( '/academy/' );
+	
+	// Validate input
+	if ( empty( $username ) || empty( $password ) ) {
+		wp_redirect( home_url( '/academy/login?login=empty' ) );
+		exit;
+	}
+	
+	// Try to find user by email or username
+	$user = null;
+	if ( is_email( $username ) ) {
+		$user = get_user_by( 'email', $username );
+	}
+	
+	if ( ! $user ) {
+		$user = get_user_by( 'login', $username );
+	}
+	
+	if ( ! $user ) {
+		wp_redirect( home_url( '/academy/login?login=failed' ) );
+		exit;
+	}
+	
+	// Check password
+	if ( ! wp_check_password( $password, $user->user_pass, $user->ID ) ) {
+		wp_redirect( home_url( '/academy/login?login=failed' ) );
+		exit;
+	}
+	
+	// Check if user is Academy User or Administrator
+	$user_roles = $user->roles;
+	if ( ! in_array( 'academy_user', $user_roles ) && ! in_array( 'administrator', $user_roles ) ) {
+		wp_redirect( home_url( '/academy/login?login=invalid_role' ) );
+		exit;
+	}
+	
+	// Check email verification for Academy Users (not administrators)
+	if ( in_array( 'academy_user', $user_roles ) && ! in_array( 'administrator', $user_roles ) ) {
+		$is_verified = vested_academy_is_email_verified( $user->ID );
+		if ( ! $is_verified ) {
+			$email = $user->user_email;
+			wp_redirect( home_url( '/academy/login?login=email_not_verified&email=' . urlencode( $email ) ) );
+			exit;
+		}
+	}
+	
+	// Login successful - set auth cookie and redirect
+	wp_set_auth_cookie( $user->ID, $remember );
+	wp_set_current_user( $user->ID );
+	do_action( 'wp_login', $user->user_login, $user );
+	
+	wp_safe_redirect( $redirect_to );
+	exit;
+}
+add_action( 'admin_post_academy_login', 'vested_academy_handle_login' );
+add_action( 'admin_post_nopriv_academy_login', 'vested_academy_handle_login' );
+
+/**
  * Localize Academy script
  */
 function vested_academy_localize_script() {
