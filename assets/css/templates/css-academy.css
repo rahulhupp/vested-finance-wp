@@ -2508,6 +2508,569 @@
    ACADEMY LOGIN & SIGNUP PAGES
    ============================================ */
 
+/* New Two-Column Auth Design */
+.academy-auth-page {
+    min-height: 100vh;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.academy-auth-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Left Column: Dark Blue with Features */
+.academy-auth-left {
+    width: 50%;
+    background: #002145;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.academy-auth-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 54px;
+}
+
+.academy-auth-logo img {
+    max-height: 42px;
+    width: auto;
+    display: block;
+}
+
+.academy-auth-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.academy-auth-left-content {
+    max-width: 450px;
+    margin: auto;
+}
+
+.academy-auth-title {
+    font-size: 32.38px;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 23px 0;
+    line-height: 39px;
+}
+
+.academy-auth-features {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+}
+
+.academy-auth-feature {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-right: 16px;
+}
+
+.academy-auth-feature-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.academy-auth-feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.academy-auth-feature-text h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 6px 0;
+    box-shadow: 0px 0px 13.63px 0px #00000040;
+}
+
+.academy-auth-feature-text p {
+    font-size: 15px;
+    color: #C3C3C3;
+    margin: 0;
+    line-height: 23px;
+}
+
+/* Right Column: White Form */
+.academy-auth-right {
+    width: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.academy-auth-form-wrapper {
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+}
+
+#academy-login-page .academy-auth-form-wrapper {
+    padding: 0 16px;
+}
+
+.academy-auth-form-header {
+    padding: 0 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.academy-auth-form-title {
+    font-size: 48px;
+    line-height: 58px;
+    font-weight: 600;
+    color: #262626;
+    margin: 0 0 24px 0;
+    text-align: center;
+}
+
+.academy-auth-vested-btn {
+    width: 100%;
+    background: #ffffff !important;
+    border: 1px solid #ECEEF2;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #002852 !important;
+    cursor: pointer;
+    margin-bottom: 0;
+    box-shadow: 0px 1px 2px 0px #23272E14;
+    transition: all 0.3s;
+}
+
+.academy-auth-vested-btn img {
+    max-height: 16px;
+    object-fit: contain;
+}
+
+.academy-auth-vested-btn:hover {
+    border-color: #051740;
+}
+
+.academy-auth-form-group {
+    margin-bottom: 28px;
+}
+
+.academy-auth-form-wrapper .academy-auth-form-content {
+    padding: 24px 24px 0;
+}
+
+.academy-auth-form-wrapper .academy-auth-form-content-verification {
+    padding: 0;
+}
+
+.academy-auth-form-group label {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #6C6C6C;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.academy-auth-page .academy-auth-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ECEEF2;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #262626;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px 0px #23272E14;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.academy-auth-page .academy-auth-input:focus {
+    outline: none;
+    border-color: #262626;
+    border-style: solid;
+}
+
+.academy-auth-page .academy-auth-input::placeholder {
+    color: #6C6C6C;
+}
+
+.academy-auth-remember {
+    margin-bottom: 12px;
+}
+
+.academy-auth-remember label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 20px;
+    color: #6C6C6C;
+    margin-bottom: 0;
+}
+
+.academy-auth-remember input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid #526077 !important;
+    border-radius: 50%;
+    background: #fff !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.academy-auth-remember input[type="checkbox"]:checked::after {
+    content: '';
+    width: 7px;
+    height: 4px;
+    border: 2px solid #526077;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+.academy-auth-submit-btn {
+    width: 100%;
+    background: #002852;
+    color: #ffffff;
+    padding: 16.5px 36px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.academy-auth-submit-btn:hover:not(:disabled) {
+    background: #030f28;
+}
+
+.academy-auth-submit-btn:disabled {
+    background: #00285233;
+    color: #002852;
+    cursor: not-allowed;
+}
+
+.academy-auth-submit-btn-wrapper {
+    margin-bottom: 0;
+}
+
+.academy-auth-form-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.academy-auth-form-links a {
+    color: #051740;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.academy-auth-form-links a:hover {
+    color: #030f28;
+    text-decoration: underline;
+}
+
+.academy-auth-switch {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #DFDFDF;
+}
+
+.academy-auth-switch p {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+}
+
+.academy-auth-switch a {
+    color: #051740;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.academy-auth-switch a:hover {
+    color: #030f28;
+    text-decoration: underline;
+}
+
+/* OTP Form Styles */
+.academy-resend-form {
+    text-align: center;
+    line-height: 16px;
+}
+
+.academy-auth-resend-btn {
+    background: transparent;
+    border: 1px solid #051740;
+    color: #051740;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.academy-auth-resend-btn:hover {
+    background: #051740;
+    color: #ffffff;
+}
+
+/* Error and Success Messages */
+.academy-error-message {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c33;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+#academy-signup-page .academy-error-message {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.academy-success-message {
+    background: #efe;
+    border: 1px solid #cfc;
+    color: #3c3;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.academy-info-message {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    color: #1976d2;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.academy-info-message h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #1976d2;
+}
+
+.academy-info-message p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .academy-auth-left, .academy-auth-right {
+        padding: 30px;
+    }
+
+    #academy-login-page .academy-auth-form-wrapper {
+        padding: 0;
+    }
+    
+    .academy-auth-title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+    
+    .academy-auth-features {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .academy-auth-container {
+        flex-direction: column;
+    }
+    
+    .academy-auth-left {
+        width: 100%;
+        padding: 40px 30px;
+        min-height: auto;
+    }
+    
+    .academy-auth-logo {
+        margin-bottom: 40px;
+    }
+    
+    .academy-auth-content {
+        justify-content: flex-start;
+    }
+    
+    .academy-auth-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    .academy-auth-features {
+        gap: 25px;
+    }
+    
+    .academy-auth-feature {
+        gap: 15px;
+    }
+    
+    .academy-auth-feature-text h3 {
+        font-size: 16px;
+    }
+    
+    .academy-auth-feature-text p {
+        font-size: 13px;
+    }
+    
+    .academy-auth-right {
+        width: 100%;
+        padding: 40px 30px;
+    }
+}
+
+/* OTP Verification Screen Styles */
+.academy-otp-container {
+    text-align: center;
+    padding: 0;
+}
+
+.academy-otp-title {
+    font-size: 46px;
+    line-height: 58px;
+    font-weight: 600;
+    color: #262626;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.academy-otp-instruction {
+    font-size: 16px;
+    line-height: 24px;
+    color: #6C6C6C;
+    margin: 0 0 29px 0;
+    text-align: center;
+    padding: 0 50px;
+}
+
+.academy-otp-form-wrapper {
+    padding: 0 40px;
+}
+
+.academy-otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.academy-otp-inputs .academy-otp-input {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #E3E5E5;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #262626;
+    background: #FFFFFF;
+    box-shadow: none;
+    transition: all 0.3s;
+    padding: 0;
+}
+
+.academy-otp-inputs .academy-otp-input:focus {
+    outline: none;
+    border-color: #002852;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.academy-otp-resend {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.academy-otp-resend-link {
+    background: none;
+    border: none;
+    color: #002852;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    transition: color 0.3s;
+    background: transparent !important;
+}
+
+.academy-otp-resend-link:hover {
+    color: #002852;
+    text-decoration: underline;
+    background: none;
+}
+
+/* Responsive OTP Styles */
+@media (max-width: 768px) {
+    .academy-otp-title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    
+    .academy-otp-inputs {
+        gap: 8px;
+    }
+    
+    .academy-otp-input {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+}
+
+/* Legacy styles for backward compatibility */
 .academy-login-page,
 .academy-signup-page {
     min-height: 100vh;

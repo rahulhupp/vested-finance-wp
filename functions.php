@@ -30,6 +30,8 @@ require_once get_stylesheet_directory() . '/inc/bond-details-functions.php';
 require_once get_stylesheet_directory() . '/inc/stocks-collection-table.php';
 require_once get_stylesheet_directory() . '/inc/academy-functions.php';
 require_once get_stylesheet_directory() . '/inc/academy-quiz-handler.php';
+require_once get_stylesheet_directory() . '/inc/academy-auth-fields.php';
+
 
 function add_custom_js_to_pages() {
     if (is_page()) { // You can specify conditions if needed

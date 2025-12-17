@@ -1327,7 +1327,7 @@ function vested_academy_resend_verification_email() {
 	$pending     = get_transient( $pending_key );
 
 	if ( $pending && isset( $pending['user_login'] ) ) {
-		$otp_code   = random_int( 100000, 999999 );
+		$otp_code   = random_int( 1000, 9999 );
 		$otp_expiry = time() + ( 10 * 60 );
 
 		$pending['otp_code']   = $otp_code;
@@ -1357,7 +1357,7 @@ function vested_academy_resend_verification_email() {
 			exit;
 		}
 
-		$otp_code   = random_int( 100000, 999999 );
+		$otp_code   = random_int( 1000, 9999 );
 		$otp_expiry = time() + ( 10 * 60 );
 
 		update_user_meta( $user->ID, 'academy_verification_otp', $otp_code );
@@ -1437,8 +1437,8 @@ function vested_academy_handle_registration() {
 		$counter++;
 	}
 	
-	// Generate OTP
-	$otp_code    = random_int( 100000, 999999 );
+	// Generate OTP (4-digit)
+	$otp_code    = random_int( 1000, 9999 );
 	$otp_expiry  = time() + ( 10 * 60 ); // 10 minutes
 
 	// Store pending signup in transient (15 minutes)
@@ -1457,7 +1457,7 @@ function vested_academy_handle_registration() {
 	$subject = 'Your Academy Email Verification Code';
 	$message  = "Hello,\n\n";
 	$message .= "Your Academy verification code is: " . $otp_code . "\n";
-	$message .= "This code will expire in 10 minutes.\n\n";
+	$message .= "This 4-digit code will expire in 10 minutes.\n\n";
 	$message .= "If you did not request this, please ignore this email.\n\n";
 	$message .= "Best regards,\n";
 	$message .= "Academy Team";
