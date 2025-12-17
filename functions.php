@@ -130,9 +130,9 @@ if( function_exists('acf_add_options_page') ) {
     ));
 
     acf_add_options_page(array(
-        'page_title'    => 'Stocks Meta Settings',
-        'menu_title'    => 'Stocks Meta Settings',
-        'menu_slug'     => 'stocks-meta-settings',
+        'page_title'    => 'Stocks Settings',
+        'menu_title'    => 'Stocks Settings',
+        'menu_slug'     => 'stocks-settings',
         'capability'    => 'edit_posts',
         'redirect'      => false,
         'icon_url' => 'dashicons-admin-site',

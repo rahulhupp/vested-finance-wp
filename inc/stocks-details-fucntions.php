@@ -364,3 +364,130 @@ function remove_unwanted_styles()
     }
 }
 add_action('wp_enqueue_scripts', 'remove_unwanted_styles', 99999999999);
+
+
+
+/**
+ * Convert user-friendly position selection to decimal position
+ * 
+ * @param mixed $position_value The position value from ACF (can be string like "after_1" or number)
+ * @return float The calculated decimal position
+ */
+function convert_faq_position($position_value) {
+    // If it's already a number, use it directly
+    if (is_numeric($position_value)) {
+        return floatval($position_value);
+    }
+    
+    // Handle string-based position selections
+    $position_map = array(
+        'beginning' => -1,
+        'after_0' => 0.5,   // After 1st FAQ
+        'after_1' => 1.5,   // After 2nd FAQ
+        'after_2' => 2.5,   // After 3rd FAQ
+        'after_3' => 3.5,   // After 4th FAQ
+        'after_4' => 4.5,   // After 5th FAQ
+        'after_5' => 5.5,   // After 6th FAQ
+        'after_6' => 6.5,   // After 7th FAQ
+        'after_7' => 7.5,   // After 8th FAQ
+        'after_8' => 8.5,   // After 9th FAQ
+        'after_9' => 9.5,   // After 10th FAQ
+        'end' => 999,       // At the end
+    );
+    
+    if (isset($position_map[$position_value])) {
+        return $position_map[$position_value];
+    }
+    
+    // Default to end if unknown
+    return 999;
+}
+
+/**
+ * Get custom FAQs for a specific ticker from stocks_settings_list
+ * 
+ * @param string $ticker The stock ticker symbol
+ * @return array Array of custom FAQs with position, question, and answer
+ */
+function get_custom_faqs_for_ticker($ticker) {
+    $custom_faqs = array();
+    $stocks_settings_list = get_field('stocks_settings_list', 'option');
+    
+    if ($stocks_settings_list && is_array($stocks_settings_list)) {
+        foreach ($stocks_settings_list as $meta_row) {
+            // Check if this row matches the ticker
+            if (!empty($meta_row['ticker']) && strtolower($meta_row['ticker']) === strtolower($ticker)) {
+                // Check if custom FAQs exist for this ticker
+                if (!empty($meta_row['custom_faqs']) && is_array($meta_row['custom_faqs'])) {
+                    foreach ($meta_row['custom_faqs'] as $faq) {
+                        // Convert position to decimal value
+                        $position_value = !empty($faq['position']) ? $faq['position'] : 'end';
+                        $calculated_position = convert_faq_position($position_value);
+                        
+                        $custom_faqs[] = array(
+                            'position' => $calculated_position,
+                            'question' => !empty($faq['question']) ? $faq['question'] : '',
+                            'answer' => !empty($faq['answer']) ? $faq['answer'] : '',
+                        );
+                    }
+                }
+                break; // Found the matching ticker, no need to continue
+            }
+        }
+    }
+    
+    // Sort by position (ensure proper float comparison)
+    usort($custom_faqs, function($a, $b) {
+        $pos_a = floatval($a['position']);
+        $pos_b = floatval($b['position']);
+        if ($pos_a == $pos_b) {
+            return 0;
+        }
+        return ($pos_a < $pos_b) ? -1 : 1;
+    });
+    
+    return $custom_faqs;
+}
+
+/**
+ * Merge static and custom FAQs based on position
+ * 
+ * @param array $static_faqs Array of static FAQs with their positions
+ * @param array $custom_faqs Array of custom FAQs from ACF
+ * @return array Merged array of FAQs sorted by position
+ */
+function merge_faqs($static_faqs, $custom_faqs) {
+    $all_faqs = array();
+    
+    // Add static FAQs
+    foreach ($static_faqs as $index => $faq) {
+        $all_faqs[] = array(
+            'position' => floatval($faq['position']),
+            'question' => $faq['question'],
+            'answer' => $faq['answer'],
+            'is_custom' => false,
+        );
+    }
+    
+    // Add custom FAQs
+    foreach ($custom_faqs as $faq) {
+        $all_faqs[] = array(
+            'position' => floatval($faq['position']),
+            'question' => $faq['question'],
+            'answer' => $faq['answer'],
+            'is_custom' => true,
+        );
+    }
+    
+    // Sort by position (ensure proper float comparison)
+    usort($all_faqs, function($a, $b) {
+        $pos_a = floatval($a['position']);
+        $pos_b = floatval($b['position']);
+        if ($pos_a == $pos_b) {
+            return 0;
+        }
+        return ($pos_a < $pos_b) ? -1 : 1;
+    });
+    
+    return $all_faqs;
+}
