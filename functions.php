@@ -686,17 +686,17 @@ function update_login_signup_links_for_specific_pages($items, $args) {
 
 
 /** Block all REST endpoints */
-add_filter( 'rest_authentication_errors', function ( $result ) {
-   if ( ! empty( $result ) ) {
-       return $result;
-   }
-   $request_uri = ! empty( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
-   if ( strpos( $request_uri, '/wp-json/wp/v2/posts' ) !== false ) {
-       return new WP_Error(
-           'protected',
-           'Error: Access denied. This API is protected with sitewide protection.',
-           array( 'status' => 401 )
-       );
-   }
-   return $result;
-}, 5 );
+// add_filter( 'rest_authentication_errors', function ( $result ) {
+//    if ( ! empty( $result ) ) {
+//        return $result;
+//    }
+//    $request_uri = ! empty( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+//    if ( strpos( $request_uri, '/wp-json/wp/v2/posts' ) !== false ) {
+//        return new WP_Error(
+//            'protected',
+//            'Error: Access denied. This API is protected with sitewide protection.',
+//            array( 'status' => 401 )
+//        );
+//    }
+//    return $result;
+// }, 5 );

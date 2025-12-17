@@ -189,6 +189,8 @@ get_header();
             <?php
                 $taxonomy = 'stocks_collections_categories';
                 $terms = get_terms($taxonomy);
+                // Limit to 6 categories
+                $terms = array_slice($terms, 0, 6);
             ?>
             <div class="us-stock-collections-list">
                 <?php
@@ -254,7 +256,7 @@ get_header();
                 <?php endforeach; ?>
             </div>
             <div class="us-stock-collections-buttons">
-                <a href="<?php echo home_url(); ?>/us-stock-collections/" class="btn">Explore All Collections</a>
+                <a href="<?php echo home_url(); ?>/us-stocks/collections/" class="btn">Explore All Collections</a>
             </div>
         </div>
     </section>

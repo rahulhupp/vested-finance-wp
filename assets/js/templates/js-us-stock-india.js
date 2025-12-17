@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
 		infinite: true,
 		arrows: true,
 		dots: false,
-		autoplay: false,
+		autoplay: true,
 		autoplaySpeed: 6000,
 		speed: 800,
 		slidesToShow: 2,
@@ -84,17 +84,19 @@ jQuery(document).ready(function ($) {
 		],
 	});
 
+	
 	// Add 'slick-disabled' class to prev button on page load
 	$('.us-stock-why-choose-slider-button-prev').addClass('slick-disabled');
 
-	// Disable infinite scrolling when user clicks next button (first time only, with 1 second delay)
-	var nextButtonClicked = false;
-	$('.us-stock-why-choose-slider-button-next').on('click', function() {
-		// Remove 'slick-disabled' class from prev button when next is clicked
+	// Disable infinite scrolling after first slide change (either by autoplay or user click)
+	var slideChanged = false;
+	$whyChooseSlider.on('afterChange', function(event, slick, currentSlide) {
+		// Remove 'slick-disabled' class from prev button when slide changes
 		$('.us-stock-why-choose-slider-button-prev').removeClass('slick-disabled');
 		
-		if (!nextButtonClicked) {
-			nextButtonClicked = true;
+		// Disable infinite after first change (with 1 second delay)
+		if (!slideChanged) {
+			slideChanged = true;
 			setTimeout(function() {
 				$whyChooseSlider.slick('slickSetOption', 'infinite', false, true);
 			}, 1000);
