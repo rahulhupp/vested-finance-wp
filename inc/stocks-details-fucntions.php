@@ -411,7 +411,7 @@ function convert_faq_position($position_value) {
  */
 function get_custom_faqs_for_ticker($ticker) {
     $custom_faqs = array();
-    $stocks_settings_list = get_field('stocks_settings_list', 'option');
+    $stocks_settings_list = get_field('meta_settings', 'option');
     
     if ($stocks_settings_list && is_array($stocks_settings_list)) {
         foreach ($stocks_settings_list as $meta_row) {
