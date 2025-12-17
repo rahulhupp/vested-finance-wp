@@ -23,5 +23,13 @@
             'parent_slug'   => 'global-general-settings',
         ));
 
+        acf_add_options_page(array(
+            'page_title'    => 'Academy Auth Pages',
+            'menu_title'    => 'Academy Auth',
+            'menu_slug'     => 'academy-auth-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+
     }
 ?>
