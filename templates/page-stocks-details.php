@@ -29,7 +29,7 @@ if ($get_path[2] == 'etf') {
 }
 
 if ($overview_data) {
-    $meta_settings = get_field('meta_settings', 'option');
+    $stocks_settings_list = get_field('meta_settings', 'option');
     $ticker = $overview_data->ticker;
     $name = $overview_data->name;
     $formattedTicker = strtolower(str_replace(' ', '-', $ticker));
@@ -42,8 +42,8 @@ if ($overview_data) {
     $custom_title = '';
     $custom_description = '';
 
-    if ($meta_settings) {
-        foreach ($meta_settings as $meta_row) {
+    if ($stocks_settings_list) {
+        foreach ($stocks_settings_list as $meta_row) {
             if (!empty($meta_row['ticker']) && strtolower($meta_row['ticker']) === strtolower($ticker)) {
                 $custom_title = $meta_row['meta_title'];
                 $custom_description = $meta_row['meta_description'];
