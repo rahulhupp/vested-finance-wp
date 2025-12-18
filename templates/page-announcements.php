@@ -7,8 +7,8 @@ get_header(); ?>
 <div id="content" role="main" class="announcements-page">
     <section class="announcements-banner">
         <div class="container">
-            <h1>Announcements</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h1>Updates</h1>
+            <p>What’s new at Vested and across global investing, in one place.</p>
         </div>
     </section>
     <section class="announcements-list-container">
