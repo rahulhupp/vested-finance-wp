@@ -182,8 +182,12 @@
                 wp_enqueue_script('quiz-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-quiz.js', array('jquery'), '1.0.0', true);
             }
         }
-            if ($has_quiz && !empty($has_quiz)) {
+        if ($has_quiz && !empty($has_quiz)) {
             wp_enqueue_script('quiz-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-quiz.js', array('jquery'), '1.0.0', true);
+        }
+
+        if (is_page_template('templates/page-announcements.php') || is_singular('announcements')) {
+            wp_enqueue_style('announcements-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-announcements.css', false, '', '');
         }
     }
 
