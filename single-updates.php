@@ -47,30 +47,6 @@ while (have_posts()):
 								<li>
 									<a href="<?php echo home_url(); ?>/in/updates/">Updates</a>
 								</li>
-								<?php
-								$post_id = get_the_ID();
-								$terms = get_the_terms($post_id, 'updates_category');
-
-								if ($terms && !is_wp_error($terms)) {
-									?>
-									<li>
-										<?php
-										foreach ($terms as $term) {
-											// Check if the term has a parent
-											$parent_id = $term->parent;
-											if (0 === $parent_id) { // 0 means it's a parent term
-												$taxonomy_name = $term->name;
-												$taxonomy_url = get_term_link($term);
-												echo '<a href="' . esc_url($taxonomy_url) . '">' . esc_html($taxonomy_name) . '</a>';
-												// Break the loop after finding the first parent term, if you only want to display one
-												break;
-											}
-										}
-										?>
-									</li>
-									<?php
-								}
-								?>
 								<li>
 									<span>
 										<?php the_title(); ?>
