@@ -1,0 +1,367 @@
+<?php
+/**
+ * The template for displaying single updates.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ *
+ * @package Astra
+ * @since 1.0.0
+ */
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
+
+get_header();
+while (have_posts()):
+	the_post();
+	$featured_image_url = get_the_post_thumbnail_url();
+	$author_id = get_the_author_meta('ID');
+	$date_created = get_the_date();
+	$date_updated = get_the_modified_date();
+	$reading_time = calculate_reading_time(get_the_content());
+
+	$previous_post = get_previous_post(true, '', 'updates');
+	$next_post = get_next_post(true, '', 'updates');
+	?>
+	<div id="progress-container">
+		<div id="progress-bar"></div>
+	</div>
+	<div class="social-overlay"></div>
+	<div id="main-content" class="main-content">
+		<div class="single_announcements_main">
+			<div class="single_announcements_content">
+				<div class="container">
+					<div class="announcements_heading_content">
+						<div class="single_announcements_breadcrumb">
+							<?php
+							$site_name = get_bloginfo('name');
+							$terms = get_the_terms(get_the_ID(), 'updates');
+							?>
+							<ul>
+								<li>
+									<a href="<?php echo home_url('in'); ?>">
+										<?php echo $site_name; ?>
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/in/updates/">Updates</a>
+								</li>
+								<?php
+								$post_id = get_the_ID();
+								$terms = get_the_terms($post_id, 'updates_category');
+
+								if ($terms && !is_wp_error($terms)) {
+									?>
+									<li>
+										<?php
+										foreach ($terms as $term) {
+											// Check if the term has a parent
+											$parent_id = $term->parent;
+											if (0 === $parent_id) { // 0 means it's a parent term
+												$taxonomy_name = $term->name;
+												$taxonomy_url = get_term_link($term);
+												echo '<a href="' . esc_url($taxonomy_url) . '">' . esc_html($taxonomy_name) . '</a>';
+												// Break the loop after finding the first parent term, if you only want to display one
+												break;
+											}
+										}
+										?>
+									</li>
+									<?php
+								}
+								?>
+								<li>
+									<span>
+										<?php the_title(); ?>
+									</span>
+								</li>
+							</ul>
+						</div>
+						<h1 class="single_announcements_title">
+							<?php the_title(); ?>
+						</h1>
+						<div class="single_announcements_meta">
+							<div class="announcements_single_meta_wrap">
+								<div class="single_announcements_meta_item">
+									<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M12 15.75V14.25C12 13.4544 11.6839 12.6913 11.1213 12.1287C10.5587 11.5661 9.79565 11.25 9 11.25H4.5C3.70435 11.25 2.94129 11.5661 2.37868 12.1287C1.81607 12.6913 1.5 13.4544 1.5 14.25V15.75"
+											stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path
+											d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z"
+											stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path
+											d="M16.5 15.75V14.25C16.4995 13.5853 16.2783 12.9396 15.871 12.4142C15.4638 11.8889 14.8936 11.5136 14.25 11.3475"
+											stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path
+											d="M12 2.34747C12.6453 2.5127 13.2173 2.888 13.6257 3.41421C14.0342 3.94041 14.2559 4.5876 14.2559 5.25372C14.2559 5.91985 14.0342 6.56703 13.6257 7.09324C13.2173 7.61945 12.6453 7.99475 12 8.15997"
+											stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+									</svg>
+									<span>by
+										<?php echo get_the_author(); ?>
+									</span>
+								</div>
+								<div class="single_announcements_meta_item">
+									<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M14.25 3H3.75C2.92157 3 2.25 3.67157 2.25 4.5V15C2.25 15.8284 2.92157 16.5 3.75 16.5H14.25C15.0784 16.5 15.75 15.8284 15.75 15V4.5C15.75 3.67157 15.0784 3 14.25 3Z"
+											stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M12 1.5V4.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M6 1.5V4.5" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M2.25 7.5H15.75" stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+											stroke-linejoin="round" />
+									</svg>
+									<span>
+										<?php //echo $date_created; ?>
+										<?php echo $date_updated; ?>
+									</span>
+								</div>
+								<div class="single_announcements_meta_item">
+									<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_1759_6166)">
+											<path
+												d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
+												stroke="#3D5272" stroke-width="1.5" stroke-linecap="round"
+												stroke-linejoin="round" />
+											<path d="M9 4.5V9L12 10.5" stroke="#3D5272" stroke-width="1.5"
+												stroke-linecap="round" stroke-linejoin="round" />
+										</g>
+										<defs>
+											<clipPath id="clip0_1759_6166">
+												<rect width="18" height="18" fill="white" />
+											</clipPath>
+										</defs>
+									</svg>
+									<span>
+										<?php echo $reading_time; ?> min read
+									</span>
+								</div>
+							</div>
+							<div class="single_announcements_info_item last">
+								<div class="social-share-block">
+									<button class="sharing-icon announcements_share_mw">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp"
+											alt="link" />
+									</button>
+									<button class="share-btn"><img
+											src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp"
+											alt="Share Icon" /><span>Share</span></button>
+									<ul>
+										<?php
+										$current_page_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+										?>
+
+										<li>
+											<a id="copyLink" href="" class="announcements_share_copylink">
+												<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp"
+													alt="link" />
+												<span>Copy link</span>
+											</a>
+										</li>
+										<li class="share_whatsapp">
+											<a href="javascript:void(0);" target="_blank" class="announcements_share_whatsapp">
+												<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp"
+													alt="whatsapp" />
+												<span>Share on Whatsapp</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="single_announcements_feature_image">
+							<img src="<?php echo $featured_image_url; ?>" alt="<?php the_title(); ?>">
+						</div>
+					</div>
+
+					<div class="single_announcements_content_wrapper">
+						<!-- The Modal -->
+						<div id="modal" class="modal">
+							<span id="modal-close" class="modal-close">&times;</span>
+							<img id="modal-content" class="modal-content">
+							<div id="modal-caption" class="modal-caption"></div>
+						</div>
+
+						<div class="single_announcements_post_content">
+							<div class="content">
+								<div class="inner_content">
+									<?php if (get_field('heading_notes')): ?>
+										<div class="heading_note">
+											<?php the_field('heading_notes'); ?>
+										</div>
+									<?php endif; ?>
+									<?php the_content(); ?>
+									<?php if (get_field('takeaways')): ?>
+										<div class="takeways">
+											<h2>Key Takeaways </h2>
+											<?php the_field('takeaways'); ?>
+										</div>
+									<?php endif; ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+	$post_id = get_the_ID();
+	?>
+	<script>
+		window.addEventListener('scroll', () => {
+			const mainContent = document.querySelector('#main-content');
+			const mainContentHeight = mainContent.clientHeight - window.innerHeight;
+			const scrollTop = window.scrollY;
+			const progress = (scrollTop / mainContentHeight) * 100;
+
+			document.getElementById('progress-bar').style.width = `${progress}%`;
+		});
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var current_text = document.querySelector(".single_announcements_title").textContent;
+
+			document.querySelector(".share_whatsapp").addEventListener("click", function () {
+				var current_page_url = window.location.href;
+				window.open('https://wa.me/?text=' + encodeURIComponent(current_text + " , " + current_page_url) + '&utm-medium=social&utm-source=WhatsApp&utm-campaign=Academy', "_blank");
+			});
+		});
+
+		function addAttributesToExternalLinks() {
+			var dynamicContent = document.getElementById('main');
+			if (dynamicContent) {
+				var anchorTags = dynamicContent.querySelectorAll('a');
+
+				anchorTags.forEach(function (anchorTag) {
+					var href = anchorTag.getAttribute('href');
+					var isExternal = /^https?:\/\//.test(href) && !href.includes('vestedfinance.com/');
+
+					if (isExternal) {
+						anchorTag.setAttribute('target', '_blank');
+						anchorTag.setAttribute('rel', 'noindex, nofollow');
+					}
+				});
+			}
+		}
+		addAttributesToExternalLinks();
+	</script>
+<?php endwhile; ?>
+<script>
+	var elements = document.querySelectorAll('.single_announcements_content_wrapper img');
+
+	// Loop through the elements and add the class 'modal-target' to each of them
+	elements.forEach(function (element) {
+		element.classList.add('modal-target');
+	});
+	// Modal Setup
+	var modal = document.getElementById('modal');
+
+	var modalClose = document.getElementById('modal-close');
+	modalClose.addEventListener('click', function () {
+		modal.style.display = "none";
+		document.querySelector('html').classList.remove('open-image-modal');
+	});
+	modal.addEventListener('click', function () {
+		modal.style.display = "none";
+		document.querySelector('html').classList.remove('open-image-modal');
+	});
+
+	// global handler
+	document.addEventListener('click', function (e) {
+		if (e.target.className.indexOf('modal-target') !== -1) {
+			var img = e.target;
+			var modalImg = document.getElementById("modal-content");
+			var captionText = document.getElementById("modal-caption");
+			modal.style.display = "block";
+			modalImg.src = img.src;
+			captionText.innerHTML = img.alt;
+			document.querySelector('html').classList.add('open-image-modal');
+		}
+	});
+	var shareButton = document.querySelector(".share-btn");
+	var shareOverlay = document.querySelector(".social-overlay");
+
+	shareButton.addEventListener("click", function () {
+		shareButton.classList.add("show");
+		document.querySelector('html').classList.add('social-open');
+	});
+
+	shareOverlay.addEventListener("click", function () {
+		shareButton.classList.remove("show");
+		document.querySelector('html').classList.remove('social-open');
+	});
+
+	// var currentURL = window.location.href;
+	// console.log(currentURL);
+
+	document.addEventListener("DOMContentLoaded", function () {
+		var copyButton = document.getElementById("copyLink");
+		var spanElement = document.querySelector("#copyLink span");
+
+		copyButton.addEventListener("click", function (event) {
+			event.preventDefault();
+			// Get the current URL
+			var currentURL = window.location.href;
+
+			// Create a temporary input element to copy the URL to the clipboard
+			var tempInput = document.createElement("input");
+			tempInput.value = currentURL;
+			document.body.appendChild(tempInput);
+
+			// Select and copy the text
+			tempInput.select();
+			document.execCommand("copy");
+
+			// Remove the temporary input element
+			document.body.removeChild(tempInput);
+
+			// Provide feedback to the user (e.g., alert or change button text)
+			spanElement.innerHTML = "Copied";
+			setTimeout(function () {
+				document.querySelector('html').classList.remove('social-open');
+				spanElement.innerHTML = "Copy link";
+			}, 1000); // 4-second delay
+		});
+	});
+	window.onscroll = function () {
+		// Code to execute when the user scrolls
+		document.querySelector('html').classList.remove('social-open');
+	};
+	// 
+
+	const BlogData = {
+		title: '<?php the_title(); ?>',
+		url: '<?php the_permalink(); ?>',
+	}
+
+	const btn = document.querySelector('.sharing-icon');
+
+	// Share must be triggered by "user activation"
+	btn.addEventListener('click', async () => {
+		try {
+			if (navigator.canShare
+				&& typeof navigator.canShare === 'function'
+				&& navigator.canShare(BlogData)) {
+				let result = await navigator.share(BlogData);
+				document.getElementById("status").innerText = result || '';
+			} else {
+				document.getElementById("status").innerText = "Sharing selected data not supported.";
+			}
+		} catch (err) {
+			document.getElementById("status").innerText = "Share not complete";
+		}
+	});
+</script>
+
+<?php get_footer(); ?>

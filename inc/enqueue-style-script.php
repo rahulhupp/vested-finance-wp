@@ -145,6 +145,9 @@
             wp_enqueue_style('exclusive-benefits-style', get_stylesheet_directory_uri() . '/assets/css/css-exclusive-benefits.css', false, '', '');
             wp_enqueue_script('exclusive-benefits-js', get_stylesheet_directory_uri() . '/assets/js/js-exclusive-benefits.js');
         }
+        if (is_page_template('templates/page-updates.php') || is_singular('updates')) {
+            wp_enqueue_style('updates-page-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-updates.css', false, '', '');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'enqueue_custom_assets');
