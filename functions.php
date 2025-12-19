@@ -31,6 +31,7 @@ require_once get_stylesheet_directory() . '/inc/stocks-collection-table.php';
 require_once get_stylesheet_directory() . '/inc/academy-functions.php';
 require_once get_stylesheet_directory() . '/inc/academy-quiz-handler.php';
 require_once get_stylesheet_directory() . '/inc/academy-auth-fields.php';
+require_once get_stylesheet_directory() . '/inc/academy-module-fields.php';
 
 
 function add_custom_js_to_pages() {

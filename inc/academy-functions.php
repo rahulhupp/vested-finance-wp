@@ -1397,18 +1397,13 @@ function vested_academy_handle_registration() {
 	}
 	
 	// Get form data
+	$user_name = isset( $_POST['user_name'] ) ? sanitize_text_field( $_POST['user_name'] ) : '';
 	$user_email = isset( $_POST['user_email'] ) ? sanitize_email( $_POST['user_email'] ) : '';
 	$user_pass = isset( $_POST['user_pass'] ) ? $_POST['user_pass'] : '';
-	$user_pass_confirm = isset( $_POST['user_pass_confirm'] ) ? $_POST['user_pass_confirm'] : '';
 	
 	// Validate
-	if ( empty( $user_email ) || empty( $user_pass ) ) {
+	if ( empty( $user_name ) || empty( $user_email ) || empty( $user_pass ) ) {
 		wp_redirect( home_url( '/academy/signup?registration=error&msg=empty' ) );
-		exit;
-	}
-	
-	if ( $user_pass !== $user_pass_confirm ) {
-		wp_redirect( home_url( '/academy/signup?registration=error&msg=password_mismatch' ) );
 		exit;
 	}
 	
@@ -1445,6 +1440,7 @@ function vested_academy_handle_registration() {
 	$pending_key = 'academy_pending_' . md5( $user_email );
 	$pending_data = array(
 		'user_login' => $user_login,
+		'user_name'  => $user_name,
 		'user_email' => $user_email,
 		'user_pass'  => $user_pass,
 		'otp_code'   => $otp_code,
@@ -1514,6 +1510,17 @@ function vested_academy_verify_otp() {
 
 		$user = new WP_User( $user_id );
 		$user->set_role( 'academy_user' );
+
+		// Update user display name and first name
+		if ( ! empty( $pending['user_name'] ) ) {
+			$name_parts = explode( ' ', $pending['user_name'], 2 );
+			wp_update_user( array(
+				'ID'           => $user_id,
+				'display_name' => $pending['user_name'],
+				'first_name'   => $name_parts[0],
+				'last_name'    => isset( $name_parts[1] ) ? $name_parts[1] : '',
+			) );
+		}
 
 		// Mark verified
 		update_user_meta( $user_id, 'academy_email_verified', '1' );

@@ -86,6 +86,10 @@ if ( $queried_object && isset( $queried_object->post_type ) && $queried_object->
     if ( ! $module_image ) {
         $module_image = get_field( 'module_image', $module_post->ID );
     }
+    // Fallback to default if no image
+    if ( ! $module_image ) {
+        $module_image = get_stylesheet_directory_uri() . '/assets/images/app-download-mockup.png';
+    }
     $module_difficulty = get_field( 'difficulty_level', $module_post->ID ) ?: 'Beginner';
     $module_slug = $module_post->post_name;
     
@@ -143,6 +147,10 @@ if ( $queried_object && isset( $queried_object->post_type ) && $queried_object->
                 $module_image = get_field( 'module_image', $linked_cpt->ID );
             }
         }
+    }
+    // Fallback to default if no image
+    if ( ! $module_image ) {
+        $module_image = get_stylesheet_directory_uri() . '/assets/images/app-download-mockup.png';
     }
     
     // Get chapters via taxonomy
@@ -368,147 +376,8 @@ if ( $module_post ) {
 // The "Start learning" / "Continue Learning" button will take them to the right chapter
 ?>
 
-<?php if ( $debug_mode ) : ?>
-<div style="background: #f0f0f0; padding: 20px; margin: 20px; border: 2px solid #333; font-family: monospace; font-size: 12px;">
-    <h2 style="color: #d00;">🔍 DEBUG CONSOLE - Module Progress Tracking</h2>
-    
-    <h3>Current User Info:</h3>
-    <ul>
-        <li><strong>User ID:</strong> <?php echo $user_id ? esc_html( $user_id ) : 'Not logged in'; ?></li>
-        <li><strong>Username:</strong> <?php echo $user_id ? esc_html( wp_get_current_user()->user_login ) : 'N/A'; ?></li>
-        <li><strong>Module ID:</strong> <?php echo esc_html( $module_id ); ?></li>
-        <li><strong>Module Name:</strong> <?php echo esc_html( $module_name ); ?></li>
-    </ul>
-    
-    <h3>All Chapters in Module (<?php echo count( $all_chapters_list ); ?> total):</h3>
-    <ol>
-        <?php foreach ( $all_chapters_list as $index => $chapter ) : 
-            $is_completed = in_array( $chapter['id'], $completed_chapters );
-            $is_next = ( $next_uncompleted_chapter && $next_uncompleted_chapter['id'] == $chapter['id'] );
-        ?>
-        <li style="margin: 5px 0; padding: 5px; background: <?php echo $is_next ? '#90EE90' : ( $is_completed ? '#FFE4B5' : '#fff' ); ?>;">
-            <strong>ID:</strong> <?php echo esc_html( $chapter['id'] ); ?> | 
-            <strong>Title:</strong> <?php echo esc_html( $chapter['title'] ); ?> | 
-            <strong>Status:</strong> 
-            <?php if ( $is_completed ) : ?>
-                <span style="color: green;">✓ COMPLETED</span>
-            <?php elseif ( $is_next ) : ?>
-                <span style="color: blue; font-weight: bold;">→ NEXT UNCOMPLETED (Will redirect here)</span>
-            <?php else : ?>
-                <span style="color: gray;">Not started</span>
-            <?php endif; ?>
-            <br>
-            <small>URL: <?php echo esc_html( $chapter['url'] ); ?></small>
-        </li>
-        <?php endforeach; ?>
-    </ol>
-    
-    <h3>Completed Chapters (<?php echo count( $completed_chapters ); ?>):</h3>
-    <ul>
-        <?php if ( ! empty( $completed_chapters ) ) : ?>
-            <?php foreach ( $completed_chapters as $comp_id ) : 
-                $comp_chapter = null;
-                foreach ( $all_chapters_list as $ch ) {
-                    if ( $ch['id'] == $comp_id ) {
-                        $comp_chapter = $ch;
-                        break;
-                    }
-                }
-            ?>
-            <li>
-                <strong>Chapter ID:</strong> <?php echo esc_html( $comp_id ); ?> | 
-                <strong>Title:</strong> <?php echo $comp_chapter ? esc_html( $comp_chapter['title'] ) : 'Unknown'; ?>
-            </li>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <li style="color: gray;">No chapters completed yet</li>
-        <?php endif; ?>
-    </ul>
-    
-    <h3>Next Uncompleted Chapter:</h3>
-    <?php if ( $next_uncompleted_chapter ) : ?>
-        <div style="background: #90EE90; padding: 10px; border: 2px solid #00AA00;">
-            <strong>ID:</strong> <?php echo esc_html( $next_uncompleted_chapter['id'] ); ?><br>
-            <strong>Title:</strong> <?php echo esc_html( $next_uncompleted_chapter['title'] ); ?><br>
-            <strong>URL:</strong> <?php echo esc_html( $next_uncompleted_chapter['url'] ); ?><br>
-            <strong>Button will link to:</strong> <?php echo esc_html( $next_uncompleted_chapter['url'] ); ?>
-        </div>
-    <?php else : ?>
-        <div style="background: #FFE4B5; padding: 10px;">
-            <strong>All chapters completed!</strong> Or no chapters found.
-        </div>
-    <?php endif; ?>
-    
-    <?php if ( isset( $debug_user ) && $debug_user ) : ?>
-    <h3>Debug User "rahulupadhyayvested" Progress:</h3>
-    <ul>
-        <li><strong>User ID:</strong> <?php echo esc_html( $debug_user_id ); ?></li>
-        <li><strong>Completed Chapters:</strong> <?php echo count( $debug_completed_ids ); ?></li>
-        <li><strong>Chapter IDs:</strong> <?php echo esc_html( implode( ', ', $debug_completed_ids ) ); ?></li>
-    </ul>
-    <?php endif; ?>
-    
-    <h3>Database Query Used:</h3>
-    <code style="background: #fff; padding: 5px; display: block;">
-        SELECT chapter_id FROM <?php echo esc_html( $table_name ); ?> 
-        WHERE user_id = <?php echo $user_id ? esc_html( $user_id ) : 'NULL'; ?> 
-        AND progress_type = 'chapter' 
-        AND status = 'completed'
-    </code>
-    
-    <h3>Raw Database Results:</h3>
-    <?php if ( $user_id ) : 
-        $raw_results = $wpdb->get_results( $wpdb->prepare(
-            "SELECT * FROM $table_name WHERE user_id = %d AND progress_type = 'chapter' ORDER BY completed_at DESC",
-            $user_id
-        ) );
-    ?>
-        <table style="width: 100%; border-collapse: collapse; background: #fff; margin-top: 10px;">
-            <thead>
-                <tr style="background: #333; color: #fff;">
-                    <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
-                    <th style="padding: 8px; border: 1px solid #ddd;">Chapter ID</th>
-                    <th style="padding: 8px; border: 1px solid #ddd;">Module ID</th>
-                    <th style="padding: 8px; border: 1px solid #ddd;">Status</th>
-                    <th style="padding: 8px; border: 1px solid #ddd;">Progress %</th>
-                    <th style="padding: 8px; border: 1px solid #ddd;">Completed At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ( ! empty( $raw_results ) ) : ?>
-                    <?php foreach ( $raw_results as $row ) : ?>
-                    <tr>
-                        <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $row->id ); ?></td>
-                        <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $row->chapter_id ); ?></td>
-                        <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $row->module_id ); ?></td>
-                        <td style="padding: 8px; border: 1px solid #ddd; color: <?php echo $row->status === 'completed' ? 'green' : 'orange'; ?>;">
-                            <?php echo esc_html( $row->status ); ?>
-                        </td>
-                        <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $row->progress_percentage ); ?>%</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $row->completed_at ?: 'Not completed' ); ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="6" style="padding: 8px; border: 1px solid #ddd; text-align: center; color: gray;">
-                            No progress records found in database
-                        </td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    <?php else : ?>
-        <p style="color: gray;">User not logged in</p>
-    <?php endif; ?>
-    
-    <p style="margin-top: 20px; color: #666;">
-        <small>Add <code>?debug=1</code> to URL to see this console. Remove parameter to hide.</small>
-    </p>
-</div>
-<?php endif; ?>
-
 <div id="academy-module-page" class="academy-module-page">
-    <!-- Module Header Section -->
+    <div class="academy-home-bg" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/academy-home-bg.svg');"></div>
     <section class="module-header-section">
         <div class="container">
             <div class="module-header-content">
@@ -517,36 +386,34 @@ if ( $module_post ) {
                     <p class="module-description"><?php echo esc_html( $module_description ); ?></p>
                     
                     <div class="module-rating">
-                        <div class="rating-stars">
-                            <span class="star filled">⭐</span>
-                            <span class="star filled">⭐</span>
-                            <span class="star filled">⭐</span>
-                            <span class="star filled">⭐</span>
-                            <span class="star filled">⭐</span>
+                        <div class="rating-avatars">
+                            <?php
+                            $rating_avatars = get_field( 'rating_avatars', $module_id );
+                            if ( $rating_avatars && is_array( $rating_avatars ) ) {
+                                foreach ( $rating_avatars as $avatar ) :
+                                    $avatar_image = isset( $avatar['avatar_image'] ) ? $avatar['avatar_image'] : '';
+                                    ?>
+                                    <div class="avatar-circle">
+                                        <img src="<?php echo esc_url( $avatar_image ); ?>" alt="Student">
+                                    </div>
+                                    <?php
+                                endforeach;
+                            }
+                            ?>
                         </div>
-                        <span class="rating-value">5.0</span>
-                        <span class="rating-text">Trusted by 23k+ Students</span>
+                        <div class="rating-wrapper">
+                            <div class="rating-info">
+                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/star-icons.svg" alt="Rating">
+                                <span class="rating-value"><?php echo esc_html( get_field( 'rating_value', $module_id ) ); ?></span>
+                            </div>
+                            <span class="rating-text"><?php echo esc_html( get_field( 'rating_text', $module_id ) ); ?></span>
+                        </div>
                     </div>
-                    
-                    <?php
-                    // Determine which chapter to link to
-                    $start_chapter_url = $first_chapter_url ?: '#';
-                    if ( $next_uncompleted_chapter ) {
-                        // User has progress - redirect to next uncompleted chapter
-                        $start_chapter_url = $next_uncompleted_chapter['url'];
-                    }
-                    ?>
-                    <a href="<?php echo esc_url( $start_chapter_url ); ?>" class="module-start-button">
-                        <?php echo $next_uncompleted_chapter ? 'Continue Learning →' : 'Start learning for free →'; ?>
-                    </a>
                 </div>
-                
                 <div class="module-header-right">
-                    <?php if ( $module_image ) : ?>
-                        <div class="module-header-image">
-                            <img src="<?php echo esc_url( $module_image ); ?>" alt="<?php echo esc_attr( $module_name ); ?>">
-                        </div>
-                    <?php endif; ?>
+                    <div class="module-mobile-mockup">
+                        <img src="<?php echo esc_url( $module_image ); ?>" alt="<?php echo esc_attr( $module_name ); ?>">
+                    </div>
                 </div>
             </div>
         </div>
@@ -555,20 +422,22 @@ if ( $module_post ) {
     <!-- Main Content Area -->
     <div class="module-main-layout">
         <div class="container">
-            <div class="module-content-wrapper">
-                <!-- Left Column: Main Content -->
-                <div class="module-main-content">
-                    <!-- About This Module -->
-                    <section class="module-about-section">
-                        <h2 class="section-title">About this Module</h2>
-                        <div class="module-about-content">
-                            <?php echo wp_kses_post( wpautop( $module_description ) ); ?>
-                        </div>
-                    </section>
+            <div class="module-about-section">
+                <div class="module-about-wrapper">
+                    <div class="module-about-content">
+                        <h2 class="about-title"><?php echo esc_html( get_field( 'about_title', $module_id ) ); ?></h2>
+                        <div class="module-about-text">
+                            <p>Think about your day. You probably scrolled through Instagram, searched on Google, and maybe even watched something on Netflix. You're one of the best customers for these American companies. <br>But here’s a question—are you one of their owners?</p>
 
-                    <!-- Course Structure -->
-                    <section class="module-course-structure">
-                        <h2 class="section-title">Course structure</h2>
+                            <p>For most of us, the answer is no. Our investment world is often limited to India. But what if we told you that by doing this, you're ignoring 60% of the entire world's stock market? <br>That's right. The US market isn't just another country's stock exchange; it's the financial superpower where global growth stories are written. Meanwhile, back home, your hard-earned money is fighting a quiet battle against Rupee depreciation—a silent wealth killer.</p>
+
+                            <p>So, how do you go from being just a consumer to an owner? How do you tap into that massive 60% of the market and potentially turn a weakening Rupee into an advantage?</p>
+
+                            <p>This module is your playbook. We break down the fundamentals of the US market in simple, jargon-free language, specifically for you, the Indian investor. It’s about giving you the knowledge and confidence to navigate the world's largest capital market and finally claim your stake.</p>
+                        </div>
+                    </div>
+                    <div class="module-course-structure">
+                        <h2 class="about-title"><?php echo esc_html( get_field( 'course_structure_title', $module_id ) ); ?></h2>
                         <div class="course-structure-list">
                             <?php
                             $chapter_index = 1;
@@ -653,21 +522,17 @@ if ( $module_post ) {
                                     ?>
                                     <div class="course-structure-item <?php echo $chapter_index === 1 ? 'active expanded' : ''; ?>" data-chapter-id="<?php echo esc_attr( $chapter_id ); ?>">
                                         <div class="structure-item-header">
-                                            <a href="<?php echo esc_url( $chapter_url ); ?>" class="structure-item-title-link">
-                                            <span class="structure-item-number"><?php echo esc_html( $chapter_index ); ?>.</span>
-                                            <h3 class="structure-item-title"><?php the_title(); ?></h3>
-                                            </a>
+                                            <div class="structure-item-title-link">
+                                                <span class="structure-item-number"><?php echo esc_html( $chapter_index ); ?>.</span>
+                                                <h3 class="structure-item-title"><?php the_title(); ?></h3>
+                                            </div>
                                             <span class="structure-item-duration"><?php echo esc_html( $chapter_duration_display ); ?></span>
-                                            <button class="structure-item-toggle" aria-label="Toggle chapter" type="button">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="toggle-icon">
-                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/close-avatar-icon.svg" alt="Arrow down" class="structure-item-arrow">
                                         </div>
                                         
                                         <div class="structure-item-content" style="display: <?php echo $chapter_index === 1 ? 'block' : 'none'; ?>;">
                                             
-                                            
+                                            <div class="structure-sub-items">
                                             <?php
                                             // Display topics for this chapter
                                             if ( ! empty( $chapter_topics ) ) {
@@ -686,15 +551,42 @@ if ( $module_post ) {
                                                     }
                                                     ?>
                                                     <a href="<?php echo esc_url( $topic_url ); ?>" class="structure-sub-item">
-                                                        <span class="sub-item-icon">📚</span>
-                                                        <span class="sub-item-title"><?php echo esc_html( $topic_title ); ?></span>
-                                                        <span class="sub-item-status <?php echo $topic_completed ? 'completed' : ''; ?>">
-                                                            <?php echo $topic_completed ? '✓' : ''; ?>
+                                                        <span class="sub-item-icon">
+                                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/play-icon.svg" alt="Book" class="info-icon">
                                                         </span>
+                                                        <span class="sub-item-title"><?php echo esc_html( $topic_title ); ?></span>
+                                                        <?php if ( $topic_completed ) : ?>
+                                                        <span class="sub-item-status completed"></span>
+                                                        <?php endif; ?>
                                                     </a>
                                                 <?php endforeach;
                                             }
-                                            ?>
+                                            
+                                            // Display quiz if available
+                                            if ( $has_quiz && $quiz_url ) :
+                                                $quiz_completed = false;
+                                                if ( $user_id ) {
+                                                    global $wpdb;
+                                                    $table_name = $wpdb->prefix . 'academy_progress';
+                                                    $quiz_progress = $wpdb->get_row( $wpdb->prepare(
+                                                        "SELECT * FROM $table_name WHERE user_id = %d AND chapter_id = %d AND progress_type = 'quiz' AND status = 'completed'",
+                                                        $user_id,
+                                                        $chapter_id
+                                                    ) );
+                                                    $quiz_completed = ! empty( $quiz_progress );
+                                                }
+                                                ?>
+                                                <a href="<?php echo esc_url( $quiz_url ); ?>" class="structure-sub-item structure-quiz-item">
+                                                    <span class="sub-item-icon">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/play-icon.svg" alt="Test" class="info-icon">
+                                                    </span>
+                                                    <span class="sub-item-title">Quiz</span>
+                                                    <?php if ( $quiz_completed ) : ?>
+                                                    <span class="sub-item-status completed"></span>
+                                                    <?php endif; ?>
+                                                </a>
+                                            <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php
@@ -704,15 +596,73 @@ if ( $module_post ) {
                             endif;
                             ?>
                         </div>
-                    </section>
-
-                    <!-- Similar Modules -->
-                    <?php if ( ! empty( $similar_modules ) ) : ?>
-                        <section class="module-similar-section">
-                            <h2 class="section-title">Similar Modules</h2>
-                            <p class="section-description">A complete repository of educational content that helps Indian investors understand the nuances of global markets.</p>
-                            
-                            <div class="similar-modules-grid">
+                    </div>
+                </div>
+                <div class="module-about-sidebar">
+                    <div class="sidebar-card">
+                        <div class="academy-logo">
+                            <img src="<?php echo esc_url( get_field( 'academy_logo', $module_id ) ); ?>" alt="Course information">
+                        </div>
+                        <div class="course-info-card">
+                            <h3 class="course-info-title">Course information</h3>
+                            <div class="module-card-attributes">
+                                <div class="module-attribute">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/chart-icon.svg" alt="Difficulty" class="info-icon">
+                                    <span class="attribute-text"><?php echo esc_html( $module_difficulty ); ?></span>
+                                </div>
+                                <div class="module-attribute">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/book-icon.svg" alt="Chapters" class="info-icon">
+                                    <span class="attribute-text"><?php echo esc_html( $total_chapters ); ?> Chapters</span>
+                                </div>
+                                <div class="module-attribute">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/clock-icon2.svg" alt="Duration" class="info-icon">
+                                    <span class="attribute-text"><?php echo esc_html( $total_time_display ); ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skills-info">
+                            <h3 class="skills-title">Skills you will gain</h3>
+                            <ul class="skills-list">
+                                <?php
+                                $module_skills = get_field( 'module_skills', $module_id );
+                                if ( $module_skills && is_array( $module_skills ) ) {
+                                    foreach ( $module_skills as $skill ) :
+                                        $skill_text = isset( $skill['skill_text'] ) ? $skill['skill_text'] : '';
+                                        ?>
+                                        <li class="skill-item">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/check-icon.svg" alt="Skill">
+                                            <span><?php echo esc_html( $skill_text ); ?></span>
+                                        </li>
+                                        <?php
+                                    endforeach;
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <a href="<?php echo esc_url( $start_chapter_url ); ?>" class="course-info-button">
+                            Start learning for free →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Similar Modules Section -->
+    <?php if ( ! empty( $similar_modules ) ) : ?>
+        <?php
+        $similar_count = count( $similar_modules );
+        $is_similar_slider = $similar_count > 3;
+        $similar_slider_class = $is_similar_slider ? 'similar-modules-slider' : 'similar-modules-grid';
+        ?>
+        <section class="module-similar-section">
+            <div class="container">
+                <div class="similar-modules-header">
+                    <h2 class="section-title">Similar Modules</h2>
+                    <p class="section-description">A complete repository of educational content that helps Indian investors understand the nuances of global markets.</p>
+                </div>
+                
+                <div class="<?php echo esc_attr( $similar_slider_class ); ?>" <?php echo $is_similar_slider ? 'data-slider="true"' : ''; ?>>
                                 <?php foreach ( $similar_modules as $similar_module ) :
                                     // Support both post type and taxonomy
                                     $similar_image = '';
@@ -898,70 +848,112 @@ if ( $module_post ) {
                                     if ( strlen( $similar_desc ) > 150 ) {
                                         $similar_desc = substr( $similar_desc, 0, 150 ) . '...';
                                     }
+                                    
+                                    // Get module tag/category for overlay
+                                    $similar_tag = explode( ' ', $similar_name )[0];
+                                    if ( strlen( $similar_tag ) > 15 ) {
+                                        $similar_tag = substr( $similar_tag, 0, 15 );
+                                    }
+                                    
+                                    // Get difficulty for similar module
+                                    $similar_difficulty = 'Beginner';
+                                    if ( isset( $similar_module->is_post ) && $similar_module->is_post ) {
+                                        $similar_difficulty = get_field( 'difficulty_level', $similar_id ) ?: 'Beginner';
+                                    } else {
+                                        $similar_difficulty = get_field( 'difficulty_level', $similar_module ) ?: 'Beginner';
+                                    }
+                                    
+                                    // Count chapters
+                                    $similar_chapters_count = isset( $similar_chapters ) ? $similar_chapters->post_count : 0;
                                     ?>
-                                    <div class="similar-module-card">
-                                        <?php if ( $similar_image ) : ?>
-                                            <div class="similar-module-image">
-                                                <img src="<?php echo esc_url( $similar_image ); ?>" alt="<?php echo esc_attr( $similar_name ); ?>">
+                                    <div class="similar-module-item">
+                                        <div class="roadmap-module-card">
+                                            <?php if ( $similar_image ) : ?>
+                                            <div class="module-card-image-wrapper">
+                                                <img src="<?php echo esc_url( $similar_image ); ?>" alt="<?php echo esc_attr( $similar_name ); ?>" class="module-card-image">
+                                                <div class="module-image-tag"><?php echo esc_html( $similar_tag ); ?></div>
                                             </div>
-                                        <?php endif; ?>
-                                        
-                                        <div class="similar-module-content">
-                                            <h3 class="similar-module-title"><?php echo esc_html( $similar_name ); ?></h3>
-                                            <p class="similar-module-description"><?php echo esc_html( $similar_desc ); ?></p>
+                                            <?php endif; ?>
                                             
-                                            <!-- <div class="similar-module-meta">
-                                                <span class="meta-item"><?php echo esc_html( $module_difficulty ); ?></span>
-                                                <span class="meta-item"><?php echo esc_html( $similar_chapters->post_count ); ?> Chapters</span>
-                                                <span class="meta-item"><?php echo esc_html( $similar_time_display ); ?></span>
-                                            </div> -->
-                                            
-                                            <a href="<?php echo esc_url( $similar_url ); ?>" class="similar-module-button">
-                                                View course detail
-                                            </a>
+                                            <div class="module-card-content">
+                                                <h3 class="module-card-title"><?php echo esc_html( $similar_name ); ?></h3>
+                                                
+                                                <?php if ( $similar_desc ) : ?>
+                                                <p class="module-card-description"><?php echo esc_html( $similar_desc ); ?></p>
+                                                <?php endif; ?>
+                                                
+                                                <div class="module-card-attributes">
+                                                    <div class="module-attribute">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/chart-icon.svg" alt="Difficulty" class="attribute-icon">
+                                                        <span class="attribute-text"><?php echo esc_html( $similar_difficulty ); ?></span>
+                                                    </div>
+                                                    <div class="module-attribute">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/book-icon.svg" alt="Chapters" class="attribute-icon">
+                                                        <span class="attribute-text"><?php echo esc_html( $similar_chapters_count ); ?> Chapter<?php echo $similar_chapters_count > 1 ? 's' : ''; ?></span>
+                                                    </div>
+                                                    <div class="module-attribute">
+                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/clock-icon2.svg" alt="Duration" class="attribute-icon">
+                                                        <span class="attribute-text"><?php echo esc_html( $similar_time_display ); ?></span>
+                                                    </div>
+                                                </div>
+
+                                                <a href="<?php echo esc_url( $similar_url ); ?>" class="module-card-button">
+                                                    View course detail
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php
                                     wp_reset_postdata();
                                 endforeach; ?>
-                            </div>
-                        </section>
-                    <?php endif; ?>
                 </div>
-
-                <!-- Right Sidebar: Course Information -->
-                <div class="module-sidebar">
-                    <!-- Course Information Card -->
-                    <div class="sidebar-card course-info-card">
-                        <div class="card-header">
-                            <div class="card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#00A651"/>
-                                    <path d="M2 17L12 22L22 17" stroke="#00A651" stroke-width="2"/>
-                                    <path d="M2 12L12 17L22 12" stroke="#00A651" stroke-width="2"/>
-                                </svg>
-                            </div>
-                            <h3 class="card-title">Course information</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="info-item">
-                                <span class="info-icon">👤</span>
-                                <span class="info-text"><?php echo esc_html( $module_difficulty ); ?></span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">📚</span>
-                                <span class="info-text"><?php echo esc_html( $total_chapters ); ?> Chapters</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">⏱️</span>
-                                <span class="info-text"><?php echo esc_html( $total_time_display ); ?></span>
-                            </div>
-                        </div>
+                
+                <?php if ( $is_similar_slider ) : ?>
+                <div class="similar-slider-pagination"></div>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+    
+    <!-- Download App Section -->
+    <section class="academy-download-section">
+        <div class="container">
+            <div class="download-content-wrapper">
+                <div class="download-visual-column">
+                    <div class="download-mobile-mockup">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/app-download-mockup.png" alt="Vested App">
+                    </div>
+                </div>
+                
+                <div class="download-text-column">
+                    <h2 class="download-title"><?php echo esc_html( get_field( 'download_title', $module_id ) ); ?></h2>
+                    <p class="download-description">
+                        <?php echo esc_html( get_field( 'download_description', $module_id ) ); ?>
+                    </p>
+                    
+                    <div class="download-buttons">
+                        <?php
+                        $download_buttons = get_field( 'download_buttons', $module_id );
+                        if ( $download_buttons && is_array( $download_buttons ) ) {
+                            foreach ( $download_buttons as $button ) :
+                                $button_icon = isset( $button['button_icon'] ) ? $button['button_icon'] : '';
+                                $button_text = isset( $button['button_text'] ) ? $button['button_text'] : '';
+                                $button_url = isset( $button['button_url'] ) ? $button['button_url'] : '#';
+                                $button_class = strpos( strtolower( $button_text ), 'playstore' ) !== false ? 'download-playstore' : 'download-appstore';
+                                ?>
+                                <a href="<?php echo esc_url( $button_url ); ?>" class="download-button <?php echo esc_attr( $button_class ); ?>">
+                                    <img src="<?php echo esc_url( $button_icon ); ?>" alt="<?php echo esc_attr( $button_text ); ?>">
+                                    <?php echo esc_html( $button_text ); ?>
+                                </a>
+                                <?php
+                            endforeach;
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <script>
@@ -969,49 +961,138 @@ if ( $module_post ) {
 document.addEventListener('DOMContentLoaded', function() {
     const structureItems = document.querySelectorAll('.course-structure-item');
     
+    function toggleChapter(item, expand) {
+        const content = item.querySelector('.structure-item-content');
+        const toggleIcon = item.querySelector('.toggle-icon');
+        const isExpanded = item.classList.contains('expanded');
+        
+        if (expand === undefined) {
+            expand = !isExpanded;
+        }
+        
+        if (expand) {
+            // Expand
+            item.classList.add('expanded', 'active');
+            if (content) {
+                content.style.display = 'block';
+            }
+            if (toggleIcon) {
+                toggleIcon.style.transform = 'rotate(180deg)';
+            }
+        } else {
+            // Collapse
+            item.classList.remove('expanded', 'active');
+            if (content) {
+                content.style.display = 'none';
+            }
+            if (toggleIcon) {
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+    }
+    
     structureItems.forEach(function(item) {
         const toggle = item.querySelector('.structure-item-toggle');
+        const close = item.querySelector('.structure-item-close');
+        const header = item.querySelector('.structure-item-header');
+        const titleLink = item.querySelector('.structure-item-title-link');
+        
+        // Toggle button
         if (toggle) {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                const isExpanded = item.classList.contains('expanded');
-                const content = item.querySelector('.structure-item-content');
-                const toggleIcon = toggle.querySelector('.toggle-icon');
-                
-                if (isExpanded) {
-                    // Collapse
-                    item.classList.remove('expanded', 'active');
-                    if (content) {
-                        content.style.display = 'none';
-                    }
-                    if (toggleIcon) {
-                        toggleIcon.style.transform = 'rotate(0deg)';
-                    }
-                } else {
-                    // Expand
-                    item.classList.add('expanded', 'active');
-                    if (content) {
-                        content.style.display = 'block';
-                    }
-                    if (toggleIcon) {
-                        toggleIcon.style.transform = 'rotate(180deg)';
-                    }
+                toggleChapter(item);
+            });
+        }
+        
+        // Close button
+        if (close) {
+            close.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleChapter(item, false);
+            });
+        }
+        
+        // Title link click to toggle
+        if (titleLink) {
+            titleLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleChapter(item);
+                return false;
+            });
+        }
+        
+        // Header click to toggle (but not if clicking on buttons)
+        if (header) {
+            header.addEventListener('click', function(e) {
+                // Don't toggle if clicking on toggle or close buttons
+                if (e.target.closest('.structure-item-toggle') || e.target.closest('.structure-item-close')) {
+                    return;
                 }
+                // Don't toggle if clicking on title link (it has its own handler)
+                if (e.target.closest('.structure-item-title-link')) {
+                    return;
+                }
+                // Don't toggle if clicking on sub-item links
+                if (e.target.closest('.structure-sub-item')) {
+                    return;
+                }
+                e.preventDefault();
+                toggleChapter(item);
             });
         }
     });
     
-    // Prevent navigation when clicking toggle
-    const structureHeaders = document.querySelectorAll('.structure-item-header');
-    structureHeaders.forEach(function(header) {
-        header.addEventListener('click', function(e) {
-            if (e.target.closest('.structure-item-toggle')) {
-                e.preventDefault();
-            }
-        });
-    });
+    // Similar Modules Slider
+    function initSimilarSlider() {
+        const similarSlider = document.querySelector('.similar-modules-slider[data-slider="true"]');
+        if (similarSlider && typeof jQuery !== 'undefined' && jQuery.fn.slick) {
+            jQuery(similarSlider).slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: true,
+                appendDots: jQuery('.similar-slider-pagination'),
+                arrows: false,
+                infinite: false,
+                speed: 300,
+                autoplay: false,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        } else if (similarSlider && typeof jQuery === 'undefined') {
+            setTimeout(initSimilarSlider, 100);
+        }
+    }
+    
+    // Initialize slider
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSimilarSlider);
+    } else {
+        if (typeof jQuery !== 'undefined') {
+            jQuery(document).ready(initSimilarSlider);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(initSimilarSlider, 500);
+            });
+        }
+    }
 });
 </script>
 

@@ -70,58 +70,68 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
 }
 ?>
 
+<?php
+$bg_image = get_field( 'academy_home_bg_image' );
+$bg_image_url = $bg_image;
+?>
 <div id="academy-home-page" class="academy-home-page">
-    <!-- Trust Indicator Bar -->
-    <div class="academy-trust-bar">
-        <div class="container">
-            <p class="trust-text">
-                <span class="trust-icon">❤️</span>
-                Trusted by <strong>196,045</strong> traders & investors
-                <span class="dropdown-arrow">▼</span>
-            </p>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
+    <div class="academy-home-bg" style="background-image: url('<?php echo esc_url( $bg_image_url ); ?>');"></div>
     <section class="academy-hero-section">
+        <div class="academy-trust-bar">
+            <p class="trust-text"><?php echo esc_html( get_field('trust_bar_text') ); ?></p>
+        </div>
         <div class="container">
             <div class="academy-hero-content">
                 <div class="hero-text-content">
                     <h1 class="hero-title">
-                        US Investing, <span class="highlight-green">Demystified</span>
-                        <span class="hero-tooltip" data-tooltip="let's learn">💬</span>
+                        <?php echo get_field('hero_title'); ?>
                     </h1>
-                    <p class="hero-subtitle">
-                        Your step-by-step blueprint to confidently navigate the US market, specifically designed for Indian investors.
-                    </p>
-                    
                     <div class="hero-interactive-badge">
-                        <div class="badge-icon">👥</div>
-                        <span class="badge-text">Hands on Stock analysis</span>
+                        <div class="badge-icon">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/users.svg" alt="Badge">
+                        </div>
+                        <span class="badge-text"><?php echo wp_kses_post( get_field('badge_text') ); ?></span>
                     </div>
-                    
-                    <a href="<?php echo esc_url( home_url( '/academy' ) ); ?>" class="hero-cta-button">
-                        Start learning for free →
+                    <div class="hero-subtitle-wrapper">
+                        <?php echo esc_html( get_field('hero_title_highlight') ); ?>
+                    </div>
+                    <a href="<?php echo esc_url( get_field('hero_cta_link') ); ?>" class="hero-cta-button">
+                        <?php echo esc_html( get_field('hero_cta_text') ); ?> →
                     </a>
-                    
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <div class="stat-number">40+</div>
-                            <div class="stat-label">Chapters</div>
+                            <div class="stat-number"><?php echo esc_html( get_field('stat_chapters') ); ?></div>
+                            <div class="stat-label"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/play-icon.svg" alt="Chapters"> Chapters</div>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <div class="stat-number">25+</div>
-                            <div class="stat-label">Hours of Content</div>
+                            <div class="stat-number"><?php echo esc_html( get_field('stat_hours') ); ?></div>
+                            <div class="stat-label"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/clock-icon.svg" alt="Hours of Content"> Hours of Content</div>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <div class="stat-number">4.8/5</div>
-                            <div class="stat-label">Average Rating</div>
-                            <span class="stat-star">⭐</span>
+                            <div class="stat-number"><?php echo esc_html( get_field('stat_rating') ); ?></div>
+                            <div class="stat-label"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/star-icon.svg" alt="Average Rating"> Average Rating</div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="academy-transition-section">
+        <div class="container">
+            <h2 class="transition-title"><?php echo esc_html( get_field('novice_title') ); ?></h2>
+            <p class="transition-subtitle"><?php echo esc_html( get_field('novice_subtitle') ); ?></p>
+            <div class="features-grid">
+                <?php while ( have_rows('novice_features') ) : the_row(); ?>
+                <div class="feature-card">
+                    <div class="feature-visual">
+                        <img src="<?php echo esc_url( get_sub_field('feature_image') ); ?>" alt="<?php echo esc_attr( get_sub_field('feature_title') ); ?>">
+                    </div>
+                    <h3 class="feature-title"><?php echo esc_html( get_sub_field('feature_title') ); ?></h3>
+                </div>
+                <?php endwhile; ?>
             </div>
         </div>
     </section>
@@ -130,8 +140,8 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
     <section class="academy-roadmap-section">
         <div class="container">
             <div class="roadmap-header">
-                <h2 class="roadmap-title">Your Step-by-Step Roadmap</h2>
-                <p class="roadmap-subtitle">Four modules designed to make you a skilled global investor.</p>
+                <h2 class="roadmap-title"><?php echo esc_html( get_field('roadmap_title') ); ?></h2>
+                <p class="roadmap-subtitle"><?php echo esc_html( get_field('roadmap_subtitle') ); ?></p>
         </div>
 
             <?php
@@ -193,8 +203,11 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
             }
 
             if ( ! empty( $all_modules ) ) :
+                $modules_count = count( $all_modules );
+                $is_slider = $modules_count > 3;
+                $slider_class = $is_slider ? 'roadmap-modules-slider' : 'roadmap-modules-grid';
                 ?>
-                <div class="roadmap-modules-grid">
+                <div class="<?php echo esc_attr( $slider_class ); ?>" <?php echo $is_slider ? 'data-slider="true"' : ''; ?>>
                     <?php foreach ( $all_modules as $module_item ) :
                         $module_id = $module_item->term_id;
                         $module_name = $module_item->name;
@@ -282,82 +295,6 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
                                 }
                                 wp_reset_postdata();
                             }
-                        } else {
-                            // Old structure: Taxonomy
-                            $module_image = get_field( 'module_image', $module_item );
-                            $module_difficulty = get_field( 'difficulty_level', $module_item ) ?: 'Beginner';
-                            
-                            // Count chapters in this module
-                            $chapters_query = new WP_Query( array(
-                                'post_type' => 'module',
-                                'tax_query' => array(
-                                    array(
-                                        'taxonomy' => 'modules',
-                                        'field' => 'term_id',
-                                        'terms' => $module_id,
-                                    ),
-                                ),
-                                'posts_per_page' => -1,
-                                'orderby' => 'menu_order',
-                                'order' => 'ASC',
-                                'no_found_rows' => false,
-                            ) );
-                            $chapters_count = $chapters_query->post_count;
-                            
-                            // Calculate total time: chapters + topics + quizzes
-                            $total_reading_time_minutes = 0;
-                            if ( $chapters_query->have_posts() ) {
-                                while ( $chapters_query->have_posts() ) {
-                                    $chapters_query->the_post();
-                                    $chapter_id = get_the_ID();
-                                    
-                                    // Add chapter reading time (use raw post content)
-                                    $chapter_content = get_post_field( 'post_content', $chapter_id );
-                                    $total_reading_time_minutes += calculate_reading_time( $chapter_content );
-                                    
-                                    // Add topics duration for this chapter
-                                    $chapter_topics = array();
-                                    if ( function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
-                                        $chapter_topics = vested_academy_get_topics_for_chapter( $chapter_id );
-                                    }
-                                    if ( empty( $chapter_topics ) ) {
-                                        $chapter_topics = get_field( 'chapter_topics', $chapter_id );
-                                        if ( ! $chapter_topics || ! is_array( $chapter_topics ) ) {
-                                            $chapter_topics = array();
-                                        }
-                                    }
-                                    
-                                    foreach ( $chapter_topics as $topic ) {
-                                        // Get topic duration (calculated from content)
-                                        $topic_duration = isset( $topic['topic_duration'] ) ? intval( $topic['topic_duration'] ) : 0;
-                                        // If duration not set, calculate from content
-                                        if ( $topic_duration <= 0 && isset( $topic['topic_content'] ) ) {
-                                            $topic_duration = calculate_reading_time( $topic['topic_content'] );
-                                        }
-                                        // If still 0, try calculating from topic_id if it's a CPT
-                                        if ( $topic_duration <= 0 && isset( $topic['topic_id'] ) ) {
-                                            $topic_post = get_post( $topic['topic_id'] );
-                                            if ( $topic_post ) {
-                                                $topic_duration = calculate_reading_time( $topic_post->post_content );
-                                            }
-                                        }
-                                        $total_reading_time_minutes += $topic_duration;
-                                    }
-                                    
-                                    // Add quiz time for this chapter
-                                    $chapter_quizzes = array();
-                                    if ( function_exists( 'vested_academy_get_quizzes_for_module' ) ) {
-                                        $chapter_quizzes = vested_academy_get_quizzes_for_module( $chapter_id );
-                                    }
-                                    if ( ! empty( $chapter_quizzes ) ) {
-                                        foreach ( $chapter_quizzes as $quiz ) {
-                                            $quiz_time = isset( $quiz['time_limit'] ) ? intval( $quiz['time_limit'] ) : 0;
-                                            $total_reading_time_minutes += $quiz_time;
-                                        }
-                                    }
-                                }
-                                wp_reset_postdata();
-                            }
                         }
                         
                         // Format display: show minutes if less than 1 hour, otherwise show hours (match single page format)
@@ -379,39 +316,41 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
                             $module_tag = substr( $module_tag, 0, 15 );
                         }
                         ?>
-                        <div class="roadmap-module-card">
-                            <?php if ( $module_image ) : ?>
-                                <div class="module-card-image-wrapper">
-                                    <img src="<?php echo esc_url( $module_image ); ?>" alt="<?php echo esc_attr( $module_name ); ?>" class="module-card-image">
-                                    <div class="module-image-tag"><?php echo esc_html( $module_tag ); ?></div>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div class="module-card-content">
-                                <h3 class="module-card-title"><?php echo esc_html( $module_name ); ?></h3>
-                                
-                                <?php if ( $module_description ) : ?>
-                                    <p class="module-card-description"><?php echo esc_html( $module_description ); ?></p>
+                        <div class="roadmap-module-item">
+                            <div class="roadmap-module-card">
+                                <?php if ( $module_image ) : ?>
+                                    <div class="module-card-image-wrapper">
+                                        <img src="<?php echo esc_url( $module_image ); ?>" alt="<?php echo esc_attr( $module_name ); ?>" class="module-card-image">
+                                        <div class="module-image-tag"><?php echo esc_html( $module_tag ); ?></div>
+                                    </div>
                                 <?php endif; ?>
                                 
-                                <div class="module-card-attributes">
-                                    <div class="module-attribute">
-                                        <span class="attribute-icon">📊</span>
-                                        <span class="attribute-text"><?php echo esc_html( $module_difficulty ); ?></span>
+                                <div class="module-card-content">
+                                    <h3 class="module-card-title"><?php echo esc_html( $module_name ); ?></h3>
+                                    
+                                    <?php if ( $module_description ) : ?>
+                                        <p class="module-card-description"><?php echo esc_html( $module_description ); ?></p>
+                                    <?php endif; ?>
+                                    
+                                    <div class="module-card-attributes">
+                                        <div class="module-attribute">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/chart-icon.svg" alt="Difficulty" class="attribute-icon">
+                                            <span class="attribute-text"><?php echo esc_html( $module_difficulty ); ?></span>
+                                        </div>
+                                        <div class="module-attribute">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/book-icon.svg" alt="Chapters" class="attribute-icon">
+                                            <span class="attribute-text"><?php echo esc_html( $chapters_count ); ?> Chapter<?php echo $chapters_count > 1 ? 's' : ''; ?></span>
+                                        </div>
+                                        <div class="module-attribute">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/clock-icon2.svg" alt="Duration" class="attribute-icon">
+                                            <span class="attribute-text"><?php echo esc_html( $duration ); ?></span>
+                                        </div>
                                     </div>
-                                    <div class="module-attribute">
-                                        <span class="attribute-icon">📚</span>
-                                        <span class="attribute-text"><?php echo esc_html( $chapters_count ); ?> Chapter<?php echo $chapters_count > 1 ? 's' : ''; ?></span>
-                                </div>
-                                    <div class="module-attribute">
-                                        <span class="attribute-icon">⏱️</span>
-                                        <span class="attribute-text"><?php echo esc_html( $duration ); ?></span>
-                    </div>
-                </div>
 
-                                <a href="<?php echo esc_url( $module_link ); ?>" class="module-card-button">
-                                    View course detail
-                                </a>
+                                    <a href="<?php echo esc_url( $module_link ); ?>" class="module-card-button">
+                                        View course detail
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     <?php 
@@ -419,10 +358,243 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
                     endforeach; 
                     ?>
                 </div>
+                
+                <?php if ( $is_slider ) : ?>
+                    <div class="roadmap-slider-pagination"></div>
+                <?php endif; ?>
             <?php endif; ?>
+            
+            <!--             <div class="roadmap-view-all">
+                <a href="<?php echo esc_url( get_field('view_all_link') ); ?>" class="view-all-courses-button">
+                    <?php echo esc_html( get_field('view_all_text') ); ?> →
+                </a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- The Vested Advantage Section -->
+    <section class="academy-advantage-section">
+        <div class="container">
+            <div class="advantage-header">
+                <h2 class="advantage-title"><?php echo esc_html( get_field('advantage_title') ); ?></h2>
+                <p class="advantage-subtitle"><?php echo esc_html( get_field('advantage_subtitle') ); ?></p>
+            </div>
+            
+            <div class="advantage-features-grid">
+                <?php while ( have_rows('advantage_features') ) : the_row(); ?>
+                <div class="advantage-feature-card">
+                    <div class="advantage-feature-icon">
+                        <img src="<?php echo esc_url( get_sub_field('feature_icon') ); ?>" alt="<?php echo esc_attr( get_sub_field('feature_title') ); ?>">
+                    </div>
+                    <div class="advantage-feature-content">
+                        <h3 class="advantage-feature-title"><?php echo esc_html( get_sub_field('feature_title') ); ?></h3>
+                    </div>
+                </div>
+                <?php endwhile; ?>
+            </div>
+            
+            <div class="advantage-cta">
+                <a href="<?php echo esc_url( get_field('advantage_cta_link') ); ?>" class="advantage-cta-button">
+                    <?php echo esc_html( get_field('advantage_cta_text') ); ?> →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready to Put Your Knowledge to Work Section -->
+    <section class="academy-knowledge-section">
+        <div class="container">
+            <div class="knowledge-content-wrapper">
+                <div class="knowledge-text-column">
+                    <h2 class="knowledge-title"><?php echo esc_html( get_field('knowledge_title') ); ?></h2>
+                    <p class="knowledge-description">
+                        <?php echo esc_html( get_field('knowledge_description') ); ?>
+                    </p>
+                    
+                    <div class="knowledge-features-list">
+                        <?php $index = 0; while ( have_rows('knowledge_features') ) : the_row(); $index++; ?>
+                        <div class="knowledge-feature-item">
+                            <div class="knowledge-feature-number"><?php echo esc_html( $index ); ?></div>
+                            <div class="knowledge-feature-text">
+                                <?php echo esc_html( get_sub_field('feature_text') ); ?>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                    
+                    <a href="<?php echo esc_url( get_field('knowledge_cta_link') ); ?>" class="knowledge-cta-button">
+                        <?php echo esc_html( get_field('knowledge_cta_text') ); ?> →
+                    </a>
+                </div>
+                
+                <div class="knowledge-visual-column">
+                    <div class="knowledge-mobile-mockup">
+                        <img src="<?php echo esc_url( get_field('knowledge_image') ); ?>" alt="Vested Finance App">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earn a Certificate Section -->
+    <section class="academy-certificate-section">
+        <div class="container">
+            <div class="certificate-content-wrapper">
+                <div class="certificate-text-column">
+                    <h2 class="certificate-title"><?php echo esc_html( get_field('certificate_title') ); ?></h2>
+                    <p class="certificate-description">
+                        <?php echo esc_html( get_field('certificate_description') ); ?>
+                    </p>
+                    <a href="<?php echo esc_url( get_field('certificate_cta_link') ); ?>" class="certificate-cta-button">
+                        <?php echo esc_html( get_field('certificate_cta_text') ); ?> →
+                    </a>
+                </div>
+                
+                <div class="certificate-visual-column">
+                    <div class="certificate-placeholder">
+                        <img src="<?php echo esc_url( get_field('certificate_image') ); ?>" alt="Certificate">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="academy-faq-section">
+        <div class="container">
+            <div class="faq-header">
+                <h2 class="faq-title"><?php echo esc_html( get_field('faq_title') ); ?></h2>
+                <p class="faq-subtitle"><?php echo esc_html( get_field('faq_subtitle') ); ?></p>
+            </div>
+            
+            <div class="faq-accordion">
+                <?php $index = 0; while ( have_rows('faq_items') ) : the_row(); ?>
+                <div class="faq-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                    <div class="faq-question">
+                        <span class="faq-question-text"><?php echo esc_html( get_sub_field('faq_question') ); ?></span>
+                        <span class="faq-toggle-icon"><?php echo $index === 0 ? '−' : '+'; ?></span>
+                    </div>
+                    <div class="faq-answer" <?php echo $index === 0 ? '' : 'style="display: none;"'; ?>>
+                        <p><?php echo esc_html( get_sub_field('faq_answer') ); ?></p>
+                    </div>
+                </div>
+                <?php $index++; endwhile; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download App Section -->
+    <section class="academy-download-section">
+        <div class="container">
+            <div class="download-content-wrapper">
+                <div class="download-visual-column">
+                    <div class="download-mobile-mockup">
+                        <img src="<?php echo esc_url( get_field('download_image') ); ?>" alt="Vested App">
+                    </div>
+                </div>
+                
+                <div class="download-text-column">
+                    <h2 class="download-title"><?php echo esc_html( get_field('download_title') ); ?></h2>
+                    <p class="download-description">
+                        <?php echo esc_html( get_field('download_description') ); ?>
+                    </p>
+                    
+                    <div class="download-buttons">
+                        <?php while ( have_rows('download_buttons') ) : the_row(); ?>
+                        <a href="<?php echo esc_url( get_sub_field('button_link') ); ?>" class="download-button">
+                            <img src="<?php echo esc_url( get_sub_field('button_icon') ); ?>" alt="<?php echo esc_attr( get_sub_field('button_text') ); ?>">
+                            <?php echo esc_html( get_sub_field('button_text') ); ?>
+                        </a>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const toggleIcon = item.querySelector('.faq-toggle-icon');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                const otherIcon = otherItem.querySelector('.faq-toggle-icon');
+                otherAnswer.style.display = 'none';
+                otherIcon.textContent = '+';
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.display = 'block';
+                toggleIcon.textContent = '−';
+            }
+        });
+    });
+    
+    // Roadmap Slider
+    function initRoadmapSlider() {
+        const roadmapSlider = document.querySelector('.roadmap-modules-slider[data-slider="true"]');
+        if (roadmapSlider && typeof jQuery !== 'undefined' && jQuery.fn.slick) {
+            jQuery(roadmapSlider).slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: true,
+                appendDots: jQuery('.roadmap-slider-pagination'),
+                arrows: false,
+                infinite: false,
+                speed: 300,
+                autoplay: false,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        } else if (roadmapSlider && typeof jQuery === 'undefined') {
+            // Retry after a short delay if jQuery isn't loaded yet
+            setTimeout(initRoadmapSlider, 100);
+        }
+    }
+    
+    // Initialize slider
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRoadmapSlider);
+    } else {
+        // If DOM is already loaded, wait for jQuery
+        if (typeof jQuery !== 'undefined') {
+            jQuery(document).ready(initRoadmapSlider);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(initRoadmapSlider, 500);
+            });
+        }
+    }
+});
+</script>
 
 <?php
 get_footer();

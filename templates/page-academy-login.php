@@ -133,7 +133,13 @@ if ( is_user_logged_in() ) {
 						
 						<div class="academy-auth-form-group">
 							<label for="user_pass">PASSWORD</label>
-							<input type="password" name="pwd" id="user_pass" class="academy-auth-input" placeholder="Enter Your Password" value="" required>
+							<div class="academy-password-input-wrapper">
+								<input type="password" name="pwd" id="user_pass" class="academy-auth-input" placeholder="Enter your password" value="" required>
+								<button type="button" class="academy-password-toggle" aria-label="Toggle password visibility">
+									<img class="academy-password-icon-closed" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/eye-closed.svg" alt="eye-icon" />
+									<img class="academy-password-icon-open" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/eye-open.svg" alt="eye-icon-open" style="display: none;" />
+								</button>
+							</div>
 						</div>
 						
 						<div class="academy-auth-form-group academy-auth-remember">
@@ -160,6 +166,30 @@ if ( is_user_logged_in() ) {
 		</div>
 	</div>
 </div>
+<script>
+(function() {
+    const passwordToggle = document.querySelector('.academy-password-toggle');
+    const passwordInput = document.getElementById('user_pass');
+    const closedIcon = document.querySelector('.academy-password-icon-closed');
+    const openIcon = document.querySelector('.academy-password-icon-open');
+    
+    if (passwordToggle && passwordInput && closedIcon && openIcon) {
+        passwordToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            
+            if (isPassword) {
+                closedIcon.style.display = 'none';
+                openIcon.style.display = 'block';
+            } else {
+                closedIcon.style.display = 'block';
+                openIcon.style.display = 'none';
+            }
+        });
+    }
+})();
+</script>
 </body>
 </html>
 

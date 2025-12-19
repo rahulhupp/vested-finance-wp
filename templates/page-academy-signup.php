@@ -151,7 +151,6 @@ if ( is_user_logged_in() ) {
 						
 						$error_messages = array(
 							'empty' => 'Please fill in all required fields.',
-							'password_mismatch' => 'Passwords do not match. Please try again.',
 							'email_exists' => 'This email is already registered. Please use a different email or try logging in.',
 							'unknown' => 'Registration failed. Please try again.'
 						);
@@ -338,18 +337,24 @@ if ( is_user_logged_in() ) {
 						<?php wp_nonce_field( 'academy_register', 'academy_register_nonce' ); ?>
 						
 						<div class="academy-auth-form-group">
+							<label for="user_name">NAME</label>
+							<input type="text" name="user_name" id="user_name" class="academy-auth-input" placeholder="Enter your name" value="" required>
+						</div>
+						
+						<div class="academy-auth-form-group">
 							<label for="user_email">EMAIL</label>
-							<input type="email" name="user_email" id="user_email" class="academy-auth-input" placeholder="Enter Your Email" value="" required>
+							<input type="email" name="user_email" id="user_email" class="academy-auth-input" placeholder="Enter your email" value="" required>
 						</div>
 						
 						<div class="academy-auth-form-group">
 							<label for="user_pass">PASSWORD</label>
-							<input type="password" name="user_pass" id="user_pass" class="academy-auth-input" placeholder="Enter Your Password" value="" required>
-						</div>
-						
-						<div class="academy-auth-form-group">
-							<label for="user_pass_confirm">CONFIRM PASSWORD</label>
-							<input type="password" name="user_pass_confirm" id="user_pass_confirm" class="academy-auth-input" placeholder="Confirm Your Password" value="" required>
+							<div class="academy-password-input-wrapper">
+								<input type="password" name="user_pass" id="user_pass" class="academy-auth-input" placeholder="Create your password" value="" required>
+								<button type="button" class="academy-password-toggle" aria-label="Toggle password visibility">
+									<img class="academy-password-icon-closed" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/eye-closed.svg" alt="eye-icon" />
+									<img class="academy-password-icon-open" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/eye-open.svg" alt="eye-icon-open" style="display: none;" />
+								</button>
+							</div>
 						</div>
 						
 						<div class="academy-auth-form-group">
@@ -368,20 +373,29 @@ if ( is_user_logged_in() ) {
 </div>
 
 <script>
-// Password confirmation validation
-document.addEventListener('DOMContentLoaded', function() {
-	const form = document.getElementById('academy-signup-form');
-	const password = document.getElementById('user_pass');
-	const passwordConfirm = document.getElementById('user_pass_confirm');
-	
-	form.addEventListener('submit', function(e) {
-		if (password.value !== passwordConfirm.value) {
-			e.preventDefault();
-			alert('Passwords do not match. Please try again.');
-			return false;
-		}
-	});
-});
+// Password visibility toggle
+(function() {
+    const passwordToggle = document.querySelector('#academy-signup-page .academy-password-toggle');
+    const passwordInput = document.getElementById('user_pass');
+    const closedIcon = document.querySelector('#academy-signup-page .academy-password-icon-closed');
+    const openIcon = document.querySelector('#academy-signup-page .academy-password-icon-open');
+    
+    if (passwordToggle && passwordInput && closedIcon && openIcon) {
+        passwordToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            
+            if (isPassword) {
+                closedIcon.style.display = 'none';
+                openIcon.style.display = 'block';
+            } else {
+                closedIcon.style.display = 'block';
+                openIcon.style.display = 'none';
+            }
+        });
+    }
+})();
 </script>
 
 <?php wp_footer(); ?>
