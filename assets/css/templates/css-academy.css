@@ -2264,6 +2264,10 @@ header .inner-header .site-primary-header-wrap {
     overflow: hidden;
 }
 
+.sidebar-card .academy-logo {
+    border: none;
+}
+
 .course-info-card {
     margin-bottom: 33px;
 }
