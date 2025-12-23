@@ -37,7 +37,6 @@ header .inner-header .site-primary-header-wrap {
 }
 
 .single-module .academy-header .academy-logo {
-    border-color: #FFFFFF66;
     filter: invert(1) brightness(2);
 }
 
@@ -708,10 +707,42 @@ header .inner-header .site-primary-header-wrap {
     object-fit: contain;
 }
 
+.hero-interactive-learning-badge {
+    position: absolute;
+    right: -50px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: -36px;
+}
+
+.hero-interactive-learning-badge .badge-icon {
+    position: relative;
+    left: -16px;
+    top: 16px;
+}
+
+.hero-interactive-learning-badge .badge-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.hero-interactive-learning-badge .badge-text {
+    box-shadow: 0px 1.6px 40px 0px #B9B9B9;
+    background: #002852;
+    padding: 10px 22px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 14px;
+    border-radius: 15.98px;
+}
+
 .hero-cta-button {
     display: inline-block;
     background: #05A86B;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 13.5px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -1212,7 +1243,7 @@ header .inner-header .site-primary-header-wrap {
 .module-card-button {
     display: inline-block;
     background: #05A86B;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 15.5px 24px;
     border-radius: 8px;
     text-decoration: none;
@@ -1372,7 +1403,7 @@ header .inner-header .site-primary-header-wrap {
 .advantage-cta-button {
     display: inline-block;
     background: #05A86B;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 13.5px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -1544,7 +1575,7 @@ header .inner-header .site-primary-header-wrap {
 .certificate-cta-button {
     display: inline-block;
     background: #05A86B;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 13.5px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -2370,7 +2401,7 @@ header .inner-header .site-primary-header-wrap {
     display: block;
     text-align: center;
     background: #05A86B;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 10px 24px;
     border-radius: 8px;
     text-decoration: none;

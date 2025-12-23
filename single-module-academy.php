@@ -530,7 +530,7 @@ while ( have_posts() ) :
 			<div class="chapter-breadcrumb">
 				<div class="container">
 					<ul>
-						<li><a href="<?php echo esc_url( home_url() ); ?>">Home</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/academy' ) ); ?>">Home</a></li>
 						<?php if ( $module_link ) : ?>
 							<li><a href="<?php echo esc_url( $module_link ); ?>"><?php echo esc_html( $module_name ? $module_name : 'Module' ); ?></a></li>
 						<?php elseif ( $module_name ) : ?>

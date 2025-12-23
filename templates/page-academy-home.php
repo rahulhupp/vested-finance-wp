@@ -78,7 +78,7 @@ $bg_image_url = $bg_image;
     <div class="academy-home-bg" style="background-image: url('<?php echo esc_url( $bg_image_url ); ?>');"></div>
     <section class="academy-hero-section">
         <div class="academy-trust-bar">
-            <p class="trust-text"><?php echo esc_html( get_field('trust_bar_text') ); ?></p>
+            <p class="trust-text"><?php echo get_field('trust_bar_text'); ?></p>
         </div>
         <div class="container">
             <div class="academy-hero-content">
@@ -86,6 +86,12 @@ $bg_image_url = $bg_image;
                     <h1 class="hero-title">
                         <?php echo get_field('hero_title'); ?>
                     </h1>
+                    <div class="hero-interactive-learning-badge">
+                        <div class="badge-icon">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/polygon.svg" alt="Badge">
+                        </div>
+                        <span class="badge-text">let’s learn</span>
+                    </div>
                     <div class="hero-interactive-badge">
                         <div class="badge-icon">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/users.svg" alt="Badge">
