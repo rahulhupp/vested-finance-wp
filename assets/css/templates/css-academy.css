@@ -1218,7 +1218,7 @@ header .inner-header .site-primary-header-wrap {
     font-size: 14px;
     color: #000000;
     font-weight: 400;;
-    padding: 0 16px;
+    padding: 0 14px;
     border-right: 1px solid #CDCDCD;
     letter-spacing: -0.2px;
     line-height: 32px;
@@ -2825,6 +2825,10 @@ header .inner-header .site-primary-header-wrap {
 .chapter-content-body p {
     font-weight: 400;
     margin-bottom: 24px;
+}
+
+.chapter-content-body li p {
+    margin-bottom: 0;
 }
 
 .chapter-content-body ul,

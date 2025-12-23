@@ -202,23 +202,27 @@ function vested_academy_get_topic_url( $chapter_id, $topic_slug ) {
 	}
 
 	$module_slug = '';
-	$terms = get_the_terms( $chapter_id, 'modules' );
-	if ( $terms && ! is_wp_error( $terms ) && ! empty( $terms ) ) {
-		$module_slug = $terms[0]->slug;
-	} else {
-		// Try ACF relationship to academy_module CPT.
-		$related_modules = get_field( 'academy_module', $chapter_id );
-		if ( $related_modules ) {
-			if ( is_array( $related_modules ) ) {
-				$module_post = is_object( $related_modules[0] ) ? $related_modules[0] : get_post( $related_modules[0] );
-			} elseif ( is_object( $related_modules ) ) {
-				$module_post = $related_modules;
-			} elseif ( is_numeric( $related_modules ) ) {
-				$module_post = get_post( $related_modules );
-			}
-			if ( ! empty( $module_post ) ) {
-				$module_slug = $module_post->post_name;
-			}
+
+	// Prefer academy_module CPT relationship (keeps URL in sync when module slug changes)
+	$related_modules = get_field( 'academy_module', $chapter_id );
+	if ( $related_modules ) {
+		if ( is_array( $related_modules ) ) {
+			$module_post = is_object( $related_modules[0] ) ? $related_modules[0] : get_post( $related_modules[0] );
+		} elseif ( is_object( $related_modules ) ) {
+			$module_post = $related_modules;
+		} elseif ( is_numeric( $related_modules ) ) {
+			$module_post = get_post( $related_modules );
+		}
+		if ( ! empty( $module_post ) ) {
+			$module_slug = $module_post->post_name;
+		}
+	}
+
+	// Fallback to taxonomy term only if no CPT relationship slug found
+	if ( empty( $module_slug ) ) {
+		$terms = get_the_terms( $chapter_id, 'modules' );
+		if ( $terms && ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+			$module_slug = $terms[0]->slug;
 		}
 	}
 
