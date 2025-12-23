@@ -38,7 +38,7 @@ header .inner-header .site-primary-header-wrap {
 
 .single-module .academy-header .academy-logo {
     border-color: #FFFFFF66;
-    filter: brightness(0) invert(1);
+    filter: invert(1) brightness(2);
 }
 
 .academy-logo-link {
