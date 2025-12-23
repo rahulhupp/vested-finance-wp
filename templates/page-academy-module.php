@@ -514,9 +514,12 @@ if ( $module_post ) {
                                     }
                                     ?>
                                     <?php
-                                    // Check if chapter has quiz
-                                    $chapter_quiz_questions = get_field( 'quiz_questions', $chapter_id );
-                                    $has_quiz = ! empty( $chapter_quiz_questions );
+                                    // Check if chapter has quiz - use helper function to get quizzes from quiz_links field
+                                    $chapter_quizzes = array();
+                                    if ( function_exists( 'vested_academy_get_quizzes_for_module' ) ) {
+                                        $chapter_quizzes = vested_academy_get_quizzes_for_module( $chapter_id );
+                                    }
+                                    $has_quiz = ! empty( $chapter_quizzes );
                                     $chapter_url = get_permalink( $chapter_id );
                                     $quiz_url = $has_quiz ? add_query_arg( 'quiz', '1', $chapter_url ) . '#quiz-content' : '';
                                     ?>
@@ -565,15 +568,21 @@ if ( $module_post ) {
                                             // Display quiz if available
                                             if ( $has_quiz && $quiz_url ) :
                                                 $quiz_completed = false;
-                                                if ( $user_id ) {
-                                                    global $wpdb;
-                                                    $table_name = $wpdb->prefix . 'academy_progress';
-                                                    $quiz_progress = $wpdb->get_row( $wpdb->prepare(
-                                                        "SELECT * FROM $table_name WHERE user_id = %d AND chapter_id = %d AND progress_type = 'quiz' AND status = 'completed'",
-                                                        $user_id,
-                                                        $chapter_id
-                                                    ) );
-                                                    $quiz_completed = ! empty( $quiz_progress );
+                                                if ( $user_id && ! empty( $chapter_quizzes ) ) {
+                                                    // Get the first quiz ID from the quiz_links relationship
+                                                    $quiz_post = $chapter_quizzes[0];
+                                                    $quiz_id = isset( $quiz_post['id'] ) ? $quiz_post['id'] : 0;
+                                                    
+                                                    if ( $quiz_id ) {
+                                                        global $wpdb;
+                                                        $table_name = $wpdb->prefix . 'academy_progress';
+                                                        $quiz_progress = $wpdb->get_row( $wpdb->prepare(
+                                                            "SELECT * FROM $table_name WHERE user_id = %d AND quiz_id = %d AND progress_type = 'quiz' AND status = 'completed' ORDER BY id DESC LIMIT 1",
+                                                            $user_id,
+                                                            $quiz_id
+                                                        ) );
+                                                        $quiz_completed = ! empty( $quiz_progress );
+                                                    }
                                                 }
                                                 ?>
                                                 <a href="<?php echo esc_url( $quiz_url ); ?>" class="structure-sub-item structure-quiz-item">
