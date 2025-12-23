@@ -582,3 +582,12 @@ add_filter('excerpt_more', function ($more) {
     }
     return $more;
 });
+
+function vested_register_academy_menu() {
+    register_nav_menus(
+        array(
+            'academy_menu' => __( 'Academy Menu', 'vested-finance-wp' ),
+        )
+    );
+}
+add_action( 'after_setup_theme', 'vested_register_academy_menu' );

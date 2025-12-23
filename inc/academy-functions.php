@@ -1018,6 +1018,135 @@ function vested_academy_ajax_save_quiz_answer() {
 add_action( 'wp_ajax_academy_save_quiz_answer', 'vested_academy_ajax_save_quiz_answer' );
 
 /**
+ * AJAX handler for loading quiz question HTML
+ */
+function vested_academy_ajax_load_quiz_question() {
+	check_ajax_referer( 'academy_quiz_answer_nonce', 'nonce' );
+	
+	if ( ! is_user_logged_in() ) {
+		wp_send_json_error( array( 'message' => 'User not logged in' ) );
+	}
+	
+	$user_id = get_current_user_id();
+	$quiz_id = isset( $_POST['quiz_id'] ) ? intval( $_POST['quiz_id'] ) : 0;
+	$chapter_id = isset( $_POST['chapter_id'] ) ? intval( $_POST['chapter_id'] ) : 0;
+	$question_index = isset( $_POST['question_index'] ) ? intval( $_POST['question_index'] ) : 0;
+	
+	if ( ! $quiz_id || ! $chapter_id ) {
+		wp_send_json_error( array( 'message' => 'Invalid data' ) );
+	}
+	
+	// Get quiz data
+	$module_quizzes = vested_academy_get_quizzes_for_module( $chapter_id );
+	if ( empty( $module_quizzes ) ) {
+		wp_send_json_error( array( 'message' => 'Quiz not found' ) );
+	}
+	
+	$quiz_post = $module_quizzes[0];
+	$quiz_questions = isset( $quiz_post['questions'] ) ? $quiz_post['questions'] : array();
+	
+	if ( empty( $quiz_questions ) ) {
+		$quiz_questions = get_field( 'quiz_questions', $quiz_post['id'] );
+		if ( ! $quiz_questions ) {
+			$quiz_questions = array();
+		}
+	}
+	
+	$total_questions = count( $quiz_questions );
+	
+	// Validate question index
+	if ( $question_index < 0 || $question_index >= $total_questions ) {
+		wp_send_json_error( array( 'message' => 'Invalid question index' ) );
+	}
+	
+	// Get saved answers
+	$saved_answers = vested_academy_get_user_quiz_answers( $user_id, $quiz_id );
+	
+	// Get current question
+	$current_q = $quiz_questions[ $question_index ];
+	$question_text = isset( $current_q['question'] ) ? $current_q['question'] : '';
+	$options = isset( $current_q['options'] ) ? $current_q['options'] : array();
+	$saved_answer = isset( $saved_answers[ $question_index ] ) ? $saved_answers[ $question_index ] : '';
+	
+	// Build navigation URLs
+	$base_url = remove_query_arg( array( 'topic', 'quiz', 'q', 'results', 'retake' ), get_permalink( $chapter_id ) );
+	$prev_q = max( 0, $question_index - 1 );
+	$next_q = min( $total_questions - 1, $question_index + 1 );
+	$prev_url = add_query_arg( array( 'quiz' => '1', 'q' => $prev_q ), $base_url ) . '#quiz-content';
+	$next_url = add_query_arg( array( 'quiz' => '1', 'q' => $next_q ), $base_url ) . '#quiz-content';
+	
+	// Generate HTML
+	ob_start();
+	?>
+	<div class="quiz-question-wrapper" data-question-index="<?php echo esc_attr( $question_index ); ?>">
+		<div class="quiz-question-header">
+			<h2 class="quiz-title">Quiz <?php echo esc_html( $question_index + 1 ); ?></h2>
+		</div>
+		
+		<div class="quiz-question-content">
+			<h3 class="question-text"><?php echo esc_html( $question_text ); ?></h3>
+			<p class="question-instruction">Choose only 1 answer</p>
+			
+			<div class="question-options">
+				<?php
+				if ( ! empty( $options ) ) {
+					foreach ( $options as $option_idx => $option ) :
+						$option_value = is_array( $option ) ? ( isset( $option['value'] ) ? $option['value'] : $option_idx ) : $option;
+						$option_label = is_array( $option ) ? ( isset( $option['label'] ) ? $option['label'] : $option_value ) : $option;
+						$is_selected = ( $saved_answer === $option_value );
+						?>
+						<label class="option-label <?php echo $is_selected ? 'selected' : ''; ?>" data-option-value="<?php echo esc_attr( $option_value ); ?>">
+							<input 
+								type="radio" 
+								name="question_<?php echo esc_attr( $question_index ); ?>" 
+								value="<?php echo esc_attr( $option_value ); ?>"
+								<?php echo $is_selected ? 'checked' : ''; ?>
+							>
+							<span class="radio-custom"></span>
+							<span class="option-text"><?php echo esc_html( $option_label ); ?></span>
+						</label>
+					<?php
+					endforeach;
+				}
+				?>
+			</div>
+		</div>
+		
+		<div class="quiz-navigation">
+			<div class="quiz-progress">
+				<span class="progress-text"><?php echo esc_html( $question_index + 1 ); ?>/<?php echo esc_html( $total_questions ); ?></span>
+				<div class="progress-bar">
+					<div class="progress-fill" style="width: <?php echo esc_attr( ( ( $question_index + 1 ) / $total_questions ) * 100 ); ?>%"></div>
+				</div>
+			</div>
+			
+			<div class="quiz-buttons">
+				<?php if ( $question_index > 0 ) : ?>
+					<a href="<?php echo esc_url( $prev_url ); ?>" class="quiz-btn quiz-prev-btn" data-question-index="<?php echo esc_attr( $prev_q ); ?>">Previous</a>
+				<?php endif; ?>
+				
+				<?php if ( $question_index < $total_questions - 1 ) : ?>
+					<a href="<?php echo esc_url( $next_url ); ?>" class="quiz-btn quiz-next-btn" data-question-index="<?php echo esc_attr( $next_q ); ?>">Next</a>
+				<?php else : ?>
+					<button type="button" class="quiz-btn quiz-submit-btn" id="quiz-final-submit">Submit Quiz</button>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+	<?php
+	$html = ob_get_clean();
+	
+	wp_send_json_success( array(
+		'html' => $html,
+		'question_index' => $question_index,
+		'total_questions' => $total_questions,
+		'prev_url' => $prev_url,
+		'next_url' => $next_url
+	) );
+}
+add_action( 'wp_ajax_academy_load_quiz_question', 'vested_academy_ajax_load_quiz_question' );
+
+/**
  * Register Academy User Role
  */
 function vested_academy_register_user_role() {

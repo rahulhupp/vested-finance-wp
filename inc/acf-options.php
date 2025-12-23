@@ -31,5 +31,13 @@
             'redirect'      => false
         ));
 
+        acf_add_options_page(array(
+            'page_title'    => 'Academy Header Settings',
+            'menu_title'    => 'Academy Header',
+            'menu_slug'     => 'academy-header-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+
     }
 ?>

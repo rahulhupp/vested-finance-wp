@@ -523,11 +523,12 @@ while ( have_posts() ) :
 	?>
 
 	<div id="academy-chapter-page" class="academy-chapter-page">
+		<div class="social-overlay"></div>
 		<!-- Green Header Banner -->
 		<section class="chapter-header-banner">
-			<div class="container">
-				<!-- Breadcrumbs -->
-				<div class="chapter-breadcrumb">
+			<!-- Breadcrumbs -->
+			<div class="chapter-breadcrumb">
+				<div class="container">
 					<ul>
 						<li><a href="<?php echo esc_url( home_url() ); ?>">Home</a></li>
 						<?php if ( $module_link ) : ?>
@@ -538,47 +539,69 @@ while ( have_posts() ) :
 						<li><span><?php the_title(); ?></span></li>
 					</ul>
 				</div>
-				
-				<!-- Course Title -->
-				<h1 class="chapter-course-title"><?php echo esc_html( $module_name ? $module_name : get_the_title() ); ?></h1>
-				
-				<!-- Course Meta -->
-				<div class="chapter-meta">
-					<span class="meta-item">
-						<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M12 15.75V14.25C12 13.4544 11.6839 12.6913 11.1213 12.1287C10.5587 11.5661 9.79565 11.25 9 11.25H4.5C3.70435 11.25 2.94129 11.5661 2.37868 12.1287C1.81607 12.6913 1.5 13.4544 1.5 14.25V15.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-						<?php echo esc_html( $module_difficulty ); ?>
-					</span>
-					<span class="meta-item">
-						<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3 4.5H15M3 9H15M3 13.5H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-						</svg>
-						<?php echo esc_html( $total_chapters ); ?> Chapters
-					</span>
-					<span class="meta-item">
-						<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M9 4.5V9L12 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-						<?php echo esc_html( $total_time_display ); ?>
-					</span>
+			</div>
+			<div class="chapter-header-content">
+				<div class="container">
+					<div class="chapter-header-content-inner">
+						<!-- Course Title -->
+						<h1 class="chapter-course-title"><?php echo esc_html( $module_name ? $module_name : get_the_title() ); ?></h1>
+						
+						<!-- Course Meta -->
+						<div class="chapter-meta">
+							<div class="meta-item">
+								<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M14 13H10V0H14V13ZM11 12H13V1H11V12ZM9 13H5V4H9V13ZM6 12H8V5H6V12ZM4 13H0V7H4V13ZM1 12H3V8H1V12Z" fill="white"/>
+								</svg>
+								<span><?php echo esc_html( $module_difficulty ); ?></span>
+							</div>
+							<div class="meta-item">
+								<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M9 14H1C0.734784 14 0.48043 13.8946 0.292893 13.7071C0.105357 13.5196 0 13.2652 0 13V1C0 0.734784 0.105357 0.48043 0.292893 0.292893C0.48043 0.105357 0.734784 0 1 0H9C9.26522 0 9.51957 0.105357 9.70711 0.292893C9.89464 0.48043 10 0.734784 10 1V9.309L7.5 8.059L5 9.309V1H1V13H9V11H10V13C9.9996 13.2651 9.89412 13.5192 9.70667 13.7067C9.51922 13.8941 9.26509 13.9996 9 14ZM7.5 6.941L9 7.691V1H6V7.691L7.5 6.941Z" fill="white"/>
+								</svg>
+								<span><?php echo esc_html( $total_chapters ); ?> Chapters</span>
+							</div>
+							<div class="meta-item">
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 15C4.14 15 1 11.86 1 8C1 4.14 4.14 1 8 1C11.86 1 15 4.14 15 8C15 11.86 11.86 15 8 15ZM8 2C4.69 2 2 4.69 2 8C2 11.31 4.69 14 8 14C11.31 14 14 11.31 14 8C14 4.69 11.31 2 8 2Z" fill="white"/>
+									<path d="M10 10.5C9.91001 10.5 9.82001 10.48 9.74001 10.43L7.24001 8.93C7.1663 8.88513 7.10546 8.82195 7.0634 8.74659C7.02134 8.67124 6.99951 8.58629 7.00001 8.5V4.5C7.00001 4.22 7.22001 4 7.50001 4C7.78001 4 8.00001 4.22 8.00001 4.5V8.22L10.26 9.57C10.3531 9.62705 10.425 9.7129 10.4649 9.81453C10.5049 9.91615 10.5105 10.028 10.4811 10.1332C10.4517 10.2383 10.3889 10.331 10.302 10.3972C10.2152 10.4634 10.1092 10.4995 10 10.5Z" fill="white"/>
+								</svg>
+								<span><?php echo esc_html( $total_time_display ); ?></span>
+							</div>
+						</div>
+						
+						<!-- Tags -->
+						<!-- <div class="chapter-tags">
+							<span class="tag-item">Stock market</span>
+							<span class="tag-item">Intraday Trading</span>
+						</div> -->
+						
+						<!-- Share Button -->
+						<div class="social-share-block">
+							<button class="sharing-icon blog_share_mw">
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="link" />
+							</button>
+							<button class="share-btn"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/share-icon.webp" alt="Share Icon" /><span>Share</span></button>
+							<ul>
+								<?php
+								$current_page_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+								?>
+
+								<li>
+									<a id="copyLink" href="" class="blog_share_copylink">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/link.webp" alt="link" />
+										<span>Copy link</span>
+									</a>
+								</li>
+								<li class="share_whatsapp">
+									<a href="javascript:void(0);" target="_blank" class="blog_share_whatsapp">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/whatsapp.webp" alt="whatsapp" />
+										<span>Share on Whatsapp</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
-				
-				<!-- Tags -->
-				<div class="chapter-tags">
-					<span class="tag-item">Stock market</span>
-					<span class="tag-item">Intraday Trading</span>
-				</div>
-				
-				<!-- Share Button -->
-				<button class="chapter-share-btn">
-					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M15 6.66667C16.3807 6.66667 17.5 5.54738 17.5 4.16667C17.5 2.78595 16.3807 1.66667 15 1.66667C13.6193 1.66667 12.5 2.78595 12.5 4.16667C12.5 4.53018 12.5853 4.87452 12.7375 5.18229L7.7625 8.18229C7.28595 7.61905 6.58333 7.29167 5.83333 7.29167C4.45262 7.29167 3.33333 8.41095 3.33333 9.79167C3.33333 11.1724 4.45262 12.2917 5.83333 12.2917C6.58333 12.2917 7.28595 11.9643 7.7625 11.401L12.7375 14.401C12.5853 14.7088 12.5 15.0531 12.5 15.4167C12.5 16.7974 13.6193 17.9167 15 17.9167C16.3807 17.9167 17.5 16.7974 17.5 15.4167C17.5 14.036 16.3807 12.9167 15 12.9167C14.25 12.9167 13.5474 13.244 13.0708 13.8073L8.09583 10.8073C8.24792 10.4995 8.33333 10.1552 8.33333 9.79167C8.33333 9.42815 8.24792 9.08381 8.09583 8.77604L13.0708 5.77604C13.5474 6.33929 14.25 6.66667 15 6.66667Z" fill="white"/>
-					</svg>
-					Share
-				</button>
 			</div>
 		</section>
 
@@ -588,7 +611,7 @@ while ( have_posts() ) :
 				<div class="chapter-layout-wrapper">
 					<!-- Left Sidebar: Course Navigation -->
 					<aside class="chapter-sidebar">
-						<div class="sidebar-course-header">
+						<!-- <div class="sidebar-course-header">
 							<div class="course-icon-small">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M4 19.5C4 18.6716 4.67157 18 5.5 18H18.5C19.3284 18 20 18.6716 20 19.5C20 20.3284 19.3284 21 18.5 21H5.5C4.67157 21 4 20.3284 4 19.5Z" fill="#00A651"/>
@@ -597,7 +620,7 @@ while ( have_posts() ) :
 								</svg>
 							</div>
 							<h3 class="sidebar-course-title"><?php echo esc_html( $module_name ? $module_name : 'Course' ); ?></h3>
-						</div>
+						</div> -->
 						
 						<div class="sidebar-chapters-list">
 							<?php
@@ -642,8 +665,8 @@ while ( have_posts() ) :
 											<span class="chapter-label">Chapter <?php echo esc_html( $chapter_num ); ?>: <?php echo esc_html( $chapter['title'] ); ?></span>
 										</a>
 										<button class="chapter-toggle" aria-label="Toggle chapter" type="button">
-											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="toggle-icon">
-												<path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											<svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.071L2.67029e-05 1.414L1.41403 0L6.36403 4.95L11.314 0L12.728 1.414L7.07103 7.071C6.8835 7.25847 6.62919 7.36379 6.36403 7.36379C6.09886 7.36379 5.84455 7.25847 5.65703 7.071Z" fill="#9095A1"/>
 											</svg>
 										</button>
 									</div>
@@ -687,15 +710,26 @@ while ( have_posts() ) :
 												<a href="<?php echo esc_url( $topic_url ); ?>" 
 												   class="sidebar-chapter-sub-item <?php echo $is_current_topic ? 'current' : ''; ?>">
 													<span class="sub-item-icon">
-														<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path d="M2 3C2 2.44772 2.44772 2 3 2H13C13.5523 2 14 2.44772 14 3V13C14 13.5523 13.5523 14 13 14H3C2.44772 14 2 13.5523 2 13V3Z" stroke="currentColor" stroke-width="1.5"/>
+														<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M4.73055 2.23889C3.18224 2.28566 2.25982 2.4578 1.62099 3.09663C0.746338 3.97228 0.746338 5.38029 0.746338 8.1973V14.6712C0.746338 17.4892 0.746338 18.8972 1.62099 19.7728C2.49466 20.6475 3.90266 20.6475 6.71669 20.6475H11.692C14.507 20.6475 15.914 20.6475 16.7877 19.7718C17.6633 18.8972 17.6633 17.4892 17.6633 14.6712V8.1973C17.6633 5.38129 17.6633 3.97228 16.7877 3.09663C16.1498 2.4578 15.2264 2.28566 13.6781 2.23889" stroke="black" stroke-width="1.49259"/>
+															<path d="M4.72681 2.48769C4.72681 1.52646 5.50693 0.746338 6.46816 0.746338H11.941C12.4028 0.746338 12.8457 0.929801 13.1723 1.25637C13.4989 1.58294 13.6823 2.02586 13.6823 2.48769C13.6823 2.94953 13.4989 3.39245 13.1723 3.71901C12.8457 4.04558 12.4028 4.22904 11.941 4.22904H6.46816C6.00632 4.22904 5.5634 4.04558 5.23684 3.71901C4.91027 3.39245 4.72681 2.94953 4.72681 2.48769Z" stroke="black" stroke-width="1.49259" stroke-linejoin="round"/>
+															<path d="M3.7356 8.7074H7.71583" stroke="black" stroke-width="1.49259" stroke-linecap="round"/>
+															<path d="M10.7004 9.7013C10.7004 9.7013 11.198 9.7013 11.6955 10.6964C11.6955 10.6964 13.2757 8.20871 14.6807 7.71118" stroke="black" stroke-width="1.49259" stroke-linecap="round" stroke-linejoin="round"/>
+															<path d="M3.7356 14.6777H7.71583" stroke="black" stroke-width="1.49259" stroke-linecap="round"/>
+															<path d="M10.7004 15.6716C10.7004 15.6716 11.198 15.6716 11.6955 16.6667C11.6955 16.6667 13.2757 14.179 14.6807 13.6815" stroke="black" stroke-width="1.49259" stroke-linecap="round" stroke-linejoin="round"/>
 														</svg>
 													</span>
-													<span class="sub-item-number"><?php echo str_pad( $topic_idx + 1, 2, '0', STR_PAD_LEFT ); ?>: <?php echo esc_html( $topic_title ); ?></span>
-													<span class="sub-item-duration"><?php echo esc_html( $topic_duration ); ?> Minutes</span>
-													<?php if ( $topic_completed ) : ?>
-														<span class="sub-item-check">✓</span>
-													<?php endif; ?>
+													<div class="sidebar-chapter-sub-item-content">
+														<span class="sub-item-number"><?php echo str_pad( $topic_idx + 1, 2, '0', STR_PAD_LEFT ); ?>: <?php echo esc_html( $topic_title ); ?></span>
+														<span class="sub-item-duration"><?php echo esc_html( $topic_duration ); ?> Minutes</span>
+														<?php if ( $topic_completed ) : ?>
+															<span class="sub-item-check">
+																<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																	<path d="M18.3334 9.2333V9.99997C18.3324 11.797 17.7505 13.5455 16.6745 14.9848C15.5986 16.4241 14.0862 17.477 12.3629 17.9866C10.6396 18.4961 8.7978 18.4349 7.11214 17.8121C5.42648 17.1894 3.98729 16.0384 3.00922 14.5309C2.03114 13.0233 1.56657 11.24 1.68481 9.4469C1.80305 7.65377 2.49775 5.94691 3.66531 4.58086C4.83288 3.21482 6.41074 2.26279 8.16357 1.86676C9.91641 1.47073 11.7503 1.65192 13.3918 2.3833M18.3334 3.33331L10.0001 11.675L7.50008 9.17498" stroke="#002852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																</svg>
+															</span>
+														<?php endif; ?>
+													</div>
 												</a>
 											<?php endforeach;
 										} else {
@@ -742,11 +776,23 @@ while ( have_posts() ) :
 											// Don't show lock icon if user is logged in (even if quiz is locked, they can see it)
 											?>
 											<a href="<?php echo esc_url( $quiz_url ); ?>" class="sidebar-chapter-sub-item quiz-item <?php echo $quiz_active ? 'active' : ''; ?> <?php echo ( $quiz_locked && ! is_user_logged_in() ) ? 'locked' : ''; ?>">
-												<span class="sub-item-icon">📋</span>
-												<span class="sub-item-title">Quiz</span>
-												<?php if ( $quiz_locked && ! is_user_logged_in() ) : ?>
-													<span class="sub-item-lock">🔒</span>
-												<?php endif; ?>
+												<span class="sub-item-icon">
+													<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M8.43839 1.2751C8.62404 1.08885 8.84462 0.94107 9.08749 0.840237C9.33036 0.739404 9.59075 0.6875 9.85372 0.6875C10.1167 0.6875 10.3771 0.739404 10.62 0.840237C10.8628 0.94107 11.0834 1.08885 11.2691 1.2751L12.194 2.20185C12.5698 2.57768 13.0795 2.78852 13.6102 2.78852H14.9201C15.183 2.78816 15.4433 2.83964 15.6861 2.94002C15.929 3.04039 16.1497 3.1877 16.3356 3.37349C16.5215 3.55928 16.6689 3.77992 16.7694 4.02276C16.8699 4.2656 16.9215 4.52587 16.9212 4.78868L16.9203 6.0986C16.9203 6.63027 17.1311 7.13902 17.507 7.51485L18.4328 8.44068C18.6189 8.62631 18.7666 8.84684 18.8673 9.08963C18.9681 9.33241 19.0199 9.59269 19.0199 9.85556C19.0199 10.1184 18.9681 10.3787 18.8673 10.6215C18.7666 10.8643 18.6189 11.0848 18.4328 11.2704L17.507 12.1954C17.1311 12.5712 16.9203 13.0808 16.9203 13.6116V14.9215C16.9207 15.1843 16.8692 15.4446 16.7688 15.6875C16.6684 15.9304 16.5211 16.1511 16.3353 16.337C16.1495 16.5229 15.9289 16.6703 15.6861 16.7707C15.4432 16.8712 15.183 16.9228 14.9201 16.9226L13.6102 16.9217C13.0786 16.9217 12.5698 17.1325 12.194 17.5084L11.2681 18.4342C11.0825 18.6203 10.862 18.768 10.6192 18.8687C10.3764 18.9695 10.1161 19.0213 9.85327 19.0213C9.5904 19.0213 9.33012 18.9695 9.08733 18.8687C8.84455 18.768 8.62402 18.6203 8.43839 18.4342L7.51347 17.5084C7.32764 17.3222 7.10688 17.1745 6.86384 17.0738C6.62081 16.9731 6.36029 16.9214 6.09722 16.9217H4.78731C4.5245 16.922 4.2642 16.8706 4.02131 16.7702C3.77842 16.6698 3.55772 16.5225 3.37185 16.3367C3.18597 16.1509 3.03856 15.9303 2.93807 15.6874C2.83758 15.4446 2.78598 15.1843 2.78622 14.9215L2.78714 13.6116C2.78714 13.0799 2.57631 12.5712 2.20047 12.1954L1.27464 11.2695C1.08853 11.0839 0.940864 10.8634 0.840113 10.6206C0.739361 10.3778 0.6875 10.1175 0.6875 9.85464C0.6875 9.59178 0.739361 9.3315 0.840113 9.08871C0.940864 8.84592 1.08853 8.6254 1.27464 8.43977L2.20047 7.51485C2.57631 7.13902 2.78714 6.62935 2.78714 6.0986V4.78868C2.78678 4.52595 2.83823 4.26572 2.93855 4.0229C3.03887 3.78007 3.18609 3.55941 3.37179 3.37355C3.55748 3.18768 3.77801 3.04026 4.02074 2.93971C4.26348 2.83917 4.52366 2.78748 4.78639 2.7876L6.09631 2.78852C6.62797 2.78852 7.13672 2.57768 7.51256 2.20185L8.43839 1.2751Z" stroke="#010202" stroke-width="1.375"/>
+														<path d="M8.021 7.10468C8.02092 6.8198 8.08724 6.53882 8.21469 6.28404C8.34213 6.02926 8.5272 5.80768 8.7552 5.63689C8.98321 5.46609 9.24788 5.35079 9.52822 5.30011C9.80855 5.24944 10.0968 5.26479 10.3702 5.34495C10.6436 5.42512 10.8945 5.56788 11.1031 5.76192C11.3117 5.95597 11.4721 6.19595 11.5718 6.46283C11.6715 6.7297 11.7076 7.01614 11.6772 7.2994C11.6469 7.58266 11.551 7.85495 11.3971 8.09468C10.8489 8.94718 9.85433 9.75935 9.85433 10.7713V11.2297" stroke="#010202" stroke-width="1.375" stroke-linecap="round"/>
+														<path d="M9.84619 14.4393H9.85519" stroke="#010202" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+													</svg>
+												</span>
+												<div class="sidebar-chapter-sub-item-content">
+													<span class="sub-item-title">Quiz</span>
+													<?php if ( $quiz_locked && ! is_user_logged_in() ) : ?>
+														<span class="sub-item-lock">
+															<svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M2 21C1.45 21 0.979333 20.8043 0.588 20.413C0.196666 20.0217 0.000666667 19.5507 0 19V9C0 8.45 0.196 7.97933 0.588 7.588C0.98 7.19667 1.45067 7.00067 2 7H3V5C3 3.61667 3.48767 2.43767 4.463 1.463C5.43833 0.488334 6.61733 0.000667349 8 6.82594e-07C9.38267 -0.000665984 10.562 0.487001 11.538 1.463C12.514 2.439 13.0013 3.618 13 5V7H14C14.55 7 15.021 7.196 15.413 7.588C15.805 7.98 16.0007 8.45067 16 9V19C16 19.55 15.8043 20.021 15.413 20.413C15.0217 20.805 14.5507 21.0007 14 21H2ZM2 19H14V9H2V19ZM8 16C8.55 16 9.021 15.8043 9.413 15.413C9.805 15.0217 10.0007 14.5507 10 14C9.99933 13.4493 9.80367 12.9787 9.413 12.588C9.02233 12.1973 8.55133 12.0013 8 12C7.44867 11.9987 6.978 12.1947 6.588 12.588C6.198 12.9813 6.002 13.452 6 14C5.998 14.548 6.194 15.019 6.588 15.413C6.982 15.807 7.45267 16.0027 8 16ZM5 7H11V5C11 4.16667 10.7083 3.45833 10.125 2.875C9.54167 2.29167 8.83333 2 8 2C7.16667 2 6.45833 2.29167 5.875 2.875C5.29167 3.45833 5 4.16667 5 5V7Z" fill="black"/>
+															</svg>
+														</span>
+													<?php endif; ?>
+												</div>
 											</a>
 										<?php endif; ?>
 									</div>
@@ -877,14 +923,14 @@ while ( have_posts() ) :
 													$skip_url = add_query_arg( array( 'quiz' => '1', 'q' => $next_q ), $base_url ) . '#quiz-content';
 															?>
 															<?php if ( $quiz_current_question > 0 ) : ?>
-																<a href="<?php echo esc_url( $prev_url ); ?>" class="quiz-btn quiz-prev-btn" onclick="return true;">Previous</a>
+																<a href="<?php echo esc_url( $prev_url ); ?>" class="quiz-btn quiz-prev-btn" data-question-index="<?php echo esc_attr( $prev_q ); ?>">Previous</a>
 															<?php endif; ?>
 															
 															<!-- Hidden Skip button (kept for future use) -->
-															<a href="<?php echo esc_url( $skip_url ); ?>" class="quiz-btn quiz-skip-btn" style="display:none;" onclick="return true;">Skip</a>
+															<a href="<?php echo esc_url( $skip_url ); ?>" class="quiz-btn quiz-skip-btn" style="display:none;" data-question-index="<?php echo esc_attr( $next_q ); ?>">Skip</a>
 															
 															<?php if ( $quiz_current_question < $total_questions - 1 ) : ?>
-																<a href="<?php echo esc_url( $next_url ); ?>" class="quiz-btn quiz-next-btn" onclick="return true;">Next</a>
+																<a href="<?php echo esc_url( $next_url ); ?>" class="quiz-btn quiz-next-btn" data-question-index="<?php echo esc_attr( $next_q ); ?>">Next</a>
 															<?php else : ?>
 																<button type="button" class="quiz-btn quiz-submit-btn" id="quiz-final-submit">Submit Quiz</button>
 															<?php endif; ?>
@@ -1016,14 +1062,14 @@ while ( have_posts() ) :
 													$skip_url_2 = add_query_arg( array( 'quiz' => '1', 'q' => $next_q_2 ), $base_url_2 ) . '#quiz-content';
 													?>
 													<?php if ( $quiz_current_question > 0 ) : ?>
-														<a href="<?php echo esc_url( $prev_url_2 ); ?>" class="quiz-btn quiz-prev-btn" onclick="return true;">Previous</a>
+														<a href="<?php echo esc_url( $prev_url_2 ); ?>" class="quiz-btn quiz-prev-btn" data-question-index="<?php echo esc_attr( $prev_q_2 ); ?>">Previous</a>
 													<?php endif; ?>
 													
 													<!-- Hidden Skip button (kept for future use) -->
-													<a href="<?php echo esc_url( $skip_url_2 ); ?>" class="quiz-btn quiz-skip-btn" style="display:none;" onclick="return true;">Skip</a>
+													<a href="<?php echo esc_url( $skip_url_2 ); ?>" class="quiz-btn quiz-skip-btn" style="display:none;" data-question-index="<?php echo esc_attr( $next_q_2 ); ?>">Skip</a>
 													
 													<?php if ( $quiz_current_question < $total_questions - 1 ) : ?>
-														<a href="<?php echo esc_url( $next_url_2 ); ?>" class="quiz-btn quiz-next-btn" onclick="return true;">Next</a>
+														<a href="<?php echo esc_url( $next_url_2 ); ?>" class="quiz-btn quiz-next-btn" data-question-index="<?php echo esc_attr( $next_q_2 ); ?>">Next</a>
 													<?php else : ?>
 														<button type="button" class="quiz-btn quiz-submit-btn" id="quiz-final-submit">Submit Quiz</button>
 													<?php endif; ?>
@@ -1041,10 +1087,15 @@ while ( have_posts() ) :
 							<!-- Quiz Locked -->
 							<div id="quiz-content" class="quiz-locked-inline">
 								<div class="quiz-locked-card">
-									<div class="lock-icon-large">🔒</div>
+									<div class="lock-icon-large">
+										<svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M73.6114 68.2086C70.9677 68.2086 68.8245 66.0654 68.8245 63.4217V35.5471C68.8245 26.1524 61.1812 18.5089 51.7863 18.5089C42.3916 18.5089 34.7482 26.1522 34.7482 35.5471V51.7595C34.7482 54.4033 32.605 56.5465 29.9612 56.5465C27.3175 56.5465 25.1743 54.4033 25.1743 51.7595V35.5471C25.1743 20.8731 37.1123 8.93506 51.7863 8.93506C66.4603 8.93506 78.3984 20.8731 78.3984 35.5471V63.4217C78.3984 66.0654 76.2552 68.2086 73.6114 68.2086Z" fill="#B1B4B5"/>
+											<path d="M80.9091 97.1957H22.6575C17.2189 97.1957 12.8101 92.7868 12.8101 87.3483V53.6702C12.8101 48.2316 17.2189 43.8228 22.6575 43.8228H80.9091C86.3477 43.8228 90.7566 48.2316 90.7566 53.6702V87.3481C90.7566 92.7868 86.3477 97.1957 80.9091 97.1957Z" fill="#FFB636"/>
+											<path d="M21.3557 89.2602H20.8624C19.3085 89.2602 18.0488 88.0005 18.0488 86.4466V54.5731C18.0488 53.0192 19.3085 51.7595 20.8624 51.7595H21.3557C22.9096 51.7595 24.1693 53.0192 24.1693 54.5731V86.4466C24.1693 88.0005 22.9096 89.2602 21.3557 89.2602Z" fill="#FFD469"/>
+										</svg>
+									</div>
 									<h2 class="quiz-locked-title">This quiz is locked</h2>
 									<?php if ( ! is_user_logged_in() ) : ?>
-										<p class="quiz-locked-message">You need to be logged in as an Academy User to take this quiz.</p>
 										<div class="quiz-locked-actions">
 											<a href="<?php echo esc_url( home_url( '/academy/login' ) ); ?>" class="btn-login-link">Login to take quiz</a>
 										</div>
@@ -1098,9 +1149,6 @@ while ( have_posts() ) :
 										<!-- Topic-based navigation -->
 										<?php if ( $prev_topic ) : ?>
 											<a href="<?php echo esc_url( $prev_topic['url'] ); ?>" class="chapter-nav-btn prev-btn">
-												<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
 												Previous Topic
 											</a>
 										<?php endif; ?>
@@ -1119,17 +1167,11 @@ while ( have_posts() ) :
 											$quiz_url = add_query_arg( 'quiz', '1', $quiz_base_url ) . '#quiz-content';
 										?>
 											<a href="<?php echo esc_url( $quiz_url ); ?>" class="chapter-nav-btn next-btn quiz-btn" onclick="vestedAcademyMarkTopicComplete(<?php echo esc_js( $chapter_id ); ?>, <?php echo esc_js( $current_topic_index ); ?>, <?php echo esc_js( $module_id ); ?>); return true;">
-												Next topic/ Take Quiz
-												<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
+												Take Quiz
 											</a>
 										<?php elseif ( $next_topic ) : ?>
 											<a href="<?php echo esc_url( $next_topic['url'] ); ?>" class="chapter-nav-btn next-btn" onclick="vestedAcademyMarkTopicComplete(<?php echo esc_js( $chapter_id ); ?>, <?php echo esc_js( $current_topic_index ); ?>, <?php echo esc_js( $module_id ); ?>); return true;">
-												Next topic/ Take Quiz
-												<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
+												Next Topic
 											</a>
 										<?php endif; ?>
 									<?php else : ?>
@@ -1178,6 +1220,89 @@ while ( have_posts() ) :
 				</div>
 			</div>
 		</div>
+		
+		<!-- FAQ Section -->
+		<section class="academy-faq-section">
+			<div class="container">
+				<div class="faq-header">
+					<h2 class="faq-title">FAQ's</h2>
+					<p class="faq-subtitle">Have questions about studying stock market?</p>
+				</div>
+				
+				<div class="faq-accordion">
+					<div class="faq-item active">
+						<div class="faq-question">
+							<span class="faq-question-text">Is this software scalable for growing businesses?</span>
+							<span class="faq-toggle-icon">−</span>
+						</div>
+						<div class="faq-answer">
+							<p>Absolutely. This software is designed to grow with your business. You can easily upgrade your plan as your needs change at your own observation.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<span class="faq-question-text">Is this software scalable for growing businesses?</span>
+							<span class="faq-toggle-icon">+</span>
+						</div>
+						<div class="faq-answer" style="display: none;">
+							<p>Absolutely. This software is designed to grow with your business. You can easily upgrade your plan as your needs change at your own observation.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<span class="faq-question-text">Is this software scalable for growing businesses?</span>
+							<span class="faq-toggle-icon">+</span>
+						</div>
+						<div class="faq-answer" style="display: none;">
+							<p>Absolutely. This software is designed to grow with your business. You can easily upgrade your plan as your needs change at your own observation.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<span class="faq-question-text">Is this software scalable for growing businesses?</span>
+							<span class="faq-toggle-icon">+</span>
+						</div>
+						<div class="faq-answer" style="display: none;">
+							<p>Absolutely. This software is designed to grow with your business. You can easily upgrade your plan as your needs change at your own observation.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Download App Section -->
+		<section class="academy-download-section">
+			<div class="container">
+				<div class="download-content-wrapper">
+					<div class="download-visual-column">
+						<div class="download-mobile-mockup">
+							<img src="<?php echo esc_url( content_url( '/uploads/2025/12/app-download-mockup.png' ) ); ?>" alt="Vested App">
+						</div>
+					</div>
+					
+					<div class="download-text-column">
+						<h2 class="download-title">Download the vested app to get started</h2>
+						<p class="download-description">
+							Sign up to our regular newsletter for news, insights, new product releases & more.
+						</p>
+						
+						<div class="download-buttons">
+							<a href="https://play.google.com/store/apps" target="_blank" class="download-button">
+								<img src="<?php echo esc_url( content_url( '/uploads/2025/12/playstore-icon.svg' ) ); ?>" alt="Get on Playstore">
+								Get on Playstore
+							</a>
+							<a href="https://apps.apple.com" target="_blank" class="download-button">
+								<img src="<?php echo esc_url( content_url( '/uploads/2025/12/appstore-icon.svg' ) ); ?>" alt="Get on Appstore">
+								Get on Appstore
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 
 	<script>
@@ -1396,50 +1521,179 @@ while ( have_posts() ) :
 	// Auto-save answer when user selects an option
 	jQuery(document).ready(function($) {
 		
-		// Ensure navigation buttons work - explicitly allow navigation
-		$('.quiz-next-btn, .quiz-prev-btn, .quiz-skip-btn, .quiz-retake-btn').on('click', function(e) {
-			var href = $(this).attr('href');
-			if (href && href !== '#' && href !== '') {
-				// Allow navigation to proceed
-				window.location.href = href;
-				return false; // Prevent any other handlers
+		// AJAX-based quiz navigation - prevent full page reload
+		$(document).on('click', '.quiz-next-btn, .quiz-prev-btn', function(e) {
+			e.preventDefault();
+			
+			var $button = $(this);
+			var $container = $('.quiz-questions-container');
+			
+			// Prevent multiple clicks while loading
+			if ($container.css('pointer-events') === 'none') {
+				return false;
 			}
-		});
-		
-		$('.option-label input[type="radio"]').on('change', function() {
-			var questionIndex = $(this).closest('.quiz-question-wrapper').data('question-index');
-			var selectedValue = $(this).val();
-			var optionLabel = $(this).closest('.option-label');
 			
-			// Update UI
-			$('.option-label').removeClass('selected');
-			optionLabel.addClass('selected');
+			var questionIndex = parseInt($button.data('question-index'));
 			
-			// Auto-save answer via AJAX
+			// If data attribute not found, try to extract from href
+			if (isNaN(questionIndex)) {
+				var href = $button.attr('href');
+				if (href) {
+					var urlParams = new URLSearchParams(href.split('?')[1]);
+					questionIndex = parseInt(urlParams.get('q')) || 0;
+				}
+			}
+			
+			if (isNaN(questionIndex)) {
+				console.error('Could not determine question index');
+				return false;
+			}
+			
+			// Show loading state
+			var $container = $('.quiz-questions-container');
+			$container.css('opacity', '0.6').css('pointer-events', 'none');
+			
+			// Load question via AJAX
 			$.ajax({
 				url: academyQuizData.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'academy_save_quiz_answer',
+					action: 'academy_load_quiz_question',
 					nonce: academyQuizData.nonce,
 					quiz_id: academyQuizData.quizId,
-					question_index: questionIndex,
-					user_answer: selectedValue
+					chapter_id: academyQuizData.chapterId,
+					question_index: questionIndex
 				},
 				success: function(response) {
 					if (response.success) {
-						console.log('Answer saved for question ' + (questionIndex + 1));
+						// Update the question wrapper
+						$container.html(response.data.html);
+						
+						// Update URL without reloading
+						// Use the appropriate URL based on direction
+						var newUrl = $button.hasClass('quiz-next-btn') ? response.data.next_url : response.data.prev_url;
+						if (newUrl) {
+							// Extract just the query string part
+							var urlParts = newUrl.split('#');
+							var queryPart = urlParts[0];
+							window.history.pushState({ questionIndex: questionIndex }, '', queryPart + '#quiz-content');
+						}
+						
+						// Scroll to top of quiz content
+						var $quizContent = $('#quiz-content');
+						if ($quizContent.length) {
+							$('html, body').animate({
+								scrollTop: $quizContent.offset().top - 100
+							}, 300);
+						}
+						
+						// Re-initialize radio button handlers for the new question
+						initQuizHandlers();
+					} else {
+						console.error('Failed to load question:', response.data.message);
+						// Fallback to full page reload
+						window.location.href = $button.attr('href');
 					}
 				},
 				error: function() {
-					console.error('Failed to save answer');
+					console.error('AJAX error loading question');
+					// Fallback to full page reload
+					window.location.href = $button.attr('href');
+				},
+				complete: function() {
+					// Remove loading state
+					$container.css('opacity', '1').css('pointer-events', 'auto');
 				}
 			});
+			
+			return false;
 		});
 		
-		// Submit quiz
-		$('#quiz-final-submit').on('click', function(e) {
+		// Handle browser back/forward buttons
+		window.addEventListener('popstate', function(e) {
+			if (e.state && typeof e.state.questionIndex !== 'undefined') {
+				var questionIndex = e.state.questionIndex;
+				// Load question via AJAX
+				loadQuestion(questionIndex);
+			}
+		});
+		
+		// Function to load question (reusable)
+		function loadQuestion(questionIndex) {
+			var $container = $('.quiz-questions-container');
+			$container.css('opacity', '0.6').css('pointer-events', 'none');
+			
+			$.ajax({
+				url: academyQuizData.ajaxUrl,
+				type: 'POST',
+				data: {
+					action: 'academy_load_quiz_question',
+					nonce: academyQuizData.nonce,
+					quiz_id: academyQuizData.quizId,
+					chapter_id: academyQuizData.chapterId,
+					question_index: questionIndex
+				},
+				success: function(response) {
+					if (response.success) {
+						$container.html(response.data.html);
+						initQuizHandlers();
+					}
+				},
+				complete: function() {
+					$container.css('opacity', '1').css('pointer-events', 'auto');
+				}
+			});
+		}
+		
+		// Initialize quiz handlers (for radio buttons)
+		function initQuizHandlers() {
+			// Remove existing handlers to avoid duplicates
+			$('.option-label input[type="radio"]').off('change');
+			
+			// Re-attach handlers
+			$('.option-label input[type="radio"]').on('change', function() {
+				var questionIndex = $(this).closest('.quiz-question-wrapper').data('question-index');
+				var selectedValue = $(this).val();
+				var optionLabel = $(this).closest('.option-label');
+				
+				// Update UI
+				$('.option-label').removeClass('selected');
+				optionLabel.addClass('selected');
+				
+				// Auto-save answer via AJAX
+				$.ajax({
+					url: academyQuizData.ajaxUrl,
+					type: 'POST',
+					data: {
+						action: 'academy_save_quiz_answer',
+						nonce: academyQuizData.nonce,
+						quiz_id: academyQuizData.quizId,
+						question_index: questionIndex,
+						user_answer: selectedValue
+					},
+					success: function(response) {
+						if (response.success) {
+							console.log('Answer saved for question ' + (questionIndex + 1));
+						}
+					},
+					error: function() {
+						console.error('Failed to save answer');
+					}
+				});
+			});
+		}
+		
+		// Initialize handlers on page load
+		initQuizHandlers();
+		
+		// Submit quiz - use event delegation to work with dynamically loaded buttons
+		$(document).on('click', '#quiz-final-submit', function(e) {
 			e.preventDefault();
+			
+			var $button = $(this);
+			
+			// Disable button to prevent double submission
+			$button.prop('disabled', true).text('Submitting...');
 			
 			// Collect all answers (submit directly without confirmation)
 			var allAnswers = {};
@@ -1517,6 +1771,136 @@ while ( have_posts() ) :
 			}
 		});
 	});
+	
+	// FAQ Accordion
+	document.addEventListener('DOMContentLoaded', function() {
+		const faqItems = document.querySelectorAll('.faq-item');
+		
+		faqItems.forEach(item => {
+			const question = item.querySelector('.faq-question');
+			const answer = item.querySelector('.faq-answer');
+			const toggleIcon = item.querySelector('.faq-toggle-icon');
+			
+			if (question && answer && toggleIcon) {
+				question.addEventListener('click', function() {
+					const isActive = item.classList.contains('active');
+					
+					// Close all items
+					faqItems.forEach(otherItem => {
+						otherItem.classList.remove('active');
+						const otherAnswer = otherItem.querySelector('.faq-answer');
+						const otherIcon = otherItem.querySelector('.faq-toggle-icon');
+						if (otherAnswer && otherIcon) {
+							otherAnswer.style.display = 'none';
+							otherIcon.textContent = '+';
+						}
+					});
+					
+					// Toggle current item
+					if (!isActive) {
+						item.classList.add('active');
+						answer.style.display = 'block';
+						toggleIcon.textContent = '−';
+					}
+				});
+			}
+		});
+	});
+	
+	// Share button functionality
+	var shareButton = document.querySelector(".share-btn");
+	var shareOverlay = document.querySelector(".social-overlay");
+
+	if (shareButton && shareOverlay) {
+		shareButton.addEventListener("click", function() {
+			shareButton.classList.add("show");
+			document.querySelector('html').classList.add('social-open');
+		});
+
+		shareOverlay.addEventListener("click", function() {
+			shareButton.classList.remove("show");
+			document.querySelector('html').classList.remove('social-open');
+		});
+	}
+
+	// Copy link functionality
+	document.addEventListener("DOMContentLoaded", function() {
+		var copyButton = document.getElementById("copyLink");
+		if (copyButton) {
+			var spanElement = copyButton.querySelector("span");
+
+			copyButton.addEventListener("click", function(event) {
+				event.preventDefault();
+				// Get the current URL
+				var currentURL = window.location.href;
+
+				// Create a temporary input element to copy the URL to the clipboard
+				var tempInput = document.createElement("input");
+				tempInput.value = currentURL;
+				document.body.appendChild(tempInput);
+
+				// Select and copy the text
+				tempInput.select();
+				document.execCommand("copy");
+
+				// Remove the temporary input element
+				document.body.removeChild(tempInput);
+
+				// Provide feedback to the user
+				if (spanElement) {
+					spanElement.innerHTML = "Copied";
+					setTimeout(function() {
+						document.querySelector('html').classList.remove('social-open');
+						spanElement.innerHTML = "Copy link";
+					}, 1000);
+				}
+			});
+		}
+
+		// WhatsApp share functionality
+		var whatsappShare = document.querySelector(".share_whatsapp");
+		if (whatsappShare) {
+			var whatsappLink = whatsappShare.querySelector("a");
+			if (whatsappLink) {
+				whatsappLink.addEventListener("click", function() {
+					var current_text = document.querySelector(".chapter-course-title") ? document.querySelector(".chapter-course-title").textContent : document.title;
+					var current_page_url = window.location.href;
+					window.open('https://wa.me/?text=' + encodeURIComponent(current_text + " , " + current_page_url) + '&utm-medium=social&utm-source=WhatsApp&utm-campaign=Academy', "_blank");
+				});
+			}
+		}
+	});
+
+	// Close share menu on scroll
+	window.onscroll = function() {
+		document.querySelector('html').classList.remove('social-open');
+	};
+
+	// Native share API (for mobile devices)
+	const BlogData = {
+		title: '<?php the_title(); ?>',
+		url: '<?php the_permalink(); ?>',
+	}
+
+	const btn = document.querySelector('.sharing-icon');
+
+	if (btn) {
+		// Share must be triggered by "user activation"
+		btn.addEventListener('click', async () => {
+			try {
+				if (navigator.canShare &&
+					typeof navigator.canShare === 'function' &&
+					navigator.canShare(BlogData)) {
+					let result = await navigator.share(BlogData);
+					document.getElementById("status").innerText = result || '';
+				} else {
+					document.getElementById("status").innerText = "Sharing selected data not supported.";
+				}
+			} catch (err) {
+				document.getElementById("status").innerText = "Share not complete";
+			}
+		});
+	}
 	</script>
 
 <?php
