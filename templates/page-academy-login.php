@@ -158,10 +158,11 @@ if ( is_user_logged_in() ) {
 						</div> -->
 					</form>
 					
-					<!-- <div class="academy-auth-switch">
+					<div class="academy-auth-switch">
 						<p>Don't have an account? <a href="<?php echo esc_url( home_url( '/academy/signup' ) ); ?>">Sign Up</a></p>
-					</div> -->
+					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -591,3 +591,17 @@ function vested_register_academy_menu() {
     );
 }
 add_action( 'after_setup_theme', 'vested_register_academy_menu' );
+
+/**
+ * Hide WordPress admin bar for Academy User role
+ */
+function hide_admin_bar_for_academy_user( $show_admin_bar ) {
+    if ( is_user_logged_in() ) {
+        $user = wp_get_current_user();
+        if ( in_array( 'academy_user', (array) $user->roles ) ) {
+            return false;
+        }
+    }
+    return $show_admin_bar;
+}
+add_filter( 'show_admin_bar', 'hide_admin_bar_for_academy_user' );
