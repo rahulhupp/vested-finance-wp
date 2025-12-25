@@ -172,9 +172,12 @@
             wp_enqueue_style('exclusive-benefits-style', get_stylesheet_directory_uri() . '/assets/css/css-exclusive-benefits.css', false, '', '');
             wp_enqueue_script('exclusive-benefits-js', get_stylesheet_directory_uri() . '/assets/js/js-exclusive-benefits.js');
         }
-        if (vested_academy_is_academy_page() || is_page_template('page-academy-dashboard.php')) {
+        if (vested_academy_is_academy_page() || is_page_template('page-academy-dashboard.php') || is_page_template('templates/page-academy-login.php') || is_page_template('templates/page-academy-signup.php')) {
             wp_enqueue_style('academy-style', get_stylesheet_directory_uri() . '/assets/css/templates/css-academy.css', false, '', '');
             wp_enqueue_script('academy-js', get_stylesheet_directory_uri() . '/assets/js/templates/js-academy.js', array('jquery'), '1.0.0', true);
+            wp_enqueue_script('academy-country-detection', get_stylesheet_directory_uri() . '/assets/js/academy-country-detection.js', array(), '1.0.0', true);
+            wp_localize_script('academy-country-detection', 'vestedCountryNonce', wp_create_nonce('vested_country_nonce'));
+            wp_localize_script('academy-country-detection', 'ajaxurl', admin_url('admin-ajax.php'));
         }
         if (is_singular('module')) {
             $has_quiz = get_field('quiz_questions', get_the_ID());

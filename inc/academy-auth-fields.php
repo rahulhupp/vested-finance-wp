@@ -103,6 +103,45 @@ function vested_academy_register_auth_fields() {
 				'default_value' => 'Continue with Vested Account',
 				'placeholder' => 'Continue with Vested Account',
 			),
+			// Email Settings Section
+			array(
+				'key' => 'field_email_settings_tab',
+				'label' => 'Email Settings',
+				'name' => '',
+				'type' => 'tab',
+				'placement' => 'top',
+			),
+			// Email Sender Name
+			array(
+				'key' => 'field_academy_email_sender_name',
+				'label' => 'Email Sender Name',
+				'name' => 'academy_email_sender_name',
+				'type' => 'text',
+				'default_value' => 'Vested Academy',
+				'placeholder' => 'Vested Academy',
+				'instructions' => 'The name that appears as the sender in Academy verification emails',
+			),
+			// Email Sender Address
+			array(
+				'key' => 'field_academy_email_sender',
+				'label' => 'Email Sender Address',
+				'name' => 'academy_email_sender',
+				'type' => 'email',
+				'default_value' => 'akash.gupta@vestedfinance.co',
+				'placeholder' => 'akash.gupta@vestedfinance.co',
+				'instructions' => 'The email address that sends Academy verification emails',
+			),
+			// Email Header Image
+			array(
+				'key' => 'field_academy_email_header_image',
+				'label' => 'Email Header Image',
+				'name' => 'academy_email_header_image',
+				'type' => 'image',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
+				'library' => 'all',
+				'instructions' => 'Header image displayed at the top of Academy verification emails. Default: Header.png',
+			),
 		),
 		'location' => array(
 			array(

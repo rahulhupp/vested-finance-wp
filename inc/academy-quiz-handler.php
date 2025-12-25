@@ -205,18 +205,45 @@ function vested_academy_handle_quiz_submission() {
 		}
 	}
 	
-	// Track quiz attempt
+	// Track quiz attempt - ALWAYS mark as completed when submitted
 	$result = vested_academy_track_quiz_attempt( $user_id, $quiz_id, $module_id, $correct_answers, $total_questions );
 	
-	// Store user answers in transient for results display
+	// Ensure quiz is marked as completed (force completion on submission)
+	// The track_quiz_attempt function may mark as in_progress if score < 70%, but we want to mark as completed when user submits
+	global $wpdb;
+	$progress_table = $wpdb->prefix . 'academy_progress';
+	$existing_progress = $wpdb->get_row( $wpdb->prepare(
+		"SELECT * FROM $progress_table WHERE user_id = %d AND quiz_id = %d AND progress_type = 'quiz' ORDER BY id DESC LIMIT 1",
+		$user_id,
+		$quiz_id
+	) );
+	
+	if ( $existing_progress ) {
+		// Force status to completed when quiz is submitted (regardless of score)
+		$wpdb->update(
+			$progress_table,
+			array(
+				'status' => 'completed',
+				'completed_at' => current_time( 'mysql' ),
+			),
+			array( 'id' => $existing_progress->id ),
+			array( '%s', '%s' ),
+			array( '%d' )
+		);
+		
+		// Update result array to reflect completed status
+		$result['status'] = 'completed';
+	}
+	
+	// Store user answers in transient for results display (backup, but results are now in database)
 	set_transient( 'academy_quiz_results_' . $user_id . '_' . $quiz_id, array(
 		'score' => $correct_answers,
 		'total' => $total_questions,
 		'percentage' => $result['percentage'],
-		'status' => $result['status'],
+		'status' => 'completed', // Always completed when submitted
 		'answers' => $user_answers,
 		'questions' => $questions,
-	), 3600 ); // Store for 1 hour
+	), 3600 ); // Store for 1 hour as backup
 	
 	// Redirect to chapter page with quiz results
 	// quiz_id is the chapter_id

@@ -321,6 +321,59 @@ $bg_image_url = $bg_image;
                         if ( strlen( $module_tag ) > 15 ) {
                             $module_tag = substr( $module_tag, 0, 15 );
                         }
+                        
+                        // Get continue URL (last visited or next uncompleted item)
+                        $continue_url = $module_link; // Default to module page
+                        $user_id = get_current_user_id();
+                        
+                        // If user is not logged in, use module page
+                        if ( ! $user_id ) {
+                            $continue_url = $module_link;
+                        } elseif ( function_exists( 'vested_academy_get_continue_url' ) ) {
+                            // Check if user has started reading (has resume state or progress)
+                            $has_started = false;
+                            
+                            // Check for resume state
+                            if ( function_exists( 'vested_academy_get_resume_state' ) ) {
+                                $resume_state = vested_academy_get_resume_state( $module_id );
+                                if ( $resume_state && isset( $resume_state['chapter_id'] ) ) {
+                                    $has_started = true;
+                                }
+                            }
+                            
+                            // Check for module progress if no resume state
+                            if ( ! $has_started && function_exists( 'vested_academy_get_module_progress' ) ) {
+                                $module_progress = vested_academy_get_module_progress( $user_id, $module_id );
+                                if ( ! empty( $module_progress ) ) {
+                                    $has_started = true;
+                                }
+                            }
+                            
+                            // If user has started, check if module is fully completed
+                            if ( $has_started ) {
+                                // Check if all topics and quizzes are completed
+                                $is_module_completed = false;
+                                if ( function_exists( 'vested_academy_get_next_incomplete_url' ) ) {
+                                    $next_incomplete = vested_academy_get_next_incomplete_url( $module_id, $user_id );
+                                    // If no incomplete items found, module is fully completed
+                                    if ( $next_incomplete === null ) {
+                                        $is_module_completed = true;
+                                    }
+                                }
+                                
+                                // If module is fully completed, use module page; otherwise get continue URL
+                                if ( $is_module_completed ) {
+                                    $continue_url = $module_link; // All completed, use module page
+                                } else {
+                                    $continue_url = vested_academy_get_continue_url( $module_id );
+                                    if ( ! $continue_url ) {
+                                        $continue_url = $module_link; // Fallback to module page
+                                    }
+                                }
+                            } else {
+                                $continue_url = $module_link; // User hasn't started, use module page
+                            }
+                        }
                         ?>
                         <div class="roadmap-module-item">
                             <div class="roadmap-module-card">
@@ -353,7 +406,7 @@ $bg_image_url = $bg_image;
                                         </div>
                                     </div>
 
-                                    <a href="<?php echo esc_url( $module_link ); ?>" class="module-card-button">
+                                    <a href="<?php echo esc_url( $continue_url ); ?>" class="module-card-button">
                                         View course detail
                                     </a>
                                 </div>

@@ -120,10 +120,23 @@ if ( is_user_logged_in() ) {
 					}
 					?>
 					
+					<?php
+					// ROOT-LEVEL: Get last visited academy page URL for redirect_to flow
+					$redirect_to = home_url( '/academy/' );
+					$last_visited_url = vested_academy_get_last_visited_url();
+					if ( $last_visited_url ) {
+						$redirect_to = $last_visited_url;
+					}
+					// Also check for explicit redirect_to in query string (WordPress native flow)
+					if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
+						$redirect_to = esc_url_raw( $_GET['redirect_to'] );
+					}
+					?>
+					
 					<form name="academy-login-form" id="academy-login-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
 						<input type="hidden" name="action" value="academy_login">
 						<input type="hidden" name="academy_login" value="1">
-						<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/academy/' ) ); ?>">
+						<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_to ); ?>">
 						<?php wp_nonce_field( 'academy_login', 'academy_login_nonce' ); ?>
 						
 						<div class="academy-auth-form-group">

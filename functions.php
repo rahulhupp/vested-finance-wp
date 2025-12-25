@@ -32,6 +32,8 @@ require_once get_stylesheet_directory() . '/inc/academy-functions.php';
 require_once get_stylesheet_directory() . '/inc/academy-quiz-handler.php';
 require_once get_stylesheet_directory() . '/inc/academy-auth-fields.php';
 require_once get_stylesheet_directory() . '/inc/academy-module-fields.php';
+require_once get_stylesheet_directory() . '/inc/academy-country-restrictions.php';
+require_once get_stylesheet_directory() . '/inc/academy-country-fields.php';
 
 
 function add_custom_js_to_pages() {
@@ -605,3 +607,30 @@ function hide_admin_bar_for_academy_user( $show_admin_bar ) {
     return $show_admin_bar;
 }
 add_filter( 'show_admin_bar', 'hide_admin_bar_for_academy_user' );
+
+function restrict_academy_user_admin_access() {
+    // Only check if user is logged in and we're in admin area
+    if ( ! is_user_logged_in() || ! is_admin() ) {
+        return;
+    }
+    
+    $user = wp_get_current_user();
+    
+    // Check if user has academy_user role
+    if ( in_array( 'academy_user', (array) $user->roles ) ) {
+        // Allow AJAX requests to pass through (for Academy functionality)
+        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+            return;
+        }
+        
+        // Allow admin-post.php requests (for Academy form submissions)
+        if ( strpos( $_SERVER['REQUEST_URI'], 'admin-post.php' ) !== false ) {
+            return;
+        }
+        
+        // Redirect to Academy home page
+        wp_redirect( home_url( '/academy/' ) );
+        exit;
+    }
+}
+add_action( 'admin_init', 'restrict_academy_user_admin_access', 1 );

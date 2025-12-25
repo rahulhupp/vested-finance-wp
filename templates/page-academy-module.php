@@ -874,6 +874,15 @@ if ( $module_post ) {
                                     
                                     // Count chapters
                                     $similar_chapters_count = isset( $similar_chapters ) ? $similar_chapters->post_count : 0;
+                                    
+                                    // Get continue URL (last visited or next uncompleted item)
+                                    $continue_url = $similar_url; // Default to module page
+                                    if ( function_exists( 'vested_academy_get_continue_url' ) ) {
+                                        $continue_url = vested_academy_get_continue_url( $similar_id );
+                                        if ( ! $continue_url ) {
+                                            $continue_url = $similar_url; // Fallback to module page
+                                        }
+                                    }
                                     ?>
                                     <div class="similar-module-item">
                                         <div class="roadmap-module-card">
@@ -906,7 +915,7 @@ if ( $module_post ) {
                                                     </div>
                                                 </div>
 
-                                                <a href="<?php echo esc_url( $similar_url ); ?>" class="module-card-button">
+                                                <a href="<?php echo esc_url( $continue_url ); ?>" class="module-card-button">
                                                     View course detail
                                                 </a>
                                             </div>
