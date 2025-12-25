@@ -348,11 +348,18 @@ if ( $module_post ) {
     if ( $similar_posts->have_posts() ) {
         while ( $similar_posts->have_posts() ) {
             $similar_posts->the_post();
+            $similar_id = get_the_ID();
+            
+            // Skip restricted modules
+            if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $similar_id ) ) {
+                continue;
+            }
+            
             $similar_modules[] = (object) array(
-                'ID' => get_the_ID(),
+                'ID' => $similar_id,
                 'name' => get_the_title(),
                 'description' => get_the_excerpt(),
-                'term_id' => get_the_ID(),
+                'term_id' => $similar_id,
                 'slug' => get_post_field( 'post_name' ),
                 'is_post' => true,
             );
@@ -445,6 +452,11 @@ if ( $module_post ) {
                                 while ( $chapters_query->have_posts() ) :
                                     $chapters_query->the_post();
                                     $chapter_id = get_the_ID();
+                                    
+                                    // Skip restricted chapters
+                                    if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $chapter_id ) ) {
+                                        continue;
+                                    }
                                     
                                     // Calculate chapter total time: chapter + topics + quiz
                                     $chapter_content = get_post_field( 'post_content', $chapter_id );

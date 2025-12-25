@@ -33,7 +33,7 @@ require_once get_stylesheet_directory() . '/inc/academy-quiz-handler.php';
 require_once get_stylesheet_directory() . '/inc/academy-auth-fields.php';
 require_once get_stylesheet_directory() . '/inc/academy-module-fields.php';
 require_once get_stylesheet_directory() . '/inc/academy-country-restrictions.php';
-require_once get_stylesheet_directory() . '/inc/academy-country-fields.php';
+require_once get_stylesheet_directory() . '/inc/academy-country-meta-fields.php';
 
 
 function add_custom_js_to_pages() {

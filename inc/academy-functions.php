@@ -2745,7 +2745,7 @@ function vested_academy_get_sender_email()
 	}
 	
 	// Allow filter override
-	$sender_email = apply_filters('vested_academy_sender_email', 'academy@vestedfinance.co');
+	$sender_email = apply_filters('vested_academy_sender_email', 'akash.gupta@vestedfinance.co');
 	
 	return sanitize_email($sender_email);
 }

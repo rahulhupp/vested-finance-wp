@@ -2907,9 +2907,16 @@ header .inner-header .site-primary-header-wrap {
     font-style: italic;
 }
 
+.chapter-content-body a span,
 .chapter-content-body a {
-    color: #0066cc;
-    text-decoration: underline;
+    color: #002852 !important;
+    text-decoration: underline !important;
+}
+
+.chapter-content-body a:hover span,
+.chapter-content-body a:hover {
+    color: #4B80B9 !important;
+    text-decoration: none !important;
 }
 
 .chapter-content-body img {

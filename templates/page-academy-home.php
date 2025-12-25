@@ -166,11 +166,18 @@ $bg_image_url = $bg_image;
             if ( $module_posts->have_posts() ) {
                 while ( $module_posts->have_posts() ) {
                     $module_posts->the_post();
+                    $module_id = get_the_ID();
+                    
+                    // Skip restricted modules
+                    if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $module_id ) ) {
+                        continue;
+                    }
+                    
                     $all_modules[] = (object) array(
-                        'ID' => get_the_ID(),
+                        'ID' => $module_id,
                         'name' => get_the_title(),
                         'description' => get_the_excerpt(),
-                        'term_id' => get_the_ID(),
+                        'term_id' => $module_id,
                         'slug' => get_post_field( 'post_name' ),
                         'is_post' => true,
                         'link' => get_permalink(),

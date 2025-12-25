@@ -810,7 +810,7 @@ while (have_posts()):
 							$chapter_num = 1;
 							foreach ($all_chapters as $index => $chapter):
 								// Check if chapter should be hidden based on country
-								if (function_exists('vested_academy_is_content_hidden') && vested_academy_is_content_hidden($chapter['id'], 'hide_in_countries')) {
+								if (function_exists('academy_is_content_restricted') && academy_is_content_restricted($chapter['id'])) {
 									continue; // Skip this chapter and all its content
 								}
 
@@ -867,7 +867,7 @@ while (have_posts()):
 											foreach ($chapter_topics as $topic_idx => $topic):
 												// Check if topic should be hidden based on country
 												$topic_id = isset($topic['topic_id']) ? $topic['topic_id'] : null;
-												if ($topic_id && function_exists('vested_academy_is_content_hidden') && vested_academy_is_content_hidden($topic_id, 'hide_in_countries')) {
+												if ($topic_id && function_exists('academy_is_content_restricted') && academy_is_content_restricted($topic_id)) {
 													continue; // Skip this topic and its quizzes
 												}
 
@@ -1036,7 +1036,8 @@ while (have_posts()):
 										// Add Quiz for THIS chapter (each chapter has its own quiz)
 										if ($chapter_quiz):
 											// Check if quiz should be hidden based on country
-											if (!function_exists('vested_academy_is_content_hidden') || !vested_academy_is_content_hidden($chapter_quiz['id'], 'hide_in_countries')):
+											$quiz_restricted = function_exists('academy_is_content_restricted') && academy_is_content_restricted($chapter_quiz['id']);
+											if (!function_exists('academy_is_content_restricted') || !$quiz_restricted):
 												// Quiz is locked if user is not logged in OR if all topics in chapter are not completed
 												$quiz_locked = !is_user_logged_in();
 												if ($user_id && !empty($chapter_topics)) {
