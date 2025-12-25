@@ -42,11 +42,6 @@ if ( ! function_exists( 'vested_academy_get_topics_for_chapter' ) ) {
 		if ( $topics_posts ) {
 			$idx = 0;
 			foreach ( $topics_posts as $tp ) {
-				// Skip restricted topics
-				if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $tp->ID ) ) {
-					continue;
-				}
-				
 				// Calculate duration from content dynamically
 				$topic_content = $tp->post_content;
 				$topic_duration = calculate_reading_time( $topic_content );
@@ -234,12 +229,6 @@ if ( $chapters_query->have_posts() ) {
         }
         
         foreach ( $chapter_topics as $topic ) {
-            // Skip restricted topics
-            $topic_id = isset( $topic['topic_id'] ) ? $topic['topic_id'] : null;
-            if ( $topic_id && function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $topic_id ) ) {
-                continue;
-            }
-            
             // Get topic duration (calculated from content)
             $topic_duration = isset( $topic['topic_duration'] ) ? intval( $topic['topic_duration'] ) : 0;
             // If duration not set, calculate from content
@@ -486,12 +475,6 @@ if ( $module_post ) {
                                     }
                                     
                                     foreach ( $chapter_topics as $topic ) {
-                                        // Skip restricted topics
-                                        $topic_id = isset( $topic['topic_id'] ) ? $topic['topic_id'] : null;
-                                        if ( $topic_id && function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $topic_id ) ) {
-                                            continue;
-                                        }
-                                        
                                         // Get topic duration (calculated from content)
                                         $topic_duration = isset( $topic['topic_duration'] ) ? intval( $topic['topic_duration'] ) : 0;
                                         // If duration not set, calculate from content
@@ -767,12 +750,6 @@ if ( $module_post ) {
                                                 }
                                                 
                                                 foreach ( $similar_chapter_topics as $similar_topic ) {
-                                                    // Skip restricted topics
-                                                    $similar_topic_id = isset( $similar_topic['topic_id'] ) ? $similar_topic['topic_id'] : null;
-                                                    if ( $similar_topic_id && function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $similar_topic_id ) ) {
-                                                        continue;
-                                                    }
-                                                    
                                                     $similar_topic_duration = isset( $similar_topic['topic_duration'] ) ? intval( $similar_topic['topic_duration'] ) : 0;
                                                     if ( $similar_topic_duration <= 0 && isset( $similar_topic['topic_content'] ) ) {
                                                         $similar_topic_duration = calculate_reading_time( $similar_topic['topic_content'] );
@@ -857,12 +834,6 @@ if ( $module_post ) {
                                                 }
                                                 
                                                 foreach ( $similar_chapter_topics as $similar_topic ) {
-                                                    // Skip restricted topics
-                                                    $similar_topic_id = isset( $similar_topic['topic_id'] ) ? $similar_topic['topic_id'] : null;
-                                                    if ( $similar_topic_id && function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $similar_topic_id ) ) {
-                                                        continue;
-                                                    }
-                                                    
                                                     $similar_topic_duration = isset( $similar_topic['topic_duration'] ) ? intval( $similar_topic['topic_duration'] ) : 0;
                                                     if ( $similar_topic_duration <= 0 && isset( $similar_topic['topic_content'] ) ) {
                                                         $similar_topic_duration = calculate_reading_time( $similar_topic['topic_content'] );

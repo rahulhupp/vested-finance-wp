@@ -53,11 +53,6 @@ if ($chapter_id) {
 			if ($topics_posts) {
 				$idx = 0;
 				foreach ($topics_posts as $tp) {
-					// Skip restricted topics
-					if (function_exists('academy_is_content_restricted') && academy_is_content_restricted($tp->ID)) {
-						continue;
-					}
-					
 					// Calculate duration from content dynamically
 					$topic_content = $tp->post_content;
 					$topic_duration = calculate_reading_time($topic_content);
@@ -84,18 +79,6 @@ if ($chapter_id) {
 		if (!$current_chapter_topics || !is_array($current_chapter_topics)) {
 			$current_chapter_topics = array();
 		}
-	}
-	
-	// Filter out restricted topics
-	if (!empty($current_chapter_topics) && function_exists('academy_is_content_restricted')) {
-		$filtered_topics = array();
-		foreach ($current_chapter_topics as $topic) {
-			$topic_id = isset($topic['topic_id']) ? $topic['topic_id'] : null;
-			if (!$topic_id || !academy_is_content_restricted($topic_id)) {
-				$filtered_topics[] = $topic;
-			}
-		}
-		$current_chapter_topics = $filtered_topics;
 	}
 
 	// Check if showing quiz (from URL parameter or anchor) - check this BEFORE processing topics
@@ -374,18 +357,6 @@ while (have_posts()):
 						$topics = array();
 					}
 				}
-				
-				// Filter out restricted topics
-				if (!empty($topics) && function_exists('academy_is_content_restricted')) {
-					$filtered_topics = array();
-					foreach ($topics as $topic) {
-						$topic_id = isset($topic['topic_id']) ? $topic['topic_id'] : null;
-						if (!$topic_id || !academy_is_content_restricted($topic_id)) {
-							$filtered_topics[] = $topic;
-						}
-					}
-					$topics = $filtered_topics;
-				}
 
 				$all_chapters[] = array(
 					'id' => $chapter_post_id,
@@ -404,18 +375,6 @@ while (have_posts()):
 		$topics = get_field('chapter_topics', $chapter_id);
 		if (!$topics || !is_array($topics)) {
 			$topics = array();
-		}
-		
-		// Filter out restricted topics
-		if (!empty($topics) && function_exists('academy_is_content_restricted')) {
-			$filtered_topics = array();
-			foreach ($topics as $topic) {
-				$topic_id = isset($topic['topic_id']) ? $topic['topic_id'] : null;
-				if (!$topic_id || !academy_is_content_restricted($topic_id)) {
-					$filtered_topics[] = $topic;
-				}
-			}
-			$topics = $filtered_topics;
 		}
 		
 		$all_chapters[] = array(
