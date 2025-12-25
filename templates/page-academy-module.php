@@ -176,8 +176,30 @@ if ( $queried_object && isset( $queried_object->post_type ) && $queried_object->
 }
 
 // Quizzes are now stored directly on chapters, not as separate posts
-// Count chapters that have quizzes
-$total_chapters = $chapters_query->post_count; // Use post_count since we're getting all posts
+// Count only accessible chapters (exclude restricted) - get all chapter IDs first
+$all_chapter_ids = array();
+if ( $chapters_query->have_posts() ) {
+    while ( $chapters_query->have_posts() ) {
+        $chapters_query->the_post();
+        $all_chapter_ids[] = get_the_ID();
+    }
+    wp_reset_postdata();
+}
+
+// Count only accessible chapters
+$total_chapters = 0;
+if ( ! empty( $all_chapter_ids ) ) {
+    if ( function_exists( 'academy_is_content_restricted' ) ) {
+        foreach ( $all_chapter_ids as $chapter_id ) {
+            if ( ! academy_is_content_restricted( $chapter_id ) ) {
+                $total_chapters++;
+            }
+        }
+    } else {
+        $total_chapters = count( $all_chapter_ids );
+    }
+}
+
 $total_quizzes = 0; // Will be calculated from chapters if needed
 
 // Calculate total time: chapters + topics + quizzes (same logic as home page and single page)
@@ -190,6 +212,15 @@ $first_chapter_url = null;
 
 // Store all chapters in an array for reuse and calculate total time
 $all_chapters_list = array();
+// Re-run query to get chapters for processing
+$chapters_query = new WP_Query( array(
+    'post_type' => 'module',
+    'post__in' => $all_chapter_ids,
+    'posts_per_page' => -1,
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+    'no_found_rows' => false,
+) );
 if ( $chapters_query->have_posts() ) {
     while ( $chapters_query->have_posts() ) {
         $chapters_query->the_post();
@@ -890,8 +921,20 @@ if ( $module_post ) {
                                         $similar_difficulty = get_field( 'difficulty_level', $similar_module ) ?: 'Beginner';
                                     }
                                     
-                                    // Count chapters
-                                    $similar_chapters_count = isset( $similar_chapters ) ? $similar_chapters->post_count : 0;
+                                    // Count only accessible chapters (exclude restricted)
+                                    $similar_chapters_count = 0;
+                                    if ( isset( $similar_chapters ) && $similar_chapters->have_posts() ) {
+                                        while ( $similar_chapters->have_posts() ) {
+                                            $similar_chapters->the_post();
+                                            $similar_chapter_id = get_the_ID();
+                                            // Skip restricted chapters
+                                            if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $similar_chapter_id ) ) {
+                                                continue;
+                                            }
+                                            $similar_chapters_count++;
+                                        }
+                                        wp_reset_postdata();
+                                    }
                                     
                                     // Get continue URL (last visited or next uncompleted item)
                                     $continue_url = $similar_url; // Default to module page

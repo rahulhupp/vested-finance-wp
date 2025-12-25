@@ -252,7 +252,21 @@ $bg_image_url = $bg_image;
                                 'order' => 'ASC',
                                 'no_found_rows' => false,
                             ) );
-                            $chapters_count = $chapters_query->post_count;
+                            
+                            // Count only accessible chapters (exclude restricted)
+                            $chapters_count = 0;
+                            if ( $chapters_query->have_posts() ) {
+                                while ( $chapters_query->have_posts() ) {
+                                    $chapters_query->the_post();
+                                    $chapter_id = get_the_ID();
+                                    // Skip restricted chapters
+                                    if ( function_exists( 'academy_is_content_restricted' ) && academy_is_content_restricted( $chapter_id ) ) {
+                                        continue;
+                                    }
+                                    $chapters_count++;
+                                }
+                                wp_reset_postdata();
+                            }
                             
                             // Calculate total time: chapters + topics + quizzes
                             $total_reading_time_minutes = 0;
