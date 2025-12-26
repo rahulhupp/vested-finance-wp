@@ -582,10 +582,78 @@ if ($custom_logo_id) {
 {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": <?php echo json_encode($site_url . '#organization'); ?>,
     "name": <?php echo json_encode($site_name); ?>,
-    "url": <?php echo json_encode($site_url); ?><?php if ($site_description) : ?>,
-    "description": <?php echo json_encode($site_description); ?><?php endif; ?><?php if ($logo_url) : ?>,
-    "logo": <?php echo json_encode($logo_url); ?><?php endif; ?>
+    "url": <?php echo json_encode($site_url); ?><?php if ($site_description || $logo_url) : ?>,<?php endif; ?>
+    "logo": {
+        "@type": "ImageObject",
+        "url": "https://vested-wordpress-media-prod-in.s3.ap-south-1.amazonaws.com/wp-content/uploads/2025/11/14083935/logo-primary.svg"
+    },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "5 Vivekanand Villa, 139 S V Road, Andheri West",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400058",
+        "addressCountry": "IN"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@vestedfinance.com",
+        "availableLanguage": ["English"]
+    },
+    "sameAs": [
+        "https://www.linkedin.com/company/vested-finance",
+        "https://twitter.com/VestedFinance",
+        "https://www.instagram.com/vestedfinance"
+    ]
+}
+</script>
+
+<?php
+// Service Schema
+?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Invest in US Stocks from India Online | Minimum Investment $1",
+    "description": "Open an overseas account online & start investing in US stocks & ETFs from India. Begin your investment with $1 & diversify your portfolio with top stocks like Apple, Netflix & more.",
+    "provider": {
+        "@type": "FinancialService",
+        "name": <?php echo json_encode($site_name); ?>,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "5 Vivekanand Villa, 139 S V Road, Andheri West",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400058",
+            "addressCountry": "IN"
+        }
+    },
+    "areaServed": {
+        "@type": "Country",
+        "name": "India"
+    },
+    "serviceType": "Investment Platform",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Investment Products",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "name": "Access to 10,000+ US Stocks",
+                "priceCurrency": "USD",
+                "price": "0"
+            },
+            {
+                "@type": "Offer",
+                "name": "Fractional Share Investing",
+                "price": "0"
+            }
+        ]
+    }
 }
 </script>
 
