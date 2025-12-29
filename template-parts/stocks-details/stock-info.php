@@ -32,13 +32,13 @@
                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/share-icon.svg" alt="share-icon" />
             </div>
         </div>
-        <h1><?php echo $name . ', ' . $overview_data->type; ?></h1>
-        <h2><?php echo $ticker; ?></h2>
-        <h6><?php echo $overview_data->exchange; ?></h6>
+        <h1><?php echo $name; ?> Share Price</h1>
+        <div class="stock_ticker"><?php echo $ticker; ?></div>
+        <div class="stock_exchange"><?php echo $overview_data->exchange; ?></div>
         <div class="stock_price_box" id="stock_price">
-            <h3>$<?php echo $overview_data->price; ?></h3>
-            <h4 class="<?php echo $changeClass; ?>"><?php echo $changeText; ?></h4>
-            <h4 class="<?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</h4>
+            <div class="stock_price">$<?php echo $overview_data->price; ?></div>
+            <div class="stock_price_change <?php echo $changeClass; ?>"><?php echo $changeText; ?></div>
+            <div class="stock_price_change <?php echo $changePercentClass; ?>">(<?php echo $changePercent; ?>%)</div>
             <?php if ($get_path[2] !== 'etf'): ?>
                 <span>1D</span>
             <?php endif; ?>

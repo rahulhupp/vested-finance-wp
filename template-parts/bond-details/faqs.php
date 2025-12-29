@@ -11,7 +11,7 @@ if ($bond) {
                 <div class="faq_container">
                     <div class="list_faqs">
                         <div class="faq_item">
-                            <div class="faq_question">How to buy <?php echo $bond->displayName; ?> bond online?</div>
+                            <h3 class="faq_question">How to buy <?php echo $bond->displayName; ?> bond online?</h3>
                             <div class="faq_icon">
                                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@ if ($bond) {
                         </div>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is the yield of <?php echo $bond->displayName; ?> bond?</div>
+                        <h3 class="faq_question">What is the yield of <?php echo $bond->displayName; ?> bond?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -49,7 +49,7 @@ if ($bond) {
                         </p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What is the credit rating of <?php echo $bond->displayName; ?> bond?</div>
+                        <h3 class="faq_question">What is the credit rating of <?php echo $bond->displayName; ?> bond?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -65,7 +65,7 @@ if ($bond) {
                         </p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">How to redeem <?php echo $bond->displayName; ?> bond?</div>
+                        <h3 class="faq_question">How to redeem <?php echo $bond->displayName; ?> bond?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -78,7 +78,7 @@ if ($bond) {
                             account.</p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">Is <?php echo $bond->displayName; ?> bond tax-free?</div>
+                        <h3 class="faq_question">Is <?php echo $bond->displayName; ?> bond tax-free?</h3>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -98,7 +98,7 @@ if ($bond) {
                         <?php endif; ?>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">How can I sell <?php echo $bond->displayName; ?> bond before the maturity
+                        <h3 class="faq_question">How can I sell <?php echo $bond->displayName; ?> bond before the maturity
                             date?</div>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@ if ($bond) {
                         </p>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What are the benefits of investing in <?php echo $bond->displayName; ?>
+                        <h3 class="faq_question">What are the benefits of investing in <?php echo $bond->displayName; ?>
                             bond?</div>
                         <div class="faq_icon">
                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +145,7 @@ if ($bond) {
                         </ul>
                     </div>
                     <div class="faq_item">
-                        <div class="faq_question">What are the risks associated with investing in
+                        <h3 class="faq_question">What are the risks associated with investing in
                             <?php echo $bond->displayName; ?> bond?
                         </div>
                         <div class="faq_icon">
@@ -180,13 +180,13 @@ if ($bond) {
             <div class="feedback_list" style="margin-right: 15px">
                 <a href="https://vestedfinance.typeform.com/to/BuPt2Xwu#bondname=<?php echo $bond_name_slug; ?>"
                     target="_blank">
-                    <h2>Request to add more info/data</h2>
+                    <div class="feedback_list_title">Request to add more info/data</div>
                 </a>
             </div>
             <div class="feedback_list">
                 <a href="https://vestedfinance.typeform.com/to/W6VPlghm#bondname=<?php echo $bond_name_slug; ?>"
                     target="_blank">
-                    <h2>Inform about wrong info/data</h2>
+                    <div class="feedback_list_title">Inform about wrong info/data</div>
                 </a>
             </div>
         </div>

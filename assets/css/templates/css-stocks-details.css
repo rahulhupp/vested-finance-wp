@@ -4211,33 +4211,9 @@ body.mega-menu-open .site-content:before {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		flex-direction: column;
-		row-gap: 6px;
 		border: 1px solid #002852;
 		border-radius: 5px;
 		position: relative;
-	}
-
-	.humburger span {
-		width: 20px;
-		height: 1px;
-		background: #002852;
-		display: block;
-		transition-duration: 0.2s;
-		will-change: transform;
-	}
-
-	.menu-open .humburger span:nth-of-type(1) {
-		transform: rotateZ(45deg) scaleX(1.25) translate(3.5px, 4.5px);
-	}
-
-	.menu-open .humburger span:nth-of-type(2) {
-		background: 0 0;
-		transition-duration: 0.2s;
-	}
-
-	.menu-open .humburger span:nth-of-type(3) {
-		transform: rotateZ(-45deg) scaleX(1.25) translate(3.5px, -5px);
 	}
 
 	header .inner-header .site-primary-header-wrap .logo-menu .humburger .inner {
@@ -4657,7 +4633,6 @@ footer .footer_wrap .site_info_wrap a {
 	margin-top: 25px;
 	display: flex;
 	flex-wrap: wrap;
-	row-gap: 11px;
 }
 
 .others_links_wrap a {
@@ -5374,7 +5349,7 @@ footer .extra_info ul li sup {
 	display: block;
 }
 
-.stock_info_container h2 {
+.stock_info_container .stock_ticker {
 	color: #374151;
 	font-size: 16px !important;
 	font-weight: 500;
@@ -5382,7 +5357,7 @@ footer .extra_info ul li sup {
 	margin-bottom: 4px;
 }
 
-.stock_info_container h6 {
+.stock_info_container .stock_exchange {
 	color: #6B7280;
 	font-size: 12px;
 	font-weight: 400;
@@ -5397,14 +5372,14 @@ footer .extra_info ul li sup {
 	margin-bottom: 12px;
 }
 
-.stock_price_box h3 {
+.stock_price_box .stock_price {
 	color: #000000;
 	font-size: 28px;
 	font-weight: 700;
 	line-height: normal;
 }
 
-.stock_price_box h4 {
+.stock_price_box .stock_price_change {
 	color: #16A34A;
 	font-size: 16px;
 	font-weight: 500;
@@ -5412,7 +5387,7 @@ footer .extra_info ul li sup {
 	margin-left: 4px;
 }
 
-.stock_price_box h4.negative {
+.stock_price_box .stock_price_change.negative {
 	color: #B92406;
 }
 
@@ -5462,8 +5437,8 @@ footer .extra_info ul li sup {
 }
 
 .primary_button:hover {
-	background-color: #002852;
-	color: #FFFFFF;
+	background-color: #fff;
+	color: #002852;
 }
 
 .secondary_button {
@@ -5490,9 +5465,12 @@ footer .extra_info ul li sup {
 }
 
 .secondary_button:hover {
-	background: linear-gradient(0deg, rgba(0, 40, 82, 0.04) 0%, rgba(0, 40, 82, 0.04) 100%), #FFF;
-	color: rgba(0, 40, 82, 0.80);
-	border: 1px solid var(--Stroke-Button, #CCD4DC);
+	background-color: #002852;
+	color: #fff;
+}
+
+.secondary_button:hover svg path {
+	stroke: #fff;
 }
 
 
@@ -5869,7 +5847,7 @@ footer .extra_info ul li sup {
 	display: block;
 }
 
-.box_warrp a .stocks_details h2 {
+.box_warrp a .stocks_details .stock_name {
 	color: #595959;
 	font-size: 16px !important;
 	font-weight: 600;
@@ -5951,16 +5929,17 @@ footer .extra_info ul li sup {
 	align-items: center;
 }
 
-.feedback_list a h2 {
+.feedback_list a .feedback_list_title {
 	color: #1F2937;
 	font-size: 14px !important;
 	font-weight: 500;
 	word-wrap: break-word;
 	padding-right: 10px;
 	position: relative;
+	line-height: 1;
 }
 
-.feedback_list h2::before {
+.feedback_list .feedback_list_title::before {
 	content: '';
 	position: absolute;
 	background-image: url('../../images/external-link.svg');
@@ -6089,7 +6068,7 @@ footer .extra_info ul li sup {
 	padding: 24px;
 }
 
-.stock_metrics_wrapper .stock_metrics_range h6 {
+.stock_metrics_wrapper .stock_metrics_range .stock_metrics_range_title {
 	color: #6B7280;
 	font-size: 14px;
 	font-weight: 500;
@@ -6100,12 +6079,12 @@ footer .extra_info ul li sup {
 	position: relative;
 }
 
-.stock_metrics_wrapper .stock_metrics_range h6 img {
+.stock_metrics_wrapper .stock_metrics_range .stock_metrics_range_title img {
 	margin-left: 4px;
 	display: block;
 }
 
-.stock_metrics_wrapper .stock_metrics_range h6 .info_text {
+.stock_metrics_wrapper .stock_metrics_range .stock_metrics_range_title .info_text {
 	position: absolute;
 	left: calc(100% - -15px);
 	top: 50%;
@@ -6123,7 +6102,7 @@ footer .extra_info ul li sup {
 	z-index: 1;
 }
 
-.stock_metrics_wrapper .stock_metrics_range h6 img:hover+.info_text {
+.stock_metrics_wrapper .stock_metrics_range .stock_metrics_range_title img:hover+.info_text {
 	display: block;
 }
 
@@ -6533,11 +6512,7 @@ td.holdings_stock_weight_td {
 	}
 
 	.analyst_forecast_chart_container {
-		max-width: 240px;
-	}
-
-	.mobile_tabs_container {
-		min-height: 42px;
+		max-width: 320px;
 	}
 }
 
@@ -6566,7 +6541,7 @@ td.holdings_stock_weight_td {
 
 	.analyst_forecast_chart_container {
 		margin: 0 auto;
-		max-width: 200px;
+		max-width: 320px;
 	}
 
 	.stock_about_description {
@@ -6635,7 +6610,7 @@ td.holdings_stock_weight_td {
 	/* end feedback section */
 
 	/* discover */
-	.box_warrp a .stocks_details h2 {
+	.box_warrp a .stocks_details .stock_name {
 		max-width: 120px;
 	}
 
@@ -6806,9 +6781,4 @@ td.holdings_stock_weight_td {
 		padding-left: 0;
 		padding-right: 0;
 	}
-}
-
-
-.india_invest_menu, .india_more_menu {
-	display: none !important;
 }
