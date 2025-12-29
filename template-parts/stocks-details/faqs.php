@@ -89,7 +89,7 @@
                     <div class="list_faqs">
                         <?php foreach ($all_faqs as $faq): ?>
                             <div class="faq_item">
-                                <div class="faq_question"><?php echo $faq['question']; ?></div>
+                                <h3 class="faq_question"><?php echo $faq['question']; ?></h3>
                                 <div class="faq_icon">
                                     <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 1L7 7L13 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -113,12 +113,12 @@
         <div class="feedback_section">
             <div class="feedback_list" style="margin-right: 15px">
                 <a href="<?php echo $feedbackLinkAdd; ?>" target="_blank">
-                    <h2>Request to add more info/data</h2>
+                    <div class="feedback_list_title">Request to add more info/data</div>
                 </a>
             </div>
             <div class="feedback_list">
                 <a href="<?php echo $feedbackLinkIncorrect; ?>" target="_blank">
-                <h2>Inform about wrong info/data</h2>
+                <div class="feedback_list_title">Inform about wrong info/data</div>
             </a>
             </div>
         </div>
