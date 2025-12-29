@@ -101,7 +101,25 @@ function getValueByLabel($summaryMapping, $label)
 ?>
 <?php
 $symbol = get_query_var('symbol');
-get_header(); ?>
+get_header();
+
+// Include structured data schemas for SEO
+if ($overview_data) {
+    $summary = $overview_data->summary;
+    $summaryMapping = preprocessSummary($summary);
+    
+    get_template_part(
+        'template-parts/stocks-details/schemas',
+        null,
+        array(
+            'overview_data' => $overview_data,
+            'returns_data' => $returns_data,
+            'get_path' => $get_path,
+            'summary_mapping' => $summaryMapping
+        )
+    );
+}
+?>
 <?php
 if ($overview_data) {
     if (!isset($overview_data->error) || $overview_data->error != 1) { ?>

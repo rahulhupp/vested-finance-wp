@@ -1,14 +1,10 @@
 <?php
     $overview_data = $args['overview_data'];
     $ratios_data = $args['ratios_data'];
-    if($ratios_data) {
-        $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
-        $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
-    }
-        
+    $valuationIndex = array_search('Valuation', array_column($ratios_data['ratios'], 'section'));
+    $priceBookMRQ = $ratios_data['ratios'][$valuationIndex]['data']['current']['value']['priceBookMRQ']['value'];
 
     if ($overview_data) {
-        if (isset($overview_data->price, $overview_data->change, $overview_data->previousClose, $overview_data->changePercent)) {
         $name = $overview_data->name;
         $ticker = $overview_data->ticker;
         $price = $overview_data->price;
@@ -52,7 +48,7 @@
                         </div>
                     </div>
                     <div class="faq_answer">
-                        <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <?php echo $name; ?> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
+                        <p>Yes, Indians can buy shares of <?php echo $name; ?> (<?php echo $ticker; ?>) on Vested. To buy <company-name> from India, you can open a US Brokerage account on Vested today by clicking on Sign Up or Invest in <?php echo $ticker; ?> stock at the top of this page. The account opening process is completely digital and secure, and takes a few minutes to complete.</p>
                     </div>
                     <div class="faq_item">
                         <h3 class="faq_question">Can Fractional shares of <span><?php echo $name; ?></span> be purchased?</h3>
@@ -82,7 +78,6 @@
                             <li>Transfer USD funds to your US Brokerage account and start investing in <?php echo $name; ?> shares</li>
                         </ul>
                     </div>
-                    <?php if($highRange && $lowRange): ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is <span><?php echo $name; ?></span> 52-week high and low stock price?</h3>
                         <div class="faq_icon">
@@ -95,8 +90,6 @@
                         <p>The 52-week high price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span>$<?php echo $highRange; ?></span>. The 52-week low price of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>)
                             is <span>$<?php echo $lowRange; ?></span>.</p>
                     </div>
-                    <?php endif; ?>
-                    <?php if($peRatio): ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is <span><?php echo $name; ?></span> price-to-earnings (P/E) ratio?</h3>
                         <div class="faq_icon">
@@ -108,8 +101,6 @@
                     <div class="faq_answer">
                         <p>The price-to-earnings (P/E) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $peRatio; ?></span></p>
                     </div>
-                    <?php endif; ?>
-                    <?php if ($ratios_data) : ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is <span><?php echo $name; ?></span> price-to-book (P/B) ratio?</h3>
                         <div class="faq_icon">
@@ -121,8 +112,6 @@
                     <div class="faq_answer">
                         <p>The price-to-book (P/B) ratio of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <?php echo $priceBookMRQ; ?></p>
                     </div>
-                    <?php endif; ?>
-                    <?php if($dividendYieldValue): ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is <span><?php echo $name; ?></span> dividend yield?</h3>
                         <div class="faq_icon">
@@ -134,8 +123,6 @@
                     <div class="faq_answer">
                         <p>The dividend yield of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?></span></p>
                     </div>
-                    <?php endif; ?>
-                    <?php if($marketCapValue): ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is the Market Cap of <span><?php echo $name; ?></span>?</h3>
                         <div class="faq_icon">
@@ -147,7 +134,6 @@
                     <div class="faq_answer">
                         <p>The market capitalization of <span><?php echo $name; ?></span> (<span><?php echo $ticker; ?></span>) is <span><?php echo $marketCapValue; ?></span></p>
                     </div>
-                    <?php endif; ?>
                     <div class="faq_item">
                         <h3 class="faq_question">What is <span><?php echo $name; ?></span>’s stock symbol?</h3>
                         <div class="faq_icon">
@@ -225,7 +211,6 @@
                         </ul>"
                     }
                 },
-                <?php if($highRange && $lowRange): ?>
                 {
                     "@type": "Question",
                     "name": "What is <?php echo $name; ?> 52-week high and low stock price?",
@@ -235,8 +220,6 @@
                             is <?php echo $lowRange; ?>."
                     }
                 },
-                <?php endif; ?>
-                <?php if($peRatio): ?>
                 {
                     "@type": "Question",
                     "name": "What is <?php echo $name; ?> price-to-earnings (P/E) ratio?",
@@ -245,7 +228,6 @@
                         "text": "The price-to-earnings (P/E) ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $peRatio; ?>"
                     }
                 },
-                <?php endif; ?>
                 {
                     "@type": "Question",
                     "name": "What is <?php echo $name; ?> price-to-book (P/B) ratio?",
@@ -254,7 +236,6 @@
                         "text": "The price-to-book (P/B) ratio of <?php echo $name; ?> (<?php echo $ticker; ?>) is <span id='faq_stock_pb_ratio'></span>"
                     }
                 },
-                <?php if($dividendYieldValue): ?>
                 {
                     "@type": "Question",
                     "name": "What is <?php echo $name; ?> dividend yield?",
@@ -263,8 +244,6 @@
                         "text": "The dividend yield of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php if ($dividendYieldValue) { echo $dividendYieldValue; } else { echo "0.00%"; }?>"
                     }
                 },
-                <?php endif; ?>
-                <?php if($marketCapValue): ?>
                 {
                     "@type": "Question",
                     "name": "What is the Market Cap of <?php echo $name; ?>?",
@@ -273,7 +252,6 @@
                         "text": "The market capitalization of <?php echo $name; ?> (<?php echo $ticker; ?>) is <?php echo $marketCapValue; ?>"
                     }
                 },
-                <?php endif; ?>
                 {
                     "@type": "Question",
                     "name": "What is <?php echo $name; ?>’s stock symbol?",
@@ -286,7 +264,6 @@
         }
     </script>
 <?php
-        }
     } else {
         echo "Error retrieving data"; // Handle error
     }

@@ -5911,7 +5911,6 @@ footer .extra_info ul li sup {
 /* feedback start */
 .feedback_section {
 	display: flex;
-	align-items: center;
 	margin-top: 12px;
 }
 
@@ -5921,7 +5920,7 @@ footer .extra_info ul li sup {
 	padding: 11px 26px;
 	border-radius: 6px;
 	max-width: 272px;
-	max-height: 40px;
+	/* max-height: 40px; */
 }
 
 .feedback_list a {
