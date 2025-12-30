@@ -94,6 +94,24 @@
     background: #fff;
     color: #002852;
 }
+.mutual-funds-info .funds-row .funds-content .secondary_btn {
+    padding: 16px 21px;
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: all 0.3s;
+    display: inline-block;
+    background: #fff;
+    color: #002852;
+    border: 1px solid #002852;
+}
+.mutual-funds-info .funds-row .funds-content .secondary_btn:hover {
+    background: #002852;
+    color: #fff;
+}
 .why-info {
     padding: 70px 0;
     background-color: #EEF5FC;
@@ -784,6 +802,7 @@ a.btn.btn_light:hover {
     .mutual-funds-info .funds-row .funds-content p {
         font-size: 16px;
     }
+    .mutual-funds-info .funds-row .funds-content .secondary_btn,
     .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
         font-size: 16px;
     }
@@ -839,6 +858,7 @@ a.btn.btn_light:hover {
         padding-right: 0;
         width: 100%;
     }
+    .mutual-funds-info .funds-row .funds-content .secondary_btn,
     .mutual-funds-info .funds-row .funds-content .btn_dark, .who-info .btn_dark {
         padding: 12px 20px;
         border-radius: 3px;

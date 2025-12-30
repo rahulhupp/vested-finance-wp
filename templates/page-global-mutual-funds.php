@@ -13,6 +13,12 @@ get_header(); ?>
                     <div class="bottom">
                         <div class="buttons">
                             <a class="btn_dark" href="<?php the_field('start_investing_link_global'); ?>" target="_blank"><?php the_field('start_investing_label_global'); ?></a>
+                            <?php 
+                            $explore_link = get_field('explore_global_funds_link_global');
+                            $explore_label = get_field('explore_global_funds_label_global');
+                            if (!empty($explore_link) && !empty($explore_label)): ?>
+                                <a class="secondary_btn" href="<?php echo esc_url($explore_link); ?>" target="_blank"><?php echo esc_html($explore_label); ?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
