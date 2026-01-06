@@ -42,7 +42,7 @@ get_header(); ?>
                         <p>Average Portfolio Value</p>
                     </div>
                 </div>
-                <span>All numbers displayed are as of July 2025</span>
+                <span>All numbers displayed are as of December 2025</span>
             </div>
         </div>
     </section>
