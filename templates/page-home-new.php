@@ -26,19 +26,19 @@ get_header(); ?>
             <div class="home_metrics_wrapper">
                 <div class="home_metrics_list">
                     <div class="home_metrics_item">
-                        <h3>₹6,000 Cr+</h3>
+                        <h3>₹8,000 Cr+</h3>
                         <p>Assets Under Administration</p>
                     </div>
                     <div class="home_metrics_item">
-                        <h3>₹16,000 Cr+</h3>
+                        <h3>₹40,000 Cr+</h3>
                         <p>Trading Volume</p>
                     </div>
                     <div class="home_metrics_item">
-                        <h3>3,00,000+</h3>
+                        <h3>3,50,000+</h3>
                         <p>Global Portfolios Launched</p>
                     </div>
                     <div class="home_metrics_item">
-                        <h3>₹7,00,000+</h3>
+                        <h3>₹8,00,000+</h3>
                         <p>Average Portfolio Value</p>
                     </div>
                 </div>
